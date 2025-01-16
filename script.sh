@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # Configuration
-ROOT_TYPST_FILE="main.typ"      # Root Typst file name
-BUILD_DIR="build"              # Build directory
+SRC_DIR="src"                 # Directory containing the Typst source files
+ROOT_TYPST_FILE="$SRC_DIR/main.typ"  # Path to the root Typst file
+BUILD_DIR="build"             # Build directory
 OUTPUT_PDF="$BUILD_DIR/main.pdf"  # Output PDF file path
 COMMIT_MESSAGE="Build and update PDF"  # Commit message
 
