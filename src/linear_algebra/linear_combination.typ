@@ -1,5 +1,5 @@
-#import "../../../utils/code.typ": code
-#import "../../../utils/examples.typ": eg
+#import "../utils/code.typ": code
+#import "../utils/examples.typ": eg
 #import "@preview/cetz:0.2.2"
 
 #set math.vec(delim: "[")

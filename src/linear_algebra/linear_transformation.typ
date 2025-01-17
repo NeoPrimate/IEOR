@@ -1,7 +1,7 @@
-#import "../../../utils/code.typ": code
-#import "../../../utils/examples.typ": eg
-#import "../../../utils/result.typ": result
-#import "../../../utils/blob.typ": draw-blob
+#import "../utils/code.typ": code
+#import "../utils/examples.typ": eg
+#import "../utils/result.typ": result
+#import "../utils/blob.typ": draw-blob
 
 #import "@preview/cetz:0.3.1"
 

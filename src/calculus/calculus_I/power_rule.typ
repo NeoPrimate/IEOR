@@ -1,7 +1,7 @@
-#import "../../../../utils/examples.typ": eg
-#import "../../../../utils/code.typ": code
-#import "../../../../utils/color_math.typ": colorMath
-#import "../../../../utils/result.typ": result
+#import "../../utils/examples.typ": eg
+#import "../../utils/code.typ": code
+#import "../../utils/color_math.typ": colorMath
+#import "../../utils/result.typ": result
 #import "@preview/cetz:0.3.1": canvas, draw
 #import "@preview/cetz-plot:0.1.0": plot
 
@@ -352,7 +352,7 @@ $
   ln(x) = 1 / x
 $
 
-#let x = 2
+#let x = 4
 #let m = calc.round(calc.ln(x), digits: 2)
 #let b = calc.round(m - m * x, digits: 2)
 #let f_tangent(x) = m * x + b
@@ -373,14 +373,14 @@ $
       legend: "inner-north-west",
       {
         plot.add(
-          calc.sin, 
-          domain: (-5, 10), 
+          calc.ln, 
+          domain: (0.0001, 10), 
           style: (stroke: blue),
           label: $ln(x)$
         )
         plot.add(
           f_tangent, 
-          domain: (-5, 10), 
+          domain: (0.0001, 10), 
           style: (stroke: red),
           label: $y = #m #x + #b$
         )

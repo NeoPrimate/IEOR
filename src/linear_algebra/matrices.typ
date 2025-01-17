@@ -4,7 +4,7 @@
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
 
-== Matrices
+= Matrices
 
 $m times n$ matrix $bold(A)$
 - $m$: rows
@@ -19,7 +19,7 @@ bold(A) = mat(
 )
 $
 
-=== Matrix-Vector Products
+== Matrix-Vector Products
 
 $
 bold(A) = mat(
@@ -125,7 +125,7 @@ $
 bold(A) accent(x, arrow) = x_1 #text(red)[$accent(a, arrow)$] + x_2 #text(blue)[$accent(b, arrow)$]
 $
 
-=== Null Space
+== Null Space
 
 The null space (or kernel) of a matrix $bold(A)$ is the set of all vectors $bold(x)$ that satisfy the equation:
 
@@ -331,7 +331,7 @@ vec(x_1, x_2, x_3)
 $
 ]
 
-=== Matrix Multiplication
+==  Matrix Multiplication
 
 $m times n$ matrix:
 

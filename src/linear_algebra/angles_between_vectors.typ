@@ -1,5 +1,5 @@
-#import "../../../utils/examples.typ": eg
-#import "../../../utils/result.typ": result
+#import "../utils/examples.typ": eg
+#import "../utils/result.typ": result
 
 #import "@preview/cetz:0.2.2"
 

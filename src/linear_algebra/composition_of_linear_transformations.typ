@@ -1,8 +1,8 @@
-#import "../../../utils/code.typ": code
-#import "../../../utils/examples.typ": eg
-#import "../../../utils/result.typ": result
-#import "../../../utils/blob.typ": draw-blob
-#import "../../../utils/color_math.typ": colorMath
+#import "../utils/code.typ": code
+#import "../utils/examples.typ": eg
+#import "../utils/result.typ": result
+#import "../utils/blob.typ": draw-blob
+#import "../utils/color_math.typ": colorMath
 
 #import "@preview/cetz:0.3.1"
 

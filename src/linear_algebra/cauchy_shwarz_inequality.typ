@@ -1,4 +1,4 @@
-#import "../../../utils/examples.typ": eg
+#import "../utils/examples.typ": eg
 
 #import "@preview/cetz:0.2.2"
 

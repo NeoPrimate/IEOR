@@ -1,6 +1,10 @@
-= Linear Algebra
+#import "../utils/title_page.typ": title_page
+
+#title_page("Linear Algebra")
 
 #include("vectors.typ")
+
+#include("matrices.typ")
 
 #include("linear_combination.typ")
 
@@ -28,3 +32,16 @@
 
 #include("composition_of_linear_transformations.typ")
 
+#include("eigenvectors_eigenvalues.typ")
+
+#include("lu_decomposition.typ")
+
+
+
+#include("linear_equations.typ")
+
+#include("gaussian_elimination.typ")
+
+#include("substitution.typ")
+
+#include("addition_subtraction.typ")

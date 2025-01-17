@@ -5,7 +5,7 @@
 
 #set math.vec(delim: "[")
 
-== Vectors
+= Vectors
 $
   "Vector" = "Magnitude" + "Direction"
 $
@@ -295,7 +295,7 @@ $
   ]
 ]
 
-=== Unit Vector
+== Unit Vector
 
 A vector that has a magnitude (or length) of exactly 1
 
@@ -376,7 +376,7 @@ $
 
 ]
 
-=== Parametric Representation of line
+== Parametric Representation of line
 
 Set $L$ of all points (i.e., line) equal to the set of all vectors $accent(x, arrow)$ plus some scalar $t$ times the vector $accent(v, arrow)$ such that $t$ can be any real number ($RR$)
 
@@ -669,7 +669,7 @@ $
   
 ]
 
-=== Vector Spaces
+== Vector Spaces
 
 #eg[
 Let's say your factory can produce up to 300 units of product 1, 500 units of product 2, and 400 units of product 3. The set of all possible production combinations forms a vector space:

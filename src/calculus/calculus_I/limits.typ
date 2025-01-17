@@ -1,7 +1,7 @@
-#import "../../../../utils/examples.typ": eg
-#import "../../../../utils/code.typ": code
-#import "../../../../utils/color_math.typ": colorMath
-#import "../../../../utils/result.typ": result
+#import "../../utils/examples.typ": eg
+#import "../../utils/code.typ": code
+#import "../../utils/color_math.typ": colorMath
+#import "../../utils/result.typ": result
 
 #import "@preview/cetz:0.2.2"
 

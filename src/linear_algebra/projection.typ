@@ -1,7 +1,7 @@
-#import "../../../utils/examples.typ": eg
-#import "../../../utils/result.typ": result
-#import "../../../utils/matvec_mult.typ": matvec_mult
-#import "../../../utils/blob.typ": draw-blob
+#import "../utils/examples.typ": eg
+#import "../utils/result.typ": result
+#import "../utils/matvec_mult.typ": matvec_mult
+#import "../utils/blob.typ": draw-blob
 
 #import "@preview/cetz:0.3.1"
 #import "@preview/cetz-plot:0.1.0"
