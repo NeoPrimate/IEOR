@@ -6,4 +6,6 @@ $
 P(X = k) = (lambda^k e^(- lambda)) / k!
 $
 
+
+
 #figure(image("../../vis/poisson_distribution.png", width: 30%))

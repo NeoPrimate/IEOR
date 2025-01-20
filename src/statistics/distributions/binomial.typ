@@ -16,11 +16,13 @@ $
 P(X = k) = binom(n, k) p^k (1-p)^(n-k)
 $
 
-#figure(image("../../vis/binomial_distribution.png", width: 30%))
+#let binomial(n, k, p) = (
+  calc.binom(n, k) * calc.pow(p, k) * calc.pow((1 - p), n - k)
+)
 
-#let k = 4
-
-#let points = range(0, 10).map((n) => (n, calc.binom(k, n)))
+#let b1 = range(1, 25).map((n) => (n, binomial(n, 1, 0.3)))
+#let b2 = range(1, 25).map((n) => (n, binomial(n, 1, 0.5)))
+#let b3 = range(1, 25).map((n) => (n, binomial(n, 1, 0.9)))
 
 #align(center)[
   #canvas({
@@ -29,24 +31,31 @@ $
     plot.plot(
       size: (8, 8),
       axis-style: "school-book",
-      x-tick-step: 1,
+      x-tick-step: 5,
       x-min: 0., 
-      x-max: 10.,
-      y-tick-step: 1, 
+      y-tick-step: 0.1, 
       y-min: 0., 
-      y-max: 1.,
       legend: "inner-north-west",
       {
         plot.add(
-          points, 
+          b1, 
           domain: (1, 10), 
           style: (stroke: blue),
-          label: $ binom(n, k) $
+          mark: "o"
+        )
+        plot.add(
+          b2, 
+          domain: (1, 10), 
+          style: (stroke: red),
+          mark: "o"
+        )
+        plot.add(
+          b3, 
+          domain: (1, 10), 
+          style: (stroke: green),
+          mark: "o"
         )
       })
   })
 ]
-
-#points
-
 

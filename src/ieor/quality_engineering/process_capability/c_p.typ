@@ -1,13 +1,63 @@
 #import "../../../utils/examples.typ": eg
 #import "../../../utils/code.typ": code
+#import "../../../utils/color_math.typ": colorMath
+#import "../../../utils/result.typ": result
+#import "@preview/cetz:0.3.1": canvas, draw
+#import "@preview/cetz-plot:0.1.0": plot, chart
+#import "@preview/suiji:0.3.0": *
 
 == $C_p$ (Process Capability Index)
+
+Measure how well a process can produce outputs within specified limits
 
 $
 C_p = ("USL" - "LSL") / (6 sigma)
 $
 
+- $C_p > 1$: The process variation is smaller than the specification range (good capability).
+- $C_p = 1$: The process variation matches the specification range (barely acceptable).
+- $C_p < 1$: The process variation exceeds the specification range (poor capability).
+
+*Assumption*: Process is *centered* within the specification limits
+
+
+
 #figure(image("../../../vis/c_p.png", width: 80%))
+
+#let mu = 10.0
+#let sigma = 0.05
+
+#let usl = 10.2
+#let lsl = 9.8
+
+#let rng = gen-rng(42)
+
+#let (_, c) = normal(rng, loc: mu, scale: sigma, size: 1000)
+
+// #c
+
+// #let data2 = (
+//   ([15-25], 18.0, 20.1, 23.0, 17.0),
+//   ([25-29], 16.3, 17.6, 19.4, 15.3),
+//   ([30-34], 14.0, 15.3, 13.9, 18.7),
+//   ([35-44], 35.5, 26.5, 29.4, 25.8),
+//   ([45-54], 25.0, 20.6, 22.4, 22.0),
+//   ([55+],   19.9, 18.2, 19.2, 16.4),
+// )
+
+// #canvas({
+//   draw.set-style(legend: (fill: white))
+//   chart.barchart(
+//                  size: (9, auto),
+//                  label-key: 0,
+//                  value-key: (..range(1, 5)),
+//                  bar-width: .8,
+//                  x-tick-step: 2.5,
+//                  data2,
+//                  labels: ([Low], [Medium], [High], [Very high]),
+//                  legend: "inner-north-east",)
+// })
+
 
 #eg[
 Suppose a company manufactures metal rods, and the specification limits for the diameter of the rods are:
