@@ -259,6 +259,23 @@
   ]
 )
 
+== Trigonometric Functions
+
+#table(
+  columns: (auto, auto, auto),
+  inset: 10pt,
+  align: horizon,
+  table.header([*Function*], [*Definition*], [*Reciprocal*]),
+  $sin(x)$, $"opposite" / "hypothenuse"$, $1 / sin(x) = csc(x)$,
+  $cos(x)$, $"adjacent" / "hypothenuse"$, $1 / cos(x) = sec(x)$,
+  $tan(x)$, $sin(x) / cos(x) = "opposite" / "adjacent"$, $1 / tan(x) = cot(x)$,
+  $csc(x)$, $sin(x) / cos(x) = "hypothenuse" / "opposite"$, $1 / csc(x) = sin(x)$,
+  $sec(x)$, $"hypothenuse" / "adjacent"$, $1 / sec(x) = cos(x)$,
+  $cot(x)$, $cos(x) / sin(x) = "adjacent" / "opposite"$, $1 / cot(x) = tan(x)$,
+)
+
+
+
 ]
 
 #grid(

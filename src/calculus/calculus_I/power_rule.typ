@@ -226,7 +226,7 @@ $
   ]
 ]
 
-== Cos
+== Sin
 
 $
   d / (d x) sin(x) = cos(x) \
@@ -263,7 +263,7 @@ $
     })
   ]
 
-== Sin
+== Cos
 
 $
   d / (d x) cos(x) = - sin(x) \
@@ -311,7 +311,7 @@ $
   #let x = 0
 
   #let m = calc.round(calc.exp(x), digits: 2)
-  #let b = m - m * x
+  #let b = calc.round(m - m * x, digits: 2)
   #let f_tangent(x) = m * x + b
 
 
@@ -340,7 +340,7 @@ $
             f_tangent, 
             domain: (-5, 10), 
             style: (stroke: red),
-            label: $y = #m #x + #b$
+            label: $y = #m dot #x + #b$
           )
         })
     })
@@ -352,9 +352,9 @@ $
   ln(x) = 1 / x
 $
 
-#let x = 4
-#let m = calc.round(calc.ln(x), digits: 2)
-#let b = calc.round(m - m * x, digits: 2)
+#let x = 2
+#let m = calc.round(1 / x, digits: 2)
+#let b = calc.round(calc.ln(x) - m * x, digits: 2)
 #let f_tangent(x) = m * x + b
 
 #align(center)[
@@ -382,7 +382,7 @@ $
           f_tangent, 
           domain: (0.0001, 10), 
           style: (stroke: red),
-          label: $y = #m #x + #b$
+          label: $y = #m dot #x + #b$
         )
       })
   })

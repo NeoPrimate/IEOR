@@ -6,4 +6,12 @@
 
 #include("power_rule.typ")
 
+#include("product_rule.typ")
+
+#include("quotient_rule.typ")
+
+#include("chain_rule.typ")
+
+#include("implicit_differentiation.typ")
+
 // #include("fundamental_theorem.typ")
