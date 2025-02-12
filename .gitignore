@@ -23,5 +23,8 @@
 Thumbs.db          # Windows
 desktop.ini        # Windows
 
+# Ignore virtual environments
+venv/
+
 # Ignore log files
 *.log

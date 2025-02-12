@@ -1,0 +1,251 @@
+#import "../../utils/examples.typ": eg
+#import "../../utils/code.typ": code
+#import "../../utils/color_math.typ": colorMath
+#import "../../utils/result.typ": result
+#import "@preview/cetz:0.3.1": canvas, draw
+#import "@preview/cetz-plot:0.1.0": plot
+#import "../../utils/blob.typ": draw-blob
+
+#import "@preview/cetz:0.3.1"
+
+#set math.vec(delim: "[")
+#set math.mat(delim: "[")
+
+== Derivatives of Inverse Functions
+
+$
+  d / (d x)[f^(-1)(x)] = 1 / (f'(f^(-1)(x)))
+$
+
+*1. Definition of Inverse Function*
+
+$
+  colorMath(f(colorMath(f^(-1)(colorMath(x, #black)), #blue)), #red) = x \
+  colorMath(f^(-1)(colorMath(f(colorMath(x, #black)), #red)), #blue) = x \
+$
+
+#align(center)[
+  #cetz.canvas({
+    draw-blob(
+      2, (0, 0), 1.5,
+      stroke: green,
+      name: "blob1"
+    )
+    draw-blob(
+      8, (5, 0), 1.5,
+      n-pts: 10,
+      stroke: orange,
+      name: "blob2"
+    )
+    cetz.draw.circle(
+      "blob1.center",
+      radius: .05,
+      fill: black,
+      stroke: none,
+      name: "x"
+    )
+    cetz.draw.circle(
+      "blob2.center",
+      radius: .05,
+      fill: black,
+      stroke: none,
+      name: "y"
+    )
+    cetz.draw.content(
+      "x", [$x$],
+      anchor: "east",
+      padding: 3pt
+    )
+    cetz.draw.content(
+      "y", [$f(x)$],
+      anchor: "west",
+      padding: 3pt
+    )
+    let mid = (2.5, .5)
+    cetz.draw.bezier-through(
+      "x.north-east", mid, "y.north-west",
+      stroke: blue + .5pt,
+      mark: (end: ">", fill: blue),
+      name: "arrow"
+    )
+    cetz.draw.content(
+      mid, [$f$],
+      anchor: "south",
+      padding: 3pt
+    )
+    let mid = (2.5, -.5)
+    cetz.draw.bezier-through(
+      "y.north-east", mid, "x.north-west",
+      stroke: blue + .5pt,
+      mark: (end: ">", fill: blue),
+      name: "arrow"
+    )
+    cetz.draw.content(
+      mid, [$f^(-1)$],
+      anchor: "north",
+      padding: 3pt
+    )
+  })
+]
+
+*2. Differentiate Both Sides*
+
+Differenatiate both sides with respect to $x$
+
+$
+  d / (d x) [ colorMath(f(colorMath(f^(-1)(colorMath(x, #black)), #blue)), #red)] = d / (d x)[x]
+$
+
+The right-hand side simplifies to:
+
+$
+  d / (d x) [ colorMath(f(colorMath(f^(-1)(colorMath(x, #black)), #blue)), #red)] = 1
+$
+
+Using chain-rule: 
+
+$
+  d / (d x) [colorMath(f(colorMath(g(colorMath(x, #black)), #blue)), #red)] = colorMath(f'(colorMath(g(colorMath(x, #black)), #blue)), #red) dot colorMath(g'(colorMath(x, #black)), #blue)
+$
+
+The left side expands as:
+
+$
+  d / (d x) [colorMath(f(colorMath(f^(-1)(colorMath(x, #black)), #blue)), #red)] = colorMath(f'(colorMath(f^(-1)(colorMath(x, #black)), #blue)), #red) dot colorMath(d / (d x) [f^(-1)(colorMath(x, #black))], #blue)
+$
+
+This we get:
+
+$
+  colorMath(f'(colorMath(f^(-1)(colorMath(x, #black)), #blue)), #red) dot colorMath(d / (d x) [f^(-1)(colorMath(x, #black))], #blue) = 1
+$
+
+*3. Solve for $d / (d x) [f^(-1)(x)]$*
+
+Rearrange to isolate $d / (d x) [f^(-1)(x)]$:
+
+$
+  colorMath(d / (d x)[f^(-1)(colorMath(x, #black))], #blue) = 1 / colorMath(f'(colorMath(f^(-1)(colorMath(x, #black)), #blue)), #red)
+$
+
+#eg[
+  Given the function: 
+  
+  $
+    f(x) = x^3 + x
+  $ 
+  
+  We want to find $d / (d x) f^(-1)(x)$ at $x = 2$ using the inverse function derivative formula:
+  
+  $
+    d / (d x) f^(-1)(x) = 1 / (f'(f^(-1)(x)))
+  $
+
+  #line(length: 100%)
+
+  *1. Compute $f'(x)$*
+
+  Differenatiate $f(x)$:
+
+  $
+    f'(x) = 3x^2 + 1
+  $
+
+  #line(length: 100%)
+
+  *2. Solve for $x$ such that $f(x) = 2$*
+
+  We need to find $x$ such that:
+
+  $
+    x^3 + x = 2
+  $
+
+  Checking $x = 1$:
+
+  $
+    1^3 + 1 = 2
+  $
+
+  So, 
+  
+  $
+    f^(-1)(2) = 1
+  $
+
+  #line(length: 100%)
+
+  *3. Compute $f'(1)$*
+
+  Evaluate the derivative at $x = 1$:
+
+  $
+    f'(1) 
+    &= 3 (1)^2 + 1 \
+    &= 4
+  $
+
+  #line(length: 100%)
+
+  *4. Use the formula*
+
+  $
+    d / (d x) f^(-1) (2)
+    &= 1 / (f'(1)) \
+    &= 1 / 4 \
+  $
+
+  #line(length: 100%)
+
+  *5. Interpretation*
+
+  #let f(x) = calc.pow(x, 3) + x
+  #let f_prime(x) = 3 * calc.pow(x, 2) + 1
+
+  #align(center)[
+    #canvas({
+      import draw: *
+      
+      plot.plot(
+        size: (10, 10),
+        axis-style: "school-book",
+        x-tick-step: 2,
+        x-min: -4., 
+        x-max: 4.,
+        y-tick-step: 10, 
+        y-min: -50., 
+        y-max: 50.,
+        legend: "north-east",
+        {
+          plot.add(
+            f, 
+            domain: (-4, 4), 
+            style: (stroke: blue),
+            label: $f(x) = x^3 + x$
+          )
+          plot.add(
+            f_prime, 
+            domain: (-4, 4), 
+            style: (stroke: red),
+            label: $f'(x) = 3 x^2 + 1$
+          )
+        })
+    })
+  ]
+]
+
+#code[
+  ```py
+  from sympy import symbols, solve
+
+  # y = x**3 + x
+
+  x, y = symbols('x y')
+
+  f = x**3 + x - y
+
+  inverse = solve(f, x)
+
+  print(inverse)
+  ```
+]

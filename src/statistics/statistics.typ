@@ -1,5 +1,7 @@
 #import "../utils/title_page.typ": title_page
 
+#title_page("Statistics")
+
 = Probability Theory
 
 #include("./probability_theory/axioms.typ")
