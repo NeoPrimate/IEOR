@@ -132,7 +132,7 @@ $
   Given the function: 
   
   $
-    f(x) = x^3 + x
+    f(x) = x^3
   $ 
   
   We want to find $d / (d x) f^(-1)(x)$ at $x = 2$ using the inverse function derivative formula:
@@ -199,8 +199,23 @@ $
 
   *5. Interpretation*
 
-  #let f(x) = calc.pow(x, 3) + x
-  #let f_prime(x) = 3 * calc.pow(x, 2) + 1
+  #let f(x) = calc.pow(x, 3)
+  #let f_inv(x) = calc.root(x, 3)
+  #let lin(x) = x
+
+  #let df(x) = 3 * calc.pow(x, 2)
+
+  #let x0 = 2
+
+  #let y0 = f(x0)
+  #let x1 = f_inv(y0)
+
+  #let m_f = df(x0)
+  #let m_f_inv = 1 / m_f
+
+  #let tangent_f(x) = m_f * (x - x0) + y0
+  #let tangent_f_inv(x) = m_f_inv * (x - y0) + x0
+
 
   #align(center)[
     #canvas({
@@ -209,25 +224,55 @@ $
       plot.plot(
         size: (10, 10),
         axis-style: "school-book",
-        x-tick-step: 2,
-        x-min: -4., 
-        x-max: 4.,
-        y-tick-step: 10, 
-        y-min: -50., 
-        y-max: 50.,
+        x-tick-step: 1,
+        x-min: -3., 
+        x-max: 3.,
+        y-tick-step: 1, 
+        y-min: -3., 
+        y-max: 3.,
         legend: "north-east",
         {
           plot.add(
             f, 
-            domain: (-4, 4), 
+            domain: (-3, 3), 
             style: (stroke: blue),
-            label: $f(x) = x^3 + x$
+            label: $f(x) = x^3$
           )
           plot.add(
-            f_prime, 
-            domain: (-4, 4), 
+            f_inv, 
+            domain: (-3, 3), 
             style: (stroke: red),
-            label: $f'(x) = 3 x^2 + 1$
+            label: $f^(-1)(x) = root(3, x)$
+          )
+          plot.add(
+            lin, 
+            domain: (-3, 3), 
+            style: (stroke: gray),
+            label: $x = y$
+          )
+          plot.add(
+            ((x0, y0),),
+            mark: "o",
+            mark-size: 0.2,
+            mark-style: (fill: black, stroke: none),
+          )
+          plot.add(
+            ((y0, x0),),
+            mark: "o",
+            mark-size: 0.2,
+            mark-style: (fill: black, stroke: none),
+          )
+          plot.add(
+            tangent_f, 
+            domain: (x0 - 1, x0 + 1), 
+            style: (stroke: green),
+            label: none
+          )
+          plot.add(
+            tangent_f_inv, 
+            domain: (y0 - 0.75, y0 + 0.75), 
+            style: (stroke: purple),
+            label: none
           )
         })
     })
