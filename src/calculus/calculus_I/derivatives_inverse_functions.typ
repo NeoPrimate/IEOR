@@ -13,9 +13,15 @@
 
 == Derivatives of Inverse Functions
 
+Finding the derivative of the inverse function $f^(-1)(x)$ at a given point directly from the function $f(x)$. Instead of explicitly computing the inverse function $f^(-1)(x)$, we use the inverse function derivative formula:
+
 $
   d / (d x)[f^(-1)(x)] = 1 / (f'(f^(-1)(x)))
 $
+
+This approach allows us to determine the derivative of the inverse function without needing to express $f^(-1)(x)$ explicitly. Instead, we find the value of $x$ that satisfies $f(x) = a$ (where 
+a
+a is the given point), evaluate $f'(x)$, and apply the formula.
 
 *1. Definition of Inverse Function*
 
@@ -135,7 +141,7 @@ $
     f(x) = x^3
   $ 
   
-  We want to find $d / (d x) f^(-1)(x)$ at $x = 2$ using the inverse function derivative formula:
+  We want to find $d / (d x) f^(-1)(x)$ at $x = 0.5$ using the inverse function derivative formula:
   
   $
     d / (d x) f^(-1)(x) = 1 / (f'(f^(-1)(x)))
@@ -148,41 +154,34 @@ $
   Differenatiate $f(x)$:
 
   $
-    f'(x) = 3x^2 + 1
+    f'(x) = 3x^2
   $
 
   #line(length: 100%)
 
-  *2. Solve for $x$ such that $f(x) = 2$*
+  *2. Solve for $x$ such that $f(x) = 0.5$*
 
   We need to find $x$ such that:
 
   $
-    x^3 + x = 2
+    x^3 = 0.5
   $
 
-  Checking $x = 1$:
+  Solving for $x$:
 
   $
-    1^3 + 1 = 2
-  $
-
-  So, 
-  
-  $
-    f^(-1)(2) = 1
+    x = root(3, 0.5)
   $
 
   #line(length: 100%)
 
-  *3. Compute $f'(1)$*
+  *3. Compute $f'(root(3, 0.5))$*
 
-  Evaluate the derivative at $x = 1$:
+  Evaluate the derivative at $x = root(3, 0.5)$:
 
   $
-    f'(1) 
-    &= 3 (1)^2 + 1 \
-    &= 4
+    f'(root(3, 0.5)) 
+    &= 3 (root(3, 0.5))^2
   $
 
   #line(length: 100%)
@@ -190,9 +189,8 @@ $
   *4. Use the formula*
 
   $
-    d / (d x) f^(-1) (2)
-    &= 1 / (f'(1)) \
-    &= 1 / 4 \
+    d / (d x) f^(-1) (0.5)
+    &= 1 / (3(root(3, 0.5))^2) \
   $
 
   #line(length: 100%)
@@ -205,7 +203,7 @@ $
 
   #let df(x) = 3 * calc.pow(x, 2)
 
-  #let x0 = 2
+  #let x0 = 0.5
 
   #let y0 = f(x0)
   #let x1 = f_inv(y0)
@@ -251,18 +249,6 @@ $
             label: $x = y$
           )
           plot.add(
-            ((x0, y0),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: black, stroke: none),
-          )
-          plot.add(
-            ((y0, x0),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: black, stroke: none),
-          )
-          plot.add(
             tangent_f, 
             domain: (x0 - 1, x0 + 1), 
             style: (stroke: green),
@@ -274,9 +260,29 @@ $
             style: (stroke: purple),
             label: none
           )
+          plot.add(
+            ((x0, y0),),
+            mark: "o",
+            mark-size: 0.2,
+            mark-style: (fill: green, stroke: none),
+          )
+          plot.add(
+            ((y0, x0),),
+            mark: "o",
+            mark-size: 0.2,
+            mark-style: (fill: purple, stroke: none),
+          )
         })
     })
   ]
+
+  The expression:
+
+  $
+    d / (d x) f^(-1)(0.5) = 1 / (3(root(3, 0.5))^2)
+  $
+
+  represents the derivative of the inverse function $f^(-1)(x)$ evaluated at $x = 0.5$. This means it gives the slope of the tangent line to the inverse funcion at $x = 0.5$.
 ]
 
 #code[
@@ -294,3 +300,31 @@ $
   print(inverse)
   ```
 ]
+
+=== Derivative Inverse Sin
+
+$
+  d / (d x ) [sin^(-1)(x)] = 1 / (sqrt(1 - x^2))
+$
+
+$
+  d / (d x ) [arcsin(x)] = 1 / (sqrt(1 - x^2))
+$
+
+=== Derivative Inverse Cos
+
+$
+  d / (d x ) [cos^(-1)(x)] = - 1 / (sqrt(1 - x^2))
+$
+$
+  d / (d x ) [arccos(x)] = - 1 / (sqrt(1 - x^2))
+$
+
+=== Derivative Inverse Tan
+
+$
+  d / (d x ) [tan^(-1)(x)] = - 1 / (1 + x^2)
+$
+$
+  d / (d x ) [arctan(x)] = - 1 / (1 + x^2)
+$

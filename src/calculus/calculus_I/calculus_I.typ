@@ -14,4 +14,20 @@
 
 #include("implicit_differentiation.typ")
 
+#include("derivatives_inverse_functions.typ")
+
+#include("inverse_functions.typ")
+
+#include("hospital_rule.typ")
+
+#include("mean_value_theorem.typ")
+
+#include("extreme_value_theorem.typ")
+
 // #include("fundamental_theorem.typ")
+
+
+
+
+
+#include("rules.typ")

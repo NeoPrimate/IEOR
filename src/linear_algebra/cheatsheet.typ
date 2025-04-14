@@ -1,8 +1,8 @@
-#import "../../../utils/code.typ": code
-#import "../../../utils/examples.typ": eg
-#import "../../../utils/result.typ": result
-#import "../../../utils/color_math.typ": colorMath
-#import "../../../utils/blob.typ": draw-blob
+#import "../utils/code.typ": code
+#import "../utils/examples.typ": eg
+#import "../utils/result.typ": result
+#import "../utils/color_math.typ": colorMath
+#import "../utils/blob.typ": draw-blob
 
 
 #import "@preview/cetz:0.3.1"
@@ -10,77 +10,281 @@
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
 
-= Vector
-
-$
-  vec(x_1, x_2, dots.v, x_n)
-$
-
-== Vector Space
-
-A vector space (or linear space) is a set of vectors that can be added together and scaled by scalars, following specific properties (axioms)
+#set page(margin: (
+  right: 0.5cm,
+  left: 0.5cm,
+  top: 0.5cm,
+  bottom: 0.5cm,
+))
 
 #align(center,
   table(
-    columns: (auto, auto),
+    columns: (auto, 40%, auto),
     inset: 10pt,
-    stroke: none,
-    align: center,
-    "Closure under addition", $arrow(u), arrow(v) in V quad arrow.double quad arrow(u) + arrow(v) in V$,
-    "Closure under scalar multiplication", $arrow(v) in V and c in RR quad arrow.double quad c arrow(v) in V$,
-    "Commutativity of addition", $arrow(u) + arrow(v) = arrow(v) + arrow(u)$,
-    "Associativity of addition", $(arrow(u) + arrow(v)) + arrow(w) = arrow(u) + (arrow(v) + arrow(w))$,
-    "Additive identity", $exists bold(0) in V | arrow(v) + bold(0) = arrow(v)$,
-    "Additive inverse", $forall arrow(v) in V exists -arrow(v) in V | arrow(v) + (- arrow(v)) = 0$,
-    "Scalar multiplication (compatibility)", $a (b arrow(v)) = (a b) arrow(v)$,
-    "Distributivity over vector addition", $a (arrow(u) + arrow(v)) = a arrow(u) + a arrow(v)$,
-    "Distributivity over scalar addition", $(a + b) arrow(v) = a arrow(v) + b arrow(v)$,
-    "Multiplicative identity", $1 arrow(v) = arrow(v)$,
+    stroke: 1pt,
+    align: (center, center, left),
+    
+    [], [], [],
+    
+    [Vector], [$vec(x_1, x_2, dots.v, x_n)$], [],
+    
+    [Scalar Vector Multiplication], [
+      $
+        colorMath(c, #blue) in RR
+        quad quad
+        arrow(x) 
+        = vec(colorMath(x_1, #red), colorMath(x_2, #red), dots.v, colorMath(x_n, #red)) 
+        \
+        c arrow(x)
+        = vec(colorMath(c, #blue) colorMath(x_1, #red), colorMath(c, #blue) colorMath(x_2, #red), dots.v, colorMath(c, #blue) colorMath(x_n, #red))
+      $
+    ], [],
+
+    [Dot Product], [
+      $
+        arrow(x) 
+        = vec(colorMath(x_1, #red), colorMath(x_2, #red), dots.v, colorMath(x_n, #red))
+        quad quad 
+        arrow(y) 
+        = vec(colorMath(y_1, #blue), colorMath(y_2, #blue), dots.v, colorMath(y_n, #blue))
+        $
+        
+        $
+        arrow(x) dot arrow(y) 
+        &= sum_(i=1)^n colorMath(x_i, #red) colorMath(y_i, #blue) \
+        &= colorMath(x_1, #red) colorMath(y_1, #blue) + colorMath(x_2, #red) colorMath(y_2, #blue) + dots + colorMath(x_n, #red) colorMath(y_n, #blue)
+        \
+        &= colorMath(arrow(x), #red)^T colorMath(arrow(y), #blue)
+      $
+    ], [],
+
+    "Vector Space", [
+      #align(center,
+        table(
+          columns: (auto),
+          inset: 5pt,
+          stroke: none,
+          align: center,
+          "Closure under addition", $arrow(u), arrow(v) in V quad arrow.double quad arrow(u) + arrow(v) in V$,
+          "Closure under scalar multiplication", $arrow(v) in V and c in RR quad arrow.double quad c arrow(v) in V$,
+          "Commutativity of addition", $arrow(u) + arrow(v) = arrow(v) + arrow(u)$,
+          "Associativity of addition", $(arrow(u) + arrow(v)) + arrow(w) = arrow(u) + (arrow(v) + arrow(w))$,
+          "Additive identity", $exists bold(0) in V | arrow(v) + bold(0) = arrow(v)$,
+          "Additive inverse", $forall arrow(v) in V exists -arrow(v) in V | arrow(v) + (- arrow(v)) = 0$,
+          "Scalar multiplication (compatibility)", $a (b arrow(v)) = (a b) arrow(v)$,
+          "Distributivity over vector addition", $a (arrow(u) + arrow(v)) = a arrow(u) + a arrow(v)$,
+          "Distributivity over scalar addition", $(a + b) arrow(v) = a arrow(v) + b arrow(v)$,
+          "Multiplicative identity", $1 arrow(v) = arrow(v)$,
+        )
+      )
+    ], [
+
+    ],
+
+    [Subspace], [
+      Non-emptiness
+      
+      $bold(0) in V$
+
+      Closure under addition
+      
+      $"If" arrow(u), arrow(v) in V, "then" arrow(u) + arrow(v) in V$
+
+      Closure under scalar multiplication 
+      
+      $"If" arrow(v) in V, c in RR, "then" c arrow(v) in V$
+    ], [
+      A subspace is a subset of a vector space that is itself a vector space, satisfying the same axioms as the original. If $V$ is a vector space in $RR^n$, then the subspace $U$ is always contained in $RR^n$, meaning $U subset.eq RR^n$
+    ],
+
+    "Vector Addition", [
+      $
+        arrow(u) = (u_1, u_2, dots, u_n) \
+        arrow(v) = (v_1, v_2, dots, v_n) \
+        arrow(u) + arrow(v) = (u_1 + v_1, u_2 + v_2, dots, u_n + v_n)
+      $
+    ], "",
+
+    "Dot Product", $arrow(u) dot arrow(v) = sum_(i=1)^n u_i v_i$, "",
+
+    "Orthogonality", $arrow(u) dot arrow(v) = bold(0)$, [Angle between the two vectors is $90 degree$],
+
+    "Angle between vectors", $Theta = arccos((arrow(u) dot arrow(v)) / (||arrow(u)||_2 dot ||arrow(v)||_2))$, "",
+
+    $L_1 "Norm (Manhattan)"$, $||arrow(u)||_1 = sum_(i=1)^n abs(u_i)$, "",
+
+    $L_2 "Norm (Euclidean)"$, $||arrow(u)||_2 = sqrt(sum_(i=1)^n u_i^2)$, "",
+
+    $L_1 "Distance (Manhattan)"$, $d(arrow(u), arrow(v)) = sum_(i=1)^n abs(u_i - v_i)$, "",
+
+    $L_2 "Distance (Euclidean)"$, $d(arrow(u), arrow(v)) = sqrt(sum_(i=1)^n (u_i - v_i)^2)$, "",
+
+    "Projection", $"proj"_w (arrow(v)) = (arrow(v) dot arrow(w)) / (arrow(w) dot arrow(w)) arrow(w)$, "",
+
+    "Linear Independence", $$, [
+      A set of vectors is linearly independent if no vector in the set can be written as a linear combination of the others
+
+      A set of vectors ${arrow(v)_1, arrow(v)_2, dots, arrow(v)_n}$ is linearly independent if the only solution to the the equation
+
+      $
+        c_1 arrow(v)_1 + c_2 arrow(v)_2 + dots + c_n arrow(v)_n = bold(0) \
+      $
+
+      is $c_1 = c_2 = dots = c_n = 0$
+    ],
+
+    [Transformation], [
+      $
+        T: RR^n arrow RR^m \
+      $
+
+      $
+        T(arrow(v)) = A arrow(v)
+      $
+
+      - Additivity
+
+      $T(arrow(u) + arrow(v)) = T(arrow(u)) + T(arrow(v))$
+
+      - Homogeneity
+      $T(c arrow(u)) = c T(arrow(u))$
+    ], [
+      - Surjective (onto)
+
+      Every element in $B$ is the image of at least one element in 
+      $A$. The transformation covers the entire codomain.
+
+      $"Range"(T) = B$
+
+      - Injective (one-to-one)
+
+      Different inputs in $A$ map to different outputs in $B$.The transformation is information-preserving — doesn't collapse distinct vectors together
+
+      $T(arrow(x)_1) = T(arrow(x)_2) arrow.double x_1 = x_2$
+
+      Or equivalently:
+
+      $ker(T) = {bold(0)}$
+
+
+    ],
+
+    "Transpose", [
+    $
+      det(A) = det(A^T) \
+      (A B)^T = B^T A^T \
+      (A^T)^(-1) = (A^(-1))^T
+
+    $
+    ], [],
+
+    
+
+    "Image", $
+      T: V arrow W \
+      "Im"(T) = {arrow(w) in W | arrow(w) = T(arrow(v)) "for some" arrow(v) in V}
+    $, "Set of all possible outputs of the transformation",
+
+    "Preimage", $
+      T: V arrow W \
+      T^(-1)(arrow(w)) = {arrow(v) in V | T(arrow(v)) = arrow(w)}
+    $, "The preimage of a transformation refers to the set of all elements in the domain that map to a particular element or subset in the codomain",
+
+    "Span", $"Span"({v_1, v_2, dots, v_k}) = {sum_(i = 1)^n c_i arrow(v)_i | c_i in RR}$, [The span of a set of vectors is the collection of all possible linear combinations of those vectors],
+    
+    "Column Space (Range)", [
+      $"Col"(A) = {A x | arrow(x) in RR^n}$
+
+      Or equivalently
+
+      $
+        A = mat(
+          arrow(c)_1, arrow(c)_2, dots, arrow(c)_3
+        ) \
+        "Col"(A) = "span"(arrow(c)_1, arrow(c)_2, dots, arrow(c)_3)
+      $
+  
+    ], 
+    [The column space (or range) of a *matrix* $A$ is the set of all linear combinations of its columns],
+
+    "Determinant", $det(A)$, [
+      The determinant of a square matrix A measure of the \"scale factor\" by which the matrix A transforms a space
+
+      - $det(A) eq.not 0$
+        - $A$ does not collapse the space
+        - $A$ has full rank
+        - $A$'s columns are linearly independent
+        - $A$ is invertable
+
+      - $det(A) eq 0$
+        - $A$ collapses the space into lower dimension
+        - $A$ does not have full rank
+        - $A$'s columns are linearly dependent
+        - $A$ is non-invertable (singular)
+    ],
+
+    "Basis", [
+      Linear Independence
+
+      $
+        c_1 arrow(v_1) + c_2 arrow(v_2) + dots + c_k arrow(v_k) = bold(0) \
+        arrow.double c_1 = c_2 = dots = c_k = 0
+      $
+
+      Spanning
+
+      $
+        forall arrow(v) in V, exists c_1, dots, c_k in RR quad s.t. \ 
+        arrow(v) = c_1 arrow(v_1) + dots + c_k arrow(v_k)
+      $
+    ], [
+      - A basis of a *vector space* $V$ is a set of linearly independent vectors that span the space
+      - Every vector in $V$ can be uniquely written as a linear combination of the basis vectors
+
+      E.g.:
+
+    ],
+    
+    "Dimension", $dim(V) =  "# of vectors in a basis of V"$, [Number of linearly independent vectors in a *vector space* $V$],
+
+    "Rank", $"Rank"(A) = dim("Col"(A)) = dim("Row"(A))$, [
+      - The rank of a *matrix* $A$ is the *dimension* of its column space (or row space)
+      - Number of linearly independent columns (or rows)
+    ],
+
+    "Eigen Value / Vector", $A x = lambda x, quad x eq.not bold(0)$, [
+      Set of all nonzero vectors $arrow(x)$ such that when the transformation represented by matrix $A$ is applied to $arrow(x)$, the result is a scaled version of $arrow(x)$ itself
+
+      These vectors lie along directions that are preserved by the transformation: 
+      - $abs(lambda) > 1$: stretched
+      - $0 < abs(lambda) < 1$: shrunk
+      - $lambda < 0$: flipped
+      - $lambda = 1$: stay the same
+    ],
+
+    "Null Space (kernel)", $"Null"(A) = {arrow(x) in RR^n | A arrow(x) = bold(0)}$, [The null space of a matrix $A$ is the set of all input vectors that get mapped to the zero vector when you multiply them by $A$],
+    
+    "Identity Matrix", $
+      I_n = mat(
+        1, 0, 0, dots, 0;
+        0, 1, 0, dots, 0;
+        0, 0, 1, dots, 0;
+        dots.v, dots.v, dots.v, dots.down, dots.v;
+        0, 0, 0, dots, 1;
+      )            
+    $, $
+    // A dot A^(-1) = I_n \
+    // A^(-1) dot A = I_n \
+    // \
+    // A dot I_n = A \
+    // I_m dot A = A
+    $,
+
+    "Matrix Inverse", $A dot A^(-1) = I$, "",
+
+    "", $$, "",
   )
 )
-
-== Vector Addition
-
-$
-  arrow(x) 
-  = vec(colorMath(x_1, #red), colorMath(x_2, #red), dots.v, colorMath(x_n, #red))
-  quad quad 
-  arrow(y) 
-  = vec(colorMath(y_1, #blue), colorMath(y_2, #blue), dots.v, colorMath(y_n, #blue))
-  \
-  arrow(x) + arrow(y) 
-  = vec(colorMath(x_1, #red) + colorMath(y_1, #blue), colorMath(x_2, #red) + colorMath(y_2, #blue), dots.v, colorMath(x_n, #red) + colorMath(y_n, #blue))
-$
-
-== Vector Scalar Multiplication
-
-$
-  colorMath(c, #blue) in RR
-  quad quad
-  arrow(x) 
-  = vec(colorMath(x_1, #red), colorMath(x_2, #red), dots.v, colorMath(x_n, #red)) 
-  \
-  c arrow(x)
-  = vec(colorMath(c, #blue) colorMath(x_1, #red), colorMath(c, #blue) colorMath(x_2, #red), dots.v, colorMath(c, #blue) colorMath(x_n, #red))
-$
-
-== Dot Product
-
-$
-  arrow(x) 
-  = vec(colorMath(x_1, #red), colorMath(x_2, #red), dots.v, colorMath(x_n, #red))
-  quad quad 
-  arrow(y) 
-  = vec(colorMath(y_1, #blue), colorMath(y_2, #blue), dots.v, colorMath(y_n, #blue))
-  $
-  
-  $
-  arrow(x) dot arrow(y) 
-  &= sum_(i=1)^n colorMath(x_i, #red) colorMath(y_i, #blue) \
-  &= colorMath(x_1, #red) colorMath(y_1, #blue) + colorMath(x_2, #red) colorMath(y_2, #blue) + dots + colorMath(x_n, #red) colorMath(y_n, #blue)
-  \
-  &= colorMath(arrow(x), #red)^T colorMath(arrow(y), #blue)
-$
 
 == Cross Product ($RR^3$)
 
@@ -108,57 +312,6 @@ $
 
 
 
-== Norm (Magnitude, Length)
-
-- $L_1$-Norm (Manhattan)
-
-$
-  ||arrow(x)||_1 = sum_(1=1)^n |v_i|
-$
-
-- $L_2$-Norm (Euclidean, Magnitude, Length)
-
-$
-  || arrow(v) || = sqrt(sum_(i=1)^n v_i^2)
-$
-
-== Projection
-
-The projection of a vector $arrow(v)$ onto another vector 
-$arrow(w)$ is the vector component of $arrow(v)$ that lies along the direction of $arrow(w)$
-
-$
-  "proj"_w arrow(v)  = (arrow(v) dot arrow(w)) / (arrow(w) dot arrow(w)) arrow(w)
-$ 
-
-== Distances Between Vectors
-
-- Manhattan (using $L_1$-Norm)
-
-$
-  d(arrow(u), arrow(v)) = sum_(i=1)^n |u_i - v_i|
-$
-
-- Euclidean (using $L_2$-Norm)
-
-$
-  d(arrow(u), arrow(v)) = sqrt(sum_(i=1)^n (u_i - v_i)^2)
-$
-
-== Orthogonality
-
-Angle between the two vectors is $90 degree$
-
-$
-  v dot w = bold(0)
-$
-
-
-== Angles Between Vectors
-
-$
-  Theta = arccos((colorMath(arrow(x), #red) dot colorMath(arrow(y), #blue)) / (|| colorMath(arrow(x), #red) || dot || colorMath(arrow(y), #blue) ||))
-$
 
 = Matrix
 
@@ -444,12 +597,7 @@ $
   )
 )
 
-$
-  det(A) = det(A^T) \
-  (A B)^T = B^T A^T \
-  (A^T)^(-1) = (A^(-1))^T
 
-$
 
 #align(center,
   table(
@@ -504,32 +652,7 @@ $
 )
 
 
-= Linear Dependence
 
-A set of vectors is linearly independent if no vector in the set can be written as a linear combination of the others
-
-A set of vectors ${arrow(v)_1, arrow(v)_2, dots, arrow(v)_n}$ is linearly independent if the only solution to the the equation
-
-$
-  c_1 arrow(v)_1 + c_2 arrow(v)_2 + dots + c_n arrow(v)_n = bold(0) \
-$
-
-is $c_1 = c_2 = dots = c_n = 0$
-
-
-= Span
-
-The span of a set of vectors is the collection of all possible linear combinations of those vectors
-
-= Subspace
-
-A subspace is a subset of a vector space that is itself a vector space, satisfying the same axioms as the original. If $V$ is a vector space in $RR^n$, then the subspace $U$ is always contained in $RR^n$, meaning $U subset.eq RR^n$
-
-- *Non-emptiness*: $bold(0) in V$
-
-- *Closure under addition*: $"If" arrow(u), arrow(v) in V, "then" arrow(u) + arrow(v) in V$
-
-- *Closure under scalar multiplication*: $"If" arrow(v) in V, c in RR, "then" c arrow(v) in V$
 
 = Null Space (Kernel)<null-space>
 
@@ -566,19 +689,7 @@ $
   a_(m 1) x_1 + a_(m 2) x_2 + dots + a_(m n) x_n = 0 \
 $
 
-= Transformations
 
-$
-  T: RR^n arrow RR^m \
-$
-
-$
-  T(arrow(v)) = A arrow(v)
-$
-
-- Additivity: #h(3em) $T(arrow(u) + arrow(v)) = T(arrow(u)) + T(arrow(v))$
-
-- Homogeneity: #h(3em) $T(c arrow(u)) = c T(arrow(u))$
 
 == Image (Range, Column Space)
 
@@ -600,34 +711,6 @@ $
   T: V arrow W \
   T^(-1)(arrow(w)) = {arrow(v) in V | T(arrow(v)) = arrow(w)}
 $
-
-== Column Space (Range, Image)
-
-The column space (or range) of a matrix is the set of all possible linear combinations of its columns
-
-$
-  A = mat(
-    arrow(c)_1, arrow(c)_2, dots, arrow(c)_3
-  ) \
-  "Col"(A) = "span"(arrow(c)_1, arrow(c)_2, dots, arrow(c)_3)
-$
-
-== 
-
-$
-  T: A arrow B
-$
-
-=== Surjective 
-
-$
-  "Range"(T) = B
-$
-
-
-
-=== Injective
-
 
 
 == Composition

@@ -57,6 +57,7 @@ $
   $
 ]
 
+
 $
   f(x) = colorMath(cos^colorMath(3, #red)(colorMath(x, #black)), #blue) = colorMath((colorMath(cos(colorMath(x, #black)), #blue))^3, #red)
 $
