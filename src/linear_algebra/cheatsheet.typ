@@ -19,7 +19,7 @@
 
 #align(center,
   table(
-    columns: (auto, 40%, auto),
+    columns: (20%, auto, auto),
     inset: 10pt,
     stroke: 1pt,
     align: (center, center, left),
@@ -57,6 +57,29 @@
         &= colorMath(arrow(x), #red)^T colorMath(arrow(y), #blue)
       $
     ], [],
+
+    [Cross Product ($RR^3$)], [
+      
+
+      $
+      accent(a, arrow) = vec(a_1, a_2, a_3) 
+      quad quad 
+      accent(b, arrow) = vec(b_1, b_2, b_3)
+      $
+
+      $
+      accent(c, arrow) = accent(a, arrow) times accent(b, arrow)
+      $
+
+      $
+      accent(c, arrow) = vec(
+        a_2 b_3 - a_3 b_2,
+        a_3 b_1 - a_1 b_3,
+        a_1 b_2 - a_2 b_1,
+      )
+      $
+
+    ], [Returns a vector orthogonal to the two vectors],
 
     "Vector Space", [
       #align(center,
@@ -97,7 +120,7 @@
       A subspace is a subset of a vector space that is itself a vector space, satisfying the same axioms as the original. If $V$ is a vector space in $RR^n$, then the subspace $U$ is always contained in $RR^n$, meaning $U subset.eq RR^n$
     ],
 
-    "Vector Addition", [
+    [Vector Addition], [
       $
         arrow(u) = (u_1, u_2, dots, u_n) \
         arrow(v) = (v_1, v_2, dots, v_n) \
@@ -109,19 +132,19 @@
 
     "Orthogonality", $arrow(u) dot arrow(v) = bold(0)$, [Angle between the two vectors is $90 degree$],
 
-    "Angle between vectors", $Theta = arccos((arrow(u) dot arrow(v)) / (||arrow(u)||_2 dot ||arrow(v)||_2))$, "",
+    [Angle between vectors], $Theta = arccos((arrow(u) dot arrow(v)) / (||arrow(u)||_2 dot ||arrow(v)||_2))$, "",
 
-    $L_1 "Norm (Manhattan)"$, $||arrow(u)||_1 = sum_(i=1)^n abs(u_i)$, "",
+    [$L_1$ Norm (Manhattan)], $||arrow(u)||_1 = sum_(i=1)^n abs(u_i)$, "",
 
-    $L_2 "Norm (Euclidean)"$, $||arrow(u)||_2 = sqrt(sum_(i=1)^n u_i^2)$, "",
+    [$L_2$ Norm (Euclidean)], $||arrow(u)||_2 = sqrt(sum_(i=1)^n u_i^2)$, "",
 
-    $L_1 "Distance (Manhattan)"$, $d(arrow(u), arrow(v)) = sum_(i=1)^n abs(u_i - v_i)$, "",
+    [$L_1$ Distance (Manhattan)], $d(arrow(u), arrow(v)) = sum_(i=1)^n abs(u_i - v_i)$, "",
 
-    $L_2 "Distance (Euclidean)"$, $d(arrow(u), arrow(v)) = sqrt(sum_(i=1)^n (u_i - v_i)^2)$, "",
+    [$L_2$ Distance (Euclidean)], $d(arrow(u), arrow(v)) = sqrt(sum_(i=1)^n (u_i - v_i)^2)$, "",
 
-    "Projection", $"proj"_w (arrow(v)) = (arrow(v) dot arrow(w)) / (arrow(w) dot arrow(w)) arrow(w)$, "",
+    [Projection], $"proj"_w (arrow(v)) = (arrow(v) dot arrow(w)) / (arrow(w) dot arrow(w)) arrow(w)$, "",
 
-    "Linear Independence", $$, [
+    [Linear Independence], $$, [
       A set of vectors is linearly independent if no vector in the set can be written as a linear combination of the others
 
       A set of vectors ${arrow(v)_1, arrow(v)_2, dots, arrow(v)_n}$ is linearly independent if the only solution to the the equation
@@ -169,7 +192,25 @@
 
     ],
 
-    "Transpose", [
+    [Domain], [
+      $
+        T: V arrow W \
+
+        "Domain"(T) = V
+      $
+    ], [
+      Set of all *input vectors* $V$ that the *transformation* acts on
+    ],
+    [Codomain], [
+      $
+        T: V arrow W \
+        "Codomain"(T) = W
+      $
+    ], [
+      Set of all possible *output vectors* $W$ to which elements of the domain $V$ are mapped under the *transformation*
+    ],
+
+    [Transpose], [
     $
       det(A) = det(A^T) \
       (A B)^T = B^T A^T \
@@ -180,19 +221,54 @@
 
     
 
-    "Image", $
+    [Image], $
       T: V arrow W \
       "Im"(T) = {arrow(w) in W | arrow(w) = T(arrow(v)) "for some" arrow(v) in V}
-    $, "Set of all possible outputs of the transformation",
+    $, [
+      The image of a *transformation* $T: V arrow W$ is the set of all possible outputs $T(v)$ for $v in V$:
 
-    "Preimage", $
+      - It is a subspace of the codomain $W$
+      
+      - If $T$ is represented by a matrix $A$, the image of $T$ is the column space of $A$
+    ],
+
+    [Preimage], $
       T: V arrow W \
       T^(-1)(arrow(w)) = {arrow(v) in V | T(arrow(v)) = arrow(w)}
     $, "The preimage of a transformation refers to the set of all elements in the domain that map to a particular element or subset in the codomain",
 
     "Span", $"Span"({v_1, v_2, dots, v_k}) = {sum_(i = 1)^n c_i arrow(v)_i | c_i in RR}$, [The span of a set of vectors is the collection of all possible linear combinations of those vectors],
+
+    [Composition], [
+      $
+        T_1: RR^n arrow RR^m 
+        quad quad quad 
+        T_2: RR^m arrow RR^p 
+        \
+        T_1(arrow(v)) = A arrow(v) 
+        quad quad quad 
+        T_2(arrow(v)) = B arrow(v)
+      $
+
+      $
+        T compose S (arrow(v)) = T_2(T_1(arrow(v)))
+      $
+
+      $
+        T_2 compose T_1 (arrow(v)) = B(A arrow(v)) = (B A) arrow(v)
+      $
+
+      - Additivity
+      $(T_3 compose T_2) compose T_1 = T_3 compose (T_2 compose T_1)$
+
+      - Homogeneity
+      $T_2 compose T_1(c arrow(u)) = c (T_2 compose T_1)(arrow(u))$
+
+      - Identity Transformation
+      $I compose T = T quad quad quad T compose I = T$
+    ], [],
     
-    "Column Space (Range)", [
+    [Column Space (Range)], [
       $"Col"(A) = {A x | arrow(x) in RR^n}$
 
       Or equivalently
@@ -207,7 +283,7 @@
     ], 
     [The column space (or range) of a *matrix* $A$ is the set of all linear combinations of its columns],
 
-    "Determinant", $det(A)$, [
+    [Determinant], $det(A)$, [
       The determinant of a square matrix A measure of the \"scale factor\" by which the matrix A transforms a space
 
       - $det(A) eq.not 0$
@@ -223,7 +299,25 @@
         - $A$ is non-invertable (singular)
     ],
 
-    "Basis", [
+    [Invertibility], [
+      $det(A) eq.not 0 quad arrow.double.long "Invertible"$
+
+      $det(A) eq 0 quad arrow.double.long "Non-Invertible"$
+
+      $
+        A A^(-1) = A^(-1) A = I_n
+      $
+
+      $
+        (A B)^(-1) = B^(-1) A^(-1)
+      $
+
+      $
+        (A^T)^(-1) = (A^(-1))^T
+      $
+    ], [],
+
+    [Basis], [
       Linear Independence
 
       $
@@ -245,14 +339,38 @@
 
     ],
     
-    "Dimension", $dim(V) =  "# of vectors in a basis of V"$, [Number of linearly independent vectors in a *vector space* $V$],
+    [Dimension], $dim(V)$, [
+      Number of linearly independent vectors (*basis*) in a *vector space* $V$
 
-    "Rank", $"Rank"(A) = dim("Col"(A)) = dim("Row"(A))$, [
+      $V subset.eq RR^n$
+
+      #align(center,
+        table(
+          columns: (auto, auto),
+          inset: 5pt,
+          stroke: 1pt,
+          align: (center, left),
+          $dim(V) = 0$, $V = { bold(0) }$,
+          $dim(V) = 1$, [$V$ is a *line* through the origin in $RR^n$],
+          $dim(V) = 2$, [$V$ is a *plane* through the origin in $RR^n$],
+          $dim(V) = k$, [$V$ is a $k$-dimensional *flat* subspace of $RR^n$],
+          $dim(V) = n$, $V = RR^n$,
+        )
+      )
+
+      - $RR^2$ has dimension 2:
+        - A basis: ${ vec(1, 0), vec(0, 1)}$  
+
+      - $RR^3$ has dimension 3:
+        - A basis: ${vec(1, 0, 0), vec(0, 1, 0), vec(0, 0, 1)}$  
+    ],
+
+    [Rank], $"Rank"(A) = dim("Col"(A)) = dim("Row"(A))$, [
       - The rank of a *matrix* $A$ is the *dimension* of its column space (or row space)
       - Number of linearly independent columns (or rows)
     ],
 
-    "Eigen Value / Vector", $A x = lambda x, quad x eq.not bold(0)$, [
+    [Eigen], $A x = lambda x, quad x eq.not bold(0)$, [
       Set of all nonzero vectors $arrow(x)$ such that when the transformation represented by matrix $A$ is applied to $arrow(x)$, the result is a scaled version of $arrow(x)$ itself
 
       These vectors lie along directions that are preserved by the transformation: 
@@ -262,9 +380,9 @@
       - $lambda = 1$: stay the same
     ],
 
-    "Null Space (kernel)", $"Null"(A) = {arrow(x) in RR^n | A arrow(x) = bold(0)}$, [The null space of a matrix $A$ is the set of all input vectors that get mapped to the zero vector when you multiply them by $A$],
+    [Null Space (kernel)], $"Null"(A) = {arrow(x) in RR^n | A arrow(x) = bold(0)}$, [The null space of a matrix $A$ is the set of all input vectors that get mapped to the zero vector when you multiply them by $A$],
     
-    "Identity Matrix", $
+    [Identity Matrix], $
       I_n = mat(
         1, 0, 0, dots, 0;
         0, 1, 0, dots, 0;
@@ -280,35 +398,31 @@
     // I_m dot A = A
     $,
 
-    "Matrix Inverse", $A dot A^(-1) = I$, "",
+    [Matrix Inverse], $A dot A^(-1) = I$, "",
+
+    [RREF], [
+      1. Row Swapping (Interchange)
+
+      $
+        R_1 arrow.l.r R_2
+      $
+
+      2. Row Scaling (Multiplication)
+
+      $
+        R_1 arrow 1/3 R_1
+      $
+
+      3. Row Addition (Replacement)
+
+      $
+        R_1 arrow R_1 - 2 R_2
+      $
+    ], [],
 
     "", $$, "",
   )
 )
-
-== Cross Product ($RR^3$)
-
-Returns a vector orthogonal to the two vectors
-
-$
-accent(a, arrow) = vec(a_1, a_2, a_3) 
-quad quad 
-accent(b, arrow) = vec(b_1, b_2, b_3)
-$
-
-$
-accent(c, arrow) = accent(a, arrow) times accent(b, arrow)
-$
-
-$
-accent(c, arrow) = vec(
-  a_2 b_3 - a_3 b_2,
-  a_3 b_1 - a_1 b_3,
-  a_1 b_2 - a_2 b_1,
-)
-$
-
-
 
 
 
@@ -652,188 +766,6 @@ $
 )
 
 
-
-
-= Null Space (Kernel)<null-space>
-
-The null space (or kernel) of a matrix $A$, denoted as $"Null"(A)$ or $ker(A)$
-
-$
-  "Null"(A) = {arrow(x) in RR^n | A arrow(x) = 0}
-$
-
-The set of all vectors $arrow(x)$ that satisfy the equation:
-
-$
-  A arrow(x) = bold(0)
-$
-
-$
-  A = 
-  mat(
-    a_(11), a_(12), dots, a_(1n);
-    a_(21), a_(22), dots, a_(2n);
-    dots.v, dots.v, dots.down, dots.v;
-    a_(m 1), a_(m 2), dots, a_(m n)
-  )
-  quad 
-  arrow(x) = vec(x_1, x_2, dots.v, x_n)
-  quad
-  bold(0) = vec(0_1, 0_2, dots.v, 0_m)
-$
-
-$
-  a_11 x_1 + a_12 x_2 + dots + a_(1n) x_n = 0 \
-  a_21 x_1 + a_22 x_2 + dots + a_(2n) x_n = 0 \
-  dots.v \
-  a_(m 1) x_1 + a_(m 2) x_2 + dots + a_(m n) x_n = 0 \
-$
-
-
-
-== Image (Range, Column Space)
-
-The image of a transformation is the set of all vectors in $W$ that can be written as $T(v)$ for some $v in V$:
-
-$
-  T: V arrow W \
-  "Im"(T) = {arrow(w) in W | arrow(w) = T(arrow(v)) "for some" arrow(v) in V}
-$
-
-- The image is a subspace of the codomain $W$
-- If $T$ is represented by a matrix $A$, the image of $T$ corresponds to the *column space* of $A$
-
-== Preimage<pre-image>
-
-The preimage of a transformation refers to the set of all elements in the domain that map to a particular element or subset in the codomain
-
-$
-  T: V arrow W \
-  T^(-1)(arrow(w)) = {arrow(v) in V | T(arrow(v)) = arrow(w)}
-$
-
-
-== Composition
-
-$
-  T_1: RR^n arrow RR^m 
-  quad quad quad 
-  T_2: RR^m arrow RR^p 
-  \
-  T_1(arrow(v)) = A arrow(v) 
-  quad quad quad 
-  T_2(arrow(v)) = B arrow(v)
-$
-
-$
-  T compose S (arrow(v)) = T_2(T_1(arrow(v)))
-$
-
-$
-  T_2 compose T_1 (arrow(v)) = B(A arrow(v)) = (B A) arrow(v)
-$
-
-- Additivity: #h(3em) $(T_3 compose T_2) compose T_1 = T_3 compose (T_2 compose T_1)$
-
-- Homogeneity: #h(3em) $T_2 compose T_1(c arrow(u)) = c (T_2 compose T_1)(arrow(u))$
-
-- Identity Transformation
-
-$
-  I compose T = T quad quad quad T compose I = T
-$
-
-= Determinants
-
-The determinant of a square matrix $A$ measure of the "scale factor" by which the matrix $A$ transforms a space
-
-- $det(A) eq.not 0$
-  - $A$ does not collapse the space
-  - $A$ has full rank
-  - $A$'s columns are linearly independent
-  - $A$ is invertable
-
-- $det(A) eq 0$
-  - $A$ collapses the space into lower dimension
-  - $A$ does not have full rank
-  - $A$'s columns are linearly dependent
-  - $A$ is non-invertable (singular)
-
-= Dimension
-
-The dimension of a vector (sub)space is the number of (linearly independent) vectors in any basis for the space
-
-Subspaces of $RR^n$
-
-#align(center,
-  table(
-    columns: (auto, auto),
-    inset: 7pt,
-    stroke: none,
-    align: (center, left),
-    $dim(U) = 0$, $U = { bold(0) }$,
-    $dim(U) = 1$, [$U$ is a *line* through the origin in $RR^n$],
-    $dim(U) = 2$, [$U$ is a *plane* through the origin in $RR^n$],
-    $dim(U) = k$, [$U$ is a $k$-dimensional *flat* subspace of $RR^n$],
-    $dim(U) = n$, $U = RR^n$,
-  )
-)
-
-= Basis
-
-A basis of a vector space is a set of vectors that are linearly independent & span the entire space
-
-
-
-= Rank
-
-The number of linearly independent columns of the matrix
-
-$
-  "rank"(A) = dim("Col"(A))
-$
-
-= Invertibility
-
-$det(A) eq.not 0 quad arrow.double.long "Invertible"$
-
-$det(A) eq 0 quad arrow.double.long "Non-Invertible"$
-
-$
-  A A^(-1) = A^(-1) A = I_n
-$
-
-$
-  (A B)^(-1) = B^(-1) A^(-1)
-$
-
-$
-  (A^T)^(-1) = (A^(-1))^T
-$
-
-= Eigenvectors & Eigenvalues
-
-The matrix vector product $A arrow(v)$ is the same as scaling $arrow(v)$ by some value $lambda$
-
-$
-  A arrow(v) 
-  &= lambda arrow(v) \
-  &= (lambda I) arrow(v) \
-  A arrow(v) - (lambda I) arrow(v) &= bold(0) \
-  (A - lambda I) arrow(v) &= bold(0) \
-$
-
-$
-  det(A - lambda I) &= 0
-$
-
-Where:
-- $A$: Transformation matrix
-- $arrow(v)$: Eigenvector
-- $lambda$: Eigenvalue
-
-Finding the vales of $arrow(v)$ and $lambda$ that make this expression true
-
 = Matrix Factorization
 
 == LU Decomposition
@@ -978,25 +910,7 @@ $
   )
 )
 
-= RREF <rref>
 
-1. Row Swapping (Interchange)
-
-$
-  R_1 arrow.l.r R_2
-$
-
-2. Row Scaling (Multiplication)
-
-$
-  R_1 arrow 1/3 R_1
-$
-
-3. Row Addition (Replacement)
-
-$
-  R_1 arrow R_1 - 2 R_2
-$
 
 #table(
   columns: (auto, auto),
@@ -1084,13 +998,13 @@ $
 
   1. Null Space
 
-  The #link(<null-space>)[*null-space*] of $A$, denoted $N(A)$, consists of all vectors $arrow(x) in RR^3$ such that $A x = 0$. The set of all such vectors is the #link(<pre-image>)[*pre-image*] of the zero vector under the transformation defined by $A$. In other words, $N(A) = {x  in RR^3 | A arrow(x) = 0}$, which represents the set of vectors that $A$ maps to zero.
+  The *null-space* of $A$, denoted $N(A)$, consists of all vectors $arrow(x) in RR^3$ such that $A x = 0$. The set of all such vectors is the *pre-image* of the zero vector under the transformation defined by $A$. In other words, $N(A) = {x  in RR^3 | A arrow(x) = 0}$, which represents the set of vectors that $A$ maps to zero.
 
   $
     N(A) = {arrow(x) in RR^3 | A arrow(x) = bold(0)}
   $
 
-  To find the null space $N(A)$ of the matrix $A$, we can use the #link(<rref>)[*row-reduced echelon form (RREF)*]. By augmenting the matrix $A$ with a zero column and performing row operations, we reduce it to the form:
+  To find the null space $N(A)$ of the matrix $A$, we can use the *row-reduced echelon form (RREF)*. By augmenting the matrix $A$ with a zero column and performing row operations, we reduce it to the form:
 
   $
     mat(
@@ -1154,7 +1068,7 @@ $
     N(a) = "span"({vec(1/2, 1, 0) vec(3/2, 0, 1)})
   $
 
-  The dimension of the #link(<null-space>)[*null-space*] is the number of vectors in this basis, which is 2. This is important because the dimension of the null space gives us insight into how many degrees of freedom exist in the system of equations $A x = 0$
+  The dimension of the *null-space* is the number of vectors in this basis, which is 2. This is important because the dimension of the null space gives us insight into how many degrees of freedom exist in the system of equations $A x = 0$
 
   2. Column Space
 
