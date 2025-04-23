@@ -2,6 +2,8 @@
 
 #title_page("Calculus I")
 
+#include("cheatsheet.typ")
+
 #include("limits.typ")
 
 #include("power_rule.typ")

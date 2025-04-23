@@ -2,6 +2,8 @@
 
 #title_page("Linear Algebra")
 
+#include("cheatsheet.typ")
+
 #include("vectors.typ")
 
 #include("matrices.typ")
