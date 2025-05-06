@@ -216,83 +216,203 @@ $
 
 ]
 
+#pagebreak()
+
+#set page(margin: 0.5cm)
+
+#align(center)[
+  $
+    d / (dif x) (integral colorMath(f(x), #red) dif x) = colorMath(f(x), #red)
+  $
+
+  $
+    integral (d / (dif x) colorMath(f(x), #red)) dif x = colorMath(f(x), #red)
+  $
+]
+
+#linebreak()
+
 #table(
-  columns: (1fr, auto, auto),
+  columns: (auto, auto, auto, auto, auto),
   inset: 10pt,
   align: horizon,
   table.header(
-    [], [], [],
+    [Rule], [$d / (dif x)$ Rule], [$d / (dif x)$ Example], [$integral$ Rule], [$integral$ Example]
   ),
-  [Constant Rule], [
+  [Constant], [
     $
       d / (dif x)[c] = 0
     $
   ], [
     $
+      d / (dif x)[7] = 0
+    $
+  ], [
+    $
       integral colorMath(c, #red) dif x = colorMath(c, #red) x + C
+    $
+  ], [
+    $
+      integral 7 dif x = 7x + C
     $
   ],
 
-  [Power Rule], [
+  [Power], [
     $
       d / (dif x)[x^n] = n x^(n-1)
     $
   ], [
     $
-      integral x^n dif x = (x^(n+1)) / (n+1) + C quad (n eq.not -1)
+      d / (dif x) [x^4] = 4x^3
+    $
+  ], [
+    $
+      integral x^n dif x = (x^(n+1)) / (n+1) + C \ (n eq.not -1)
+    $
+  ], [
+    $
+      integral x^3 dif x = x^4 / 4 + C
     $
   ],
   
-  [Constant Multiple Rule], [
+  [Constant Multiple], [
     $
       d / (dif x)[colorMath(c, #red) f] = colorMath(c, #red) f'
     $
   ], [
     $
-      integral colorMath(c, #red) f d x = colorMath(c, #red) integral f dif x
+      d / (dif x) [3x^2] 
+      &= 3 dot 2x \
+      &= 6x
+    $
+  ], [
+    $
+      integral colorMath(c, #red) f dif x = colorMath(c, #red) integral f dif x
+    $
+  ], [
+    $
+      integral 3x^2 dif x 
+      &= 3 dot x^3 / 3 \
+      &= x^3 + C
     $
   ],
 
-  [Sum / Difference Rules], 
+  [Sum], 
   [
     $
-      d / (d x) [colorMath(f, #red) plus.minus colorMath(g, #blue)] = colorMath(f', #red) plus.minus colorMath(g', #blue)
+      d / (d x) [colorMath(f, #red) + colorMath(g, #blue)] = colorMath(f', #red) + colorMath(g', #blue)
     $
   ], 
   [
     $
-      integral (colorMath(f, #red) plus.minus colorMath(g, #blue)) dif x = integral colorMath(f, #red) dif x plus.minus integral colorMath(g, #blue) dif x
+      &d / (dif x) (x^2 + x) \
+      &= d / (dif x) (x^2) + d / (dif x) (x) \
+      &= 2x + 1
+    $
+  ], [
+    $
+      integral (colorMath(f, #red) + colorMath(g, #blue)) dif x \ = integral colorMath(f, #red) dif x + integral colorMath(g, #blue) dif x
+    $
+  ], [
+    $
+      &integral (x^2 + x) dif x \
+      &= integral x^2 dif x + integral x dif x \
+      &= x^3 / 3 + 3^2 / 2 + C
     $
   ],
   
-  [Product Rule], 
+  [Difference], 
+  [
+    $
+      d / (d x) [colorMath(f, #red) - colorMath(g, #blue)] = colorMath(f', #red) - colorMath(g', #blue)
+    $
+  ], 
+  [
+    $
+     &d / (dif x) (x^2 - x) \
+     &= d / (dif x) (x^2) - d / (dif x) (x) \
+     &= 2x - 1
+    $
+  ], [
+    $
+      integral (colorMath(f, #red) - colorMath(g, #blue)) dif x \ = integral colorMath(f, #red) dif x - integral colorMath(g, #blue) dif x
+    $
+  ], [
+    $
+      &integral (x^2 - x) dif x \
+      &= integral x^2 dif x - integral x dif x \
+      &= x^3 / 3 - x^2 / 2 + C
+    $
+  ],
+  
+  [Product], 
   [
     $
       d / (d x) [colorMath(f, #blue) colorMath(g, #red)] = colorMath(f', #blue) colorMath(g, #red) + colorMath(f, #blue) colorMath(g', #red)
     $
-  ], [],
+  ], [
+    $
+      &d / (dif x) [x sin x] \
+      &= 1 dot sin x + x dot cos x
+    $
+  ], [
+    Integration by Parts
+  ], [
 
-  [Quotient Rule], 
+  ],
+
+  [Quotient], 
   [
     $
     d / (d x)[colorMath(f, #red) / colorMath(g, #blue)] = (colorMath(f', #red) colorMath(g, #blue) - colorMath(f, #red) colorMath(g', #blue)) / colorMath(g, #blue)^2
     $
   ], 
-  [],
-
-  [Chain Rule], 
-  [$d / (d x)[colorMath(f(colorMath(g(x), #blue)), #red)] = colorMath(f'(colorMath(g(x), #blue)), #red) dot colorMath(g'(x), #blue)$],
-  [],
-
-  [], [], [],
-  
-  [Exponential Function], [
+  [
     $
-      d / (d x) [e^x] = e^x
+      &d / (dif x) [x^2 / (x + 1)] \
+      &= (2x (x + 1) - x^2 (1)) / (x + 1)^2 \
+      &= (x^2 + 2x) / (x + 1)^2
+    $
+  ],
+  [
+    Algebraic Manipulation / Substitution
+  ],
+  [
+
+  ],
+
+  [Chain], 
+  [
+    $
+    &d / (d x)[colorMath(f(colorMath(g(x), #blue)), #red)] \
+    &= colorMath(f'(colorMath(g(x), #blue)), #red) dot colorMath(g'(x), #blue)
+    $],
+  [
+    $
+     &d / (dif x) [sin(x^2)] \
+     &= cos(x^2) dot 2x
+    $
+  ], [
+    Integration by Subsitution
+  ], [
+
+  ],
+  
+  [Exponential], [
+    $
+      d / (dif x) [e^x] = e^x
     $
   ], [
     $
-      integral e^x d x = e^x + C
+      d / (dif x) [e^x] = e^x
+    $
+  ], [
+    $
+      integral e^x dif x = e^x + C
+    $
+  ], [
+    $
+      integral e^x dif x = e^x + C
     $
   ],
   
@@ -301,30 +421,56 @@ $
       d / (d x) [a^x] = a^x ln(a)
     $
   ], [
+
+  ], [
     $
       integral a^x d x = (a^x) / (ln a) + C
     $
+  ], [
+
   ],
   
-  [Logarithmic Function], [
+  [Logarithmic], [
     $
       d / (d x) [ln(x)] = 1 / x
     $
   ], [
     $
-      
+      d / (d x) [ln(x)] = 1 / x
     $
+  ], [
+    $
+      integral 1 / x dif x = ln
+    $
+  ], [
+
   ],
   
   [], [
     $
       d / (d x) [log_a (x)] = 1 / (x ln(a))
     $
-  ], [],
+  ], [
+
+  ], [
+    $
+      integral 1 / (x ln a) dif x = log_a
+    $
+  ], [
+
+  ],
 
   [Sin], [
     $
       d / (d x) [sin(x)] = cos(x)
+    $
+  ], [
+    $
+      d / (d x) [sin(x)] = cos(x)
+    $
+  ], [
+    $
+      integral cos x dif x = sin x + C
     $
   ], [
     $
@@ -337,19 +483,40 @@ $
       d / (d x) [cos(x)] = -sin(x)
     $
   ], [
-    $
-      integral sin x dif x = -cos x + C
-    $
-  ],
-  [Tan], [
-    $
-      d / (d x) [tan(x)] = sec^2(x)
-    $
+
   ], [
     $
-      integral sec^2 x dif x = tan x + C
+      integral sin x dif x \
+      = -cos x + C
     $
+  ], [
+
+  ],
+
+  [Tan], [
+    $
+      d / (d x) [tan(x)] \= sec^2(x)
+    $
+  ], [
+
+  ], [
+    $
+      integral sec^2 x dif x \
+      = tan x + C
+    $
+  ], [
+
   ],
   
 )
 
+#pagebreak()
+
+== Product Rule $arrow.long$ Integration by Parts
+
+
+
+== Chain Rule $arrow.long$ $u$-Substitution
+
+
+== Quotient Rule $arrow.long$ Algebraic Manipulation / Substitution
