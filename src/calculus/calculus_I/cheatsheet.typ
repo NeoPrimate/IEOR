@@ -21,13 +21,29 @@ The limit of $f(x)$ as $x$ approaches $x_0$ equals $L$ if and only if, for every
 
 #line(length: 100%)
 
-Finite $arrow$ Finite
+#align(center)[
+  #table(
+    columns: (auto, auto, auto),
+    inset: 10pt,
+    align: horizon,
+    table.header(
+      [*Limit Type*], [*Name*], [*Quantifiers*],
+      [$x arrow x_0, f(x) arrow L$], [Epsilon-Delta], [$forall epsilon, exists delta$],
+      [$x arrow x_0, f(x) arrow infinity$], [M-Delta], [$forall M, exists delta$],
+      [$x arrow infinity, f(x) arrow L$], [epsilon-N], [$forall epsilon, exists N$],
+      [$x arrow infinity, f(x) arrow infinity$], [M-N], [$forall M, exists N$],
+    ),
+    
+  )
+]
+
+Finite $arrow$ Finite (*Epsilon-Delta*)
 
 $
   lim_(x arrow colorMath(x_0, #red)) f(x) = colorMath(L, #red) arrow.l.r.double.long forall colorMath(epsilon, #red) gt 0, exists delta gt 0 "s.t." 0 < abs(x - x_0) < colorMath(delta, #red) arrow.double abs(f(x) - L) lt colorMath(epsilon, #red)
 $
 
-Finite $arrow$ Infinity
+Finite $arrow$ Infinity (*M-Delta*)
 
 $+ infinity$
 
@@ -41,7 +57,7 @@ $
   lim_(x arrow colorMath(x_0, #red)) f(x) = colorMath(- infinity, #red) arrow.l.r.double.long forall colorMath(M, #red) gt 0, exists colorMath(delta, #red) gt 0 "s.t." 0 < abs(x - x_0) < colorMath(delta, #red) arrow.double f(x) lt colorMath(- M, #red)
 $
 
-Infinity $arrow$ Finite
+Infinity $arrow$ Finite (*Epsilon-N*)
 
 $+ infinity$
 
@@ -55,7 +71,7 @@ $
   lim_(x arrow colorMath(+ infinity, #red)) f(x) = colorMath(L, #red) arrow.l.r.double.long forall colorMath(epsilon, #red) gt 0, exists colorMath(N, #red) gt 0 "s.t." x lt colorMath(- N, #red) arrow.double abs(f(x) - L) lt colorMath(epsilon, #red)
 $
 
-Infinity $arrow$ Infinity
+Infinity $arrow$ Infinity (*M-N*)
 
 $
   lim_(x arrow colorMath(plus.minus infinity, #red)) f(x) = colorMath(plus.minus infinity, #red) arrow.l.r.double.long forall colorMath(M, #red) gt 0, exists colorMath(N, #red) gt 0 "s.t." x lt colorMath(N, #red) arrow.double f(x) gt colorMath(M, #red)
@@ -144,7 +160,7 @@ $
 == Derivatives
 
 $
-  f'(x) = lim_(h arrow 0) (f(x + h) - f(x)) / h 
+  (d f) / (d x) (x) = f'(x) = lim_(h arrow 0) (f(x + h) - f(x)) / h 
 $
 
 #eg[
@@ -199,3 +215,141 @@ $
 
 
 ]
+
+#table(
+  columns: (1fr, auto, auto),
+  inset: 10pt,
+  align: horizon,
+  table.header(
+    [], [], [],
+  ),
+  [Constant Rule], [
+    $
+      d / (dif x)[c] = 0
+    $
+  ], [
+    $
+      integral colorMath(c, #red) dif x = colorMath(c, #red) x + C
+    $
+  ],
+
+  [Power Rule], [
+    $
+      d / (dif x)[x^n] = n x^(n-1)
+    $
+  ], [
+    $
+      integral x^n dif x = (x^(n+1)) / (n+1) + C quad (n eq.not -1)
+    $
+  ],
+  
+  [Constant Multiple Rule], [
+    $
+      d / (dif x)[colorMath(c, #red) f] = colorMath(c, #red) f'
+    $
+  ], [
+    $
+      integral colorMath(c, #red) f d x = colorMath(c, #red) integral f dif x
+    $
+  ],
+
+  [Sum / Difference Rules], 
+  [
+    $
+      d / (d x) [colorMath(f, #red) plus.minus colorMath(g, #blue)] = colorMath(f', #red) plus.minus colorMath(g', #blue)
+    $
+  ], 
+  [
+    $
+      integral (colorMath(f, #red) plus.minus colorMath(g, #blue)) dif x = integral colorMath(f, #red) dif x plus.minus integral colorMath(g, #blue) dif x
+    $
+  ],
+  
+  [Product Rule], 
+  [
+    $
+      d / (d x) [colorMath(f, #blue) colorMath(g, #red)] = colorMath(f', #blue) colorMath(g, #red) + colorMath(f, #blue) colorMath(g', #red)
+    $
+  ], [],
+
+  [Quotient Rule], 
+  [
+    $
+    d / (d x)[colorMath(f, #red) / colorMath(g, #blue)] = (colorMath(f', #red) colorMath(g, #blue) - colorMath(f, #red) colorMath(g', #blue)) / colorMath(g, #blue)^2
+    $
+  ], 
+  [],
+
+  [Chain Rule], 
+  [$d / (d x)[colorMath(f(colorMath(g(x), #blue)), #red)] = colorMath(f'(colorMath(g(x), #blue)), #red) dot colorMath(g'(x), #blue)$],
+  [],
+
+  [], [], [],
+  
+  [Exponential Function], [
+    $
+      d / (d x) [e^x] = e^x
+    $
+  ], [
+    $
+      integral e^x d x = e^x + C
+    $
+  ],
+  
+  [], [
+    $
+      d / (d x) [a^x] = a^x ln(a)
+    $
+  ], [
+    $
+      integral a^x d x = (a^x) / (ln a) + C
+    $
+  ],
+  
+  [Logarithmic Function], [
+    $
+      d / (d x) [ln(x)] = 1 / x
+    $
+  ], [
+    $
+      
+    $
+  ],
+  
+  [], [
+    $
+      d / (d x) [log_a (x)] = 1 / (x ln(a))
+    $
+  ], [],
+
+  [Sin], [
+    $
+      d / (d x) [sin(x)] = cos(x)
+    $
+  ], [
+    $
+      integral cos x dif x = sin x + C
+    $
+  ],
+  
+  [Cos], [
+    $
+      d / (d x) [cos(x)] = -sin(x)
+    $
+  ], [
+    $
+      integral sin x dif x = -cos x + C
+    $
+  ],
+  [Tan], [
+    $
+      d / (d x) [tan(x)] = sec^2(x)
+    $
+  ], [
+    $
+      integral sec^2 x dif x = tan x + C
+    $
+  ],
+  
+)
+
