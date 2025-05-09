@@ -163,6 +163,8 @@ $
   (d f) / (d x) (x) = f'(x) = lim_(h arrow 0) (f(x + h) - f(x)) / h 
 $
 
+
+
 #eg[
   Let $f(x) = x^2$
 
@@ -214,6 +216,50 @@ $
   $
 
 
+]
+
+== Integrals
+
+== Differential
+
+If you have a function:
+
+$
+  y = f(x)
+$
+
+Then the differential $dif u$ is defined as:
+
+$
+  dif y = f'(x) dot dif x
+$
+
+This means:
+
+- $f'(x) = (dif y) / (dif x)$ is the derivative
+
+- $dif x$ is a small change in $x$
+
+- $dif y$ is the corresponding small change in $y$
+
+So:
+
+$
+  dif y = (dif y) / (dif x) dot dif x
+$
+
+#eg[
+  Let's say"
+
+  $
+    y = x^2
+  $
+
+  Then:
+
+  $
+    (dif y) / (dif x) = 2x
+  $
 ]
 
 #pagebreak()
@@ -357,6 +403,10 @@ $
     $
   ], [
     Integration by Parts
+
+    $
+      integral u dif v = u v - integral v dif u
+    $
   ], [
 
   ],
@@ -394,25 +444,30 @@ $
     $
   ], [
     Integration by Subsitution
+
+    $
+  integral f(g(x)) g'(x) dif x \
+  = integral f(u) dif u
+$
   ], [
 
   ],
   
   [Exponential], [
     $
-      d / (dif x) [e^x] = e^x
+      d / (dif x) [colorMath(e^x, #red)] = e^x
     $
   ], [
     $
-      d / (dif x) [e^x] = e^x
+      d / (dif x) [colorMath(e^x, #red)] = e^x
     $
   ], [
     $
-      integral e^x dif x = e^x + C
+      integral colorMath(e^x, #red) dif x = e^x + C
     $
   ], [
     $
-      integral e^x dif x = e^x + C
+      integral colorMath(e^x, #red) dif x = e^x + C
     $
   ],
   
@@ -421,91 +476,119 @@ $
       d / (d x) [a^x] = a^x ln(a)
     $
   ], [
-
+    $
+      d / (dif x) [2^x] = 2^x ln 2
+    $
   ], [
     $
       integral a^x d x = (a^x) / (ln a) + C
     $
   ], [
-
+    $
+      integral 2^x dif x = 2^x / (ln 2) + C
+    $
   ],
   
   [Logarithmic], [
     $
-      d / (d x) [ln(x)] = 1 / x
+      d / (d x) [colorMath(ln, #red)(x)] = 1 / x
     $
   ], [
     $
-      d / (d x) [ln(x)] = 1 / x
+      d / (d x) [colorMath(ln, #red)(x)] = 1 / x
     $
   ], [
     $
-      integral 1 / x dif x = ln
+      integral colorMath(ln, #red)(x) dif x \
+      = x ln x - x + C
     $
   ], [
-
+    $
+      integral colorMath(ln, #red)(x) dif x \
+      = x ln x - x + C
+    $
   ],
   
   [], [
     $
-      d / (d x) [log_a (x)] = 1 / (x ln(a))
+      d / (d x) [colorMath(log, #red)_a (x)] = 1 / (x ln(a))
     $
   ], [
-
-  ], [
     $
-      integral 1 / (x ln a) dif x = log_a
+      d / (dif x) colorMath(log, #red)_2 (x) = 1 / (x ln(2))
     $
   ], [
-
+    $
+      integral colorMath(log, #red)_a (x) dif x = \
+      = (x ln x) / (ln a) - x / (ln a) + C
+    $
+  ], [
+    $
+      integral colorMath(log, #red)_(10) (x) dif x \
+      = (x ln x) / (ln 10) - x / (ln 10) + C
+    $
   ],
 
   [Sin], [
     $
-      d / (d x) [sin(x)] = cos(x)
+      d / (d x) [colorMath(sin, #red)(x)] = cos(x)
     $
   ], [
     $
-      d / (d x) [sin(x)] = cos(x)
+      d / (d x) [colorMath(sin, #red)(x)] = cos(x)
     $
   ], [
     $
-      integral cos x dif x = sin x + C
+      integral colorMath(sin, #red)(x) dif x \
+      = -cos x + C
     $
   ], [
     $
-      integral cos x dif x = sin x + C
+      integral colorMath(sin, #red)(x) dif x \
+      = -cos x + C
     $
   ],
   
   [Cos], [
     $
-      d / (d x) [cos(x)] = -sin(x)
+      d / (d x) [colorMath(cos, #red)(x)] = -sin(x)
     $
   ], [
-
-  ], [
     $
-      integral sin x dif x \
-      = -cos x + C
+      d / (d x) [colorMath(cos, #red)(x)] = -sin(x)
     $
   ], [
-
+    $
+      integral colorMath(cos, #red)(x) dif x \
+      = sin x + C
+    $
+  ], [
+    $
+      integral colorMath(cos, #red)(x) dif x \
+      = sin x + C
+    $
   ],
 
   [Tan], [
     $
-      d / (d x) [tan(x)] \= sec^2(x)
+      d / (d x) [colorMath(tan, #red)(x)] \
+      = sec^2(x)
     $
   ], [
-
-  ], [
     $
-      integral sec^2 x dif x \
-      = tan x + C
+      d / (d x) [colorMath(tan, #red)(x)] \
+      = sec^2(x)
     $
   ], [
-
+    $
+      integral colorMath(tan, #red)(x) dif x \ 
+      = -ln abs(cos x) + C
+    $
+  ], [
+    $
+      integral colorMath(tan, #red)(x) dif x \ 
+      = -ln abs(cos x) + C
+    $
   ],
   
 )
@@ -514,9 +597,76 @@ $
 
 == Product Rule $arrow.long$ Integration by Parts
 
+$
+  integral u dif v = u v - integral v dif u
+$
 
+#eg[
+  Given a function:
+
+  $
+    f(x) = x dot e^x
+  $
+
+  Integrate (by parts):
+
+  $
+    integral x dot e^x dif x
+  $
+
+  #linebreak()
+
+  *Step 1:* Choose $u$ and $dif v$
+
+  We choose:
+
+  - $u = x$ (easy to *differentiate*)
+
+  - $dif v = e^x$ (easy to *integrate*)
+
+  #linebreak()
+
+  *Step 2:* Compute $dif u$ and $v$
+
+  - $u = x arrow.long dif u = dif x$
+
+  - $dif v = e^x dif x arrow.long v = integral e^x dif x = e^x$
+
+  #linebreak()
+
+  *Step 3:* Plug into formula
+
+  $
+    integral x dot e^x dif x 
+    &= u dot v - integral v dot dif u \
+    &= x dot e^x dif x - integral e^x dot dif x \
+  $
+
+  #linebreak()
+
+  *Step 4:* Compute the remaining integral:
+
+  $
+    integral e^x dif x = e^x
+  $
+
+  #linebreak()
+
+  *Step 5:* Finish the expression:
+
+  $
+    integral x dot e^x 
+    &= x dot e^x - e^x + C \
+    &= e^x (x - 1) + C \
+  $
+
+]
 
 == Chain Rule $arrow.long$ $u$-Substitution
+
+$
+  integral f(g(x)) g'(x) dif x = integral f(u) dif u
+$
 
 
 == Quotient Rule $arrow.long$ Algebraic Manipulation / Substitution

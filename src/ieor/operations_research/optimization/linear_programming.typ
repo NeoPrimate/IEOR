@@ -46,7 +46,7 @@ Where:
 
 - $A$: $m times n$ matrix of coefficients $a_(i j)$
 - $x = (x_1, x_2, ..., x_n)^T$: vector of decision variables
-- $b = (b_1, b_2, ..., b_m)^T$: ecotr of known constants
+- $b = (b_1, b_2, ..., b_m)^T$: vector of known constants
 
 3. Non-Nagativity Constraints
 
