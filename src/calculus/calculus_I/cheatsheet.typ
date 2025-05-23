@@ -3,7 +3,7 @@
 #import "../../utils/color_math.typ": colorMath
 #import "../../utils/result.typ": result
 
-#import "@preview/cetz:0.2.2"
+#import "@preview/cetz:0.3.4"
 
 = Cheatsheet
 

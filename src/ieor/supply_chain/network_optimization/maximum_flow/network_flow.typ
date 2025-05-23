@@ -1,7 +1,7 @@
 #import "../../../../utils/examples.typ": eg
 #import "../../../../utils/code.typ": code
 
-#import "@preview/fletcher:0.5.1" as fletcher: diagram, node, edge, shapes
+#import "@preview/fletcher:0.5.7" as fletcher: diagram, node, edge, shapes
 
 == Netwrok Flow Optimization
 

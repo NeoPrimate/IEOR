@@ -1,6 +1,7 @@
 #import "../utils/examples.typ": eg
 
-#import "@preview/cetz:0.2.2"
+#import "@preview/cetz:0.3.4"
+#import "@preview/cetz-plot:0.1.1"
 
 #set math.vec(delim: "[")
 
@@ -14,7 +15,10 @@ $
 
 #align(center)[
   #cetz.canvas(length: 6cm, {
-    cetz.plot.plot(
+    import cetz.draw: *
+    import cetz-plot: *
+
+    plot.plot(
       x-tick-step: 5,
       y-tick-step: 5,
       x-minor-tick-step: 1,
@@ -29,9 +33,9 @@ $
       x-grid: "both",
       y-grid: "both",
       {
-        cetz.plot.add-anchor("o", (0,0))
-        cetz.plot.add-anchor("a", (-4,4))
-        cetz.plot.add-anchor("b", (-6,3))
+        plot.add-anchor("o", (0,0))
+        plot.add-anchor("a", (-4,4))
+        plot.add-anchor("b", (-6,3))
       }, name: "plot")
 
       cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
@@ -56,7 +60,9 @@ $
 
 #align(center)[
   #cetz.canvas(length: 6cm, {
-    cetz.plot.plot(
+    import cetz.draw: *
+    import cetz-plot: *
+    plot.plot(
       x-tick-step: 5,
       y-tick-step: 5,
       x-minor-tick-step: 1,
@@ -71,9 +77,9 @@ $
       x-grid: "both",
       y-grid: "both",
       {
-        cetz.plot.add-anchor("o", (0,0))
-        cetz.plot.add-anchor("a", (-3,3))
-        cetz.plot.add-anchor("b", (-5,5))
+        plot.add-anchor("o", (0,0))
+        plot.add-anchor("a", (-3,3))
+        plot.add-anchor("b", (-5,5))
       }, name: "plot")
 
       cetz.draw.set-style(line: (mark: (end: ">", size: .25)))

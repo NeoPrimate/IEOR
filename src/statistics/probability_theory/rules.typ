@@ -24,21 +24,21 @@ How likely it is that the event does not occur.
 
 - Independent Events
 
-If $A$ and $B$ are independent, then $P(A sect B) = P(A) times P(B)$. The probability of both events occurring is the product of their individual probabilities.
+If $A$ and $B$ are independent, then $P(A inter B) = P(A) times P(B)$. The probability of both events occurring is the product of their individual probabilities.
 
 #eg[
 Consider flipping two fair coins. Let $A$ be the event "the first coin is heads" and $B$ be the event "the second coin is heads"
 
-- Since the flips are independent, $P(A sect B)=P(A) times P(B)$
+- Since the flips are independent, $P(A inter B)=P(A) times P(B)$
 
 - $P(A) = 1 / 2$ and $P(B) = 1 / 2$
 
-- Thus, $P(A sect B) = 1 / 2 times 1 / 2 = 1 / 4$
+- Thus, $P(A inter B) = 1 / 2 times 1 / 2 = 1 / 4$
 ]
 
 - Dependent Events
 
-If $A$ and $B$ are dependent, $P(A sect B) = P(A) times P(B | A)$, where $P(B | A)$ is the conditional probability of $B$ given $A$.
+If $A$ and $B$ are dependent, $P(A inter B) = P(A) times P(B | A)$, where $P(B | A)$ is the conditional probability of $B$ given $A$.
 
 #eg[
 Draw two cards from a standard deck without replacement. Let $A$ be the event "drawing an Ace on the first draw" and $B$ be the event "drawing an Ace on the second draw"
@@ -47,12 +47,12 @@ Draw two cards from a standard deck without replacement. Let $A$ be the event "d
 
 - If A occurs (i.e., an Ace is drawn first), there a re 3 Aces left out of 51 cards. So, $P(B | A) = 3 / 51 = 1 / 17$
 
-- Thus, $P(A sect B) = P(A) times P(B | A) = 1 / 13 times 1 / 17 = 1 / 221$
+- Thus, $P(A inter B) = P(A) times P(B | A) = 1 / 13 times 1 / 17 = 1 / 221$
 ]
 
 === Addition Rule
 
-For Any Two Events: $P(A union B) = P(A) + P(B) - P(A sect B)$. This accounts for the overlap between the two events to avoid double counting.
+For Any Two Events: $P(A union B) = P(A) + P(B) - P(A inter B)$. This accounts for the overlap between the two events to avoid double counting.
 
 #eg[
 Suppose you roll a die, and you want to find the probability of rolling a 2 or a 4.
@@ -61,14 +61,14 @@ Suppose you roll a die, and you want to find the probability of rolling a 2 or a
 
 - $P(A) = 1 / 6$ and $P(B) = 1 / 6$
 
-- Since A and B are mutually exclusive, $P(A sect B) = 0$
+- Since A and B are mutually exclusive, $P(A inter B) = 0$
 
-- $P(A union B) = P(A) + P(B) - P(A sect B) = 1 / 6 + 1 / 6 - 0 = 2 / 6 = 1 / 3$
+- $P(A union B) = P(A) + P(B) - P(A inter B) = 1 / 6 + 1 / 6 - 0 = 2 / 6 = 1 / 3$
 ]
 
 === Conditional Probability
 
-The probability of an event $A$ given that $B$ has occurred is $P(A | B) = P(A sect B) / P(B)$, provided $P(B) > 0$.
+The probability of an event $A$ given that $B$ has occurred is $P(A | B) = P(A inter B) / P(B)$, provided $P(B) > 0$.
 
 #eg[
 In a deck of 52 cards, if you know a card is a spade, what is the probability that it is an Ace?
@@ -77,9 +77,9 @@ In a deck of 52 cards, if you know a card is a spade, what is the probability th
 
 - $P(B) = 12 / 52 = 1 / 4$
 
-- There is 1 Ace of Spades out of 13 spades, so $P(A sect B) = 1 / 32$
+- There is 1 Ace of Spades out of 13 spades, so $P(A inter B) = 1 / 32$
 
-- Thus, $P(A | B) = P(A sect B) / P(B) = (1 / 52) / (13 / 52) = 1 / 13$
+- Thus, $P(A | B) = P(A inter B) / P(B) = (1 / 52) / (13 / 52) = 1 / 13$
 ]
 
 === Law of Total Probability
@@ -87,11 +87,11 @@ In a deck of 52 cards, if you know a card is a spade, what is the probability th
 If ${B_i}$ is a partition of the sample space, then for any event A:
 
 $
-P(A) = sum_i P(A sect B_i) = sum_i P(A | B_i) times P(B_i)
+P(A) = sum_i P(A inter B_i) = sum_i P(A | B_i) times P(B_i)
 $
 
 #eg[
-Suppose you want to calculate the probability of raining on a given day. You know that it’s either sunny or cloudy, and the probability of rain is different in each condition.
+Suppose you want to calculate the probability of raining on a given day. You know that it's either sunny or cloudy, and the probability of rain is different in each condition.
 
 - Let $B_1$ be the event "sunny" and $B_2$ be the event "cloudy"
 

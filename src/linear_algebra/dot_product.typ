@@ -1,6 +1,7 @@
 #import "../utils/examples.typ": eg
 
-#import "@preview/cetz:0.2.2"
+#import "@preview/cetz:0.3.4"
+#import "@preview/cetz-plot:0.1.1"
 
 #set math.vec(delim: "[")
 
@@ -28,7 +29,10 @@ $
 
   #align(center)[
     #cetz.canvas(length: 7cm, {
-      cetz.plot.plot(
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
         x-tick-step: 1,
         y-tick-step: 1,
         x-minor-tick-step: 1,
@@ -43,11 +47,11 @@ $
         x-grid: "both",
         y-grid: "both",
         {
-          cetz.plot.add-anchor("o", (0,0))
-          cetz.plot.add-anchor("a", (5,2))
+          plot.add-anchor("o", (0,0))
+          plot.add-anchor("a", (5,2))
           
-          cetz.plot.add-anchor("b", (5,0))
-          cetz.plot.add-anchor("c", (5,2))
+          plot.add-anchor("b", (5,0))
+          plot.add-anchor("c", (5,2))
         }, name: "plot")
 
         cetz.draw.set-style(line: (mark: (end: ">", size: .25)))

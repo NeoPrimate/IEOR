@@ -9,7 +9,7 @@
 
 #pagebreak()
 
-#outline(indent: true)
+#outline(indent: 1em)
 
 #pagebreak()
 

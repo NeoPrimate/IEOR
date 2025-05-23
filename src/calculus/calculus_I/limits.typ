@@ -3,7 +3,8 @@
 #import "../../utils/color_math.typ": colorMath
 #import "../../utils/result.typ": result
 
-#import "@preview/cetz:0.2.2"
+#import "@preview/cetz:0.3.4"
+#import "@preview/cetz-plot:0.1.1"
 
 = Limits & Continuity
 
@@ -41,7 +42,9 @@ lim_(x arrow colorMath(c^-, #red)) (f(x) * g(x)) quad quad = quad quad lim_(x ar
 $
 
 #let f = cetz.canvas(length: 6cm, {
-  cetz.plot.plot(
+  import cetz.draw: *
+  import cetz-plot: *
+  plot.plot(
     x-tick-step: 1, 
     y-tick-step: 1,
     y-min: -4,
@@ -54,27 +57,27 @@ $
     mark-style: (fill: black, stroke: color),
     plot-style: (stroke: 2pt, color: red),
     {
-      cetz.plot.add(((-4,4), (-2,1),))
-      cetz.plot.add(((-2,3), (1,2),))
-      cetz.plot.add(((1,-1), (4,2),))
+      plot.add(((-4,4), (-2,1),))
+      plot.add(((-2,3), (1,2),))
+      plot.add(((1,-1), (4,2),))
 
-      cetz.plot.add(
+      plot.add(
         ((-2,1),),
         mark: "o",
         mark-size: mark-size,
         mark-style: mark-style-white
       )
-      cetz.plot.add(
+      plot.add(
         ((-2,3),),
         mark: "o",
         mark-size: mark-size,
       )
-      cetz.plot.add(
+      plot.add(
         ((1,2),),
         mark: "o",
         mark-size: mark-size,
       )
-      cetz.plot.add(((1,-1),),
+      plot.add(((1,-1),),
         mark: "o",
         mark-size: mark-size,
         mark-style: mark-style-white
@@ -84,7 +87,9 @@ $
 })
 
 #let g = cetz.canvas(length: 6cm, {
-  cetz.plot.plot(
+  import cetz.draw: *
+  import cetz-plot: *
+  plot.plot(
     x-tick-step: 1, 
     y-tick-step: 1,
     y-min: -4,
@@ -97,15 +102,15 @@ $
     mark-style: (fill: black, stroke: color),
     plot-style: (stroke: 2pt, color: red),
     {
-      cetz.plot.add(((-4,-2), (-2, 3),))
-      cetz.plot.add(((-2,1), (0,1), (2,-1), (4,-1)))
+      plot.add(((-4,-2), (-2, 3),))
+      plot.add(((-2,1), (0,1), (2,-1), (4,-1)))
 
-      cetz.plot.add(
+      plot.add(
         ((-2,3),),
         mark: "o",
         mark-size: mark-size,
       )
-      cetz.plot.add(
+      plot.add(
         ((-2,1),),
         mark: "o",
         mark-size: mark-size,
@@ -234,7 +239,9 @@ For this to hold true, two important conditions must be satisfied:
 
 
 #let f = cetz.canvas(length: 6cm, {
-  cetz.plot.plot(
+  import cetz.draw: *
+  import cetz-plot: *
+  plot.plot(
     x-tick-step: 1, 
     y-tick-step: 1,
     y-min: -4,
@@ -247,26 +254,26 @@ For this to hold true, two important conditions must be satisfied:
     mark-style: (fill: black, stroke: color),
     plot-style: (stroke: 2pt, color: red),
     {
-      cetz.plot.add(((-4,-1), (-2, 2), (0, 3), (1, 2),))
-      cetz.plot.add(((1,1), (4,-2),))
+      plot.add(((-4,-1), (-2, 2), (0, 3), (1, 2),))
+      plot.add(((1,1), (4,-2),))
 
-      cetz.plot.add(
+      plot.add(
         ((2,3),),
         mark: "o",
         mark-size: mark-size,
       )
-      cetz.plot.add(
+      plot.add(
         ((1,2),),
         mark: "o",
         mark-size: mark-size,
         mark-style: mark-style-white
       )
-      cetz.plot.add(
+      plot.add(
         ((1,1),),
         mark: "o",
         mark-size: mark-size,
       )
-      cetz.plot.add(((2,0),),
+      plot.add(((2,0),),
         mark: "o",
         mark-size: mark-size,
         mark-style: mark-style-white
@@ -276,7 +283,9 @@ For this to hold true, two important conditions must be satisfied:
 })
 
 #let g = cetz.canvas(length: 6cm, {
-  cetz.plot.plot(
+  import cetz.draw: *
+  import cetz-plot: *
+  plot.plot(
     x-tick-step: 1, 
     y-tick-step: 1,
     y-min: -4,
@@ -289,27 +298,27 @@ For this to hold true, two important conditions must be satisfied:
     mark-style: (fill: black, stroke: color),
     plot-style: (stroke: 2pt, color: red),
     {
-      cetz.plot.add(((-4,3), (-2, 3), (0, 2), (2, -2),))
-      cetz.plot.add(((2,0), (3,1), (4,0),))
+      plot.add(((-4,3), (-2, 3), (0, 2), (2, -2),))
+      plot.add(((2,0), (3,1), (4,0),))
 
-      cetz.plot.add(
+      plot.add(
         ((-3,3),),
         mark: "o",
         mark-size: mark-size,
         mark-style: mark-style-white,
       )
-      cetz.plot.add(
+      plot.add(
         ((-3,-2),),
         mark: "o",
         mark-size: mark-size,
       )
-      cetz.plot.add(
+      plot.add(
         ((2,-2),),
         mark: "o",
         mark-size: mark-size,
         mark-style: mark-style-white
       )
-      cetz.plot.add(
+      plot.add(
         ((2,0),),
         mark: "o",
         mark-size: mark-size

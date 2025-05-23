@@ -3,7 +3,8 @@
 #import "../../utils/color_math.typ": colorMath
 #import "../../utils/result.typ": result
 
-#import "@preview/cetz:0.2.2"
+#import "@preview/cetz:0.3.4"
+#import "@preview/cetz-plot:0.1.1"
 
 == Extreme Value Theorem
 
@@ -21,7 +22,10 @@ $
 
   #align(center)[
     #cetz.canvas(length: 6cm, {
-      cetz.plot.plot(
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
         x-tick-step: 2, 
         y-tick-step: 2,
         y-min: -4,
@@ -30,13 +34,13 @@ $
         x-max: 4,
         mark-style: (fill: black, stroke: black),
         {
-          cetz.plot.add(
+          plot.add(
             f, 
             domain: (-4, 4), 
             style: (stroke: black),
             label: none
           )
-          cetz.plot.add(
+          plot.add(
             ((0,c),),
             mark: "o",
             mark-size: 0.04,
@@ -58,7 +62,10 @@ $
 
   #align(center)[
     #cetz.canvas(length: 6cm, {
-      cetz.plot.plot(
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
         x-tick-step: 1, 
         y-tick-step: 50,
         y-min: 0,
@@ -67,7 +74,7 @@ $
         x-max: 1,
         mark-style: (fill: black, stroke: black),
         {
-          cetz.plot.add(
+          plot.add(
             f, 
             domain: (0.001, 1), 
             style: (stroke: black),
@@ -96,7 +103,10 @@ A critical point of a function $f(x)$ is a point in the domain where either:
 
   #align(center)[
     #cetz.canvas(length: 6cm, {
-      cetz.plot.plot(
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
         x-tick-step: 1, 
         y-tick-step: 1,
         y-min: -5,
@@ -105,13 +115,13 @@ A critical point of a function $f(x)$ is a point in the domain where either:
         x-max: 3,
         axis-style: "school-book",
         {
-          cetz.plot.add(
+          plot.add(
             f, 
             domain: (-3, 3), 
             style: (stroke: blue),
             label: $f(x)$
           )
-          cetz.plot.add(
+          plot.add(
             f_prime, 
             domain: (-3, 3), 
             style: (stroke: red),
@@ -186,7 +196,10 @@ If $f'(x)$ changes sign around a critical point $c$, we can determine if $f(c)$ 
 
   #align(center)[
     #cetz.canvas(length: 6cm, {
-      cetz.plot.plot(
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
         x-min: -2.5,
         x-max: 2.5,
         y-min: -4,
@@ -195,19 +208,19 @@ If $f'(x)$ changes sign around a critical point $c$, we can determine if $f(c)$ 
         y-tick-step: 2,
         mark-style: (fill: black),
         {
-          cetz.plot.add(
+          plot.add(
             f,
             domain: (-2.5, 2.5),
             style: (stroke: black),
             label: none
           )
-          cetz.plot.add(
+          plot.add(
             ((-1, 2),),
             mark: "o",
             mark-size: 0.04,
             mark-style: (fill: black, stroke: black)
           )
-          cetz.plot.add(
+          plot.add(
             ((1, -2),),
             mark: "o",
             mark-size: 0.04,
@@ -270,7 +283,10 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
 
   #align(center)[
     #cetz.canvas(length: 6cm, {
-      cetz.plot.plot(
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
         x-min: -3,
         x-max: 3,
         y-min: -5,
@@ -279,25 +295,25 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
         y-tick-step: 5,
         mark-style: (fill: black),
         {
-          cetz.plot.add(
+          plot.add(
             f,
             domain: (-3, 3),
             style: (stroke: black),
             label: none
           )
-          cetz.plot.add(
+          plot.add(
             ((0, 0),),
             mark: "o",
             mark-size: 0.04,
             mark-style: (fill: black, stroke: black)
           )
-          cetz.plot.add(
+          plot.add(
             ((-calc.sqrt(2), -4),),
             mark: "o",
             mark-size: 0.04,
             mark-style: (fill: black, stroke: black)
           )
-          cetz.plot.add(
+          plot.add(
             ((calc.sqrt(2), -4),),
             mark: "o",
             mark-size: 0.04,

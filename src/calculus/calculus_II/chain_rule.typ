@@ -4,7 +4,7 @@
 #import "../../utils/result.typ": result
 
 
-#import "@preview/fletcher:0.5.1" as fletcher: diagram, node, edge, shapes
+#import "@preview/fletcher:0.5.7" as fletcher: diagram, node, edge, shapes
 
 #align(center)[
 

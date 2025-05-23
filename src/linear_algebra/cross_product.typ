@@ -1,6 +1,6 @@
 #import "../utils/examples.typ": eg
 
-#import "@preview/cetz:0.2.2"
+#import "@preview/cetz:0.3.4"
 
 #set math.vec(delim: "[")
 

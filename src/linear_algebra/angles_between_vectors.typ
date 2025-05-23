@@ -1,7 +1,8 @@
 #import "../utils/examples.typ": eg
 #import "../utils/result.typ": result
 
-#import "@preview/cetz:0.2.2"
+#import "@preview/cetz:0.3.4"
+#import "@preview/cetz-plot:0.1.1"
 
 #set math.vec(delim: "[")
 
@@ -18,7 +19,9 @@ Say $accent(u, arrow), accent(v, arrow) in RR^n$
   #let (cx, cy) = (ax - bx, ay - by)
 
   #cetz.canvas(length: 6cm, {
-    cetz.plot.plot(
+    import cetz.draw: *
+    import cetz-plot: *
+    plot.plot(
       x-tick-step: 5,
       y-tick-step: 5,
       x-minor-tick-step: 1,
@@ -33,10 +36,10 @@ Say $accent(u, arrow), accent(v, arrow) in RR^n$
       x-grid: "both",
       y-grid: "both",
       {
-        cetz.plot.add-anchor("o", (0,0))
-        cetz.plot.add-anchor("a", (ax,ay))
-        cetz.plot.add-anchor("b", (bx,by))
-        cetz.plot.add-anchor("c", (cx,cy))
+        plot.add-anchor("o", (0,0))
+        plot.add-anchor("a", (ax,ay))
+        plot.add-anchor("b", (bx,by))
+        plot.add-anchor("c", (cx,cy))
       }, name: "plot")
 
       cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
@@ -56,7 +59,9 @@ Say $accent(u, arrow), accent(v, arrow) in RR^n$
   #linebreak()
   
   #cetz.canvas(length: 6cm, {
-    cetz.plot.plot(
+    import cetz.draw: *
+    import cetz-plot: *
+    plot.plot(
       x-tick-step: none,
       y-tick-step: none,
       x-minor-tick-step: none,
@@ -71,10 +76,10 @@ Say $accent(u, arrow), accent(v, arrow) in RR^n$
       x-grid: "both",
       y-grid: "both",
       {
-        cetz.plot.add-anchor("o", (0,0))
-        cetz.plot.add-anchor("a", (ax,ay))
-        cetz.plot.add-anchor("b", (bx,by))
-        cetz.plot.add-anchor("c", (cx,cy))
+        plot.add-anchor("o", (0,0))
+        plot.add-anchor("a", (ax,ay))
+        plot.add-anchor("b", (bx,by))
+        plot.add-anchor("c", (cx,cy))
       }, name: "plot")
 
       cetz.draw.set-style(line: (mark: (end: none, size: .25)))
@@ -144,7 +149,9 @@ So, if $accent(u, arrow)$ is a scalar multiple of $accent(v, arrow)$ ($accent(u,
   #let (bx, by) = (5, 5)
 
   #cetz.canvas(length: 5cm, {
-    cetz.plot.plot(
+    import cetz.draw: *
+    import cetz-plot: *
+    plot.plot(
       x-tick-step: 5,
       y-tick-step: 5,
       x-minor-tick-step: 1,
@@ -159,9 +166,9 @@ So, if $accent(u, arrow)$ is a scalar multiple of $accent(v, arrow)$ ($accent(u,
       x-grid: "both",
       y-grid: "both",
       {
-        cetz.plot.add-anchor("o", (0,0))
-        cetz.plot.add-anchor("a", (ax,ay))
-        cetz.plot.add-anchor("b", (bx,by))
+        plot.add-anchor("o", (0,0))
+        plot.add-anchor("a", (ax,ay))
+        plot.add-anchor("b", (bx,by))
       }, name: "plot")
 
       cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
@@ -185,7 +192,9 @@ And, if $accent(u, arrow)$ is a scalar multiple of $accent(v, arrow)$ ($accent(u
   #let (bx, by) = (-6, -6)
 
   #cetz.canvas(length: 5cm, {
-    cetz.plot.plot(
+    import cetz.draw: *
+    import cetz-plot: *
+    plot.plot(
       x-tick-step: 5,
       y-tick-step: 5,
       x-minor-tick-step: 1,
@@ -200,9 +209,9 @@ And, if $accent(u, arrow)$ is a scalar multiple of $accent(v, arrow)$ ($accent(u
       x-grid: "both",
       y-grid: "both",
       {
-        cetz.plot.add-anchor("o", (0,0))
-        cetz.plot.add-anchor("a", (ax,ay))
-        cetz.plot.add-anchor("b", (bx,by))
+        plot.add-anchor("o", (0,0))
+        plot.add-anchor("a", (ax,ay))
+        plot.add-anchor("b", (bx,by))
       }, name: "plot")
 
       cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
@@ -236,7 +245,9 @@ If $accent(u, arrow) dot accent(v, arrow) = 0$ then $accent(u, arrow)$ and $acce
   #let (bx, by) = (6, 0)
 
   #cetz.canvas(length: 5cm, {
-    cetz.plot.plot(
+    import cetz.draw: *
+    import cetz-plot: *
+    plot.plot(
       x-tick-step: 5,
       y-tick-step: 5,
       x-minor-tick-step: 1,
@@ -251,9 +262,9 @@ If $accent(u, arrow) dot accent(v, arrow) = 0$ then $accent(u, arrow)$ and $acce
       x-grid: "both",
       y-grid: "both",
       {
-        cetz.plot.add-anchor("o", (0,0))
-        cetz.plot.add-anchor("a", (ax,ay))
-        cetz.plot.add-anchor("b", (bx,by))
+        plot.add-anchor("o", (0,0))
+        plot.add-anchor("a", (ax,ay))
+        plot.add-anchor("b", (bx,by))
       }, name: "plot")
 
       cetz.draw.set-style(line: (mark: (end: ">", size: .25)))

@@ -1,4 +1,5 @@
-#import "@preview/cetz:0.2.2"
+#import "@preview/cetz:0.3.4"
+#import "@preview/cetz-plot:0.1.1"
 
 #set page(
   "us-letter",
@@ -155,7 +156,10 @@
      $A = 1/2 a b sin(theta)$
 
      #cetz.canvas(length: 2cm, {
-      cetz.plot.plot(
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
         x-tick-step: none,
         y-tick-step: none,
         x-minor-tick-step: none,
@@ -170,10 +174,10 @@
         x-grid: "both",
         y-grid: "both",
         {
-          cetz.plot.add-anchor("o", (0,0))
-          cetz.plot.add-anchor("a", (5,0))
-          cetz.plot.add-anchor("b", (4,2))
-          cetz.plot.add-anchor("d", (4,0))
+          plot.add-anchor("o", (0,0))
+          plot.add-anchor("a", (5,0))
+          plot.add-anchor("b", (4,2))
+          plot.add-anchor("d", (4,0))
         }, name: "plot")
 
         cetz.draw.set-style(line: (mark: (end: none, size: .25)))
@@ -200,7 +204,10 @@
     $C = 2 pi r$
 
     #cetz.canvas(length: 2cm, {
-      cetz.plot.plot(
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
         x-tick-step: none,
         y-tick-step: none,
         x-minor-tick-step: none,
@@ -233,7 +240,10 @@
     $s = r theta$ ($theta$ in radians)
 
     #cetz.canvas(length: 2cm, {
-      cetz.plot.plot(
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
         x-tick-step: none,
         y-tick-step: none,
         x-minor-tick-step: none,
@@ -251,9 +261,7 @@
 
         cetz.draw.set-style(line: (mark: (end: none, size: .25)))
 
-        cetz.draw.arc((0,0), stop: 45deg, delta: 45deg, mode: "PIE", stroke: blue)
-        // cetz.draw.content("c.mid", $r$, anchor: "south", padding: 0.05, angle: "c.mid")
-        
+        cetz.draw.arc((0,0), stop: 45deg, delta: 45deg, mode: "PIE", stroke: blue)  
     })
 
   ]

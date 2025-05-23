@@ -1,7 +1,8 @@
 #import "../utils/code.typ": code
 #import "../utils/examples.typ": eg
 
-#import "@preview/cetz:0.2.2"
+#import "@preview/cetz:0.3.4"
+#import "@preview/cetz-plot:0.1.1"
 
 #set math.vec(delim: "[")
 
@@ -22,7 +23,10 @@ $
 
   #align(center)[
     #cetz.canvas(length: 5cm, {
-      cetz.plot.plot(
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
         x-tick-step: 2,
         y-tick-step: 2,
         x-minor-tick-step: 1,
@@ -37,8 +41,8 @@ $
         x-grid: "both",
         y-grid: "both",
         {
-          cetz.plot.add-anchor("a", (0,0))
-          cetz.plot.add-anchor("b", (3,0))
+          plot.add-anchor("a", (0,0))
+          plot.add-anchor("b", (3,0))
         }, name: "plot")
 
         cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
@@ -91,7 +95,11 @@ $
 
   #align(center)[
     #cetz.canvas(length: 5cm, {
-      cetz.plot.plot(
+
+      import cetz.draw: *
+      import cetz-plot: *
+      
+      plot.plot(
         x-tick-step: 2,
         y-tick-step: 2,
         x-minor-tick-step: 1,
@@ -106,12 +114,12 @@ $
         x-grid: "both",
         y-grid: "both",
         {
-          cetz.plot.add-anchor("a", (0,0))
-          cetz.plot.add-anchor("b", (6,-2))
-          cetz.plot.add-anchor("c", (0,0))
-          cetz.plot.add-anchor("d", (-4,4))
-          cetz.plot.add-anchor("e", (0,0))
-          cetz.plot.add-anchor("f", (2,2))
+          plot.add-anchor("a", (0,0))
+          plot.add-anchor("b", (6,-2))
+          plot.add-anchor("c", (0,0))
+          plot.add-anchor("d", (-4,4))
+          plot.add-anchor("e", (0,0))
+          plot.add-anchor("f", (2,2))
         }, name: "plot")
 
         cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
@@ -123,7 +131,10 @@ $
   
   #align(center)[
     #cetz.canvas(length: 5cm, {
-      cetz.plot.plot(
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
         x-tick-step: 2,
         y-tick-step: 2,
         x-minor-tick-step: 1,
@@ -138,12 +149,12 @@ $
         x-grid: "both",
         y-grid: "both",
         {
-          cetz.plot.add-anchor("a", (0,0))
-          cetz.plot.add-anchor("b", (6,-2))
-          cetz.plot.add-anchor("c", (6,-2))
-          cetz.plot.add-anchor("d", (2,2))
-          cetz.plot.add-anchor("e", (0,0))
-          cetz.plot.add-anchor("f", (2,2))
+          plot.add-anchor("a", (0,0))
+          plot.add-anchor("b", (6,-2))
+          plot.add-anchor("c", (6,-2))
+          plot.add-anchor("d", (2,2))
+          plot.add-anchor("e", (0,0))
+          plot.add-anchor("f", (2,2))
         }, name: "plot")
 
         cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
@@ -174,7 +185,9 @@ $
   #align(center)[
 
   #cetz.canvas(length: 6cm, {
-    cetz.plot.plot(
+    import cetz.draw: *
+    import cetz-plot: *
+    plot.plot(
       x-tick-step: 5,
       y-tick-step: 5,
       x-minor-tick-step: 1,
@@ -189,10 +202,10 @@ $
       x-grid: "both",
       y-grid: "both",
       {
-        cetz.plot.add-anchor("o", (0,0))
-        cetz.plot.add-anchor("a", (ax,ay))
-        cetz.plot.add-anchor("b", (bx,by))
-        cetz.plot.add-anchor("c", (cx,cy))
+        plot.add-anchor("o", (0,0))
+        plot.add-anchor("a", (ax,ay))
+        plot.add-anchor("b", (bx,by))
+        plot.add-anchor("c", (cx,cy))
       }, name: "plot")
 
       cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
@@ -228,7 +241,9 @@ $
 
   #align(center)[
     #cetz.canvas(length: 5cm, {
-      cetz.plot.plot(
+      import cetz.draw: *
+      import cetz-plot: *
+      plot.plot(
         x-tick-step: 2,
         y-tick-step: 2,
         x-minor-tick-step: 1,
@@ -243,10 +258,10 @@ $
         x-grid: "both",
         y-grid: "both",
         {
-          cetz.plot.add-anchor("a", (0,0))
-          cetz.plot.add-anchor("b", (2,1))
-          cetz.plot.add-anchor("c", (0,0))
-          cetz.plot.add-anchor("d", (6,3))
+          plot.add-anchor("a", (0,0))
+          plot.add-anchor("b", (2,1))
+          plot.add-anchor("c", (0,0))
+          plot.add-anchor("d", (6,3))
         }, name: "plot")
 
         cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
@@ -267,7 +282,9 @@ $
 
   #align(center)[
     #cetz.canvas(length: 5cm, {
-      cetz.plot.plot(
+      import cetz.draw: *
+      import cetz-plot: *
+      plot.plot(
         x-tick-step: 1,
         y-tick-step: 1,
         x-minor-tick-step: 1,
@@ -282,10 +299,10 @@ $
         x-grid: "both",
         y-grid: "both",
         {
-          cetz.plot.add-anchor("a", (0,0))
-          cetz.plot.add-anchor("b", (2,1))
-          cetz.plot.add-anchor("c", (0,0))
-          cetz.plot.add-anchor("d", (-2,-1))
+          plot.add-anchor("a", (0,0))
+          plot.add-anchor("b", (2,1))
+          plot.add-anchor("c", (0,0))
+          plot.add-anchor("d", (-2,-1))
         }, name: "plot")
 
         cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
@@ -344,7 +361,9 @@ $
 
   #align(center)[
     #cetz.canvas(length: 5cm, {
-      cetz.plot.plot(
+      import cetz.draw: *
+      import cetz-plot: *
+      plot.plot(
         x-tick-step: 1,
         y-tick-step: 1,
         x-minor-tick-step: 1,
@@ -359,10 +378,10 @@ $
         x-grid: "both",
         y-grid: "both",
         {
-          cetz.plot.add-anchor("a", (0,0))
-          cetz.plot.add-anchor("b", (3,4))
-          cetz.plot.add-anchor("c", (0,0))
-          cetz.plot.add-anchor("d", (3/5,4/5))
+          plot.add-anchor("a", (0,0))
+          plot.add-anchor("b", (3,4))
+          plot.add-anchor("c", (0,0))
+          plot.add-anchor("d", (3/5,4/5))
           
         }, name: "plot")
 
@@ -431,7 +450,9 @@ $
 
   #align(center)[
     #cetz.canvas(length: 10cm, {
-      cetz.plot.plot(
+      import cetz.draw: *
+      import cetz-plot: *
+      plot.plot(
         x-tick-step: 1,
         y-tick-step: 1,
         x-minor-tick-step: 1,
@@ -446,13 +467,13 @@ $
         x-grid: "both",
         y-grid: "both",
         {
-          cetz.plot.add-anchor("o", (0,0))
-          cetz.plot.add-anchor("a", (a.at(0),a.at(1)))
-          cetz.plot.add-anchor("b", (b.at(0),b.at(1)))
-          cetz.plot.add-anchor("L", (diff_ba.at(0),diff_ba.at(1)))
+          plot.add-anchor("o", (0,0))
+          plot.add-anchor("a", (a.at(0),a.at(1)))
+          plot.add-anchor("b", (b.at(0),b.at(1)))
+          plot.add-anchor("L", (diff_ba.at(0),diff_ba.at(1)))
 
           for (i, z) in vecs.enumerate() {
-            cetz.plot.add-anchor(str(i), (z.at(0), z.at(1)))
+            plot.add-anchor(str(i), (z.at(0), z.at(1)))
           }
           
         }, name: "plot")
@@ -492,7 +513,9 @@ $
 
   #align(center)[
     #cetz.canvas(length: 10cm, {
-      cetz.plot.plot(
+      import cetz.draw: *
+      import cetz-plot: *
+      plot.plot(
         x-tick-step: 1,
         y-tick-step: 1,
         x-minor-tick-step: 1,
@@ -507,13 +530,13 @@ $
         x-grid: "both",
         y-grid: "both",
         {
-          cetz.plot.add-anchor("o", (0,0))
-          cetz.plot.add-anchor("a", (a.at(0),a.at(1)))
-          cetz.plot.add-anchor("b", (b.at(0),b.at(1)))
-          cetz.plot.add-anchor("L", (diff_ba.at(0),diff_ba.at(1)))
+          plot.add-anchor("o", (0,0))
+          plot.add-anchor("a", (a.at(0),a.at(1)))
+          plot.add-anchor("b", (b.at(0),b.at(1)))
+          plot.add-anchor("L", (diff_ba.at(0),diff_ba.at(1)))
 
           for (i, z) in vecs.enumerate() {
-            cetz.plot.add-anchor(str(i), (z.at(0), z.at(1)))
+            plot.add-anchor(str(i), (z.at(0), z.at(1)))
           }
           
         }, name: "plot")
@@ -632,7 +655,9 @@ $
 
   #align(center)[
     #cetz.canvas(length: 10cm, {
-      cetz.plot.plot(
+      import cetz.draw: *
+      import cetz-plot: *
+      plot.plot(
         x-tick-step: 2,
         y-tick-step: 2,
         x-minor-tick-step: 1,
@@ -647,19 +672,19 @@ $
         x-grid: "both",
         y-grid: "both",
         { 
-          cetz.plot.add(
+          plot.add(
             (t) => (line1_x(t), line1_y(t)),
             domain: (-0.25,0),
           )
-          cetz.plot.add(
+          plot.add(
             (t) => (line2_x(t), line2_y(t)),
             domain: (0,0.25),
           )
-          cetz.plot.add(
+          plot.add(
             (t) => (line3_x(t), line3_y(t)),
             domain: (0.25,0.5),
           )
-          cetz.plot.add(
+          plot.add(
             (t) => (line4_x(t), line4_y(t)),
             domain: (-0.25,-0.5),
           )

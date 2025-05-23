@@ -1,7 +1,8 @@
 #import "../utils/examples.typ": eg
 #import "../utils/result.typ": result
 
-#import "@preview/cetz:0.2.2"
+#import "@preview/cetz:0.3.4"
+#import "@preview/cetz-plot:0.1.1"
 
 #set math.vec(delim: "[")
 
@@ -21,7 +22,9 @@ If a plane is defined by the equation $a x + b y + c z = d$, the vector $accent(
 
 #align(center)[
   #cetz.canvas(length: 6cm, {
-    cetz.plot.plot(
+    import cetz.draw: *
+    import cetz-plot: *
+    plot.plot(
       x-tick-step: none,
       y-tick-step: none,
       x-minor-tick-step: none,
@@ -36,13 +39,13 @@ If a plane is defined by the equation $a x + b y + c z = d$, the vector $accent(
       x-grid: "both",
       y-grid: "both",
       {
-        cetz.plot.add-anchor("o", (0,0))
-        cetz.plot.add-anchor("a", (-3,3))
-        cetz.plot.add-anchor("b", (3,3))
-        cetz.plot.add-anchor("p", (3,7))
+        plot.add-anchor("o", (0,0))
+        plot.add-anchor("a", (-3,3))
+        plot.add-anchor("b", (3,3))
+        plot.add-anchor("p", (3,7))
         
-        cetz.plot.add-anchor("p1", (-8,3))
-        cetz.plot.add-anchor("p2", (8,3))
+        plot.add-anchor("p1", (-8,3))
+        plot.add-anchor("p2", (8,3))
         
       }, name: "plot")
       
@@ -139,7 +142,9 @@ $
 
 #align(center)[
   #cetz.canvas(length: 6cm, {
-    cetz.plot.plot(
+    import cetz.draw: *
+    import cetz-plot: *
+    plot.plot(
       x-tick-step: none,
       y-tick-step: none,
       x-minor-tick-step: none,
@@ -154,13 +159,13 @@ $
       x-grid: "both",
       y-grid: "both",
       {
-        cetz.plot.add-anchor("o", (0,0))
-        cetz.plot.add-anchor("a", (-3,3))
-        cetz.plot.add-anchor("b", (3,3))
-        cetz.plot.add-anchor("p", (3,7))
+        plot.add-anchor("o", (0,0))
+        plot.add-anchor("a", (-3,3))
+        plot.add-anchor("b", (3,3))
+        plot.add-anchor("p", (3,7))
         
-        cetz.plot.add-anchor("p1", (-8,3))
-        cetz.plot.add-anchor("p2", (8,3))
+        plot.add-anchor("p1", (-8,3))
+        plot.add-anchor("p2", (8,3))
         
       }, name: "plot")
       

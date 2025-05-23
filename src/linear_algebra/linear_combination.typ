@@ -1,6 +1,8 @@
 #import "../utils/code.typ": code
 #import "../utils/examples.typ": eg
-#import "@preview/cetz:0.2.2"
+
+#import "@preview/cetz:0.3.4"
+#import "@preview/cetz-plot:0.1.1"
 
 #set math.vec(delim: "[")
 
@@ -81,7 +83,9 @@ Any vector in $RR^2$ can be represented by a linear combination with some combin
 
   #align(center)[
     #cetz.canvas(length: 10cm, {
-      cetz.plot.plot(
+      import cetz.draw: *
+      import cetz-plot: *
+      plot.plot(
         x-tick-step: 2,
         y-tick-step: 2,
         x-minor-tick-step: 1,
@@ -96,14 +100,14 @@ Any vector in $RR^2$ can be represented by a linear combination with some combin
         x-grid: "both",
         y-grid: "both",
         {
-          cetz.plot.add-anchor("o", (0,0))
-          cetz.plot.add-anchor("a", (1,2))
-          cetz.plot.add-anchor("b", (0,3))
+          plot.add-anchor("o", (0,0))
+          plot.add-anchor("a", (1,2))
+          plot.add-anchor("b", (0,3))
           
-          cetz.plot.add-anchor("c", (3,6))
-          cetz.plot.add-anchor("d", (0,-6))
+          plot.add-anchor("c", (3,6))
+          plot.add-anchor("d", (0,-6))
           
-          cetz.plot.add-anchor("e", (3,0))
+          plot.add-anchor("e", (3,0))
 
         }, name: "plot")
 
@@ -226,7 +230,9 @@ Any vector in $RR^2$ can be represented by a linear combination with some combin
 
   #align(center)[
     #cetz.canvas(length: 10cm, {
-      cetz.plot.plot(
+      import cetz.draw: *
+      import cetz-plot: *
+      plot.plot(
         x-tick-step: 2,
         y-tick-step: 2,
         x-minor-tick-step: 1,
@@ -241,14 +247,14 @@ Any vector in $RR^2$ can be represented by a linear combination with some combin
         x-grid: "both",
         y-grid: "both",
         {
-          cetz.plot.add-anchor("o", (0,0))
-          cetz.plot.add-anchor("a", (2,2))
-          cetz.plot.add-anchor("b", (-2,-2))
+          plot.add-anchor("o", (0,0))
+          plot.add-anchor("a", (2,2))
+          plot.add-anchor("b", (-2,-2))
           
-          cetz.plot.add-anchor("c", (6,6))
-          cetz.plot.add-anchor("d", (4,4))
+          plot.add-anchor("c", (6,6))
+          plot.add-anchor("d", (4,4))
           
-          cetz.plot.add-anchor("e", (2,2))
+          plot.add-anchor("e", (2,2))
 
         }, name: "plot")
 
@@ -492,7 +498,9 @@ $
 
   #align(center)[
     #cetz.canvas(length: 10cm, {
-      cetz.plot.plot(
+      import cetz.draw: *
+      import cetz-plot: *
+      plot.plot(
         x-tick-step: 2,
         y-tick-step: 2,
         x-minor-tick-step: 1,
@@ -507,10 +515,10 @@ $
         x-grid: "both",
         y-grid: "both",
         {
-          cetz.plot.add-anchor("o", (0,0))
-          cetz.plot.add-anchor("a", (5,5))
-          cetz.plot.add-anchor("b", (-5,-5))
-          cetz.plot.add-fill-between(
+          plot.add-anchor("o", (0,0))
+          plot.add-anchor("a", (5,5))
+          plot.add-anchor("b", (-5,-5))
+          plot.add-fill-between(
             domain: (0, 10),
             // style: (fill: red),
             (x) => 11,

@@ -1,7 +1,7 @@
-#import "@preview/cetz:0.2.2"
+#import "@preview/cetz:0.3.4"
 
-#import "../../../../../utils/examples.typ": eg
-#import "../../../../../utils/code.typ": code
+#import "../../../utils/examples.typ": eg
+#import "../../../utils/code.typ": code
 
 == Dimensions
 
