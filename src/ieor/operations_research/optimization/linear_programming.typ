@@ -877,17 +877,30 @@ Where:
 
   Complete Formulation
 
-  $
-    &min quad &x_1 quad + quad &x_2 quad + quad &x_3 quad + quad &x_4 quad + quad &x_5 quad + quad &x_6 quad + quad &x_7 & & \
-    &s.t. quad &x_1 quad + quad & quad & quad &x_4 quad + quad &x_5 quad + quad &x_6 quad + quad &x_7 quad &gt.eq quad &110 \
-    & quad &x_1 quad + quad &x_2 quad + quad & quad & quad &x_5 quad + quad &x_6 quad + quad &x_7 quad &gt.eq quad &80 \
-    & quad &x_1 quad + quad &x_2 quad + quad &x_3 quad + quad & quad & quad &x_6 quad + quad &x_7 quad &gt.eq quad &150 \
-    & quad &x_1 quad + quad &x_2 quad + quad &x_3 quad + quad &x_4 quad + quad & quad & quad &x_7 quad &gt.eq quad &30 \
-    & quad &x_1 quad + quad &x_2 quad + quad &x_3 quad + quad &x_4 quad + quad &x_5 quad & quad & quad &gt.eq quad &70 \
-    & quad & quad &x_2 quad + quad &x_3 quad + quad &x_4 quad + quad &x_5 quad + quad &x_6 quad & quad &gt.eq quad &160 \
-    & quad & quad & &x_3 quad + quad &x_4 quad + quad &x_5 quad + quad &x_6 quad + quad &x_7 quad &gt.eq quad &120 \
+#show math.equation: it => {
+  show "+": $quad + quad$
+  it
+}
 
-    x_i gt.eq 0 quad &forall i = 1, dots, 7 \
-  $
+#let eqFill = hide[$>=$]
+#let f = hide[+]
+
+$
+    & min  quad & x_1 + & x_2 + & x_3 + & x_4 + & x_5 + & x_6 + & x_7 & eqFill   \
+    & s.t. quad & x_1 + &       &       & x_4 + & x_5 + & x_6 + & x_7 & >= & 110 \
+    &           & x_1 + & x_2 + &       &       & x_5 + & x_6 + & x_7 & >= &  80 \
+    &           & x_1 + & x_2 + & x_3 + &       &       & x_6 + & x_7 & >= & 150 \
+    &           & x_1 + & x_2 + & x_3 + & x_4 + &       &       & x_7 & >= &  30 \
+    &           & x_1 + & x_2 + & x_3 + & x_4 + & x_5 #f&       &     & >= &  70 \
+    &           &       & x_2 + & x_3 + & x_4 + & x_5 + & x_6   &     & >= & 160 \
+    &           &       &       & x_3 + & x_4 + & x_5 + & x_6 + & x_7 & >= & 120 \
+    &           &x_i >= 0 & forall i = 1, ..., 7 \
+$
   
+]
+
+#code[
+  ```py
+  
+  ```
 ]

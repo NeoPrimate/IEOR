@@ -6,8 +6,8 @@ ROOT_TYPST_FILE="$SRC_DIR/main.typ"  # Path to the root Typst file
 BUILD_DIR="build"             # Build directory
 OUTPUT_PDF="$BUILD_DIR/main.pdf"  # Output PDF file path
 COMMIT_MESSAGE="Build and update PDF"  # Commit message
-VENV_DIR="venv"               # Virtual environment directory
-REQUIREMENTS_FILE="requirements.txt"  # Requirements file
+VENV_DIR="code/.venv"               # Virtual environment directory
+REQUIREMENTS_FILE="code/requirements.txt"  # Requirements file
 
 # Ensure the script is run from the root of the repo
 if [ ! -f "$ROOT_TYPST_FILE" ]; then

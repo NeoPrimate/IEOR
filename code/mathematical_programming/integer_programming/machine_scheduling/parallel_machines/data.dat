@@ -1,0 +1,11 @@
+set MACHINES := M1 M2 M3;
+
+set JOBS := J1 J2 J3 J4 J5 J6;
+
+param p :=
+J1 10
+J2 20
+J3 30
+J4 25
+J5 15
+J6 35;
