@@ -1,0 +1,9 @@
+set Assets := A B C;
+
+param: p     mu     sigma2 :=
+      A   50     55     4
+      B   30     33     2
+      C   20     21     1 ;
+
+param B := 1000;
+param R := 1100;

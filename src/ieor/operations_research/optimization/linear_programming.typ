@@ -550,6 +550,109 @@ Let $g(dot) lt.eq b$ be an inequality constraint and $bar(x)$ be a solution. $g(
   - $i = 1, dots, m$
   - $j = 1, dots, n$
   - $x_j$: production quantity for product $j$, $j = 1, dots, n$
+
+  #line(length: 100%)
+
+  *model.py*
+  #code[
+    ```py
+    from pyomo.environ import *
+    from pyomo.dataportal import DataPortal
+
+    model = AbstractModel()
+
+    # Sets
+    model.Products = Set()
+    model.Resources = Set()
+
+    # Parameters
+    model.Profit = Param(model.Products)
+    model.Supply = Param(model.Resources)
+    model.Consumption = Param(model.Resources, model.Products)
+
+    # Variables
+    model.x = Var(model.Products, domain=NonNegativeReals)
+
+    # Objective: Maximize profit
+    def objective_rule(model):
+        return sum(model.Profit[j] * model.x[j] for j in model.Products)
+    model.OBJ = Objective(rule=objective_rule, sense=maximize)
+
+    # Constraints: Do not exceed resource supply
+    def constraint_rule(model, i):
+        return sum(model.Consumption[i, j] * model.x[j] for j in model.Products) <= model.Supply[i]
+    model.ResourceConstraint = Constraint(model.Resources, rule=constraint_rule)
+
+    # Load data from .dat file
+    data = DataPortal()
+    data.load(filename='data.dat', model=model)
+
+    # Create an instance of the model
+    instance = model.create_instance(data)
+
+    # Create solver
+    solver = SolverFactory('glpk')
+    solver.options['tmlim'] = 60
+
+    # Solve with solver timeout (optional)
+    results = solver.solve(instance, tee=True)
+
+    # Display results
+    instance.display()
+    ```
+    ]
+
+    *data.dat*
+
+    #code[
+      ```python
+      set Products := Desk Table ;
+      set Resources := Wood Labor Machine ;
+
+      param Profit :=
+      Desk   700
+      Table  900 ;
+
+      param Supply :=
+      Wood    3600
+      Labor   1600
+      Machine 48000 ;
+
+      param Consumption:
+                Desk Table :=
+      Wood        3     5
+      Labor       1     2
+      Machine    50    20 ;
+
+      ```
+    ]
+
+    *Output:*
+
+    #code[
+    ```python
+
+    Variables:
+    x : Size=2, Index=Products
+        Key   : Lower : Value            : Upper : Fixed : Stale : Domain
+         Desk :     0 : 884.210526315789 :  None : False : False : NonNegativeReals
+        Table :     0 : 189.473684210526 :  None : False : False : NonNegativeReals
+
+  Objectives:
+    OBJ : Size=1, Index=None, Active=True
+        Key  : Active : Value
+        None :   True : 789473.6842105257
+
+  Constraints:
+    ResourceConstraint : Size=3
+        Key     : Lower : Body              : Upper
+          Labor :  None : 1263.157894736841 :  1600.0
+        Machine :  None : 47999.99999999997 : 48000.0
+           Wood :  None : 3599.999999999997 :  3600.0
+    ```
+
+    
+  ]
 ]
 
 #eg[
@@ -896,11 +999,118 @@ $
     &           &       &       & x_3 + & x_4 + & x_5 + & x_6 + & x_7 & >= & 120 \
     &           &x_i >= 0 & forall i = 1, ..., 7 \
 $
-  
-]
+
+*model.py*
 
 #code[
   ```py
-  
+  from pyomo.environ import *
+  from pyomo.dataportal import DataPortal
+
+  model = AbstractModel()
+
+  # Sets
+  model.Days = Set(ordered=True)           # Days 1..7 (Mon..Sun)
+  model.Shifts = Set(ordered=True)         # Shifts starting on days 1..7
+
+  # Parameters
+  model.Demand = Param(model.Days)         # Daily staffing requirements
+  model.Cover = Param(model.Days, model.Shifts, within=Binary)  # Coverage matrix (1 if shift j covers day i)
+
+  # Variables
+  model.x = Var(model.Shifts, domain=NonNegativeReals)
+
+  # Objective: Minimize total employees hired
+  def obj_rule(model):
+      return sum(model.x[s] for s in model.Shifts)
+  model.OBJ = Objective(rule=obj_rule, sense=minimize)
+
+  # Constraints: Cover daily demand
+  def demand_rule(model, d):
+      return sum(model.Cover[d, s] * model.x[s] for s in model.Shifts) >= model.Demand[d]
+  model.DemandConstraint = Constraint(model.Days, rule=demand_rule)
+
+  # Load data from .dat file
+  data = DataPortal()
+  data.load(filename='data.dat', model=model)
+
+  # Create an instance of the model
+  instance = model.create_instance(data)
+
+  # Create solver
+  solver = SolverFactory('glpk')
+  solver.options['tmlim'] = 60
+
+  # Solve with solver timeout (optional)
+  results = solver.solve(instance, tee=True)
+
+  # Display results
+  instance.display()
   ```
+  ]
+  
+  *data.dat*
+
+  #code[
+    ```python
+    set Days := Mon Tue Wed Thu Fri Sat Sun ;
+    set Shifts := s1 s2 s3 s4 s5 s6 s7 ;
+
+    param Demand :=
+    Mon 110
+    Tue 80
+    Wed 150
+    Thu 30
+    Fri 70
+    Sat 160
+    Sun 120 ;
+
+    # Each shift covers 5 consecutive days starting on the shift's day
+    # 1 if shift s_j covers day d_i, 0 otherwise
+
+    param Cover:
+            s1 s2 s3 s4 s5 s6 s7 :=
+    Mon     1  0  0  1  1  1  1
+    Tue     1  1  0  0  1  1  1
+    Wed     1  1  1  0  0  1  1
+    Thu     1  1  1  1  0  0  1
+    Fri     1  1  1  1  1  0  0
+    Sat     0  1  1  1  1  1  0
+    Sun     0  0  1  1  1  1  1 ;
+
+    ```
+  ]
+  
+  *Output:*
+  
+  #code[
+    ```python
+    Variables:
+    x : Size=7, Index=Shifts
+        Key : Lower : Value            : Upper : Fixed : Stale : Domain
+         s1 :     0 : 3.33333333333333 :  None : False : False : NonNegativeReals
+         s2 :     0 :             40.0 :  None : False : False : NonNegativeReals
+         s3 :     0 : 13.3333333333333 :  None : False : False : NonNegativeReals
+         s4 :     0 :              0.0 :  None : False : False : NonNegativeReals
+         s5 :     0 : 13.3333333333333 :  None : False : False : NonNegativeReals
+         s6 :     0 : 93.3333333333333 :  None : False : False : NonNegativeReals
+         s7 :     0 :              0.0 :  None : False : False : NonNegativeReals
+
+  Objectives:
+    OBJ : Size=1, Index=None, Active=True
+        Key  : Active : Value
+        None :   True : 163.33333333333323
+
+  Constraints:
+    DemandConstraint : Size=7
+        Key : Lower : Body               : Upper
+        Fri :  70.0 :  69.99999999999993 :  None
+        Mon : 110.0 : 109.99999999999993 :  None
+        Sat : 160.0 :  159.9999999999999 :  None
+        Sun : 120.0 :  119.9999999999999 :  None
+        Thu :  30.0 :  56.66666666666663 :  None
+        Tue :  80.0 : 149.99999999999994 :  None
+        Wed : 150.0 : 149.99999999999994 :  None
+    ```
+  ]
 ]

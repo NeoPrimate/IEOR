@@ -1,0 +1,17 @@
+set Products := Desk Table ;
+set Resources := Wood Labor Machine ;
+
+param Profit :=
+Desk   700
+Table  900 ;
+
+param Supply :=
+Wood    3600
+Labor   1600
+Machine 48000 ;
+
+param Consumption:
+           Desk Table :=
+Wood        3     5
+Labor       1     2
+Machine    50    20 ;

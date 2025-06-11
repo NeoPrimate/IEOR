@@ -1,0 +1,24 @@
+set Days := Mon Tue Wed Thu Fri Sat Sun ;
+set Shifts := s1 s2 s3 s4 s5 s6 s7 ;
+
+param Demand :=
+Mon 110
+Tue 80
+Wed 150
+Thu 30
+Fri 70
+Sat 160
+Sun 120 ;
+
+# Each shift covers 5 consecutive days starting on the shift's day
+# 1 if shift s_j covers day d_i, 0 otherwise
+
+param Cover:
+        s1 s2 s3 s4 s5 s6 s7 :=
+Mon     1  0  0  1  1  1  1
+Tue     1  1  0  0  1  1  1
+Wed     1  1  1  0  0  1  1
+Thu     1  1  1  1  0  0  1
+Fri     1  1  1  1  1  0  0
+Sat     0  1  1  1  1  1  0
+Sun     0  0  1  1  1  1  1 ;

@@ -521,6 +521,147 @@ $
 Where:
 - $K_j gt 0$: Capacity of location $j$
 
+#eg[
+  $
+    min quad &underbrace(sum^5_(j=1) f_j x_j, "Fixed Costs") + underbrace(sum^5_(i=1) sum^5_(j=1) c_(i j) y_(i j), "Shipping Costs") \
+    s.t. quad &sum^5_(i=1) y_(i j) lt.eq K_j x_j quad &forall& j = 1, dots, 5 quad& &("Capacity Constraint") \
+    &sum^5_(j=1) y_(i j) gt.eq D_i quad &forall& i = 1, dots, 5 quad& &("Demand Constraint") \
+    &x_j in {0, 1} quad &forall& j = 1, dots, 5 quad& &("Binary Constraint") \
+    &y_(i j) gt.eq 0 quad &forall& i = 1, dots, 5, j = 1, dots, 5 quad quad & &("Positivity Constraint")
+  $
+
+  *Parameters*
+
+  - $f_j$: weekly operating cost of distribution center $j$
+  - $c_(i j)$: shipping cost per book from distribution center $j$ to region $i$
+  - $K_j$: capacity of distribution center $j$
+  - $D_i$: book demand of region $i$
+
+  *Decision variable*
+
+  - $x_(i j)$: binary variable
+  $
+    x_(i j) = cases(
+      1 quad "if a distribution center is build at location" j,
+      0 quad "otherwise",
+    )
+  $
+  - $y_(i j)$: number of books shipped from distribution center $j$ to region $i$
+
+  *Supply*
+
+  #align(center)[
+    #table(
+      columns: 7,
+      stroke: none,
+      table.hline(),
+      table.header(
+        [],
+        [WA],
+        [NV],
+        [NE],
+        [PA],
+        [FL],
+        [Demand\ ($D_i$)]
+      ),
+      table.hline(),
+
+      [NW], [$y_(1 1)$], [$y_(1 2)$], [$y_(1 3)$], [$y_(1 4)$], [$y_(1 5)$], [8000],
+      
+      [SW], [$y_(2 1)$], [$y_(2 2)$], [$y_(2 3)$], [$y_(2 4)$], [$y_(2 5)$], [12000],
+      
+      [MW], [$y_(3 1)$], [$y_(3 2)$], [$y_(3 3)$], [$y_(3 4)$], [$y_(3 5)$], [9000],
+      
+      [SE], [$y_(4 1)$], [$y_(4 2)$], [$y_(4 3)$], [$y_(4 4)$], [$y_(4 5)$], [14000],
+      
+      [nE], [$y_(5 1)$], [$y_(5 2)$], [$y_(5 3)$], [$y_(5 4)$], [$y_(5 5)$], [17000],
+
+      table.hline(),
+    )
+  ]
+
+  *Fixed Costs ($f_j$) and Capacity ($K_j$)*
+  
+  #align(center)[
+    #table(
+      columns: 6,
+      stroke: none,
+      table.hline(),
+      table.header(
+        [],
+        [$x_1$],
+        [$x_2$],
+        [$x_3$],
+        [$x_4$],
+        [$x_5$],
+      ),
+      table.hline(),
+      
+      [Operation Cost ($f_i$)], [40000], [30000], [25000], [40000], [30000],
+      
+      [Capacity ($K_i$)], [20000], [20000], [15000], [25000], [15000],
+
+      table.hline(),
+    )
+  ]
+
+  *Shipping Cost ($c_j$)*
+
+  #align(center)[
+    #table(
+      columns: 6,
+      stroke: none,
+      table.hline(),
+      table.header(
+        [],
+        [WA],
+        [NV],
+        [NE],
+        [PA],
+        [FL],
+      ),
+      table.hline(),
+
+      [NW], [2.4], [3.25], [4.05], [5.25], [6.95],
+      
+      [SW], [3.5], [2.3], [3.25], [6.05], [5.85],
+      
+      [MW], [4.8], [3.4], [2.85], [4.3], [4.8],
+      
+      [SE], [6.8], [5.25], [4.3], [3.25], [2.1],
+      
+      [nE], [5.75], [6], [4.75], [2.75], [3.5],
+
+      table.hline(),
+    )
+  ]
+
+  *model.py*
+
+  #code[
+    ```python
+
+    ```
+  ]
+  
+  *data.dat*
+
+  #code[
+    ```python
+
+    ```
+  ]
+  
+  *Output:*
+
+  #code[
+    ```python
+
+    ```
+  ]
+
+]
+
 == Machine Scheduling 
 
 #align(center)[
@@ -1206,6 +1347,33 @@ $
 - The first constraint ensures the makespan is at least as large as each machine's workload
 - The second ensures each job is assigned to one and only one machine
 
+#code[
+  ```py
+from pyomo.environ import *
+
+model = AbstractModel()
+
+model.MACHINES = Set()
+model.JOBS = Set()
+
+model.p = Param(model.JOBS, within=PositiveReals)
+
+model.x = Var(model.MACHINES, model.JOBS, domain=Binary)
+model.w = Var(domain=NonNegativeReals)
+
+def obj_rule(m):
+    return m.w
+model.Obj = Objective(rule=obj_rule, sense=minimize)
+
+def job_assignment_rule(m, j):
+    return sum(m.x[i, j] for i in m.MACHINES) == 1
+model.JobAssignment = Constraint(model.JOBS, rule=job_assignment_rule)
+
+def machine_completion_rule(m, i):
+    return sum(m.p[j] * m.x[i, j] for j in m.JOBS) <= m.w
+model.MachineCompletion = Constraint(model.MACHINES, rule=machine_completion_rule)
+  ```
+]
 
 === Flow Shop
 
@@ -1405,11 +1573,75 @@ $
 
 == Vehicle Routing
 
+=== Traveling Salesperson
+
+- Let $G = (V, E)$ be a directed complete graph
+- Let $d_(i j)$ be the distance (cost) from node $i$ to $j$
+- Let $x_(i j)$ be a binary decision variable:
+$
+  x_(i j) = cases(
+    1 quad "if" (i, j) "is selected",
+    0 quad "otherwise"
+  )
+$
+
+*Objective*
+
+Minimize the total travel cost
+
+$
+  min sum_((i,j) in E) d_(i j) x_(i j)
+$
+
+*Constraints*
+
+1. Flow Balancing
+
+For node $k in V$
+
+- One *incoming* edge:
+
+$
+  sum_(i in V, i eq.not k) = 1
+$
+
+- One *outgoing* edge:
+
+$
+  sum_(j in V, j eq.not k) = 1
+$
+
+2. Subtours
+
+a. Miller-Tucker-Zemlin (MTZ)
+
+- Let $u_i s$: be the position of node $i$ in the tour (e.g., $u_i = k$ if node $i$ is the $k$th node to be passed on the tour)
+
+$
+  &u_1 = 1 \
+  &2 lt.eq u_i lt.eq n quad &forall& i in V \\ {1} \
+  &u_i - u_j + 1 lt.eq (n-1)(1 - x_(i j)) quad &forall& (i, j) in E, i eq.not 1, j eq.not 1
+$
+
+b. Subtour Elimination Constraint (SEC)
+
+For every subset $S subset V$ with $abs(S) gt.eq 2$:
+
+$
+  sum_(i in S, j in S\ i eq.not j) x_(i j) lt.eq abs(S) - 1 quad forall S subset V, abs(S) gt.eq 2
+$
+
+This ensures that no subset of nodes forms a closed tour independent of the main tour.
+
+*Complete Formulation*
+
+$
+  min quad &sum_((i,j) in E) d_(i j) x_(i j) \ 
+  s.t. quad &sum_(i in V, i eq.not k) = 1 quad &forall& k in V \
+  &sum_(j in V, j eq.not k) = 1 quad &forall& k in V\
+  &x_(i j) in {0, 1} quad &forall& (i,j) in E \
+  &"MTZ or SEC"
+$
 
 
 
-#code[
-  ```py
-  
-  ```
-]
