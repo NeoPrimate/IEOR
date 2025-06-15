@@ -274,8 +274,8 @@ Define:
 
 $
   z_i = cases(
-    1 quad "if" g_i(x) lt.eq "is enforced",
-    1 quad "if" g_i(x) lt.eq "may be violated",
+    1 quad "if" g_i(x) lt.eq b_i "is enforced",
+    0 quad "if" g_i(x) lt.eq b_i "may be violated",
   ) quad "for" i = 1, 2
 $
 
@@ -566,15 +566,15 @@ Where:
       ),
       table.hline(),
 
-      [NW], [$y_(1 1)$], [$y_(1 2)$], [$y_(1 3)$], [$y_(1 4)$], [$y_(1 5)$], [8000],
+      [NorthWest], [$y_(1 1)$], [$y_(1 2)$], [$y_(1 3)$], [$y_(1 4)$], [$y_(1 5)$], [8000],
       
-      [SW], [$y_(2 1)$], [$y_(2 2)$], [$y_(2 3)$], [$y_(2 4)$], [$y_(2 5)$], [12000],
+      [SouthWest], [$y_(2 1)$], [$y_(2 2)$], [$y_(2 3)$], [$y_(2 4)$], [$y_(2 5)$], [12000],
       
-      [MW], [$y_(3 1)$], [$y_(3 2)$], [$y_(3 3)$], [$y_(3 4)$], [$y_(3 5)$], [9000],
+      [MidWest], [$y_(3 1)$], [$y_(3 2)$], [$y_(3 3)$], [$y_(3 4)$], [$y_(3 5)$], [9000],
       
-      [SE], [$y_(4 1)$], [$y_(4 2)$], [$y_(4 3)$], [$y_(4 4)$], [$y_(4 5)$], [14000],
+      [SouthEast], [$y_(4 1)$], [$y_(4 2)$], [$y_(4 3)$], [$y_(4 4)$], [$y_(4 5)$], [14000],
       
-      [nE], [$y_(5 1)$], [$y_(5 2)$], [$y_(5 3)$], [$y_(5 4)$], [$y_(5 5)$], [17000],
+      [NorthEast], [$y_(5 1)$], [$y_(5 2)$], [$y_(5 3)$], [$y_(5 4)$], [$y_(5 5)$], [17000],
 
       table.hline(),
     )
@@ -622,15 +622,33 @@ Where:
       ),
       table.hline(),
 
-      [NW], [2.4], [3.25], [4.05], [5.25], [6.95],
+      [NorthWest], [2.4], [3.25], [4.05], [5.25], [6.95],
       
-      [SW], [3.5], [2.3], [3.25], [6.05], [5.85],
+      [SouthWest], [3.5], [2.3], [3.25], [6.05], [5.85],
       
-      [MW], [4.8], [3.4], [2.85], [4.3], [4.8],
+      [MidWest], [4.8], [3.4], [2.85], [4.3], [4.8],
       
-      [SE], [6.8], [5.25], [4.3], [3.25], [2.1],
+      [SouthEast], [6.8], [5.25], [4.3], [3.25], [2.1],
       
-      [nE], [5.75], [6], [4.75], [2.75], [3.5],
+      [NorthEast], [5.75], [6], [4.75], [2.75], [3.5],
+
+      table.hline(),
+    )
+  ]
+
+  *Binary Decision Variable*
+
+  #align(center)[
+    #table(
+      columns: 2,
+      stroke: none,
+      table.hline(),
+
+      [WA], [$x_1$],
+      [NV], [$x_2$],
+      [NE], [$x_3$],
+      [PA], [$x_4$],
+      [FL], [$x_5$],
 
       table.hline(),
     )
@@ -640,7 +658,60 @@ Where:
 
   #code[
     ```python
+    from pyomo.environ import *
+    from pyomo.dataportal import DataPortal
 
+    model = AbstractModel()
+
+    # Sets
+    model.I = Set(doc='Regions (demand points)')
+    model.J = Set(doc='Candidate distribution centers')
+
+    # Parameters
+    model.D = Param(model.I, within=NonNegativeReals, doc='Demand at region i')
+    model.K = Param(model.J, within=NonNegativeReals, doc='Capacity at distribution center j')
+    model.f = Param(model.J, within=NonNegativeReals, doc='Fixed cost to open center j')
+    model.c = Param(model.I, model.J, within=NonNegativeReals, doc='Shipping cost from j to i')
+
+    # Decision Variables
+    model.x = Var(model.J, within=Binary, doc='1 if center j is opened')
+    model.y = Var(model.I, model.J, within=NonNegativeReals, doc='Units shipped from j to i')
+
+    # Objective Function: Minimize total cost
+    def total_cost_rule(model):
+        fixed = sum(model.f[j] * model.x[j] for j in model.J)
+        shipping = sum(model.c[i, j] * model.y[i, j] for i in model.I for j in model.J)
+        return fixed + shipping
+    model.TotalCost = Objective(rule=total_cost_rule, sense=minimize)
+
+    # Constraints
+
+    # Capacity Constraint: Total shipped from center ≤ capacity if opened
+    def capacity_rule(model, j):
+        return sum(model.y[i, j] for i in model.I) <= model.K[j] * model.x[j]
+    model.CapacityConstraint = Constraint(model.J, rule=capacity_rule)
+
+    # Demand Constraint: Total received by region ≥ its demand
+    def demand_rule(model, i):
+        return sum(model.y[i, j] for j in model.J) >= model.D[i]
+    model.DemandConstraint = Constraint(model.I, rule=demand_rule)
+
+    # Load data from .dat file
+    data = DataPortal()
+    data.load(filename='data.dat', model=model)
+
+    # Create an instance of the model
+    instance = model.create_instance(data)
+
+    # Create solver
+    solver = SolverFactory('glpk')
+    solver.options['tmlim'] = 60
+
+    # Solve with solver timeout (optional)
+    results = solver.solve(instance, tee=True)
+
+    # Display results
+    instance.display()
     ```
   ]
   
@@ -648,6 +719,37 @@ Where:
 
   #code[
     ```python
+    set I := NorthWest SouthWest MidWest SouthEast NorthEast;
+    set J := WA NV NE PA FL;
+
+    param: D :=
+    NorthWest 8000
+    SouthWest 12000
+    MidWest 9000
+    SouthEast 14000
+    NorthEast 17000;
+
+    param: f :=
+    WA 40000
+    NV 30000
+    NE 25000
+    PA 40000
+    FL 30000;
+
+    param: K :=
+    WA 20000
+    NV 20000
+    NE 15000
+    PA 25000
+    FL 15000;
+
+    param c:
+            WA     NV     NE     PA     FL :=
+    NorthWest 2.4   3.25   4.05   5.25   6.95
+    SouthWest 3.5   2.3    3.25   6.05   5.85
+    MidWest   4.8   3.4    2.85   4.3    4.8
+    SouthEast 6.8   5.25   4.3    3.25   2.1
+    NorthEast 5.75  6      4.75   2.75   3.5 ;
 
     ```
   ]
@@ -656,7 +758,64 @@ Where:
 
   #code[
     ```python
+    Variables:
+    x : 1 if center j is opened
+        Size=5, Index=J
+        Key : Lower : Value : Upper : Fixed : Stale : Domain
+         FL :     0 :   1.0 :     1 : False : False : Binary
+         NE :     0 :   0.0 :     1 : False : False : Binary
+         NV :     0 :   1.0 :     1 : False : False : Binary
+         PA :     0 :   1.0 :     1 : False : False : Binary
+         WA :     0 :   0.0 :     1 : False : False : Binary
+    y : Units shipped from j to i
+        Size=25, Index=I*J
+        Key                 : Lower : Value   : Upper : Fixed : Stale : Domain
+          ('MidWest', 'FL') :     0 :  1000.0 :  None : False : False : NonNegativeReals
+          ('MidWest', 'NE') :     0 :     0.0 :  None : False : False : NonNegativeReals
+          ('MidWest', 'NV') :     0 :     0.0 :  None : False : False : NonNegativeReals
+          ('MidWest', 'PA') :     0 :  8000.0 :  None : False : False : NonNegativeReals
+          ('MidWest', 'WA') :     0 :     0.0 :  None : False : False : NonNegativeReals
+        ('NorthEast', 'FL') :     0 :     0.0 :  None : False : False : NonNegativeReals
+        ('NorthEast', 'NE') :     0 :     0.0 :  None : False : False : NonNegativeReals
+        ('NorthEast', 'NV') :     0 :     0.0 :  None : False : False : NonNegativeReals
+        ('NorthEast', 'PA') :     0 : 17000.0 :  None : False : False : NonNegativeReals
+        ('NorthEast', 'WA') :     0 :     0.0 :  None : False : False : NonNegativeReals
+        ('NorthWest', 'FL') :     0 :     0.0 :  None : False : False : NonNegativeReals
+        ('NorthWest', 'NE') :     0 :     0.0 :  None : False : False : NonNegativeReals
+        ('NorthWest', 'NV') :     0 :  8000.0 :  None : False : False : NonNegativeReals
+        ('NorthWest', 'PA') :     0 :     0.0 :  None : False : False : NonNegativeReals
+        ('NorthWest', 'WA') :     0 :     0.0 :  None : False : False : NonNegativeReals
+        ('SouthEast', 'FL') :     0 : 14000.0 :  None : False : False : NonNegativeReals
+        ('SouthEast', 'NE') :     0 :     0.0 :  None : False : False : NonNegativeReals
+        ('SouthEast', 'NV') :     0 :     0.0 :  None : False : False : NonNegativeReals
+        ('SouthEast', 'PA') :     0 :     0.0 :  None : False : False : NonNegativeReals
+        ('SouthEast', 'WA') :     0 :     0.0 :  None : False : False : NonNegativeReals
+        ('SouthWest', 'FL') :     0 :     0.0 :  None : False : False : NonNegativeReals
+        ('SouthWest', 'NE') :     0 :     0.0 :  None : False : False : NonNegativeReals
+        ('SouthWest', 'NV') :     0 : 12000.0 :  None : False : False : NonNegativeReals
+        ('SouthWest', 'PA') :     0 :     0.0 :  None : False : False : NonNegativeReals
+        ('SouthWest', 'WA') :     0 :     0.0 :  None : False : False : NonNegativeReals
 
+    Objectives:
+      TotalCost : Size=1, Index=None, Active=True
+          Key  : Active : Value
+          None :   True : 268950.0
+
+    Constraints:
+      CapacityConstraint : Size=5
+          Key : Lower : Body : Upper
+          FL :  None :  0.0 :   0.0
+          NE :  None :  0.0 :   0.0
+          NV :  None :  0.0 :   0.0
+          PA :  None :  0.0 :   0.0
+          WA :  None :  0.0 :   0.0
+      DemandConstraint : Size=5
+          Key       : Lower   : Body    : Upper
+            MidWest :  9000.0 :  9000.0 :  None
+          NorthEast : 17000.0 : 17000.0 :  None
+          NorthWest :  8000.0 :  8000.0 :  None
+          SouthEast : 14000.0 : 14000.0 :  None
+          SouthWest : 12000.0 : 12000.0 :  None
     ```
   ]
 
@@ -995,7 +1154,7 @@ Where:
         // x: (stroke: 0pt),
         tick: (stroke: 0pt),
         padding: 0pt,
-        x: (tick: (padding: 3em))
+        x: (tick: (label: (offset: 10pt))),
       ),
       
     )
@@ -1137,6 +1296,7 @@ $
       ),
       
     )
+
     plot.plot(
       size: (10,2),
       axis-style: "school-book",

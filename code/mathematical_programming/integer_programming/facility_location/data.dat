@@ -1,0 +1,31 @@
+set I := NorthWest SouthWest MidWest SouthEast NorthEast;
+set J := WA NV NE PA FL;
+
+param: D :=
+NorthWest 8000
+SouthWest 12000
+MidWest 9000
+SouthEast 14000
+NorthEast 17000;
+
+param: f :=
+WA 40000
+NV 30000
+NE 25000
+PA 40000
+FL 30000;
+
+param: K :=
+WA 20000
+NV 20000
+NE 15000
+PA 25000
+FL 15000;
+
+param c:
+        WA     NV     NE     PA     FL :=
+NorthWest 2.4   3.25   4.05   5.25   6.95
+SouthWest 3.5   2.3    3.25   6.05   5.85
+MidWest   4.8   3.4    2.85   4.3    4.8
+SouthEast 6.8   5.25   4.3    3.25   2.1
+NorthEast 5.75  6      4.75   2.75   3.5 ;
