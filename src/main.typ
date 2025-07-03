@@ -95,7 +95,7 @@
 
 == Shortest Path
 
-// #include "ieor/supply_chain/network_optimization/shortest_path/dijkstra.typ"
+#include "ieor/supply_chain/network_optimization/shortest_path/dijkstra.typ"
 
 // #include "ieor/supply_chain/network_optimization/shortest_path/bellman_ford.typ"
 
@@ -109,9 +109,17 @@
 
 = Optimization
 
+#include "ieor/operations_research/optimization/cheatsheet.typ"
+
 #include "ieor/operations_research/optimization/linear_programming.typ"
 
 #include "ieor/operations_research/optimization/integer_programming.typ"
+
+#include "ieor/operations_research/optimization/mixed_integer_programming.typ"
+
+#include "ieor/operations_research/optimization/non_linear_programming.typ"
+
+#include "ieor/operations_research/optimization/simplex_method.typ"
 
 #include "ieor/operations_research/optimization/gradient_descent.typ"
 
