@@ -1,0 +1,25 @@
+set Products := 1 2 3 4 5 6 7 ;
+set Materials := 1 2 3 ;
+
+param Profit :=
+1   100
+2   120
+3   135
+4   90
+5   125
+6   110
+7   105
+;
+
+param Supply :=
+1   100
+2   150
+3   200 
+;
+
+param Consumption:
+    1   2   3   4   5   6   7 :=
+1   0   5   5   4   8   5   3
+2   3   10  3   6   2   2   2
+3   10  10  9   3   8   10  7 
+;
