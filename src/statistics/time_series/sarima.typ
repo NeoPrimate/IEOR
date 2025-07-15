@@ -1,0 +1,1 @@
+== Seasonal AutoRegressive Integrated Moving Average

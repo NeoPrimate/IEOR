@@ -26,14 +26,14 @@ $
     import draw: *
     
     plot.plot(
-      size: (8, 8),
+      size: (10, 3),
       axis-style: "school-book",
-      x-tick-step: 1,
-      x-min: -5., 
-      x-max: 5.,
-      y-tick-step: 0.5, 
+      x-tick-step: none,
+      y-tick-step: none, 
+      x-min: -4., 
+      x-max: 4.,
       y-min: 0., 
-      y-max: 0.5,
+      y-max: 0.4,
       legend: "inner-north-west",
       {
         plot.add(

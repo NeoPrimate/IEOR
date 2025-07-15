@@ -841,7 +841,7 @@ Unused capacity
   ]
 ]
 
-*2. Surplus*
+*2. Excess (surplus)*
 
 Excess above the required amount
 
@@ -852,14 +852,14 @@ Excess above the required amount
     x_1 + x_2 colorMath(gt.eq, #red) 5
   $
 
-  The total *must be at least* 5. To convert this into an equation, we *subtract* a surplus variable $s gt.eq 5$:
+  The total *must be at least* 5. To convert this into an equation, we *subtract* a excess variable $s gt.eq 5$:
 
   $
-    x_1 + x_2 colorMath(- s, #red) = 5
+    x_1 + x_2 colorMath(- e, #red) = 5
   $
 
-  - If $x_1 + x_2 = 7$, then $s = 2$
-  - If $x_1 + x_2 = 5$, then $s = 0$
+  - If $x_1 + x_2 = 7$, then $e = 2$
+  - If $x_1 + x_2 = 5$, then $e = 0$
 
   #align(center)[
     #cetz.canvas({
@@ -905,7 +905,7 @@ Excess above the required amount
         )
 
         plot.annotate({
-          content((4.5, 2), text(size: 12pt, $s$))
+          content((4.5, 2), text(size: 12pt, $e$))
         })
 
         plot.add-fill-between(
@@ -947,17 +947,22 @@ Excess above the required amount
       a_1 x_1 + a_2 x_2 lt.eq b \
       a_1 x_1 + a_2 x_2 colorMath(+ s, #red) eq b \                               
     $],
-    [$gt.eq$], [Surplus + Artificial], [$
+    [$gt.eq$], [Excess + Artificial], [$
       a_1 x_1 + a_2 x_2 gt.eq b \
-      a_1 x_1 + a_2 x_2 colorMath(- s + A, #red) eq b \                               
+      a_1 x_1 + a_2 x_2 colorMath(- e + a, #red) eq b \                               
     $],
     [$eq$], [Artificial], [$
       a_1 x_1 + a_2 x_2 eq b \                         
-      a_1 x_1 + a_2 x_2 colorMath(+ A, #red) eq b \                         
+      a_1 x_1 + a_2 x_2 colorMath(+ a, #red) eq b \                         
     $],
+    [Negative $b$], [Multiply by -1], [$
+      a_1 x_1 + a_2 x_2 lt.eq -b \
+      -a_1 x_1 - a_2 x_2 gt.eq b \
+    $],
+
     table.cell(colspan: 3)[*Variable Bounds*],
     [Non-negativity], [], [$
-      x_i, s_i, A_i gt.eq 0 quad forall i
+      x_i, s_i, a_i gt.eq 0 quad forall i
     $],
     [Lower Bound ≠ 0], [Substitution], [$
       x_1 gt.eq 5 \
@@ -965,10 +970,72 @@ Excess above the required amount
       x_1 = y_1 + 5 \
       y_1 gt.eq 0
     $],
+    [Unrestricted Variables], [Replace with difference], [$
+      x_j "unrestricted" \
+      x_j = x_j ' - x_j '' \
+      x_j ', x_j '' gt.eq 0
+    $],
     table.cell(colspan: 3)[*Variable Roles*],
     [Basic Variables], [Usually non-zero], [Part of the current solution (solved from the constraints)],
     [Non-Basic Variables], [Always zero], [Temporarily set to 0 so basic variables can be solved],
-  )
+    table.cell(colspan: 3)[*Simplex*],
+    [], [], [],
+    [], [], [],
+    [], [], [],
+
+    table.cell( 
+      align: left,
+      [
+        Selection:
+        - Entering variable
+        - Pivot column selection
+      ]
+    ),
+    table.cell( 
+      align: left,
+        [
+          For *maximization* problems:
+
+          - Select the column with the *most negative* value in the objective row
+          - This corresponds to the variable that will *increase the objective function* the most
+
+          For *minimization* problems:
+
+          - Select the column with the *most positive* value in the objective row
+          - This corresponds to the variable that will *decrease the objective function* the most
+        ]
+    ), 
+    [
+
+    ],
+
+    table.cell( 
+      align: left,
+      [
+        Selection:
+        - Leaving variable
+        - Pivot row
+      ]
+    ), 
+    table.cell( 
+      align: left,
+      [
+        1. Calculate *ratios* for each row (except the objective row)
+        - For each row: $b_i \/ p_i$
+        - Only *consider* rows where the pivot column element $p_i gt 0$
+        - *Ignore* rows where the pivot column element $p_i lt.eq 0$
+        2. Select the *minimum ratio*:
+        - The row with the *smallest non-negative ratio* becomes the pivot row
+        - The basic variable in this row is the *leaving variable* (exits the basis)
+        
+
+      ]
+    ), [],
+    [], [], [],
+    
+
+  ),
+
 ]
 
 #eg[
@@ -1074,7 +1141,6 @@ Excess above the required amount
         plot.annotate({
           content((0.25, 0.25), text(size: 12pt, $V_0$))
         })
-       
 
       }, name: "plot")
     })
@@ -1741,574 +1807,2320 @@ Excess above the required amount
 
 #eg[
 
-  *Problem Statement*
+  #text(size: 16pt, weight: "semibold", [Problem])
 
   $
-    min quad  &z = 3x_1 +2x_2 \
-    s.t. quad &x_1 +2x_2 lt.eq 4 quad quad &("slack") \
-              &2x_1 +x_2 gt.eq 3 quad quad &("surplus + artificial") \
-              &x_1 -x_2 = 1 quad quad &("artifical") \
-              &x_1, x_2 gt.eq 0 \
+    min quad  &z = x_1 + 2x_2 \
+    s.t. quad &x_1 + x_2 lt.eq 1 quad quad &("slack") \
+              &2x_1 - x_2 gt.eq 2 quad quad &("surplus + artificial") \
+              &-x_1 + 3x_2 lt.eq -1 quad quad &("negative" b) \
+              &x_1 - x_2 = 1 quad quad &("artificial") \
+              &x_1 gt.eq 0 \
+              &x_2 quad quad &("unrestricted")
   $
 
-  *1. Convert Minimize to Maximize*
+  #text(size: 16pt, weight: "semibold", [Standard Form])
+
+  *Step 1*: Handle Unrestricted Variable $x_2$
+
+  Since $x_2$ is unrestricted:
 
   $
-    min z = 3x_1 + 2x_2 arrow.double.long max z' = -3x_1 -2x_2
+    x_2 = x'_2 - x''_2 \
+    x'_2, x''_2 gt.eq 0
   $
 
-  *2. Convert constraints to equalities with slack, surplus, and artificial variables*
-
-  - $x_1 +2x_2 lt.eq 4$
-
-    Add slack variable $s_1 gt.eq 0$:
+  Rewrite the objective:
 
   $
-    x_1 + 2x_2 + s_1 = 4
+    z 
+    &= x_1 + 2(x'_2 - x''_2) \
+    &= x_1 + 2x'_2 - 2x''_2
   $
 
-  - $2x_1 +x_2 gt.eq 3$
-
-    Subreact surplus $s_2 gt.eq 0$ and add artificial variable $A_1 gt.eq 0$:
+  *Step 2*: Slack Constraint ($lt.eq$)
 
   $
-    2x_1 + x_2 - s_2 + A_1 = 3
+    x_1 + x_2 lt.eq 1
   $
 
-  - $x_1 -x_2 = 1$
-
-    Add artificial variable $A_2 gt.eq 0$:
+  Rewrite with $x'_2 - x''_2$:
 
   $
-    x_1 - x_2 + A_2 = 1
+    x_1 + (x'_2 - x''_2) lt.eq 1
   $
 
-  *Final standard form ready for two-phase simplex*
+  Add slack variable:
 
   $
-    min quad  &z = colorMath(-, #red)3x_1 colorMath(-, #red) 2x_2 \
-    s.t. quad &x_1 + 2x_2 colorMath(+ s_1, #red) eq 4 \
-              &2x_1 + x_2 colorMath(- s_2 + A_1, #red) eq 3 \
-              &x_1 - x_2 colorMath(+ A_2, #red) = 1 \
-              &x_1, x_2, colorMath(s_1\, s_2\, A_1\, A_2, #red) gt.eq 0 \
+    x_1 + x'_2 - x''_2 + s_1 eq 1 \
+    s_1 gt.eq 0
   $
 
-  *Phase I*
-
-  *Step 1*: Setup
-
-  We want to find a feasible solution by minimizing the sum of artificial variables
+  *Step 3*: Surplus + Artificial Constraint ($gt.eq$)
 
   $
-    min quad &colorMath(w = A_1 + A_2, #red) \
-    s.t. quad &x_1 + 2x_2 + s_1 eq 4 \
-              &2x_1 + x_2 - s_2 + A_1 eq 3 \
-              &x_1 - x_2 + A_2 = 1 \
-              &x_1, x_2, s_1\, s_2\, A_1\, A_2 gt.eq 0 \
+    2x_1 - x_2 gt.eq 2
   $
 
-  Write Phase I objective in terms of all variables
-
-  *Step 2*: Set initial basis
-
-  - Basic variables: $s_1, A_1, A_2$ (slack and artifical variables)
-  - Non-basic variables: $x_1, x_2, s_2$
-
-  *Step 3*: Express Phase I objective row
-
-  We want to express $w = A_1 + A_2$ in terms of the non-basic variables
-
-  - Second constraint:
+  Rewrite with $x'_2 - x''_2$:
 
   $
-    A_1 = 3 - 2x_1 - x_2 + s_2
+    2x_1 - (x'_2 - x''_2) gt.eq 2 quad arrow.double.long quad 2x_1 - x'_2 + x''_2 gt.eq 2
   $
 
-  - Third constraint:
+  Convert to equality by subtracting a surplus variable and adding an artificial variable:
 
   $
-    A_2 = 1 - x_1 + x_2
+    2x_1 - x'_2 + x''_2 - s_2 + a_1 = 2 \
+    s_2, a_1 gt.eq 0
   $
 
-  So, 
+  *Step 4*: Negative RHS Constraint
+
+  $
+    -x_1 + 3x_2 lt.eq -1
+  $
+
+  Rewrite with $x'_2 - x''_2$:
+
+  $
+    -x_1 + 3(x'_2 - x''_2) lt.eq -1 
+    quad arrow.double.long quad 
+    -x_1 + 3x'_2 - 3x''_2 lt.eq -1
+  $
+
+  Multiply both sides by $-1$ to get a positive RHS and flip inequality:
+
+  $
+    x_1 - 3x'_2 + 3x''_2 gt.eq 1
+  $
+
+  Convert to equality by subtracting a surplus variable and adding an artificial variable:
+
+  $
+    x_1 - 3x'_2 + 3x''_2 - s_3 + a_2 = 1 \
+    s_3, a_2 gt.eq 0
+  $
+
+  *Step 5*: Artificial Equality Constraint ($=$)
+
+  $
+    x_1 - x_2 = 1
+  $
+
+  Rewrite with $x'_2 - x''_2$:
+
+  $
+    x_1 - (x'_2 - x''_2) = 1 quad arrow.double.long quad x_1 - x'_2 + x''_2 = 1
+  $
+
+  Add an artificial variable:
+
+  $
+    x_1 - x'_2 + x''_2 + a_3 = 1 \
+    a_3 gt.eq 0
+  $
+
+  *Final Standard Form*
+
+  $
+    min quad  &z = x_1 + 2x'_2 - 2x''_2 \
+    s.t. quad &x_1 + x'_2 - x''_2 + s_1 = 1 \
+              &2x_1 - x'_2 + x''_2 - s_2 + a_1 = 2 \
+              &x_1 - 3x'_2 + 3x''_2 - s_3 + a_2 = 1 \
+              &x_1 - x'_2 + x''_2 + a_3 = 1 \
+              &x_1, x'_2, x''_2, s_1, s_2, s_3, a_1, a_2, a_3 gt.eq 0 \
+  $
+
+
+  #text(size: 16pt, weight: "semibold", [Phase I])
+
+  *Objective*
+
+  $
+    min quad  &colorMath(w = a_1 + a_2 + a_3, #red) \
+    s.t. quad &x_1 + x'_2 - x''_2 + s_1 = 1 quad quad &("slack") \
+              &2x_1 - x'_2 + x''_2 - s_2 + a_1 = 2 quad quad &("surplus + artificial") \
+              &x_1 - 3x'_2 + 3x''_2 - s_3 + a_2 = 1 quad quad &("negative" b) \
+              &x_1 - x'_2 + x''_2 + a_3 = 1 quad quad &("artificial") \
+              &x_1, x'_2, x''_2, s_1, s_2, s_3, a_1, a_2, a_3 gt.eq 0 quad quad &("unrestricted")\
+  $
+
+  *Deriving Phase I Objective Row $R_w$*
+
+  1. Objective function before substitution
+
+  $
+    w = a_1 + a_2 + a_3
+  $
+
+  2. Express each artificial variable in terms of other variables from their constraints
+
+  - $R_(a_1)$
+
+  $
+    2x_1 - x'_2 + x''_2 - s_2 + colorMath(a_1, #red) = 2 \
+    colorMath(a_1, #red) = - 2x_1 + x'_2 - x''_2 + s_2 + 2
+  $
+
+  - $R_(a_2)$
+
+  $
+    x_1 - 3x'_2 + 3x''_2 - s_3 + colorMath(a_2, #red) = 1 \
+    colorMath(a_2, #red) = - x_1 + 3x'_2 - 3x''_2 + s_3 + 1
+  $
+
+  - $R_(a_3)$
+
+  $
+    x_1 - x'_2 + x''_2 + colorMath(a_3, #red) = 1 \
+    colorMath(a_3, #red) = - x_1 + x'_2 - x''_2 + 1
+  $
+
+  3. Substitute into $w$:
 
   $
     w 
-    &= A_1 + A_2 \
-    &= (3 - 2x_1 - x_2 + s_2) + (1 - x_1 + x_2) \
-    &= 4 - 3x_1 + s_2 \
+    &= a_1 + a_2 + a_3 \
+    &= (- 2x_1 + x'_2 - x''_2 + s_2 + 2) + (- x_1 + 3x'_2 - 3x''_2 + s_3 + 1) + (- x_1 + x'_2 - x''_2 + 1) \
+    &= (-2x_1 - x_1 - x_1) + (x'_2 + 3x'_2 + x'_2) + (-x''_2 - 3x''_2 - x''_2) + (s_2 + s_3) + (2 + 1 + 1) \
+    &= - 4x_1 + 5x'_2 - 5x''_2 + s_2 + s_3 + 4
   $
 
-  Formulation
+  4. Rewrite as a constraint (bring all variables to the left):
 
   $
-    min quad  &4 - 3x_1 + s_2 \
-    s.t. quad &x_1 + 2x_2 + s_1 eq 4 \
-              &2x_1 + x_2 - s_2 + A_1 eq 3 \
-              &x_1 - x_2 + A_2 = 1 \
-              &x_1, x_2, s_1\, s_2\, A_1\, A_2 gt.eq 0 \
+    w + 4x_1 - 5x'_2 + 5x''_2 - s_2 - s_3 = 4 \
+    w = - 4x_1 + 5x'_2 - 5x''_2 + s_2 + s_3 + 4 \
   $
 
-  *Step 4*: Initial Phase I Simplex Tableau
+  So in tableau row $R_w$:
 
-   #align(
+  #align(
     center,
     table(
-      columns: range(8).map(n => auto),
+      columns: range(11).map(n => auto),
       inset: (x: 0.5em, y: 0.5em),
       align: horizon,
       stroke: none,
-      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$A_1$], [$A_2$], [$b$],
+      [Basis], [$x_1$], [$x'_2$], [$x''_2$], [$s_1$], [$s_2$], [$s_3$], [$a_1$], [$a_2$], [$a_3$], [$b$],
       table.hline(),
-      [$s_1$], [1], [2], [1], [0], [0], [0], [4],
-      [$A_1$], [2], [1], [0], [-1], [1], [0], [3],
-      [$A_2$], [1], [-1], [0], [0], [0], [1], [1],
+      [$s_1$], [1], [1], [-1], [1], [0], [0], [0], [0], [0], [1],
+      [$a_1$], [2], [-1], [1], [0], [-1], [0], [1], [0], [0], [2],
+      [$a_2$], [1], [-3], [3], [0], [0], [-1], [0], [1], [0], [1],
+      [$a_3$], [1], [-1], [1], [0], [0], [0], [0], [0], [1], [1],
       table.hline(),
-      [$w$], [3], [0], [0], [-1], [0], [0], [4],
-
+      // [$w$], [-4], [5], [-5], [0], [1], [1], [0], [0], [0], [4],
+      [$w$], [4], [-5], [5], [0], [-1], [-1], [0], [0], [0], [4],
     )
   )
 
-  *Step 4*: Remove Artificial Variables
+  *Perform First Pivot*
 
-  1. $A_1$
-
-  We want to eliminate the coefficient of $A_1$ in the objective row $w$. But right now it's already 0 — because we rewrote $w$ in terms of $x_1$ and $s_2$.
+  *1. Pivot Column*
+  
+  Look at the $w$ row (objective row) for the most negative coefficient:
 
   #align(
     center,
     table(
       fill: (x, y) =>
-      if x == 5 and y in (0, 4) {
-        red.lighten(70%)
+        if x in (2,) and y in (0, 5) {
+          red.lighten(70%)
       },
-      columns: range(8).map(n => auto),
+      columns: range(11).map(n => auto),
       inset: (x: 0.5em, y: 0.5em),
       align: horizon,
       stroke: none,
-      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$A_1$], [$A_2$], [$b$],
+      [Basis], [$x_1$], [$x'_2$], [$x''_2$], [$s_1$], [$s_2$], [$s_3$], [$a_1$], [$a_2$], [$a_3$], [$b$],
       table.hline(),
-      [$s_1$], [1], [2], [1], [0], [0], [0], [4],
-      [$A_1$], [2], [1], [0], [-1], [1], [0], [3],
-      [$A_2$], [1], [-1], [0], [0], [0], [1], [1],
+      [$s_1$], [1], [1], [-1], [1], [0], [0], [0], [0], [0], [1],
+      [$a_1$], [2], [-1], [1], [0], [-1], [0], [1], [0], [0], [2],
+      [$a_2$], [1], [-3], [3], [0], [0], [-1], [0], [1], [0], [1],
+      [$a_3$], [1], [-1], [1], [0], [0], [0], [0], [0], [1], [1],
       table.hline(),
-      [$w$], [3], [0], [0], [-1], [0], [0], [4],
-
+      [$w$], [4], [-5], [5], [0], [-1], [-1], [0], [0], [0], [4],
     )
   )
 
-  1. $A_2$
+  The most negative is $-5$ $arrow.long$ pivot column is $x'_2$
 
-  We want to eliminate the coefficient of $A_2$ in the objective row $w$. But right now it's already 0 — because we rewrote $w$ in terms of $x_1$ and $s_2$.
+  *2. Ratio*
+  
+  - Compute ratios ($b \/ x'_2$) for rows with positive pivot entries:
 
   #align(
     center,
     table(
       fill: (x, y) =>
-      if x == 6 and y in (0, 4) {
-        red.lighten(70%)
+        if x in (2, 10, 12) and y in (1, 2, 3, 4) {
+          red.lighten(70%)
       },
-      columns: range(8).map(n => auto),
+      columns: range(13).map(n => auto),
       inset: (x: 0.5em, y: 0.5em),
       align: horizon,
       stroke: none,
-      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$A_1$], [$A_2$], [$b$],
+      [Basis], [$x_1$], [$x'_2$], [$x''_2$], [$s_1$], [$s_2$], [$s_3$], [$a_1$], [$a_2$], [$a_3$], [$b$], [], [$b\/x'_2$],
       table.hline(),
-      [$s_1$], [1], [2], [1], [0], [0], [0], [4],
-      [$A_1$], [2], [1], [0], [-1], [1], [0], [3],
-      [$A_2$], [1], [-1], [0], [0], [0], [1], [1],
+      [$s_1$], [1], [1], [-1], [1], [0], [0], [0], [0], [0], [1], [], [1],
+      [$a_1$], [2], [-1], [1], [0], [-1], [0], [1], [0], [0], [2], [], [❌],
+      [$a_2$], [1], [-3], [3], [0], [0], [-1], [0], [1], [0], [1], [], [❌],
+      [$a_3$], [1], [-1], [1], [0], [0], [0], [0], [0], [1], [1], [], [❌],
       table.hline(),
-      [$w$], [3], [0], [0], [-1], [0], [0], [4],
-
+      [$w$], [4], [-5], [5], [0], [-1], [-1], [0], [0], [0], [4], [], [],
     )
   )
 
-
-  *Step 5*: Phase I pivoting 
-
-  We look for the most positive coefficient in the $w$-row, because we are minimizing.
+  - Minimum ratio is $1$, so we pivot on row $s_1$:
 
   #align(
     center,
     table(
       fill: (x, y) =>
-      if x == 1 and y in (0, 4) {
-        red.lighten(70%)
+        if x in (0, 12) and y in (1,) {
+          red.lighten(70%)
       },
-      columns: range(8).map(n => auto),
+      columns: range(13).map(n => auto),
       inset: (x: 0.5em, y: 0.5em),
       align: horizon,
       stroke: none,
-      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$A_1$], [$A_2$], [$b$],
+      [Basis], [$x_1$], [$x'_2$], [$x''_2$], [$s_1$], [$s_2$], [$s_3$], [$a_1$], [$a_2$], [$a_3$], [$b$], [], [$b\/x'_2$],
       table.hline(),
-      [$s_1$], [1], [2], [1], [0], [0], [0], [4],
-      [$A_1$], [2], [1], [0], [-1], [1], [0], [3],
-      [$A_2$], [1], [-1], [0], [0], [0], [1], [1],
+      [$s_1$], [1], [1], [-1], [1], [0], [0], [0], [0], [0], [1], [], [1],
+      [$a_1$], [2], [-1], [1], [0], [-1], [0], [1], [0], [0], [2], [], [❌],
+      [$a_2$], [1], [-3], [3], [0], [0], [-1], [0], [1], [0], [1], [], [❌],
+      [$a_3$], [1], [-1], [1], [0], [0], [0], [0], [0], [1], [1], [], [❌],
       table.hline(),
-      [$w$], [3], [0], [0], [-1], [0], [0], [4],
-
+      [$w$], [4], [-5], [5], [0], [-1], [-1], [0], [0], [0], [4], [], [],
     )
   )
 
-  Now we perform the *minimum ratio* test to determine which row $x_1$ will replace:
+  *3. Pivot $s_1 arrow.long x'_2$*
 
   #align(
     center,
     table(
       fill: (x, y) =>
-      if x in (1,7,9) and y in (1,2,3) {
-        red.lighten(70%)
+        if x in (0, 12) and y in (1,) {
+          red.lighten(70%)
       },
-      columns: range(10).map(n => auto),
+      columns: range(11).map(n => auto),
       inset: (x: 0.5em, y: 0.5em),
       align: horizon,
       stroke: none,
-      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$A_1$], [$A_2$], [$b$], [], [Ratio $b \/ x_1$],
+      [Basis], [$x_1$], [$x'_2$], [$x''_2$], [$s_1$], [$s_2$], [$s_3$], [$a_1$], [$a_2$], [$a_3$], [$b$],
       table.hline(),
-      [$s_1$], [1], [2], [1], [0], [0], [0], [4], [], [4],
-      [$A_1$], [2], [1], [0], [-1], [1], [0], [3], [], [1.5],
-      [$A_2$], [1], [-1], [0], [0], [0], [1], [1], [], [1],
+      [$x'_2$], [1], [1], [-1], [1], [0], [0], [0], [0], [0], [1],
+      [$a_1$], [2], [-1], [1], [0], [-1], [0], [1], [0], [0], [2],
+      [$a_2$], [1], [-3], [3], [0], [0], [-1], [0], [1], [0], [1],
+      [$a_3$], [1], [-1], [1], [0], [0], [0], [0], [0], [1], [1],
       table.hline(),
-      [$w$], [3], [0], [0], [-1], [0], [0], [4], [], [],
-
+      [$w$], [4], [-5], [5], [0], [-1], [-1], [0], [0], [0], [4],
     )
   )
 
-  Minimum ratio is 1 $arrow.long$ pivot on $x_1$ in row 3 (A₂)
+  *4. Gauss-Jordan Elimination*
+
+
+]
+
+#eg[
+
+  *Step 3*: Pivot $a_1 arrow.long x_1$
 
   #align(
     center,
     table(
       fill: (x, y) =>
-      if x in (1, 9) and y in (3,) {
-        red.lighten(70%)
+        if x in (0,) and y in (2,) {
+          red.lighten(70%)
       },
-      columns: range(10).map(n => auto),
+      columns: range(11).map(n => auto),
       inset: (x: 0.5em, y: 0.5em),
       align: horizon,
       stroke: none,
-      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$A_1$], [$A_2$], [$b$], [], [Ratio $b \/ x_1$],
+      [Basis], [$x_1$], [$x'_2$], [$x''_2$], [$s_1$], [$s_2$], [$s_3$], [$a_1$], [$a_2$], [$a_3$], [$b$],
       table.hline(),
-      [$s_1$], [1], [2], [1], [0], [0], [0], [4], [], [4],
-      [$A_1$], [2], [1], [0], [-1], [1], [0], [3], [], [1.5],
-      [$A_2$], [1], [-1], [0], [0], [0], [1], [1], [], [1],
+      [$s_1$], [1], [1], [-1], [1], [0], [0], [0], [0], [0], [5],
+      [$x_1$], [3], [-1], [1], [0], [-1], [0], [1], [0], [0], [4],
+      [$a_2$], [1], [-2], [2], [0], [0], [-1], [0], [1], [0], [6],
+      [$a_3$], [1], [-1], [1], [0], [0], [0], [0], [0], [1], [2],
       table.hline(),
-      [$w$], [3], [0], [0], [-1], [0], [0], [4], [], [],
+      [$w$], [-5], [4], [-4], [0], [1], [1], [0], [0], [0], [12],
+    )
+  )
 
+  *Gauss-Jordan Elimination*
+
+  $
+    R_(x_1) = 1/3 R_(x_1)
+  $
+
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if y in (2,) {
+          red.lighten(70%)
+      },
+      columns: range(11).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x'_2$], [$x''_2$], [$s_1$], [$s_2$], [$s_3$], [$a_1$], [$a_2$], [$a_3$], [$b$],
+      table.hline(),
+      [$s_1$], [1], [1], [-1], [1], [0], [0], [0], [0], [0], [5],
+      [$x_1$], [1], [-1/3], [1/3], [0], [-1/3], [0], [1/3], [0], [0], [4/3],
+      [$a_2$], [1], [-2], [2], [0], [0], [-1], [0], [1], [0], [6],
+      [$a_3$], [1], [-1], [1], [0], [0], [0], [0], [0], [1], [2],
+      table.hline(),
+      [$w$], [-5], [4], [-4], [0], [1], [1], [0], [0], [0], [12],
+    )
+  )
+
+
+  $
+    R_(a_2) = R_(a_2) - 1R_(x_1)
+  $
+
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if y in (3,) {
+          red.lighten(70%)
+      },
+      columns: range(11).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x'_2$], [$x''_2$], [$s_1$], [$s_2$], [$s_3$], [$a_1$], [$a_2$], [$a_3$], [$b$],
+      table.hline(),
+      [$s_1$], [1], [1], [-1], [1], [0], [0], [0], [0], [0], [5],
+      [$x_1$], [1], [-1/3], [1/3], [0], [-1/3], [0], [1/3], [0], [0], [4/3],
+      [$a_2$], [0], [-5/3], [5/3], [0], [1/3], [-1], [-1/3], [1], [0], [14/3],
+      [$a_3$], [1], [-1], [1], [0], [0], [0], [0], [0], [1], [2],
+      table.hline(),
+      [$w$], [-5], [4], [-4], [0], [1], [1], [0], [0], [0], [12],
+    )
+  )
+
+  $
+    R_(a_3) = R_(a_3) - 1R_(x_1)
+  $
+
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if y in (4,) {
+          red.lighten(70%)
+      },
+      columns: range(11).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x'_2$], [$x''_2$], [$s_1$], [$s_2$], [$s_3$], [$a_1$], [$a_2$], [$a_3$], [$b$],
+      table.hline(),
+      [$s_1$], [1], [1], [-1], [1], [0], [0], [0], [0], [0], [5],
+      [$x_1$], [1], [-1/3], [1/3], [0], [-1/3], [0], [1/3], [0], [0], [4/3],
+      [$a_2$], [0], [-5/3], [5/3], [0], [1/3], [-1], [-1/3], [1], [0], [14/3],
+      [$a_3$], [0], [-2/3], [2/3], [0], [1/3], [0], [-1/3], [0], [1], [2/3],
+      table.hline(),
+      [$w$], [-5], [4], [-4], [0], [1], [1], [0], [0], [0], [12],
+    )
+  )
+
+  $
+    R_w = R_w + 5R_(x_1)
+  $
+
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if y in (5,) {
+          red.lighten(70%)
+      },
+      columns: range(11).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x'_2$], [$x''_2$], [$s_1$], [$s_2$], [$s_3$], [$a_1$], [$a_2$], [$a_3$], [$b$],
+      table.hline(),
+      [$s_1$], [1], [1], [-1], [1], [0], [0], [0], [0], [0], [5],
+      [$x_1$], [1], [-1/3], [1/3], [0], [-1/3], [0], [1/3], [0], [0], [4/3],
+      [$a_2$], [0], [-5/3], [5/3], [0], [1/3], [-1], [-1/3], [1], [0], [14/3],
+      [$a_3$], [0], [-2/3], [2/3], [0], [1/3], [0], [0-1/3], [0], [1], [2/3],
+      table.hline(),
+      [$w$], [0], [7/3], [-7/3], [0], [-2/3], [1], [5/3], [0], [0], [56/3],
+    )
+  )
+
+  $
+    R_(s_1) = R_(s_1) - 1R_(x_1)
+  $
+
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if y in (1,) {
+          red.lighten(70%)
+      },
+      columns: range(11).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x'_2$], [$x''_2$], [$s_1$], [$s_2$], [$s_3$], [$a_1$], [$a_2$], [$a_3$], [$b$],
+      table.hline(),
+      [$s_1$], [0], [4/3], [-4/3], [1], [1/3], [0], [-1/3], [0], [0], [11/3],
+      [$x_1$], [1], [-1/3], [1/3], [0], [-1/3], [0], [1/3], [0], [0], [4/3],
+      [$a_2$], [0], [-5/3], [5/3], [0], [1/3], [-1], [-1/3], [1], [0], [14/3],
+      [$a_3$], [0], [-2/3], [2/3], [0], [1/3], [0], [-1/3], [0], [1], [2/3],
+      table.hline(),
+      [$w$], [0], [7/3], [-7/3], [0], [-2/3], [1], [5/3], [0], [0], [56/3],
+    )
+  )
+
+  *Step 3*: Perform the Second Pivot
+
+  1. Look at the $w$ row (objective row) for the most negative coefficient:
+
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if y in (0, 5) and x in (3,) {
+          red.lighten(70%)
+      },
+      columns: range(11).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x'_2$], [$x''_2$], [$s_1$], [$s_2$], [$s_3$], [$a_1$], [$a_2$], [$a_3$], [$b$],
+      table.hline(),
+      [$s_1$], [0], [4/3], [-4/3], [1], [1/3], [0], [-1/3], [0], [0], [11/3],
+      [$x_1$], [1], [-1/3], [1/3], [0], [-1/3], [0], [1/3], [0], [0], [4/3],
+      [$a_2$], [0], [-5/3], [5/3], [0], [1/3], [-1], [-1/3], [1], [0], [14/3],
+      [$a_3$], [0], [-2/3], [2/3], [0], [1/3], [0], [0-1/3], [0], [1], [2/3],
+      table.hline(),
+      [$w$], [0], [7/3], [-7/3], [0], [-2/3], [1], [5/3], [0], [0], [56/3],
+    )
+  )
+
+   - The most negative is $-7/3$ for $x''_2$
+    - Pivot column is $x''_2$
+
+  2. Ratio
+  
+  - Compute ratios ($b \/ x''_2$) for rows with positive pivot entries:
+
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if y in (1, 2, 3, 4) and x in (3, 10, 12) {
+          red.lighten(70%)
+      },
+      columns: range(13).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x'_2$], [$x''_2$], [$s_1$], [$s_2$], [$s_3$], [$a_1$], [$a_2$], [$a_3$], [$b$], [], [$b\/x''_2$],
+      table.hline(),
+      [$s_1$], [0], [4/3], [-4/3], [1], [1/3], [0], [-1/3], [0], [0], [11/3], [], [❌],
+      [$x_1$], [1], [-1/3], [1/3], [0], [-1/3], [0], [1/3], [0], [0], [4/3], [], [$4/3 div 1/3 = 4$],
+      [$a_2$], [0], [-5/3], [5/3], [0], [1/3], [-1], [-1/3], [1], [0], [14/3], [], [$14/3 div 5/3 = 2.8$],
+      [$a_3$], [0], [-2/3], [2/3], [0], [1/3], [0], [0-1/3], [0], [1], [2/3], [], [$2/3 div 2/3 = 1$],
+      table.hline(),
+      [$w$], [0], [7/3], [-7/3], [0], [-2/3], [1], [5/3], [0], [0], [56/3], [], [],
+    )
+  )
+
+  - Minimum ratio is $1$, so we pivot on row $a_3$:
+
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if y in (4,) and x in (0, 12) {
+          red.lighten(70%)
+      },
+      columns: range(13).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x'_2$], [$x''_2$], [$s_1$], [$s_2$], [$s_3$], [$a_1$], [$a_2$], [$a_3$], [$b$], [], [$b\/x''_2$],
+      table.hline(),
+      [$s_1$], [0], [4/3], [-4/3], [1], [1/3], [0], [-1/3], [0], [0], [11/3], [], [❌],
+      [$x_1$], [1], [-1/3], [1/3], [0], [-1/3], [0], [1/3], [0], [0], [4/3], [], [$4/3 div 1/3 = 4$],
+      [$a_2$], [0], [-5/3], [5/3], [0], [1/3], [-1], [-1/3], [1], [0], [14/3], [], [$14/3 div 5/3 = 2.8$],
+      [$a_3$], [0], [-2/3], [2/3], [0], [1/3], [0], [0-1/3], [0], [1], [2/3], [], [$2/3 div 2/3 = 1$],
+      table.hline(),
+      [$w$], [0], [7/3], [-7/3], [0], [-2/3], [1], [5/3], [0], [0], [56/3], [], [],
     )
   )
   
-
-  *Step 6*: Step 3: Pivot on $x_1$ in row $A_2$ 
-
-  We now make $x_1$ the basic variable in that row. We'll perform row operations to:
-  - Make the pivot element (currently 1) into 1
-  - Zero out $x_1$ in other rows
-
-  We pivot on the third row, first column (value = 1):
+  *Step 4*: Pivot $a_3 arrow.long x''_2$
 
   #align(
     center,
     table(
       fill: (x, y) =>
-      if x == 1 and y == 3 {
-        red.lighten(70%)
+        if y in (4,) and x in (0,) {
+          red.lighten(70%)
       },
-      columns: range(8).map(n => auto),
+      columns: range(11).map(n => auto),
       inset: (x: 0.5em, y: 0.5em),
       align: horizon,
       stroke: none,
-      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$A_1$], [$A_2$], [$b$],
+      [Basis], [$x_1$], [$x'_2$], [$x''_2$], [$s_1$], [$s_2$], [$s_3$], [$a_1$], [$a_2$], [$a_3$], [$b$],
       table.hline(),
-      [$s_1$], [1], [2], [1], [0], [0], [0], [4],
-      [$A_1$], [2], [1], [0], [-1], [1], [0], [3],
-      [$A_2$], [1], [-1], [0], [0], [0], [1], [1],
+      [$s_1$], [0], [4/3], [-4/3], [1], [1/3], [0], [-1/3], [0], [0], [11/3],
+      [$x_1$], [1], [-1/3], [1/3], [0], [-1/3], [0], [1/3], [0], [0], [4/3],
+      [$a_2$], [0], [-5/3], [5/3], [0], [1/3], [-1], [-1/3], [1], [0], [14/3],
+      [$x''_2$], [0], [-2/3], [2/3], [0], [1/3], [0], [-1/3], [0], [1], [2/3],
       table.hline(),
-      [$w$], [3], [0], [0], [-1], [0], [0], [4],
-
+      [$w$], [0], [7/3], [-7/3], [0], [-2/3], [1], [5/3], [0], [0], [56/3],
     )
   )
 
-  New Row 3: make pivot = 1
-
-  Already 1 ✅, so we use it as the pivot row.
-
-  Update other rows
-
-  Row 1:
+  *Gauss-Jordan Elimination*
 
   $
-    R_1 := R_1 - 1 dot R_3 
-    quad
-    arrow.double.long 
-    quad
-    cases(
-      delim: #none,
-      x_1& \: quad &1 - 1 = 0,
-      x_2& \: quad &2 - (-1) = 3,
-      s_1& \: quad &1 - 0 = 1,
-      s_2& \: quad &0 - 0 = 0,
-      A_1& \: quad &0 - 0 = 0,
-      A_2& \: quad &0 - 1 = -1,
-      b& \: quad &4 - 1 = 3,
-    )
+    R_(x''_2) = R_(x''_2) \/ (2\/3)
   $
-
-  Row 2:
-
-  $
-    R_2 := R_2 - 2 dot R_3 
-    quad
-    arrow.double.long 
-    quad
-    cases(
-      delim: #none,
-      x_1& \: quad &2 - 2 = 0,
-      x_2& \: quad &1 - (-2) = 3,
-      s_1& \: quad &0 - 0 = 0,
-      s_2& \: quad &-1 - 0 = -1,
-      A_1& \: quad &1 - 0 = 1,
-      A_2& \: quad &0 - 2 = -2,
-      b& \: quad &3 - 2 = 1,
-    )
-  $
-  
-  Row $w$:
-
-  $
-    R_w := R_w - 3 dot R_3 
-    quad
-    arrow.double.long 
-    quad
-    cases(
-      delim: #none,
-      x_1& \: quad &3 - 3 = 0,
-      x_2& \: quad &0 - (-3) = 3,
-      s_2& \: quad &-1 - 0 = -1,
-      b& \: quad &4 - 3 = 1,
-    )
-  $
-
-  Updated Tableau
 
   #align(
     center,
     table(
       fill: (x, y) =>
-      if x == 1 {
-        red.lighten(70%)
+        if y in (4,) {
+          red.lighten(70%)
       },
-      columns: range(8).map(n => auto),
+      columns: range(11).map(n => auto),
       inset: (x: 0.5em, y: 0.5em),
       align: horizon,
       stroke: none,
-      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$A_1$], [$A_2$], [$b$],
+      [Basis], [$x_1$], [$x'_2$], [$x''_2$], [$s_1$], [$s_2$], [$s_3$], [$a_1$], [$a_2$], [$a_3$], [$b$],
       table.hline(),
-      [$s_1$], [0], [3], [1], [0], [0], [-1], [3],
-      [$A_1$], [0], [3], [0], [-1], [1], [-2], [1],
-      [$x_1$], [1], [-1], [0], [0], [0], [1], [1],
+      [$s_1$], [0], [4/3], [-4/3], [1], [1/3], [0], [-1/3], [0], [0], [11/3],
+      [$x_1$], [1], [-1/3], [1/3], [0], [-1/3], [0], [1/3], [0], [0], [4/3],
+      [$a_2$], [0], [-5/3], [5/3], [0], [1/3], [-1], [-1/3], [1], [0], [14/3],
+      [$x''_2$], [0], [-1], [1], [0], [1/2], [0], [-1/2], [0], [3/2], [1],
       table.hline(),
-      [$w$], [0], [3], [0], [-1], [0], [-3], [1],
-
+      [$w$], [0], [7/3], [-7/3], [0], [-2/3], [1], [5/3], [0], [0], [56/3],
     )
   )
 
-  *Step 1*: Identify entering variable
-
-  Largest positive coefficient
+  $
+    R_(s_1) = R_(s_1) - (-4/3) R_(x''_2) = R_(s_1) + 4/3 R_(x''_2)
+  $
 
   #align(
     center,
     table(
       fill: (x, y) =>
-      if x in (2,) and y in (0, 4) {
-        red.lighten(70%)
+        if y in (1,) {
+          red.lighten(70%)
       },
-      columns: range(8).map(n => auto),
+      columns: range(11).map(n => auto),
       inset: (x: 0.5em, y: 0.5em),
       align: horizon,
       stroke: none,
-      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$A_1$], [$A_2$], [$b$],
+      [Basis], [$x_1$], [$x'_2$], [$x''_2$], [$s_1$], [$s_2$], [$s_3$], [$a_1$], [$a_2$], [$a_3$], [$b$],
       table.hline(),
-      [$s_1$], [0], [3], [1], [0], [0], [-1], [3],
-      [$A_1$], [0], [3], [0], [-1], [1], [-2], [1],
-      [$x_1$], [1], [-1], [0], [0], [0], [1], [1],
+      [$s_1$], [0], [0], [0], [1], [1], [0], [-1], [0], [2], [5],
+      [$x_1$], [1], [-1/3], [1/3], [0], [-1/3], [0], [1/3], [0], [0], [4/3],
+      [$a_2$], [0], [-5/3], [5/3], [0], [1/3], [-1], [-1/3], [1], [0], [14/3],
+      [$x''_2$], [0], [-1], [1], [0], [1/2], [0], [-1/2], [0], [3/2], [1],
       table.hline(),
-      [$w$], [0], [3], [0], [-1], [0], [-3], [1],
-
+      [$w$], [0], [7/3], [-7/3], [0], [-2/3], [1], [5/3], [0], [0], [56/3],
     )
   )
 
-  Entering variable: $x_2$
-
-  *Step 2*: Minimum ratio test to find leaving variable
+  $
+    R_(x_1) = R_(x_1) - 1/3 R_(x''_2)
+  $
 
   #align(
     center,
     table(
       fill: (x, y) =>
-      if x in (2,7,9) and y in (1,2,3) {
-        red.lighten(70%)
+        if y in (2,) {
+          red.lighten(70%)
       },
-      columns: range(10).map(n => auto),
+      columns: range(11).map(n => auto),
       inset: (x: 0.5em, y: 0.5em),
       align: horizon,
       stroke: none,
-      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$A_1$], [$A_2$], [$b$], [], [Ratio $b \/ x_1$],
+      [Basis], [$x_1$], [$x'_2$], [$x''_2$], [$s_1$], [$s_2$], [$s_3$], [$a_1$], [$a_2$], [$a_3$], [$b$],
       table.hline(),
-      [$s_1$], [0], [3], [1], [0], [0], [-1], [3], [], [1],
-      [$A_1$], [0], [3], [0], [-1], [1], [-2], [1], [], [$1/3$],
-      [$x_1$], [1], [-1], [0], [0], [0], [1], [1], [], [N/A],
+      [$s_1$], [0], [0], [0], [0], [-1/2], [0], [1/2], [0], [-1/2], [1],
+      [$x_1$], [1], [0], [0], [0], [-1/2], [0], [1/2], [0], [-1/2], [1],
+      [$a_2$], [0], [-5/3], [5/3], [0], [1/3], [-1], [-1/3], [1], [0], [14/3],
+      [$x''_2$], [0], [-1], [1], [0], [1/2], [0], [-1/2], [0], [3/2], [1],
       table.hline(),
-      [$w$], [0], [3], [0], [-1], [0], [-3], [1], [], [],
+      [$w$], [0], [7/3], [-7/3], [0], [-2/3], [1], [5/3], [0], [0], [56/3],
     )
   )
 
-  Leaving variable: $A_1$ (smallest positive ratio 
-  
-  *Step 3*: Pivot on $x_2$ in row $A_1$ (2nd row)
-
-  
-  #align(
-    center,
-    table(
-      fill: (x, y) =>
-      if x in (2,9) and y in (2,) {
-        red.lighten(70%)
-      },
-      columns: range(10).map(n => auto),
-      inset: (x: 0.5em, y: 0.5em),
-      align: horizon,
-      stroke: none,
-      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$A_1$], [$A_2$], [$b$], [], [Ratio $b \/ x_1$],
-      table.hline(),
-      [$s_1$], [0], [3], [1], [0], [0], [-1], [3], [], [1],
-      [$A_1$], [0], [3], [0], [-1], [1], [-2], [1], [], [$1/3$],
-      [$x_1$], [1], [-1], [0], [0], [0], [1], [1], [], [N/A],
-      table.hline(),
-      [$w$], [0], [3], [0], [-1], [0], [-3], [1], [], [],
-    )
-  )
-
-  *Step 4*: Perform pivot
-
-  Row $A_1$:
-
   $
-    R_(A_1) := 1/3 R_(A_1) 
-    quad
-    arrow.double.long 
-    quad
-    cases(
-      delim: #none,
-      x_1& \: quad &1/3 dot 0 = 0,
-      x_2& \: quad &1/3 dot 3 = 1,
-      s_1& \: quad &1/3 dot 0 = 0,
-      s_2& \: quad &1/3 dot -1 = -1/3,
-      A_1& \: quad &1/3 dot 1 = 1/3,
-      A_2& \: quad &1/3 dot -2 = -2/3,
-      b& \:   quad &1/3 dot 1 = 1/3,
-    )
+    R_(a_2) = R_(a_2) - 5/3R_(x''_2)
   $
-
-  Row $s_1$
-
-  $
-    R_(s_1) := R_(s_1) - 3 R_(A_1) 
-    quad
-    arrow.double.long 
-    quad
-    cases(
-      delim: #none,
-      x_1& \: quad &0 - 3(0) = 0,
-      x_2& \: quad &3 - 3(1) = 0,
-      s_1& \: quad &1 - 3(0) = 0,
-      s_2& \: quad &0 - 3(-1/3) = 0 + 1 =1,
-      A_1& \: quad &0 - 3(1/3) = 0 - 1 = -1,
-      A_2& \: quad &-1 - 3(-2/3) = -1 + 2 = 1,
-      b& \:   quad &3 - 3(1/3) = 3 - 1 = 2,
-    )
-  $
-  
-  
-  Row $x_1$
-
-  $
-    R_(x_1) := R_(x_1) + 1 R_(A_1) 
-    quad
-    arrow.double.long 
-    quad
-    cases(
-      delim: #none,
-      x_1& \: quad &1 + 0 = 1,
-      x_2& \: quad &-1 + 1 = 0,
-      s_1& \: quad &0 + 0 = 0,
-      s_2& \: quad &0 + (-1/3) = -1/3,
-      A_1& \: quad &0 + 1/3 = 1/3,
-      A_2& \: quad &1 + (-2/3) = 1/3,
-      b& \:   quad &1 + 1/3 = 4/3,
-    )
-  $
-
-  Row $w$
-
-  $
-    R_(w) := R_(w) - 3 R_(A_1) 
-    quad
-    arrow.double.long 
-    quad
-    cases(
-      delim: #none,
-      x_1& \: quad &0 - 3(0) = 0,
-      x_2& \: quad &3 - 3(1) = 0,
-      s_1& \: quad &0 - 3(0) = 0,
-      s_2& \: quad &-1 - 3(-1/3) = -1 + 1 = 0,
-      A_1& \: quad &0 - 3(1/3) = 0 - 1 = -1,
-      A_2& \: quad &-3 - 3(-2/3) = -3 + 2 = -1,
-      b& \:   quad &1 - 3(1/3) = 1 - 1 = 0,
-    )
-  $
-
-  Updated Tableau
 
   #align(
     center,
     table(
       fill: (x, y) =>
-      if x in (7,) and y in (4,) {
-        red.lighten(70%)
+        if y in (3,) {
+          red.lighten(70%)
       },
-      columns: range(8).map(n => auto),
+      columns: range(11).map(n => auto),
       inset: (x: 0.5em, y: 0.5em),
       align: horizon,
       stroke: none,
-      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$A_1$], [$A_2$], [$b$],
+      [Basis], [$x_1$], [$x'_2$], [$x''_2$], [$s_1$], [$s_2$], [$s_3$], [$a_1$], [$a_2$], [$a_3$], [$b$],
       table.hline(),
-      [$s_1$], [0], [0], [1], [1], [-1], [1], [2],
-      [$x_2$], [0], [1], [0], [-1/3], [1/3], [-2/3], [1/3],
-      [$x_1$], [1], [0], [0], [-1/3], [1/3], [1/3], [4/3],
+      [$s_1$], [0], [0], [0], [0], [-1/2], [0], [1/2], [0], [-1/2], [1],
+      [$x_1$], [1], [0], [0], [0], [-1/2], [0], [1/2], [0], [-1/2], [1],
+      [$a_2$], [0], [0], [0], [0], [-1/2], [-1], [1/2], [1], [-5/2], [3],
+      [$x''_2$], [0], [-1], [1], [0], [1/2], [0], [-1/2], [0], [3/2], [1],
       table.hline(),
-      [$w$], [0], [0], [0], [0], [-1], [-1], [0],
-
+      [$w$], [0], [7/3], [-7/3], [0], [-2/3], [1], [5/3], [0], [0], [56/3],
     )
   )
 
-  *Step 5*: Interpretation
+  $
+    R_w = R_w - (-7/3)R_(x''_2) = R_w + 7/3 R_(x''_2)
+  $
 
-  Feasibility Achieved
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if y in (5,) {
+          red.lighten(70%)
+      },
+      columns: range(11).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x'_2$], [$x''_2$], [$s_1$], [$s_2$], [$s_3$], [$a_1$], [$a_2$], [$a_3$], [$b$],
+      table.hline(),
+      [$s_1$], [0], [0], [0], [0], [-1/2], [0], [1/2], [0], [-1/2], [1],
+      [$x_1$], [1], [0], [0], [0], [-1/2], [0], [1/2], [0], [-1/2], [1],
+      [$a_2$], [0], [0], [0], [0], [-1/2], [-1], [1/2], [1], [-5/2], [3],
+      [$x''_2$], [0], [-1], [1], [0], [1/2], [0], [-1/2], [0], [3/2], [1],
+      table.hline(),
+      [$w$], [0], [0], [0], [0], [1/2], [1], [1/2], [0], [7/2], [21],
+    )
+  )
+
+  *Step 5*: Perform the Third Pivot
+
+  1. Look at the $w$ row (objective row) for the most negative coefficient:
   
-  - He value of $w = 0$
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if x in (5,) and y in (0, 5) {
+          red.lighten(70%)
+      },
+      columns: range(11).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x'_2$], [$x''_2$], [$s_1$], [$s_2$], [$s_3$], [$a_1$], [$a_2$], [$a_3$], [$b$],
+      table.hline(),
+      [$s_1$], [0], [0], [0], [0], [-1/2], [0], [1/2], [0], [-1/2], [1],
+      [$x_1$], [1], [0], [0], [0], [-1/2], [0], [1/2], [0], [-1/2], [1],
+      [$a_2$], [0], [0], [0], [0], [-1/2], [-1], [1/2], [1], [-5/2], [3],
+      [$x''_2$], [0], [-1], [1], [0], [1/2], [0], [-1/2], [0], [3/2], [1],
+      table.hline(),
+      [$w$], [0], [0], [0], [0], [-1/6], [1], [1/2], [0], [7/2], [21],
+    )
+  )
 
-  No Artificial Variables in the Basis
+  - The most negative is $-1/6$ for $s_2$
+    - Pivot column is $s_2$
 
-  - Basic variables: $s_1$, $x_1$, $x_2$
-  - Non-basic variables: $A_1 = 0$, $A_2 = 0$
+  2. Ratio
+  
+  - Compute ratios ($b \/ s_2$) for rows with positive pivot entries:
 
-  *Phase II*
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if x in (5, 10, 12) and y in (1, 2, 3, 4) {
+          red.lighten(70%)
+      },
+      columns: range(13).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x'_2$], [$x''_2$], [$s_1$], [$s_2$], [$s_3$], [$a_1$], [$a_2$], [$a_3$], [$b$], [], [$b \/ s_2$],
+      table.hline(),
+      [$s_1$], [0], [0], [0], [0], [-1/2], [0], [1/2], [0], [-1/2], [1], [], [❌],
+      [$x_1$], [1], [0], [0], [0], [-1/2], [0], [1/2], [0], [-1/2], [1], [], [❌],
+      [$a_2$], [0], [0], [0], [0], [-1/2], [-1], [1/2], [1], [-5/2], [3], [], [❌],
+      [$x''_2$], [0], [-1], [1], [0], [1/2], [0], [-1/2], [0], [3/2], [1], [], [2],
+      table.hline(),
+      [$w$], [0], [0], [0], [0], [-1/6], [1], [1/2], [0], [7/2], [21], [], [],
+    )
+  )
+
+  // *1. Convert Minimize to Maximize*
+
+  // $
+  //   min z = 3x_1 + 2x_2 arrow.double.long max z' = -3x_1 -2x_2
+  // $
+
+  // *2. Convert constraints to equalities with slack, surplus, and artificial variables*
+
+  // - $x_1 +2x_2 lt.eq 4$
+
+  //   Add slack variable $s_1 gt.eq 0$:
+
+  // $
+  //   x_1 + 2x_2 + s_1 = 4
+  // $
+
+  // - $2x_1 +x_2 gt.eq 3$
+
+  //   Subreact surplus $s_2 gt.eq 0$ and add artificial variable $A_1 gt.eq 0$:
+
+  // $
+  //   2x_1 + x_2 - s_2 + A_1 = 3
+  // $
+
+  // - $x_1 -x_2 = 1$
+
+  //   Add artificial variable $A_2 gt.eq 0$:
+
+  // $
+  //   x_1 - x_2 + A_2 = 1
+  // $
+
+  // *Final standard form ready for two-phase simplex*
+
+  // $
+  //   min quad  &z = colorMath(-, #red)3x_1 colorMath(-, #red) 2x_2 \
+  //   s.t. quad &x_1 + 2x_2 colorMath(+ s_1, #red) eq 4 \
+  //             &2x_1 + x_2 colorMath(- s_2 + A_1, #red) eq 3 \
+  //             &x_1 - x_2 colorMath(+ A_2, #red) = 1 \
+  //             &x_1, x_2, colorMath(s_1\, s_2\, A_1\, A_2, #red) gt.eq 0 \
+  // $
+
+  // *Phase I*
+
+  // *Step 1*: Setup
+
+  // We want to find a feasible solution by minimizing the sum of artificial variables
+
+  // $
+  //   min quad &colorMath(w = A_1 + A_2, #red) \
+  //   s.t. quad &x_1 + 2x_2 + s_1 eq 4 \
+  //             &2x_1 + x_2 - s_2 + A_1 eq 3 \
+  //             &x_1 - x_2 + A_2 = 1 \
+  //             &x_1, x_2, s_1\, s_2\, A_1\, A_2 gt.eq 0 \
+  // $
+
+  // Write Phase I objective in terms of all variables
+
+  // *Step 2*: Set initial basis
+
+  // - Basic variables: $s_1, A_1, A_2$ (slack and artificial variables)
+  // - Non-basic variables: $x_1, x_2, s_2$
+
+  // *Step 3*: Express Phase I objective row
+
+  // We want to express $w = A_1 + A_2$ in terms of the non-basic variables
+
+  // - Second constraint:
+
+  // $
+  //   A_1 = 3 - 2x_1 - x_2 + s_2
+  // $
+
+  // - Third constraint:
+
+  // $
+  //   A_2 = 1 - x_1 + x_2
+  // $
+
+  // So, 
+
+  // $
+  //   w 
+  //   &= A_1 + A_2 \
+  //   &= (3 - 2x_1 - x_2 + s_2) + (1 - x_1 + x_2) \
+  //   &= 4 - 3x_1 + s_2 \
+  // $
+
+  // Formulation
+
+  // $
+  //   min quad  &4 - 3x_1 + s_2 \
+  //   s.t. quad &x_1 + 2x_2 + s_1 eq 4 \
+  //             &2x_1 + x_2 - s_2 + A_1 eq 3 \
+  //             &x_1 - x_2 + A_2 = 1 \
+  //             &x_1, x_2, s_1\, s_2\, A_1\, A_2 gt.eq 0 \
+  // $
+
+  // *Step 4*: Initial Phase I Simplex Tableau
+
+  //  #align(
+  //   center,
+  //   table(
+  //     columns: range(8).map(n => auto),
+  //     inset: (x: 0.5em, y: 0.5em),
+  //     align: horizon,
+  //     stroke: none,
+  //     [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$A_1$], [$A_2$], [$b$],
+  //     table.hline(),
+  //     [$s_1$], [1], [2], [1], [0], [0], [0], [4],
+  //     [$A_1$], [2], [1], [0], [-1], [1], [0], [3],
+  //     [$A_2$], [1], [-1], [0], [0], [0], [1], [1],
+  //     table.hline(),
+  //     [$w$], [3], [0], [0], [-1], [0], [0], [4],
+
+  //   )
+  // )
+
+  // *Step 4*: Remove Artificial Variables
+
+  // 1. $A_1$
+
+  // We want to eliminate the coefficient of $A_1$ in the objective row $w$. But right now it's already 0 — because we rewrote $w$ in terms of $x_1$ and $s_2$.
+
+  // #align(
+  //   center,
+  //   table(
+  //     fill: (x, y) =>
+  //     if x == 5 and y in (0, 4) {
+  //       red.lighten(70%)
+  //     },
+  //     columns: range(8).map(n => auto),
+  //     inset: (x: 0.5em, y: 0.5em),
+  //     align: horizon,
+  //     stroke: none,
+  //     [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$A_1$], [$A_2$], [$b$],
+  //     table.hline(),
+  //     [$s_1$], [1], [2], [1], [0], [0], [0], [4],
+  //     [$A_1$], [2], [1], [0], [-1], [1], [0], [3],
+  //     [$A_2$], [1], [-1], [0], [0], [0], [1], [1],
+  //     table.hline(),
+  //     [$w$], [3], [0], [0], [-1], [0], [0], [4],
+
+  //   )
+  // )
+
+  // 1. $A_2$
+
+  // We want to eliminate the coefficient of $A_2$ in the objective row $w$. But right now it's already 0 — because we rewrote $w$ in terms of $x_1$ and $s_2$.
+
+  // #align(
+  //   center,
+  //   table(
+  //     fill: (x, y) =>
+  //     if x == 6 and y in (0, 4) {
+  //       red.lighten(70%)
+  //     },
+  //     columns: range(8).map(n => auto),
+  //     inset: (x: 0.5em, y: 0.5em),
+  //     align: horizon,
+  //     stroke: none,
+  //     [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$A_1$], [$A_2$], [$b$],
+  //     table.hline(),
+  //     [$s_1$], [1], [2], [1], [0], [0], [0], [4],
+  //     [$A_1$], [2], [1], [0], [-1], [1], [0], [3],
+  //     [$A_2$], [1], [-1], [0], [0], [0], [1], [1],
+  //     table.hline(),
+  //     [$w$], [3], [0], [0], [-1], [0], [0], [4],
+
+  //   )
+  // )
+
+
+  // *Step 5*: Phase I pivoting 
+
+  // We look for the most positive coefficient in the $w$-row, because we are minimizing.
+
+  // #align(
+  //   center,
+  //   table(
+  //     fill: (x, y) =>
+  //     if x == 1 and y in (0, 4) {
+  //       red.lighten(70%)
+  //     },
+  //     columns: range(8).map(n => auto),
+  //     inset: (x: 0.5em, y: 0.5em),
+  //     align: horizon,
+  //     stroke: none,
+  //     [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$A_1$], [$A_2$], [$b$],
+  //     table.hline(),
+  //     [$s_1$], [1], [2], [1], [0], [0], [0], [4],
+  //     [$A_1$], [2], [1], [0], [-1], [1], [0], [3],
+  //     [$A_2$], [1], [-1], [0], [0], [0], [1], [1],
+  //     table.hline(),
+  //     [$w$], [3], [0], [0], [-1], [0], [0], [4],
+
+  //   )
+  // )
+
+  // Now we perform the *minimum ratio* test to determine which row $x_1$ will replace:
+
+  // #align(
+  //   center,
+  //   table(
+  //     fill: (x, y) =>
+  //     if x in (1,7,9) and y in (1,2,3) {
+  //       red.lighten(70%)
+  //     },
+  //     columns: range(10).map(n => auto),
+  //     inset: (x: 0.5em, y: 0.5em),
+  //     align: horizon,
+  //     stroke: none,
+  //     [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$A_1$], [$A_2$], [$b$], [], [Ratio $b \/ x_1$],
+  //     table.hline(),
+  //     [$s_1$], [1], [2], [1], [0], [0], [0], [4], [], [4],
+  //     [$A_1$], [2], [1], [0], [-1], [1], [0], [3], [], [1.5],
+  //     [$A_2$], [1], [-1], [0], [0], [0], [1], [1], [], [1],
+  //     table.hline(),
+  //     [$w$], [3], [0], [0], [-1], [0], [0], [4], [], [],
+
+  //   )
+  // )
+
+  // Minimum ratio is 1 $arrow.long$ pivot on $x_1$ in row 3 (A₂)
+
+  // #align(
+  //   center,
+  //   table(
+  //     fill: (x, y) =>
+  //     if x in (1, 9) and y in (3,) {
+  //       red.lighten(70%)
+  //     },
+  //     columns: range(10).map(n => auto),
+  //     inset: (x: 0.5em, y: 0.5em),
+  //     align: horizon,
+  //     stroke: none,
+  //     [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$A_1$], [$A_2$], [$b$], [], [Ratio $b \/ x_1$],
+  //     table.hline(),
+  //     [$s_1$], [1], [2], [1], [0], [0], [0], [4], [], [4],
+  //     [$A_1$], [2], [1], [0], [-1], [1], [0], [3], [], [1.5],
+  //     [$A_2$], [1], [-1], [0], [0], [0], [1], [1], [], [1],
+  //     table.hline(),
+  //     [$w$], [3], [0], [0], [-1], [0], [0], [4], [], [],
+
+  //   )
+  // )
+  
+
+  // *Step 6*: Step 3: Pivot on $x_1$ in row $A_2$ 
+
+  // We now make $x_1$ the basic variable in that row. We'll perform row operations to:
+  // - Make the pivot element (currently 1) into 1
+  // - Zero out $x_1$ in other rows
+
+  // We pivot on the third row, first column (value = 1):
+
+  // #align(
+  //   center,
+  //   table(
+  //     fill: (x, y) =>
+  //     if x == 1 and y == 3 {
+  //       red.lighten(70%)
+  //     },
+  //     columns: range(8).map(n => auto),
+  //     inset: (x: 0.5em, y: 0.5em),
+  //     align: horizon,
+  //     stroke: none,
+  //     [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$A_1$], [$A_2$], [$b$],
+  //     table.hline(),
+  //     [$s_1$], [1], [2], [1], [0], [0], [0], [4],
+  //     [$A_1$], [2], [1], [0], [-1], [1], [0], [3],
+  //     [$A_2$], [1], [-1], [0], [0], [0], [1], [1],
+  //     table.hline(),
+  //     [$w$], [3], [0], [0], [-1], [0], [0], [4],
+
+  //   )
+  // )
+
+  // New Row 3: make pivot = 1
+
+  // Already 1 ✅, so we use it as the pivot row.
+
+  // Update other rows
+
+  // Row 1:
+
+  // $
+  //   R_1 := R_1 - 1 dot R_3 
+  //   quad
+  //   arrow.double.long 
+  //   quad
+  //   cases(
+  //     delim: #none,
+  //     x_1& \: quad &1 - 1 = 0,
+  //     x_2& \: quad &2 - (-1) = 3,
+  //     s_1& \: quad &1 - 0 = 1,
+  //     s_2& \: quad &0 - 0 = 0,
+  //     A_1& \: quad &0 - 0 = 0,
+  //     A_2& \: quad &0 - 1 = -1,
+  //     b& \: quad &4 - 1 = 3,
+  //   )
+  // $
+
+  // Row 2:
+
+  // $
+  //   R_2 := R_2 - 2 dot R_3 
+  //   quad
+  //   arrow.double.long 
+  //   quad
+  //   cases(
+  //     delim: #none,
+  //     x_1& \: quad &2 - 2 = 0,
+  //     x_2& \: quad &1 - (-2) = 3,
+  //     s_1& \: quad &0 - 0 = 0,
+  //     s_2& \: quad &-1 - 0 = -1,
+  //     A_1& \: quad &1 - 0 = 1,
+  //     A_2& \: quad &0 - 2 = -2,
+  //     b& \: quad &3 - 2 = 1,
+  //   )
+  // $
+  
+  // Row $w$:
+
+  // $
+  //   R_w := R_w - 3 dot R_3 
+  //   quad
+  //   arrow.double.long 
+  //   quad
+  //   cases(
+  //     delim: #none,
+  //     x_1& \: quad &3 - 3 = 0,
+  //     x_2& \: quad &0 - (-3) = 3,
+  //     s_2& \: quad &-1 - 0 = -1,
+  //     b& \: quad &4 - 3 = 1,
+  //   )
+  // $
+
+  // Updated Tableau
+
+  // #align(
+  //   center,
+  //   table(
+  //     fill: (x, y) =>
+  //     if x == 1 {
+  //       red.lighten(70%)
+  //     },
+  //     columns: range(8).map(n => auto),
+  //     inset: (x: 0.5em, y: 0.5em),
+  //     align: horizon,
+  //     stroke: none,
+  //     [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$A_1$], [$A_2$], [$b$],
+  //     table.hline(),
+  //     [$s_1$], [0], [3], [1], [0], [0], [-1], [3],
+  //     [$A_1$], [0], [3], [0], [-1], [1], [-2], [1],
+  //     [$x_1$], [1], [-1], [0], [0], [0], [1], [1],
+  //     table.hline(),
+  //     [$w$], [0], [3], [0], [-1], [0], [-3], [1],
+
+  //   )
+  // )
+
+  // *Step 1*: Identify entering variable
+
+  // Largest positive coefficient
+
+  // #align(
+  //   center,
+  //   table(
+  //     fill: (x, y) =>
+  //     if x in (2,) and y in (0, 4) {
+  //       red.lighten(70%)
+  //     },
+  //     columns: range(8).map(n => auto),
+  //     inset: (x: 0.5em, y: 0.5em),
+  //     align: horizon,
+  //     stroke: none,
+  //     [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$A_1$], [$A_2$], [$b$],
+  //     table.hline(),
+  //     [$s_1$], [0], [3], [1], [0], [0], [-1], [3],
+  //     [$A_1$], [0], [3], [0], [-1], [1], [-2], [1],
+  //     [$x_1$], [1], [-1], [0], [0], [0], [1], [1],
+  //     table.hline(),
+  //     [$w$], [0], [3], [0], [-1], [0], [-3], [1],
+
+  //   )
+  // )
+
+  // Entering variable: $x_2$
+
+  // *Step 2*: Minimum ratio test to find leaving variable
+
+  // #align(
+  //   center,
+  //   table(
+  //     fill: (x, y) =>
+  //     if x in (2,7,9) and y in (1,2,3) {
+  //       red.lighten(70%)
+  //     },
+  //     columns: range(10).map(n => auto),
+  //     inset: (x: 0.5em, y: 0.5em),
+  //     align: horizon,
+  //     stroke: none,
+  //     [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$A_1$], [$A_2$], [$b$], [], [Ratio $b \/ x_1$],
+  //     table.hline(),
+  //     [$s_1$], [0], [3], [1], [0], [0], [-1], [3], [], [1],
+  //     [$A_1$], [0], [3], [0], [-1], [1], [-2], [1], [], [$1/3$],
+  //     [$x_1$], [1], [-1], [0], [0], [0], [1], [1], [], [N/A],
+  //     table.hline(),
+  //     [$w$], [0], [3], [0], [-1], [0], [-3], [1], [], [],
+  //   )
+  // )
+
+  // Leaving variable: $A_1$ (smallest positive ratio 
+  
+  // *Step 3*: Pivot on $x_2$ in row $A_1$ (2nd row)
+
+  
+  // #align(
+  //   center,
+  //   table(
+  //     fill: (x, y) =>
+  //     if x in (2,9) and y in (2,) {
+  //       red.lighten(70%)
+  //     },
+  //     columns: range(10).map(n => auto),
+  //     inset: (x: 0.5em, y: 0.5em),
+  //     align: horizon,
+  //     stroke: none,
+  //     [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$A_1$], [$A_2$], [$b$], [], [Ratio $b \/ x_1$],
+  //     table.hline(),
+  //     [$s_1$], [0], [3], [1], [0], [0], [-1], [3], [], [1],
+  //     [$A_1$], [0], [3], [0], [-1], [1], [-2], [1], [], [$1/3$],
+  //     [$x_1$], [1], [-1], [0], [0], [0], [1], [1], [], [N/A],
+  //     table.hline(),
+  //     [$w$], [0], [3], [0], [-1], [0], [-3], [1], [], [],
+  //   )
+  // )
+
+  // *Step 4*: Perform pivot
+
+  // Row $A_1$:
+
+  // $
+  //   R_(A_1) := 1/3 R_(A_1) 
+  //   quad
+  //   arrow.double.long 
+  //   quad
+  //   cases(
+  //     delim: #none,
+  //     x_1& \: quad &1/3 dot 0 = 0,
+  //     x_2& \: quad &1/3 dot 3 = 1,
+  //     s_1& \: quad &1/3 dot 0 = 0,
+  //     s_2& \: quad &1/3 dot -1 = -1/3,
+  //     A_1& \: quad &1/3 dot 1 = 1/3,
+  //     A_2& \: quad &1/3 dot -2 = -2/3,
+  //     b& \:   quad &1/3 dot 1 = 1/3,
+  //   )
+  // $
+
+  // Row $s_1$
+
+  // $
+  //   R_(s_1) := R_(s_1) - 3 R_(A_1) 
+  //   quad
+  //   arrow.double.long 
+  //   quad
+  //   cases(
+  //     delim: #none,
+  //     x_1& \: quad &0 - 3(0) = 0,
+  //     x_2& \: quad &3 - 3(1) = 0,
+  //     s_1& \: quad &1 - 3(0) = 0,
+  //     s_2& \: quad &0 - 3(-1/3) = 0 + 1 =1,
+  //     A_1& \: quad &0 - 3(1/3) = 0 - 1 = -1,
+  //     A_2& \: quad &-1 - 3(-2/3) = -1 + 2 = 1,
+  //     b& \:   quad &3 - 3(1/3) = 3 - 1 = 2,
+  //   )
+  // $
+  
+  
+  // Row $x_1$
+
+  // $
+  //   R_(x_1) := R_(x_1) + 1 R_(A_1) 
+  //   quad
+  //   arrow.double.long 
+  //   quad
+  //   cases(
+  //     delim: #none,
+  //     x_1& \: quad &1 + 0 = 1,
+  //     x_2& \: quad &-1 + 1 = 0,
+  //     s_1& \: quad &0 + 0 = 0,
+  //     s_2& \: quad &0 + (-1/3) = -1/3,
+  //     A_1& \: quad &0 + 1/3 = 1/3,
+  //     A_2& \: quad &1 + (-2/3) = 1/3,
+  //     b& \:   quad &1 + 1/3 = 4/3,
+  //   )
+  // $
+
+  // Row $w$
+
+  // $
+  //   R_(w) := R_(w) - 3 R_(A_1) 
+  //   quad
+  //   arrow.double.long 
+  //   quad
+  //   cases(
+  //     delim: #none,
+  //     x_1& \: quad &0 - 3(0) = 0,
+  //     x_2& \: quad &3 - 3(1) = 0,
+  //     s_1& \: quad &0 - 3(0) = 0,
+  //     s_2& \: quad &-1 - 3(-1/3) = -1 + 1 = 0,
+  //     A_1& \: quad &0 - 3(1/3) = 0 - 1 = -1,
+  //     A_2& \: quad &-3 - 3(-2/3) = -3 + 2 = -1,
+  //     b& \:   quad &1 - 3(1/3) = 1 - 1 = 0,
+  //   )
+  // $
+
+  // Updated Tableau
+
+  // #align(
+  //   center,
+  //   table(
+  //     fill: (x, y) =>
+  //     if x in (7,) and y in (4,) {
+  //       red.lighten(70%)
+  //     },
+  //     columns: range(8).map(n => auto),
+  //     inset: (x: 0.5em, y: 0.5em),
+  //     align: horizon,
+  //     stroke: none,
+  //     [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$A_1$], [$A_2$], [$b$],
+  //     table.hline(),
+  //     [$s_1$], [0], [0], [1], [1], [-1], [1], [2],
+  //     [$x_2$], [0], [1], [0], [-1/3], [1/3], [-2/3], [1/3],
+  //     [$x_1$], [1], [0], [0], [-1/3], [1/3], [1/3], [4/3],
+  //     table.hline(),
+  //     [$w$], [0], [0], [0], [0], [-1], [-1], [0],
+
+  //   )
+  // )
+
+  // *Step 5*: Interpretation
+
+  // Feasibility Achieved
+  
+  // - He value of $w = 0$
+
+  // No Artificial Variables in the Basis
+
+  // - Basic variables: $s_1$, $x_1$, $x_2$
+  // - Non-basic variables: $A_1 = 0$, $A_2 = 0$
+
+  // *Phase II*
 
 
 
 ]
+
+#let format_lp(
+  prob
+) = {
+
+  let body = prob.body
+
+  // ...
+
+}
+
+#format_lp(
+  $
+    max z = 2x_1 + x_2 \
+    s.t. x_1 + x_2 gt.eq 2 \
+    x_1 gt.eq 1 \
+    x_1 + x_2 lt.eq 5 \
+    x_1, x_2 gt.eq 0
+  $
+)
+
+
+#line(length: 100%)
+
+#text(size: 16pt, weight: "semibold", [Two-Phase])
+
+$
+  &max& quad z = 2&x_1& quad &+& quad &x_2& \
+  &s.t.& quad     &x_1& &+& &x_2& quad   &gt.eq& quad  2 \
+  &&          &x_1& & & &   &       &gt.eq& quad 1 \
+  &&          &x_1& &+& &x_2& &lt.eq& 5 \
+  &&#place($x_1, x_2 gt.eq 0$)
+$
+
+#linebreak()
+
+$
+  &max& quad z = 2&x_1& quad &+& quad &x_2& quad &+& quad 0&e_1& quad &+& quad 0&e_2& quad &+& quad 0&s_1& quad && \
+  &s.t.& quad     &x_1& &+& &x_2& quad &-& &e_1& && && && && &gt.eq& quad  2 \
+  &&          &x_1& && && && && &-& &e_2& && && &gt.eq& quad 1 \
+  &&          &x_1& &+& &x_2& && && && && &+& &s_1& &lt.eq& 5 \
+$
+
+$
+  z - 2x_1 - x_2 = 0
+$
+
+#align(
+  center,
+  table(
+    columns: range(7).map(n => auto),
+    inset: (x: 0.5em, y: 0.5em),
+    align: horizon,
+    stroke: none,
+    [Basis], [$x_1$], [$x_2$], [$e_1$], [$e_2$], [$s_1$], [$b$],
+    table.hline(),
+    [???], [1], [1], [$colorMath(-1, #red)$], [0], [0], [2],
+    [???], [1], [0], [0], [$colorMath(-1, #red)$], [0], [1],
+    [$s_1$], [1], [1], [0], [0], [1], [5],
+    table.hline(),
+    [$z$], [-2], [-1], [0], [0], [0], [0],
+  )
+)
+
+#align(center)[
+    #cetz.canvas({
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
+        size: (7.5,7.5),
+        axis-style: "school-book",
+        x-tick-step: 1, 
+        y-tick-step: 1, 
+        x-label: [$x_1$],
+        y-label: [$x_2$],
+        x-min: -0.5, x-max: 5,
+        y-min: -0.5, y-max: 5,
+        axes: (
+          stroke: black,
+          tick: (stroke: black),
+        ),
+      {
+        plot.add-anchor("V_1", (0,0))
+
+        plot.add(
+          domain: (-1, 10),
+          x => 2 - x,
+          style: (stroke: (thickness: 1pt, paint: red)),
+          label: [$x_1 + x_2 gt.eq 2$],
+        )
+        
+        plot.add(
+          domain: (-1, 10),
+          x => 5 - x,
+          style: (stroke: (thickness: 1pt, paint: blue)),
+          label: [$x_1 + x_2 lt.eq 5$],
+        )
+
+        plot.add-vline(
+          1,
+          style: (stroke: (thickness: 1pt, paint: green)),
+          label: [$x_1 gt.eq 1$],
+        )
+
+        plot.add(
+          ((0, 0),),
+          mark: "o",
+          mark-size: 0.2,
+          mark-style: (fill: red, stroke: 1pt),
+        )
+
+        plot.add-fill-between(
+          domain: (1, 5),
+          x => calc.max(0, 2 - x),
+          x1 => 5 - x1,
+          style: (fill: rgb(200, 200, 255, 80), stroke: none),
+          label: none
+        )
+
+         plot.annotate({
+          content((0.35, 0.35), text(size: 12pt, $V_0$))
+        })
+
+      }, name: "plot")
+    })
+  ]
+
+  $
+    &min& quad w = 0&x_1& quad &+& quad 0&x_2& quad &+& quad 0&e_1& quad &+& quad 0&e_2& quad &+& quad 0&s_1& quad && \
+    &s.t.& quad     &x_1& &+& &x_2& quad &-& &e_1& && && && && &gt.eq& quad  2 \
+    &&          &x_1& && && && && &-& &e_2& && && &gt.eq& quad 1 \
+    &&          &x_1& &+& &x_2& && && && && &+& &s_1& &lt.eq& 5 \
+  $
+
+
+
+#text(size: 16pt, weight: "semibold", [Degeneracy])
+
+Degeneracy occurs when a basic variable takes the value zero in a basic feasible solution. This leads to ties in the minimum ratio test, which determines the leaving variable during a pivot.
+
+#eg[
+
+  Problem
+
+  $
+    max quad  &z = x_1 + 2x_2 \
+    s.t. quad &x_1 + x_2 lt.eq 3 \
+              &x_2 lt.eq 2 \
+              &1/2x_1 + x_2 lt.eq 2.5 \
+              &x_1, x_2 gt.eq 0
+  $
+
+  Standard Form
+
+  $
+    z - x_1 - 2x_2 = 0 \
+    x_1 + x_2 + s_1 = 3 \
+    x_2 _ s_2 = 2 \
+    1/2x_1 + x_2 + s_3 \
+    x_1, x_2, s_1, s_2, s_3 gt/eq 0
+  $
+
+  Initialize Tableau
+
+  #align(
+    center,
+    table(
+      columns: range(7).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$s_3$], [$b$],
+      table.hline(),
+      [$s_1$], [1], [1], [1], [0], [0], [3],
+      [$s_2$], [0], [1], [0], [1], [0], [2],
+      [$s_3$], [1/2], [1], [0], [0], [1], [2.5],
+      table.hline(),
+      [$w$], [-1], [-1], [0], [0], [0], [0],
+    )
+  )
+
+  $
+    x_1 = 0 \
+    x_2 = 0 \
+  $
+
+  #align(center)[
+    #cetz.canvas({
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
+        size: (7.5,7.5),
+        axis-style: "school-book",
+        x-tick-step: 1, 
+        y-tick-step: 1, 
+        x-label: [$x_1$],
+        y-label: [$x_2$],
+        x-min: 0, x-max: 3.1,
+        y-min: 0, y-max: 3,
+        axes: (
+          stroke: black,
+          tick: (stroke: black),
+        ),
+      {
+        plot.add-anchor("V_1", (0,0))
+
+        plot.add(
+          domain: (-1, 10),
+          x => 3 - x,
+          style: (stroke: (thickness: 1pt, paint: red)),
+          label: [$x_1 + x_2 lt.eq 3$],
+        )
+        plot.add(
+          domain: (-1, 10),
+          x => 2,
+          style: (stroke: (thickness: 1pt, paint: blue)),
+          label: [$x_2 lt.eq 2$],
+        )
+        plot.add(
+          domain: (-1, 10),
+          x => 2.5 - 1/2 * x,
+          style: (stroke: (thickness: 1pt, paint: green)),
+          label: [$1/2x_1 + x_2 lt.eq 2.5$],
+        )
+
+        plot.add(
+          ((0, 0),),
+          mark: "o",
+          mark-size: 0.2,
+          mark-style: (fill: red, stroke: 1pt),
+        )
+        
+        plot.annotate({
+          content((0.25, 0.25), text(size: 12pt, $V_0$))
+        })
+
+        plot.add-fill-between(
+          domain: (0, 6),
+          x => {
+          if x <= 1 {
+              2
+            } else {
+              3 - x
+            }
+          },
+          x1 => 0,
+          style: (fill: rgb(200, 200, 255, 80), stroke: none),
+          label: none
+        )
+      }, name: "plot")
+    })
+  ]
+
+  Minimum Test
+
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if x in (2,) {
+          red.lighten(70%)
+      },
+      columns: range(7).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$s_3$], [$b$],
+      table.hline(),
+      [$s_1$], [1], [1], [1], [0], [0], [3],
+      [$s_2$], [0], [1], [0], [1], [0], [2],
+      [$s_3$], [1/2], [1], [0], [0], [1], [2.5],
+      table.hline(),
+      [$w$], [-1], [-1], [0], [0], [0], [0],
+    )
+  )
+
+  Ratio Test
+
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if y in (2,) {
+          red.lighten(70%)
+      },
+      columns: range(7).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$s_3$], [$b$],
+      table.hline(),
+      [$s_1$], [1], [1], [1], [0], [0], [3],
+      [$s_2$], [0], [1], [0], [1], [0], [2],
+      [$s_3$], [1/2], [1], [0], [0], [1], [2.5],
+      table.hline(),
+      [$w$], [-1], [-1], [0], [0], [0], [0],
+    )
+  )
+  
+  Pivot
+
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if x in (0,) and y in (2,) {
+          red.lighten(70%)
+      },
+      columns: range(7).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$s_3$], [$b$],
+      table.hline(),
+      [$s_1$], [1], [1], [1], [0], [0], [3],
+      [$x_2$], [0], [1], [0], [1], [0], [2],
+      [$s_3$], [1/2], [1], [0], [0], [1], [2.5],
+      table.hline(),
+      [$w$], [-1], [-1], [0], [0], [0], [0],
+    )
+  )
+
+  Gaussian Elimination
+
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if x in (2,) {
+          red.lighten(70%)
+      },
+      columns: range(7).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$s_3$], [$b$],
+      table.hline(),
+      [$s_1$], [1], [0], [1], [-1], [0], [1],
+      [$x_2$], [0], [1], [0], [1], [0], [2],
+      [$s_3$], [1/2], [0], [0], [-1], [1], [0.5],
+      table.hline(),
+      [$w$], [-1], [0], [0], [2], [0], [4],
+    )
+  )
+
+  $
+    x_1 = 0 \
+    x_2 = 2 \
+  $
+
+  #align(center)[
+    #cetz.canvas({
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
+        size: (7.5,7.5),
+        axis-style: "school-book",
+        x-tick-step: 1, 
+        y-tick-step: 1, 
+        x-label: [$x_1$],
+        y-label: [$x_2$],
+        x-min: 0, x-max: 3.1,
+        y-min: 0, y-max: 3,
+        axes: (
+          stroke: black,
+          tick: (stroke: black),
+        ),
+      {
+        plot.add-anchor("V_1", (0,0))
+
+        plot.add(
+          domain: (-1, 10),
+          x => 3 - x,
+          style: (stroke: (thickness: 1pt, paint: red)),
+          label: [$x_1 + x_2 lt.eq 3$],
+        )
+        plot.add(
+          domain: (-1, 10),
+          x => 2,
+          style: (stroke: (thickness: 1pt, paint: blue)),
+          label: [$x_2 lt.eq 2$],
+        )
+        plot.add(
+          domain: (-1, 10),
+          x => 2.5 - 1/2 * x,
+          style: (stroke: (thickness: 1pt, paint: green)),
+          label: [$1/2x_1 + x_2 lt.eq 2.5$],
+        )
+
+        plot.add(
+          ((0, 0),),
+          mark: "o",
+          mark-size: 0.2,
+          mark-style: (fill: red, stroke: 1pt),
+        )
+        
+        plot.annotate({
+          content((0.25, 0.25), text(size: 12pt, $V_0$))
+        })
+        
+        plot.add(
+          ((0, 2),),
+          mark: "o",
+          mark-size: 0.2,
+          mark-style: (fill: red, stroke: 1pt),
+        )
+        
+        plot.annotate({
+          content((0.25, 1.75), text(size: 12pt, $V_1$))
+        })
+
+        plot.add-fill-between(
+          domain: (0, 6),
+          x => {
+          if x <= 1 {
+              2
+            } else {
+              3 - x
+            }
+          },
+          x1 => 0,
+          style: (fill: rgb(200, 200, 255, 80), stroke: none),
+          label: none
+        )
+      }, name: "plot")
+    })
+  ]
+
+  Minimum Test
+
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if x in (1,) {
+          red.lighten(70%)
+      },
+      columns: range(7).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$s_3$], [$b$],
+      table.hline(),
+      [$s_1$], [1], [0], [1], [-1], [0], [1],
+      [$x_2$], [0], [1], [0], [1], [0], [2],
+      [$s_3$], [1/2], [0], [0], [-1], [1], [0.5],
+      table.hline(),
+      [$w$], [-1], [0], [0], [2], [0], [4],
+    )
+  )
+
+  Ratio Test
+
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if y in (1, 3) {
+          red.lighten(70%)
+      },
+      columns: range(7).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$s_3$], [$b$],
+      table.hline(),
+      [$s_1$], [1], [0], [1], [-1], [0], [1],
+      [$x_2$], [0], [1], [0], [1], [0], [2],
+      [$s_3$], [1/2], [0], [0], [-1], [1], [0.5],
+      table.hline(),
+      [$w$], [-1], [0], [0], [2], [0], [4],
+    )
+  )
+
+  $
+    cases(
+      reverse: #true,
+      gap: #1em,
+      1 / 1 &= 1,
+      0.5 / 0.5 &= 1,
+    ) "Tie"
+  $
+
+  Pivot
+
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if x in (0,) and y in (1,) {
+          red.lighten(70%)
+      },
+      columns: range(7).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$s_3$], [$b$],
+      table.hline(),
+      [$x_1$], [1], [0], [1], [-1], [0], [1],
+      [$x_2$], [0], [1], [0], [1], [0], [2],
+      [$s_3$], [1/2], [0], [0], [-1], [1], [0.5],
+      table.hline(),
+      [$w$], [-1], [0], [0], [2], [0], [4],
+    )
+  )
+
+  Gaussian Elimination
+
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if x in (1,) {
+          red.lighten(70%)
+      } else if x in (6,) and y in (3,) {
+        red.lighten(70%)
+      },
+      columns: range(7).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$s_3$], [$b$],
+      table.hline(),
+      [$x_1$], [1], [0], [1], [-1], [0], [1],
+      [$s_2$], [0], [1], [0], [0], [0], [2],
+      [$s_3$], [0], [0], [-1/2], [-1/2], [1], [0],
+      table.hline(),
+      [$w$], [0], [0], [1], [1], [0], [5],
+    )
+  )
+
+  If after elimination a basic variable has a value of 0, it indicates degeneracy.
+
+  #align(center)[
+    #cetz.canvas({
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
+        size: (7.5,7.5),
+        axis-style: "school-book",
+        x-tick-step: 1, 
+        y-tick-step: 1, 
+        x-label: [$x_1$],
+        y-label: [$x_2$],
+        x-min: 0, x-max: 3.1,
+        y-min: 0, y-max: 3,
+        axes: (
+          stroke: black,
+          tick: (stroke: black),
+        ),
+      {
+        plot.add-anchor("V_1", (0,0))
+
+        plot.add(
+          domain: (-1, 10),
+          x => 3 - x,
+          style: (stroke: (thickness: 1pt, paint: red)),
+          label: [$x_1 + x_2 lt.eq 3$],
+        )
+        plot.add(
+          domain: (-1, 10),
+          x => 2,
+          style: (stroke: (thickness: 1pt, paint: blue)),
+          label: [$x_2 lt.eq 2$],
+        )
+        plot.add(
+          domain: (-1, 10),
+          x => 2.5 - 1/2 * x,
+          style: (stroke: (thickness: 1pt, paint: green)),
+          label: [$1/2x_1 + x_2 lt.eq 2.5$],
+        )
+
+        plot.add(
+          ((0, 0),),
+          mark: "o",
+          mark-size: 0.2,
+          mark-style: (fill: red, stroke: 1pt),
+        )
+        
+        plot.annotate({
+          content((0.25, 0.25), text(size: 12pt, $V_0$))
+        })
+        
+        plot.add(
+          ((0, 2),),
+          mark: "o",
+          mark-size: 0.2,
+          mark-style: (fill: red, stroke: 1pt),
+        )
+        
+        plot.annotate({
+          content((0.25, 1.75), text(size: 12pt, $V_1$))
+        })
+        
+        plot.add(
+          ((1, 2),),
+          mark: "o",
+          mark-size: 0.2,
+          mark-style: (fill: red, stroke: 1pt),
+        )
+        
+        plot.annotate({
+          content((1.25, 2.25), text(size: 12pt, $V_2$))
+        })
+
+        plot.add-fill-between(
+          domain: (0, 6),
+          x => {
+          if x <= 1 {
+              2
+            } else {
+              3 - x
+            }
+          },
+          x1 => 0,
+          style: (fill: rgb(200, 200, 255, 80), stroke: none),
+          label: none
+        )
+      }, name: "plot")
+    })
+  ]
+
+  Degeneracy comes from redundant constraints
+
+  Bland's Rule: Choose the variable with the lowest index in the basis
+
+  - $x_1$ over $x_2$
+  - $x_2$ over $s_1$
+
+]
+
+#text(size: 16pt, weight: "semibold", [Unbounded Solution])
+
+When identifying the entering variable, look at its column in the tableau. If all entries in that column (above the objective row) are $lt.eq 0$, the problem is unbounded
+
+Can't perform ratio test $arrow.long$ no constraint limits the entering variable $arrow.long$ objective function increases without bound
+
+#eg[
+
+  Problem
+
+  $
+    max quad &x_1 + x_2 \
+    s.t. quad &x_1 - x_2 lt.eq 1 \
+    &x_1, x_2 gt.eq 0 \
+  $
+
+  Standard Form
+
+  $
+    max quad &z - x_1 - x_2 = 0 \
+    s.t. quad &x_1 - 2x_2 + s_1 = 1 \
+    &x_1, x_2, s_1 gt.eq 0
+  $
+
+  Initialize Tableau
+
+  #align(
+    center,
+    table(
+      columns: range(5).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x_2$], [$s_1$], [$b$],
+      table.hline(),
+      [$s_1$], [1], [-1], [1], [1],
+      table.hline(),
+      [$z$], [-1], [-1], [0], [0],
+    )
+  )
+
+  Minimum and Ratio Test
+
+   #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if x in (1,) or y in (1,) {
+          red.lighten(70%)
+      },
+      columns: range(5).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x_2$], [$s_1$], [$b$],
+      table.hline(),
+      [$s_1$], [1], [-1], [1], [1],
+      table.hline(),
+      [$z$], [-1], [-1], [0], [0],
+    )
+  )
+
+  Pivot
+
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if x in (0,) and y in (1,) {
+          red.lighten(70%)
+      },
+      columns: range(5).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x_2$], [$s_1$], [$b$],
+      table.hline(),
+      [$x_1$], [1], [-1], [1], [1],
+      table.hline(),
+      [$z$], [-1], [-1], [0], [0],
+    )
+  )
+
+  Gaussian Elimination
+
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if x in (1,) {
+          red.lighten(70%)
+      },
+      columns: range(5).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x_2$], [$s_1$], [$b$],
+      table.hline(),
+      [$x_1$], [1], [-1], [1], [1],
+      table.hline(),
+      [$z$], [0], [-2], [1], [1],
+    )
+  )
+
+  Minimum and Ratio Test
+
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if x in (2,) {
+          red.lighten(70%)
+      },
+      columns: range(5).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x_2$], [$s_1$], [$b$],
+      table.hline(),
+      [$x_1$], [1], [-1], [1], [1],
+      table.hline(),
+      [$z$], [0], [-2], [1], [1],
+    )
+  )
+
+  *Check for Optimality*
+
+  Objective row has -2 for $x_2$ → not optimal
+  
+  Entering variable: $x_2$ (most negative coefficient)
+
+  *Unboundedness Detection*
+  
+  Looking at the $x_2$ column:
+
+  Entry in constraint row: -1 (which is ≤ 0)
+  
+  All entries in $x_2$ column are ≤ 0
+
+  Conclusion: Cannot perform ratio test $arrow.long$ Problem is unbounded
+  
+]
+
+#text(size: 16pt, weight: "semibold", [Alternative Solutions])
+
+#eg[
+
+  Problem
+
+  $
+    max quad &2x_1 + 4x_2 \
+    s.t. quad &x_1 + x_2 gt.eq 3 \
+    &1/2x_1 + x_2 gt.eq 2.5 \
+    &x_1, x_2 gt.eq 0 \
+  $
+
+  Standard Form
+
+  $
+    z - 2x_1 - x_2 = 0 \
+    x_1 + x_2 + s_1 = 3 \
+    1/2 x_1 + x_2 + s_2 = 2.5 \
+    x_1, x_2, x_3 gt.eq 0 \
+  $
+
+  Initialize Tableau
+
+  #align(
+    center,
+    table(
+      columns: range(6).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$b$],
+      table.hline(),
+      [$s_1$], [1], [1], [1], [0], [3],
+      [$s_2$], [1/2], [1], [0], [1], [2.5],
+      table.hline(),
+      [$z$], [-2], [-4], [0], [0], [0],
+    )
+  )
+
+  Minimum Test
+
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if x in (2,) {
+          red.lighten(70%)
+      },
+      columns: range(6).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$b$],
+      table.hline(),
+      [$s_1$], [1], [1], [1], [0], [3],
+      [$s_2$], [1/2], [1], [0], [1], [2.5],
+      table.hline(),
+      [$z$], [-2], [-4], [0], [0], [0],
+    )
+  )
+
+  Ratio Test
+
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if y in (2,) {
+          red.lighten(70%)
+      },
+      columns: range(6).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$b$],
+      table.hline(),
+      [$s_1$], [1], [1], [1], [0], [3],
+      [$s_2$], [1/2], [1], [0], [1], [2.5],
+      table.hline(),
+      [$z$], [-2], [-4], [0], [0], [0],
+    )
+  )
+
+  Pivot
+
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if x in (0,) and y in (2,) {
+          red.lighten(70%)
+      },
+      columns: range(6).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$b$],
+      table.hline(),
+      [$s_1$], [1], [1], [1], [0], [3],
+      [$x_2$], [1/2], [1], [0], [1], [2.5],
+      table.hline(),
+      [$z$], [-2], [-4], [0], [0], [0],
+    )
+  )
+
+  Gaussian Elimination
+
+  #align(
+    center,
+    table(
+      fill: (x, y) =>
+        if x in (1,) {
+          red.lighten(70%)
+      },
+      columns: range(6).map(n => auto),
+      inset: (x: 0.5em, y: 0.5em),
+      align: horizon,
+      stroke: none,
+      [Basis], [$x_1$], [$x_2$], [$s_1$], [$s_2$], [$b$],
+      table.hline(),
+      [$s_1$], [1/2], [0], [1], [-1], [0.5],
+      [$x_2$], [1/2], [1], [0], [1], [2.5],
+      table.hline(),
+      [$z$], [0], [0], [0], [4], [10],
+    )
+  )
+
+  In a maximization or minimization linear programming problem, if there is a 0 in the $z$ row (objective function row) of the final (optimal) simplex tableau in a non-basic column (i.e. a variable not currently in the solution), then there are multiple optimal solutions.
+
+  #align(center)[
+    #cetz.canvas({
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
+        size: (7.5,7.5),
+        axis-style: "school-book",
+        x-tick-step: 1, 
+        y-tick-step: 1, 
+        x-label: [$x_1$],
+        y-label: [$x_2$],
+        x-min: 0, x-max: 3.1,
+        y-min: 0, y-max: 3,
+        axes: (
+          stroke: black,
+          tick: (stroke: black),
+        ),
+      {
+        plot.add-anchor("V_1", (0,0))
+
+        plot.add(
+          domain: (-1, 10),
+          x => 2.5 - 1/2 * x,
+          style: (stroke: (thickness: 1pt, paint: red)),
+          label: [$x_1 + x_2 lt.eq 3$],
+        )
+
+        plot.add(
+          domain: (-1, 10),
+          x => 3 - x,
+          style: (stroke: (thickness: 1pt, paint: blue)),
+          label: [$1/2 x_1 + x_2 lt.eq 2.5$],
+        )
+        
+        plot.add(
+          domain: (-1, 10),
+          x => (5 - 2*x) / 4,
+          style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
+        )
+
+        plot.add(
+          domain: (-1, 10),
+          x => (8 - 2*x) / 4,
+          style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
+        )
+        
+        plot.add(
+          domain: (-1, 10),
+          x => (9.5 - 2*x) / 4,
+          style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
+        )
+
+        plot.add(
+          domain: (-1, 10),
+          x => (10 - 2*x) / 4,
+          style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
+        )
+
+        plot.add-fill-between(
+          domain: (0, 6),
+          x => {
+          if x <= 1 {
+              2.5 - 1/2 * x
+            } else {
+              3 - x
+            }
+          },
+          x1 => 0,
+          style: (fill: rgb(200, 200, 255, 80), stroke: none),
+          label: none
+        )
+      }, name: "plot")
+    })
+  ]
+
+]
+
+$
+  
+$
 
 
 #line(length: 100%)
