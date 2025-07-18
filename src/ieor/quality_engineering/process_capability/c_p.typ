@@ -17,20 +17,25 @@ $
 C_p = ("USL" - "LSL") / (6 sigma)
 $
 
-- $C_p > 1$: The process variation is smaller than the specification range (good capability).
-- $C_p = 1$: The process variation matches the specification range (barely acceptable).
-- $C_p < 1$: The process variation exceeds the specification range (poor capability).
-
 *Assumption*: Process is *centered* within the specification limits
 
+#align(center)[
+  #table(
+    columns: 3,
+    inset: 10pt,
+    stroke: none,
+    align: left,
+    [*$C_p$ Value*], [*Meaning*], [*Quality Impact*],
+    table.hline(),
+    [$C_p < 1$], [Process variation\ exceeds specs], [Defects likely,\ even if centered],
+    [$C_p = 1$], [Process barely\ fits within specs], [OK if perfectly\ centered],
+    [$C_p gt 1$], [Process well\ within specs], [Robust,\ fewer defects],
+    [$C_p = 2$], [Six Sigma level], [World-class\ performance],
+    table.hline(),
+  )
+]
+
 #eg[
-
-  A manufacturing process produces metal rods with a target diameter of 10.0 mm. The specification limits are:
-  - Lower Specification Limit (LSL): 9.7 mm
-  - Upper Specification Limit (USL): 10.3 mm
-
-  Let's analyze three different processes with varying levels of capability.
-
   #let n_samples = 1000
 
   // Process 1: Good capability (Cp ≈ 1.5)
@@ -59,6 +64,14 @@ $
   #let stats2 = calc_cp(process2)  
   #let stats3 = calc_cp(process3)
 
+  A manufacturing process produces metal rods with a target diameter of 10.0 mm. The specification limits are:
+  - Target: #target mm
+  - Lower Specification Limit (LSL): #lsl mm
+  - Upper Specification Limit (USL): #usl mm
+  - Specification Width (Tolerance): #calc.round(tolerance, digits: 3) mm
+
+  Let's analyze three different processes with varying levels of capability.
+
   #align(center)[
     #table(
       columns: 5,
@@ -67,38 +80,77 @@ $
       align: center,
       [*Process*], [*Mean*], [*Std Dev*], [*$C_p$*], [*Assessment*],
       table.hline(),
-      [Process 1], [#calc.round(stats1.mean, digits: 3)], [#calc.round(stats1.std_dev, digits: 3)], [#calc.round(stats1.cp, digits: 2)], [Good],
-      [Process 2], [#calc.round(stats2.mean, digits: 3)], [#calc.round(stats2.std_dev, digits: 3)], [#calc.round(stats2.cp, digits: 2)], [Marginal],
-      [Process 3], [#calc.round(stats3.mean, digits: 3)], [#calc.round(stats3.std_dev, digits: 3)], [#calc.round(stats3.cp, digits: 2)], [Poor],
+      [Process 1], [#calc.round(stats1.mean, digits: 3)], [#calc.round(stats1.std_dev, digits: 3)], [#calc.round(stats1.cp, digits: 3)], [Good],
+      [Process 2], [#calc.round(stats2.mean, digits: 3)], [#calc.round(stats2.std_dev, digits: 3)], [#calc.round(stats2.cp, digits: 3)], [Marginal],
+      [Process 3], [#calc.round(stats3.mean, digits: 3)], [#calc.round(stats3.std_dev, digits: 3)], [#calc.round(stats3.cp, digits: 3)], [Poor],
+      table.hline(),
+    )
+  ]
+  
+  #align(center)[
+    #table(
+      columns: 4,
+      inset: 10pt,
+      stroke: none,
+      align: center,
+      [*Process 1*], [*Process 2*], [*Process 3*], [*Six Sigma*],
+      table.hline(),
+      [
+        $ 
+          C_p 
+          &= ("USL" - "LSL") / (6 sigma) \
+          \
+          &= (#usl - #lsl) / (6 times #calc.round(stats1.std_dev, digits: 3)) \ 
+          \
+          &= (#calc.round(tolerance, digits: 3)) / (#(calc.round(6 * stats1.std_dev, digits: 1))) \
+          \
+          &= #calc.round(stats1.cp, digits: 3)
+        $
+      ], 
+      [
+        $ 
+          C_p 
+          &= ("USL" - "LSL") / (6 sigma) \
+          \
+          &= (#usl - #lsl) / (6 times #calc.round(stats2.std_dev, digits: 3)) \ 
+          \
+          &= (#calc.round(tolerance, digits: 3)) / (#(calc.round(6 * stats2.std_dev, digits: 1))) \
+          \
+          &= #calc.round(stats2.cp, digits: 3)
+        $
+      ], 
+      [
+        $ 
+          C_p 
+          &= ("USL" - "LSL") / (6 sigma) \
+          \
+          &= (#usl - #lsl) / (6 times #calc.round(stats3.std_dev, digits: 3)) \ 
+          \
+          &= (#calc.round(tolerance, digits: 3)) / (#(calc.round(6 * stats3.std_dev, digits: 1))) \
+          \
+          &= #calc.round(stats3.cp, digits: 3)
+        $
+      ],
+      [
+        $ 
+          C_p 
+          &= ("USL" - "LSL") / (6 sigma) \
+          \
+          &= (#usl - #lsl) / (6 times 0.05) \ 
+          \
+          &= (#calc.round(tolerance, digits: 3)) / (0.30) \
+          \
+          &= 2
+        $
+      ],
       table.hline(),
     )
   ]
 
-  #let create_histogram(data, bins: 20) = {
-    let min_val = data.fold(data.first(), calc.min)
-    let max_val = data.fold(data.first(), calc.max)
-    let bin_width = (max_val - min_val) / bins
-    
-    let hist = range(bins).map(i => 0)
-    
-    
-    for val in data {
-      let bin_idx = calc.min(bins - 1, calc.floor((val - min_val) / bin_width))
-      hist.at(bin_idx) += 1
-    }
-    
-    let max_count = hist.fold(0, calc.max)
-    let scale_factor = 2.0 / max_count
-
-    let bin_centers = range(bins).map(i => min_val + (i + 0.5) * bin_width)
-
-    
-    bin_centers.zip(hist)
-  }
 
   #align(center)[
     #cetz.canvas(
-      length: 64pt,
+      length: 72pt,
       {
         import cetz.draw: *
         import cetz-plot: *
@@ -116,6 +168,28 @@ $
         let bins = 30
         let x-min = 9
         let x-max = 11
+
+        let create_histogram(data, bins: 20) = {
+          let min_val = data.fold(data.first(), calc.min)
+          let max_val = data.fold(data.first(), calc.max)
+          let bin_width = (max_val - min_val) / bins
+          
+          let hist = range(bins).map(i => 0)
+          
+          
+          for val in data {
+            let bin_idx = calc.min(bins - 1, calc.floor((val - min_val) / bin_width))
+            hist.at(bin_idx) += 1
+          }
+          
+          let max_count = hist.fold(0, calc.max)
+          let scale_factor = 2.0 / max_count
+
+          let bin_centers = range(bins).map(i => min_val + (i + 0.5) * bin_width)
+
+          
+          bin_centers.zip(hist)
+        }
 
         plot.plot(
           name: "g1",
@@ -219,45 +293,42 @@ $
       },
     )
   ]
+
+  *Step 3:* Interpretation
+  
+  Higher $C_p$ means fewer defects and better process quality. and lower defects per million opportunities (DPMO):
+
+  - *Six Sigma Process* ($C_p = 2.0$)
+
+    - Within specs: $99.9999998%$
+
+    - Defective: $0.0000002%$
+
+    - DPMO: $0.002$
+
+  - *Process 1* ($C_p = #calc.round(stats1.cp, digits: 3)$)
+
+    - Within specs: $96.64%$
+
+    - Defective: $3.36%$
+
+    - DPMO: $33600$
+
+  - *Process 2* ($C_p = #calc.round(stats2.cp, digits: 3)$)
+
+    - Within specs: $84.13%$
+
+    - Defective: $15.87%$
+
+    - DPMO: $159700$
+
+  - *Process 3* ($C_p = #calc.round(stats3.cp, digits: 3)$)
+
+    - Within specs: $50.00%$
+
+    - Defective: $50.00%$
+
+    - DPMO: $500000$
+
 ]
 
-#eg[
-  Suppose a company manufactures metal rods, and the specification limits for the diameter of the rods are:
-
-  - Upper Specification Limit (*USL*): 10.2 mm
-  - Lower Specification Limit (*LSL*): 9.8 mm
-
-  The process has a standard deviation *$sigma$* of 0.05 mm.
-
-  *Step 1*: Determine the Specification Width
-
-  The specification width is the difference between the USL and LSL.
-
-  $ "Specification Width" = "USL" - "LSL" = 10.2 "mm" - 9.8 "mm" $
-
-  *Step 2*: Calculate the Process Capability Index $C_p$
-
-  The formula for $C_p$ is:
-
-  $ C_p = "Specification Width" / (6 sigma) = ("USL" - "LSL") / (6 sigma) $
-
-  Substitute the values:
-
-  $ C_p = (0.4 "mm") / (6 times 0.05 "mm") = (0.4 "mm") / (0.3 "mm") = 1.33 $
-
-  Interpretation:
-
-  $C_p$ = 1.33 means the process spread (6 $sigma$) fits 1.33 times within the tolerance range (the distance between the Upper Specification Limit and Lower Specification Limit.
-
-  - $C_p$ = 1.00: Process variation fits exactly within the specification limits. 99.73% of the output will be within specifications *if the process is centered* (3 sigma process).
-  - $C_p > 1.00$: Process variation is narrower than the specification limits. The higher the $C_p$, the more capable the process is, meaning it can produce parts within the tolerance more consistently.
-  - $C_p < 1$: Process variation is wider than the specification limits. Significant portion of the output will fall outside the specification limits.
-
-  Limitations:
-
-  Since *$C_p$ does not account for the centering of the process*, it may give a false sense of security if the process mean is off-center (*see $C_(p k)$*).
-
-  Use:
-
-  When you are interested in understanding the *potential capability* of a process under ideal conditions, typically in a short-term study where the process is stable and controlled.
-]
