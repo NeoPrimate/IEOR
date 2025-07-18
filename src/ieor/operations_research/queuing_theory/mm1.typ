@@ -1,5 +1,13 @@
-#import "../../../utils/code.typ": code
+#import "@preview/cetz:0.3.4"
+#import "@preview/cetz-plot:0.1.1"
+#import "@preview/fletcher:0.5.7" as fletcher: diagram, node, edge
+#import "@preview/suiji:0.4.0": gen-rng, uniform
+
+
+
 #import "../../../utils/examples.typ": eg
+#import "../../../utils/code.typ": code
+#import "../../../utils/color_math.typ": colorMath
 
 
 == M/M/1
@@ -8,7 +16,155 @@
 
 - Service rate ($mu$): Average number of customers served per unit of time
 
-#figure(image("../../../vis/exponential_interarrival_times_poisson_number_arrivals.png", width: 80%))
+// Common rate parameter - this links the two distributions
+#let λ = 2
+#let time_period = 2  // Time window for counting arrivals
+
+// Poisson distribution: number of arrivals in time period t
+#let poisson = (lambda_t, k) => (calc.pow(lambda_t, k) * calc.exp(-lambda_t)) / calc.fact(k)
+
+// For Poisson: λt where t is the time period
+#let lambda_t = λ * time_period
+#let max_k = 12
+#let k_vals = range(0, max_k + 1)
+#let poisson_probs = k_vals.map(k => poisson(lambda_t, k))
+
+// Normalize (though they should already sum to ~1)
+#let sum_poisson = poisson_probs.sum()
+#let poisson_probs = poisson_probs.map(p => p / sum_poisson)
+#let max_poisson = calc.max(..poisson_probs)
+
+// Exponential distribution: inter-arrival times
+#let exponential_pdf = (lambda, t) => lambda * calc.exp(-lambda * t)
+
+// Generate time values for continuous plot
+#let max_t = 6
+#let t_step = 0.1
+#let t_vals = range(0, int(max_t / t_step) + 1).map(i => i * t_step)
+#let exp_probs = t_vals.map(t => exponential_pdf(λ, t))
+#let max_exp = calc.max(..exp_probs)
+
+#let pois_dist = cetz.canvas({
+  import cetz.draw: *
+  import cetz-plot: *
+  
+  set-style(
+    axes: (
+      x: (stroke: 0pt),
+      tick: (stroke: 0pt),
+      y: (stroke: 0pt, tick: (label: (offset: 1em))),
+      padding: 0pt,
+      shared-zero: false
+    )
+  )
+  
+  plot.plot(
+    size: (5, 5),
+    axis-style: "school-book",
+    x-tick-step: none,
+    y-tick-step: max_poisson / 5,
+    x-label: text(size: 0.75em)[Number of\ Arrivals ($k$)],
+    y-label: text(size: 0.75em)[Probability\ $P(X = k)$],
+    x-ticks: k_vals.enumerate().map(((i, k)) => (i + 0.5, str(k))),
+    x-min: 0,
+    x-max: k_vals.len() * 1.1,
+    y-min: 0,
+    y-max: max_poisson * 1.1,
+    axes: (
+      stroke: black,
+      tick: (stroke: black),
+    ),
+    {
+      plot.add(domain: (0, 0), x => 0)
+      for (i, prob) in poisson_probs.enumerate() {
+        plot.annotate({
+          rect((i + 0.1, 0), (i + 0.9, prob), fill: blue.lighten(75%), stroke: blue)
+        })
+      }
+      
+    }
+  )
+})
+
+#let exp_dist = cetz.canvas({
+  import cetz.draw: *
+  import cetz-plot: *
+
+  set-style(
+    axes: (
+      x: (stroke: 0pt),
+      tick: (stroke: 0pt),
+      y: (stroke: 0pt, tick: (label: (offset: 1em))),
+      padding: 0pt,
+      shared-zero: false
+    )
+  )
+  
+  plot.plot(
+    size: (5, 5),
+    axis-style: "school-book",
+    x-tick-step: 1,
+    y-tick-step: max_exp / 5,
+    x-label: text(size: 0.75em)[Time\ Between\ Arrivals ($t$)],
+    y-label: text(size: 0.75em)[Probability\ Density $f(t)$],
+    x-min: 0,
+    x-max: max_t * 1.1,
+    y-min: 0,
+    y-max: max_exp * 1.1,
+    axes: (
+      stroke: black,
+      tick: (stroke: black),
+    ),
+    {
+      // Plot the exponential curve
+      plot.add(
+        t_vals.zip(exp_probs),
+        style: (stroke: red + 2pt)
+      )
+      
+      // Fill area under curve for visualization
+      let fill_points = ((0, 0),) + t_vals.zip(exp_probs) + ((max_t, 0),)
+      plot.annotate({
+        line(..fill_points, fill: red.lighten(85%), stroke: none)
+      })
+    }
+  )
+})
+
+#table(
+  columns: (auto, auto),
+  inset: 10pt,
+  align: horizon,
+  stroke: none,
+  [#exp_dist], [#pois_dist],
+  [
+    #align(center)[
+      #text(10pt)[*Exponential Distribution:\ Inter-arrival Times*]
+    
+      #text(10pt)[Rate parameter λ = #λ (same as above)]
+    ]
+  ], 
+  [
+    #align(center)[
+      #text(10pt)[*Poisson Distribution:\ Number of Arrivals in Time Period $t = #time_period$*]
+      
+      #text(10pt)[Rate parameter $lambda = #λ$, so $lambda t = #lambda_t$]
+    ]
+  ],
+)
+
+#text(14pt)[*Key Relationship*]
+
+Both distributions share the same rate parameter $lambda$ = #λ
+
+- If inter-arrival $times ~ "Exponential"(lambda)$, then arrivals in time $t ~ "Poisson"(lambda t)$
+- Mean inter-arrival time = $1/lambda$ = #calc.round(1/λ, digits: 2)
+- Mean arrivals per unit time = $lambda$ = #λ
+- Mean arrivals in time period #time_period = $lambda$t = #lambda_t
+
+
+
+
 
 1. Utilization ($rho$)
 

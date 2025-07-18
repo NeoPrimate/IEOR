@@ -1,5 +1,6 @@
 #import "@preview/cetz:0.3.4"
 #import "@preview/cetz-plot:0.1.1"
+#import "@preview/cetz:0.4.0": canvas, draw, tree
 #import "@preview/fletcher:0.5.7" as fletcher: diagram, node, edge
 
 
@@ -541,73 +542,6 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
 
   #linebreak()
 
-  #align(center)[
-    #cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (5,5),
-        axis-style: "school-book",
-        x-tick-step: 1, 
-        y-tick-step: 1, 
-        x-label: [$x_1$],
-        y-label: [$x_2$],
-        x-min: 0, x-max: 3,
-        y-min: 0, y-max: 3,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-      {
-        plot.add-anchor("V_1", (0,0))
-
-        plot.add(
-          domain: (-1, 10),
-          x => 6 - 2*x,
-          style: (stroke: (thickness: 1pt, paint: red)),
-          label: $2x_1 + x_2 lt.eq 6$
-        )
-
-        plot.add(
-          domain: (-1, 5),
-          x => (9 - 2*x) / 3,
-          style: (stroke: (thickness: 1pt, paint: blue)),
-          label: $2x_1 + 3x_2 lt.eq 9$
-        )
-
-        plot.add(
-          domain: (-1, 10),
-          x => ((51 / 4) -3 * x) / 4,
-          style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-          label: $z = 3x_1 + 4x_2$
-        )
-
-        plot.add-fill-between(
-          domain: (0, 6),
-          x => {
-            if x <= 11/5 {
-              (9 - 2*x) / 3
-            } else {
-              6 - 2*x
-            }
-          },
-          x1 => 0,
-          style: (fill: rgb(200, 200, 255, 80), stroke: none),
-          label: none
-        )
-
-        plot.add(
-          ((9/4, 3/2),),
-          mark: "o",
-          mark-size: 0.2,
-          mark-style: (fill: red, stroke: 1pt),
-        )
-
-      }, name: "plot")
-    })
-  ]
-
   $
     &max& quad z = 3&x_1& quad &+& quad 4&x_2& \
     &s.t.& quad 2&x_1& quad &+& quad &x_2& quad lt.eq quad 6 \
@@ -623,293 +557,6 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
 
     z = 12.75
   $
-
-  #align(center)[
-    #cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (5,5),
-        axis-style: "school-book",
-        x-tick-step: 1, 
-        y-tick-step: 1, 
-        x-label: [$x_1$],
-        y-label: [$x_2$],
-        x-min: 0, x-max: 3,
-        y-min: 0, y-max: 3,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-      {
-        plot.add-anchor("V_1", (0,0))
-
-        plot.add(
-          domain: (-1, 10),
-          x => 6 - 2*x,
-          style: (stroke: (thickness: 1pt, paint: red)),
-          // label: $2x_1 + x_2 lt.eq 6$
-        )
-
-        plot.add(
-          domain: (-1, 5),
-          x => (9 - 2*x) / 3,
-          style: (stroke: (thickness: 1pt, paint: blue)),
-          // label: $2x_1 + 3x_2 lt.eq 9$
-        )
-
-        // plot.add(
-        //   domain: (-1, 10),
-        //   x => ((51 / 4) -3 * x) / 4,
-        //   style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-        // )
-
-        plot.add(
-          domain: (-1, 5),
-          x => 1,
-          style: (stroke: (thickness: 1pt, paint: green)),
-          // label: $x_2 lt.eq 1$
-        )
-
-        plot.add-fill-between(
-          domain: (0, 6),
-          x => {
-            if x <= 5/2 {
-              1
-            } else {
-              6 - 2*x
-            }
-          },
-          x1 => 0,
-          style: (fill: rgb(200, 200, 255, 80), stroke: none),
-          label: none
-        )
-
-        plot.add(
-          ((5/2, 1),),
-          mark: "o",
-          mark-size: 0.2,
-          mark-style: (fill: red, stroke: 1pt),
-        )
-        
-
-      }, name: "plot")
-    })
-  ]
-
-  #align(center)[
-    #cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (5,5),
-        axis-style: "school-book",
-        x-tick-step: 1, 
-        y-tick-step: 1, 
-        x-label: [$x_1$],
-        y-label: [$x_2$],
-        x-min: 0, x-max: 3,
-        y-min: 0, y-max: 3,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-      {
-        plot.add-anchor("V_1", (0,0))
-
-        plot.add(
-          domain: (-1, 10),
-          x => 6 - 2*x,
-          style: (stroke: (thickness: 1pt, paint: red)),
-          // label: $2x_1 + x_2 lt.eq 6$
-        )
-
-        plot.add(
-          domain: (-1, 5),
-          x => (9 - 2*x) / 3,
-          style: (stroke: (thickness: 1pt, paint: blue)),
-          // label: $2x_1 + 3x_2 lt.eq 9$
-        )
-
-        // plot.add(
-        //   domain: (-1, 10),
-        //   x => ((51 / 4) -3 * x) / 4,
-        //   style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-        // )
-
-        plot.add(
-          domain: (-1, 5),
-          x => 2,
-          style: (stroke: (thickness: 1pt, paint: green)),
-          // label: $x_2 gt.eq 2$
-        )
-
-        plot.add-fill-between(
-          domain: (0, 6),
-          x => {
-            if x <= 3/2 {
-              (9 - 2*x) / 3
-            } else {
-              2
-            }
-          },
-          x1 => 2,
-          style: (fill: rgb(200, 200, 255, 80), stroke: none),
-          label: none
-        )
-
-        plot.add(
-          ((3/2, 2),),
-          mark: "o",
-          mark-size: 0.2,
-          mark-style: (fill: red, stroke: 1pt),
-        )
-
-      }, name: "plot")
-    })
-  ]
-
-  #align(center)[
-    #cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (5,5),
-        axis-style: "school-book",
-        x-tick-step: 1, 
-        y-tick-step: 1, 
-        x-label: [$x_1$],
-        y-label: [$x_2$],
-        x-min: 0, x-max: 3,
-        y-min: 0, y-max: 3,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-      {
-        plot.add-anchor("V_1", (0,0))
-
-        plot.add(
-          domain: (-1, 10),
-          x => 6 - 2*x,
-          style: (stroke: (thickness: 1pt, paint: red)),
-          // label: $2x_1 + x_2 lt.eq 6$
-        )
-
-        plot.add(
-          domain: (-1, 5),
-          x => (9 - 2*x) / 3,
-          style: (stroke: (thickness: 1pt, paint: blue)),
-          // label: $2x_1 + 3x_2 lt.eq 9$
-        )
-
-        // plot.add(
-        //   domain: (-1, 10),
-        //   x => ((51 / 4) -3 * x) / 4,
-        //   style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-        // )
-
-        plot.add-vline(
-          1,
-          style: (stroke: (thickness: 1pt, paint: purple)),
-        ) 
-        
-
-        plot.add(
-          domain: (-1, 5),
-          x => 2,
-          style: (stroke: (thickness: 1pt, paint: green)),
-          // label: $x_2 gt.eq 2$
-        )
-
-        plot.add-fill-between(
-          domain: (0, 6),
-          x => {
-            if x <= 1 {
-              (9 - 2*x) / 3
-            } else {
-              2
-            }
-          },
-          x1 => 2,
-          style: (fill: rgb(200, 200, 255, 80), stroke: none),
-          label: none
-        )
-
-        plot.add(
-          ((1, 7/3),),
-          mark: "o",
-          mark-size: 0.2,
-          mark-style: (fill: red, stroke: 1pt),
-        )
-
-      }, name: "plot")
-    })
-  ]
-
-  
-
-  #align(center)[
-    #cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (5,5),
-        axis-style: "school-book",
-        x-tick-step: 1, 
-        y-tick-step: 1, 
-        x-label: [$x_1$],
-        y-label: [$x_2$],
-        x-min: 0, x-max: 3,
-        y-min: 0, y-max: 3,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-      {
-        plot.add-anchor("V_1", (0,0))
-
-        plot.add(
-          domain: (-1, 10),
-          x => 6 - 2*x,
-          style: (stroke: (thickness: 1pt, paint: red)),
-          // label: $2x_1 + x_2 lt.eq 6$
-        )
-
-        plot.add(
-          domain: (-1, 5),
-          x => (9 - 2*x) / 3,
-          style: (stroke: (thickness: 1pt, paint: blue)),
-          // label: $2x_1 + 3x_2 lt.eq 9$
-        )
-
-        plot.add(
-          domain: (-1, 10),
-          x => ((51 / 4) -3 * x) / 4,
-          style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-        )
-
-        plot.add-vline(
-          2,
-          style: (stroke: (thickness: 1pt, paint: purple)),
-        ) 
-        
-
-        plot.add(
-          domain: (-1, 5),
-          x => 2,
-          style: (stroke: (thickness: 1pt, paint: green)),
-        )
-
-      }, name: "plot")
-    })
-  ]
-
-  #import "@preview/cetz:0.4.0": canvas, draw, tree
 
 #let n0 = cetz.canvas({
       import cetz.draw: *
@@ -1232,6 +879,174 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
       }, name: "plot")
     })
 
+#let n30 = cetz.canvas({
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
+        size: (2,2),
+        axis-style: "school-book",
+        x-tick-step: 1, 
+        y-tick-step: 1, 
+        x-label: [$x_1$],
+        y-label: [$x_2$],
+        x-min: 0, x-max: 3,
+        y-min: 0, y-max: 3,
+        axes: (
+          stroke: black,
+          tick: (stroke: black),
+        ),
+      {
+        plot.add-anchor("V_1", (0,0))
+
+        plot.add(
+          domain: (-1, 10),
+          x => 6 - 2*x,
+          style: (stroke: (thickness: 1pt, paint: red)),
+          // label: $2x_1 + x_2 lt.eq 6$
+        )
+
+        plot.add(
+          domain: (-1, 5),
+          x => (9 - 2*x) / 3,
+          style: (stroke: (thickness: 1pt, paint: blue)),
+          // label: $2x_1 + 3x_2 lt.eq 9$
+        )
+
+        plot.add(
+          domain: (-1, 10),
+          x => (11 -3 * x) / 4,
+          style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
+        )
+
+        plot.add-vline(
+          1,
+          style: (stroke: (thickness: 1pt, paint: purple)),
+        ) 
+        
+
+        plot.add(
+          domain: (-1, 5),
+          x => 2,
+          style: (stroke: (thickness: 1pt, paint: green)),
+          // label: $x_2 gt.eq 2$
+        )
+        
+        plot.add(
+          domain: (-1, 5),
+          x => 2.1,
+          style: (stroke: (thickness: 1pt, paint: yellow)),
+          // label: $x_2 gt.eq 2$
+        )
+
+        // plot.add-fill-between(
+        //   domain: (0, 6),
+        //   x => {
+        //     if x <= 1 {
+        //       2
+        //     } else {
+        //       0
+        //     }
+        //   },
+        //   x1 => 2,
+        //   style: (fill: rgb(200, 200, 255, 80), stroke: none),
+        //   label: none
+        // )
+
+        plot.add(
+          ((1, 2),),
+          mark: "o",
+          mark-size: 0.2,
+          mark-style: (fill: red, stroke: 1pt),
+        )
+
+      }, name: "plot")
+    })
+
+#let n31 = cetz.canvas({
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
+        size: (2,2),
+        axis-style: "school-book",
+        x-tick-step: 1, 
+        y-tick-step: 1, 
+        x-label: [$x_1$],
+        y-label: [$x_2$],
+        x-min: 0, x-max: 3,
+        y-min: 0, y-max: 3,
+        axes: (
+          stroke: black,
+          tick: (stroke: black),
+        ),
+      {
+        plot.add-anchor("V_1", (0,0))
+
+        plot.add(
+          domain: (-1, 10),
+          x => 6 - 2*x,
+          style: (stroke: (thickness: 1pt, paint: red)),
+          // label: $2x_1 + x_2 lt.eq 6$
+        )
+
+        plot.add(
+          domain: (-1, 5),
+          x => (9 - 2*x) / 3,
+          style: (stroke: (thickness: 1pt, paint: blue)),
+          // label: $2x_1 + 3x_2 lt.eq 9$
+        )
+
+        plot.add(
+          domain: (-1, 10),
+          x => (11 -3 * x) / 4,
+          style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
+        )
+
+        plot.add-vline(
+          1,
+          style: (stroke: (thickness: 1pt, paint: purple)),
+        ) 
+        
+
+        plot.add(
+          domain: (-1, 5),
+          x => 2,
+          style: (stroke: (thickness: 1pt, paint: green)),
+          // label: $x_2 gt.eq 2$
+        )
+        
+        plot.add(
+          domain: (-1, 5),
+          x => 3,
+          style: (stroke: (thickness: 1pt, paint: yellow)),
+          // label: $x_2 gt.eq 2$
+        )
+
+        // plot.add-fill-between(
+        //   domain: (0, 6),
+        //   x => {
+        //     if x <= 1 {
+        //       2
+        //     } else {
+        //       0
+        //     }
+        //   },
+        //   x1 => 2,
+        //   style: (fill: rgb(200, 200, 255, 80), stroke: none),
+        //   label: none
+        // )
+
+        plot.add(
+          ((1, 2),),
+          mark: "o",
+          mark-size: 0.2,
+          mark-style: (fill: red, stroke: 1pt),
+        )
+
+      }, name: "plot")
+    })
+    
 #linebreak()
 #linebreak()
 #linebreak()
@@ -1277,8 +1092,8 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
       node(pos: (0,2), label: {
         place(horizon+left, dy: 0mm, dx: -5em,
           $
-            &x = (3/2, 2) \
-            &z = 12.5 \
+            &x = (1, 7/3) \
+            &z = 12.33 \
           $
         )
         n20
@@ -1291,25 +1106,25 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
         n21
       }, stroke: 0em, radius: 6em, name: <n21>),
       
-      // node(pos: (2,0), label: {
-      //   place(top+center, dy: 0mm, dx: 7mm, $80$)
-      //   $4$
-      // }, stroke: 0.1em, radius: 1em, name: <4>),
+      node(pos: (-0.5,3), label: {
+        place(horizon+left, dy: 0mm, dx: -4em,
+          $
+            &x = (1, 2) \
+            &z = 11 \
+          $
+        )
+        n30
+      }, stroke: 0em, radius: 6em, name: <n30>),
       
-      // node(pos: (1,1.5), label: {
-      //   place(bottom+center, dy: 4mm, $-300$)
-      //   $7$
-      // }, stroke: 0.1em, radius: 1em, name: <7>),
-      
-      // node(pos: (1.5,-1.5), label: {
-      //   place(top+center, dy: -7mm, $-200$)
-      //   $1$
-      // }, stroke: 0.1em, radius: 1em, name: <1>),
-      
-      // node(pos: (0,-1.5), label: {
-      //   place(top+center, dy: -4mm, $100$)
-      //   $2$
-      // }, stroke: 0.1em, radius: 1em, name: <2>),
+      node(pos: (0.5,3), label: {
+        place(horizon+right, dy: 0mm, dx: 3em,
+          $
+            &x = (0, 3) \
+            &z = 12 \
+          $
+        )
+        n31
+      }, stroke: 0em, radius: 6em, name: <n31>),
       
       edge(<n0>, <n10>, "-|>", label: $x_2 lt.eq 1$, label-side: center, bend: 0deg, shift: 0pt, label-fill: luma(230)),
       
@@ -1318,6 +1133,10 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
       edge(<n11>, <n20>, "-|>", label: $x_1 lt.eq 1$, label-side: center, bend: 0deg, shift: 0pt, label-fill: luma(230)),
       
       edge(<n11>, <n21>, "-|>", label: $x_1 gt.eq 2$, label-side: center, bend: 0deg, shift: 0pt, label-fill: luma(230)),
+      
+      edge(<n20>, <n30>, "-|>", label: $x_2 lt.eq 2$, label-side: center, bend: 0deg, shift: 0pt, label-fill: luma(230)),
+      
+      edge(<n20>, <n31>, "-|>", label: $x_2 gt.eq 3$, label-side: center, bend: 0deg, shift: 0pt, label-fill: luma(230)),
       
     )
 ]

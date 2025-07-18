@@ -1,5 +1,15 @@
-#import "../utils/code.typ": code
+#import "@preview/cetz:0.3.4"
+#import "@preview/cetz-plot:0.1.1"
+#import "@preview/fletcher:0.5.7" as fletcher: diagram, node, edge
+
+
 #import "../utils/examples.typ": eg
+#import "../utils/code.typ": code
+#import "../utils/color_math.typ": colorMath
+
+#set math.vec(delim: "[")
+#set math.mat(delim: "[")
+
 
 == Solving Systems of Linear Equations
 
@@ -71,22 +81,134 @@ Whether the equations in the system provide unique and non-redundant information
   6 x + 4 y = 12 quad quad ("Equation" 2) \
   $
 
-  #figure(
-    image("../vis/system_linear_unique_solution.png", width: 50%),
-    caption: [Unique Solution (Consistent and Independent)],
-  )
+  Unique Solution (Consistent and Independent):
 
-  #figure(
-    image("../vis/system_linear_eq_no_solution.png", width: 50%),
-    caption: [No Solution (Inconsistent)]
-  )
+  #align(center)[
+    #cetz.canvas({
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
+        size: (5,5),
+        axis-style: "school-book",
+        x-tick-step: none, 
+        y-tick-step: none, 
+        x-label: [$x$],
+        y-label: [$y$],
+        x-min: 0, x-max: 1,
+        y-min: 0, y-max: 1,
+        axes: (
+          stroke: black,
+          tick: (stroke: black),
+        ),
+      {
+        
+        
+        plot.add(
+          domain: (0, 50),
+          x => 1*x + 0,
+          style: (stroke: 1pt + red),
+        )
+
+        plot.add(
+          domain: (0, 50),
+          x => -1*x + 1,
+          style: (stroke: 1pt + blue),
+        )
+        
+      }
+    )
+    })
+  ]
+
+  No Solution (Inconsistent):
+
+  #align(center)[
+    #cetz.canvas({
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
+        size: (5,5),
+        axis-style: "school-book",
+        x-tick-step: none, 
+        y-tick-step: none, 
+        x-label: [$x$],
+        y-label: [$y$],
+        x-min: 0, x-max: 1,
+        y-min: 0, y-max: 1,
+        axes: (
+          stroke: black,
+          tick: (stroke: black),
+        ),
+      {
+        
+        
+        plot.add(
+          domain: (0, 50),
+          x => 1*x + -0.1,
+          style: (stroke: 1pt + red),
+        )
+
+        plot.add(
+          domain: (0, 50),
+          x => 1*x + 0.1,
+          style: (stroke: 1pt + blue),
+        )
+      }
+    )
+    })
+  ]
+
   
-  #figure(
-    image("../vis/system_linear_eq_infinite_solution.png", width: 50%),
-    caption: [Infinitely Many Solutions (Consistent and Dependent)]
-  )
+  
+  Infinitely Many Solutions (Consistent and Dependent): 
+  #align(center)[
+    #cetz.canvas({
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
+        size: (5,5),
+        axis-style: "school-book",
+        x-tick-step: none, 
+        y-tick-step: none, 
+        x-label: [$x$],
+        y-label: [$y$],
+        x-min: 0, x-max: 1,
+        y-min: 0, y-max: 1,
+        axes: (
+          stroke: black,
+          tick: (stroke: black),
+        ),
+      {
+        
+        
+        plot.add(
+          domain: (0, 50),
+          x => 1*x + 0,
+          style: (stroke: 1pt + red),
+        )
+
+        plot.add(
+          domain: (0, 50),
+          x => 1*x + 0,
+          style: (stroke: (dash: "dashed")),
+        )
+      }
+    )
+    })
+  ]
+
+  
+  
 
 ]
+
+
+
+
+
 
 2. Matrix Respresentation 
 
