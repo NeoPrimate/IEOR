@@ -1,5 +1,14 @@
+#import "@preview/cetz:0.3.4"
+#import "@preview/cetz-plot:0.1.1"
+#import "@preview/fletcher:0.5.7" as fletcher: diagram, node, edge
+
+
 #import "../../../utils/examples.typ": eg
 #import "../../../utils/code.typ": code
+#import "../../../utils/color_math.typ": colorMath
+#import "../../../utils/distributions/gaussian.typ": gaussian_pdf
+
+#import "@preview/suiji:0.3.0": *
 
 == $P_(p k)$ (Process Performance Index with Centering)
 
@@ -7,7 +16,68 @@ $
 P_(p k) = "Min" (("USL" - mu_"overall") / (3 sigma), (mu_"overall" - "USL") / (3 sigma))
 $
 
-#figure(image("../../../vis/p_pk.png", width: 80%))
+#align(center)[
+  #cetz.canvas({
+    import cetz.draw: *
+    import cetz-plot: *
+
+    set-style(
+      axes: (
+        x: (stroke: 1pt),
+        // tick: (stroke: 1pt),
+        y: (stroke: 0pt, tick: (label: (offset: 1em))),
+        // padding: 0pt,
+        shared-zero: false
+      )
+    )
+
+    let mu = 1
+    let sigma = 1
+    let lsl = -2
+    let usl = 2
+    let process_mean = mu
+
+    plot.plot(
+      size: (12,5),
+      axis-style: "scientific",
+      x-tick-step: none, 
+      y-tick-step: none, 
+      x-label: [],
+      y-label: [],
+      x-ticks: ((lsl, "LSL"), (process_mean, $mu$), (usl, "USL")),
+      x-min: -4, x-max: 4,
+      y-min: 0, y-max: 0.5,
+      axes: (
+        stroke: black,
+        tick: (stroke: black),
+      ),
+    {
+      plot.add(
+        domain: (-4, 4),
+        x => gaussian_pdf(x, mu, sigma),
+        style: (stroke: 1pt, fill: black),
+      )
+
+      plot.add-vline(usl, style: (stroke: (thickness: 1pt, paint: red)))
+      plot.add-vline(process_mean, style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")))
+      plot.add-vline(lsl, style: (stroke: (thickness: 1pt, paint: red)))
+
+      plot.add-fill-between(
+        domain: (usl, 4),
+        x => gaussian_pdf(x, mu, sigma),
+        x => 0,
+        style: (fill: blue.lighten(80%), stroke: none),
+      )
+      plot.add-fill-between(
+        domain: (-4, lsl),
+        x => gaussian_pdf(x, mu, sigma),
+        x => 0,
+        style: (fill: blue.lighten(80%), stroke: none),
+      )
+    }
+  )
+  })
+]
 
 #eg[
 

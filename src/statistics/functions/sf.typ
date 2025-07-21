@@ -51,7 +51,7 @@ $
         plot.add(
           norm, 
           domain: (-5, 5), 
-          style: (stroke: gray),
+          style: (stroke: black),
         )
 
         plot.add-fill-between(

@@ -2,6 +2,7 @@
 #import "../../utils/code.typ": code
 #import "../../utils/color_math.typ": colorMath
 #import "../../utils/result.typ": result
+#import "../../utils/distributions/gaussian.typ": gaussian_pdf, gaussian_cdf
 #import "@preview/cetz:0.3.1": canvas, draw
 #import "@preview/cetz-plot:0.1.0": plot
 
@@ -23,10 +24,6 @@ $
     let mu = 0
     let sigma = 1
 
-    let norm(x, mu: mu, sigma: sigma) = (
-      (1 / calc.sqrt(2 * calc.pi * calc.pow(sigma, 2))) * calc.exp(-(calc.pow(x - mu, 2)) / (2 * calc.pow(sigma, 2)))
-    )
-
     set-style(
       axes: (
         x: (stroke: 0pt), 
@@ -45,18 +42,32 @@ $
       x-min: -4., 
       x-max: 4.,
       y-min: 0., 
-      y-max: 0.4,
+      y-max: 1,
       legend: "inner-north-west",
       {
         plot.add(
-          norm, 
+          x => gaussian_pdf(x, mu, sigma), 
           domain: (-5, 5), 
-          style: (stroke: gray),
+          style: (stroke: black),
+        )
+
+        plot.add(
+          x => gaussian_cdf(x, mu, sigma), 
+          domain: (-5, 5), 
+          style: (stroke: black),
         )
 
         plot.add-fill-between(
           domain: (-4, 1),
-          x => norm(x),
+          x => gaussian_cdf(x, mu, sigma), 
+          x1 => 0,
+          style: (fill: red.lighten(75%), stroke: none),
+          label: none
+        )
+
+        plot.add-fill-between(
+          domain: (-4, 1),
+          x => gaussian_pdf(x, mu, sigma), 
           x1 => 0,
           style: (fill: red.lighten(75%), stroke: none),
           label: none

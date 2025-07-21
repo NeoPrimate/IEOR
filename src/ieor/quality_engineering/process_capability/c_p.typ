@@ -6,6 +6,7 @@
 #import "../../../utils/examples.typ": eg
 #import "../../../utils/code.typ": code
 #import "../../../utils/color_math.typ": colorMath
+#import "../../../utils/distributions/gaussian.typ": gaussian_pdf
 
 #import "@preview/suiji:0.3.0": *
 
@@ -18,6 +19,69 @@ C_p = ("USL" - "LSL") / (6 sigma)
 $
 
 *Assumption*: Process is *centered* within the specification limits
+
+#align(center)[
+  #cetz.canvas({
+    import cetz.draw: *
+    import cetz-plot: *
+
+    set-style(
+      axes: (
+        x: (stroke: 1pt),
+        // tick: (stroke: 1pt),
+        y: (stroke: 0pt, tick: (label: (offset: 1em))),
+        // padding: 0pt,
+        shared-zero: false
+      )
+    )
+
+    let mu = 0
+    let sigma = 1
+    let lsl = -2
+    let usl = 2
+    let process_mean = 0
+
+    plot.plot(
+      size: (12,5),
+      axis-style: "scientific",
+      x-tick-step: none, 
+      y-tick-step: none, 
+      x-label: [],
+      y-label: [],
+      x-ticks: ((lsl, "LSL"), (process_mean, $mu$), (usl, "USL")),
+      x-min: -4, x-max: 4,
+      y-min: 0, y-max: 0.5,
+      axes: (
+        stroke: black,
+        tick: (stroke: black),
+      ),
+    {
+      plot.add(
+        domain: (-4, 4),
+        x => gaussian_pdf(x, mu, sigma),
+        style: (stroke: 1pt, fill: black),
+      )
+
+      plot.add-vline(usl, style: (stroke: (thickness: 1pt, paint: red)))
+      plot.add-vline(process_mean, style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")))
+      plot.add-vline(lsl, style: (stroke: (thickness: 1pt, paint: red)))
+
+      plot.add-fill-between(
+        domain: (usl, 4),
+        x => gaussian_pdf(x, mu, sigma),
+        x => 0,
+        style: (fill: blue.lighten(80%), stroke: none),
+      )
+      plot.add-fill-between(
+        domain: (-4, lsl),
+        x => gaussian_pdf(x, mu, sigma),
+        x => 0,
+        style: (fill: blue.lighten(80%), stroke: none),
+      )
+    }
+  )
+  })
+]
 
 #align(center)[
   #table(
@@ -209,7 +273,7 @@ $
 
             for (val, freq) in hist {
               plot.annotate({
-                rect((val + 0.02, 0), (val, freq), fill: green.lighten(75%), stroke: green)
+                rect((val + 0.02, 0), (val, freq), fill: green.lighten(40%), stroke: none)
               })
             }
 
@@ -242,7 +306,7 @@ $
 
                 for (val, freq) in hist {
                   plot.annotate({
-                    rect((val + 0.03, 0), (val, freq), fill: orange.lighten(75%), stroke: orange)
+                    rect((val + 0.05, 0), (val, freq), fill: orange.lighten(40%), stroke: none)
                   })
                 }
               },
@@ -274,7 +338,7 @@ $
 
                 for (val, freq) in hist {
                   plot.annotate({
-                    rect((val + 0.05, 0), (val, freq), fill: red.lighten(75%), stroke: red)
+                    rect((val + 0.06, 0), (val, freq), fill: red.lighten(40%), stroke: none)
                   })
                 }
 
@@ -295,40 +359,62 @@ $
   ]
 
   *Step 3:* Interpretation
+
+  #align(center)[
+    #table(
+      columns: 5,
+      inset: 10pt,
+      stroke: none,
+      align: center,
+      [*Process*], [*$C_p$*], [*Within Spec*], [*Defective*], [*DPMO*], 
+      table.hline(),
+      [Process 1], [#calc.round(stats1.cp, digits: 3)], [$96.64%$], [$3.36%$], [$33600$],
+      [Process 2], [#calc.round(stats2.cp, digits: 3)], [$84.13%$], [$15.87%$], [$159700$],
+      [Process 3], [#calc.round(stats3.cp, digits: 3)], [$50.00%$], [$50.00%$], [$500000$],
+      [Six Sigma], [2.0], [$99.9999998%$], [$0.0000002%$], [$0.002$],
+      table.hline(),
+    )
+  ]
   
-  Higher $C_p$ means fewer defects and better process quality. and lower defects per million opportunities (DPMO):
-
-  - *Six Sigma Process* ($C_p = 2.0$)
-
-    - Within specs: $99.9999998%$
-
-    - Defective: $0.0000002%$
-
-    - DPMO: $0.002$
-
-  - *Process 1* ($C_p = #calc.round(stats1.cp, digits: 3)$)
-
-    - Within specs: $96.64%$
-
-    - Defective: $3.36%$
-
-    - DPMO: $33600$
-
-  - *Process 2* ($C_p = #calc.round(stats2.cp, digits: 3)$)
-
-    - Within specs: $84.13%$
-
-    - Defective: $15.87%$
-
-    - DPMO: $159700$
-
-  - *Process 3* ($C_p = #calc.round(stats3.cp, digits: 3)$)
-
-    - Within specs: $50.00%$
-
-    - Defective: $50.00%$
-
-    - DPMO: $500000$
-
+  Higher $C_p$ means fewer defects and better process quality. and lower defects per million opportunities (DPMO)
 ]
 
+#code[
+```py
+
+cp_values = [2, 1, 0.1]
+
+for cp in cp_values:
+    z = 3 * cp  # spec limit in standard deviations
+    prob_defective = 2 * (1 - norm.cdf(z))
+    within_specs = 1 - prob_defective
+    dpmo = prob_defective * 1_000_000
+
+    print({
+      "Cp": cp,
+      "Sigma limit (±z)": z,
+      "Percent within specs": within_specs * 100,
+      "Percent defective": prob_defective * 100,
+      "DPMO": dpmo
+    })
+
+Output:
+
+[{'Cp': 2,
+  'Sigma limit (±z)': 6,
+  'Percent within specs': 99.99999980268245,
+  'Percent defective': 1.9731754008489588e-07,
+  'DPMO': 0.001973175400848959},
+ {'Cp': 1,
+  'Sigma limit (±z)': 3,
+  'Percent within specs': 99.73002039367398,
+  'Percent defective': 0.2699796063260207,
+  'DPMO': 2699.796063260207},
+ {'Cp': 0.1,
+  'Sigma limit (±z)': 0.30000000000000004,
+  'Percent within specs': 23.582284437790534,
+  'Percent defective': 76.41771556220947,
+  'DPMO': 764177.1556220946}]
+
+  ```
+]
