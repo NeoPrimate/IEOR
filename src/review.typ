@@ -6,28 +6,26 @@
   margin: 1em,
 )
 
-#show heading.where(
-  level: 1
-): it => text(
-  size: 13pt,
-  weight: "bold",
-  fill: red,
-  font: "Helvetica Neue",
-  it
-)
+#let title_1(content) = {
+  text(
+    size: 13pt,
+    weight: "bold",
+    fill: red,
+    font: "Helvetica Neue"
+  )[#content]
+}
 
-#show heading.where(
-  level: 2
-): it => text(
-  size: 11pt,
-  weight: "semibold",
-  fill: blue,
-  font: "Helvetica Neue",
-  it,
-)
+#let title_2(content) = {
+  text(
+    size: 11pt,
+    weight: "semibold",
+    fill: blue,
+    font: "Helvetica Neue",
+  )[#content]
+}
 
 #let arithmetic_operations = [
-  == Arithmetic Operations \ \
+  #title_2[Arithmetic Operations]
 
   #grid(
     columns: (1fr, 1fr),
@@ -47,7 +45,8 @@
 ]
 
 #let exponents_and_radicals = [
-  == Exponents and Radicals \ \
+
+  #title_2[Exponents and Radicals]
 
   #grid(
     columns: (1fr, 1fr),
@@ -79,7 +78,7 @@
 ]
 
 #let factoring_special_polynomials = [
-  == Factoring Special Polynomials \ \
+  #title_2[Factoring Special Polynomials]
   $x^2 - y^2 = (x + y)(x - y)$
 
   $x^3 + y^3 = (x + y)(x^2 - x y + y^2)$
@@ -88,7 +87,8 @@
 ]
 
 #let binomial_theorem = [
-  == Binomial Theorem \ \
+
+  #title_2[Binomial Theorem]
 
   $(x + y)^n = sum^n_(k=0) vec(n, k) x^(n - k) y^k$ \ \
 
@@ -111,13 +111,15 @@
 ]
 
 #let quadratic_formula = [
-  == Quadratic Formula \ \
+
+  #title_2[Quadratic Formula]
 
   If $a x^2 + b x + c = 0$, then $x = (-b plus.minus sqrt(b^2 - 4 a c)) / (2 a)$
 ]
 
 #let inequalities_and_absolute_value = [
-  == Inequalities and Absolute Value \ \
+
+  #title_2[Inequalities and Absolute Value]
 
   If $a lt b$ and $b lt c$, then $a lt c$
   
@@ -137,7 +139,7 @@
 ]
 
 #let geometric_formulas = [
-  == Geometric Formulas
+  #title_2[Geometric Formulas]
 
   Formulas for: 
   - Area $A$
@@ -291,7 +293,7 @@
   rows: (auto, auto),
   gutter: 3pt,
   [
-    = ALGEBRA
+    #title_1[ALGEBRA] \
     #arithmetic_operations
     #exponents_and_radicals
     #factoring_special_polynomials
@@ -300,7 +302,7 @@
     #inequalities_and_absolute_value
   ],
   [
-    = GEOMENTRY
+    #title_1[GEOMENTRY] \
     #geometric_formulas
   ]
 )

@@ -121,11 +121,11 @@
 
 #include "ieor/operations_research/optimization/simplex_method.typ"
 
+#include "ieor/operations_research/optimization/branch_and_bound.typ"
+
 #include "ieor/operations_research/optimization/gradient_descent.typ"
 
-// #include "ieor/optimization/mixed_integer_programming.typ"
-
-// #include "ieor/optimization/non_linear_programming.typ"
+#include "ieor/operations_research/optimization/newton_method.typ"
 
 == Monte Carlo
 
