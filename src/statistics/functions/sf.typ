@@ -71,14 +71,15 @@ $
 S(t) = 1 - F(t)
 $
 
-#code[
-```python
-from scipy.stats import norm
+#code(
+  "sf.py",
+  ```python
+  from scipy.stats import norm
 
-z = 3.4
-mu = 0
-sigma = 1
+  z = 3.4
+  mu = 0
+  sigma = 1
 
-norm.sf(z, loc=mu, scale=sigma)
-```
-]
+  norm.sf(z, loc=mu, scale=sigma)
+  ```
+)

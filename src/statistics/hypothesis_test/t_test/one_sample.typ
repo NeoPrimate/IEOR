@@ -102,11 +102,12 @@ $
 
 ]
 
-#code[
+#code(
+  "t_test_one_sample.py",
   ```python
   from scipy import stats
   rvs = stats.uniform.rvs(size=50)
   stats.ttest_1samp(rvs, popmean=0.5)
 
   ```
-]
+)

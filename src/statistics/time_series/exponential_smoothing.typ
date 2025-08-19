@@ -133,8 +133,9 @@ $
   $
 ]
 
-#code[
+#code(
+  "exp_smooting.py",
   ```py
   pl.col("X").ewm_mean(span=window_size, adjust=False)
   ```
-]
+)

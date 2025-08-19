@@ -13,27 +13,27 @@
 == Arc Length
 
 #let f(x) = 0.1*(x*x*x)+0.5
-  
+
   #align(center)[
     #cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
-      
+
       plot.plot(
         size: (5, 5),
         axis-style: "school-book",
         x-tick-step: none,
-        x-min: -3.2, 
+        x-min: -3.2,
         x-max: 3.2,
-        y-tick-step: none, 
-        y-min: -3.2, 
+        y-tick-step: none,
+        y-min: -3.2,
         y-max: 3.2,
         legend: "inner-south-east",
         label: none,
         {
           plot.add(
             f,
-            domain: (-3, 3), 
+            domain: (-3, 3),
             style: (stroke: black),
           )
 
@@ -63,7 +63,7 @@
             mark-size: 0.15,
             mark-style: (stroke: black, fill: black)
           )
-          
+
           plot.add(
             ((3,f(3)),),
             mark: "o",
@@ -94,7 +94,7 @@ $
 $
 
 $
-  s = integral d s = integral sqrt((d x)^2 + (d y)^2) 
+  s = integral d s = integral sqrt((d x)^2 + (d y)^2)
 $
 
 $

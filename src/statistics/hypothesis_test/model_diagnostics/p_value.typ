@@ -145,11 +145,11 @@ $
   })
 ]
 
-#code[
+#code(
+  "p_value.py",
   ```python
   z = 2.1
   df = 3
   scipy.stats.norm.sf(abs(z), df=df)
-
   ```
-]
+)

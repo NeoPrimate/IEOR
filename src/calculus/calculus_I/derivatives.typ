@@ -446,35 +446,35 @@ d / (d x) [log_a(x)] = 1 / (x ln(a)) \
 $
 
 
-#code[
-  ```py
-  import sympy as sp
+// #code[
+//   ```py
+//   import sympy as sp
 
-  # Define the symbolic variable x
-  x = sp.symbols('x')
+//   # Define the symbolic variable x
+//   x = sp.symbols('x')
 
-  # Define the function f(x) = 3x^2 + 2x + 1
-  f = 3 * x**2 + 2 * x + 1
+//   # Define the function f(x) = 3x^2 + 2x + 1
+//   f = 3 * x**2 + 2 * x + 1
 
-  # Compute the derivative of f with respect to x
-  f_prime = sp.diff(f, x)
+//   # Compute the derivative of f with respect to x
+//   f_prime = sp.diff(f, x)
 
-  # Print the derivative of f
-  print(f_prime)  # Output: 6x + 2
+//   # Print the derivative of f
+//   print(f_prime)  # Output: 6x + 2
 
-  # Create a numerical function from the symbolic derivative
-  f_prime_func = sp.lambdify(x, f_prime)
+//   # Create a numerical function from the symbolic derivative
+//   f_prime_func = sp.lambdify(x, f_prime)
 
-  # Evaluate the derivative at x = 2
-  result = f_prime_func(2)
+//   # Evaluate the derivative at x = 2
+//   result = f_prime_func(2)
 
-  # Print the result of f'(2)
-  print(result)  # Output: 14
+//   # Print the result of f'(2)
+//   print(result)  # Output: 14
 
-  # Solve f'(x) = 0 to find the critical values (where the derivative is 0)
-  critical_values = sp.solve(f_prime, x)
+//   # Solve f'(x) = 0 to find the critical values (where the derivative is 0)
+//   critical_values = sp.solve(f_prime, x)
 
-  # Print the critical values (roots of the derivative)
-  print(critical_values)  # Output: [-1/3]
-  ```
-]
+//   # Print the critical values (roots of the derivative)
+//   print(critical_values)  # Output: [-1/3]
+//   ```
+// ]

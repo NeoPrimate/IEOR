@@ -285,7 +285,8 @@ $
   represents the derivative of the inverse function $f^(-1)(x)$ evaluated at $x = 0.5$. This means it gives the slope of the tangent line to the inverse funcion at $x = 0.5$.
 ]
 
-#code[
+#code(
+  "inverse.py",
   ```py
   from sympy import symbols, solve
 
@@ -299,7 +300,7 @@ $
 
   print(inverse)
   ```
-]
+)
 
 === Derivative Inverse Sin
 

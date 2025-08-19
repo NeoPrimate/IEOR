@@ -4,7 +4,7 @@
 
 
 #import "../../../utils/examples.typ": eg
-#import "../../../utils/code.typ": code
+#import "../../../utils/code.typ": *
 #import "../../../utils/color_math.typ": colorMath
 #import "../../../utils/distributions/gaussian.typ": gaussian_pdf
 
@@ -379,42 +379,44 @@ $
   Higher $C_p$ means fewer defects and better process quality. and lower defects per million opportunities (DPMO)
 ]
 
-#code[
-```py
+#code(
+  "c_p.py",
+  ```py
 
-cp_values = [2, 1, 0.1]
+  cp_values = [2, 1, 0.1]
 
-for cp in cp_values:
-    z = 3 * cp  # spec limit in standard deviations
-    prob_defective = 2 * (1 - norm.cdf(z))
-    within_specs = 1 - prob_defective
-    dpmo = prob_defective * 1_000_000
+  for cp in cp_values:
+      z = 3 * cp  # spec limit in standard deviations
+      prob_defective = 2 * (1 - norm.cdf(z))
+      within_specs = 1 - prob_defective
+      dpmo = prob_defective * 1_000_000
 
-    print({
-      "Cp": cp,
-      "Sigma limit (±z)": z,
-      "Percent within specs": within_specs * 100,
-      "Percent defective": prob_defective * 100,
-      "DPMO": dpmo
-    })
-
-Output:
-
-[{'Cp': 2,
-  'Sigma limit (±z)': 6,
-  'Percent within specs': 99.99999980268245,
-  'Percent defective': 1.9731754008489588e-07,
-  'DPMO': 0.001973175400848959},
- {'Cp': 1,
-  'Sigma limit (±z)': 3,
-  'Percent within specs': 99.73002039367398,
-  'Percent defective': 0.2699796063260207,
-  'DPMO': 2699.796063260207},
- {'Cp': 0.1,
-  'Sigma limit (±z)': 0.30000000000000004,
-  'Percent within specs': 23.582284437790534,
-  'Percent defective': 76.41771556220947,
-  'DPMO': 764177.1556220946}]
-
+      print({
+        "Cp": cp,
+        "Sigma limit (±z)": z,
+        "Percent within specs": within_specs * 100,
+        "Percent defective": prob_defective * 100,
+        "DPMO": dpmo
+      })
   ```
-]
+)
+
+#code_output(
+  ```py
+  [{'Cp': 2,
+    'Sigma limit (±z)': 6,
+    'Percent within specs': 99.99999980268245,
+    'Percent defective': 1.9731754008489588e-07,
+    'DPMO': 0.001973175400848959},
+  {'Cp': 1,
+    'Sigma limit (±z)': 3,
+    'Percent within specs': 99.73002039367398,
+    'Percent defective': 0.2699796063260207,
+    'DPMO': 2699.796063260207},
+  {'Cp': 0.1,
+    'Sigma limit (±z)': 0.30000000000000004,
+    'Percent within specs': 23.582284437790534,
+    'Percent defective': 76.41771556220947,
+    'DPMO': 764177.1556220946}]
+    ```
+)

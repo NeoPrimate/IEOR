@@ -111,8 +111,9 @@ This is the average of the last $k$ values.
   $
 ]
 
-#code[
-```py
-pl.col('X').rolling_mean(window_size)
-```
-]
+#code(
+  "sma.py",
+  ```py
+  pl.col('X').rolling_mean(window_size)
+  ```
+)

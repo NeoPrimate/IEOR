@@ -252,7 +252,8 @@ $
 A x = b
 $
 
-#code[
+#code(
+  "linear_eq.py",
   ```py
   from scipy.linalg import solve
 
@@ -266,4 +267,4 @@ $
 
   intersection_point = solve(X, Y)
   ```
-]
+)

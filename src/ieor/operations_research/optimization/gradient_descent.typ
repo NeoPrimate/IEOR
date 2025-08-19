@@ -161,7 +161,8 @@ Where:
 - $x^(k+1)$: next iterate (point in domain of $f$)
 
 
-#code[
+#code(
+  "gradient_descent.py",
   ```py
   import numpy as np
 
@@ -197,7 +198,7 @@ Where:
       max_iter=100
   )
   ```
-]
+)
 
 #eg[
 

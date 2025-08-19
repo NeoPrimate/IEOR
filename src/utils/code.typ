@@ -1,7 +1,39 @@
-#let code(content) = block(
-  stroke: navy,
-  inset: 8pt,
-  radius: 4pt,
-  width: 100%,
-  content
+#let code(file_name, file_content) = stack(
+  block(
+    fill: luma(200),
+    inset: ("left": 10pt, "top": 10pt, "bottom": 10pt),
+    outset: 0pt,
+    radius: ("top-left": 4pt, "top-right": 4pt),
+    width: 100%,
+    text(size: 16pt, weight: "semibold")[#file_name]
+  ),
+  block(
+    fill: luma(230),
+    inset: 10pt,
+    outset: 0pt,
+    radius: ("bottom-left": 4pt, "bottom-right": 4pt),
+    width: 100%,
+    file_content,
+  ),
+)
+
+#let code_output(output) = stack(
+  block(
+    fill: luma(200),
+    inset: 10pt,
+    outset: 0pt,
+    radius: ("bottom-left": 4pt, "bottom-right": 4pt),
+    width: 100%,
+    [
+      #text(size: 16pt, weight: "semibold")[Output:]
+    ]
+  ),
+  block(
+    fill: luma(230),
+    inset: ("left": 10pt, "top": 10pt, "bottom": 10pt),
+    outset: 0pt,
+    radius: ("top-left": 4pt, "top-right": 4pt),
+    width: 100%,
+    output,
+  )
 )

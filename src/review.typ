@@ -269,7 +269,7 @@
   ]
 )
 
-== Trigonometric Functions
+#title_2[Trigonometric Functions]
 
 #table(
   columns: (auto, auto, auto),

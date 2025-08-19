@@ -6,3 +6,5 @@
 
 #include("calculus_III/calculus_III.typ")
 
+#include("differential_equations/differential_equations.typ")
+

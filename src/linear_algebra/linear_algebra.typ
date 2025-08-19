@@ -16,6 +16,8 @@
 
 #include("triangle_inequality.typ")
 
+#include("coordinate_system.typ")
+
 #include("angles_between_vectors.typ")
 
 #include("planes.typ")

@@ -17,8 +17,7 @@
 
 Integer Program
 
-
-  #align(center)[
+#align(center)[
       #cetz.canvas({
         import cetz.draw: *
         import cetz-plot: *
@@ -26,8 +25,8 @@ Integer Program
         plot.plot(
           size: (5,5),
           axis-style: "school-book",
-          x-tick-step: 1, 
-          y-tick-step: 1, 
+          x-tick-step: 1,
+          y-tick-step: 1,
           x-label: [$x_1$],
           y-label: [$x_2$],
           x-min: -0.5, x-max: 3,
@@ -50,7 +49,7 @@ Integer Program
             x => -3*x + 5,
             style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
           )
-          
+
           plot.add(
             domain: (-1, 10),
             x => -3*x + 6,
@@ -195,7 +194,7 @@ Decompose an IP into mutltiple LPs
   $
 
   Linear Relaxation:
-  
+
   $
     &max& quad 16&x_1& quad &+& quad 22&x_2& quad &+& quad 12&x_3& quad &+& quad 8&x_4& \
     &s.t.& quad 5&x_1& &+& 7&x_2& &+& 4&x_3& &+& 3&x_4& quad lt.eq quad 10 \
@@ -235,8 +234,8 @@ So, linear relaxation provides a lower bound on the optimal value of the integer
     plot.plot(
       size: (5,5),
       axis-style: "school-book",
-      x-tick-step: 1, 
-      y-tick-step: 1, 
+      x-tick-step: 1,
+      y-tick-step: 1,
       x-label: [$x_1$],
       y-label: [$x_2$],
       x-min: 0, x-max: 3,
@@ -377,8 +376,8 @@ $
     plot.plot(
       size: (5,5),
       axis-style: "school-book",
-      x-tick-step: 1, 
-      y-tick-step: 1, 
+      x-tick-step: 1,
+      y-tick-step: 1,
       x-label: [$x_1$],
       y-label: [$x_2$],
       x-min: 0, x-max: 3.5,
@@ -528,7 +527,7 @@ $
 )
 
 - If the linear relaxation is infeasible or unbounded then the IP is infeasible or unbounded
-- If an optimal solution to the linear relaxation is feasible, 
+- If an optimal solution to the linear relaxation is feasible,
 
 Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is feasible to the IP, it is the optimal to the IP
 
@@ -565,8 +564,8 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
       plot.plot(
         size: (2,2),
         axis-style: "school-book",
-        x-tick-step: 1, 
-        y-tick-step: 1, 
+        x-tick-step: 1,
+        y-tick-step: 1,
         x-label: [$x_1$],
         y-label: [$x_2$],
         x-min: 0, x-max: 3,
@@ -627,8 +626,8 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
       plot.plot(
         size: (2,2),
         axis-style: "school-book",
-        x-tick-step: 1, 
-        y-tick-step: 1, 
+        x-tick-step: 1,
+        y-tick-step: 1,
         x-label: [$x_1$],
         y-label: [$x_2$],
         x-min: 0, x-max: 3,
@@ -694,8 +693,8 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
       plot.plot(
         size: (2,2),
         axis-style: "school-book",
-        x-tick-step: 1, 
-        y-tick-step: 1, 
+        x-tick-step: 1,
+        y-tick-step: 1,
         x-label: [$x_1$],
         y-label: [$x_2$],
         x-min: 0, x-max: 3,
@@ -762,8 +761,8 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
       plot.plot(
         size: (2,2),
         axis-style: "school-book",
-        x-tick-step: 1, 
-        y-tick-step: 1, 
+        x-tick-step: 1,
+        y-tick-step: 1,
         x-label: [$x_1$],
         y-label: [$x_2$],
         x-min: 0, x-max: 3,
@@ -798,8 +797,8 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
         plot.add-vline(
           1,
           style: (stroke: (thickness: 1pt, paint: purple)),
-        ) 
-        
+        )
+
 
         plot.add(
           domain: (-1, 5),
@@ -839,8 +838,8 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
       plot.plot(
         size: (2,2),
         axis-style: "school-book",
-        x-tick-step: 1, 
-        y-tick-step: 1, 
+        x-tick-step: 1,
+        y-tick-step: 1,
         x-label: [$x_1$],
         y-label: [$x_2$],
         x-min: 0, x-max: 3,
@@ -867,8 +866,8 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
         plot.add-vline(
           2,
           style: (stroke: (thickness: 1pt, paint: purple)),
-        ) 
-        
+        )
+
 
         plot.add(
           domain: (-1, 5),
@@ -886,8 +885,8 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
       plot.plot(
         size: (2,2),
         axis-style: "school-book",
-        x-tick-step: 1, 
-        y-tick-step: 1, 
+        x-tick-step: 1,
+        y-tick-step: 1,
         x-label: [$x_1$],
         y-label: [$x_2$],
         x-min: 0, x-max: 3,
@@ -922,8 +921,8 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
         plot.add-vline(
           1,
           style: (stroke: (thickness: 1pt, paint: purple)),
-        ) 
-        
+        )
+
 
         plot.add(
           domain: (-1, 5),
@@ -931,7 +930,7 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
           style: (stroke: (thickness: 1pt, paint: green)),
           // label: $x_2 gt.eq 2$
         )
-        
+
         plot.add(
           domain: (-1, 5),
           x => 2.1,
@@ -970,8 +969,8 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
       plot.plot(
         size: (2,2),
         axis-style: "school-book",
-        x-tick-step: 1, 
-        y-tick-step: 1, 
+        x-tick-step: 1,
+        y-tick-step: 1,
         x-label: [$x_1$],
         y-label: [$x_2$],
         x-min: 0, x-max: 3,
@@ -1006,8 +1005,8 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
         plot.add-vline(
           1,
           style: (stroke: (thickness: 1pt, paint: purple)),
-        ) 
-        
+        )
+
 
         plot.add(
           domain: (-1, 5),
@@ -1015,7 +1014,7 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
           style: (stroke: (thickness: 1pt, paint: green)),
           // label: $x_2 gt.eq 2$
         )
-        
+
         plot.add(
           domain: (-1, 5),
           x => 3,
@@ -1046,7 +1045,7 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
 
       }, name: "plot")
     })
-    
+
 #linebreak()
 #linebreak()
 #linebreak()
@@ -1060,7 +1059,7 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
       node-inset: 0pt,
 
       node(pos: (0,0), label: {
-        place(horizon+right, dy: 0mm, dx: 3em, 
+        place(horizon+right, dy: 0mm, dx: 3em,
           $
             &x = (9/4, 3/2) \
             &z = 12.75 \
@@ -1068,7 +1067,7 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
         )
         n0
       }, stroke: 0em, radius: 6em, name: <n0>),
-      
+
       node(pos: (-0.5,1), label: {
         place(horizon+left, dy: 0mm, dx: -4em,
           $
@@ -1088,7 +1087,7 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
         )
         n11
       }, stroke: 0em, radius: 6em, name: <n11>),
-      
+
       node(pos: (0,2), label: {
         place(horizon+left, dy: 0mm, dx: -5em,
           $
@@ -1098,14 +1097,14 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
         )
         n20
       }, stroke: 0em, radius: 6em, name: <n20>),
-      
+
       node(pos: (1,2), label: {
         place(horizon+right, dy: 0mm, dx: 2em,
           [Infeasible]
         )
         n21
       }, stroke: 0em, radius: 6em, name: <n21>),
-      
+
       node(pos: (-0.5,3), label: {
         place(horizon+left, dy: 0mm, dx: -4em,
           $
@@ -1115,7 +1114,7 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
         )
         n30
       }, stroke: 0em, radius: 6em, name: <n30>),
-      
+
       node(pos: (0.5,3), label: {
         place(horizon+right, dy: 0mm, dx: 3em,
           $
@@ -1125,24 +1124,24 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
         )
         n31
       }, stroke: 0em, radius: 6em, name: <n31>),
-      
+
       edge(<n0>, <n10>, "-|>", label: $x_2 lt.eq 1$, label-side: center, bend: 0deg, shift: 0pt, label-fill: luma(230)),
-      
+
       edge(<n0>, <n11>, "-|>", label: $x_2 gt.eq 2$, label-side: center, bend: 0deg, shift: 0pt, label-fill: luma(230)),
-      
+
       edge(<n11>, <n20>, "-|>", label: $x_1 lt.eq 1$, label-side: center, bend: 0deg, shift: 0pt, label-fill: luma(230)),
-      
+
       edge(<n11>, <n21>, "-|>", label: $x_1 gt.eq 2$, label-side: center, bend: 0deg, shift: 0pt, label-fill: luma(230)),
-      
+
       edge(<n20>, <n30>, "-|>", label: $x_2 lt.eq 2$, label-side: center, bend: 0deg, shift: 0pt, label-fill: luma(230)),
-      
+
       edge(<n20>, <n31>, "-|>", label: $x_2 gt.eq 3$, label-side: center, bend: 0deg, shift: 0pt, label-fill: luma(230)),
-      
+
     )
 ]
 
 
-  
+
 
 
 
@@ -1171,8 +1170,8 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
 //     plot.plot(
 //       size: (5,5),
 //       axis-style: "school-book",
-//       x-tick-step: 1, 
-//       y-tick-step: 1, 
+//       x-tick-step: 1,
+//       y-tick-step: 1,
 //       x-label: [$x_1$],
 //       y-label: [$x_2$],
 //       x-min: 0, x-max: 3.5,

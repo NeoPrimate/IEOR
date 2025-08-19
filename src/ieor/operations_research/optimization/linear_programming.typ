@@ -4,7 +4,7 @@
 
 
 #import "../../../utils/examples.typ": eg
-#import "../../../utils/code.typ": code
+#import "../../../utils/code.typ": code, code_output
 #import "../../../utils/color_math.typ": colorMath
 
 #set math.vec(delim: "[")
@@ -552,9 +552,9 @@ Let $g(dot) lt.eq b$ be an inequality constraint and $bar(x)$ be a solution. $g(
   - $x_j$: production quantity for product $j$, $j = 1, dots, n$
 
   #line(length: 100%)
-
-  *model.py*
-  #code[
+  
+  #code(
+    "model.py",
     ```py
     from pyomo.environ import *
     from pyomo.dataportal import DataPortal
@@ -600,59 +600,52 @@ Let $g(dot) lt.eq b$ be an inequality constraint and $bar(x)$ be a solution. $g(
     # Display results
     instance.display()
     ```
-    ]
-
-    *data.dat*
-
-    #code[
-      ```python
-      set Products := Desk Table ;
-      set Resources := Wood Labor Machine ;
-
-      param Profit :=
-      Desk   700
-      Table  900 ;
-
-      param Supply :=
-      Wood    3600
-      Labor   1600
-      Machine 48000 ;
-
-      param Consumption:
-                Desk Table :=
-      Wood        3     5
-      Labor       1     2
-      Machine    50    20 ;
-
-      ```
-    ]
-
-    *Output:*
-
-    #code[
+  )
+  #code(
+    "data.dat",
     ```python
+    set Products := Desk Table ;
+    set Resources := Wood Labor Machine ;
 
-    Variables:
-    x : Size=2, Index=Products
-        Key   : Lower : Value            : Upper : Fixed : Stale : Domain
-         Desk :     0 : 884.210526315789 :  None : False : False : NonNegativeReals
-        Table :     0 : 189.473684210526 :  None : False : False : NonNegativeReals
+    param Profit :=
+    Desk   700
+    Table  900 ;
 
-  Objectives:
-    OBJ : Size=1, Index=None, Active=True
-        Key  : Active : Value
-        None :   True : 789473.6842105257
+    param Supply :=
+    Wood    3600
+    Labor   1600
+    Machine 48000 ;
 
-  Constraints:
-    ResourceConstraint : Size=3
-        Key     : Lower : Body              : Upper
-          Labor :  None : 1263.157894736841 :  1600.0
-        Machine :  None : 47999.99999999997 : 48000.0
-           Wood :  None : 3599.999999999997 :  3600.0
+    param Consumption:
+              Desk Table :=
+    Wood        3     5
+    Labor       1     2
+    Machine    50    20 ;
+
     ```
+  )
+  #code_output(
+    ```python
+      Variables:
+      x : Size=2, Index=Products
+          Key   : Lower : Value            : Upper : Fixed : Stale : Domain
+          Desk :     0 : 884.210526315789 :  None : False : False : NonNegativeReals
+          Table :     0 : 189.473684210526 :  None : False : False : NonNegativeReals
 
-    
-  ]
+    Objectives:
+      OBJ : Size=1, Index=None, Active=True
+          Key  : Active : Value
+          None :   True : 789473.6842105257
+
+    Constraints:
+      ResourceConstraint : Size=3
+          Key     : Lower : Body              : Upper
+            Labor :  None : 1263.157894736841 :  1600.0
+          Machine :  None : 47999.99999999997 : 48000.0
+            Wood :  None : 3599.999999999997 :  3600.0
+      ```
+  )
+  )
 ]
 
 #eg[
@@ -1000,9 +993,8 @@ $
     &           &x_i >= 0 & forall i = 1, ..., 7 \
 $
 
-*model.py*
-
-#code[
+#code(
+  "model.py",
   ```py
   from pyomo.environ import *
   from pyomo.dataportal import DataPortal
@@ -1047,70 +1039,64 @@ $
   # Display results
   instance.display()
   ```
-  ]
-  
-  *data.dat*
+)
+#code(
+  "data.dat",
+  ```python
+  set Days := Mon Tue Wed Thu Fri Sat Sun ;
+  set Shifts := s1 s2 s3 s4 s5 s6 s7 ;
 
-  #code[
-    ```python
-    set Days := Mon Tue Wed Thu Fri Sat Sun ;
-    set Shifts := s1 s2 s3 s4 s5 s6 s7 ;
+  param Demand :=
+  Mon 110
+  Tue 80
+  Wed 150
+  Thu 30
+  Fri 70
+  Sat 160
+  Sun 120 ;
 
-    param Demand :=
-    Mon 110
-    Tue 80
-    Wed 150
-    Thu 30
-    Fri 70
-    Sat 160
-    Sun 120 ;
+  # Each shift covers 5 consecutive days starting on the shift's day
+  # 1 if shift s_j covers day d_i, 0 otherwise
 
-    # Each shift covers 5 consecutive days starting on the shift's day
-    # 1 if shift s_j covers day d_i, 0 otherwise
+  param Cover:
+          s1 s2 s3 s4 s5 s6 s7 :=
+  Mon     1  0  0  1  1  1  1
+  Tue     1  1  0  0  1  1  1
+  Wed     1  1  1  0  0  1  1
+  Thu     1  1  1  1  0  0  1
+  Fri     1  1  1  1  1  0  0
+  Sat     0  1  1  1  1  1  0
+  Sun     0  0  1  1  1  1  1 ;
+  ```
+)
+#code_output(
+```python
+  Variables:
+  x : Size=7, Index=Shifts
+      Key : Lower : Value            : Upper : Fixed : Stale : Domain
+        s1 :     0 : 3.33333333333333 :  None : False : False : NonNegativeReals
+        s2 :     0 :             40.0 :  None : False : False : NonNegativeReals
+        s3 :     0 : 13.3333333333333 :  None : False : False : NonNegativeReals
+        s4 :     0 :              0.0 :  None : False : False : NonNegativeReals
+        s5 :     0 : 13.3333333333333 :  None : False : False : NonNegativeReals
+        s6 :     0 : 93.3333333333333 :  None : False : False : NonNegativeReals
+        s7 :     0 :              0.0 :  None : False : False : NonNegativeReals
 
-    param Cover:
-            s1 s2 s3 s4 s5 s6 s7 :=
-    Mon     1  0  0  1  1  1  1
-    Tue     1  1  0  0  1  1  1
-    Wed     1  1  1  0  0  1  1
-    Thu     1  1  1  1  0  0  1
-    Fri     1  1  1  1  1  0  0
-    Sat     0  1  1  1  1  1  0
-    Sun     0  0  1  1  1  1  1 ;
+Objectives:
+  OBJ : Size=1, Index=None, Active=True
+      Key  : Active : Value
+      None :   True : 163.33333333333323
 
-    ```
-  ]
-  
-  *Output:*
-  
-  #code[
-    ```python
-    Variables:
-    x : Size=7, Index=Shifts
-        Key : Lower : Value            : Upper : Fixed : Stale : Domain
-         s1 :     0 : 3.33333333333333 :  None : False : False : NonNegativeReals
-         s2 :     0 :             40.0 :  None : False : False : NonNegativeReals
-         s3 :     0 : 13.3333333333333 :  None : False : False : NonNegativeReals
-         s4 :     0 :              0.0 :  None : False : False : NonNegativeReals
-         s5 :     0 : 13.3333333333333 :  None : False : False : NonNegativeReals
-         s6 :     0 : 93.3333333333333 :  None : False : False : NonNegativeReals
-         s7 :     0 :              0.0 :  None : False : False : NonNegativeReals
-
-  Objectives:
-    OBJ : Size=1, Index=None, Active=True
-        Key  : Active : Value
-        None :   True : 163.33333333333323
-
-  Constraints:
-    DemandConstraint : Size=7
-        Key : Lower : Body               : Upper
-        Fri :  70.0 :  69.99999999999993 :  None
-        Mon : 110.0 : 109.99999999999993 :  None
-        Sat : 160.0 :  159.9999999999999 :  None
-        Sun : 120.0 :  119.9999999999999 :  None
-        Thu :  30.0 :  56.66666666666663 :  None
-        Tue :  80.0 : 149.99999999999994 :  None
-        Wed : 150.0 : 149.99999999999994 :  None
-    ```
-  ]
+Constraints:
+  DemandConstraint : Size=7
+      Key : Lower : Body               : Upper
+      Fri :  70.0 :  69.99999999999993 :  None
+      Mon : 110.0 : 109.99999999999993 :  None
+      Sat : 160.0 :  159.9999999999999 :  None
+      Sun : 120.0 :  119.9999999999999 :  None
+      Thu :  30.0 :  56.66666666666663 :  None
+      Tue :  80.0 : 149.99999999999994 :  None
+      Wed : 150.0 : 149.99999999999994 :  None
+  ```
+)
 ]

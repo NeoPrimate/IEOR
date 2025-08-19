@@ -283,6 +283,62 @@ $
   inset: 10pt,
   align: horizon,
   table.header(
+    [Operation], [Notation], [Input], [Output], [Meaning],
+  ),
+  [Derivative], [
+    $
+      (d f) / (d x)
+    $
+  ], 
+  [
+    $
+      "Function"\ f(x) \
+    $
+  ], [
+    $
+      "Function"\ f'(x)
+    $
+  ], [Slope/Rate of change\ at each $x$],
+  [Indefinite Integral], [
+    $
+      integral f(x) d x
+    $
+  ], 
+  [
+    $
+      "Function"\ f(x) \
+    $
+  ], 
+  [
+    $
+      "Family of functions"\ F(x) + C
+    $
+  ], [Function whose slope\ is $f(x)$],
+  [Definite Integral], [
+    $
+      integral_a^b f(x) d x
+    $
+  ], 
+  [
+    $
+      "Function"\ f(x) \ 
+      "Bounds"\ [a, b]
+    $
+  ], 
+  [
+    $
+      "Number"
+    $
+  ], [Total signed area\ between $a$ and $b$],
+)
+
+#linebreak()
+
+#table(
+  columns: (auto, auto, auto, auto, auto),
+  inset: 10pt,
+  align: horizon,
+  table.header(
     [Rule], [$d / (dif x)$ Rule], [$d / (dif x)$ Example], [$integral$ Rule], [$integral$ Example]
   ),
   [Constant], [

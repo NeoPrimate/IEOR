@@ -104,7 +104,8 @@ Assumptions
   $
 ]
 
-#code[
+#code(
+  "newsvendor.py",
   ```py
   import numpy as np
   import scipy.stats as stats
@@ -132,6 +133,6 @@ Assumptions
   z_star = stats.norm.ppf(CR)  # z-score corresponding to the critical ratio
   Q_star = mu + z_star * sigma  # Optimal order quantity
   ```
-]
+)
 
 

@@ -88,14 +88,15 @@ $
 F(x) = sum_(t ≤ x) P(X = t)
 $
 
-#code[
-```python
-from scipy.stats import norm
+#code(
+  "cdf.py",
+  ```python
+  from scipy.stats import norm
 
-x = 1
-mu = 0
-sigma = 1
+  x = 1
+  mu = 0
+  sigma = 1
 
-norm.cdf(x, loc=mu, scale=sigma)
-```
-]
+  norm.cdf(x, loc=mu, scale=sigma)
+  ```
+)
