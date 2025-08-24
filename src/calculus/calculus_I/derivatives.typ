@@ -445,6 +445,20 @@ $
 d / (d x) [log_a(x)] = 1 / (x ln(a)) \
 $
 
+#definition(
+  [Stationary Point],
+  [
+    A stationary point of a function $f(x)$ is a solution to 
+    
+    $
+      f'(x) = 0
+    $ 
+    
+    That is, where the slope (derivative) is zero.
+    - In 1D, this means the tangent line is horizontal
+    - In nD, it means the gradient vector $gradient f(x) = 0$
+  ]
+)
 
 // #code[
 //   ```py

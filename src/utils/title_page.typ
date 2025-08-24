@@ -8,7 +8,7 @@
   #pagebreak()
   
   #h(1fr) 
-  #title
+  = #title
   #h(1fr)
   
   #pagebreak()

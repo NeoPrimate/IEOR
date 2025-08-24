@@ -26,10 +26,8 @@
 
 #include("extreme_value_theorem.typ")
 
+#include("critical_points.typ")
+
+#include("derivative_test.typ")
+
 // #include("fundamental_theorem.typ")
-
-
-
-
-
-#include("rules.typ")

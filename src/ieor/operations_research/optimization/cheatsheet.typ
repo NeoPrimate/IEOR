@@ -296,3 +296,71 @@
     $], [$$],
   ),
 )
+
+= Algorithms
+
+#table(
+  columns: (auto, auto, auto),
+  inset: 10pt,
+  align: horizon,
+  table.header(
+    [*Algorithm*], [*Update Rule*], [],
+  ),
+  [Gradient\ Descent], [
+    $
+      x_(k+1) = x_k - colorMath(alpha, #red) gradient f(x_k)
+    $
+  ], [],
+  [Newton's\ Method], [
+    $
+      x_(k+1) = x_k - colorMath([gradient^2 f(k)]^(-1), #red) gradient f(x_k)
+    $
+  ], [],
+  [], [], [],
+  [], [], [],
+
+)
+
+Newton's Method
+
+#table(
+  columns: (auto, 1fr, auto),
+  [Approximation], [Taylor\ Expansion], [Newton\ Update],
+  [Linear (1D)], [
+    $
+      f'(x_(k+1)) approx f'(x_k) + f''(x_k)(x_(k+1) - x_k)
+    $
+  ], [
+    $
+      x_(k+1) = x_k - (f'(x_k)) / (f''(x_k))
+    $
+  ],
+  [Linear (nD)], [
+    $
+      gradient f(bold("x")_(k+1)) approx gradient f(bold("x")_k) + H_k (bold("x")_(k+1) - bold("x")_k)
+    $
+  ], [
+    $
+      bold("x")_(bold("k")+1) = bold("x")_k - H_k^(-1) gradient f(bold("x")_k)
+    $
+  ],
+  [Quadratic (1D)], [
+    $
+      f_Q (x) =\ f(x_k) + f'(x_k)(x - x_k) + 1/2 f''(x_k)(x - x_k)^2
+    $
+  ], [
+    $
+      x_(k+1) = x_k - (f'(x_k)) / (f''(x_k))
+    $
+  ],
+  [Quadratic (nD)],  [
+    $
+      m_k (bold("p")) = f(bold("x")_k) + gradient f(bold("x")_k)^T bold("p") + 1/2 bold("p")^T H_k bold("p")\
+      bold("p") = bold("x") - bold("x")_k
+    $
+  ], [
+    $
+      bold("x")_(bold("k")+1) = bold("x")_k - H_k^(-1) gradient f(bold("x")_k)
+    $
+  ],
+)

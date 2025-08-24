@@ -28,16 +28,17 @@ $
     underbrace(
       underbrace(
         underbrace(
-          f(a), 
+          f(x_0), 
           *
         ) 
-        + f'(a) ((x - a)^1) / 1!, 
+        + f'(x_0) (x - x_0), 
         **
       ) 
-      + f''(a) ((x - a)^2) / 2!, 
+      + 1/2! f''(a) (x - a), 
       ***
     ) 
     + dots
+    + 1/n! f^((n))(x_0) (x - a), 
 $
 
 Where:
