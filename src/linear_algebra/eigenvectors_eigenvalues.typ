@@ -138,3 +138,83 @@ $
 
 == Eigenvalues
 
+
+
+#eg[
+
+  $
+    A = mat(
+      2, 1;
+      1, 2;
+    )
+  $
+#align(center)[
+  #cetz.canvas(length: 6cm, {
+
+    let A = (
+        (2.5, -0.5),
+        (-0.5, 2.5),
+      )
+
+    let i = (1, 0)
+    let j = (0, 1)
+
+    let v_1 = (1, 1)
+    let v_2 = (1, -1)
+    
+    let Ai = nt.matmul(A, nt.c(..i)).flatten()
+    let Aj = nt.matmul(A, nt.c(..j)).flatten()
+    
+    let Av_1 = nt.matmul(A, nt.c(..v_1)).flatten()
+    let Av_2 = nt.matmul(A, nt.c(..v_2)).flatten()
+
+    cetz-plot.plot.plot(
+      x-tick-step: 1,
+      y-tick-step: 1,
+      // x-minor-tick-step: 1,
+      // y-minor-tick-step: 1,
+      x-min: -1,
+      y-min: -3.1,
+      x-max: 3.1,
+      y-max: 3.1,
+      axis-style: "school-book",
+      x-label: $x$,
+      y-label: $y$,
+      x-grid: "both",
+      y-grid: "both",
+      {
+        cetz-plot.plot.add-anchor("o", o)
+        cetz-plot.plot.add-anchor("v_1", v_1)
+        cetz-plot.plot.add-anchor("v_2", v_2)
+        cetz-plot.plot.add-anchor("Av_1", Av_1)
+        cetz-plot.plot.add-anchor("Av_2", Av_2)
+        cetz-plot.plot.add-anchor("i", i)
+        cetz-plot.plot.add-anchor("j", j)
+        cetz-plot.plot.add-anchor("Ai", Ai)
+        cetz-plot.plot.add-anchor("Aj", Aj)
+      }, 
+      name: "plot"
+    )
+
+    cetz.draw.line("plot.o", "plot.i", stroke: purple, mark: (fill: purple, end: ">", size: .25), name: "i")
+    cetz.draw.content("i.end", text(purple)[$hat(i)$], anchor: "south", padding: 0.025, angle: "i.end")
+    cetz.draw.line("plot.o", "plot.Ai", stroke: purple, mark: (fill: purple, end: ">", size: .25), name: "Ai")
+    cetz.draw.content("Ai.end", text(purple)[$A hat(i)$], anchor: "north", padding: 0.025, angle: "Ai.end")
+
+    cetz.draw.line("plot.o", "plot.j", stroke: blue, mark: (fill: blue, end: ">", size: .25), name: "j")
+    cetz.draw.content("j.end", text(blue)[$hat(j)$], anchor: "south-west", padding: 0.025, angle: "j.end")
+    cetz.draw.line("plot.o", "plot.Aj", stroke: blue, mark: (fill: blue, end: ">", size: .25), name: "Aj")
+    cetz.draw.content("Aj.end", text(blue)[$A hat(j)$], anchor: "south", padding: 0.025, angle: "Aj.end")
+
+    cetz.draw.line("plot.o", "plot.v_1", stroke: red, mark: (fill: red, end: ">", size: .25), name: "v_1")
+    cetz.draw.content("v_1.end", text(red)[$hat(v_1)$], anchor: "south", padding: 0.025, angle: "v_1.end")
+    cetz.draw.line("plot.o", "plot.Av_1", stroke: red, mark: (fill: red, end: ">", size: .25), name: "Av_1")
+    cetz.draw.content("Av_1.end", text(red)[$A hat(v_1)$], anchor: "south", padding: 0.025, angle: "Av_1.end")
+
+    cetz.draw.line("plot.o", "plot.v_2", stroke: green, mark: (fill: green, end: ">", size: .25), name: "v_2")
+    cetz.draw.content("v_2.end", text(green)[$hat(v_2)$], anchor: "north", padding: 0.025, angle: "v_2.end")
+    cetz.draw.line("plot.o", "plot.Av_2", stroke: green, mark: (fill: green, end: ">", size: .25), name: "Av_2")
+    cetz.draw.content("Av_2.end", text(green)[$A hat(v_2)$], anchor: "south", padding: 0.05, angle: "Av_2.end")
+  })
+]
+]

@@ -337,3 +337,76 @@ The graph of $f^(-1)$ is a reflection of the graph of $f$ accress the line $x = 
   })
 ]
 
+2. Derivative of Inverse Functions
+
+#align(center)[
+
+  #canvas(length: 1cm, {
+    import draw: *
+    
+    plot.plot(
+      size: (8, 8),
+      axis-style: "school-book",
+      x-tick-step: 1,
+      y-tick-step: 1,
+      x-min: -1,
+      x-max: 5,
+      y-min: -1,
+      y-max: 5,
+      x-label: $x$,
+      y-label: $y$,
+      {
+        let f(x) = calc.pow(x, 3) + x
+        let dfdx(x) = 3*calc.pow(x, 2) + 1
+        let f_inv(y) = calc.root(y / 2 + calc.sqrt(calc.pow(y, 2) / 4 + 1 / 27), 3) + calc.root(y / 2 - calc.sqrt(calc.pow(y, 2) / 4 + 1 / 27), 3) 
+
+        let x0 = 1
+        let y0 = f(x0)
+        let slope_inv = 1 / dfdx(x0)
+      
+        plot.add(
+          domain: (-3, 5),
+          f,
+          style: (stroke: (thickness: 1pt, paint: black)),
+        )
+
+        plot.add(
+          domain: (-3, 5),
+          f_inv,
+          style: (stroke: (thickness: 1pt, paint: blue)),
+        )
+        
+        plot.add(
+          domain: (-3, 5),
+          x => x,
+          style: (stroke: (thickness: 1pt, paint: gray)),
+        )
+
+        plot.add(
+          ((x0, y0),),
+          mark: "o",
+          mark-size: 0.2,
+          mark-style: (fill: red, stroke: 1pt),
+        )
+        plot.add(
+          ((y0, x0),),
+          mark: "o",
+          mark-size: 0.2,
+          mark-style: (fill: red, stroke: 1pt),
+        )
+        
+        plot.add(
+          domain: (-3, 5),
+          x => f(x0) + dfdx(x0) * (x - x0),
+          style: (stroke: (thickness: 1pt, paint: red)),
+        )
+        
+        plot.add(
+          domain: (-3, 5),
+          y => x0 + slope_inv * (y - y0),
+          style: (stroke: (thickness: 1pt, paint: red)),
+        )
+      }
+    )
+  })
+]
