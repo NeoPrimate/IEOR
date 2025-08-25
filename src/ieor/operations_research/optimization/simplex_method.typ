@@ -4500,7 +4500,421 @@ Updated Simplex Tableau
   table.hline(),
   [Objective Function], [0], [-0.5], [0], [1.5], [7.5],
 )
+]
 
+== Matrix Notation
 
+$
+  max   quad  &c^T x \
+  s.t.  quad  &A x = b \
+              &x gt.eq  0 \
+$
+
+$
+  A &in RR^(m times n) \
+  b &in RR^(m times 1)  \
+  c &in RR^(n times 1) \
+  x &in RR^(n times 1) \
+$
+
+$
+  max quad &c_B^T x_B + c_N^T x_N \
+  s.t. quad &A_B x_B + A_N x_N = b \
+              &x_B, x_N gt.eq 0 \
+$
+
+$
+  c^T = [c_B^T, c_N^T] \
+  A = [A_B, A_N] \
+$
+
+Where:
+
+- $x_B$: Basic variables (in the basis)
+- $x_N$: Non-basic variables (not in the basis)
+- $c_B$: Coefficients of basic variables in the objective function
+- $c_N$: Coefficients of non-basic variables in the objective function
+- $A_B$: Columns of $A$ corresponding to basic variables
+- $A_N$: Columns of $A$ corresponding to non-basic variables
+- $b$: Right-hand side constants
+
+#eg[
+
+  Standard form:
+
+  $
+    max quad &x_1 \
+    s.t. quad &2x_1 - x_2 + x_3 = 4 \
+        &2x_1 + x_2 + x_4 = 8 \
+        &x_2 + x_3 = 3 \
+        &x_1, x_2, x_3, x_4 gt.eq 0 quad forall i = 1, dots, 5 \
+  $
+
+  $
+    c^T = [colorMath(1, #red), colorMath(0, #blue), colorMath(0, #blue), colorMath(0, #red), colorMath(0, #red)] 
+    
+    \ \
+
+    A = mat(
+      colorMath(2, #red), colorMath(-1, #blue), colorMath(1, #blue), colorMath(0, #red), colorMath(0, #red);
+      colorMath(2, #red), colorMath(1, #blue), colorMath(0, #blue), colorMath(1, #red), colorMath(0, #red);
+      colorMath(0, #red), colorMath(1, #blue), colorMath(0, #blue), colorMath(0, #red), colorMath(1, #red);
+     )
+
+     \ \
+
+    b = vec(4, 8, 3)
+  $
+
+  Given $colorMath(x_B, #red) = (colorMath(x_1, #red), colorMath(x_4, #red), colorMath(x_5, #red))$ and $colorMath(x_N, #blue) = (colorMath(x_2, #blue), colorMath(x_3, #blue))$:
+
+  $
+    colorMath(c_B^T, #red) = [colorMath(1, #red), colorMath(0, #red), colorMath(0, #red)], quad quad colorMath(c_N^T, #blue) = [colorMath(0, #blue), colorMath(0, #blue)]
+
+    \ \
+
+    colorMath(A_B, #red) = mat(
+      colorMath(2, #red), colorMath(0, #red), colorMath(0, #red);
+      colorMath(2, #red), colorMath(1, #red), colorMath(0, #red);
+      colorMath(0, #red), colorMath(0, #red), colorMath(1, #red);
+    ), quad quad colorMath(A_N, #blue) = mat(
+      colorMath(-1, #blue), colorMath(1, #blue);
+      colorMath(1, #blue), colorMath(0, #blue);
+      colorMath(1, #blue), colorMath(0, #blue);
+    )
+
+    \ \
+
+    b = vec(4, 8, 3) \
+  $
+
+  Objective Function
+
+  $
+   colorMath(1x_1, #red) + colorMath(0x_2, #blue) + colorMath(0x_3, #blue) + colorMath(0x_4, #red) + colorMath(0x_5, #red) = 0
+   \ \
+   colorMath(x_B^T x_b, #red) + colorMath(x_N^T x_N, #blue) = 0 \
+  $
+
+  Constraints
+
+  $
+    colorMath(2x_1, #red) - colorMath(1x_2, #blue) + colorMath(1x_3, #blue) + colorMath(0x_4, #red) + colorMath(0x_5, #red) = 4 \
+    colorMath(2x_1, #red) + colorMath(1x_2, #blue) + colorMath(0x_3, #blue) + colorMath(1x_4, #red) + colorMath(0x_5, #red) = 8 \
+    colorMath(0x_1, #red) + colorMath(1x_2, #blue) + colorMath(0x_3, #blue) + colorMath(0x_4, #red) + colorMath(1x_5, #red) = 3
+    \ \
+    colorMath(A_B x_B, #red) + colorMath(A_N x_N, #blue) = b \
+  $
+]
+
+  Problem
+
+  $
+    max quad &colorMath(c_B^T x_B, #red) + colorMath(c_N^T x_N, #blue) \
+    s.t. quad &A_colorMath(B x_B, #red) + colorMath(A_N x_N, #blue) = b \
+                &colorMath(x_B, #red), colorMath(x_N, #blue) gt.eq 0 \
+  $
+
+  Rearange the the terms in the constrains:
+
+  $
+    max quad &c_B^T x_B + c_N^T x_N \
+    s.t. quad &x_B = colorMath(A_B^(-1) (b - A_N x_N), #purple) \
+                &x_B, x_N gt.eq 0 \
+    
+  $
+
+  Replace $x_B$ in the objective function:
+
+  $
+    max quad &c_B^T colorMath([A_B^(-1) (b - A_N x_N)], #purple) + c_N^T x_N \
+    s.t. quad &x_B = A_B^(-1) (b - A_N x_N) \
+                &x_B, x_N gt.eq 0 \
+  $
+
+  Rearrange the terms in the objectcive function:
+
+  $
+    max quad &c_B^T A_B^(-1) b - (c_B^T A_B^(-1) A_N - c_N^T) x_N \
+    s.t. quad &x_B = A_B^(-1) (b - A_N x_N) \
+                &x_B, x_N gt.eq 0 \
+  $
+
+  The standard form LP becomes:
+
+  $
+    max quad &c_B^T A_B^(-1) b - (c_B^T A_B^(-1) A_N - c_N^T) x_N \
+    s.t. quad &colorMath(x_B = A_B^(-1) (b - A_N x_N), #green) \
+                &x_B, x_N gt.eq 0 \
+  $
+
+  Rearange te terms of the constrains:
+
+  $
+    max quad  &c_B^T A_B^(-1) b - (c_B^T A_B^(-1) A_N - c_N^T) x_N \
+    s.t. quad &colorMath(I x_B + A_B^(-1) A_N x_N = A_B^(-1) b, #green) \
+              &x_B, x_N gt.eq 0 \
+  $
+
+  Ignore the sign constraints and let $z$ be the objectctive value:
+
+  $
+    &z quad quad &      quad &+ quad  &(c_B^T A_B^(-1) A_N - c_N^T) x_N quad  &= quad c_B^T A_B^(-1) b \
+    &                      quad quad &I x_B quad &+ quad  &A_B^(-1) A_N x_N                 quad  &= quad A_B^(-1) b \
+  $
+
+The Simplex Tableau is:
+
+#align(center)[
+  #table(
+    columns: (auto, auto, auto, auto),
+    align: center,
+    inset: 1em,
+    stroke: none,
+    table.vline(x: 2, start: 0, end: 2),
+    table.vline(x: 1, start: 0, end: 2),
+    [$0$], [$c_B^T A_B^(-1) A_N - c_N^T$], [$c_B^T A_B^(-1) b$], [$0$],
+    table.hline(start: 0, end: 3),
+    [$I$], [$A_B^(-1) A_N x_N$], [$A_B^(-1) b$], [$1, dots, m$],
+    [basic], [non-basic], [RHS], [],
+  )
+]
+
+#eg[
+  Problem in standard form
+
+  $
+    max quad   &x_1 \
+    s.t. quad 2&x_1 quad - quad &x_2 quad &+ quad &x_3 quad & & & & &= quad 4 \
+              2&x_1 quad + quad &x_2 quad & & &+ quad &x_4 quad & & quad &= quad 8 \
+               &                &x_2 quad & & & & &+ quad &x_5 quad &= quad 3 \
+               &#place($x_i gt.eq 0 quad forall i = 1, dots, 5$) \
+  $
+
+  #linebreak()
+
+  Matrix form:
+
+  $
+    c^T = [1, 0, 0, 0, 0], quad quad A = mat(2, -1, 1, 0, 0; 2, 1, 0, 1, 0; 0, 1, 0, 0, 1), quad quad b = vec(4, 8, 3) \
+  $
+
+  Given $x_B = (x_1, x_4, x_5)$ and $x_N = (x_2, x_3)$:
+
+  $
+    c_B^T = [1, 0, 0] quad quad c_N^T = [0, 0] 
+    \ \
+    A_B = mat(2, 0, 0; 2, 1, 0; 0, 0, 1) 
+    quad quad 
+    A_N = mat(-1, 1; 1, 0; 1, 0) 
+    quad quad
+    b = vec(4, 8, 3) \
+  $
+
+  Given the basis:
+
+  $
+    x_b = A_B^(-1) b = mat(1/2, 0, 0; -1, 1, 0; 0, 0, 1) vec(4, 8, 3) = vec(colorMath(2, #red), colorMath(4, #red), colorMath(3, #red)) = vec(colorMath(x_1, #red), colorMath(x_4, #red), colorMath(x_5, #red)) 
+    \ \
+    z = c_B^T A_B^(-1) b = [1, 0, 0] vec(2, 5, 3) = 2 \
+  $
+
+  Current basic feasible solution:
+
+  $
+    x = (colorMath(x_1, #red), x_2, x_3, colorMath(x_4, #red), colorMath(x_5, #red)) = (colorMath(2, #red), 0, 0, colorMath(4, #red), colorMath(3, #red)) \
+  $
+
+  For $x_N = (x_2, x_3)$, the reduced costs are:
+
+  $
+    overline(c)_N^T 
+    &= c_B^T A_B^(-1) A_N - c_N^T \
+    &= mat(1, 0, 0) mat(
+      -1/2, 0, 0;
+      -1, 1, 0; 
+      0, 0, 1;
+    ) mat(
+      colorMath(-1, #blue), 1;
+      colorMath(1, #blue), 0;
+      colorMath(1, #blue), 0;
+    ) - mat(0, 0) \
+    &= mat(colorMath(-1/2, #red), 1/2) \
+  $
+
+  $colorMath(x_2, #red)$ enters.
+  
+  For $x_B = (x_1, x_4, x_5)$, we have:
+
+  $
+    A_B^(-1) colorMath(A_2, #blue) = mat(
+      1/2, 0, 0;
+      -1, 1, 0;
+      0, 0, 1;
+    ) vec(colorMath(-1, #blue), colorMath(1, #blue), colorMath(1, #blue))
+    =
+    vec(- 1/2, colorMath(2, #red), 1)
+    quad quad "and" quad quad
+    A_B^(-1) b = vec(2, colorMath(4, #red), 3)
+  $
+
+  The minumum ratios test:
+
+  $
+    colorMath(x_4, #red): frac(4, 2) = 2 quad quad x_5: frac(3, 1) = 3 \
+  $
+
+  So, $colorMath(x_4, #red)$ leaves the basis.
+
+  Given $x_B = (x_1, colorMath(x_2, #red), x_5)$ and $x_N = (x_3, colorMath(x_4, #red))$ we have:
+
+  $
+    c_B^T = [1, 0, 0] quad quad c_N^T = [0, 0] \
+    \ \
+    A_B = mat(2, -1, 1; 2, 1, 0; 0, 1, 0) 
+    quad quad 
+    A_N = mat(1, 0; 0, 1; 0, 0) 
+    quad quad
+    b = vec(4, 8, 3) \
+  $
+
+  Given the basis we have:
+
+  $
+    x_b = A_B^(-1) b = mat(1/2, 1/4, 0; -1/2, 1, 0; 1/2, -1/2, 1) vec(4, 8, 3) = vec(colorMath(3, #red), colorMath(2, #red), colorMath(1, #red)) = vec(colorMath(x_1, #red), colorMath(x_2, #red), colorMath(x_5, #red)) 
+    \ \
+    z = c_B^T A_B^(-1) b = [1, 0, 0] vec(3, 2, 1) = 3 \
+  $
+
+  Current basic feasible solution:
+
+  $
+    x = (x_1, x_2, x_3, x_4, x_5) = (colorMath(3, #red), colorMath(2, #red), 0, 0, colorMath(1, #red)) \
+  $
+
+  For $x_N = (x_3, x_4)$, the reduced costs are:
+
+  $
+   overline(c)_N^T 
+    &= c_B^T A_B^(-1) A_N - c_N^T \
+    &= mat(1, 0, 0) mat(
+      1/4, 1/4, 0;
+      -1/2, 1/2, 0;
+      1/2, -1/2, 1;
+    ) mat(
+      1, 0;
+      0, 1;
+      0, 0;
+    ) - mat(0, 0) \
+    &= mat(1/4, 1/4) \ 
+  $
+
+  No more variable can enter the basis (no negative non-basic coefficients). The optimal solution is:
+
+  $
+    x^* = (3, 2, 0, 0, 1), quad quad z^* = 3 \ 
+  $
+
+]
+
+#eg[
+  Problem:
+
+  $
+    max quad 2&x_1 quad +& quad 3&x_2 \
+    s.t. quad &x_1 quad +& quad  &x_2 quad &lt.eq quad 4 \
+              &x_1 quad +& quad 2&x_2 quad &lt.eq quad 6 \
+              &#place($x_1, x_2 gt.eq 0$) \
+  $
+  
+  #linebreak()
+
+  Standard form:
+
+  $
+    max quad 2&x_1 quad +& quad 3&x_2 quad & quad & & & \
+    s.t. quad &x_1 quad +& quad  &x_2 quad +& quad &s_1 & & & = quad 4 \
+              &x_1 quad +& quad 2&x_2 & quad & quad quad +& quad &s_2 & quad = quad 6 \
+              &#place($x_1, x_2, s_1, s_2 gt.eq 0$) \
+  $
+
+  #linebreak()
+
+  #table(
+    columns: (1fr, 1fr),
+    align: horizon + center, 
+    [
+      Let $x_B = (colorMath(s_1, #red), colorMath(s_2, #red))$ and $x_N = (x_1, x_2)$
+
+      $
+        c_B = [0, 0] quad quad c_N = [2, 3] \
+        A_B = mat(1, 0; 0, 1) quad quad A_N = mat(1, 1; 1, 2) \
+        b = vec(4, 6) \
+      $
+
+      $
+        A_B^(-1) = mat(1, 0; 0, 1)  \
+        A_B^(-1) A_N = mat(colorMath(1, #green), colorMath(1, #green); colorMath(1, #green), colorMath(2, #green);) \
+        A_B^(-1) b = vec(colorMath(4, #blue), colorMath(6, #blue)) \
+        c_B^T A_B^(-1) A_N - c_N^T = mat(colorMath(-2, #red), colorMath(-3, #red)) \
+        colorMath(c_B^T A_B^(-1) b = 0, #yellow.darken(40%)) \
+      $
+    ],
+    [
+      #table(
+        columns: (auto, auto, auto, auto, auto),
+        align: center,
+        stroke: none,
+        table.vline(x: 4, start: 0),
+        [$colorMath(-2, #red)$], [$colorMath(-3, #red)$], [$0$], [$0$], [$colorMath(0, #yellow.darken(40%))$],
+        table.hline(start: 0, end: 5),
+        [$colorMath(1, #green)$], [$colorMath(1, #green)$], [$1$], [$0$], [$colorMath(4, #blue)$],
+        [$colorMath(1, #green)$], [$colorMath(2, #green)$], [$0$], [$1$], [$colorMath(6, #blue)$],
+         table.cell(colspan: 2)[basic],
+         table.cell(colspan: 2)[non-basic],
+        [RHS],
+      )
+    ],
+  
+    [
+      Let $x_B = (colorMath(x_1, #red), colorMath(x_2, #red))$ and $x_N = (s_1, s_2)$
+
+      $
+        c_B = vec(2, 3) quad quad c_N = vec(0, 0) \
+        A_B = mat(1, 1; 1, 2) quad quad A_N = mat(1, 0; 0, 1) \
+        b = vec(4, 6) \
+      $
+
+      $
+        A_B^(-1) = mat(2, -1; -1, 1)  \
+        A_B^(-1) A_N = mat(colorMath(2, #green), colorMath(-1, #green); colorMath(-1, #green), colorMath(1, #green);) \
+        A_B^(-1) b = vec(colorMath(2, #blue), colorMath(2, #blue)) \
+        c_B^T A_B^(-1) A_N - c_N^T = mat(colorMath(1, #red), colorMath(1, #red)) \
+        colorMath(c_B^T A_B^(-1) b = 10, #yellow.darken(40%)) \
+      $
+    ],
+    [
+      #table(
+        columns: (auto, auto, auto, auto, auto),
+        align: center,
+        stroke: none,
+        table.vline(x: 4, start: 0),
+        [$0$], [$0$], [$colorMath(1, #red)$], [$colorMath(1, #red)$], [$colorMath(10, #yellow.darken(40%))$],
+        table.hline(start: 0, end: 5),
+        [$1$], [$0$], [$colorMath(2, #green)$], [$colorMath(-1, #green)$], [$colorMath(2, #blue)$],
+        [$0$], [$1$], [$colorMath(-1, #green)$], [$colorMath(1, #green)$], [$colorMath(2, #blue)$],
+         table.cell(colspan: 2)[basic],
+         table.cell(colspan: 2)[non-basic],
+        [RHS],
+      )
+    ],
+
+    [
+
+    ],
+    [
+
+    ]
+  )
 
 ]
