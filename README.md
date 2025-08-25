@@ -1,13 +1,14 @@
-= Industrial Engineering & Operations Research
+<h1 align="center">Industrial Engineering & Operations Research</h1>
 
-- Calculus I, II & III
-- Linear Algebra
-- IE
-    - Operations Research
-    - Quality Engineering
-    - Supply Chain
-- Statistics
+### Calculus
 
+### Linear Algebra
+
+### Statistics
+
+### Optimization
+
+---
 
 Push to GitHub:
 
