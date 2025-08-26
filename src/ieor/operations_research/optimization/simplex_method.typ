@@ -1,7 +1,7 @@
 #import "@preview/cetz:0.3.4"
 #import "@preview/cetz-plot:0.1.1"
 #import "@preview/fletcher:0.5.7" as fletcher: diagram, node, edge
-
+#import "@preview/numty:0.0.5" as nt
 
 #import "../../../utils/examples.typ": eg
 #import "../../../utils/code.typ": code
@@ -9,6 +9,8 @@
 
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
+#set math.mat(gap: 1em)
+#set math.vec(gap: 1em)
 
 == Simplex Method
 
@@ -4519,13 +4521,13 @@ $
 
 $
   max quad &c_B^T x_B + c_N^T x_N \
-  s.t. quad &A_B x_B + A_N x_N = b \
+  s.t. quad &B x_B + N x_N = b \
               &x_B, x_N gt.eq 0 \
 $
 
 $
   c^T = [c_B^T, c_N^T] \
-  A = [A_B, A_N] \
+  A = [B, N] \
 $
 
 Where:
@@ -4534,8 +4536,8 @@ Where:
 - $x_N$: Non-basic variables (not in the basis)
 - $c_B$: Coefficients of basic variables in the objective function
 - $c_N$: Coefficients of non-basic variables in the objective function
-- $A_B$: Columns of $A$ corresponding to basic variables
-- $A_N$: Columns of $A$ corresponding to non-basic variables
+- $B$: Columns of $A$ corresponding to *basic* variables
+- $N$: Columns of $A$ corresponding to *non-basic* variables
 - $b$: Right-hand side constants
 
 #eg[
@@ -4573,11 +4575,11 @@ Where:
 
     \ \
 
-    colorMath(A_B, #red) = mat(
+    colorMath(B, #red) = mat(
       colorMath(2, #red), colorMath(0, #red), colorMath(0, #red);
       colorMath(2, #red), colorMath(1, #red), colorMath(0, #red);
       colorMath(0, #red), colorMath(0, #red), colorMath(1, #red);
-    ), quad quad colorMath(A_N, #blue) = mat(
+    ), quad quad colorMath(N, #blue) = mat(
       colorMath(-1, #blue), colorMath(1, #blue);
       colorMath(1, #blue), colorMath(0, #blue);
       colorMath(1, #blue), colorMath(0, #blue);
@@ -4611,7 +4613,7 @@ Where:
 
   $
     max quad &colorMath(c_B^T x_B, #red) + colorMath(c_N^T x_N, #blue) \
-    s.t. quad &A_colorMath(B x_B, #red) + colorMath(A_N x_N, #blue) = b \
+    s.t. quad &colorMath(B x_B, #red) + colorMath(N x_N, #blue) = b \
                 &colorMath(x_B, #red), colorMath(x_N, #blue) gt.eq 0 \
   $
 
@@ -4619,7 +4621,7 @@ Where:
 
   $
     max quad &c_B^T x_B + c_N^T x_N \
-    s.t. quad &x_B = colorMath(A_B^(-1) (b - A_N x_N), #purple) \
+    s.t. quad &x_B = colorMath(B^(-1) (b - N x_N), #purple) \
                 &x_B, x_N gt.eq 0 \
     
   $
@@ -4627,40 +4629,40 @@ Where:
   Replace $x_B$ in the objective function:
 
   $
-    max quad &c_B^T colorMath([A_B^(-1) (b - A_N x_N)], #purple) + c_N^T x_N \
-    s.t. quad &x_B = A_B^(-1) (b - A_N x_N) \
+    max quad &c_B^T colorMath([B^(-1) (b - N x_N)], #purple) + c_N^T x_N \
+    s.t. quad &x_B = B^(-1) (b - N x_N) \
                 &x_B, x_N gt.eq 0 \
   $
 
   Rearrange the terms in the objectcive function:
 
   $
-    max quad &c_B^T A_B^(-1) b - (c_B^T A_B^(-1) A_N - c_N^T) x_N \
-    s.t. quad &x_B = A_B^(-1) (b - A_N x_N) \
+    max quad &c_B^T B^(-1) b - (c_B^T B^(-1) N - c_N^T) x_N \
+    s.t. quad &x_B = B^(-1) (b - N x_N) \
                 &x_B, x_N gt.eq 0 \
   $
 
   The standard form LP becomes:
 
   $
-    max quad &c_B^T A_B^(-1) b - (c_B^T A_B^(-1) A_N - c_N^T) x_N \
-    s.t. quad &colorMath(x_B = A_B^(-1) (b - A_N x_N), #green) \
+    max quad &c_B^T B^(-1) b - (c_B^T B^(-1) N - c_N^T) x_N \
+    s.t. quad &colorMath(x_B = B^(-1) (b - N x_N), #green) \
                 &x_B, x_N gt.eq 0 \
   $
 
   Rearange te terms of the constrains:
 
   $
-    max quad  &c_B^T A_B^(-1) b - (c_B^T A_B^(-1) A_N - c_N^T) x_N \
-    s.t. quad &colorMath(I x_B + A_B^(-1) A_N x_N = A_B^(-1) b, #green) \
+    max quad  &c_B^T B^(-1) b - (c_B^T B^(-1) N - c_N^T) x_N \
+    s.t. quad &colorMath(I x_B + B^(-1) N x_N = B^(-1) b, #green) \
               &x_B, x_N gt.eq 0 \
   $
 
   Ignore the sign constraints and let $z$ be the objectctive value:
 
   $
-    &z quad quad &      quad &+ quad  &(c_B^T A_B^(-1) A_N - c_N^T) x_N quad  &= quad c_B^T A_B^(-1) b \
-    &                      quad quad &I x_B quad &+ quad  &A_B^(-1) A_N x_N                 quad  &= quad A_B^(-1) b \
+    &z quad quad &      quad &+ quad  &(c_B^T B^(-1) N - c_N^T) x_N quad  &= quad c_B^T B^(-1) b \
+    &                      quad quad &I x_B quad &+ quad  &B^(-1) N x_N                 quad  &= quad B^(-1) b \
   $
 
 The Simplex Tableau is:
@@ -4673,15 +4675,15 @@ The Simplex Tableau is:
     stroke: none,
     table.vline(x: 2, start: 0, end: 2),
     table.vline(x: 1, start: 0, end: 2),
-    [$0$], [$c_B^T A_B^(-1) A_N - c_N^T$], [$c_B^T A_B^(-1) b$], [$0$],
+    [$0$], [$c_B^T B^(-1) N - c_N^T$], [$c_B^T B^(-1) b$], [$0$],
     table.hline(start: 0, end: 3),
-    [$I$], [$A_B^(-1) A_N x_N$], [$A_B^(-1) b$], [$1, dots, m$],
+    [$I$], [$B^(-1) N x_N$], [$B^(-1) b$], [$1, dots, m$],
     [basic], [non-basic], [RHS], [],
   )
 ]
 
 #eg[
-  Problem in standard form
+  *Step 1.* Standard form
 
   $
     max quad   &x_1 \
@@ -4693,45 +4695,58 @@ The Simplex Tableau is:
 
   #linebreak()
 
-  Matrix form:
+  Matrix notation:
 
   $
     c^T = [1, 0, 0, 0, 0], quad quad A = mat(2, -1, 1, 0, 0; 2, 1, 0, 1, 0; 0, 1, 0, 0, 1), quad quad b = vec(4, 8, 3) \
   $
 
-  Given $x_B = (x_1, x_4, x_5)$ and $x_N = (x_2, x_3)$:
+  #line(length: 100%)
+
+  *Step 2.* Initial Basis
+
+  $
+    B &= (colorMath(x_1, #red), colorMath(x_4, #red), colorMath(x_5, #red))
+    quad quad
+    N &= (x_2, x_3)
+  $
+
+  $
+    B = mat(2, 0, 0; 2, 1, 0; 0, 0, 1) 
+    quad quad 
+    N = mat(-1, 1; 1, 0; 1, 0) 
+  $
+
+  Cost split:
 
   $
     c_B^T = [1, 0, 0] quad quad c_N^T = [0, 0] 
-    \ \
-    A_B = mat(2, 0, 0; 2, 1, 0; 0, 0, 1) 
-    quad quad 
-    A_N = mat(-1, 1; 1, 0; 1, 0) 
+  $
+
+  Compute inverse of $B$:
+
+  $
+    B^(-1) = mat(1/2, 0, 0; -1, 1, 0; 0, 0, 1)
     quad quad
-    b = vec(4, 8, 3) \
+    x_B = B^(-1) b = mat(1/2, 0, 0; -1, 1, 0; 0, 0, 1) vec(4, 8, 3) = vec(colorMath(2, #red), colorMath(4, #red), colorMath(3, #red))
   $
 
-  Given the basis:
-
-  $
-    x_b = A_B^(-1) b = mat(1/2, 0, 0; -1, 1, 0; 0, 0, 1) vec(4, 8, 3) = vec(colorMath(2, #red), colorMath(4, #red), colorMath(3, #red)) = vec(colorMath(x_1, #red), colorMath(x_4, #red), colorMath(x_5, #red)) 
-    \ \
-    z = c_B^T A_B^(-1) b = [1, 0, 0] vec(2, 5, 3) = 2 \
-  $
-
-  Current basic feasible solution:
+  So the basic feasible solution (BFS) is:
 
   $
     x = (colorMath(x_1, #red), x_2, x_3, colorMath(x_4, #red), colorMath(x_5, #red)) = (colorMath(2, #red), 0, 0, colorMath(4, #red), colorMath(3, #red)) \
+    z = c_B^T B^(-1) b = [1, 0, 0] vec(colorMath(2, #red), colorMath(4, #red), colorMath(3, #red)) = 2 \
   $
 
-  For $x_N = (x_2, x_3)$, the reduced costs are:
+  #line(length: 100%)
+
+  *Step 3.* Reduced costs and entering variable
 
   $
     overline(c)_N^T 
-    &= c_B^T A_B^(-1) A_N - c_N^T \
+    &= c_B^T B^(-1) colorMath(N, #blue) - c_N^T \
     &= mat(1, 0, 0) mat(
-      -1/2, 0, 0;
+      1/2, 0, 0;
       -1, 1, 0; 
       0, 0, 1;
     ) mat(
@@ -4742,61 +4757,82 @@ The Simplex Tableau is:
     &= mat(colorMath(-1/2, #red), 1/2) \
   $
 
-  $colorMath(x_2, #red)$ enters.
+  Since $overline(c)_2 = -1/2 lt 0$, the entering variable is $colorMath(x_2, #red)$
+
+  #line(length: 100%)
+
+  *Step 4.* Direction, ratio test and leaving variable
   
   For $x_B = (x_1, x_4, x_5)$, we have:
 
   $
-    A_B^(-1) colorMath(A_2, #blue) = mat(
+    d = B^(-1) colorMath(N_2, #blue) = mat(
       1/2, 0, 0;
       -1, 1, 0;
       0, 0, 1;
     ) vec(colorMath(-1, #blue), colorMath(1, #blue), colorMath(1, #blue))
     =
     vec(- 1/2, colorMath(2, #red), 1)
-    quad quad "and" quad quad
-    A_B^(-1) b = vec(2, colorMath(4, #red), 3)
   $
-
-  The minumum ratios test:
+  
+  Current basic solution:
 
   $
-    colorMath(x_4, #red): frac(4, 2) = 2 quad quad x_5: frac(3, 1) = 3 \
+    x_B = A_B^(-1) b = vec(2, colorMath(4, #red), 3)
   $
 
-  So, $colorMath(x_4, #red)$ leaves the basis.
-
-  Given $x_B = (x_1, colorMath(x_2, #red), x_5)$ and $x_N = (x_3, colorMath(x_4, #red))$ we have:
+  The minimum ratios test:
 
   $
-    c_B^T = [1, 0, 0] quad quad c_N^T = [0, 0] \
-    \ \
-    A_B = mat(2, -1, 1; 2, 1, 0; 0, 1, 0) 
-    quad quad 
-    A_N = mat(1, 0; 0, 1; 0, 0) 
+    colorMath(x_4, #red) / 2 = 4 / 2 = 2 quad quad x_5 / 1 = 3 / 1 = 3 \
+  $
+
+  Smallest ratio is $2 arrow.double colorMath(x_4, #red)$ leaves the basis
+
+  #line(length: 100%)
+
+  *Step 5.* Pivot to the new basis
+
+  $
+    B &= (x_1, colorMath(x_2, #red), x_5)
     quad quad
-    b = vec(4, 8, 3) \
+    N &= (x_3, colorMath(x_4, #red))
   $
 
-  Given the basis we have:
-
   $
-    x_b = A_B^(-1) b = mat(1/2, 1/4, 0; -1/2, 1, 0; 1/2, -1/2, 1) vec(4, 8, 3) = vec(colorMath(3, #red), colorMath(2, #red), colorMath(1, #red)) = vec(colorMath(x_1, #red), colorMath(x_2, #red), colorMath(x_5, #red)) 
-    \ \
-    z = c_B^T A_B^(-1) b = [1, 0, 0] vec(3, 2, 1) = 3 \
+    B = mat(2, -1, 1; 2, 1, 0; 0, 1, 0) 
+    quad quad 
+    N = mat(1, 0; 0, 1; 0, 0)
   $
 
-  Current basic feasible solution:
+  Cost split:
 
   $
-    x = (x_1, x_2, x_3, x_4, x_5) = (colorMath(3, #red), colorMath(2, #red), 0, 0, colorMath(1, #red)) \
+    c_B^T = [1, 0, 0] quad quad c_N^T = [0, 0] 
   $
 
-  For $x_N = (x_3, x_4)$, the reduced costs are:
+  Compute inverse of $B$:
+
+  $
+    B^(-1) = mat(1/2, 1/4, 0; -1/2, 1, 0; 1/2, -1/2, 1)
+    quad quad
+    x_B = B^(-1) b = mat(1/2, 1/4, 0; -1/2, 1, 0; 1/2, -1/2, 1) vec(4, 8, 3) = vec(colorMath(3, #red), colorMath(2, #red), colorMath(1, #red)) = vec(colorMath(x_1, #red), colorMath(x_2, #red), colorMath(x_5, #red))
+  $
+
+  So the new basic feasible solution (BFS) is:
+
+  $
+    x = (colorMath(x_1, #red), colorMath(x_2, #red), x_3, x_4, colorMath(x_5, #red)) = (colorMath(3, #red), colorMath(2, #red), 0, 0, colorMath(1, #red)) \  
+    z = c_B^T x_B = [1, 0, 0] vec(3, 2, 1) = 3 \
+  $
+
+  #line(length: 100%)
+
+  *Step 6.* Check optimality (reduced costs)
 
   $
    overline(c)_N^T 
-    &= c_B^T A_B^(-1) A_N - c_N^T \
+    &= c_B^T B^(-1) N - c_N^T \
     &= mat(1, 0, 0) mat(
       1/4, 1/4, 0;
       -1/2, 1/2, 0;
@@ -4809,7 +4845,7 @@ The Simplex Tableau is:
     &= mat(1/4, 1/4) \ 
   $
 
-  No more variable can enter the basis (no negative non-basic coefficients). The optimal solution is:
+  No negative reduced costs $arrow.double$ optimal
 
   $
     x^* = (3, 2, 0, 0, 1), quad quad z^* = 3 \ 
@@ -4908,13 +4944,560 @@ The Simplex Tableau is:
         [RHS],
       )
     ],
+  )
+]
 
-    [
+#eg[
 
-    ],
-    [
+  *Step 1.* Canonical form
 
-    ]
+  $
+    max quad &x_1 quad +& quad 3&x_2 \ 
+    s.t. quad -&x_1 quad +& quad  &x_2 quad lt.eq& quad 3 \
+              -&x_1 quad +& quad 2&x_2 quad lt.eq& quad 8 \
+              3&x_1 quad +& quad &x_2 quad lt.eq& quad 18 \
+              &#place($x_1, x_2 gt.eq 0$) \
+  $
+  
+  #linebreak()
+
+  #line(length: 100%)
+
+  *Step 2.* Standard form
+
+  $
+    max quad    &x_1 quad +& quad 3&x_2       & & & & \
+    s.t. quad  -&x_1 quad +& quad  &x_2 quad +& quad &s_1 & & & & & & quad = quad 3 \
+               -&x_1 quad +& quad 2&x_2 quad  & &  quad quad +& quad &s_2 & & & & quad = quad 8 \
+               3&x_1 quad +& quad  &x_2 quad  & & quad quad & & & quad +& quad &s_3 & quad = quad 18 \
+              &#place($x_1, x_2, s_1, s_2 gt.eq 0$) \
+  $
+
+  #linebreak()
+
+  Matrix notation:
+
+  #let inv3(m) = {
+    let ((a,b,c),(d,e,f),(g,h,i)) = m
+    let det = a*(e*i - f*h) - b*(d*i - f*g) + c*(d*h - e*g)
+    if det == 0 {
+    panic("Matrix not invertible")
+    }
+    (
+    ( (e*i - f*h)/det, (c*h - b*i)/det, (b*f - c*e)/det ),
+    ( (f*g - d*i)/det, (a*i - c*g)/det, (c*d - a*f)/det ),
+    ( (d*h - e*g)/det, (b*g - a*h)/det, (a*e - b*d)/det )
+    )
+  }
+
+  #let round_matrix(m) = {
+    m.map(row => row.map(x => calc.round(x, digits: 2)))
+  }
+
+  #let c = (1, 3, 0, 0, 0)
+  #let cT = nt.r(..c)
+
+  #let A = (
+    (-1, 1, 1, 0, 0), 
+    (-1, 2, 0, 1, 0), 
+    (3, 1, 0, 0, 1)
   )
 
+  #let b = (3, 8, 18)
+  #let bT = nt.r(..b)
+
+  #let B = (
+    (1, 0, 0), 
+    (0, 1, 0), 
+    (0, 0, 1)
+  )
+
+  #let N = (
+    (-1, 1), 
+    (-1, 2), 
+    (3, 1),
+  )
+
+  #let cB = (0, 0, 0)
+  #let cBT = nt.r(..cB)
+
+  #let cN = (1, 3)
+  #let cNT = nt.r(..cN)
+
+  #let Binv = inv3(B)
+
+  #let xB = nt.matmul(Binv, nt.c(..b))
+
+  $
+    c^T &= #nt.print(cT) \
+    quad quad 
+    A &= #nt.print(A) 
+    quad quad 
+    b = #nt.print(b) \  
+  $
+
+  #line(length: 100%)
+
+  *Step 3.* Initial Basis
+
+  $
+    B &= (s_1, s_2, s_3) &
+    quad quad 
+    N &= (x_1, x_2) \
+    
+    B &= #nt.print(B) &
+    quad quad 
+    N &= #nt.print(N) \
+  
+    c_B^T &= #nt.print(cBT) &
+    quad quad 
+    c_N^T &= #nt.print(cNT) \
+  $
+
+  Compute $B^(-1)$:
+
+  $
+    B^(-1) = #nt.print(Binv)  \
+  $
+
+  Compute basic feasible solution:
+
+  $
+    x_B = B^(-1) b = #nt.print(Binv) #nt.print(b) = #nt.print(xB) = vec(s_1, s_2, s_3) \
+  $
+
+  Current basic feasible solution:
+
+  $
+    x = (x_1, x_2, s_1, s_2, s_3) = (0, 0, #xB.at(0).at(0), #xB.at(1).at(0), #xB.at(2).at(0)) \
+  $
+
+  #let z = nt.matmul(cBT, xB).at(0).at(0)
+  
+  $
+    z 
+    = c_B^T B^(-1) b 
+    = c_B^T x_B 
+    = #nt.print(cBT) #nt.print(xB) = #nt.print(z) \
+  $
+
+  #align(center)[
+    #cetz.canvas({
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
+        size: (7.5,7.5),
+        axis-style: "school-book",
+        x-tick-step: 2, 
+        y-tick-step: 2, 
+        x-label: [$x_1$],
+        y-label: [$x_2$],
+        x-min: -1, x-max: 7.5,
+        y-min: -1, y-max: 7.5,
+        axes: (
+          stroke: black,
+          tick: (stroke: black),
+        ),
+      {
+        plot.add(
+          domain: (-1, 7.5),
+          x => 3 + x,
+          style: (stroke: (thickness: 1pt, paint: green)),
+          label: [$-x_1 + x_2 lt.eq 3$],
+        )
+        plot.add(
+          domain: (-1, 7.5),
+          x => (8 + x) / 2,
+          style: (stroke: (thickness: 1pt, paint: blue)),
+          label: [$-x_1 + 2x_2 lt.eq 8$],
+        )
+        plot.add(
+          domain: (-1, 7.5),
+          x => 18 - 3*x,
+          style: (stroke: (thickness: 1pt, paint: red)),
+          label: [$3x_1 + x_2 lt.eq 18$],
+        )
+        plot.add(
+          domain: (-1, 7.5),
+          x => 0 - (x - 0) / 3,
+          style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
+          label: [$z = x_1 + 3x_2$],
+        )
+
+        plot.add-fill-between(
+          domain: (0, 6),
+          x => {
+            if 0 <= x and x <= 2 {
+              3 + x
+            } else if 2 < x and x <= 4 {
+              (8 + x) / 2
+            } else if 4 < x and x <= 6 {
+              18 - 3*x
+            } else {
+              0
+            }
+          },
+          x => 0,
+          style: (fill: blue.lighten(75%), opacity: 0.5, stroke: none),
+        )
+      }, name: "plot")
+    })
+  ]
+
+  #line(length: 100%)
+
+  *Step 4.* Reduced costs and *entering variable*
+
+  #let cbarNT = nt.sub(nt.matmul(cBT, nt.matmul(Binv, N)), cNT)
+
+  $
+    overline(c)_N^T 
+    &= c_B^T B^(-1) N - c_N^T \
+    &= #nt.print(cBT) #nt.print(Binv) #nt.print(N) - #nt.print(cNT) \
+    &= #nt.print(cbarNT) \
+  $
+
+  Since $overline(c)_1 = -1 lt 0$, the *entering variable* is $x_1$
+
+  #line(length: 100%)
+
+  *Step 5.* Direction, ratio test and *leaving variable*
+
+  For $x_B = (s_1, s_2, s_3)$, we have:
+
+  #let Nx1 = nt.transpose(N).at(0)
+  #let d = nt.matmul(Binv, nt.c(..Nx1))
+
+  $
+    d = B^(-1) N_1 = #nt.print(Binv) #nt.print(nt.c(-1, 1, 3)) = #nt.print(d)
+  $
+
+  Current basic solution:
+
+  $
+    x_B = B^(-1) b = #nt.print(xB) \
+  $
+
+  The minimum ratios test:
+
+  $
+    s_3 / 3 = 18 / 3 = 6
+  $
+
+  Smallest ratio is $3 arrow.double s_3$ *leaves the basis* (only consider ratios where the corresponding $d_i gt 0$)
+
+  #line(length: 100%)
+
+  *Step 6.* Pivot to the new basis
+
+  $
+    B &= (s_1, s_2, colorMath(x_1, #red)) &
+    quad quad 
+    N &= (colorMath(s_3, #red), x_2) \
+
+    #let B = (
+      (1, 0, -1), 
+      (0, 1, -1), 
+      (0, 0, 3)
+    )
+
+    #let N = (
+      (0, 1), 
+      (0, 2), 
+      (1, 1),
+    )
+
+    #let cB = (0, 0, 1)
+    #let cBT = nt.r(..cB)
+    #let cN = (0, 3)
+    #let cNT = nt.r(..cN)
+    
+    #let Binv = inv3(B)
+    #let Binv = round_matrix(Binv)
+    
+    B &= #nt.print(B) &
+    quad quad 
+    N &= #nt.print(N) \
+  
+    c_B^T &= #nt.print(cBT) &
+    quad quad 
+    c_N^T &= #nt.print(cNT) \
+  $
+
+  Compute $B^(-1)$:
+
+  $
+    B^(-1) = #nt.print(Binv)  \
+  $
+
+  Compute basic feasible solution:
+
+  #let xB = nt.matmul(Binv, nt.c(..b))
+  #let xB = round_matrix(xB)
+
+  $
+    x_B = B^(-1) b = #nt.print(Binv) #nt.print(b) = #nt.print(xB) = vec(s_1, s_2, x_1) \
+  $
+
+  Current basic feasible solution:
+
+  #let z = nt.matmul(cBT, xB).at(0).at(0)
+
+  $
+    x = (colorMath(x_1, #red), x_2, colorMath(s_1, #red), colorMath(s_2, #red), s_3) = (colorMath(#xB.at(2).at(0), #red), 0, colorMath(#xB.at(0).at(0), #red), colorMath(#xB.at(1).at(0), #red), 0) \
+    z = c_B^T x_B = #nt.print(cBT) #nt.print(xB) = #nt.print(z) \
+  $
+
+  #align(center)[
+    #cetz.canvas({
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
+        size: (7.5,7.5),
+        axis-style: "school-book",
+        x-tick-step: 2, 
+        y-tick-step: 2, 
+        x-label: [$x_1$],
+        y-label: [$x_2$],
+        x-min: -1, x-max: 7.5,
+        y-min: -1, y-max: 7.5,
+        axes: (
+          stroke: black,
+          tick: (stroke: black),
+        ),
+      {
+        plot.add(
+          domain: (-1, 7.5),
+          x => 3 + x,
+          style: (stroke: (thickness: 1pt, paint: green)),
+          label: [$-x_1 + x_2 lt.eq 3$],
+        )
+        plot.add(
+          domain: (-1, 7.5),
+          x => (8 + x) / 2,
+          style: (stroke: (thickness: 1pt, paint: blue)),
+          label: [$-x_1 + 2x_2 lt.eq 8$],
+        )
+        plot.add(
+          domain: (-1, 7.5),
+          x => 18 - 3*x,
+          style: (stroke: (thickness: 1pt, paint: red)),
+          label: [$3x_1 + x_2 lt.eq 18$],
+        )
+        plot.add(
+          domain: (-1, 7.5),
+          x => 0 - (x - 6) / 3,
+          style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
+          label: [$z = x_1 + 3x_2$],
+        )
+
+        plot.add-fill-between(
+          domain: (0, 6),
+          x => {
+            if 0 <= x and x <= 2 {
+              3 + x
+            } else if 2 < x and x <= 4 {
+              (8 + x) / 2
+            } else if 4 < x and x <= 6 {
+              18 - 3*x
+            } else {
+              0
+            }
+          },
+          x => 0,
+          style: (fill: blue.lighten(75%), opacity: 0.5, stroke: none),
+        )
+      }, name: "plot")
+    })
+  ]
+
+  #line(length: 100%)
+
+  *Step 7.* Reduced costs and *entering variable*
+
+  #let cbarNT = nt.sub(nt.matmul(cBT, nt.matmul(Binv, N)), cNT)
+
+  $
+   overline(c)_N^T 
+    &= c_B^T B^(-1) N - c_N^T \
+    &= #nt.print(cBT) #nt.print(Binv) #nt.print(N) - #nt.print(cNT) \
+    &= #nt.print(cbarNT) \  
+  $
+
+  Since $overline(c)_2 = #cbarNT.at(0).at(1) lt 0$, the *entering variable* is $x_2$
+
+  *Step 8.* Direction, ratio test and *leaving variable*
+
+  For $x_B = (s_1, s_2, x_1)$, we have:
+
+  #let Nx2 = nt.transpose(N).at(1)
+  #let d = nt.matmul(Binv, nt.c(..Nx2))
+
+  $
+    d = B^(-1) N_2 = #nt.print(Binv) #nt.print(nt.c(1, 2, 1)) = #nt.print(d)
+  $
+
+  Current basic solution:
+
+  $
+    x_B = B^(-1) b = #nt.print(xB) \
+  $
+
+  The minimum ratios test:
+
+  $
+    s_1 / 1 = #xB.at(0).at(0) / 1, quad quad s_2 / 2 = #xB.at(1).at(0) / 2, quad quad x_1 / 1 = #xB.at(2).at(0) / 1 \
+  $
+
+  Smallest ratio is $#xB.at(1).at(0) / 2 arrow.double s_2$ *leaves the basis* (only consider ratios where the corresponding $d_i gt 0$)
+
+  #line(length: 100%)
+
+  *Step 9.* Pivot to the new basis
+
+  #let B = (
+    (1, 1, -1), 
+    (0, 2, -1), 
+    (0, 1, 3)
+  )
+
+  #let N = (
+    (0, 0), 
+    (1, 1), 
+    (0, 1),
+  )
+
+  #let cB = (0, 3, 1)
+  #let cBT = nt.r(..cB)
+  #let cN = (0, 0)
+  #let cNT = nt.r(..cN)
+  
+  #let Binv = inv3(B)
+  #let Binv = round_matrix(Binv)
+
+  $
+    B &= (s_1, colorMath(x_2, #red), colorMath(x_1, #red)) &
+    quad quad 
+    N &= (colorMath(s_2, #red), s_3) \
+    
+    B &= #nt.print(B) &
+    quad quad 
+    N &= #nt.print(N) \
+  
+    c_B^T &= #nt.print(cBT) &
+    quad quad 
+    c_N^T &= #nt.print(cNT) \
+  $
+
+  Compute $B^(-1)$:
+
+  $
+    B^(-1) = #nt.print(Binv)  \
+  $
+
+  Compute basic feasible solution:
+
+  #let xB = nt.matmul(Binv, nt.c(..b))
+  #let xB = round_matrix(xB)
+  
+  $
+    x_B = B^(-1) b = #nt.print(Binv) #nt.print(b) = #nt.print(xB) = vec(s_1, x_2, x_1) \  
+  $
+
+  Current basic feasible solution:
+
+  #let z = nt.matmul(cBT, xB).at(0).at(0)
+  #let z = calc.round(z, digits: 0)
+
+  #let x_1 = xB.at(2).at(0)
+  #let x_1 = calc.round(x_1, digits: 0)
+  #let x_2 = xB.at(1).at(0)
+  #let x_2 = calc.round(x_2, digits: 0)
+  #let s_1 = xB.at(0).at(0)
+  #let s_1 = calc.round(s_1, digits: 0)
+
+  $
+    x = (colorMath(x_1, #red), colorMath(x_2, #red), colorMath(s_1, #red), s_2, s_3) = (colorMath(#x_1, #red), colorMath(#x_2, #red), colorMath(#s_1, #red), 0, 0) \
+    z = c_B^T x_B = #nt.print(cBT) #nt.print(xB) = #nt.print(z) \
+  $
+
+  #align(center)[
+    #cetz.canvas({
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
+        size: (7.5,7.5),
+        axis-style: "school-book",
+        x-tick-step: 2, 
+        y-tick-step: 2, 
+        x-label: [$x_1$],
+        y-label: [$x_2$],
+        x-min: -1, x-max: 7.5,
+        y-min: -1, y-max: 7.5,
+        axes: (
+          stroke: black,
+          tick: (stroke: black),
+        ),
+      {
+        plot.add(
+          domain: (-1, 7.5),
+          x => 3 + x,
+          style: (stroke: (thickness: 1pt, paint: green)),
+          label: [$-x_1 + x_2 lt.eq 3$],
+        )
+        plot.add(
+          domain: (-1, 7.5),
+          x => (8 + x) / 2,
+          style: (stroke: (thickness: 1pt, paint: blue)),
+          label: [$-x_1 + 2x_2 lt.eq 8$],
+        )
+        plot.add(
+          domain: (-1, 7.5),
+          x => 18 - 3*x,
+          style: (stroke: (thickness: 1pt, paint: red)),
+          label: [$3x_1 + x_2 lt.eq 18$],
+        )
+        plot.add(
+          domain: (-1, 7.5),
+          x => 6 - (x - 4) / 3,
+          style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
+          label: [$z = x_1 + 3x_2$],
+        )
+
+        plot.add-fill-between(
+          domain: (0, 6),
+          x => {
+            if 0 <= x and x <= 2 {
+              3 + x
+            } else if 2 < x and x <= 4 {
+              (8 + x) / 2
+            } else if 4 < x and x <= 6 {
+              18 - 3*x
+            } else {
+              0
+            }
+          },
+          x => 0,
+          style: (fill: blue.lighten(75%), opacity: 0.5, stroke: none),
+        )
+      }, name: "plot")
+    })
+  ]
+
+
+  // No negative reduced costs $arrow.double$ optimal
+
+  // $
+  //   x^* = (#xB.at(0).at(0), 0, 0, #xB.at(1).at(0), #xB.at(2).at(0)), quad quad z^* = #nt.print(z) \
+  // $
+
+  
 ]
+
+
+
+
+
