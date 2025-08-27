@@ -5023,11 +5023,7 @@ The Simplex Tableau is:
 
   #let cN = (1, 3)
   #let cNT = nt.r(..cN)
-
-  #let Binv = inv3(B)
-
-  #let xB = nt.matmul(Binv, nt.c(..b))
-
+  
   $
     c^T &= #nt.print(cT) \
     quad quad 
@@ -5043,7 +5039,7 @@ The Simplex Tableau is:
   $
     B &= (s_1, s_2, s_3) &
     quad quad 
-    N &= (x_1, x_2) \
+    N &= (x_2, x_2) \
     
     B &= #nt.print(B) &
     quad quad 
@@ -5056,11 +5052,15 @@ The Simplex Tableau is:
 
   Compute $B^(-1)$:
 
+  #let Binv = inv3(B)
+
   $
     B^(-1) = #nt.print(Binv)  \
   $
 
   Compute basic feasible solution:
+
+  #let xB = nt.matmul(Binv, nt.c(..b))
 
   $
     x_B = B^(-1) b = #nt.print(Binv) #nt.print(b) = #nt.print(xB) = vec(s_1, s_2, s_3) \
@@ -5069,7 +5069,7 @@ The Simplex Tableau is:
   Current basic feasible solution:
 
   $
-    x = (x_1, x_2, s_1, s_2, s_3) = (0, 0, #xB.at(0).at(0), #xB.at(1).at(0), #xB.at(2).at(0)) \
+    x = (x_1, x_2, s_1, s_2, s_3) = (0, 0, 3, 8, 18) \
   $
 
   #let z = nt.matmul(cBT, xB).at(0).at(0)
