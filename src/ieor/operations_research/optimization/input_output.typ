@@ -304,3 +304,61 @@ Where:
 - $L$: total labor available in society
 - This ensures that planned production doesn’t require more labor than society can provide
 
+#eg[
+  1. Stepup
+  Suppose the economy produces Bread (B) and Clothes (C). Let's define:
+
+  - $bold("x") = (x_B, x_C)$: total production of each good
+  
+  - $bold("d") = (d_B, d_C)$: final demand (how much society wants to consume)
+  
+  - $bold("A") = mat(
+    0.1, 0.2;
+    0.3, 0.1;
+  )$: input-output matrix
+  
+  - $bold("l") = (2, 5)$: direct labor per unit (hours) for Bread and Clothes
+
+  - $L = 100$: total labor available in society
+
+  2. Constraints
+
+  *Input-Output Balance*: production must satisfy both internal (inputs) and final demand
+
+  $
+    x_B gt.eq 0.1x_B + 0.2x_C + d_B \
+    x_C gt.eq 0.3x_B + 0.1x_C + d_C \
+  $
+
+  *Labor Constraint*: total labor used cannot exceed available labor
+
+  $
+    2x_B + 5x_C lt.eq 100
+  $
+
+  *Non-negativity*: you can’t produce negative amounts
+
+  $
+    x_B gt.eq 0 quad quad x_C gt.eq 0
+  $
+
+  3. Objective: Maximize production
+
+  $
+    max quad w_B d_B + w_C d_C
+  $
+
+  Where:
+  - $w_B, w_C$: societal priority weights (e.g., bread might be more essential than clothes)
+  - $d_B, d_C$: quantities actually supplied to meet demand
+
+  Interpretation
+
+  - The LP decides how much of each product to product ($x_B, x_C$)
+  - It respects labor limits ($2x_B + 5x_C lt.eq 100$)
+  - It respects interdependencies (inputs for other products) via the matrix $A$
+  - It maximizes fulfillment of product demand, possibly weighted by social priorities
+
+  So, no abstract utility function needed — the LP is about physical goods, labor, and inputs
+
+]
