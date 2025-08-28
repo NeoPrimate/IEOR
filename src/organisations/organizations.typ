@@ -73,3 +73,7 @@ Knowledge-Based & Learning Theories of the Firm
 Stakeholder Theory (Freeman)
 Ecological Modernization / Sustainability Institutionalism
 Digital Platform & Ecosystem Theories (networked/platform organizations, innovation ecosystems)
+
+
+
+Organisational semiotics
