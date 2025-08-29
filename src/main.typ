@@ -127,6 +127,8 @@
 
 #include "ieor/operations_research/optimization/newton_method.typ"
 
+#include "ieor/operations_research/optimization/convexity.typ"
+
 #include "ieor/operations_research/optimization/duality.typ"
 
 

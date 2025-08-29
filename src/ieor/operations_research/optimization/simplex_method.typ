@@ -5348,7 +5348,7 @@ The Simplex Tableau is:
   The minimum ratios test:
 
   $
-    s_1 / 1 = #xB.at(0).at(0) / 1, quad quad s_2 / 2 = #xB.at(1).at(0) / 2, quad quad x_1 / 1 = #xB.at(2).at(0) / 1 \
+    s_1 / 1 = #xB.at(0).at(0) / #d.at(0).at(0) = 6.75, quad quad s_2 / 2 = #xB.at(1).at(0) / #d.at(1).at(0) = 6, quad quad x_1 / 1 = #xB.at(2).at(0) / #d.at(2).at(0) = 18 \
   $
 
   Smallest ratio is $#xB.at(1).at(0) / 2 arrow.double s_2$ *leaves the basis* (only consider ratios where the corresponding $d_i gt 0$)
@@ -5493,9 +5493,165 @@ The Simplex Tableau is:
   // $
   //   x^* = (#xB.at(0).at(0), 0, 0, #xB.at(1).at(0), #xB.at(2).at(0)), quad quad z^* = #nt.print(z) \
   // $
+  
+  #line(length: 100%)
 
+  ```py
+  Nv = np.array(['x1', 'x2'])
+  Bv = np.array(['s1', 's2', 's3'])
+
+  A = np.array([
+      [-1, 1, 1, 0, 0],
+      [-1, 2, 0, 1, 0],
+      [3, 1, 0, 0, 1],
+  ])
+
+  c = np.array([1, 3, 0, 0, 0])
+
+  b = np.array([3, 8, 18])
+
+  cN = c[:2]
+  cB = c[2:]
+
+  N = A[:,:2]
+  B = A[:,2:]
+
+  print("Nv"), print(Nv)
+  print()
+  print("N"), print(N)
+  print()
+  print("cN"), print(cN)
+  print()
+  print("Bv"), print(Bv)
+  print()
+  print("B"), print(B)
+  print()
+  print("cB"), print(cB)
+  print()
+  print("b"), print(b)
+  print()
+
+  Binv = np.linalg.inv(B)
+  bfs = Binv @ b
+  z = cB @ bfs
+
+  print("B^(-1)"), print(Binv)
+  print()
+  print("BFS"), print(bfs)
+  print()
+  print("z"), print(z)
+  print()
+  ```
+
+  #line(length: 100%)
+
+  ```py
+  reduced_cost = cB @ Binv @ N - cN
+
+  print("bar(c)_N^T"), print(reduced_cost)
+  print()
+
+  entering_var_index = 0
+
+  print("Entering var"), print(Nv[entering_var_index])
+  print()
+
+  d = Binv @ N[:,entering_var_index]
+  ratios = bfs / d
+
+  print(f"Ratios"), print(ratios)
+  print()
+
+  exiting_var_index = 2
+
+  print(f"Exiting variable"), print(Bv[exiting_var_index])
+  print()
+
+  B[:, exiting_var_index], N[:, entering_var_index] = N[:, entering_var_index].copy(), B[:, exiting_var_index].copy()
+  cB[exiting_var_index], cN[entering_var_index] = cN[entering_var_index].copy(), cB[exiting_var_index].copy()
+  Bv[exiting_var_index], Nv[entering_var_index] = Nv[entering_var_index].copy(), Bv[exiting_var_index].copy()
+
+  print("Nv"), print(Nv)
+  print()
+  print("N"), print(N)
+  print()
+  print("cN"), print(cN)
+  print()
+  print("Bv"), print(Bv)
+  print()
+  print("B"), print(B)
+  print()
+  print("cB"), print(cB)
+  print()
+
+  Binv = np.linalg.inv(B)
+  bfs = Binv @ b
+  z = cB @ bfs
+
+  print("B^(-1)"), print(Binv)
+  print()
+  print("BFS"), print(bfs)
+  print()
+  print("z"), print(z)
+  print()
+
+  ```
+  #line(length: 100%)
+
+  ```py
+  reduced_cost = cB @ Binv @ N - cN
+
+  print("bar(c)_N^T"), print(reduced_cost)
+  print()
+
+  entering_var_index = 1
+
+  print("Entering var"), print(Nv[entering_var_index])
+  print()
+
+  d = Binv @ N[:,entering_var_index]
+  ratios = bfs / d
+
+  print(f"Ratios"), print(ratios)
+  print()
+
+  exiting_var_index = 1
+
+  print(f"Exiting variable"), print(Bv[exiting_var_index])
+  print()
+
+  B[:, exiting_var_index], N[:, entering_var_index] = N[:, entering_var_index].copy(), B[:, exiting_var_index].copy()
+  cB[exiting_var_index], cN[entering_var_index] = cN[entering_var_index].copy(), cB[exiting_var_index].copy()
+  Bv[exiting_var_index], Nv[entering_var_index] = Nv[entering_var_index].copy(), Bv[exiting_var_index].copy()
+
+  print("Nv"), print(Nv)
+  print()
+  print("N"), print(N)
+  print()
+  print("cN"), print(cN)
+  print()
+  print("Bv"), print(Bv)
+  print()
+  print("B"), print(B)
+  print()
+  print("cB"), print(cB)
+  print()
+
+  Binv = np.linalg.inv(B)
+  bfs = Binv @ b
+  z = cB @ bfs
+
+  print("B^(-1)"), print(Binv)
+  print()
+  print("BFS"), print(bfs)
+  print()
+  print("z"), print(z)
+  print()
+  ```
   
 ]
+
+
 
 
 
