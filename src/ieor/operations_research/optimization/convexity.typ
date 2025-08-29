@@ -18,12 +18,110 @@
 #grid(
   columns: (auto, auto),
   [
-    
+    #cetz.canvas({
+      import cetz.draw: *
+      import cetz-plot: *
+
+      let p1 = (-0.75, 1)
+      let p2 = (0.8, 0.9)
+
+      plot.plot(
+        size: (7,7),
+        axis-style: "scientific",
+        x-tick-step: none, 
+        y-tick-step: none, 
+        x-label: [$$],
+        y-label: [$$],
+        x-min: -1.5, x-max: 1.5,
+        y-min: 0, y-max: 3,
+        axes: (
+          stroke: none,
+          tick: (stroke: none),
+        ),
+      {
+
+        plot.add-anchor("a", p1)
+        plot.add-anchor("b", p2)
+
+        let z(x, y) = x*x + calc.pow(((y - 2*calc.exp(-0.9*x*x)) / 0.7),2) - 1
+        
+        plot.add-contour(
+          x-domain: (-1.6, 1.5), 
+          y-domain: (-0.1, 3),
+          z, 
+          z: (.1), 
+          fill: false,
+          style: (stroke: red),
+        )
+
+        plot.add(
+          (p1,),
+          mark: "o",
+          mark-size: 0.15,
+          mark-style: (fill: black, stroke: 2pt)
+        )
+
+        plot.add(
+          (p2,),
+          mark: "o",
+          mark-size: 0.15,
+          mark-style: (fill: black, stroke: 2pt)
+        )
+        
+      }, name: "plot")
+      cetz.draw.line("plot.a", "plot.b", stroke: black, mark: (fill: blue), name: "a")
+      
+    })
   ],
   [
+    #cetz.canvas({
+      import cetz.draw: *
+      import cetz-plot: *
 
+      let p1 = (-0.5, 0.1)
+      let p2 = (0.5, -0.1)
+
+      plot.plot(
+        size: (7,7),
+        axis-style: "scientific",
+        x-tick-step: none, 
+        y-tick-step: none, 
+        x-label: [$$],
+        y-label: [$$],
+        x-min: -1, x-max: 1,
+        y-min: -1, y-max: 1,
+        axes: (
+          stroke: none,
+          tick: (stroke: none),
+        ),
+      {
+
+        plot.add-anchor("o", (0, 0))
+        plot.add-anchor("a", p1)
+        plot.add-anchor("b", p2)
+
+        plot.add(
+          (p1,),
+          mark: "o",
+          mark-size: 0.15,
+          mark-style: (fill: black, stroke: 2pt)
+        )
+
+        plot.add(
+          (p2,),
+          mark: "o",
+          mark-size: 0.15,
+          mark-style: (fill: black, stroke: 2pt)
+        )
+        
+      }, name: "plot")
+      cetz.draw.line("plot.a", "plot.b", stroke: black, mark: (fill: blue), name: "a")
+
+      circle("plot.o", radius: (2.5, 1.5), stroke: red)
+    })
   ]
 )
+
 
 
 
