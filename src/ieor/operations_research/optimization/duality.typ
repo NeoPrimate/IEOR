@@ -12,18 +12,30 @@ Uniqueeness & symmetry: For any primal LP, there is a unique dual, whose dual is
 
 - Upper and Lower Bounds
 
-$
-  min c^T x gt.eq max b^T y \
-  max c^T x lt.eq min b^T y \
-$
+#align(center)[
+  #table(
+    columns: (auto, auto, auto, auto),
+    align: center + horizon,
+    inset: 1em,
+    [*Problem Type*], [*Duality*], [*Weak Duality*], [*Strong Duality*],
+
+    [*Min* Primal\ *Max* Dual], 
+    [$c^T x gt.eq b^T y$], 
+    [$c^T x > b^T y \ "if" \ x eq.not x^* "or" y eq.not y^*$], 
+    [$c^T x^* = b^T y^*$],
+
+    [*Max* Primal\ *Min* Dual], 
+    [$c^T x lt.eq b^T y$], 
+    [$c^T x lt b^T y \ "if" \ x eq.not x^* "or" y eq.not y^*$], 
+    [$c^T x^* = b^T y^*$],
+  )
+]
+
+Strict inequality occurs because at least one of $x$ or $y$ is not optimal, even though both are feasible
 
 #eg[
 
-  *Minimization, Strong Duality*
-
-  $
-    max c^T x = min b^T y 
-  $
+  *Minimization*
 
   #grid(
     columns: (1fr, 1fr),
@@ -48,6 +60,15 @@ $
                   &#place($y_1, y_2 gt.eq 0$) \
       $
     ],
+    grid.cell(
+      colspan: 2,
+      [
+        *Strong Duality*
+        $
+          c^T x^* = b^T y^* 
+        $
+      ]
+    ),
     [
       #cetz.canvas({
         import cetz.draw: *
@@ -76,30 +97,26 @@ $
             domain: (0, 5),
             x => obj(x, 1.4),
             style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-            // label: [$4x_1 + x_2 lt.eq 9$],
           )
 
           plot.add(
             domain: (0, 5),
             c1,
             style: (stroke: (thickness: 1pt, paint: red)),
-            // label: [$4x_1 + x_2 lt.eq 9$],
           )
           plot.add(
             domain: (0, 5),
             c2,
             style: (stroke: (thickness: 1pt, paint: red)),
-            // label: [$4x_1 + x_2 lt.eq 9$],
           )
 
-          // plot.add(
-          //   ((4, 0),),
-          //   mark: "o",
-          //   mark-size: 0.2,
-          //   style: (fill: none, stroke: none),
-          //   mark-style: (fill: red, stroke: black),
-          //   // label: [Binding Constraint]
-          // )
+          plot.add(
+            ((0.8, 0.6),),
+            mark: "o",
+            mark-size: 0.2,
+            style: (fill: none, stroke: none),
+            mark-style: (fill: red, stroke: black),
+          )
 
           plot.add-fill-between(
             domain: (0, 6),
@@ -126,8 +143,8 @@ $
           axis-style: "school-book",
           x-tick-step: 0.1, 
           y-tick-step: 0.1, 
-          x-label: [$x_1$],
-          y-label: [$x_2$],
+          x-label: [$y_1$],
+          y-label: [$y_2$],
           x-min: 0, x-max: 0.5,
           y-min: 0, y-max: 0.5,
           axes: (
@@ -140,30 +157,26 @@ $
             domain: (0, 5),
             x => obj(x, 1.4),
             style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-            // label: [$4x_1 + x_2 lt.eq 9$],
           )
 
           plot.add(
             domain: (0, 5),
             c1,
             style: (stroke: (thickness: 1pt, paint: red)),
-            // label: [$4x_1 + x_2 lt.eq 9$],
           )
           plot.add(
             domain: (0, 5),
             c2,
             style: (stroke: (thickness: 1pt, paint: red)),
-            // label: [$4x_1 + x_2 lt.eq 9$],
           )
 
-          // plot.add(
-          //   ((3/2, 6),),
-          //   mark: "o",
-          //   mark-size: 0.2,
-          //   style: (fill: none, stroke: none),
-          //   mark-style: (fill: red, stroke: black),
-          //   // label: [Binding Constraint]
-          // )
+          plot.add(
+            ((0.4, 0.2),),
+            mark: "o",
+            mark-size: 0.2,
+            style: (fill: none, stroke: none),
+            mark-style: (fill: red, stroke: black),
+          )
 
           plot.add-fill-between(
             domain: (0, 2),
@@ -177,44 +190,236 @@ $
     ],
     [
       $
-        x_1^* =  quad quad x_2^* =  \
+        x^* = (0.8, 0.6) \
         z^* = 1.4
       $
     ], 
     [
       $
-        y_1^* = quad quad y_2^* =  \
+        y^* = (0.4, 0.2) \
         z^* = 1.4
       $
-    ]
+    ],
+    grid.cell(
+      colspan: 2,
+      [
+        *Weak Duality*
+        $
+          c^T x > b^T y \ 
+          "if" \ 
+          x eq.not x^* "or" y eq.not y^*
+        $
+      ]
+    ),
+    [
+      #cetz.canvas({
+        import cetz.draw: *
+        import cetz-plot: *
+
+        let obj(x, z) = (z - 1*x)
+        let c1(x) = (2 - x)/2
+        let c2(x) = (3 - 3*x)
+
+        let x_opt = (1, 1)
+        let x1 = (0.8, 0.6)
+        let x2 = (1.25, 0.75)
+
+        plot.plot(
+          size: (5,5),
+          axis-style: "school-book",
+          x-tick-step: 0.5, 
+          y-tick-step: 0.5, 
+          x-label: [$x_1$],
+          y-label: [$x_2$],
+          x-min: 0, x-max: 1.5,
+          y-min: 0, y-max: 1.5,
+          axes: (
+            stroke: black,
+            tick: (stroke: black),
+          ),
+        {
+
+          plot.add(
+            domain: (0, 5),
+            x => obj(x, 1.4),
+            style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
+          )
+
+          plot.add(
+            domain: (0, 5),
+            c1,
+            style: (stroke: (thickness: 1pt, paint: red)),
+          )
+          plot.add(
+            domain: (0, 5),
+            c2,
+            style: (stroke: (thickness: 1pt, paint: red)),
+          )
+
+          plot.add(
+            (x_opt,),
+            mark: "o",
+            mark-size: 0.2,
+            style: (fill: none, stroke: none),
+            mark-style: (fill: blue, stroke: black),
+          )
+          
+          plot.add(
+            (x1,),
+            mark: "o",
+            mark-size: 0.2,
+            style: (fill: none, stroke: none),
+            mark-style: (fill: red, stroke: black),
+          )
+
+          plot.add(
+            (x2,),
+            mark: "o",
+            mark-size: 0.2,
+            style: (fill: none, stroke: none),
+            mark-style: (fill: green, stroke: black),
+          )
+
+          plot.add-fill-between(
+            domain: (0, 6),
+            x => calc.max(c1(x), c2(x)),
+            x1 => 3,
+            style: (fill: rgb(200, 200, 255, 80), stroke: none),
+            label: none
+          )
+
+        }, name: "plot")
+      })
+    ],
+    [
+      #cetz.canvas({
+        import cetz.draw: *
+        import cetz-plot: *
+
+        let obj(y, z) = (z - 2*y) / 3
+        let c1(y) = (1 - y) / 3
+        let c2(y) = (1 - 2*y)
+
+        let y_opt = (0.4, 0.2)
+        let y1 = (0.2, 0.1)
+        let y2 = (0.1, 0.2)
+
+        plot.plot(
+          size: (5,5),
+          axis-style: "school-book",
+          x-tick-step: 0.1, 
+          y-tick-step: 0.1, 
+          x-label: [$y_1$],
+          y-label: [$y_2$],
+          x-min: 0, x-max: 0.5,
+          y-min: 0, y-max: 0.5,
+          axes: (
+            stroke: black,
+            tick: (stroke: black),
+          ),
+        {
+
+          plot.add(
+            domain: (0, 5),
+            x => obj(x, 1.4),
+            style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
+          )
+
+          plot.add(
+            domain: (0, 5),
+            c1,
+            style: (stroke: (thickness: 1pt, paint: red)),
+          )
+          plot.add(
+            domain: (0, 5),
+            c2,
+            style: (stroke: (thickness: 1pt, paint: red)),
+          )
+
+          plot.add(
+            (y_opt,),
+            mark: "o",
+            mark-size: 0.2,
+            style: (fill: none, stroke: none),
+            mark-style: (fill: blue, stroke: black),
+          )
+          
+          plot.add(
+            (y1,),
+            mark: "o",
+            mark-size: 0.2,
+            style: (fill: none, stroke: none),
+            mark-style: (fill: red, stroke: black),
+          )
+          
+          plot.add(
+            (y2,),
+            mark: "o",
+            mark-size: 0.2,
+            style: (fill: none, stroke: none),
+            mark-style: (fill: green, stroke: black),
+          )
+
+          plot.add-fill-between(
+            domain: (0, 2),
+            x => calc.min(c1(x), c2(x)),
+            x1 => 0,
+            style: (fill: rgb(200, 200, 255, 80), stroke: none),
+            label: none
+          )
+        }, name: "plot")
+      })
+    ],
+    grid.cell(
+      colspan: 2,
+      [
+        $
+          colorMath(x^*, #red) = (0.8, 0.6)& quad &   quad &colorMath(y, #red) = (0.2, 0.1) \
+          colorMath(z^*, #red) =        1.4& quad &gt quad &colorMath(w, #red) = 1 \
+          \ \
+          colorMath(x, #blue) = (1, 1)& quad &   quad &colorMath(y^*, #blue) = (0.4, 0.2) \
+          colorMath(z^*, #blue) =    2& quad &gt quad &colorMath(w, #blue)   = 1.4 \
+          \ \
+          colorMath(x, #green) = (1, 1)& quad &   quad &colorMath(y^*, #green) = (0.4, 0.2) \
+          colorMath(z^*, #green) =    2& quad &gt quad &colorMath(w, #green)   = 1.4 \
+        $
+      ]
+    ),
   )
 
-  *Minimization, Strong Duality*
-  
-  $
-    min c^T x = max b^T y 
-  $
+  *Minimization*
 
   #grid(
     columns: (1fr, 1fr),
     align: center,
     row-gutter: 1em,
     [
+      *Primal*
       $
-        max quad 3&x_1 quad +& quad 2x_2& \
-        s.t. quad &x_1 quad +& quad x_2& quad lt.eq& quad &4 \
+        max quad &x_1 quad +& quad x_2& \
+        s.t. quad 2&x_1 quad +& quad x_2& quad lt.eq& quad &4 \
                   &x_1 quad +& quad 2x_2& quad lt.eq& quad &5 \
                   &#place($x_1, x_2 gt.eq 0$) \
       $
     ],
     [
+      *Dual*
       $
         min quad 4&y_1 quad +& quad 5y_2& \
-        s.t. quad &y_1 quad +& quad y_2& quad gt.eq& quad &3 \
-                  &y_1 quad +& quad 2y_2& quad gt.eq& quad &2 \
+        s.t. quad 2&y_1 quad +& quad y_2& quad gt.eq& quad &1 \
+                  &y_1 quad +& quad 2y_2& quad gt.eq& quad &1 \
                   &#place($y_1, y_2 gt.eq 0$) \
       $
     ],
+    grid.cell(
+      colspan: 2,
+      [
+        *Strong Duality*
+        $
+          c^T x^* = b^T y^* 
+        $
+      ]
+    ),
     [
       #cetz.canvas({
         import cetz.draw: *
@@ -243,30 +448,26 @@ $
             domain: (0, 5),
             x => obj(x, 3),
             style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-            // label: [$4x_1 + x_2 lt.eq 9$],
           )
 
           plot.add(
             domain: (0, 5),
             c1,
             style: (stroke: (thickness: 1pt, paint: red)),
-            // label: [$4x_1 + x_2 lt.eq 9$],
           )
           plot.add(
             domain: (0, 5),
             c2,
             style: (stroke: (thickness: 1pt, paint: red)),
-            // label: [$4x_1 + x_2 lt.eq 9$],
           )
 
-          // plot.add(
-          //   ((3/2, 6),),
-          //   mark: "o",
-          //   mark-size: 0.2,
-          //   style: (fill: none, stroke: none),
-          //   mark-style: (fill: red, stroke: black),
-          //   // label: [Binding Constraint]
-          // )
+          plot.add(
+            ((1, 2),),
+            mark: "o",
+            mark-size: 0.2,
+            style: (fill: none, stroke: none),
+            mark-style: (fill: red, stroke: black),
+          )
 
           plot.add-fill-between(
             domain: (0, 5),
@@ -292,8 +493,8 @@ $
           axis-style: "school-book",
           x-tick-step: 0.2, 
           y-tick-step: 0.2, 
-          x-label: [$x_1$],
-          y-label: [$x_2$],
+          x-label: [$y_1$],
+          y-label: [$y_2$],
           x-min: 0, x-max: 1,
           y-min: 0, y-max: 1,
           axes: (
@@ -306,30 +507,26 @@ $
             domain: (0, 5),
             x => obj(x, 3),
             style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-            // label: [$4x_1 + x_2 lt.eq 9$],
           )
 
           plot.add(
             domain: (0, 5),
             c1,
             style: (stroke: (thickness: 1pt, paint: red)),
-            // label: [$4x_1 + x_2 lt.eq 9$],
           )
           plot.add(
             domain: (0, 5),
             c2,
             style: (stroke: (thickness: 1pt, paint: red)),
-            // label: [$4x_1 + x_2 lt.eq 9$],
           )
 
-          // plot.add(
-          //   ((1, 2),),
-          //   mark: "o",
-          //   mark-size: 0.2,
-          //   style: (fill: none, stroke: none),
-          //   mark-style: (fill: red, stroke: black),
-          //   // label: [Binding Constraint]
-          // )
+          plot.add(
+            ((1/3, 1/3),),
+            mark: "o",
+            mark-size: 0.2,
+            style: (fill: none, stroke: none),
+            mark-style: (fill: red, stroke: black),
+          )
 
           plot.add-fill-between(
             domain: (0, 5),
@@ -343,62 +540,45 @@ $
     ],
     [
       $
-        x_1^* =  quad quad x_2^* =  \
+        x^* = (1, 2) \
         z^* = 3
       $
     ], 
     [
       $
-        y_1^* = quad quad y_2^* =  \
+        y^* = (1/3, 1/3) \
         z^* = 3
       $
-    ]
-  )
-
-  *Minimization, Weak Duality*
-  
-  $
-    min c^T x lt.eq max b^T y 
-  $
-
-  #grid(
-    columns: (1fr, 1fr),
-    align: center,
-    row-gutter: 1em,
-    [
-      $
-        max quad 3&x_1 quad +& quad 2x_2& \
-        s.t. quad &x_1 quad +& quad x_2& quad lt.eq& quad &4 \
-                  &x_1 quad +& quad 2x_2& quad lt.eq& quad &5 \
-                  &#place($x_1, x_2 gt.eq 0$) \
-      $
     ],
-    [
-      $
-        min quad 4&y_1 quad +& quad 5y_2& \
-        s.t. quad &y_1 quad +& quad y_2& quad gt.eq& quad &3 \
-                  &y_1 quad +& quad 2y_2& quad gt.eq& quad &2 \
-                  &#place($y_1, y_2 gt.eq 0$) \
-      $
-    ],
+    grid.cell(
+      colspan: 2,
+      [
+        *Weak Duality*
+        $
+          c^T x < b^T y \ 
+          "if" \ 
+          x eq.not x^* "or" y eq.not y^*
+        $
+      ]
+    ),
     [
       #cetz.canvas({
         import cetz.draw: *
         import cetz-plot: *
 
-        let obj(x, z) = (z - 30*x) / 100
-        let c1(x) = 7 - x
-        let c2(x) = (40 - 4*x) / 10
+        let obj(x, z) = (z - x)
+        let c1(x) = 4 - 2*x
+        let c2(x) = (5 - x) / 2
 
         plot.plot(
           size: (5,5),
           axis-style: "school-book",
-          x-tick-step: 5, 
-          y-tick-step: 5, 
+          x-tick-step: 1, 
+          y-tick-step: 1, 
           x-label: [$x_1$],
           y-label: [$x_2$],
-          x-min: 0, x-max: 10,
-          y-min: 0, y-max: 10,
+          x-min: 0, x-max: 5,
+          y-min: 0, y-max: 5,
           axes: (
             stroke: black,
             tick: (stroke: black),
@@ -406,33 +586,29 @@ $
         {
 
           plot.add(
-            domain: (0, 10),
-            x => obj(x, 350),
+            domain: (0, 5),
+            x => obj(x, 3),
             style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-            // label: [$4x_1 + x_2 lt.eq 9$],
           )
 
           plot.add(
-            domain: (0, 10),
+            domain: (0, 5),
             c1,
             style: (stroke: (thickness: 1pt, paint: red)),
-            // label: [$4x_1 + x_2 lt.eq 9$],
           )
           plot.add(
-            domain: (0, 10),
+            domain: (0, 5),
             c2,
             style: (stroke: (thickness: 1pt, paint: red)),
-            // label: [$4x_1 + x_2 lt.eq 9$],
           )
 
-          // plot.add(
-          //   ((3/2, 6),),
-          //   mark: "o",
-          //   mark-size: 0.2,
-          //   style: (fill: none, stroke: none),
-          //   mark-style: (fill: red, stroke: black),
-          //   // label: [Binding Constraint]
-          // )
+          plot.add(
+            ((1, 2),),
+            mark: "o",
+            mark-size: 0.2,
+            style: (fill: none, stroke: none),
+            mark-style: (fill: red, stroke: black),
+          )
 
           plot.add-fill-between(
             domain: (0, 5),
@@ -449,19 +625,19 @@ $
         import cetz.draw: *
         import cetz-plot: *
 
-        let obj(y, z) = (z - 7*y) / 40
-        let c1(y) = (30 - y) / 4
-        let c2(y) = (100 - y) / 10
+        let obj(y, z) = (z - 4*y) / 5
+        let c1(y) = 1 - 2*y
+        let c2(y) = (1 - y) / 2
 
         plot.plot(
           size: (5,5),
           axis-style: "school-book",
-          x-tick-step: 5, 
-          y-tick-step: 5, 
-          x-label: [$x_1$],
-          y-label: [$x_2$],
-          x-min: 0, x-max: 10,
-          y-min: 0, y-max: 10,
+          x-tick-step: 0.2, 
+          y-tick-step: 0.2, 
+          x-label: [$y_1$],
+          y-label: [$y_2$],
+          x-min: 0, x-max: 1,
+          y-min: 0, y-max: 1,
           axes: (
             stroke: black,
             tick: (stroke: black),
@@ -470,32 +646,28 @@ $
 
           plot.add(
             domain: (0, 5),
-            x => obj(x, 10),
+            x => obj(x, 3),
             style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-            // label: [$4x_1 + x_2 lt.eq 9$],
           )
 
           plot.add(
             domain: (0, 5),
             c1,
             style: (stroke: (thickness: 1pt, paint: red)),
-            // label: [$4x_1 + x_2 lt.eq 9$],
           )
           plot.add(
             domain: (0, 5),
             c2,
             style: (stroke: (thickness: 1pt, paint: red)),
-            // label: [$4x_1 + x_2 lt.eq 9$],
           )
 
-          // plot.add(
-          //   ((1, 2),),
-          //   mark: "o",
-          //   mark-size: 0.2,
-          //   style: (fill: none, stroke: none),
-          //   mark-style: (fill: red, stroke: black),
-          //   // label: [Binding Constraint]
-          // )
+          plot.add(
+            ((1/3, 1/3),),
+            mark: "o",
+            mark-size: 0.2,
+            style: (fill: none, stroke: none),
+            mark-style: (fill: red, stroke: black),
+          )
 
           plot.add-fill-between(
             domain: (0, 5),
@@ -507,26 +679,22 @@ $
         }, name: "plot")
       })
     ],
-    [
-      $
-        x_1^* =  quad quad x_2^* =  \
-        z^* = 3
-      $
-    ], 
-    [
-      $
-        y_1^* = quad quad y_2^* =  \
-        z^* = 3
-      $
-    ]
+    grid.cell(
+      colspan: 2,
+      [
+        $
+          colorMath(x^*, #red) = (1, 2)& quad &   quad &colorMath(y, #red) = (, ) \
+          colorMath(z^*, #red) =        3& quad &lt quad &colorMath(w, #red) =  \
+          \ \
+          colorMath(x, #blue) = (, )& quad &   quad &colorMath(y^*, #blue) = (1/3, 1/3) \
+          colorMath(z^*, #blue) =   & quad &lt quad &colorMath(w, #blue)   = 3 \
+          \ \
+          colorMath(x, #green) = (, )& quad &   quad &colorMath(y^*, #green) = (, ) \
+          colorMath(z^*, #green) =    2& quad &lt quad &colorMath(w, #green)   =  \
+        $
+      ]
+    ),
   )
-
-
-  *Maximization, Weak Duality*
-  
-  $
-    min c^T x lt.eq max b^T y 
-  $
 ]
 
 
