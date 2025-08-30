@@ -1,6 +1,6 @@
-= White Paper
+#import "../utils/title_page.typ": title_page
 
-
+#title_page("White Paper")
 
 Project cybersyn
 Project red book

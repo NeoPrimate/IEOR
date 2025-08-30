@@ -30,6 +30,8 @@
 
 #include "operations_research/optimization/duality.typ"
 
+#include "operations_research/optimization/mcnf.typ"
+
 #include "operations_research/optimization/network_optimization/maximum_flow/network_flow.typ"
 
 #include "operations_research/optimization/network_optimization/maximum_flow/ford_fulkerson.typ"

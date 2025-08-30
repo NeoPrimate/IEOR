@@ -24,3 +24,6 @@
 #include("algorithms/algorithms.typ")
 
 #include("organisations/organisations.typ")
+
+#include("white_paper/white_paper.typ")
+
