@@ -14,6 +14,43 @@ OGAS project
 Supply chain guaranteeing a predefined set of goods and services to all members of society
 
 
+#figure(
+  image("./vis/admin/administrative_hierarchy_map.png", width: 50%),
+  caption: [Administrative Hierarchy],
+) <administrative_hierarchy_map>
+
+#figure(
+  image("./vis/admin/communes_population_map.png", width: 50%),
+  caption: [Commune Population Map],
+) <commune_population_map>
+
+#figure(
+  image("./vis/roads/roads.png", width: 50%),
+  caption: [Roads],
+) <roads_map>
+
+#figure(
+  image("./vis/roads/roads_commune_hubs.png", width: 50%),
+  caption: [Roads & Commune Hubs],
+) <roads_and_commune_hubs_map>
+
+#figure(
+  image("./vis/trains/trains.png", width: 50%),
+  caption: [Train Network and Hubs],
+) <train_network_and_hubs_map>
+
+#figure(
+  image("./vis/aero/aero.png", width: 50%),
+  caption: [Aeronatic Hubs],
+) <aeronautic_hubs_map>
+
+#figure(
+  image("./vis/ports/ports.png", width: 50%),
+  caption: [Port Hubs],
+) <aeronautic_hubs_map>
+
+
+
 == Schema
 
 Nodes:
