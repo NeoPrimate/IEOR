@@ -1,5 +1,5 @@
-#import "../../../../utils/examples.typ": eg
-#import "../../../../utils/code.typ": code
+#import "../../../../../utils/examples.typ": eg
+#import "../../../../../utils/code.typ": code
 
 #import "@preview/fletcher:0.5.7" as fletcher: diagram, node, edge, shapes
 

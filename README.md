@@ -1,14 +1,22 @@
 <h1 align="center">Industrial Engineering & Operations Research</h1>
 
-### Calculus
+## Linear Algebra
 
-### Linear Algebra
+## Calculus
 
-### Statistics
+## Statistics
+
+## IEOR
 
 ### Optimization
 
-### Organizational Theory
+## Algorithms
+
+## Machine Learning
+
+## Organizational Theory
+
+## White Paper
 
 ---
 
