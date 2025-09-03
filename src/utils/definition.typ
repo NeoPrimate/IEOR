@@ -15,6 +15,6 @@
     outset: 0pt,
     radius: ("bottom-left": 4pt, "bottom-right": 4pt),
     width: 100%,
-    definition
+    emph(definition)
   )
 )
