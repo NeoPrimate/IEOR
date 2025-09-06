@@ -1,9 +1,8 @@
 #import "@preview/cetz:0.3.4"
 #import "@preview/cetz-plot:0.1.1"
 #import "@preview/fletcher:0.5.7" as fletcher: diagram, node, edge
-#import "@preview/suiji:0.4.0": gen-rng, uniform
-
-
+#import "@preview/suiji:0.4.0": gen-rng, uniform, random
+#import "@preview/oxifmt:0.2.1": strfmt
 
 #import "../../../utils/examples.typ": eg
 #import "../../../utils/code.typ": code
@@ -176,7 +175,143 @@
   - With variability: may have wait time
 - $lambda = c mu$: 
 
-#figure(image("../../../vis/queuing.png", width: 50%))
+// Random number generator functions
+#let gen-rng(seed) = (seed,)
+#let random(rng, size: 1) = {
+  let (seed,) = rng
+  let values = ()
+  let current_seed = seed
+  for i in range(size) {
+    // Simple LCG random number generator
+    current_seed = calc.rem(current_seed * 1103515245 + 12345, calc.pow(2, 31))
+    let uniform = current_seed / calc.pow(2, 31)
+    values.push(uniform)
+  }
+  ((current_seed,), values)
+}
+
+#let λ = 7 // arrival rate
+#let μ = 6 // service rate  
+#let c = 2 // number of servers
+#let n_customers = 50 // number of customers
+
+#let rng = gen-rng(42)
+
+// Generate exponential arrivals using inverse CDF
+#let (rng, uniforms) = random(rng, size: n_customers)
+#let inter_arrivals = uniforms.map(u => -calc.ln(u)/λ)
+
+// Compute cumulative arrivals
+#let arrival_times = ()
+#let total = 0.0
+#for x in inter_arrivals {
+  total = total + x
+  arrival_times.push(total)
+}
+
+// Generate service times
+#let (rng, uniforms) = random(rng, size: arrival_times.len())
+#let service_times = uniforms.map(u => -calc.ln(u)/μ)
+
+// Initialize arrays
+#let start_service_times = range(arrival_times.len()).map(_ => 0.0)
+#let end_service_times = range(arrival_times.len()).map(_ => 0.0)
+#let wait_times = range(arrival_times.len()).map(_ => 0.0)
+#let servers = range(c).map(_ => 0.0)
+
+// Queue simulation
+#for i in range(arrival_times.len()) {
+  let arrival = arrival_times.at(i)
+  let next_server = calc.min(..servers)
+  
+  if arrival >= next_server {
+    start_service_times.at(i) = arrival
+  } else {
+    start_service_times.at(i) = next_server
+  }
+  
+  end_service_times.at(i) = start_service_times.at(i) + service_times.at(i)
+  wait_times.at(i) = start_service_times.at(i) - arrival
+  
+  // Find index of minimum server and update it
+  let min_idx = 0
+  for j in range(servers.len()) {
+    if servers.at(j) == next_server {
+      min_idx = j
+      break
+    }
+  }
+  servers.at(min_idx) = end_service_times.at(i)
+}
+
+// Visualization
+#cetz.canvas({
+  import cetz.draw: *
+  import cetz-plot: *
+  
+  plot.plot(
+    size: (15, 10),
+    x-tick-step: 1,
+    y-tick-step: 5, 
+    x-minor-tick-step: none,
+    y-minor-tick-step: none,
+    x-min: 0,
+    y-min: -0.5,
+    x-max: calc.max(..end_service_times),
+    y-max: n_customers,
+    axis-style: "scientific",
+    x-label: [Time],
+    y-label: [Customer],
+    x-grid: "major",
+    y-grid: "major",
+    {
+      // Add rectangles for wait times and service times
+      for i in range(arrival_times.len()) {
+        let arrival = arrival_times.at(i)
+        let start = start_service_times.at(i)
+        let service_duration = service_times.at(i)
+        let wait_duration = start - arrival
+        
+        // Wait time rectangle (red)
+        if wait_duration > 0 {
+          plot.add-anchor(strfmt("wait-start-{}", i), (arrival, i - 0.4))
+          plot.add-anchor(strfmt("wait-end-{}", i), (start, i + 0.4))
+        }
+        
+        // Service time rectangle (green)  
+        plot.add-anchor(strfmt("service-start-{}", i), (start, i - 0.4))
+        plot.add-anchor(strfmt("service-end-{}", i), (start + service_duration, i + 0.4))
+      }
+    }, 
+    name: "plot"
+  )
+  
+  // Draw rectangles after plot is created
+  for i in range(arrival_times.len()) {
+    let arrival = arrival_times.at(i)
+    let start = start_service_times.at(i)
+    let service_duration = service_times.at(i)
+    let wait_duration = start - arrival
+    
+    // Wait time rectangle (red)
+    if wait_duration > 0 {
+      rect(
+        strfmt("plot.wait-start-{}", i), 
+        strfmt("plot.wait-end-{}", i), 
+        fill: red.lighten(60%),
+        stroke: red
+      )
+    }
+    
+    // Service time rectangle (green)
+    rect(
+      strfmt("plot.service-start-{}", i), 
+      strfmt("plot.service-end-{}", i), 
+      fill: green.lighten(60%),
+      stroke: green
+    )
+  }
+})
 
 
 Performance Metrics

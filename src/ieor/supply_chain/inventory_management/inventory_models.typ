@@ -5,30 +5,44 @@
 
 == Dimensions
 
-1. Inventory Review Policy
+1. Inventory Review Policy (Review Structure)
 
-    - Reorder Point: An order is placed when inventory falls below a specific threshold
-    - Periodic Review: Inventory is reviewed and ordered at regular time intervals
+- *Periodic* Review (*R*-policies): Inventory is checked at regular intervals $R$. Orders are placed only at these review points.
+- *Continuous* Review (*s*-policies): Inventory is monitored continuously. Orders are triggered immediately when the inventory falls below a threshold.
 
-2. Order Quantities
+2. Order Quantity
+- *Fixed* Order Quantity (*Q*): A predetermined, constant quantity is ordered each time (lot-for-lot replenishment).
+- *Order-Up-to* Level (*S*): Inventory is replenished up to a pre-defined maximum $S$, adapting to the current stock gap.
+- *Shorthand s*: Sometimes used to indicate a reorder point without specifying whether the order is fixed or order-up-to.
 
-  - Fixed Order Quantity: A predetermined quantity is ordered each time
-  - Order-Up-to-Level: Inventory is replenished up to a set maximum level during reviews
-
-3. Ordering Policy
-
-  - Continuous Review: Inventory levels are monitored continuously
-  - Periodic Review: Inventory levels are reviewed at specific intervals
+3. Flexibility
+- *Q* policies: *Rigid* — order size is always the same.
+- *S* policies: *Responsive* — order size adapts to the actual inventory level.
 
 4. Lead Time
-
-  - Constant Lead Time: The time between placing an order and receiving it is fixed
-  - Variable Lead Time: The lead time can fluctuate
+- *Constant*: The time between placing an order and receiving it is fixed.
+- *Variable*: Lead time can fluctuate, requiring safety stock planning.
 
 5. Demand
+- *Deterministic*: Known and constant over time; planning is straightforward.
+- *Stochastic*: Random and probabilistic; requires safety stock and probabilistic analysis.
 
-  - Stochastic Demand: Demand is random and follows a probability distribution
-  - Deterministic Demand: Demand is known in advance and does not change
+  #table(
+    columns: range(4).map(_ => auto),
+    inset: 1em,
+    align: horizon,
+    [Policy], [Review Type], [Trigger], [Order Size],
+    [$(bold(R),bold(s),bold(Q))$], [Periodic\ (every $bold(R)$)], [If inventory\ $lt.eq bold(s)$ at review], [Fixed batch $bold(Q)$],
+    [$(bold(R),bold(s),bold(S))$], [Periodic\ (every $bold(R)$)], [If inventory\ $lt.eq bold(s)$ at review], [Order-up-to\ $bold(S)$ - inventory position],
+    [$(bold(s),bold(Q))$], [Continuous], [When\ inventory $lt.eq bold(s)$], [Fixed batch $bold(Q)$],
+    [$(bold(s),bold(S))$], [Continuous], [When\ inventory $lt.eq s$], [Order-up-to\ $bold(S)$ - inventory position],
+    [$(bold(R),bold(s))$], [Periodic\ (every $bold(R)$)], [If inventory\ $lt.eq bold(s)$ at review], [
+      Not specified \
+      Either:
+      - $S$: Order-up-to
+      - $Q$: Fixed
+    ],
+  )
 
 == (s, Q)
 
@@ -91,7 +105,6 @@ Steps:
 ]
 
 #eg[
-  #figure(image("../../../vis/s_Q.png", width: 60%))
 
 ]
 
@@ -198,7 +211,6 @@ Steps:
 ]
 
 #eg[
-  #figure(image("../../../vis/R_s_S.png", width: 60%))
 
 ]
 
@@ -260,7 +272,6 @@ Steps:
 ]
 
 #eg[
-  #figure(image("../../../vis/s_S.png", width: 60%))
 
 ]
 
@@ -369,12 +380,21 @@ Steps:
 ]
 
 #eg[
-  
-  
-  #figure(image("../../../vis/R_s_Q.png", width: 60%))
 
 ]
 
+== (R, s)
+
+Simplified periodic reorder point policy.
+
+Parameters:
+
+- $R$: Review period
+- $s$: Reorder point
+
+#eg[
+
+]
 
 == Multi-Echelon Inventory Model
 

@@ -40,6 +40,14 @@
 
 #include("lu_decomposition.typ")
 
+#include("unimodularity.typ")
+
+#include("adjugate.typ")
+
+// #include("singularity.typ")
+
+
+
 
 
 #include("linear_equations.typ")

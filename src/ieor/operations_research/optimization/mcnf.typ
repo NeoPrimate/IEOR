@@ -254,6 +254,33 @@ Total Unimodularity (Totally Unimodular Matrices)
         )
       )
     $
+    
+    $
+      det(
+        #colorMat(
+          (
+            (1, 0),
+            (0, -1),
+          ),
+          (
+            (((0,0), (1, 1)), red),
+          )
+        )
+      ) = 0
+      quad quad 
+      det(
+        #colorMat(
+          (
+            (0, -1, 0),
+            (-1, 0, 1),
+            (0, 1, 0),
+          ),
+          (
+            (((0,0), (2, 2)), blue),
+          )
+        )
+      ) = 0
+    $
 
     - Singluar:
     $
@@ -268,9 +295,27 @@ Total Unimodularity (Totally Unimodular Matrices)
 )
 
 As long as
-- SUpply quantities
+- Supply quantities
 - Upper bounds 
 are integers, the solution will be an *integer solution*
 
 The LP relaxation of the IP formulation always gives an integer solution
+
+Total unimodularity gives integer solutions
+
+For a standard form LP $min {c^T x | A x = b, x gt.eq 0}$, if 
+- $A$ is totally unimodular and
+- $b in ZZ^n$, 
+then an optimal bfs $x^*$ obtained by the simplex method must satisfy $x^* in ZZ^n$
+
+Proof:
+
+$
+  x_B = A_B^(-1) b = 1 / (det A_B) A_B^"adj" b
+$
+
+Where:
+- $A_B^"adj"$: adjugate matrix of $A_B$
+- $(A_B^"adj")_(i j)$: determinant of the matrix obtained by removing row $j$ and column $i$ from $A_B$
+
 
