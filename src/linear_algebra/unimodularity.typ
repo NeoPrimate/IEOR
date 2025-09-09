@@ -11,15 +11,22 @@
 
 === Unimodular Matrix
 
-A square matrix is unimodular if its determinant is 1 or -1
+Integer square matrix whose determinant is +1 or -1:
 
 $
-  det(A) = {1, -1}
+  det(A) = plus.minus 1
 $
+
+- Always invertible, and its inverse is also an integer matrix
+- Applying such a matrix (transformation) to an integer vector gives another integer vector
 
 === Totally Unimodular Matrix
 
-A matrix is totally unimodular (TU) is all its square submatrices are either singluar of unimodular
+A totally unimodular (TU) matrix is a (not necessarily square) matrix in which every square submatrix (determinant of any square submatrix of any size) has determinant in:
+
+$
+  {-1, 0, +1}
+$
 
 $
   A = #colorMat(
@@ -61,6 +68,3 @@ $
     )
   ) = 0
 $
-
-Reminder: Singluar
-$det(A) = 0$
