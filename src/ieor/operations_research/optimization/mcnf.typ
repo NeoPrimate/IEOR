@@ -711,14 +711,28 @@ For all transhipment nodes $T$,
   )
 ]
 
-
-
-
 #text(size: 16pt)[*Summary*]
 
-- *Assigment* problems are a special case of *Transportation* problems
-- *Transportation* and *Shortest Path* problems are a special case of *Transhipment* problems 
-- *Transhipment* and *Maximum Flow* problems are a special case of *MCNF* problems 
+*Assigment* problems are a special case of *Transportation* problems where:
+- $b_i = 1$: net supply at node $i$
+
+
+*Transportation* problems are a special case of *Transhipment* problems where:
+- $b_i eq.not 0$: net supply at node $i$
+
+
+*Transhipment* problems are a special case of *MCNF* problems where:
+- $u_(i j) = infinity$: No capacity on edge $(i, j)$
+
+
+*Shortest Path* problem is a special case of *Transhipment* problems where:
+- $b_s = 1$: One supply node with supply of 1
+- $b_t = -1$: One demand node with supply of -1 (demand)
+- $b_i = 0 forall i in T$: All others are transhipment nodes
+
+*Maximum Flow* problems are a special case of *MCNF* problems where:
+- $c_(i j) = 0 forall (i, j) in E$: All original edges have 0 cost
+- $c_(t s) = -1$: One "virtual edge" with cost -1
 
 #align(center)[
   #grid(
@@ -799,4 +813,47 @@ For all transhipment nodes $T$,
       ]
     ]
   )
+]
+
+#eg[
+  #align(center)[
+    #diagram(
+      node-inset: 0pt,
+
+      node(pos: (0,0), label: $s$, stroke: 0.1em, radius: 1em, name: <s>),
+      node(pos: (1,-1), label: $A$, stroke: 0.1em, radius: 1em, name: <A>),
+      node(pos: (1,0), label: $B$, stroke: 0.1em, radius: 1em, name: <B>),
+      node(pos: (1,1), label: $C$, stroke: 0.1em, radius: 1em, name: <C>),
+      node(pos: (2,-1), label: $D$, stroke: 0.1em, radius: 1em, name: <D>),
+      node(pos: (2,0), label: $E$, stroke: 0.1em, radius: 1em, name: <E>),
+      node(pos: (3,0), label: $t$, stroke: 0.1em, radius: 1em, name: <t>),
+
+      edge(<s>, <A>, "-|>", label: $2$, label-side: center, label-fill: luma(225)),
+      edge(<s>, <B>, "-|>", label: $5$, label-side: center, label-fill: luma(225)),
+      edge(<s>, <C>, "-|>", label: $4$, label-side: center, label-fill: luma(225)),
+      edge(<A>, <B>, "-|>", label: $2$, label-side: center, label-fill: luma(225)),
+      edge(<B>, <C>, "-|>", label: $1$, label-side: center, label-fill: luma(225)),
+      edge(<A>, <D>, "-|>", label: $7$, label-side: center, label-fill: luma(225)),
+      edge(<B>, <D>, "-|>", label: $4$, label-side: center, label-fill: luma(225)),
+      edge(<B>, <E>, "-|>", label: $3$, label-side: center, label-fill: luma(225)),
+      edge(<C>, <E>, "-|>", label: $4$, label-side: center, label-fill: luma(225)),
+      edge(<D>, <E>, "-|>", label: $1$, label-side: center, label-fill: luma(225)),
+      edge(<D>, <t>, "-|>", label: $5$, label-side: center, label-fill: luma(225)),
+      edge(<E>, <t>, "-|>", label: $7$, label-side: center, label-fill: luma(225)),
+
+      // edge(<t>, <s>, "-|>", label: $-1$, bend: 90deg, label-side: center, label-fill: white, stroke: (dash: "dashed")),
+    )
+  ]
+
+  $
+    A = mat(
+      0, 2, 5, 4, 0, 0, 0;
+      0, 0, 2, 0, 7, 0, 0;
+      0, 0, 0, 1, 4, 3, 0;
+      0, 0, 0, 0, 0, 4, 0;
+      0, 0, 0, 0, 0, 1, 5;
+      0, 0, 0, 0, 0, 0, 7;
+      0, 0, 0, 0, 0, 0, 0;
+    )
+  $
 ]
