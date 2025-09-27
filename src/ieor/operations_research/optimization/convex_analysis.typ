@@ -1,13 +1,15 @@
 #import "@preview/cetz:0.3.4"
 #import "@preview/cetz-plot:0.1.1"
+#import "@preview/cetz:0.4.0": canvas, draw, tree
 #import "@preview/fletcher:0.5.7" as fletcher: diagram, node, edge
-#import "@preview/numty:0.0.5" as nt
+
 
 #import "../../../utils/examples.typ": eg
 #import "../../../utils/code.typ": code
 #import "../../../utils/color_math.typ": colorMath
 #import "../../../utils/definition.typ": definition
 
+#show math.equation.where(block: false): set text(12pt)
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
 #set math.mat(gap: 1em)
@@ -915,4 +917,332 @@ A local minimum is a global minimum
   [Convex Program (CP)],
   [An NLP is convex if its feasible region is convex and its objective function is convex over the feasible region]
 )
+
+Convex Programming:
+- Minimizing convex function
+- Maximizing concave function
+Subject to a convex feasible region
+
+Local min = Global min
+
+For an NLP
+
+$
+  min_(x in RR^n) {f(x) | g_i (x) lt.eq b_i forall i - 1, dots, m}
+$
+
+if $f$ and $g_i$s are all convex functions, the NLP is a Convex Program
+
+Proof:
+
+We only need to prove that the feasible region is convex, which is implied if $F_i = {x in RR^n | g_i (x) lt.eq b_i}$ is convex for all $i$. For two points $x_1, x_2 in F_i$ and an arbitrary $lambda in [0, 1]$, we have
+
+$
+  g_i (lambda x_1 + (1 - lambda) x_2) 
+  &lt.eq lambda g_i (x_1) + (1 - lambda) g_i (x_2) \
+  &lt.eq lambda b_i + (1 - lambda) b_i = b_i
+$
+
+Which implies that $F_i$ is convex. repeating this argument for all $i$ completes the proof
+
+If each constraint independently given a convex feasible region, then their intersection is convex
+
+#line(length: 100%)
+
+For a twice differentiable function $f: RR arrow RR$ over an interval $(a, b)$:
+- $f$ is convex over $(a, b)$ iif $f''(x) gt 0$ for all $x in (a, b)$
+- $overline(x)$ is a local minimum over $(a, b)$, iif $f'(x) = 0$
+- If $f$ is concave over $(a, b)$, $x^*$ is a global minimum over $(a, b)$ iif $f'(overline(x)) = 0$
+
+First order condition (FOC) $f'(x) = 0$
+- FOC is necessary for local optimality
+- FOC is sufficient for global optimality if $f$ is convex
+
+#eg[
+  Economic Order Quantity (EOQ)
+
+  Determine the order quantity in each order
+  - Demand is deterministic and occurs at a constant rate
+  - Each order incurs a fixed cost (independent of the order size)
+  - No shortage allowed
+  - Lead time is zero
+  - Holding cost is proportional to the average inventory
+  - Constant holding cost  
+
+  Parameters:
+
+  - $D$: annual demand (units/year)
+  - $K$: unit ordering cost (\$/order)
+  - $h$: annual holding cost (\$/unit/year)
+  - $p$: unit purchase cost (\$/unit)
+
+  Decision Variable:
+  - $q$: order quantity (units/order)
+
+  Objective:
+  - Minimize the total annual cost
+
+  Average inventory level:
+
+  $
+    q/2
+  $
+
+  Annual holding cost:
+
+  $
+    H = h (q/2) = (h q) / 2
+  $
+
+  Annual purchase cost:
+
+  $
+    p D
+  $
+
+  Annual ordering cost:
+
+  $
+    O = (D/q) K = (D K) / q
+  $
+
+  NLP, since $p D$ does not depend on $q$ it does not affect the minimizer:
+
+  $
+    min_(q gt 0) f(q) 
+    &= (D/q) K + (q/2) h \
+    &= (D K)/q + (q h)/2 \
+  $
+
+  #align(center)[
+    #cetz.canvas({
+      import cetz.draw: *
+      import cetz-plot: *
+
+      let D = 1000
+      let K = 50
+      let h = 2
+
+      let TC(q) = (K * D) / q + (h * q) / 2
+      let H(q) = (h * q) / 2
+      let O(q) = (K * D) / q
+
+      plot.plot(
+        size: (12,8),
+        axis-style: "scientific",
+        x-tick-step: 100, 
+        y-tick-step: 100, 
+        // x-ticks: ((-0.75, $x_1$), (1.457, $x_2$), (3.655, $x^*$),),
+        x-label: [Order Quantity],
+        y-label: [Cost],
+        x-min: 0, x-max: 500,
+        y-min: 0, y-max: 1000,
+        axes: (
+          stroke: none,
+          tick: (stroke: none),
+        ),
+        legend: "inner-north-east",
+        legend-style: (
+          padding: 1em,
+          offset: (x: -1em, y: -1em)
+        ),
+      {        
+        plot.add(
+          domain: (1, 500),
+          TC,
+          style: (stroke: (paint: red)),
+          label: "Total Cost"
+        )
+        plot.add(
+          domain: (1, 500),
+          H,
+          style: (stroke: (paint: blue)),
+          label: "Holding Cost"
+        )
+        plot.add(
+          domain: (1, 500),
+          O,
+          style: (stroke: (paint: green)),
+          label: "Ordering Cost"
+        )
+      }, name: "plot")
+    })
+  ]
+
+  For:
+
+  $
+    T C(q) = (K D)/q + (h q)/2
+  $
+
+  we have
+
+  $
+    T C'(q) = - (K D)/q^2 + h/2
+  $
+
+  and
+
+  $
+    T C''(q) = (2 K D) / q^3
+  $
+
+  Since a twice differentiable function is convex If
+
+  $
+    f''(x) gt 0 quad forall x in (a, b)
+  $
+
+  and
+
+  $
+    K gt 0, quad D gt 0, quad q gt 0
+  $
+
+  we have
+
+  $
+    T C''(q) = (2 K D) / q^3  gt 0
+  $
+
+  Therefore, $T C(q)$ is convex
+
+  Let $q^*$ be the quantity satifying the FOC:
+
+  $
+    T C' (q^* ) = - (K D) / (q^* )^2 + h/2 = 0 
+    quad arrow.double quad
+    q^* = sqrt((2 K D) / h)
+  $
+
+  Implications:
+  - If order cost $K$ increases, order quantity $q^*$ increases
+  - If demand $D$ increases, order quantity $q^*$ increases
+  - If holding cost $h$ increases, order quantity $q^*$ decreases
+]
+
+== Multivariate Convex Analysis
+
+An optimal solution either:
+- Satisfies the FOC
+- Lies on the boundary of the feasible region
+
+If a NLP is a CP, a feasible point satifying the FOC is optimal (any local minimum is a global minimum)
+
+For a function $f: RR^n arrow RR$, its $i$th partial derivative is $(diff f(x)) / (diff x_i)$
+
+For a twice differentiable function $f: RR^n arrow RR$, if all second order partial derivatives are continuous:
+
+$
+  (diff^2 f(x)) / (diff x_i diff x_j) = (diff^2 f(x)) / (diff x_j diff x_i)
+$
+
+for all $i = 1, dots, n$ and $j = 1, dots, n$.
+
+Single variate case:
+
+- For $f: RR arrow RR$, $f$ is convex iif $f''(x) gt.eq 0$ for all $x$
+
+Multivariate case:
+
+$
+  gradient f(x) = vec((diff f(x)) / (diff x_1), dots.v, (diff f(x)) / (diff x_n))
+  quad quad gradient^2 f(x) = H = mat(
+    (diff^2 f(x)) / (diff x_1^2), dots, (diff^2 f(x)) / (diff x_1 diff x_n);
+    dots.v, dots.down, dots.v;
+    (diff^2 f(x)) / (diff x_n diff x_1), dots, (diff^2 f(x)) / (diff x_n^2);
+  )
+$
+
+#eg[
+  $
+    f(x_1, x_2, x_3) = x_1^2 + x_2 x_3 + x_3^3
+  $
+
+  $
+    gradient f(x) 
+    = vec((diff f(x)) / (diff x_1), (diff f(x)) / (diff x_2), (diff f(x)) / (diff x_3))
+    = vec(2 x_1, x_3, x_2 + 3 x_3^2)
+  $
+
+  $
+    gradient^2 f(x) = 
+    mat(
+      (diff^2 f(x)) / (diff x_1^2), (diff^2 f(x)) / (diff x_1 diff x_2), (diff^2 f(x)) / (diff x_1 diff x_3);
+      (diff^2 f(x)) / (diff x_2 diff x_1), (diff^2 f(x)) / (diff x_2^2), (diff^2 f(x)) / (diff x_2 diff x_3);
+      (diff^2 f(x)) / (diff x_3 diff x_1), (diff^2 f(x)) / (diff x_3 diff x_2), (diff^2 f(x)) / (diff x_3^2)
+    )
+    = mat(
+      2, 0, 0;
+      0, 0, 1;
+      0, 1, 6 x_3
+    )
+  $
+
+  You may ask:
+
+  - What is the gradient at a point: $gradient f(3, 2, 1)$
+  - What is the Hessian at a point: $gradient^2 f(3, 2, 1)$
+]
+
+
+#table(
+  columns: (auto, auto),
+  align: left,
+  inset: 1em,
+  [
+    Single Variate Function \
+    $
+      f: RR arrow RR
+    $
+  ], [
+    - $f$ is convex in $[a, b]$ if $f''(x) gt.eq 0$ for all $x in [a, b]$
+    - $overline(x)$ is an interior local minimum if $f'(overline(x)) = 0$
+    - If $f$ is convex in $[a, b]$, $x^*$ is a global minimum iif $f'(x^*) = 0$
+  ],
+  [
+    Multi Variate Function \
+    $
+      f: RR^n arrow RR
+    $
+  ],
+  [
+    - $f$ is convex in a convex set $F subset.eq RR^n$ if $gradient^2 f(x)$ is positive semi-definite for all $x in F$
+    - $overline(x)$ is an interior local minimum if $gradient f(overline(x)) = bold(0)$
+    - If $f$ is convex in a convex set $F$, $x^*$ is a global minimum iif $gradient f(x^*) = 0$
+  ]
+)
+
+#definition(
+  [Positive Semi-Definite (PSD) Matrix],
+  [
+    A symmetric matrix $A$ is positive semi-definite if $bold("x")^T A bold("x") gt.eq 0$ for all $bold("x") in RR^n$
+  ]
+)
+
+#eg[
+
+  Semi-Definite Matrix
+
+  $
+    A = mat(2, 1; 1, 2)
+  $
+
+  $
+    x^T A x 
+    &= mat(x_1, x_2) mat(2, 1; 1, 2) vec(x_1, x_2) \
+    \
+    &= 2 x_1^2 + 2 x_1 x_2 + 2 x_2^2 \
+    \
+    &= 2(x_1 + x_1)^2 + x_1^2 + x_2^2 gt.eq 0 \
+  $
+]
+
+Given a function $f$, when is its Hessian $gradient^2 f$ PSD?
+
+For a symmetric matrix $A$, the following statements are equivalent:
+- $A$ os PSD
+- All eigenvalues of $A$ are non-negative
+- All principal minors of $A$ are non-negative
+
 

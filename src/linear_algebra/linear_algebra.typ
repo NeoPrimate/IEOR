@@ -44,6 +44,8 @@
 
 #include("adjugate.typ")
 
+#include("minor.typ")
+
 // #include("singularity.typ")
 
 

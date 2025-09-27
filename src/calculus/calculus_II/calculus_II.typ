@@ -11,3 +11,6 @@
 #include("gradient.typ")
 
 #include("hessian_matrix.typ")
+
+#include("semi_definiteness.typ")
+

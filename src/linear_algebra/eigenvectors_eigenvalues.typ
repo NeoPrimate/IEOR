@@ -11,136 +11,153 @@
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
 
-== Eigenvectors
+== Eigen
 
-=== Transformation
+$
+  A x = lambda x
+$
 
-#let o = (0, 0)
-#let i = (1, 0)
-#let j = (0, 1)
+When a transformation $A$ is applied to a vector $bold("x")$, it is equivalent to scaling the vector by a factor of $lambda$. The vector $bold("x")$ is called an *eigenvector* of the transformation $A$, and the scalar $lambda$ is called the corresponding *eigenvalue*.
 
-#let x = (1, 1)
+#eg[
+  Transformation
 
-#let A = (
-  (3, 1),
-  (0, 2),
-)
+  Cectors $hat(i), hat(j), arrow(x)$ under transformation $A$
 
-#let Ti = matvec_mult(A, i)
-#let Tj = matvec_mult(A, j)
+  #let o = (0, 0)
+  #let i = (1, 0)
+  #let j = (0, 1)
 
-#let Tx = matvec_mult(A, x)
+  #let x = (1, 1)
 
-#let domain = cetz.canvas(length: 6cm, {
-    cetz-plot.plot.plot(
-      x-tick-step: 2,
-      y-tick-step: 2,
-      x-minor-tick-step: 1,
-      y-minor-tick-step: 1,
-      x-min: -1,
-      y-min: -1,
-      x-max: 4,
-      y-max: 4,
-      axis-style: "school-book",
-      x-label: $x$,
-      y-label: $y$,
-      x-grid: "both",
-      y-grid: "both",
-      {
-        cetz-plot.plot.add-anchor("o", o)
-        cetz-plot.plot.add-anchor("i", i)
-        cetz-plot.plot.add-anchor("j", j)
-        cetz-plot.plot.add-anchor("x", x)
-      }, 
-      name: "plot"
+  #let A = (
+    (3, 1),
+    (0, 2),
+  )
+
+  #let Ti = matvec_mult(A, i)
+  #let Tj = matvec_mult(A, j)
+
+  #let Tx = matvec_mult(A, x)
+
+  $
+    A = #nt.print(A)
+  $
+
+  #let domain = cetz.canvas(length: 6cm, {
+      cetz-plot.plot.plot(
+        x-tick-step: 2,
+        y-tick-step: 2,
+        x-minor-tick-step: 1,
+        y-minor-tick-step: 1,
+        x-min: -1,
+        y-min: -1,
+        x-max: 4,
+        y-max: 4,
+        axis-style: "school-book",
+        x-label: $x$,
+        y-label: $y$,
+        x-grid: "both",
+        y-grid: "both",
+        {
+          cetz-plot.plot.add-anchor("o", o)
+          cetz-plot.plot.add-anchor("i", i)
+          cetz-plot.plot.add-anchor("j", j)
+          cetz-plot.plot.add-anchor("x", x)
+        }, 
+        name: "plot"
+      )
+
+      cetz.draw.line("plot.o", "plot.i", stroke: blue, mark: (fill: blue, end: ">", size: .25), name: "i")
+      cetz.draw.content("i.end", text(blue)[$ hat(i) = #nt.print(i) $], anchor: "north", padding: 0.1, angle: "i.end")
+      
+      cetz.draw.line("plot.o", "plot.j", stroke: red, mark: (fill: red, end: ">", size: .25), name: "j")
+      cetz.draw.content("j.end", text(red)[$ hat(j) = #nt.print(j) $], anchor: "south-east", padding: 0.1, angle: "j.end")
+      
+      cetz.draw.line("plot.o", "plot.x", stroke: green, mark: (fill: green, end: ">", size: .25), name: "j")
+      cetz.draw.content("j.end", text(green)[$ arrow(x) = #nt.print(x) $], anchor: "south", padding: 0.1, angle: "j.end")
+
+    })
+
+  #let codomain = cetz.canvas(length: 6cm, {
+      cetz-plot.plot.plot(
+        x-tick-step: 2,
+        y-tick-step: 2,
+        x-minor-tick-step: 1,
+        y-minor-tick-step: 1,
+        x-min: -1,
+        y-min: -1,
+        x-max: 4,
+        y-max: 4,
+        axis-style: "school-book",
+        x-label: $x$,
+        y-label: $y$,
+        x-grid: "both",
+        y-grid: "both",
+        {
+          cetz-plot.plot.add-anchor("o", o)
+          cetz-plot.plot.add-anchor("Ti", Ti)
+          cetz-plot.plot.add-anchor("Tj", Tj)
+          cetz-plot.plot.add-anchor("Tx", Tx)
+        }, 
+        name: "plot"
+      )
+
+      cetz.draw.line("plot.o", "plot.Ti", stroke: blue, mark: (fill: blue, end: ">", size: .25), name: "Ti")
+      cetz.draw.content("Ti.end", text(blue)[$ T(hat(i)) = #nt.print(Ti) $], anchor: "south", padding: 0.1, angle: "Ti.end")
+      
+      cetz.draw.line("plot.o", "plot.Tj", stroke: red, mark: (fill: red, end: ">", size: .25), name: "Tj")
+      cetz.draw.content("Tj.end", text(red)[$ T(hat(j)) = #nt.print(Tj) $], anchor: "south", padding: 0.1, angle: "Tj.end")
+      
+      cetz.draw.line("plot.o", "plot.Tx", stroke: green, mark: (fill: green, end: ">", size: .25), name: "Tx")
+      cetz.draw.content("Tx.end", text(green)[$ T(arrow(x)) = #nt.print(Tx) $], anchor: "south", padding: 0.1, angle: "Tx.end")
+
+    })
+
+  #align(center)[
+    #grid(
+      columns: (1fr, 1fr),
+      rows: (auto, auto),
+      gutter: 3pt,
+      domain,
+      codomain,
     )
+  ]
 
-    cetz.draw.line("plot.o", "plot.i", stroke: blue, mark: (fill: blue, end: ">", size: .25), name: "i")
-    cetz.draw.content("i.end", text(blue)[$ hat(i) = #nt.print(i) $], anchor: "north", padding: 0.1, angle: "i.end")
-    
-    cetz.draw.line("plot.o", "plot.j", stroke: red, mark: (fill: red, end: ">", size: .25), name: "j")
-    cetz.draw.content("j.end", text(red)[$ hat(j) = #nt.print(j) $], anchor: "south-east", padding: 0.1, angle: "j.end")
-    
-    cetz.draw.line("plot.o", "plot.x", stroke: green, mark: (fill: green, end: ">", size: .25), name: "j")
-    cetz.draw.content("j.end", text(green)[$ arrow(x) = #nt.print(x) $], anchor: "south", padding: 0.1, angle: "j.end")
-
-  })
-
-#let codomain = cetz.canvas(length: 6cm, {
-    cetz-plot.plot.plot(
-      x-tick-step: 2,
-      y-tick-step: 2,
-      x-minor-tick-step: 1,
-      y-minor-tick-step: 1,
-      x-min: -1,
-      y-min: -1,
-      x-max: 4,
-      y-max: 4,
-      axis-style: "school-book",
-      x-label: $x$,
-      y-label: $y$,
-      x-grid: "both",
-      y-grid: "both",
-      {
-        cetz-plot.plot.add-anchor("o", o)
-        cetz-plot.plot.add-anchor("Ti", Ti)
-        cetz-plot.plot.add-anchor("Tj", Tj)
-        cetz-plot.plot.add-anchor("Tx", Tx)
-      }, 
-      name: "plot"
-    )
-
-    cetz.draw.line("plot.o", "plot.Ti", stroke: blue, mark: (fill: blue, end: ">", size: .25), name: "Ti")
-    cetz.draw.content("Ti.end", text(blue)[$ T(hat(i)) = #nt.print(Ti) $], anchor: "south", padding: 0.1, angle: "Ti.end")
-    
-    cetz.draw.line("plot.o", "plot.Tj", stroke: red, mark: (fill: red, end: ">", size: .25), name: "Tj")
-    cetz.draw.content("Tj.end", text(red)[$ T(hat(j)) = #nt.print(Tj) $], anchor: "south", padding: 0.1, angle: "Tj.end")
-    
-    cetz.draw.line("plot.o", "plot.Tx", stroke: green, mark: (fill: green, end: ">", size: .25), name: "Tx")
-    cetz.draw.content("Tx.end", text(green)[$ T(arrow(x)) = #nt.print(Tx) $], anchor: "south", padding: 0.1, angle: "Tx.end")
-
-  })
-
-#align(center)[
   #grid(
-    columns: (1fr, 1fr),
-    rows: (auto, auto),
-    gutter: 3pt,
-    domain,
-    codomain,
+    columns: (1fr, 1fr, 1fr),
+    [
+      $
+        T(hat(i)) 
+        &= A hat(i) \
+        &= #nt.print(A) #nt.print(i) \
+        &= #nt.print(Ti) \
+      $
+    ],
+    [
+      $
+        T(hat(j)) 
+        &= A hat(j) \
+        &= #nt.print(A) #nt.print(j) \
+        &= #nt.print(Tj) \
+      $
+    ],
+    [
+      $
+        T(arrow(x)) 
+        &= A arrow(x) \
+        & =#nt.print(A) #nt.print(x) \
+        &= #nt.print(Tx)
+      $
+    ],
   )
 ]
 
-$
-  A = #nt.print(A)
-$
-
-$
-  T(hat(i)) 
-  &= A hat(i) \
-  &= #nt.print(A) #nt.print(i) \
-  &= #nt.print(Ti) \
-$
-
-$
-  T(hat(j)) 
-  &= A hat(j) \
-  &= #nt.print(A) #nt.print(j) \
-  &= #nt.print(Tj) \
-$
-
-$
-  T(arrow(x)) 
-  &= A arrow(x) \
-  & =#nt.print(A) #nt.print(x) \
-  &= #nt.print(Tx)
-$
-
-== Eigenvalues
-
-
-
 #eg[
+
+  Transformation
+
+  Vectors $hat(i), hat(j), hat(v)_1, hat(v)_2$ under transformation $A$
 
   $
     A = mat(
@@ -150,6 +167,8 @@ $
   $
 #align(center)[
   #cetz.canvas(length: 6cm, {
+
+    let o = (0, 0)
 
     let A = (
         (2.5, -0.5),
@@ -207,14 +226,64 @@ $
     cetz.draw.content("Aj.end", text(blue)[$A hat(j)$], anchor: "south", padding: 0.025, angle: "Aj.end")
 
     cetz.draw.line("plot.o", "plot.v_1", stroke: red, mark: (fill: red, end: ">", size: .25), name: "v_1")
-    cetz.draw.content("v_1.end", text(red)[$hat(v_1)$], anchor: "south", padding: 0.025, angle: "v_1.end")
+    cetz.draw.content("v_1.end", text(red)[$hat(v)_1$], anchor: "south", padding: 0.025, angle: "v_1.end")
     cetz.draw.line("plot.o", "plot.Av_1", stroke: red, mark: (fill: red, end: ">", size: .25), name: "Av_1")
-    cetz.draw.content("Av_1.end", text(red)[$A hat(v_1)$], anchor: "south", padding: 0.025, angle: "Av_1.end")
+    cetz.draw.content("Av_1.end", text(red)[$A hat(v)_1$], anchor: "south", padding: 0.025, angle: "Av_1.end")
 
     cetz.draw.line("plot.o", "plot.v_2", stroke: green, mark: (fill: green, end: ">", size: .25), name: "v_2")
-    cetz.draw.content("v_2.end", text(green)[$hat(v_2)$], anchor: "north", padding: 0.025, angle: "v_2.end")
+    cetz.draw.content("v_2.end", text(green)[$hat(v)_2$], anchor: "north", padding: 0.025, angle: "v_2.end")
     cetz.draw.line("plot.o", "plot.Av_2", stroke: green, mark: (fill: green, end: ">", size: .25), name: "Av_2")
-    cetz.draw.content("Av_2.end", text(green)[$A hat(v_2)$], anchor: "south", padding: 0.05, angle: "Av_2.end")
+    cetz.draw.content("Av_2.end", text(green)[$A hat(v)_2$], anchor: "south", padding: 0.05, angle: "Av_2.end")
   })
 ]
+]
+
+An $n times n$ matrix $A$ has exactly $n$ eigenvalues because the eigenvalues are the *roots* of its characteristic polynomial, which is degree $n$
+
+Characteristic polynomial:
+
+$
+  p(lambda) = det(A - lambda I)
+$
+
+#eg[
+  $2 times 2$ Matrix
+
+  $
+    A = mat(
+      2, 0;
+      0, 3;
+    )
+  $
+
+  $
+    det(A - lambda I) = (2 - lambda)(3 - lambda) = 0
+  $
+
+  Solve for $lambda$:
+
+  $
+    lambda_1 = 2, lambda_2 = 3
+  $
+
+  $3 times 3$ Matrix
+
+  $
+    A = mat(
+      1, 0, 0;
+      0, 2, 0;
+      0, 0, 4;
+    )
+  $
+
+  $
+    det(A - lambda I) = (1 - lambda)(2 - lambda)(4 - lambda) = 0
+  $
+
+  Solve for $lambda$:
+  $
+    lambda_1 = 1, lambda_2 = 2, lambda_3 = 4
+  $
+
+
 ]

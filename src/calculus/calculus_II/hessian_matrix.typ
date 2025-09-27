@@ -92,39 +92,3 @@ $
 
     Each entry is now a scalar, and the Hessian is numeric
 ]
-
-== Positive definite / negative definite / indefinite
-
-Let $z in RR^n$be any nonzero vector. Look at the quadratic form:
-
-$
-  bold("z")^T H bold("z")
-$
-
-1. Positive definite (PD)
-
-$
-  bold("z")^T H bold("z") gt 0 quad forall bold("z") eq.not bold(0)
-$
-
-- Function curves upwards in all directions
-- The point is a local minimum
-
-2. Negative definite (ND)
-
-$
-  bold("z")^T H bold("z") lt 0 quad forall bold("z") eq.not bold(0)
-$
-
-- Function curves downwards in all directions
-- The point is a local maximum
-
-3. Indefinite
-
-$
-  bold("z")^T H bold("z") "is positive for some" bold("z") "and negative for others"
-$
-
-- Function curves up in some directions, down in others.
-- The point is a saddle point.
-
