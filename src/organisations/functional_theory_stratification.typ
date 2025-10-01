@@ -1,6 +1,6 @@
 == Functional Theory of Stratification
 
-Davis, K., & Moore, W. E. (1945) _Some Principles of Stratification_
+// @davis1945
 
 $
   R prop f(S, I)

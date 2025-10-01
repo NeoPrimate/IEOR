@@ -947,6 +947,25 @@ Which implies that $F_i$ is convex. repeating this argument for all $i$ complete
 
 If each constraint independently given a convex feasible region, then their intersection is convex
 
+#definition(
+  [Affine Combination],
+  [
+    An affine combination of points $x_1, x_2, dots, x_k in RR^n$, is any point of the form:
+
+    $
+      alpha_1 x_1 + alpha_2 x_2 + dots + alpha_k x_1 + x_k
+    $
+
+    where the coefficients sum to 1:
+
+    $
+      alpha_1 + alpha_2 + dots + alpha_k = 1
+    $
+
+    This is like a linear combination, but with the extra condition that the weights add up to 1.
+  ]
+) 
+
 #line(length: 100%)
 
 For a twice differentiable function $f: RR arrow RR$ over an interval $(a, b)$:
@@ -1147,7 +1166,7 @@ Multivariate case:
 
 $
   gradient f(x) = vec((diff f(x)) / (diff x_1), dots.v, (diff f(x)) / (diff x_n))
-  quad quad gradient^2 f(x) = H = mat(
+  quad quad gradient^2 f(x) = H_f = mat(
     (diff^2 f(x)) / (diff x_1^2), dots, (diff^2 f(x)) / (diff x_1 diff x_n);
     dots.v, dots.down, dots.v;
     (diff^2 f(x)) / (diff x_n diff x_1), dots, (diff^2 f(x)) / (diff x_n^2);
@@ -1241,8 +1260,348 @@ $
 Given a function $f$, when is its Hessian $gradient^2 f$ PSD?
 
 For a symmetric matrix $A$, the following statements are equivalent:
-- $A$ os PSD
-- All eigenvalues of $A$ are non-negative
-- All principal minors of $A$ are non-negative
+- $A$ is *positive semi-definite*
+- All *eigenvalues* of $A$ are non-negative
+- All *principal minors* of $A$ are non-negative
 
+$A$'s level-$k$ principal minors is the determinant of a $k times k$ submatrix whose diagonal is a subset of $A$'s diagonal.
 
+A sufficient condition is for $A$'s *leading* principl minors to all *positive*
+
+For a function $f$:
+1. Find *Hessian* $gradient^2 f(x)$
+2. Find *eigenvalues* or *principal minors* of $gradient^2 f(x)$
+3. Determine over what region $gradient^2 f(x)$ is *PSD*
+
+The function is convex over that region
+
+#eg[
+  $
+    min_(x in RR^2) f(x_1, x_2)
+  $
+
+  $
+    f(x_1, x_2) = x_1^2 + x_2^2 + x_1 x_2 - 2x_1 - 4x_2
+  $
+
+  $
+    gradient f(x) = vec(2 x_1 + x_2 - 2, x_1 + 2 x_2 - 4)
+    quad quad gradient^2 f(x) = mat(2, 1; 1, 2)
+  $
+
+  Find *eigenvalues*
+
+  $
+    A x = lambda x 
+    quad arrow.l.r.long.double quad
+    (A - lambda I) x = 0
+    quad arrow.l.r.long.double quad
+    det(A - lambda I) = 0
+  $
+
+  $
+    mat(
+      delim: "|",
+      2 - lambda, 1;
+      1, 2 - lambda;
+    ) = 0
+    quad arrow.l.r.long.double quad
+    3 - 4 lambda + lambda^2 = 0
+    quad arrow.l.r.long.double quad
+    lambda = 1 "or" 3
+  $
+
+  Or find *leading principal minors*
+
+  $
+    mat(
+      delim: "|",
+      2
+    ) = 2
+    quad "and" quad
+    mat(
+      delim: "|",
+      2, 1;
+      1, 2;
+    ) = 3
+  $
+
+  So $gradient^2 f(x_1, x_2)$ is PSD and thus $min_(x in RR^2) f(x_1, x_2)$ is a CP. 
+  
+  The FOC requires $2 x_1^* + x_2^* - 2 = 0$ and $x_1^* + 2x_2^* - 4 = 0$
+  
+  I.e., $(x_1^*, x_2^*) = (0, 2)$
+
+]
+
+#eg[
+
+  $
+    min_(x in RR^2) f(x_1, x_2)
+  $
+
+  $
+    f(x_1, x_2) = x_1^3 + 4x_1 x_2 + 1/2 x_2^2 + x_1 + x_2
+  $
+
+  $
+    gradient^2 f(x) = mat(6x_1, 4; 4, 1)
+  $
+
+  - 1st leading principle minor $6x_1 gt.eq 0$ ($x_1 gt.eq 0$)
+  - 2nd leading principal minor $6x_1 - 16 gt.eq 0$ ($x_1 gt.eq 8/3$)
+  - $1 gt.eq 0$
+
+  Therefore, the function is convex iif $x_1 gt.eq 8/3$
+]
+
+#eg[
+  Two-Product Pricing
+
+  A retailer sells product 1 and 2 at prices $p_1$ and $p_2$. For product $i$ the demand $q_i$ is:
+
+  $
+    q_1 = a - p_1 + b p_2 \
+    q_2 = a - p_2 + b p_1 \
+  $
+
+  where $a gt 0$ and $b in [0, 1)$. The retailer sets $p_1$ and $p_2$ to maximize its total profit.
+
+  If $p_1$ and $p_2$ are substitutes of one another then the price of one will affect the demand of the other.
+
+  1. Why $b in [0, 1)$?
+
+  If $b gt.eq 1$: the other product's price will have the equal or greater impact on your own product's price
+
+  If $b lt 0$: Complimentary products (rather than substitutes), the higher the other product's price, the lower our demand
+
+  2. Formulate problem
+
+  $
+    max_(p_1, p_2) quad p_1 underbrace((a - p_1 + b p_2), q_1) + p_2 underbrace((a + b p_1 - p_2), q_2)
+  $
+
+  Let
+
+  $
+    f(p) = - [p_1 (a - p_1 + b p_2) + p_2 (a + b p_1 - p_2)
+  $
+
+  3. Is it a CP?
+
+  $
+    gradient^2 f(p) = mat(
+      2, -2b;
+      -2b, 2;
+    )
+  $
+
+  Which is PSD if $b in [0, 1)$ since
+
+  - 1st leading principle minor $2 gt.eq 0$
+  - 2nd leading principle minor $4 - 4b^2$ ($4 (1 - b) (1 + b) gt.eq 0$)
+
+  Therefore $f(p)$ is convex and $-f(p)$, the objective function is concave
+
+  The problem is a CP
+
+  4. Solve problem
+
+  $gradient f(p) = 0$ rquires:
+  - $-a + 2p_1 - 2b p_2 = 0$
+  - $-a + 2p_2 - 2b p_1 = 0$
+
+  So,
+
+  $
+    p_1 = p_2 = a / (2(1 - b))
+  $
+
+  5. How does optimal prices change with $a$ and $b$? 
+
+  When 
+  - $a$ increases, the two prices increase: price of product increases when demand increases
+  - $b$ increases, the two prices increase: effective demand becomes larger
+  
+]
+
+#eg[
+
+  *Question 1*
+
+  For each of the following sets, select all that are convex:
+  1. $S = {(x_1, x_2) in RR^2 | x_1^2 + x_2^2 lt.eq 4, x_1 gt.eq 0, x_2 lt.eq 0}$
+
+  ✅ $x_1^2 + x_2^2 lt.eq 4$, a disk of radius 2, is convex and the $x_1 gt.eq 0, x_2 lt.eq 0$ lines are also convex
+
+  The intersection of convex sets is convex
+
+  2. $S = {(x_1, x_2) in ZZ^2 | x_1^2 + x_2^2 lt.eq 4, x_1 gt.eq 0, x_2 lt.eq 0}$
+
+  ❌ Integer programs are never convex in the usual sense, because the feasible set of integers is discrete
+
+  3. $S = {x in RR^n | sum_(i=1)^n x_i^2 lt.eq 4, x_1 gt.eq 0, x_2 lt.eq 0}$
+
+  ✅ $sum_(i=1)^n x_i^2 lt.eq 4$, a $n$-dimensional sphere (hypersphere) of radius 2, is convex and the $x_1 gt.eq 0, x_2 lt.eq 0$ lines are also convex
+
+  The intersection of convex sets is convex
+
+  4. $S = {x in RR^n | x_1 + x_2 = 10 (x_3 + x_4)} "where" n gt.eq 4$
+
+  ✅ $h(x)$ is a linear function ($h(x) = x_1 + x_2 -10x_3 - 10x_4$) so $h(x)$ is also affine and is therefore convex
+
+  5. $S = {x in RR^n | max_(i=1, dots, n) {x_i} = 10 min_(i=1, dots, m) {x_i}}$
+
+  ❌ $min(x)$ and $max(x)$
+
+  *Question 2*
+
+  For each of the following functions, select all that are convex over the given region: 
+
+  1. $f(x) = 2x^3 - x^2 - 2x + 1$ for $x in RR$
+
+  $f'(x) = 6x^2 - 2x - 2$
+
+  $f''(x) = 12x - 2$
+
+  ❌ 
+
+  2. $f(x) = cases(
+    -x quad "if" x lt 1,
+    -1 quad "if" x gt.eq 1
+  ) quad "for" x in RR$
+
+  ✅ 
+
+  3. $f(x) = x_1^2 - 4x_1 x_2 + 3x_2^2 + 3x_1 + 4x_2$ for $x in RR^2$
+
+  ❌ 
+
+  4. $f(x) = sum_(i=1)^n (x_i - a)^2$ where $a gt 0$, $x in RR^n$
+
+  ✅ 
+
+  5. $f(alpha, beta) = sum_(i=1)^n (alpha + beta x_i - y_i)^2$, where $x_i, y_i, alpha, beta in RR$
+
+  ✅ 
+
+  *Question 3*
+
+  For the NLP
+
+  $
+    min& quad 2x^3 - x^2 - 2x + 1 \
+    s.t.& quad x gt.eq -1
+  $
+
+  which of the following statements is correct?
+
+  1. This is a convex program. 
+  
+  ❌
+
+  2. There are two local minimizers. 
+
+  ✅
+
+  3. The unique global minimizer is a boundary point. 
+
+  ❌
+
+  4. This program is unbounded. 
+
+  ❌
+
+  5. None of the above.
+
+  ❌
+
+  *Question 4*
+
+  For each of the following matrices, select all that are positive semi-definite:
+
+  1. 
+
+  $
+    A = mat(
+      1, 1;
+      1, 1
+    )
+  $
+
+  ✅ 
+
+  2. 
+
+  $
+    A =mat(
+      1, 2, 3;
+      2, 3, 1;
+      3, 1, 2;
+    )
+  $
+
+  ❌ 
+
+  3.
+
+  $
+    A =mat(
+      1, 2, 3;
+      0, 3, 1;
+      0, 0, 2;
+    )
+  $
+
+  ✅ 
+
+  4.
+
+  $
+    A =mat(
+      1, 2, 3, dots, n;
+      0, 2, 3, dots, n;
+      0, 0, 3, dots, n;
+      dots.v, dots.v, dots.v, dots.down, dots.v; 
+      0, 0, 0, dots, n;
+    )
+  $
+
+  ✅ 
+
+  5.
+
+  $
+    A =mat(
+      0, 0, 1;
+      0, 1, 0;
+      1, 0, 0;
+    )
+  $
+
+  ❌ 
+
+  *Question 5*
+
+  For the following statements, select all that are *incorrect*: 
+  
+  1. An optimal solution to a linear program must be a boundary point. 
+
+  ❌ not guaranteed if the objective is constant over the feasible region
+
+  2. An optimal solution to a linear program must be an extreme point.  
+
+  ✅  
+
+  3. An optimal solution to a nonlinear program can be an interior point. 
+
+  ❌ 
+
+  4. An optimal solution to a nonlinear program must be an interior point.
+
+  ✅  
+
+  5. A global optimal solution to a nonlinear program must be a local optimal solution. 
+
+  ❌ 
+]

@@ -28,3 +28,5 @@
 
 #include("white_paper/white_paper.typ")
 
+#bibliography("references.bib")
+

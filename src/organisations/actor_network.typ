@@ -1,3 +1,3 @@
 === Actor-Network Theory (ANT) 
 
-(Latour)
+// @latour2005

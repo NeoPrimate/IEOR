@@ -1,3 +1,3 @@
 === Bounded Rationality
 
-Simon, H. (1947)
+// @simon1947

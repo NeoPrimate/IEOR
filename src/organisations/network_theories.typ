@@ -3,17 +3,18 @@
 === World-Systems Theory 
 
 (Wallerstein)
+// @wallerstein1974
 
 === Global Commodity Chains (GCC) 
 
-(Gereffi, 1994)
+// @gereffi1994
 
 - Producer-driven (autos, electronics)
 - Buyer-driven (apparel, retail)
 
 === Global Value Chains (GVC) 
 
-(Gereffi, Humphrey, Sturgeon, 2005)
+// @gereffi2005
 
 Governance types:
 - market
@@ -24,4 +25,4 @@ Governance types:
 
 === Global Production Networks (GPN)
 
-(Henderson, Dicken, Hess, Coe, Yeung, 2002)
+// @henderson2002

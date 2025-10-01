@@ -1,5 +1,9 @@
 === Transaction Costs
 
+// @coase1937 @williamson1975 @williamson1985
+
+
+
 Why do firms / organizations exist? Why not many atomized individuals (market)?
 
 Why are there hierarchies (firms / organizations) in markets?

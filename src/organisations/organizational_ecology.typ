@@ -1,4 +1,6 @@
 
 == Organizational Ecology
 
-Hannan, M. & Freeman, J. (1977) _The Population Ecology of Organizations_ 
+
+
+// @hannan1977, @hannan1989

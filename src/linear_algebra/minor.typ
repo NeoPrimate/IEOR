@@ -67,3 +67,63 @@ $
     a_31, a_23;
   )
 $
+
+=== Levels
+
+$A$'s level-$k$ principal minors is the determinant of a $k times k$ submatrix whose diagonal is a subset of $A$'s diagonal
+
+For an $n times n$
+- There are $n$ levels of minors
+- The number of principle minors at level $k$ is $binom(n, k)$
+
+=== Leading Principal Minor
+
+#align(center)[
+
+  #grid(
+    columns: 3,
+    gutter: 2em,
+    [
+      $
+        #colorMat(
+          (
+            ($a_11$, $a_12$, $a_13$),
+            ($a_21$, $a_22$, $a_23$),
+            ($a_31$, $a_32$, $a_33$),
+          ),
+          (
+            (((0,0), (0, 0)), red),
+          )
+        )
+      $
+    ],
+    [
+      $
+        #colorMat(
+          (
+            ($a_11$, $a_12$, $a_13$),
+            ($a_21$, $a_22$, $a_23$),
+            ($a_31$, $a_32$, $a_33$),
+          ),
+          (
+            (((0,0), (1, 1)), red),
+          )
+        )
+      $
+    ],
+    [
+      $
+        #colorMat(
+          (
+            ($a_11$, $a_12$, $a_13$),
+            ($a_21$, $a_22$, $a_23$),
+            ($a_31$, $a_32$, $a_33$),
+          ),
+          (
+            (((0,0), (2, 2)), red),
+          )
+        )
+      $
+    ],
+  )
+]
