@@ -1,3 +1,5 @@
+// #typst-root: main.typ
+
 === Actor-Network Theory (ANT) 
 
-// @latour2005
+// #cite(<latour2005>)
