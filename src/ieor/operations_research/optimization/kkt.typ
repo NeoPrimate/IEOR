@@ -17,16 +17,21 @@
 #set math.vec(gap: 1em)
 
 
-== KKT Condition
+== KKT Conditions
 
 Conditions that a solution must satisfy in order to be optimal for a nonlinear optimization problem
+
+Conditions are necessary for optimality, and sufficient if:
+- $f$ is convex
+- $g_i$ are convex
+- $h_j$ linear
 
 === Setup
 
 $
-  max_(x in RR^n) quad &f(x) \
+  min_(x in RR^n) quad &f(x) \
   s.t. quad &g_i (x) lt.eq 0 quad forall i = 1, dots, m \
-  &h_j (x) = 0 quad forall i, dots, p
+  &h_j (x) = 0 quad forall j = 1, dots, p
 $
 
 - $f(x)$: objective function
@@ -38,6 +43,17 @@ $
 We introduce:
 - $lambda_i gt.eq 0$: for each inequality constraint (Lagrange multipliers)
 - $mu_i in RR$: for each equality constraint
+
+#align(center)[
+  #table(
+    columns: 4,
+    align: left,
+    inset: 1em,
+    [], [Inequalities\ $g(x) lt.eq 0$], [Inequalities\ $g(x) gt.eq 0$], [Equalities],
+    [Min], [$lambda gt.eq 0$], [$lambda lt.eq 0$], [$mu in RR$ (free)],
+    [Max], [$lambda lt.eq 0$], [$lambda gt.eq 0$], [$mu in RR$ (free)],
+  )
+]
 
 The Lagrangian is:
 
@@ -77,9 +93,25 @@ $
   lambda_i^* g_i (x^*) = 0 quad forall i
 $
 
+Complementary slackness only applies to inequalities
+
 Either the inequality constraint is: 
 - Inactive: $g_i (x^*) lt 0 quad arrow.double quad lambda_i^* = 0 quad arrow quad$ The constraint doesn't affect the optimum
 - Binding: $g_i (x^*) = 0 quad arrow.double quad lambda_i^* gt.eq 0 quad arrow quad$ The multiplier measures how much the objective would improve if the constraint were relaxed (shadow price)
+
+=== Calculating Lagrangian Multipliers
+
+To find the multipliers ($lambda^*, mu^*$) and the optimal point $x^*$, solve the KKT system of equations:
+
+$
+  cases(
+    gradient_x cal(L) (x\, lambda\, mu) = 0,
+    g_i (x) lt.eq 0 quad quad quad quad &forall i = 1\, dots\, m,
+    h_j (x) = 0 quad quad quad quad &forall i = 1\, dots\, p,
+    lambda_i gt.eq 0 quad quad quad quad &forall i = 1\, dots\, m,
+    lambda_i g_i (x) = 0 quad quad quad quad &forall i = 1\, dots\, m,
+  )
+$
 
 #eg[
 
@@ -211,6 +243,8 @@ Either the inequality constraint is:
   $
     cal(L) (q_1, q_2, lambda) = overbrace(q_1 (a_1 - b_1 q_1) + q_2 (a_2 - b_2 q_2), f) + lambda overbrace((K - q_1 - q_2), b - g)
   $
+
+  
 
   3. KKT Conditions
 
@@ -483,8 +517,24 @@ Either the inequality constraint is:
 
 ]
 
+Sensitivity Analysis and Shadow Prices
 
+Lagrange multipliers measure how senitive the objective function is tochanges in the constraints
 
+Shadow price is the Lagrange multiplier at the optimal solution
 
+It tells you how much the objective function would improve if you relaxed that constraint by one unit:
+
+$
+  x_1 + x_2 lt.eq colorMath(12, #red) quad arrow quad x_1 + x_2 lt.eq colorMath(13, #red)
+$
+
+A higher shadow price means that the constraint is more binding, and relaxing it will yield a greater improvement in the objective. Conversely, a lower shadow price means that relaxing that constraint will have a smaller impact on the objective
+
+The larger Lagrange multiplier means that the constraint it's associated with has a stronger influence on the optimal solution. So, if you're looking to improve or adjust the overall process, it's definitely more impactful to focus on the constraint that has the higher multiplier.
+
+#eg[
+  
+]
 
 

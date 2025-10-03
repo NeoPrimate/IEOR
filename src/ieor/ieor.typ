@@ -38,9 +38,13 @@
 
 #include "operations_research/optimization/network_optimization/maximum_flow/ford_fulkerson.typ"
 
+#include "operations_research/optimization/lagrange_relaxation.typ"
+
+#include "operations_research/optimization/kkt.typ"
 
 
-// #include "operations_research/optimization/network_optimization/maximum_flow/edmonds_karp.typ"
+
+
 
 = Queuing Theory
 
