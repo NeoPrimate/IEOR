@@ -560,6 +560,8 @@ $
 
   3️⃣ Examine all 4 cases for $(lambda_1, lambda_2)$
 
+  #line(length: 100%)
+
   *Case 1.* ($lambda_1 gt 0, lambda_2 gt 0$)
 
   Step 1: Complementary Slackness
@@ -768,8 +770,10 @@ $
       }, name: "plot")
     })
   ]
-
+  
   ✅ Both $(sqrt(3), -1)$ and $(-sqrt(3), -1)$ satisfy dual feasibility $arrow$ both are KKT points.
+
+  #line(length: 100%)
   
   *Case 2.* ($lambda_1 gt 0, lambda_2 = 0$)
 
@@ -830,14 +834,14 @@ $
 
   Step 4. Solve for $lambda_1$ and enforce $lambda_1 gt 0$
 
-  Substitute $(x_1, x_2)$ into the stationarity condition:
-
   $
     1 + 2 lambda_1 x_1 = 0 quad arrow.double lambda_1 = - 1/(2 x_1)
   $
 
+  Substitute $(x_1, x_2)$ into the stationarity condition:
+
   $
-    1 + 2 lambda_1 -sqrt(2)
+    1 + 2 lambda_1 x_1
   $
 
   - For $(x_1, x_2) = (sqrt(2), -sqrt(2))$:
@@ -1006,30 +1010,112 @@ $
     })
   ]
 
-  ❌ There is therefore no KKT point under this assumption
+  ❌ $(x_1, x_2) = (sqrt(2), -sqrt(2))$ is rejected because it violates the inequality $g_2 (x) lt.eq 0$
+  
+  ❌ $(x_1, x_2) = (-sqrt(2), sqrt(2))$ is rejected because it gives $lambda lt 0$
+
+  #line(length: 100%)
 
   *Case 3.* ($lambda_1 = 0, lambda_2 gt 0$)
 
-  CS-2 require 
+  Step 1. Assumptions (Activity / Inactivity)
+
+  - Constraint 1: Inactive ($x_1^2 + x_2^2 = 4$)
+
+  - Constraint 2: Active ($x_1^2 + (x_2 + 2)^2 = 4$)
+
+  Step 2. Stationarity Condition
+
+  The Lagragian:
+
+  $
+    cal(L) (x_1, x_2, lambda_1, lambda_2) = (x_1 - x_2) + lambda_1 (4 - x_1^2 - x_2^2) + lambda_2 (-4 + x_1^2 + (x_2 + 2)^2)
+  $
+
+  Compute the gradients with respect to $x_1$ and $x_2$:
+
+  $
+    cases(
+      (diff cal(L)) / (diff x_1) &= 1 - 2 lambda_1 x_1 + 2 lambda_2 x_1 = 0,
+      (diff cal(L)) / (diff x_2) &= -1 - 2 lambda_1 x_2 + 2 lambda_2 (x_2 + 2) = 0,
+    )
+  $
+
+  Since $lambda_1 = 0$, the equations simplify to:
+
+  $
+    cases(
+      1 + 2 lambda_2 x_1 = 0,
+      -1 + 2 lambda_2 (x_2 + 2) = 0,
+    )
+  $
+
+  Simplify:
+
+  $
+    cases(
+      x_1 = - 1/(2 lambda_2),
+      x_2 = 1 / (2 lambda_2) - 2,
+    ) quad arrow.double quad x_1 = - x_2
+  $
+
+  Step 3. Substitute into Active Constraint
 
   $
     x_1^2 + (x_2 + 2)^2 = 4
   $
 
-  and $lambda_1 = 0$ and DFF-1 and DFF-2 require
+  Substituting $x_1$ and $x_2$:
 
   $
-    1 + 2 lambda_2 x_1 &= 0 \
-    -1 + 2 lambda_2 x_2 + 4 lambda_2 &= 0
+    (- 1 / (2 lambda_2))^2 + (1 / (2 lambda_2) - 2 + 2)^2 = 4 quad arrow.double quad lambda_2 = plus.minus 1 / (2 sqrt(2))
   $
 
-  Solving the three equations tields a KKT point
+  Two cadidate solutions $x_1$ and $x_2$:
 
   $
-    (x_1, x_2) = (-sqrt(2), sqrt(2) - 2) "with" lambda_2 = 1 / (2 sqrt(2))
+    (-sqrt(2), sqrt(2) - 2) quad "and" quad (sqrt(2), -sqrt(2) - 2)
   $
 
-  Another solution $(x_1, x_2) = (sqrt(2), -sqrt(2) - 2)$ has $lambda_2 = - 1 / (2 sqrt(2))$ violates $lambda_2 gt 0$
+  Substitute $(x_1, x_2)$ into the stationarity condition:
+
+  $
+    -1 + 2 lambda_2 (x_2 + 2)
+  $
+
+  - For $(x_1, x_2) = (sqrt(2), -sqrt(2) - 2)$:
+  
+  $
+    lambda_2 = - 1 / (2 sqrt(2)) lt 0 arrow #[❌ *Reject* (violates $lambda_1 gt.eq 0$)]
+  $
+
+  - For $(x_1, x_2) = (-sqrt(2), sqrt(2) - 2)$:
+
+  $
+    lambda_2 = 1 / (2 sqrt(2)) gt 0 arrow #[✅ *Valid* ($lambda_1 gt.eq 0$)]
+  $
+
+  So, the surviving candidate is:
+
+  $
+    (x_1, x_2) = (-sqrt(2), sqrt(2) - 2), quad quad lambda_1 = 0, lambda_2 = 1 / (2 sqrt(2))
+  $
+
+  Step 5. Check the (inactive) constraint 1 for primal feasibility
+
+  Constraint 1:
+
+  $
+    g_1 (x) = x_1^2 + x_2^2 lt.eq 4
+  $
+
+  Plug $x_1 = -sqrt(2)$ and $x_2 = sqrt(2) - 2$:
+
+  $
+    g_1 (x) = - (sqrt(2))^2 - (sqrt(2) - 2)^2 + 4 lt.eq 0
+  $
+
+  ✅ Satisfies primal feasibility. Constraint 1 is inactive (strict inequality), as required.
 
   #align(center)[
     
@@ -1097,7 +1183,7 @@ $
           domain: (center_x2 - r + 0.0001, center_x2 + r - 0.0001),
           upper_semicircle_2,
           style: (stroke: (dash: none, paint: black, thickness: 1pt)),
-        )  
+        )
         plot.add(
           domain: (center_x2 - r + 0.0001, center_x2 + r - 0.0001),
           lower_semicircle_2,
@@ -1162,6 +1248,12 @@ $
       }, name: "plot")
     })
   ]
+
+  ✅ $(x_1, x_2) = (-sqrt(2), sqrt(2) - 2)$ is a valid KKT point under this assumption.
+  
+  ❌ $(x_1, x_2) = (sqrt(2), -sqrt(2) - 2)$ is rejected because it gives $lambda lt 0$
+
+  #line(length: 100%)
 
   *Case 4.* ($lambda_1 = 0, lambda_2 = 0$)
 
