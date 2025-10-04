@@ -32,11 +32,11 @@
 #{
   show table.cell: set text(size: 8pt)
   table(
-    columns: range(5).map(_ => auto),
+    columns: range(4).map(_ => auto),
     inset: 1.5em,
     align: horizon,
     
-    [], [*Input/Output*], [*Derivatives*], [*Notation*], [*Example*],
+    [], [*Input/Output*], [*Derivatives*], [*Notation*],
     [*Gradient*\ (Derivative)\ ($1 times 1$)], 
     [
       $f: RR arrow RR$\
@@ -47,7 +47,7 @@
       $
         gradient f(x) = f'(x) = vec((diff f) / (diff x))
       $
-    ], [],
+    ],
 
     [*Jacobian*\ ($m times 1$)], 
     [
@@ -64,7 +64,7 @@
           (diff f_colorMath(m, #red)) / (diff x),
         )
       $
-    ], [],
+    ],
     [*Gradient*\ ($n times 1$)], 
     [
       $f: RR^n arrow RR$\
@@ -80,7 +80,7 @@
           (diff f) / (diff x_colorMath(n, #red)),
         )
       $
-    ], [],
+    ],
     [*Jacobian*\ ($m times n$)], 
     [
       $f: RR^n arrow RR^m$\
@@ -89,14 +89,21 @@
       Vector Function
     ], [*First*\ Order], [
       $
-        J_f (bold("x")) = mat(
+        J_f (bold("x")) 
+        &= vec(
+          gradient g_1 (x)^T,
+          gradient g_2 (x)^T,
+          dots.v,
+          gradient g_m (x)^T,
+        )\
+        
+        &= mat(
           (diff f_colorMath(1, #red)) / (diff x_colorMath(1, #red)), dots, (diff f_colorMath(1, #red)) / (diff x_colorMath(n, #red));
           dots.v, dots.down, dots.v;
           (diff f_colorMath(m, #red)) / (diff x_colorMath(1, #red)), dots, (diff f_colorMath(m, #red)) / (diff x_colorMath(n, #red));
-        )
+        ) \
       $
-    ], [],
-    [], [], [], [], [],
+    ],
 
     [*Hessian*\ ($n times n$)], 
     [
@@ -106,18 +113,18 @@
       Scalar Function
     ], [*Second*\ Order], [
       $
-        H_f (bold("x")) = mat(
+        gradient^2 f(bold("x")) = H_f (bold("x")) = mat(
           (diff^2 f) / (diff x_1^2), dots, (diff^2 f) / (diff x_1 diff x_n);
           dots.v, dots.down, dots.v;
           (diff^2 f) / (diff x_n diff x_1), dots, (diff^2 f) / (diff x_n^2);
         )
       $
-    ], [],
-    [*Laplacian*], [], [], [
+    ],
+    [*Laplacian*], [Trace of the Hessian\ (sum of diagonal entries)], [], [
       $
         tr(H_f (bold("x"))) = sum_(i=1)^n (diff^2 f) / (diff x_colorMath(i, #red)^2) (x)
       $
-    ], [
+
       $
         H_f (bold("x")) = mat(
           colorMath((diff^2 f) / (diff x_1^2), #red), dots, (diff^2 f) / (diff x_1 diff x_n);
@@ -126,6 +133,7 @@
         )
       $
     ],
+    [], [], [], [],
   )
 }
 
