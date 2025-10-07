@@ -61,6 +61,11 @@ $
   cal(L) (x, lambda, mu) = f(x) + sum_(i = 1)^m lambda_i g_i (x) + sum_(j=1)^p mu_j h_j (x)
 $
 
+For $n$ variables and $m$ constrains:
+- $n$ primal variables ($x$) and $m$ dual variables ($lambda$)
+- $n$ equalities for dual feasibility
+- $m$ equalities for complementary slackness
+
 === KKT Conditions
 
 At local optimum $x^*$ there exists multipliers ($lambda^*, mu^*$) such that:
@@ -1006,6 +1011,8 @@ $
             padding: 0.75
           )
         })
+
+        
       }, name: "plot")
     })
   ]
@@ -1257,9 +1264,196 @@ $
 
   *Case 4.* ($lambda_1 = 0, lambda_2 = 0$)
 
-  Ad DFF-1 and DFF-2 beome 1 = 0 and -1 = 0
-  
-  There is no KKT point
+  Step 1. Assumptions (Activity / Inactivity)
+
+  - Both multipliers are zero: $lambda_1 = 0, lambda_2 = 0$
+  - No constraints are forced to be active by complementary slackness
+
+  Step 2. Stationarity Condition
+
+  With $lambda_1 = 0$ and $lambda_2 = 0$, the stationarity equations siplify to:
+
+  $
+    cases(
+      1 - 2 (lambda_1 - lambda_2) x_1 = 1 = 0,
+      - 1 - 2 (lambda_1 - lambda_2) x_2 + 4 lambda_2 = -1 = 0
+
+    )
+  $
+
+  Step 3. Stationary Check
+
+  Both equations $1 = 0$ and $-1 = 0$ are impossible
+
+  No solution exists under this assumption
+
+  ❌ No KKT points exist
+
+  #line(length: 100%)
+
+  4️⃣ Summary
+
+  - $lambda_1 gt 0$ and $lambda_2 gt 0$:
+    - $(sqrt(3), -1)$
+    - $(-sqrt(3), 1)$
+
+  - $lambda_1 = 0$ and $lambda_2 gt 0$:
+    - $(-sqrt(2), sqrt(2)-2)$
+
+  These are the only candidates for local maxima (and thus global maxima)
+
+  Necessay, but not sufficient for non-convex NLPs
+
+  #align(center)[
+    
+    #let f(x) = x
+    #let c1(x1, x2) = calc.pow(x1, 2) + calc.pow(x2, 2)
+
+    #let r = calc.sqrt(4)
+    #let center_x1 = 0
+    #let center_y1 = 0
+    
+    #let center_x2 = -0
+    #let center_y2 = -2
+
+    #let upper_semicircle_1(x) = center_y1 + calc.sqrt(calc.pow(r, 2) - calc.pow(x - center_x1, 2))
+    #let lower_semicircle_1(x) = center_y1 - calc.sqrt(calc.pow(r, 2) - calc.pow(x - center_x1, 2))
+
+    #let upper_semicircle_2(x) = center_y2 + calc.sqrt(calc.pow(r, 2) - calc.pow(x - center_x2, 2))
+    #let lower_semicircle_2(x) = center_y2 - calc.sqrt(calc.pow(r, 2) - calc.pow(x - center_x2, 2))
+
+    #let opt_constrained = (2, 2)
+
+    #let dst = 6
+
+    #let normal_start = (dst/2, dst/2)
+    #let normal_end = (normal_start.at(0) + 1, normal_start.at(1)+1)
+
+    #cetz.canvas({
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
+        size: (8,8),
+          axis-style: "scientific",
+          x-tick-step: 1, 
+          y-tick-step: 1, 
+          x-grid: true,
+          y-grid: true,
+          x-label: [$x_1$],
+          y-label: [$x_2$],
+          x-min: -5, x-max: 5,
+          y-min: -5, y-max: 5,
+          axes: (
+            stroke: none,
+            tick: (stroke: none),
+          ),
+      {
+        plot.add-anchor("normal_start", normal_start)
+        plot.add-anchor("normal_end", normal_end)
+
+        plot.add-hline(0, style: (stroke: (thickness: 1pt, paint: black)))
+        plot.add-vline(0, style: (stroke: (thickness: 1pt, paint: black)))
+
+        plot.add(
+          domain: (center_x1 - r + 0.0001, center_x1 + r - 0.0001),
+          upper_semicircle_1,
+          style: (stroke: (dash: none, paint: black, thickness: 1pt)),
+        )  
+        plot.add(
+          domain: (center_x1 - r + 0.0001, center_x1 + r - 0.0001),
+          lower_semicircle_1,
+          style: (stroke: (dash: none, paint: black, thickness: 1pt)),
+        )  
+        
+        plot.add(
+          domain: (center_x2 - r + 0.0001, center_x2 + r - 0.0001),
+          upper_semicircle_2,
+          style: (stroke: (dash: none, paint: black, thickness: 1pt)),
+        )
+        plot.add(
+          domain: (center_x2 - r + 0.0001, center_x2 + r - 0.0001),
+          lower_semicircle_2,
+          style: (stroke: (dash: none, paint: black, thickness: 1pt)),
+        )  
+
+        plot.add(
+          domain: (-5, 5),
+          x => f(x) - 0,
+          style: (stroke: (dash: "dashed", paint: black, thickness: 1pt)),
+        )  
+
+        plot.add-fill-between(
+          upper_semicircle_1,
+          domain: (center_x1 - r + 0.0001, center_x1 + r - 0.0001),
+          x => calc.max(lower_semicircle_1(x), upper_semicircle_2(x)),
+          style: (fill: rgb(0, 0, 255, 50), stroke: none)
+        )
+       
+        plot.add-fill-between(
+          x => calc.min(upper_semicircle_1(x), lower_semicircle_2(x)),
+          domain: (center_x2 - r + 0.0001, center_x2 + r - 0.0001),
+          lower_semicircle_2,
+          style: (fill: rgb(0, 0, 255, 50), stroke: none)
+        )
+
+        plot.add(
+          ((-calc.sqrt(2), calc.sqrt(2)-2),),
+          mark: "o",
+          mark-size: 0.15,
+          mark-style: (fill: black, stroke: 2pt)
+        )
+        plot.annotate({
+          content(
+            (-calc.sqrt(2), calc.sqrt(2)-2),
+            [
+              #show math.equation: set text(9pt)
+              $(-sqrt(2), sqrt(2)-2)$
+            ],
+            anchor: "east",
+            padding: 1
+          )
+        })
+
+        plot.add(
+          ((calc.sqrt(3), -1),),
+          mark: "o",
+          mark-size: 0.15,
+          mark-style: (fill: black, stroke: 2pt)
+        )
+        plot.annotate({
+          content(
+            (calc.sqrt(3), -1),
+            [
+              #show math.equation: set text(9pt)
+              $(sqrt(3), -1)$
+            ],
+            anchor: "west",
+            padding: 0.75
+          )
+        })
+
+        plot.add(
+          ((-calc.sqrt(3), -1),),
+          mark: "o",
+          mark-size: 0.15,
+          mark-style: (fill: black, stroke: 2pt)
+        )
+        plot.annotate({
+          content(
+            (-calc.sqrt(3), -1),
+            [
+              #show math.equation: set text(9pt)
+              $(-sqrt(3), -1)$
+            ],
+            anchor: "south-east",
+            padding: 0.5
+          )
+        })
+      }, name: "plot")
+    })
+  ]
+
 
 ]
 
@@ -1298,4 +1492,293 @@ The corresponding shadow price tells us the change in the optimal objective due 
   
 ]
 
+*Primal* NLP
 
+$
+  z^* = max_(x in RR^n) {f(x) | g_i (x) lt.eq b_i quad forall i = 1, dots, m}
+$
+
+Lagrange *Dual* Program
+
+$
+  w^* = min_(lambda gt.eq 0) z^L (lambda) = min_(lambda gt.eq 0) {max_(x in RR^n) f(x) + sum_(i=1)^m lambda_i [b_i - g_i (x)]}
+$
+
+Convexity
+
+The Lagrange Dual Program function $z^L (lambda)$ is always convex over $lambda in [0, infinity)^n$
+
+Weak Duality
+
+$
+  w^* gt.eq z^* quad forall lambda gt.eq 0
+$
+
+Strong Duality
+
+$w^* = z^*$ is the primal NLP is a "regular" *convex* program
+
+#eg[
+  $
+    z^* quad = quad max& quad &x_1 quad + &x_2 \
+    s.t.& quad &x_1^2 quad + &x_2^2 quad lt.eq quad 8 \
+        &      &      &x_2 quad lt.eq quad 6
+  $
+
+  Optimal solution
+
+  $
+    x^* &= (2, 2) \
+    z^* &= 4
+  $
+
+  #align(center)[
+    
+    #let f(x) = -x
+    #let c1(x1, x2) = calc.pow(x1, 2) + calc.pow(x2, 2)
+
+    #let r = calc.sqrt(8)
+    #let center_x = 0
+    #let center_y = 0
+
+    #let upper_semicircle(x) = center_y + calc.sqrt(calc.pow(r, 2) - calc.pow(x - center_x, 2))
+    #let lower_semicircle(x) = center_y - calc.sqrt(calc.pow(r, 2) - calc.pow(x - center_x, 2))
+
+    #let opt_constrained = (2, 2)
+
+    #let dst = 6
+
+    #let normal_start = (dst/2, dst/2)
+    #let normal_end = (normal_start.at(0) + 1, normal_start.at(1)+1)
+
+    #cetz.canvas({
+      import cetz.draw: *
+      import cetz-plot: *
+
+      plot.plot(
+        size: (7,7),
+          axis-style: "scientific",
+          x-tick-step: 1, 
+          y-tick-step: 1, 
+          x-grid: true,
+          y-grid: true,
+          x-label: [$x_1$],
+          y-label: [$x_2$],
+          x-min: -3, x-max: 7,
+          y-min: -3, y-max: 7,
+          axes: (
+            stroke: none,
+            tick: (stroke: none),
+          ),
+      {
+        plot.add-anchor("normal_start", normal_start)
+        plot.add-anchor("normal_end", normal_end)
+
+        plot.add-hline(0, style: (stroke: (thickness: 1pt, paint: black)))
+        plot.add-vline(0, style: (stroke: (thickness: 1pt, paint: black)))
+      
+        plot.add-hline(6, style: (stroke: (thickness: 1pt, paint: black)))
+
+        plot.add(
+          domain: (center_x - r + 0.0001, center_x + r - 0.0001),
+          upper_semicircle,
+          style: (stroke: (dash: none, paint: black, thickness: 1pt)),
+        )  
+
+        plot.add(
+          domain: (center_x - r + 0.0001, center_x + r - 0.0001),
+          lower_semicircle,
+          style: (stroke: (dash: none, paint: black, thickness: 1pt)),
+        )  
+
+        plot.add(
+          domain: (-3, 7),
+          x => f(x) + dst,
+          style: (stroke: (dash: "dashed", paint: black, thickness: 1pt)),
+        )  
+
+        plot.add-fill-between(
+          upper_semicircle,
+          domain: (center_x - r + 0.0001, center_x + r - 0.0001),
+          x => 0,
+          style: (fill: rgb(0, 0, 255, 10), stroke: none)
+        )
+        plot.add-fill-between(
+          lower_semicircle,
+          domain: (center_x - r + 0.0001, center_x + r - 0.0001),
+          x => 0,
+          style: (fill: rgb(0, 0, 255, 10), stroke: none)
+        )
+
+        plot.add(
+          (opt_constrained,),
+          mark: "o",
+          mark-size: 0.15,
+          mark-style: (fill: black, stroke: 2pt)
+        )
+      }, name: "plot")
+
+      cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
+      
+      cetz.draw.line("plot.normal_start", "plot.normal_end", stroke: black, mark: (fill: black))
+    })
+  ]
+
+  Lagragian relaxation
+
+  $
+    w^* = min_(lambda_1 gt.eq 0, lambda_2 gt.eq 0) z^L (lambda) = min_(lambda_1 gt.eq 0, lambda_2 gt.eq 0) max_(x in RR^2) cal(L) (x | lambda)
+  $
+
+  Where
+
+  $
+    cal(L) (x | lambda) = x_1 + x_2 + lambda_1 (8 - x_1^2 + x_2^2) + lambda_2 (6 - x_2)
+  $
+
+  To solve the Lagrange dual program:
+
+  $
+    max_(x in RR^2) cal(L) (x | lambda) max_(x in RR^2) {x_1 + x_2 + lambda_1 (8 - x_1^2 - x_2^2) + lambda_2 (6 - x_2)}
+  $
+
+  First-order condition:
+
+  $
+    x_1 = 1 / (2 lambda_1) quad "and" quad x_2 = (1 - lambda_2) / (2 lambda_1)
+  $
+
+  Plugging into $cal(L) (x | lambda)$:
+
+  $
+    z^L (lambda) = max_(x in RR^2) cal(L) (x | lambda) = (1 + (1 - lambda_2)^2) / (4 lambda_1) + 8 lambda_1 + 6 lambda_2
+  $
+
+  The Lagrangian dual program is to look for $lambda_1 gt.eq 0$ and $lambda_2 gt.eq 0$ to minimize $z^L (lambda)$
+
+  The Lagrange dual program:
+
+  $
+    min_(lambda_1 gt.eq 0, lambda_2 gt.eq 0) (1 + (1 - lambda_2)^2) / (4 lambda_1) + 8 lambda_1 + 6 lambda_2
+  $
+
+  $z^L (lambda)$ is convex over $(0, infinity)^2$:
+
+  $
+    gradient z^L (lambda) = vec(
+      - (1 + (1 - lambda_2)^2) / (4 lambda_1^2) + 8,
+      - (1 - lambda_2) / (2 lambda_1) + 6
+    ),
+    quad
+    gradient^2 z^L (lambda) = mat(
+      (1 + (1 - lambda_2)^2) / (2 lambda_1^2), (1 - lambda_2) / 2 lambda_1^2;
+      (1 - lambda_2) / (2 lambda_1^2), 1 / (2 lambda_1)
+    )
+  $
+
+  Since:
+
+  $(1 + (1 - lambda_2)^2) / (2 lambda_1^2) gt 0$ and $det(gradient^2 z^L (lambda)) = 1 / (2 lambda_1) gt 0$, $z^L (lambda)$ is convex
+
+  To solve
+
+  $
+    min_(lambda_1 gt.eq 0, lambda_2 gt.eq 0) (1 + (1 - lambda_2)^2) / (4 lambda_1) + 8 lambda_1 + 6 lambda_2
+  $
+
+  Apply KKT conditions
+
+  $lambda_1$ cannot be binding ($lambda_1 = 0$), because division by 0, so ignore it
+
+  Let $mu gt.eq 0$ be the Lagrange multiplier for $lambda_2 gt.eq 0$, the Lagrange is
+
+  $
+    (1 + (1 - lambda_2)^2) / (4 lambda_1) + 8 lambda_1 + 6 lambda_2 - mu lambda_2
+  $
+
+  The KKT condition requires an optional solution to satisfy (FOC)
+
+  $
+    -(1 + (1 - lambda_2)^2) / (4 lambda_1^2) + 8 = 0, quad -(1 - lambda_2) / (2 lambda_1) + 6 - mu = 0, quad mu lambda = 0
+  $
+
+  - Suppose $mu gt 0$
+
+    - Implies $lambda_2 = 0$
+
+    - $-(1 + (1 - lambda_2)^2) / (4 lambda_1^2) + 8 = 0$ requires $lambda_1 = 1/4$
+
+    - $-(1 - lambda_2) / (2 lambda_1) + 6 - mu = 0$ requires $mu = 4$, which is feasible
+
+  - Suppose $mu = 0$
+    
+    - $-(1 + (1 - lambda_2)^2) / (4 lambda_1^2) + 8 = 0$ requires $lambda_2 = 1 - 12 lambda_1$
+
+    - Plugging into $-(1 + (1 - lambda_2)^2) / (4 lambda_1^2) + 8 = 0$ results on $1 + 112 lambda_1^2$ which is impossible
+  
+  - The only KKT point is $(lambda_1, lambda_2) = (1/4, 0)$
+
+  - Plugging into $z^L (lambda)$ gives us $w^* = 4$ which exactly equals $z^*$
+
+  So strong duality holds, $w^* = z^*$
+]
+
+=== Lagrange Duality and LP Duality
+
+LP duality is a special case of Lagrange Duality
+
+For a general LP
+
+$
+  max quad &c^T x \
+  s.t. quad &A x = b \
+  &x gt.eq 0
+$
+
+Where
+$A in RR^(m times n)$ ($m$ constraints and $n$ variables)
+
+Let $lambda in RR^m$ be the Lagrange multipliers, the Lagrange relaxation is
+
+$
+  z^* (lambda) 
+  &= max_(x gt.eq 0) c^T x + lambda^T (b - A x) \
+  &= A^T b + max_(x gt.eq 0) (c^T - lambda^T A) x
+$
+
+Because of equality constraint, $lambda$ is unrestricted in sign
+
+Lagrange dual program
+
+$
+  min_lambda z^L (lambda) = min_lambda {lambda^T b + max_(x gt.eq 0) (c^T - lambda^T A) x}
+$
+
+Search for $lambda$ that minimizes $z^L (lambda)$
+
+Dual program is only meaningful if $c^T lt.eq lambda^T A$, because if $(c^T)_i gt (lambda^T A)_i$ for any $i$, $max_(x gt.eq 0) (c^T - lambda^T A) x$ will be unbounded because we can increase $x_i$ to $infinity$
+
+Thus, no choice of $lambda$ that violates $c^T lt.eq lambda^T A$ may be optimal to the Lagrange dual program
+
+The Lagrange dual program
+
+$
+  min_lambda z^* (lambda) = min_(lambda_i c^T lt.eq lambda^T A) {lambda^T b + max_(x gt.eq 0) (c^T - lambda^T A) x}
+$
+
+If $lambda$ satisfies $c^T lt.eq lambda^T A$ thenwe know $max_(x gt.eq 0) (c^T - lambda^T A) x = 0$
+
+The Lagrange dual program becomes
+
+$
+  min_(lambda "urs") quad &lambda^T b \
+  s.t. quad &lambda^T A gt.eq c^T
+$
+
+Which is exactly the dual LP of
+
+$
+  max_(x gt.eq 0) quad &c^T x \
+  s.t. quad &A x = b \
+
+$
