@@ -44,17 +44,6 @@ We introduce:
 - $lambda_i gt.eq 0$: for each inequality constraint (Lagrange multipliers)
 - $mu_i in RR$: for each equality constraint
 
-#align(center)[
-  #table(
-    columns: 4,
-    align: left,
-    inset: 1em,
-    [], [Inequalities\ $g(x) lt.eq 0$], [Inequalities\ $g(x) gt.eq 0$], [Equalities],
-    [Min], [$lambda gt.eq 0$], [$lambda lt.eq 0$], [$mu in RR$ (free)],
-    [Max], [$lambda lt.eq 0$], [$lambda gt.eq 0$], [$mu in RR$ (free)],
-  )
-]
-
 The Lagrangian is:
 
 $
@@ -72,6 +61,8 @@ At local optimum $x^*$ there exists multipliers ($lambda^*, mu^*$) such that:
 
 1. *Stationarity*
 
+Minimization:
+
 $
   gradient f (x^*) + sum_(i = 1)^m lambda_i^* gradient g_i (x^*) + sum_(j=1)^p mu_j^* gradient h_j (x^*) = 0
 $
@@ -81,7 +72,8 @@ Stationarity is like a generalized version of "set the derivative to zero", but 
 2. *Primal feasibility*
 
 $
-  g_i (x^*) lt.eq 0, quad h_j (x^*) = 0
+  g_i (x^*) &lt.eq 0 \
+  h_j (x^*) &= 0 \
 $
 
 The solution must satisfy all the original constraints — it must lie inside the feasible region
@@ -89,20 +81,692 @@ The solution must satisfy all the original constraints — it must lie inside th
 3. *Dual Feasibility*
 
 $
-  lambda_i^* gt.eq 0 quad forall i
+  lambda_i gt.eq 0 quad forall i
 $
 
 4. *Complementary Slackness*
 
 $
-  lambda_i^* g_i (x^*) = 0 quad forall i
+  lambda_i g_i (x^*) = 0 quad forall i
 $
 
 Complementary slackness only applies to inequalities
 
-Either the inequality constraint is: 
-- Inactive: $g_i (x^*) lt 0 quad arrow.double quad lambda_i^* = 0 quad arrow quad$ The constraint doesn't affect the optimum
-- Binding: $g_i (x^*) = 0 quad arrow.double quad lambda_i^* gt.eq 0 quad arrow quad$ The multiplier measures how much the objective would improve if the constraint were relaxed (shadow price)
+#line(length: 100%)
+
+*Inactive (non-binding) constraint*
+
+$
+  g_i (x^*) lt 0 quad arrow.double quad lambda_i^* = 0
+$
+
+#align(center)[
+  #let f(x1, x2) = x1*x1 + x2*x2
+  #let c(x1) = -2 + (x1*x1) / 2
+
+  #let x_opt = (0, 0)
+
+  #cetz.canvas({
+    import cetz.draw: *
+    import cetz-plot: *
+
+    plot.plot(
+      size: (5,5),
+        axis-style: "scientific",
+        x-tick-step: 2, 
+        y-tick-step: 2, 
+        x-grid: true,
+        y-grid: true,
+        x-label: [$x_1$],
+        y-label: [$x_2$],
+        x-min: -4, x-max: 4,
+        y-min: -4, y-max: 4,
+        axes: (
+          stroke: none,
+          tick: (stroke: none),
+        ),
+    {
+      plot.add-contour(
+        x-domain: (-4, 4), 
+        y-domain: (-4, 4),
+        f, 
+        z: range(0, 30, step: 5), 
+        fill: true,
+        style: (
+          fill: rgb(50,50,250,25), 
+          // stroke: none,
+          stroke: (thickness: 1pt, paint: black, dash: none)
+        ),
+        op: "<", 
+        x-samples: 100,
+        y-samples: 100,
+      )
+      plot.add(
+        domain: (-4, 4),
+        c, 
+        style: (stroke: (paint: red, thickness: 1.5pt)),
+      )  
+
+      plot.add(
+        (x_opt,),
+        mark: "o",
+        mark-size: 0.15,
+        mark-style: (fill: black, stroke: 2pt)
+      )
+
+      plot.annotate({
+        content(
+          x_opt,
+          $x^*$,
+          anchor: "north-west",
+          padding: 0.5
+        )
+      })
+    }, name: "plot")
+  })
+]
+
+- The constraint does not affect the optimum
+- The feasible region is “loose” at the optimum — the optimum lies strictly inside it
+- Economically, the shadow price is zero: relaxing the constraint wouldn't change the objective
+
+*Active (binding) constraint*
+
+$
+  g_i (x^*) = 0 quad arrow.double quad lambda_i^* gt.eq 0
+$
+
+#align(center)[
+  #let f(x1, x2) = x1*x1 + x2*x2
+  #let c(x1) = 1 + (x1*x1) / 2
+
+  #let x_opt = (0, 1)
+
+  #cetz.canvas({
+    import cetz.draw: *
+    import cetz-plot: *
+
+    plot.plot(
+      size: (5,5),
+        axis-style: "scientific",
+        x-tick-step: 2, 
+        y-tick-step: 2, 
+        x-grid: true,
+        y-grid: true,
+        x-label: [$x_1$],
+        y-label: [$x_2$],
+        x-min: -4, x-max: 4,
+        y-min: -4, y-max: 4,
+        axes: (
+          stroke: none,
+          tick: (stroke: none),
+        ),
+    {
+      plot.add-contour(
+        x-domain: (-4, 4), 
+        y-domain: (-4, 4),
+        f, 
+        z: range(0, 30, step: 5), 
+        fill: true,
+        style: (
+          fill: rgb(50,50,250,25), 
+          // stroke: none,
+          stroke: (thickness: 1pt, paint: black, dash: none)
+        ),
+        op: "<", 
+        x-samples: 100,
+        y-samples: 100,
+      )
+      plot.add(
+        domain: (-4, 4),
+        c, 
+        style: (stroke: (paint: red, thickness: 1.5pt)),
+      )  
+
+      plot.add(
+        (x_opt,),
+        mark: "o",
+        mark-size: 0.15,
+        mark-style: (fill: black, stroke: 2pt)
+      )
+
+      plot.annotate({
+        content(
+          x_opt,
+          $x^*$,
+          anchor: "south-west",
+          padding: 0.5
+        )
+      })
+    }, name: "plot")
+  })
+]
+
+
+- The constraint is tight at the optimum — it holds with equality
+- $lambda_i^*$ is the shadow price:
+ - It measures how much the objective value would improve per unit relaxation of the constraint
+  - The objective would decrease by $lambda_i^*$ per unit of relaxation (if convex)
+
+#line(length: 100%)
+
+#eg[
+
+  $
+    min quad &x_1^2 + x_2^2 \
+    s.t. quad &x_1^2/2 - x_2 lt.eq 2
+  $
+
+  #align(center)[
+  #let f(x1, x2) = x1*x1 + x2*x2
+  #let c(x1) = -2 + (x1*x1) / 2
+
+  #let x_opt = (0, 0)
+
+  #cetz.canvas({
+    import cetz.draw: *
+    import cetz-plot: *
+
+    plot.plot(
+      size: (5,5),
+        axis-style: "scientific",
+        x-tick-step: 2, 
+        y-tick-step: 2, 
+        x-grid: true,
+        y-grid: true,
+        x-label: [$x_1$],
+        y-label: [$x_2$],
+        x-min: -4, x-max: 4,
+        y-min: -4, y-max: 4,
+        axes: (
+          stroke: none,
+          tick: (stroke: none),
+        ),
+    {
+      plot.add-contour(
+        x-domain: (-4, 4), 
+        y-domain: (-4, 4),
+        f, 
+        z: range(0, 30, step: 5), 
+        fill: true,
+        style: (
+          fill: rgb(50,50,250,25), 
+          // stroke: none,
+          stroke: (thickness: 1pt, paint: black, dash: none)
+        ),
+        op: "<", 
+        x-samples: 100,
+        y-samples: 100,
+      )
+      plot.add(
+        domain: (-4, 4),
+        c, 
+        style: (stroke: (paint: red, thickness: 1.5pt)),
+      )  
+    }, name: "plot")
+  })
+]
+
+  *Step 1. Standardize constraints*
+
+  Constraints already in the form $g(x) lt.eq 0$ for minimization
+
+  Sign convention $lambda gt.eq 0$
+
+
+  *Step 2. Formulate Lagrangian*
+
+  $
+    cal(L) (x_1, x_2, lambda) &= x_1^2 + x_2^2 + lambda (x_1^2 / 2 - x_2 - 2) \
+  $
+
+  *Step 3. Stationarity*
+
+  $
+    gradient_x cal(L) = vec(
+      (diff cal(L)) / (diff x_1),
+      (diff cal(L)) / (diff x_2),
+    ) &= vec(
+      2x_1 + lambda x_1,
+      2x_2 - lambda,
+    ) = 0
+  $
+
+  Solve for $x_1$:
+
+  $
+    2x_1 + lambda x_1 &= 0 \
+    x_1 (2 + lambda) &= 0 \
+    x_1 (2 + lambda) &= 0 / (2 + lambda) \
+    x_1 &= 0 \
+  $
+
+  Solve for $x_2$
+  
+  $
+    2x_2 - lambda &= 0 \
+    x_2 &= lambda / 2
+  $
+
+  Candidate point:
+
+  $
+    (x_1, x_2) = (0, lambda / 2)
+  $
+
+  *Step 4. Primal Feasibility*
+
+  Constraint:
+
+  $
+    g(x_1, x_2) = x_1^2/2 - x_2 - 2 lt.eq 0
+  $
+
+  Substitute $x_1 = 0$ and $x_2 = lambda / 2$
+
+  $
+    0^2 / 2 - lambda / 2 - 2 &lt.eq 0 \
+    - lambda / 2 - 2 &lt.eq 0 \
+    - lambda / 2 &lt.eq 2 \
+    lambda &gt.eq - 4
+  $
+
+  *Step 5. Dual Feasibility*
+
+  $
+    lambda gt.eq 0
+  $
+
+  *Step 6. Complementary Slackness*
+
+  Constraint:
+
+  $
+    g(x_1, x_2) = x_1^2/2 - x_2 - 2 lt.eq 0
+  $
+
+  Condition:
+
+  $
+    lambda dot g(x^*) = 0
+  $
+
+  Candidate point:
+
+  $
+    (x_1, x_2) = (0, lambda / 2)
+  $
+
+  Evaluate $g(x^*)$:
+
+  $
+    lambda dot g(x^*) = lambda (x_1^2/2 - x_2 - 2) = 0
+  $
+
+  Substitute $x_1 = 0$ and $x_2 = lambda / 2$
+
+  $
+    lambda (0^2/2 - lambda / 2 - 2) = 0 \
+    lambda (- lambda / 2 - 2) = 0 \
+  $
+
+  Solve:
+
+  $
+    lambda (-lambda / 2 - 2) = 0 quad arrow.double quad lambda = 0 "or" lambda = -4
+  $
+
+  But because of Dual Feasibility $lambda gt.eq 0$, so $lambda = 0$
+
+  Constraint is non-binding at optimum:
+  - $lambda = 0$
+
+  - $g(x^*) < 0$
+
+  $
+    g(x^*) = x_1^2/2 - x_2 - 2 &lt.eq 0 \
+    0^2/2 - lambda / 2 - 2 &lt.eq 0 \
+    0^2/2 - 0 / 2 - 2 &lt.eq 0 \
+    - 2 &lt.eq 0 \
+  $
+
+  *Step 7. Solve for Optimum*
+
+  $
+    (x_1, x_2) 
+    &= (0, lambda/2) \
+    &= (0, 0/2) \
+    &= (0, 0)
+  $
+
+  #align(center)[
+  #let f(x1, x2) = x1*x1 + x2*x2
+  #let c(x1) = -2 + (x1*x1) / 2
+
+  #let x_opt = (0, 0)
+
+  #cetz.canvas({
+    import cetz.draw: *
+    import cetz-plot: *
+
+    plot.plot(
+      size: (5,5),
+        axis-style: "scientific",
+        x-tick-step: 2, 
+        y-tick-step: 2, 
+        x-grid: true,
+        y-grid: true,
+        x-label: [$x_1$],
+        y-label: [$x_2$],
+        x-min: -4, x-max: 4,
+        y-min: -4, y-max: 4,
+        axes: (
+          stroke: none,
+          tick: (stroke: none),
+        ),
+    {
+      plot.add-contour(
+        x-domain: (-4, 4), 
+        y-domain: (-4, 4),
+        f, 
+        z: range(0, 30, step: 5), 
+        fill: true,
+        style: (
+          fill: rgb(50,50,250,25), 
+          // stroke: none,
+          stroke: (thickness: 1pt, paint: black, dash: none)
+        ),
+        op: "<", 
+        x-samples: 100,
+        y-samples: 100,
+      )
+      plot.add(
+        domain: (-4, 4),
+        c, 
+        style: (stroke: (paint: red, thickness: 1.5pt)),
+      )  
+
+      plot.add(
+        (x_opt,),
+        mark: "o",
+        mark-size: 0.15,
+        mark-style: (fill: black, stroke: 2pt)
+      )
+
+      plot.annotate({
+        content(
+          x_opt,
+          $x^*$,
+          anchor: "north-west",
+          padding: 0.5
+        )
+      })
+    }, name: "plot")
+  })
+]
+
+
+]
+
+#eg[
+
+  $
+    min quad &x_1^2 + x_2^2 \
+    s.t. quad &x_1^2/2 - x_2 lt.eq -1
+  $
+
+  #align(center)[
+  #let f(x1, x2) = x1*x1 + x2*x2
+  #let c(x1) = 1 + (x1*x1) / 2
+
+  #let x_opt = (0, 1)
+
+  #cetz.canvas({
+    import cetz.draw: *
+    import cetz-plot: *
+
+    plot.plot(
+      size: (5,5),
+        axis-style: "scientific",
+        x-tick-step: 2, 
+        y-tick-step: 2, 
+        x-grid: true,
+        y-grid: true,
+        x-label: [$x_1$],
+        y-label: [$x_2$],
+        x-min: -4, x-max: 4,
+        y-min: -4, y-max: 4,
+        axes: (
+          stroke: none,
+          tick: (stroke: none),
+        ),
+    {
+      plot.add-contour(
+        x-domain: (-4, 4), 
+        y-domain: (-4, 4),
+        f, 
+        z: range(0, 30, step: 5), 
+        fill: true,
+        style: (
+          fill: rgb(50,50,250,25), 
+          // stroke: none,
+          stroke: (thickness: 1pt, paint: black, dash: none)
+        ),
+        op: "<", 
+        x-samples: 100,
+        y-samples: 100,
+      )
+      plot.add(
+        domain: (-4, 4),
+        c, 
+        style: (stroke: (paint: red, thickness: 1.5pt)),
+      )  
+    }, name: "plot")
+  })
+]
+
+*Step 1. Standardize constraints*
+
+  Constraints already in the form $g(x) lt.eq 0$ for minimization
+
+  Sign convention $lambda gt.eq 0$
+
+*Step 2. Formulate Lagrangian*
+
+$
+  cal(L) (x_1, x_2, lambda) = x_1^2 + x_2^2 + lambda (x_1^2 / 2 - x_2 + 1)
+$
+
+*Step 3. Stationarity*
+
+$
+  gradient_x cal(L) = vec(
+    (diff cal(L)) / (diff x_1),
+    (diff cal(L)) / (diff x_2),
+  ) = vec(
+    2x_1 + lambda x_1,
+    2x_2 - lambda,
+  )
+$
+
+Solve for $x_1$: 
+
+$
+  2x_1 + lambda x_1 &= 0 \
+  x_1 (2 + lambda) &= 0 \
+  x_1 &= 0 / (2 + lambda) \
+  x_1 &= 0
+$
+
+Solve for $x_2$: 
+
+$
+  2x_2 - lambda &= 0 \
+  2x_2 &= lambda \
+  x_2 &= lambda / 2
+$
+
+Candidate point:
+
+$
+  (x_1, x_2) = (0, lambda / 2)
+$
+
+*Step 4. Primal Feasibility*
+
+Constraint:
+
+$
+  g(x_1, x_2) = x_1^2 / 2 - x_2 + 1 lt.eq 0
+$
+
+Substitute $x_1 = 0$ and $x_2 = lambda / 2$:
+
+$
+  x_1^2 / 2 - x_2 + 1 lt.eq 0 \
+  0^2 / 2 - lambda / 2 + 1 lt.eq 0 \
+  - lambda / 2 + 1 lt.eq 0 \
+  - lambda / 2 lt.eq -1 \
+  lambda gt.eq 2 \
+$
+
+*Step 5. Dual Feasibility*
+
+$
+  lambda gt.eq 0
+$
+
+*Step 6. Complementary Slackness*
+
+  Constraint:
+
+  $
+    g(x_1, x_2) = x_1^2/2 - x_2 + 1 lt.eq 0
+  $
+
+  Condition:
+
+  $
+    lambda dot g(x^*) = 0
+  $
+
+  Candidate point:
+
+  $
+    (x_1, x_2) = (0, lambda / 2)
+  $
+
+  Evaluate $g(x^*)$:
+
+  $
+    lambda dot g(x^*) = lambda (x_1^2/2 - x_2 + 1) = 0
+  $
+
+  Substitute $x_1 = 0$ and $x_2 = lambda / 2$
+
+  $
+    lambda (0^2/2 - lambda / 2 + 1) = 0 \
+    lambda (- lambda / 2 + 1) = 0 \
+  $
+
+  Solve:
+
+  $
+    lambda (-lambda / 2 + 1) = 0 quad arrow.double quad lambda = 0 "or" lambda = 2
+  $
+
+  But because of Primal Feasibility, if $lambda = 0$, $(x_1, x_2) = (0, 0)$ and $g(0, 0) = 1 lt.eq.not 0$, thus $lambda = 2$
+
+  Constraint is binding at optimum:
+  - $lambda = 2$
+
+  - $g(x^*) = 0$
+
+  $
+    g(x^*) = x_1^2/2 - x_2 + 1 &= 0 \
+    0^2/2 - lambda / 2 + 1 &= 0 \
+    0^2/2 - 2 / 2 + 1 &= 0 \
+    0 &= 0 \
+  $
+
+*Step 7. Solve for Optimum*
+
+  $
+    (x_1, x_2) 
+    &= (0, lambda/2) \
+    &= (0, 2/2) \
+    &= (0, 1)
+  $
+
+#align(center)[
+  #let f(x1, x2) = x1*x1 + x2*x2
+  #let c(x1) = 1 + (x1*x1) / 2
+
+  #let x_opt = (0, 1)
+
+  #cetz.canvas({
+    import cetz.draw: *
+    import cetz-plot: *
+
+    plot.plot(
+      size: (5,5),
+        axis-style: "scientific",
+        x-tick-step: 2, 
+        y-tick-step: 2, 
+        x-grid: true,
+        y-grid: true,
+        x-label: [$x_1$],
+        y-label: [$x_2$],
+        x-min: -4, x-max: 4,
+        y-min: -4, y-max: 4,
+        axes: (
+          stroke: none,
+          tick: (stroke: none),
+        ),
+    {
+      plot.add-contour(
+        x-domain: (-4, 4), 
+        y-domain: (-4, 4),
+        f, 
+        z: range(0, 30, step: 5), 
+        fill: true,
+        style: (
+          fill: rgb(50,50,250,25), 
+          // stroke: none,
+          stroke: (thickness: 1pt, paint: black, dash: none)
+        ),
+        op: "<", 
+        x-samples: 100,
+        y-samples: 100,
+      )
+      plot.add(
+        domain: (-4, 4),
+        c, 
+        style: (stroke: (paint: red, thickness: 1.5pt)),
+      )  
+
+      plot.add(
+        (x_opt,),
+        mark: "o",
+        mark-size: 0.15,
+        mark-style: (fill: black, stroke: 2pt)
+      )
+
+      plot.annotate({
+        content(
+          x_opt,
+          $x^*$,
+          anchor: "south-west",
+          padding: 0.5
+        )
+      })
+    }, name: "plot")
+  })
+]
+
+]
+
+#line(length: 100%)
 
 === Calculating Lagrangian Multipliers
 
@@ -117,25 +781,6 @@ $
     lambda_i g_i (x) = 0 quad quad quad quad &forall i = 1\, dots\, m,
   )
 $
-
-#table(
-  columns: 4,
-  inset: 1em,
-  [*Step*], [*Description*], [*KKT Condition*], [],
-  [1. Assume activity\ of constraints], [
-    Decide which inequality constraints are active ($g_i(x) = 0$) and which are inactive ($g_i(x) lt 0$). Equivalently, assign tentative signs to $lambda_i$:
-      - Active $arrow$ $lambda_i > 0$
-      - Inactive $arrow$ $lambda_i = 0$
-  ], [Complementary\ Slackness], [],
-  [2. Write Stationarity\ equations], [Compute the gradient of the Lagrangian: $nabla_x cal(L) (x, lambda, mu) = 0$], [Stationarity], [],
-  [3. Substitute active\ constraints], [Replace active $g_i(x) = 0$ and all $h_j(x) = 0$ into the equations.\ Inactive $g_i(x)$ are ignored (since $lambda_i = 0$).], [Primal Feasibility\ (for active ones)], [],
-  [4. Solve for\ $(x, lambda, mu)$], [Solve the resulting system (stationarity + active constraints)], [], [],
-  [5. Check Dual\ Feasibility], [Verify that $lambda_i^* gt.eq 0$ for all $i$], [Dual Feasibility], [],
-  [6. Check Primal Feasibility\ for inactive constraints], [Verify that the inactive constraints indeed satisfy $g_i (x^*) < 0$], [Primal Feasibility\ (for inactive ones)], [],
-  [7. Conclude valid\ KKT point(s)], [If all four KKT conditions hold, record the feasible point. Otherwise discard this case.\ The remaining point(s) are KKT candidates; if the problem is convex, they are optimal.], [], [],
-  [], [], [], [],
-  [], [], [], [],
-)
 
 #eg[
 
@@ -1782,3 +2427,119 @@ $
   s.t. quad &A x = b \
 
 $
+
+
+
+#eg[
+
+  $
+    min quad &(x_1 - 4)^2 + (x_2 - 2)^2 \
+    s.t. quad &2x_1 + x_2 lt.eq 6
+  $
+
+  1. What are the leading principle minors of the Hessian matrix of the objective function?
+
+  $
+    gradient f(x_1, x_2) = vec(
+      2 (x_1 - 4),
+      2 (x_2 - 2)
+    ) 
+    quad quad
+    gradient^2 f(x_1, x_2) = mat(
+      2, 0;
+      0, 2;
+    )
+  $
+
+  *2 and 4* ✅
+
+  2. 
+
+  $
+    cal(L) (x_1, x_2 | lambda) = (x_1 - 4)^2 + (x_2 - 2)^2 + lambda (6 - 2x_2 - 2)
+  $
+
+  *$lambda lt.eq 0$* ✅
+
+  3. According to the FOC of the Lagragian, what is a necessary condition for an optimal solution
+
+  Case 1. $lambda gt 0$
+
+  Constraint active: $2x_2 - 2 lt.eq 6$
+
+  FOC (gradient w.r.t. $x_1$ and $x_2$):
+
+  $
+    gradient cal(L) (x_1, x_2 | lambda) = vec(
+      2(x_1 - 4),
+      2(x_2 - 2) - 2 lambda
+    )
+  $
+
+
+  $
+    2(x_1 - 4) = 0 \
+    x_1 = 4 \
+    \
+    2(x_2 - 2) - 2 lambda = 0 \
+    2x_2 - 4 - 2 lambda = 0 \
+    x_2 = (2lambda + 4) / 2 \
+    x_2 = lambda + 2
+
+  $
+
+  $
+    x_1 = 4 \
+    x_2 = lambda + 2 \
+  $
+
+  Substitute into active constraint
+
+  $
+    6 - 2x_2 - 2 = 0 \
+    4 - 2x_2 = 0 \
+    4 - 2 (lambda + 2) = 0 \
+    4 - 2 lambda + 4 = 0 \
+    2 lambda = 0 \
+    lambda = 0 / (-2) \
+    lambda = 0
+  $
+
+  Find $lambda$:
+
+  $lambda = 0$
+
+  Which violates $lambda gt 0$
+
+  Case 2. $lambda = 0$
+
+  $
+    x_1 = 4 \
+    x_2 = lambda + 2 \
+    x_2 = 0 + 2
+  $
+
+  $
+    (x_1, x_2) = (4, 2)
+  $
+
+  
+  *$x_1 - 2x_2 = 0$* ✅
+
+
+
+  Case 2. $lambda = 0$
+  
+
+  4. What is a local optimal solution to the nonlinear program?
+  
+  *$(x_1, x_2) = (12/5, 6/5)$* ✅
+
+  5. 
+
+  *For a linear program, linear programming duality and Lagrange duality is equivalent (i.e., the dual programs obtained through the two ways are identical).* ✅
+
+  *For an unconstrained nonlinear program, the KKT condition is equivalent to the first-order condition.* ✅
+
+  *For an unconstrained nonlinear program, the KKT condition is necessary and sufficient.* ✅
+]
