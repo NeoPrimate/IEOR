@@ -6,7 +6,7 @@
 
 #set math.vec(delim: "[")
 
-= Linear Combinations
+== Linear Combinations
 
 
 
@@ -51,7 +51,7 @@ Where:
 
 ]
 
-= Span
+== Span
 
 Represents the subspace of the vector space that is "covered" by these vectors through their linear combinations
 
@@ -278,7 +278,7 @@ Any vector in $RR^2$ can be represented by a linear combination with some combin
   ]
 ]
 
-= Linear Independence
+== Linear Independence
 
 1. Definition of Linear Independence
 

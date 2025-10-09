@@ -505,6 +505,8 @@ $
   })
 ]
 
+*Step 8. Check Convexity*
+
 
 ]
 
@@ -763,6 +765,10 @@ $
     }, name: "plot")
   })
 ]
+
+*Step 8. Check Convexity*
+
+
 
 ]
 

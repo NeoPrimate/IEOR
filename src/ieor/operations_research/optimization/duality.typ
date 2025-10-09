@@ -8,56 +8,75 @@
 
 == Linear Programming Duality
 
-Uniqueeness & symmetry: For any primal LP, there is a unique dual, whose dual is the primal
+Every linear program (primal) has a *unique* and *symmetric* dual problem. For any primal LP, there is a unique dual, whose dual is the primal.
+
+Solving the dual gives you information about the primal.
+
+1. Weak Duality
+2. Strong Duality
+3. Complementary Slackness
 
 === General Form
 
 #grid(
   columns: (1fr, 1fr),
   align: center + horizon,
+  row-gutter: 2em,
   [
-    Primal
+    *Primal*
+
     $
-      &max& quad z = &sum_(j=1)^n colorMath(c_j, #red) x_j \
-      &s.t.& quad &sum_(j=1)^n colorMath(a_(i j), #green) x_j lt.eq colorMath(b_i, #blue), quad i = 1, dots, m \
-      &&&x_j gt.eq 0, quad j = 1, dots, n
+      colorMath(min\/max, #yellow)   quad  &colorMath(bold("c"), #blue)^T bold("x") \
+      s.t.  quad  &colorMath(A, #green) bold("x") colorMath(compose, #purple) colorMath(bold("b"), #red) \
+                  &bold("x") colorMath(diamond.stroked.small, #orange) 0
     $
   ],
   [
-    Dual 
+    *Dual*
+
     $
-      &min& quad w = &sum_(i=1)^m u_i colorMath(b_i, #blue) \
-      &s.t.& quad &sum_(i=1)^m colorMath(a_(j i), #green) u_i gt.eq colorMath(c_j, #red), quad j = 1, dots, n \
-      &&&u_i gt.eq 0, quad i = 1, dots, m
+      colorMath(max\/min, #yellow)   quad  &colorMath(bold("b"), #red)^T bold("y") \
+      s.t.  quad  &colorMath(A^T, #green) bold("y") colorMath(diamond.stroked.small, #orange) colorMath(bold("c"), #blue) \
+                  &bold("y") colorMath(compose, #purple) 0
     $
   ],
-)
-
-
-
-
-#grid(
-  columns: (1fr, 1fr),
-  align: center + horizon,
   [
-    Primal LP
+    *Primal*
 
     $
-      colorMath(max, #yellow) quad &colorMath(c_1, #blue) x_1 + colorMath(c_2, #blue) x_2 + colorMath(c_3, #blue) x_3 \
-      s.t. quad &colorMath(A_(1 1), #green) x_1 + colorMath(A_(1 2), #green) x_2 + colorMath(A_(1 3), #green) x_3 colorMath(gt.eq, #purple) colorMath(b_1, #red) \
-          &A_(2 1) x_1 + A_(2 2) x_2 + A_(2 3) x_3 colorMath(lt.eq, #purple) colorMath(b_2, #red) \
-          &A_(3 1) x_1 + A_(3 2) x_2 + A_(3 3) x_3 colorMath(eq, #purple) colorMath(b_3, #red) \
-          &x_1 colorMath(gt.eq, #orange) 0, quad x_2 colorMath(lt.eq, #orange), quad x_3 colorMath("urs", #orange) \
+      colorMath(min\/max, #yellow) quad &sum_(j=1)^n colorMath(c_j, #blue) x_j \
+      s.t. quad &sum_(j=1)^n colorMath(a_(i j), #green) x_j colorMath(compose, #purple) colorMath(b_i, #red), quad i = 1, dots, m \
+      &x_j colorMath(diamond.stroked.small, #orange) 0, quad j = 1, dots, n
+    $
+  ],
+  [
+    *Dual*
+
+    $
+      colorMath(max\/min, #yellow) quad w = &sum_(i=1)^m u_i colorMath(b_i, #red) \
+      s.t. quad &sum_(i=1)^m colorMath(a_(j i), #green) u_i colorMath(diamond.stroked.small, #orange) colorMath(c_j, #blue), quad j = 1, dots, n \
+      &u_i colorMath(compose, #purple) 0, quad i = 1, dots, m
+    $
+  ],
+  [
+    *Primal*
+
+    $
+      colorMath(min\/max, #yellow) quad &colorMath(c_1, #blue) x_1 + colorMath(c_2, #blue) x_2 + colorMath(c_3, #blue) x_3 \
+      s.t. quad &colorMath(a_(1 1), #green) x_1 + colorMath(a_(1 2), #green) x_2 + colorMath(a_(1 3), #green) x_3 colorMath(gt.eq, #purple) colorMath(b_1, #red) \
+          &a_(2 1) x_1 + a_(2 2) x_2 + a_(2 3) x_3 colorMath(lt.eq, #purple) colorMath(b_2, #red) \
+          &a_(3 1) x_1 + a_(3 2) x_2 + a_(3 3) x_3 colorMath(eq, #purple) colorMath(b_3, #red) \
+          &x_1 colorMath(gt.eq, #orange) 0, quad x_2 colorMath(lt.eq, #orange) 0, quad x_3 colorMath("urs", #orange) \
     $
   ], [
-    Dual LP
+    *Dual*
 
     $
-      colorMath(min, #yellow) quad &colorMath(b_1, #red) y_1 + colorMath(b_2, #red) y_2 + colorMath(b_3, #red) y_3 \
-      s.t. quad &colorMath(A_(1 1), #green) y_1 + A_(2 1) y_2 + A_(3 1) y_3 colorMath(gt.eq, #orange) colorMath(c_1, #blue) \
-          &colorMath(A_(1 2), #green) y_1 + A_(2 2) y_2 + A_(3 2) y_3 colorMath(lt.eq, #orange) colorMath(c_2, #blue) \
-          &colorMath(A_(1 3), #green) y_1 + A_(2 3) y_2 + A_(3 3) y_3 colorMath(eq, #orange) colorMath(c_3, #blue) \
-          &y_1 colorMath(lt.eq, #purple) 0, quad y_2 colorMath(gt.eq, #purple), quad y_3 colorMath("urs", #purple) \
+      colorMath(max\/min, #yellow) quad &colorMath(b_1, #red) y_1 + colorMath(b_2, #red) y_2 + colorMath(b_3, #red) y_3 \
+      s.t. quad &colorMath(a_(1 1), #green) y_1 + a_(2 1) y_2 + a_(3 1) y_3 colorMath(gt.eq, #orange) colorMath(c_1, #blue) \
+          &colorMath(a_(1 2), #green) y_1 + a_(2 2) y_2 + a_(3 2) y_3 colorMath(lt.eq, #orange) colorMath(c_2, #blue) \
+          &colorMath(a_(1 3), #green) y_1 + a_(2 3) y_2 + a_(3 3) y_3 colorMath(eq, #orange) colorMath(c_3, #blue) \
+          &y_1 colorMath(lt.eq, #purple) 0, quad y_2 colorMath(gt.eq, #purple) 0, quad y_3 colorMath("urs", #purple) \
     $
   ],
 )
@@ -68,40 +87,66 @@ Uniqueeness & symmetry: For any primal LP, there is a unique dual, whose dual is
   columns: (1fr, 1fr),
   align: center + horizon,
   row-gutter: 2em,
+  
   [
-    Primal LP
+    *Primal*
 
     $
-      colorMath(max, #yellow) quad &colorMath(c_1, #blue) x_1 + colorMath(c_2, #blue) x_2 + colorMath(c_3, #blue) x_3 \
-      s.t. quad &colorMath(A_(1 1), #green) x_1 + colorMath(A_(1 2), #green) x_2 + colorMath(A_(1 3), #green) x_3 colorMath(eq, #purple) colorMath(b_1, #red) \
-          &A_(2 1) x_1 + A_(2 2) x_2 + A_(2 3) x_3 colorMath(eq, #purple) colorMath(b_2, #red) \
-          &A_(3 1) x_1 + A_(3 2) x_2 + A_(3 3) x_3 colorMath(eq, #purple) colorMath(b_3, #red) \
-          &x_1 colorMath(gt.eq, #orange) 0, quad x_2 colorMath(gt.eq, #orange), quad x_3 colorMath(gt.eq, #orange) 0 \
-    $
-  ], [
-    Dual LP
-
-    $
-      colorMath(min, #yellow) quad &colorMath(b_1, #red) y_1 + colorMath(b_2, #red) y_2 + colorMath(b_3, #red) y_3 \
-      s.t. quad &colorMath(A_(1 1), #green) y_1 + A_(2 1) y_2 + A_(3 1) y_3 colorMath(gt.eq, #orange) colorMath(c_1, #blue) \
-          &colorMath(A_(1 2), #green) y_1 + A_(2 2) y_2 + A_(3 2) y_3 colorMath(gt.eq, #orange) colorMath(c_2, #blue) \
-          &colorMath(A_(1 3), #green) y_1 + A_(2 3) y_2 + A_(3 3) y_3 colorMath(gt.eq, #orange) colorMath(c_3, #blue) \
-          &y_1, y_2, y_3 colorMath("urs", #purple) \
+      colorMath(min\/max, #yellow)   quad &colorMath(bold("c"), #blue)^T bold("x") \
+      s.t.  quad  &colorMath(A, #green) bold("x") colorMath(=, #purple) colorMath(bold("b"), #red) \
+      &bold("x") colorMath(gt.eq, #orange) 0
     $
   ],
   [
+    *Dual*
+
     $
-      max quad &c^T x \
-      s.t. quad &A x eq b \
-      &x gt.eq 0 \
+      colorMath(max\/min, #yellow)   quad &colorMath(bold("b"), #red)^T bold("y") \
+      s.t.  quad  &colorMath(A^T, #green) bold("y") colorMath(lt.eq, #orange) colorMath(bold("c"), #blue) \
+                  &bold("y") colorMath("urs", #purple)
     $
   ],
   [
+    *Primal*
+
     $
-      min quad &y^T b \
-      s.t. quad &y^T A gt.eq c^T \
+      colorMath(min\/max, #yellow) quad &sum_(j=1)^n colorMath(c_j, #blue) x_j \
+      s.t. quad &sum_(j=1)^n colorMath(a_(i j), #green) x_j colorMath(=, #purple) colorMath(b_i, #red), quad i = 1, dots, m \
+      &x_j colorMath(gt.eq, #orange) 0, quad j = 1, dots, n
     $
-  ]
+  ],
+  [
+    *Dual*
+
+    $
+      colorMath(max\/min, #yellow) quad w = &sum_(i=1)^m y_i colorMath(b_i, #red) \
+      s.t. quad &sum_(i=1)^m colorMath(a_(j i), #green) y_i colorMath(lt.eq, #orange) colorMath(c_j, #blue), quad j = 1, dots, n \
+      &y_i colorMath("urs", #purple), quad i = 1, dots, m
+    $
+  ],
+  [
+    *Primal*
+
+    $
+      colorMath(min\/max, #yellow) quad &colorMath(c_1, #blue) x_1 + colorMath(c_2, #blue) x_2 + colorMath(c_3, #blue) x_3 \
+      s.t. quad &colorMath(a_(1 1), #green) x_1 + colorMath(a_(1 2), #green) x_2 + colorMath(a_(1 3), #green) x_3 colorMath(=, #purple) colorMath(b_1, #red) \
+          &a_(2 1) x_1 + a_(2 2) x_2 + a_(2 3) x_3 colorMath(=, #purple) colorMath(b_2, #red) \
+          &a_(3 1) x_1 + a_(3 2) x_2 + a_(3 3) x_3 colorMath(=, #purple) colorMath(b_3, #red) \
+          &x_1, x_2, x_3 colorMath(gt.eq, #orange) 0
+    $
+  ],
+  [
+    *Dual*
+
+    $
+      colorMath(max\/min, #yellow) quad &colorMath(b_1, #red) y_1 + colorMath(b_2, #red) y_2 + colorMath(b_3, #red) y_3 \
+      s.t. quad &colorMath(a_(1 1), #green) y_1 + a_(2 1) y_2 + a_(3 1) y_3 colorMath(lt.eq, #orange) colorMath(c_1, #blue) \
+          &colorMath(a_(1 2), #green) y_1 + a_(2 2) y_2 + a_(3 2) y_3 colorMath(lt.eq, #orange) colorMath(c_2, #blue) \
+          &colorMath(a_(1 3), #green) y_1 + a_(2 3) y_2 + a_(3 3) y_3 colorMath(lt.eq, #orange) colorMath(c_3, #blue) \
+          &y_1, y_2, y_3 colorMath("urs", #purple)
+    $
+  ],
+
 )
 
 #linebreak()
@@ -168,7 +213,7 @@ Uniqueeness & symmetry: For any primal LP, there is a unique dual, whose dual is
       Dual LP
       $
         max quad 4&y_1 quad +& quad 5&y_2& \
-        s.t. quad &y_1 quad +& quad 2y_2& quad lt.eq& quad &3 \
+        s.t. quad &y_1 quad +& quad 2y_2& quad gt.eq& quad &3 \
                   2&y_1 quad +& quad y_2& quad eq& quad &2 \
                   &#place($y_1 lt.eq 0, quad y_2 lt.eq 0$) \
       $
@@ -185,20 +230,20 @@ Uniqueeness & symmetry: For any primal LP, there is a unique dual, whose dual is
       Primal LP
 
       $
-        max quad  3&x_1 quad -& quad 2x_2& \
-        s.t. quad  &x_1 quad +& quad  2x_2& quad =& quad &6 \
-                  3&x_1 quad   +&  quad  3x_2& quad lt.eq& quad -&4 \
-                  &#place($x_1 "urs", quad x_2 gt.eq 0$) \
+        max quad  3&x_1 quad +& quad 2x_2& \
+        s.t. quad  &x_1 quad +& quad  2x_2& quad lt.eq& quad &4 \
+                  2&x_1 quad   +&  quad  x_2& quad lt.eq& quad &5 \
+                  &#place($x_1 gt.eq 0, quad x_2 "urs"$) \
       $
     ],
     [
       Dual LP
       
       $
-        min quad  6&y_1 quad -& quad 4y_2& \
-        s.t. quad  &y_1 quad +& quad 3y_2& quad =& quad &3 \
-                  2&y_1 quad   +&  quad  3y_2& quad gt.eq& quad -&1 \
-                  &#place($y_1 "urs", quad y_2 lt.eq 0$) \
+        min quad  4&y_1 quad +& quad 5y_2& \
+        s.t. quad  &y_1 quad +& quad 2y_2& quad gt.eq& quad &3 \
+                  2&y_1 quad   +&  quad  y_2& quad =& quad &2 \
+                  &#place($y_1 gt.eq 0, quad y_2 gt.eq 0$) \
       $
     ]
   )
@@ -207,9 +252,14 @@ Uniqueeness & symmetry: For any primal LP, there is a unique dual, whose dual is
     
 ]
 
+=== Weak Duality
 
+$
+  b^T y lt.eq c^T x
+$
 
-=== Weak and Strong Duality
+- Dual objective gives a lower bound for a minimization primal
+- Dual objective gives an upper bound for a maximization primal
 
 #align(center)[
   #table(
@@ -229,6 +279,15 @@ Uniqueeness & symmetry: For any primal LP, there is a unique dual, whose dual is
     [$c^T x^* = b^T y^*$],
   )
 ]
+
+
+=== Strong Duality
+
+If both primal and dual are feasible and at least one has an optimal solution:
+
+$
+  c^T x^* = b^T y^*
+$
 
 #eg[
 
@@ -1018,7 +1077,9 @@ Uniqueeness & symmetry: For any primal LP, there is a unique dual, whose dual is
 === Complimentary Slackness
 
 $
-  y_i (a_i^T x - b_i) = 0 \
-  x_j (c_j - (A^T y)_j) = 0 \
+  x_i (c_i - (A^T y)_i) = bold(0) quad forall i
 $
 
+If:
+- $x_i gt 0$: dual constraint is tight (equality holds)
+- $x_i = 0$: dual constraint is slack (inequality not binding)

@@ -6,7 +6,7 @@
 
 #set math.vec(delim: "[")
 
-= Vectors
+== Vectors
 $
   "Vector" = "Magnitude" + "Direction"
 $

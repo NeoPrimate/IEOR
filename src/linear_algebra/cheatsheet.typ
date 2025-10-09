@@ -427,7 +427,7 @@
 
 
 
-= Matrix
+== Matrix
 
 #align(center,
   table(
@@ -451,7 +451,7 @@
 
 
 
-== Matrix Vector Product
+=== Matrix Vector Product
 
 #align(center,
   table(
@@ -501,7 +501,7 @@ $
   )
 $
 
-== Matrix Multiplication
+=== Matrix Multiplication
 
 #align(center,
   table(
@@ -657,7 +657,7 @@ table(
   )
 )
 
-== Transpose
+=== Transpose
 
 $
   A^T
@@ -766,9 +766,9 @@ $
 )
 
 
-= Matrix Factorization
+== Matrix Factorization
 
-== LU Decomposition
+=== LU Decomposition
 
 $
   A = L U
@@ -832,9 +832,9 @@ where:
 
 see QR Decomposition
 
-== QR Decomposition
+// == QR Decomposition
 
-== Cholesky Decomposition
+// == Cholesky Decomposition
 
 
 == Singular Value Decomposition (SVD)

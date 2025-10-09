@@ -15,7 +15,7 @@
   [
     $a / b + c / d = (a d + b c) / (d b)$
 
-    $(a / b) / (c / d) = a / b times d / c = (a d) / (b c)$ 
+    $(a / b) / (c / d) = a / b times d / c = (a d) / (b c)$
   ]
 )
 

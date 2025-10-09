@@ -3,11 +3,12 @@
 
 #show: formatting
 
-// #include("./review.typ")
-
 #pagebreak()
 
-#outline(indent: 1em)
+#outline(
+  indent: 1em, 
+  depth: 2
+)
 
 #pagebreak()
 

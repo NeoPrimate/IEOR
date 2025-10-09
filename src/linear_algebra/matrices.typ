@@ -31,11 +31,11 @@ bold(A) = mat(
 $
 
 $
-accent(x, arrow) = vec(x_1, x_2, dots.v, x_n)
+bold("x") = vec(x_1, x_2, dots.v, x_n)
 $
 
 $
-bold(A) accent(x, arrow) = vec(
+bold(A) bold("x") = vec(
   a_(1 1) x_1 + a_(1 2) x_2 + dots + a_(1 n) x_n,
   a_(2 1) x_1 + a_(2 2) x_2 + dots + a_(2 n) x_n,
   dots.v,
@@ -65,13 +65,13 @@ $
 1. As Row vectors
 
 $
-#text(red)[$accent(a, arrow) = vec(a_1, a_2, dots.v, a_n)$] \
-#text(blue)[$accent(b, arrow) = vec(b_1, b_2, dots.v, b_n)$] \
+#text(red)[$bold("a") = vec(a_1, a_2, dots.v, a_n)$] \
+#text(blue)[$bold("b") = vec(b_1, b_2, dots.v, b_n)$] \
 $
 
 $
-#text(red)[$accent(a, arrow)^T = [a_1, a_2, dots, a_n]$] \
-#text(blue)[$accent(b, arrow)^T = [b_1, b_2, dots, b_n]$] \
+#text(red)[$bold("a")^T = [a_1, a_2, dots, a_n]$] \
+#text(blue)[$bold("b")^T = [b_1, b_2, dots, b_n]$] \
 $
 
 $
@@ -83,17 +83,17 @@ $
 
 $
 bold(A) = vec(
-  #text(red)[$accent(a, arrow)$],
-  #text(blue)[$accent(b, arrow)$],
+  #text(red)[$bold("a")$],
+  #text(blue)[$bold("b")$],
 )
 $
 
 $
-accent(x, arrow) = vec(x_1, x_2, dots.v, x_n)
+bold("x") = vec(x_1, x_2, dots.v, x_n)
 $
 
 $
-vec(#text(red)[$accent(a, arrow)^T$], #text(blue)[$accent(b, arrow)^T$]) dot accent(x, arrow) = vec(#text(red)[$accent(a, arrow)$] dot accent(x, arrow), #text(blue)[$accent(b, arrow)$] dot accent(x, arrow))
+vec(#text(red)[$bold("a")^T$], #text(blue)[$bold("b")^T$]) dot bold("x") = vec(#text(red)[$bold("a")$] dot bold("x"), #text(blue)[$bold("b")$] dot bold("x"))
 $
 
 2. As Column Vectors
