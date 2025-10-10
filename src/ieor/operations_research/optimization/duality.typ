@@ -5,16 +5,13 @@
 #import "../../../utils/examples.typ": eg
 #import "../../../utils/code.typ": code
 #import "../../../utils/color_math.typ": colorMath
+#import "../../../utils/color_mat.typ": colorMat
 
 == Linear Programming Duality
 
 Every linear program (primal) has a *unique* and *symmetric* dual problem. For any primal LP, there is a unique dual, whose dual is the primal.
 
 Solving the dual gives you information about the primal.
-
-1. Weak Duality
-2. Strong Duality
-3. Complementary Slackness
 
 === General Form
 
@@ -102,7 +99,7 @@ Solving the dual gives you information about the primal.
 
     $
       colorMath(max\/min, #yellow)   quad &colorMath(bold("b"), #red)^T bold("y") \
-      s.t.  quad  &colorMath(A^T, #green) bold("y") colorMath(lt.eq, #orange) colorMath(bold("c"), #blue) \
+      s.t.  quad  &colorMath(A^T, #green) bold("y") colorMath(gt.eq, #orange) colorMath(bold("c"), #blue) \
                   &bold("y") colorMath("urs", #purple)
     $
   ],
@@ -140,9 +137,9 @@ Solving the dual gives you information about the primal.
 
     $
       colorMath(max\/min, #yellow) quad &colorMath(b_1, #red) y_1 + colorMath(b_2, #red) y_2 + colorMath(b_3, #red) y_3 \
-      s.t. quad &colorMath(a_(1 1), #green) y_1 + a_(2 1) y_2 + a_(3 1) y_3 colorMath(lt.eq, #orange) colorMath(c_1, #blue) \
-          &colorMath(a_(1 2), #green) y_1 + a_(2 2) y_2 + a_(3 2) y_3 colorMath(lt.eq, #orange) colorMath(c_2, #blue) \
-          &colorMath(a_(1 3), #green) y_1 + a_(2 3) y_2 + a_(3 3) y_3 colorMath(lt.eq, #orange) colorMath(c_3, #blue) \
+      s.t. quad &colorMath(a_(1 1), #green) y_1 + a_(2 1) y_2 + a_(3 1) y_3 colorMath(gt.eq, #orange) colorMath(c_1, #blue) \
+          &colorMath(a_(1 2), #green) y_1 + a_(2 2) y_2 + a_(3 2) y_3 colorMath(gt.eq, #orange) colorMath(c_2, #blue) \
+          &colorMath(a_(1 3), #green) y_1 + a_(2 3) y_2 + a_(3 3) y_3 colorMath(gt.eq, #orange) colorMath(c_3, #blue) \
           &y_1, y_2, y_3 colorMath("urs", #purple)
     $
   ],
@@ -202,7 +199,7 @@ Solving the dual gives you information about the primal.
     align: center,
     row-gutter: 1em,
     [
-      Primal LP
+      *Primal*
       $
         min quad 3&x_1 quad +& quad 2x_2& \
         s.t. quad &x_1 quad +& quad 2x_2& quad gt.eq& quad &4 \
@@ -210,7 +207,7 @@ Solving the dual gives you information about the primal.
                   &#place($x_1 lt.eq 0, quad x_2 "urs"$) \
       $
     ], [
-      Dual LP
+      *Dual*
       $
         max quad 4&y_1 quad +& quad 5&y_2& \
         s.t. quad &y_1 quad +& quad 2y_2& quad gt.eq& quad &3 \
@@ -227,7 +224,7 @@ Solving the dual gives you information about the primal.
     align: center,
     row-gutter: 1em,
     [
-      Primal LP
+      *Primal*
 
       $
         max quad  3&x_1 quad +& quad 2x_2& \
@@ -237,7 +234,7 @@ Solving the dual gives you information about the primal.
       $
     ],
     [
-      Dual LP
+      *Dual*
       
       $
         min quad  4&y_1 quad +& quad 5y_2& \
@@ -254,40 +251,220 @@ Solving the dual gives you information about the primal.
 
 === Weak Duality
 
+1. Dual objective gives a *lower bound* for a *minimization* primal
+
 $
-  b^T y lt.eq c^T x
+  c^T x gt.eq b^T y
 $
 
-- Dual objective gives a lower bound for a minimization primal
-- Dual objective gives an upper bound for a maximization primal
+2. Dual objective gives an *upper bound* for a *maximization* primal
 
-#align(center)[
-  #table(
-    columns: (auto, auto, auto, auto),
-    align: center + horizon,
-    inset: 1em,
-    [*Problem Type*], [*Duality*], [*Weak Duality*], [*Strong Duality*],
+$
+  c^T x lt.eq b^T y
+$
 
-    [*Min* Primal\ *Max* Dual], 
-    [$c^T x gt.eq b^T y$], 
-    [$c^T x > b^T y \ "if" \ x eq.not x^* "or" y eq.not y^*$], 
-    [$c^T x^* = b^T y^*$],
+Suffciency of optimality
 
-    [*Max* Primal\ *Min* Dual], 
-    [$c^T x lt.eq b^T y$], 
-    [$c^T x lt b^T y \ "if" \ x eq.not x^* "or" y eq.not y^*$], 
-    [$c^T x^* = b^T y^*$],
-  )
+If $overline(x)$ and $overline(y)$ are primal and dual feasible and $c^T overline(x) lt.eq overline(y)^T b$, then $overline(x)$ and $overline(y)$ are primal and dual optimal
+
+#eg[
+
 ]
 
+Given a primal feasible solution $overline(x)$, if we find a dual feasible solution so that their objective values are identical, $overline(x)$ is optimal (strong duality)
+
+=== Dual Oprimal solution
+
+If we have solved the primal LP, the dual optimal solution can be obtained 
+
+If $overline(x)$ is primal optimal with basis $B$, then $overline(y)^T = c_B^T A_B^(-1)$ is dual optimal
 
 === Strong Duality
 
 If both primal and dual are feasible and at least one has an optimal solution:
 
+$overline(x)$ and $overline(y)$ are primal and dual optimal iif $overline(x)$ and $overline(y)$ are primal and dual feasible and
+
 $
-  c^T x^* = b^T y^*
+  c^T overline(x) = b^T overline(y)
 $
+
+#align(center)[
+  #table(
+    columns: 4,
+    inset: 1em,
+    align: center + horizon,
+    stroke: none,
+    table.hline(),
+    table.cell(
+      rowspan: 2,
+      [Primal]
+    ), 
+    table.cell(
+      colspan: 3,
+      [Dual]
+    ),
+    table.hline(),
+    [Infeasible], [Unbounded], [Finitely Optimal],
+    table.hline(),
+    [Infeasible], [✅], [✅], [❌],
+    [Unbounded], [✅], [❌], [❌],
+    [Finitely Optimal], [❌], [❌], [✅],
+    table.hline(),
+  )
+]
+
+- ✅ means possible and ❌ means impossible
+- Primal unbounded $arrow$ no upper bound $arrow$ dual infeasible
+- Primal finitely optimal $arrow$ finite objective value $arrow$ dual finitely optimal
+- Primal infeasible $arrow$ dual infeasible or unbounded
+
+#eg[
+  #align(center)[
+    #grid(
+      columns: 3,
+      align: center + horizon,
+      column-gutter: 3em,
+      [
+        *Primal*
+
+        $
+          max quad &x_1 \
+          s.t. quad 2&x_1 quad -& quad x_2& quad lt.eq& quad &4 \
+                    2&x_1 quad +& quad x_2& quad lt.eq& quad &8 \
+                     &    quad  & quad x_2& quad lt.eq& quad &3 \
+                    &#place($x_1, x_2 gt.eq 0$) \
+        $
+      ],
+      [
+        $arrow.double.l.r$
+      ],
+      [
+        *Dual*
+        $
+          min quad  4&y_1 quad +& quad 8&y_2 quad &+ quad 3&y_3 \
+          s.t. quad 2&y_1 quad +& quad 2&y_2 quad &        &    quad &lt.eq quad &1 \
+                    -&y_1 quad +& quad  &y_2 quad &+ quad  &y_3 quad &lt.eq quad &1 \
+                    &#place($y_1, y_2, y_3 gt.eq 0$) \
+        $
+      ],
+    )
+  ]
+
+  #linebreak()
+
+  Using the simplex method, we obtain the optimal tableau:
+
+  #align(center)[
+    #grid(
+      columns: 3,
+      align: center + horizon,
+      column-gutter: 1em,
+      [
+        #table(
+          columns: 6,
+          inset: 0.5em,
+          stroke: none,
+          table.vline(x: 5),
+          [-1], [0], [0], [0], [0], [0],
+          table.hline(),
+          [2], [-1], [1], [0], [0], [$x_3 = 4$],
+          [2], [1], [0], [1], [0], [$x_4 = 8$],
+          [0], [1], [0], [0], [1], [$x_5 = 3$],
+        )
+      ],
+      [
+        $
+          arrow quad dots quad arrow
+        $
+      ],
+      [
+        #table(
+          columns: 6,
+          inset: 0.5em,
+          stroke: none,
+          table.vline(x: 5),
+          [0], [0], [1/4], [1/4], [0], [3],
+          table.hline(),
+          [1], [0], [1/4], [1/4], [0], [$x_1 = 3$],
+          [0], [1], [-1/2], [1/2], [0], [$x_2 = 2$],
+          [0], [0], [1/2], [-1/2], [1], [$x_5 = 1$],
+        )
+      ]
+    )
+  ]
+
+  - The associated optimal basis is $B = (1, 2, 5)$
+  - The optimal solution is $overline(x) = (3, 2)$
+  - The associated objective value is $z^* = 3$
+
+  For the standard form primal LP:
+
+  $
+    c^T = #colorMat(
+      (
+        (1, 0, 0, 0, 0),
+      ),
+      (
+        (((0,0), (0, 1)), red),
+        (((0,4), (4, 4)), red),
+      )
+    )
+    quad quad 
+    A = #colorMat(
+      (
+        (2, -1, 1, 0, 0),
+        (2, 1, 0,1, 0),
+        (0, 1, 0, 0, 1),
+      ),
+      (
+        (((0,0), (2, 1)), red),
+        (((0,4), (4, 4)), red),
+      )
+    )
+  $
+
+  Given $x_B = (x_1, x_2, x_5)$ and $x_N = (x_2, x_4)$:
+
+  $
+    c_B^T = #colorMat(
+      (
+        (1, 0, 0),
+      ),
+      (
+        (((0,0), (0, 2)), red),
+      ),
+    ) 
+    quad quad 
+    A_B = #colorMat(
+      (
+        (2, -1, 0),
+        (2, 1, 0),
+        (0, 0, 1),
+      ),
+      (
+        (((0,0), (2, 2)), red),
+      )
+    )
+  $
+
+  $
+    overline(y) 
+    = c_B^T A_B^(-1) 
+    = mat(1, 0, 0) mat(
+      1/4, 1/4, 0;
+      -1/2, 1/2, 0;
+      1/2, -1/2, 1
+    )
+    = mat(1/4, 1/4, 0)
+  $
+
+  For $overline(y) = (1/4, 1/4, 0)$:
+  - It is dual feasible: $2(1/4) + 2(1/4) gt 1$ and $-1/4 + 1/4 + 0 gt.eq 0$
+  - Its dual objective value $w = 4(1/4) + 8(1/4) = 3 = z^*$
+
+  Therefore $overline(y)$ is *dual optimal*
+]
 
 #eg[
 
@@ -1074,7 +1251,68 @@ $
 
 ]
 
+=== Strong and Weak Duality
+
+#align(center)[
+  #table(
+    columns: (auto, auto, auto, auto),
+    align: center + horizon,
+    inset: 1em,
+    [*Problem Type*], [*Duality*], [*Weak Duality*], [*Strong Duality*],
+
+    [*Min* Primal\ *Max* Dual], 
+    [$c^T x gt.eq b^T y$], 
+    [$c^T x > b^T y \ "if" \ x eq.not x^* "or" y eq.not y^*$], 
+    [$c^T x^* = b^T y^*$],
+
+    [*Max* Primal\ *Min* Dual], 
+    [$c^T x lt.eq b^T y$], 
+    [$c^T x lt b^T y \ "if" \ x eq.not x^* "or" y eq.not y^*$], 
+    [$c^T x^* = b^T y^*$],
+  )
+]
+
 === Complimentary Slackness
+
+*Slack* variables of the dual LP
+
+#align(center)[
+  #grid(
+    columns: 3,
+    align: center + horizon,
+    column-gutter: 3em,
+    [
+      $
+        max quad &c^T x \
+        s.t. quad &A x = b \
+        &x gt.eq 0
+      $
+    ],
+    [
+      $arrow.double.l.r$
+    ],
+    [
+      $
+        min quad &y^T b \
+        s.t. quad &y^T A gt.eq c^T \
+        &x "urs"
+      $
+    ]
+  )
+]
+
+
+
+
+$
+  min quad &y^T b \
+  s.t. quad &y^T A - v^T = c^T \
+  &v gt.eq 0 
+$
+
+
+
+#line(length: 100%)
 
 $
   x_i (c_i - (A^T y)_i) = bold(0) quad forall i
