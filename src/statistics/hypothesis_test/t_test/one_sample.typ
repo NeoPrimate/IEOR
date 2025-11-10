@@ -6,10 +6,10 @@
 Tests if the mean of a single sample differs from a known or hypothesized population mean.
 
 $
-t = (overline(x) - mu_0) / (s / sqrt(n))
+t = (macron(x) - mu_0) / (s / sqrt(n))
 $
 
-- $overline(x)$: sample mean
+- $macron(x)$: sample mean
 - $mu_0$: hypothesized population mean
 - $s$: sample standard deviation
 - $n$: sample size
@@ -39,19 +39,19 @@ $ x_1 = 78, x_2 = 82, x_3 = 89 $
 
 $ n = 3 $
 
-Step 3: Calculate Sample Mean ($overline(x)$)
+Step 3: Calculate Sample Mean ($macron(x)$)
 
-$ overline(x) = (x_1 + x_2 + x_3) / n = (78 + 82 + 89) / 3 = 83 $
+$ macron(x) = (x_1 + x_2 + x_3) / n = (78 + 82 + 89) / 3 = 83 $
 
 Step 4: Calculate Sample Standard Deviation:
 
-$ s = sqrt((sum_(i=1)^n (x_i - overline(x))^2) / (n - 1)) $
+$ s = sqrt((sum_(i=1)^n (x_i - macron(x))^2) / (n - 1)) $
 
 - Find the deviations from the mean and square them
 
-$ (x_1 - overline(x))^2 = (78 - 83)^2 = (-5)^2 = 25 $
-$ (x_2 - overline(x))^2 = (82 - 83)^2 = (-1)^2 = 1 $
-$ (x_3 - overline(x))^2 = (89 - 83)^2 = (6)^2 = 36 $
+$ (x_1 - macron(x))^2 = (78 - 83)^2 = (-5)^2 = 25 $
+$ (x_2 - macron(x))^2 = (82 - 83)^2 = (-1)^2 = 1 $
+$ (x_3 - macron(x))^2 = (89 - 83)^2 = (6)^2 = 36 $
 
 - Sum of squared deviations
 
@@ -68,7 +68,7 @@ $ s = sqrt(s^2) = sqrt(32) = 5.57 $
 Step 5: Calculate the Test Statistic
 
 $
-t = (overline(x) - mu_0) / (s / sqrt(n)) = (83 - 85) / (5.57 / sqrt(3)) = -3 / 3.22 = -0.62
+t = (macron(x) - mu_0) / (s / sqrt(n)) = (83 - 85) / (5.57 / sqrt(3)) = -3 / 3.22 = -0.62
 $
 
 Step 6: Determine the Degrees of Freedom

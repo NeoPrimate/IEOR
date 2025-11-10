@@ -21,6 +21,9 @@ Say $accent(u, arrow), accent(v, arrow) in RR^n$
   #cetz.canvas(length: 6cm, {
     import cetz.draw: *
     import cetz-plot: *
+
+    set-style(axes: (shared-zero: false))
+
     plot.plot(
       x-tick-step: 5,
       y-tick-step: 5,
@@ -30,7 +33,7 @@ Say $accent(u, arrow), accent(v, arrow) in RR^n$
       y-min: -7,
       x-max: 7,
       y-max: 7,
-      axis-style: "school-book",
+      axis-style: "scientific",
       x-label: $x$,
       y-label: $y$,
       x-grid: "both",
@@ -40,7 +43,12 @@ Say $accent(u, arrow), accent(v, arrow) in RR^n$
         plot.add-anchor("a", (ax,ay))
         plot.add-anchor("b", (bx,by))
         plot.add-anchor("c", (cx,cy))
+
+        plot.add-hline(0, style: (stroke: (paint: black, thickness: 1pt)))
+        plot.add-vline(0, style: (stroke: (paint: black, thickness: 1pt)))
       }, name: "plot")
+
+      
 
       cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
       cetz.draw.line("plot.o", "plot.a", stroke: red, mark: (fill: red), name: "a")

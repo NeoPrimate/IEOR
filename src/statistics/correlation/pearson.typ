@@ -6,7 +6,7 @@
 Linear relationships
 
 $
-r = (sum_(i=1)^n (x_i - overline(x))(y_i - overline(y))) / sqrt(sum_(i=1)^n (x_i - overline(x))^2 times (y_i - overline(y))^2)
+r = (sum_(i=1)^n (x_i - macron(x))(y_i - macron(y))) / sqrt(sum_(i=1)^n (x_i - macron(x))^2 times (y_i - macron(y))^2)
 $
 
 Interpretation:
@@ -25,9 +25,9 @@ $
 *Step 1*: Calculate the Means of X and Y
 
 $
-overline(X) = 3
+macron(X) = 3
 \
-overline(Y) = 6
+macron(Y) = 6
 $
 
 *Step 2*: Calculate the Differences from the Mean

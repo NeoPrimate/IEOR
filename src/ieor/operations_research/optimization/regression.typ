@@ -149,14 +149,14 @@ $
 Solving this linear system yields the closed-form solution:
 
 $
-  hat(beta) &= (sum_i (x_i - overline(x))(y_i - overline(y))) / (sum_i (x_i - overline(x))^2) \
-  hat(alpha) &= overline(y) - hat(beta) overline(x) \
+  hat(beta) &= (sum_i (x_i - macron(x))(y_i - macron(y))) / (sum_i (x_i - macron(x))^2) \
+  hat(alpha) &= macron(y) - hat(beta) macron(x) \
 $
 
 where:
 
 $
-  overline(x) = 1/n sum_(i=1)^n x_i quad quad overline(y) = 1/n sum_(i=1)^n y_i
+  macron(x) = 1/n sum_(i=1)^n x_i quad quad macron(y) = 1/n sum_(i=1)^n y_i
 $
 
 ==== Convexity by Decomposition
@@ -254,8 +254,8 @@ $
 The closed-form solution is:
 
 $
-  hat(beta) &= (X^T X)^(-1) X^T (bold("y") - overline(y) bold(1)) \
-  hat(alpha) &= overline(y) - hat(beta)^T overline(bold("x"))
+  hat(beta) &= (X^T X)^(-1) X^T (bold("y") - macron(y) bold(1)) \
+  hat(alpha) &= macron(y) - hat(beta)^T macron(bold("x"))
 $
 
 provided $X^T X$ is invertible

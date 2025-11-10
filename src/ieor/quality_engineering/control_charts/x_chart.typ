@@ -7,19 +7,19 @@
 #import "@preview/suiji:0.3.0": *
 
 
-== $overline(X)$-chart
+== $macron(X)$-chart
 
 Used to monitor the average of a continuous quality characteristic (e.g., weight, length, temperature), assuming constant sample size per subgroup.
 
 $
-  "UCL"_overline(x) = overline(x) + A_2 dot overline(R) \
-  "UCL"_overline(x) = overline(x) - A_2 dot overline(R) \
+  "UCL"_macron(x) = macron(x) + A_2 dot macron(R) \
+  "UCL"_macron(x) = macron(x) - A_2 dot macron(R) \
 $
 
 Where:
-- $overline(x)_i$: average of subgroup $i$
-- $overline(x)$: grand mean of all subgroup means
-- $overline(R)$: average range of all subgroups
+- $macron(x)_i$: average of subgroup $i$
+- $macron(x)$: grand mean of all subgroup means
+- $macron(R)$: average range of all subgroups
 - $A_2$: constant dependent on sample size $n$ (e.g., $A_2 = 0.577$ for $n = 5$)
 
 #eg[
@@ -63,7 +63,7 @@ Where:
           plot.add(series, style: (stroke: blue), mark: "o")
 
           plot.add-hline(ucl, label: $"UCL"$, style: (stroke: red))
-          plot.add-hline(x_bar_bar, label: $overline(x)$, style: (stroke: green))
+          plot.add-hline(x_bar_bar, label: $macron(x)$, style: (stroke: green))
           plot.add-hline(lcl, label: $"LCL"$, style: (stroke: red))
         })
     })

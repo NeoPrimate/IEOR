@@ -12,7 +12,7 @@
 Proportion of variance explained by the model
 
 $
-R^2 = 1 - (sum_(i=1)^n (y_i - hat(y)_i)^2) / (sum_(i=1)^n (y_i - overline(y)_i)^2)
+R^2 = 1 - (sum_(i=1)^n (y_i - hat(y)_i)^2) / (sum_(i=1)^n (y_i - macron(y)_i)^2)
 $
 
 - 1: model explains all the variance in the dependent variable
@@ -41,7 +41,7 @@ $
   *Step 2*: Compute *Total Sum of Squares* (SST)
 
   $
-  "SST" = sum_(i=1)^n (y_i - overline(y))^2
+  "SST" = sum_(i=1)^n (y_i - macron(y))^2
   $
 
   #align(center)[
@@ -96,7 +96,7 @@ $
   *Step 3*: Compute *Regression Sum of Squares* (SSR)
 
   $
-  "SSR" = sum_(i=1)^n = (hat(y)_i - overline(y))^2
+  "SSR" = sum_(i=1)^n = (hat(y)_i - macron(y))^2
   $
 
   #align(center)[

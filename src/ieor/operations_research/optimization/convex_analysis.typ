@@ -537,10 +537,10 @@ Two conditions:
 
 Proof
 
-Suppose a local minimum $x'$ is not a global minimum and there exists $x''$ such that $f(x'') lt f(x')$. Consider a small enough $lambda gt 0$ such that $overline(x) = lambda x'' + (1 - lambda) x'$ satisfies $f(overline(x)) gt f(x')$. Such $overline(x)$ exists because $x'$ is a local minimum. Now, note that
+Suppose a local minimum $x'$ is not a global minimum and there exists $x''$ such that $f(x'') lt f(x')$. Consider a small enough $lambda gt 0$ such that $macron(x) = lambda x'' + (1 - lambda) x'$ satisfies $f(macron(x)) gt f(x')$. Such $macron(x)$ exists because $x'$ is a local minimum. Now, note that
 
 $
-  f(overline(x)) 
+  f(macron(x)) 
   &= f(lambda x'' + (1 - lambda) x') \
   &gt f(x') \
   &= lambda f(x') + (1 - lambda) f(x') \
@@ -580,7 +580,7 @@ Which violates the fact that $f(dot)$ is convex. Therefore, by contradiction, th
       axis-style: "scientific",
       x-tick-step: none, 
       y-tick-step: none, 
-      x-ticks: ((1.457, $x'$), (1.8, $overline(x)$), (3.655, $x''$),),
+      x-ticks: ((1.457, $x'$), (1.8, $macron(x)$), (3.655, $x''$),),
       x-label: [$$],
       y-label: [$$],
       x-min: -0, x-max: 4,
@@ -970,8 +970,8 @@ If each constraint independently given a convex feasible region, then their inte
 
 For a twice differentiable function $f: RR arrow RR$ over an interval $(a, b)$:
 - $f$ is convex over $(a, b)$ iif $f''(x) gt 0$ for all $x in (a, b)$
-- $overline(x)$ is a local minimum over $(a, b)$, iif $f'(x) = 0$
-- If $f$ is concave over $(a, b)$, $x^*$ is a global minimum over $(a, b)$ iif $f'(overline(x)) = 0$
+- $macron(x)$ is a local minimum over $(a, b)$, iif $f'(x) = 0$
+- If $f$ is concave over $(a, b)$, $x^*$ is a global minimum over $(a, b)$ iif $f'(macron(x)) = 0$
 
 First order condition (FOC) $f'(x) = 0$
 - FOC is necessary for local optimality
@@ -1216,7 +1216,7 @@ $
     $
   ], [
     - $f$ is convex in $[a, b]$ if $f''(x) gt.eq 0$ for all $x in [a, b]$
-    - $overline(x)$ is an interior local minimum if $f'(overline(x)) = 0$
+    - $macron(x)$ is an interior local minimum if $f'(macron(x)) = 0$
     - If $f$ is convex in $[a, b]$, $x^*$ is a global minimum iif $f'(x^*) = 0$
   ],
   [
@@ -1227,7 +1227,7 @@ $
   ],
   [
     - $f$ is convex in a convex set $F subset.eq RR^n$ if $gradient^2 f(x)$ is positive semi-definite for all $x in F$
-    - $overline(x)$ is an interior local minimum if $gradient f(overline(x)) = bold(0)$
+    - $macron(x)$ is an interior local minimum if $gradient f(macron(x)) = bold(0)$
     - If $f$ is convex in a convex set $F$, $x^*$ is a global minimum iif $gradient f(x^*) = 0$
   ]
 )

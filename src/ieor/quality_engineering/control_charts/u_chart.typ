@@ -12,8 +12,8 @@
 Defects per unit (variable unit size)
 
 $
-  "UCL"_u = overline(u) + 3 sqrt(overline(u) / n_i) \
-  "LCL"_u = overline(u) - 3 sqrt(overline(u) / n_i) \
+  "UCL"_u = macron(u) + 3 sqrt(macron(u) / n_i) \
+  "LCL"_u = macron(u) - 3 sqrt(macron(u) / n_i) \
 $
 
 Where:
@@ -26,7 +26,7 @@ $
   u_i = c_i / n_i
 $
 
-- $overline(u)$:
+- $macron(u)$:
 
 $
   (sum c_i) / (sum n_i)
@@ -65,7 +65,7 @@ $
         plot.add(series, style: (stroke: blue), mark: "o")
 
         plot.add(range(1, k).zip(ucl), style: (stroke: red), label: $"UCL"_u$)
-        plot.add-hline(u_bar, label: $overline(u)$, style: (stroke: green))
+        plot.add-hline(u_bar, label: $macron(u)$, style: (stroke: green))
         plot.add(range(1, k).zip(lcl), style: (stroke: red), label: $"LCL"_u$)
       })
   })

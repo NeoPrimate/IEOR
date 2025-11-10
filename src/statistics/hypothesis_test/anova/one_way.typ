@@ -11,17 +11,17 @@ Compares the means of three or more groups based on one independent variable
 *Step 1*: Calculate Between-Group Variation ($S S_"between"$)
 
 $
-S S_"between" = sum_(i=1)^k n_i (overline(X)_i - overline(X)_("overall"))^2
+S S_"between" = sum_(i=1)^k n_i (macron(X)_i - macron(X)_("overall"))^2
 $
 
 - $n_1$: Number of observations in group $i$
-- $overline(X)_i$: Mean of group $i$
-- $overline(X)_"overall"$: Overall mean of all groups
+- $macron(X)_i$: Mean of group $i$
+- $macron(X)_"overall"$: Overall mean of all groups
 
 *Step 2*: Calculate Within-Group Variation ($S S_"within"$)
 
 $
-S S_"within" = sum_(i=1)^k sum_(j=1)^(n_i) (X_(i j) - overline(X)_i)^2
+S S_"within" = sum_(i=1)^k sum_(j=1)^(n_i) (X_(i j) - macron(X)_i)^2
 $
 
 - $X_(i j)$: Observation $j$ in group $i$

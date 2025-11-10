@@ -38,28 +38,28 @@ Data
 *Step 1*: Calculate Means
 
 $
-overline(x) = 3
+macron(x) = 3
 $
 $
-overline(y) = 4
+macron(y) = 4
 $
 
 *Step 2*: Calculating Slope $beta_1$
 
 $
-beta_1 = (sum_(i=1)^n (x_i - overline(x))(y_i - overline(y))) / (sum_(i=1)^n (x_i - overline(x))^2)
+beta_1 = (sum_(i=1)^n (x_i - macron(x))(y_i - macron(y))) / (sum_(i=1)^n (x_i - macron(x))^2)
 $
 
 - The numerator
 
 $
-sum_(i=1)^n (x_i - overline(x))(y_i - overline(y)) = 9
+sum_(i=1)^n (x_i - macron(x))(y_i - macron(y)) = 9
 $
 
 - The denominator
 
 $
-sum_(i=1)^n (x_i - overline(x))^2 = 10
+sum_(i=1)^n (x_i - macron(x))^2 = 10
 $
 
 - The slope $beta_1$ is
@@ -71,7 +71,7 @@ $
 *Step 3*: Calculate Intercept $beta_0$
 
 $
-beta_1 = overline(y) - beta_1 overline(x) = 1.3
+beta_1 = macron(y) - beta_1 macron(x) = 1.3
 $
 
 
@@ -80,7 +80,7 @@ $
 - Calculate Standard Error of the Slope ($S E_(beta_1)$)
 
 $
-S E_(beta_1) = sqrt((sum_(n=1)^n (y_i - hat(y)_i)^2) / ((n - 2) dot sum_(i=1)^n (x_i - overline(x))^2))
+S E_(beta_1) = sqrt((sum_(n=1)^n (y_i - hat(y)_i)^2) / ((n - 2) dot sum_(i=1)^n (x_i - macron(x))^2))
 $
 
 - Calculate the Residual Sum of Squares (RSS)
@@ -112,13 +112,13 @@ $
 $"SS"_"reg"$ (Regression Sum of Squares): sum of the squared differences between the predicted $hat(y)$ values and the mean of the observed $y$ values.
 
 $
-"SS"_"reg" = sum_(i=1)^n (hat(y)_i - overline(y))^2
+"SS"_"reg" = sum_(i=1)^n (hat(y)_i - macron(y))^2
 $
 
 $"SS"_"total"$ (Total Sum of Squares): sum of the squared differences between the observed $y$ values and the mean of the observed $y$ values.
 
 $
-"SS"_"total" = sum_(i=1)^n (y_i - overline(y))^2
+"SS"_"total" = sum_(i=1)^n (y_i - macron(y))^2
 $
 
 Adjusting for the numer of independent variables

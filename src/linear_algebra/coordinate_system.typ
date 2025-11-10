@@ -45,6 +45,8 @@ $(r, θ)$, where:
       import cetz.draw: *
       import cetz-plot: *
 
+      set-style(axes: (shared-zero: false))
+
       plot.plot(
         size: (5, 5),
         axis-style: "school-book",
@@ -81,6 +83,8 @@ $(r, θ)$, where:
       #cetz.canvas({
         import cetz.draw: *
         import cetz-plot: *
+
+        set-style(axes: (shared-zero: false))
         
         plot.plot(
           size: (5, 5),

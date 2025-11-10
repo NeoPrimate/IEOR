@@ -4743,7 +4743,7 @@ The Simplex Tableau is:
   *Step 3.* Reduced costs and entering variable
 
   $
-    overline(c)_N^T 
+    macron(c)_N^T 
     &= c_B^T B^(-1) colorMath(N, #blue) - c_N^T \
     &= mat(1, 0, 0) mat(
       1/2, 0, 0;
@@ -4757,7 +4757,7 @@ The Simplex Tableau is:
     &= mat(colorMath(-1/2, #red), 1/2) \
   $
 
-  Since $overline(c)_2 = -1/2 lt 0$, the entering variable is $colorMath(x_2, #red)$
+  Since $macron(c)_2 = -1/2 lt 0$, the entering variable is $colorMath(x_2, #red)$
 
   #line(length: 100%)
 
@@ -4831,7 +4831,7 @@ The Simplex Tableau is:
   *Step 6.* Check optimality (reduced costs)
 
   $
-   overline(c)_N^T 
+   macron(c)_N^T 
     &= c_B^T B^(-1) N - c_N^T \
     &= mat(1, 0, 0) mat(
       1/4, 1/4, 0;
@@ -5152,13 +5152,13 @@ The Simplex Tableau is:
   #let cbarNT = nt.sub(nt.matmul(cBT, nt.matmul(Binv, N)), cNT)
 
   $
-    overline(c)_N^T 
+    macron(c)_N^T 
     &= c_B^T B^(-1) N - c_N^T \
     &= #nt.print(cBT) #nt.print(Binv) #nt.print(N) - #nt.print(cNT) \
     &= #nt.print(cbarNT) \
   $
 
-  Since $overline(c)_1 = -1 lt 0$, the *entering variable* is $x_1$
+  Since $macron(c)_1 = -1 lt 0$, the *entering variable* is $x_1$
 
   #line(length: 100%)
 
@@ -5320,13 +5320,13 @@ The Simplex Tableau is:
   #let cbarNT = nt.sub(nt.matmul(cBT, nt.matmul(Binv, N)), cNT)
 
   $
-   overline(c)_N^T 
+   macron(c)_N^T 
     &= c_B^T B^(-1) N - c_N^T \
     &= #nt.print(cBT) #nt.print(Binv) #nt.print(N) - #nt.print(cNT) \
     &= #nt.print(cbarNT) \  
   $
 
-  Since $overline(c)_2 = #cbarNT.at(0).at(1) lt 0$, the *entering variable* is $x_2$
+  Since $macron(c)_2 = #cbarNT.at(0).at(1) lt 0$, the *entering variable* is $x_2$
 
   *Step 8.* Direction, ratio test and *leaving variable*
 

@@ -23,7 +23,7 @@ $
 If process mean is off center, the smaller side of the process-to-limit ratio determines $C_(p k)$:
 
 $
-C_(p k) = "Min" (("USL" - overline(x)) / (3 sigma), (overline(x) - "LSL") / (3 sigma))
+C_(p k) = "Min" (("USL" - macron(x)) / (3 sigma), (macron(x) - "LSL") / (3 sigma))
 $
 
 If $C_(p k) lt C_p$, process is not centered

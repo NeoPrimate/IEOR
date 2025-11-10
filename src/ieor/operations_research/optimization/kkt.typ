@@ -1182,7 +1182,7 @@ $
     cal(L) (x_1, x_2, lambda) = overbrace(x_1 - x_2, f) + lambda_1 overbrace((4 - x_1^2 - x_2^2), g_1) + lambda_2 overbrace((-4 + x_1^2 + (x_2 + 2)^2), g_2)
   $
 
-  The solution $overline(x)$ is a local maximum only if there exists $lambda$ such that
+  The solution $macron(x)$ is a local maximum only if there exists $lambda$ such that
 
   2️⃣ KKT Conditions
 

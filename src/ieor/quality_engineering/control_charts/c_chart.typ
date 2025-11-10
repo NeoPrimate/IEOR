@@ -13,12 +13,12 @@ Count of defects (fixed unit size)
 Number of defects observed in each sample or inspection unit
 
 $
-  overline(c) = 1/k sum_(i=1)^k c_i
+  macron(c) = 1/k sum_(i=1)^k c_i
 $
 
 $
-  "UCL"_c &= overline(c) + 3 sqrt(overline(c)) \
-  "LCL"_c &= overline(c) - 3 sqrt(overline(c)) \
+  "UCL"_c &= macron(c) + 3 sqrt(macron(c)) \
+  "LCL"_c &= macron(c) - 3 sqrt(macron(c)) \
 $
 
 Where:
@@ -63,7 +63,7 @@ Where:
           )
           
           plot.add-hline(ucl, label: $"UCL"$, style: (stroke: red))
-          plot.add-hline(c_bar, label: $overline(c)$, style: (stroke: green))
+          plot.add-hline(c_bar, label: $macron(c)$, style: (stroke: green))
           plot.add-hline(lcl, label: $"LCL"$, style: (stroke: red))
         })
     })
@@ -72,15 +72,15 @@ Where:
   This C-chart displays the number of defects identified in each of 25 inspected units, where each unit is of fixed size. The center line represents the average number of defects across all samples, calculated as:
 
   $
-    overline(c) = 1/k sum_(i=1)^k c_i
+    macron(c) = 1/k sum_(i=1)^k c_i
   $
 
-  Control limits are drawn at ±3 standard deviations from the mean, using the square root of $overline(c)$ to account for Poisson-distributed defect counts:
+  Control limits are drawn at ±3 standard deviations from the mean, using the square root of $macron(c)$ to account for Poisson-distributed defect counts:
 
   $
-    "UCL"_c &= colorMath(overline(c) + 3 sqrt(overline(c)), #red) 
+    "UCL"_c &= colorMath(macron(c) + 3 sqrt(macron(c)), #red) 
     quad quad quad 
-    "LCL"_c &= max(0, colorMath(overline(c) - 3 sqrt(overline(c)), #red)) \
+    "LCL"_c &= max(0, colorMath(macron(c) - 3 sqrt(macron(c)), #red)) \
   $
 
 

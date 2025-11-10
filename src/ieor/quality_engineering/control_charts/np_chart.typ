@@ -11,22 +11,22 @@
 Number of defective items (constant sample size)
 
 $
-  "UCL"_(n p) = n overline(p) + 3 sqrt(n overline(p) (1 - overline(p))) \
-  "LCL"_(n p) = n overline(p) - 3 sqrt(n overline(p) (1 - overline(p)))
+  "UCL"_(n p) = n macron(p) + 3 sqrt(n macron(p) (1 - macron(p))) \
+  "LCL"_(n p) = n macron(p) - 3 sqrt(n macron(p) (1 - macron(p)))
 $
 
 Where:
 - $n$: count of defective items in each sample
 - $p$: proportion of defectives
-- $overline(p)$: 
+- $macron(p)$: 
 
 $
-  overline(p) 
+  macron(p) 
   &= 1 / k sum^k_(i=1) d_i / n \
   &= (sum^k_(i=1) d_i) / (n dot k)
 $
 
-- $overline(n p) = n overline(p)$
+- $macron(n p) = n macron(p)$
 
 
 
@@ -65,7 +65,7 @@ $
         )
 
         plot.add-hline(ucl, label: $"UCL"$, style: (stroke: red))
-        plot.add-hline(np_bar, label: $overline(n p)$, style: (stroke: green))
+        plot.add-hline(np_bar, label: $macron(n p)$, style: (stroke: green))
         plot.add-hline(lcl, label: $"LCL"$, style: (stroke: red))
       })
   })

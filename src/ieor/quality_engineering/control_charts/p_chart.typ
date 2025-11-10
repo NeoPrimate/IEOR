@@ -11,8 +11,8 @@
 The p-chart monitors the proportion of defectives in each sample, accounting for variable sample sizes.
 
 $
-  "UCL"_(p_i) = overline(p) + 3 sqrt((overline(p) (1 - overline(p))) / n_i) \
-  "LCL"_(p_i) = overline(p) - 3 sqrt((overline(p) (1 - overline(p))) / n_i) \
+  "UCL"_(p_i) = macron(p) + 3 sqrt((macron(p) (1 - macron(p))) / n_i) \
+  "LCL"_(p_i) = macron(p) - 3 sqrt((macron(p) (1 - macron(p))) / n_i) \
   
 $
 
@@ -25,10 +25,10 @@ $
   p_i = d_i / n_i
 $
 
-- $overline(p)$: overall proportion defective
+- $macron(p)$: overall proportion defective
 
 $
-  overline(p) = (sum d_i) / (sum n_i)
+  macron(p) = (sum d_i) / (sum n_i)
 $
 
 - $n_i$: sample size for sample $i$
@@ -67,7 +67,7 @@ $
       {
         plot.add(series, style: (stroke: blue), mark: "o")
         plot.add(ucl_series, style: (stroke: red), label: $"UCL"$)
-        plot.add-hline(p_bar, label: $overline(p)$, style: (stroke: green))
+        plot.add-hline(p_bar, label: $macron(p)$, style: (stroke: green))
         plot.add(lcl_series, style: (stroke: red), label: $"LCL"$)
       })
   })

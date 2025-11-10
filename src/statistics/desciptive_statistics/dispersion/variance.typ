@@ -22,7 +22,7 @@ $
 - Sample
 
 $
-s^2 = 1/(n - 1) sum_(i=1)^n (x_i - overline(x))^2
+s^2 = 1/(n - 1) sum_(i=1)^n (x_i - macron(x))^2
 $
 
 #eg[
@@ -48,7 +48,7 @@ $
 *Step 1*: Find mean
 
 $
-overline(x) = (#y.map(str).join(" + ")) / #y.len() = #y.sum() / #y.len() = #mean
+macron(x) = (#y.map(str).join(" + ")) / #y.len() = #y.sum() / #y.len() = #mean
 $
 
 *Step 2*: Subtract the Mean and Square the result

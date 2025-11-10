@@ -20,5 +20,5 @@ $
 s &= sqrt(s^2)
 \
 \
-s &= sqrt(1/(n-1) sum_(i=1)^N (x_i - overline(x))^2)
+s &= sqrt(1/(n-1) sum_(i=1)^N (x_i - macron(x))^2)
 $
