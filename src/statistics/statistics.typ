@@ -2,14 +2,6 @@
 
 #title_page("Statistics")
 
-= Probability Theory
-
-#include("./probability_theory/axioms.typ")
-
-#include("./probability_theory/rules.typ")
-
-#include("./probability_theory/bayes_theorem.typ")
-
 = Descriptive Statistics
 
 == Central Tendency

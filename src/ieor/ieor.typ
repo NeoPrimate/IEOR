@@ -34,6 +34,8 @@
 
 #include "operations_research/optimization/convex_analysis.typ"
 
+#include "operations_research/optimization/sensitivity_analysis.typ"
+
 #include "operations_research/optimization/network_optimization/maximum_flow/network_flow.typ"
 
 #include "operations_research/optimization/network_optimization/maximum_flow/ford_fulkerson.typ"
