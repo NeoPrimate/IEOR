@@ -1,5 +1,9 @@
 #import "@preview/cetz:0.4.2" 
 #import "../utils/color_math.typ": colorMath
+#import "../utils/examples.typ": eg
+
+#import "../utils/code.typ": code
+#import "@preview/cetz-plot:0.1.3"
 
 #show sym.emptyset: set text(font: "Fira Sans")
 
@@ -442,4 +446,95 @@ $
     )
 
   })
+]
+
+$
+  A union B union C 
+  &= colorMath(A, #blue) union colorMath(B inter A^c, #red) union colorMath(C inter A^c inter B^c, #green) \
+  
+  P(A union B union C) 
+  &= colorMath(P(A), #blue) + colorMath(P(B inter A^c), #red) + colorMath(P(C inter A^c inter B^c), #green) \
+
+$
+
+== Discrete Uniform Law
+
+- Assume $Omega$ consists of $n$ equally likely elements
+- Assum $A$ consists of $k$ elements
+
+$
+  P(A) = k 1/n
+$
+
+== Probability Calculations Steps
+
+- Specify a sample space
+- Specify a probability law
+- Identify an event of interest
+- Calculate
+
+Discrete but inifinite sample space
+
+#eg[
+   Number of coin tosses until we observe a heads toss
+
+   Sample Space
+
+  $
+    Omega = {1, 2, ..., infinity }
+  $
+
+  
+  #align(center)[
+    #cetz.canvas({
+      import cetz.draw: *
+      import cetz-plot: *
+
+      let n = 5
+      let f(n) = 1 / (calc.pow(2, n))
+
+      plot.plot(
+        size: (7, 7),
+        axis-style: "school-book",
+        x-tick-step: 1,
+        x-min: 0.,
+        x-max: 5.,
+        y-tick-step: 0.1,
+        y-min: 0.,
+        y-max: .6,
+        legend: none,
+        label: none,
+        {
+          for k in range(1, n+1) {
+            plot.add-vline(
+              k,
+              max: f(k),
+              style: (stroke: (paint: black))
+            )
+          }
+
+          plot.add(
+            range(1, n+1).map(k => (k, f(k))), 
+            mark: "o",
+            domain: (0, 5), 
+            style: (stroke: none),
+            mark-style: (fill: gray, stroke: 1pt),
+          )
+
+          for k in range(1, n+1) {
+            plot.annotate(
+              {
+                content(
+                  (k, f(k)),
+                  $1 / #calc.pow(2, k)$,
+                  anchor: "east",
+                  padding: 0.1,
+                )
+              }
+            )
+          }
+        }
+      )
+    })
+  ]
 ]
