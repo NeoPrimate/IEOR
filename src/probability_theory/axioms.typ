@@ -32,7 +32,7 @@ We carry out the experiment, once we observe the outcome of the experiment, eith
   })
 ]
 
-=== Non-Negativity
+=== Non-Negativity Axiom
 
 Probability of any event cannot be negative
 
@@ -40,7 +40,7 @@ $
 P(A) ≥ 0
 $
 
-=== Normalization
+=== Normalization Axiom
 
 The probability of the sample space is always 1
 
@@ -48,7 +48,7 @@ $
 P(Omega) = 1
 $
 
-=== (Finite) Additivity
+=== (Finite) Additivity Axiom
 
 If two events are mutually exclusive (cannot happen at the same time), the probability of either occurring is the sum of their individual probabilities
 
@@ -268,13 +268,6 @@ $
   quad 
   "for" i eq.not j
 $
-$
-  P(union.big^infinity_(i=1) A_i) = sum^infinity_(i=1) P(A_i)
-  quad quad
-  A_i inter A_j = emptyset, 
-  quad 
-  "for" i eq.not j
-$
 
 === If $A subset B$ then $P(A) lt.eq P(B)$
 
@@ -460,7 +453,7 @@ $
 == Discrete Uniform Law
 
 - Assume $Omega$ consists of $n$ equally likely elements
-- Assum $A$ consists of $k$ elements
+- Assume $A$ consists of $k$ elements
 
 $
   P(A) = k 1/n
@@ -483,6 +476,8 @@ Discrete but inifinite sample space
   $
     Omega = {1, 2, ..., infinity }
   $
+
+  We are given $P(n) = 1 / (2^n), quad n = 1, 2, dots$
 
   
   #align(center)[
@@ -537,4 +532,36 @@ Discrete but inifinite sample space
       )
     })
   ]
+
+  $
+    sum^infinity_(n=1) 1 / (2^n) = 1/2 sum^infinity_(n=0) 1/2^n = 1/2 dot 1/(1-(1/2)) = 1
+  $
+
+  $
+    P("outcome is even") 
+    &= P({2, 4, dots}) \
+    &= P({2} union {4} union dots) \
+    &= P(2) + P(4) + dots \
+    &= 1/2^2 + 1/2^4 + dots \
+    & 1/4 (1 + 1/4 + 1/4^2 + dots) \
+    &= 1/4 dot 1 / (1 - 1/4) \
+    &= 1/3
+  $
 ]
+
+=== *Countable Additivity* Axiom
+
+If $a_1, A_2, A_3 dots$ is an infinite *sequence* of *disjoint* events, then $P(A_1 union A_2 union A_3 dots) = P(A_1) + P(A_2) + P(A_3) + dots$
+
+
+$
+  P(union.big^infinity_(i=1) A_i) = sum^infinity_(i=1) P(A_i)
+  quad quad
+  A_i inter A_j = emptyset, 
+  quad 
+  "for" i eq.not j
+$
+
+- Additivity holds only for "countable" sequences of events
+  - The unit square (or real line) if *not countable*
+
