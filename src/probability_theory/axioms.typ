@@ -10,15 +10,14 @@
 == Probability Axioms
 
 - Event: subset of the sample space
-  - Probability is assigned to an event
 
-We carry out the experiment, once we observe the outcome of the experiment, either the outcome is in the set $A$ (event A has occurred), or it is not in the set $A$ (event A has not occurred)
+- Probability $P(A)$ is assigned to each event $A$
+
+- After the experiment is performed, either the observed outcome lies in $A$ (event $A$ occurs) or it does not
 
 #align(center)[
   #cetz.canvas({
     import cetz.draw: * 
-
-    // grid((0,0), (5,3), help-lines: true)
     
     rect((0, 0), (5, 3), name: "sample_space")
 
@@ -34,10 +33,10 @@ We carry out the experiment, once we observe the outcome of the experiment, eith
 
 === Non-Negativity Axiom
 
-Probability of any event cannot be negative
+Probability of any event is always non-negative
 
 $
-P(A) ≥ 0
+  P(A) gt.eq 0
 $
 
 === Normalization Axiom
@@ -48,12 +47,17 @@ $
 P(Omega) = 1
 $
 
-=== (Finite) Additivity Axiom
+=== Finite Additivity Axiom
 
-If two events are mutually exclusive (cannot happen at the same time), the probability of either occurring is the sum of their individual probabilities
+If two events are disjoint (mutually exclusive),
 
 $
-  "If" A inter B = emptyset \
+  A inter B = emptyset
+$
+
+then
+
+$
   P(A union B) = P(A) + P(B)
 $
 
@@ -156,31 +160,35 @@ $
   )
 ]
 
-Derived from axioms:
+Consequences of the Axioms:
 
-=== $P(A) lt.eq 1$
+=== $0 lt.eq P(A) lt.eq 1$
+
+Since
 
 $
-  A union A^c = Omega \
+  A union A^c = Omega, 
+  quad quad
   A inter A^c = emptyset \
 $
 
+we have
+
 $
-  1 
-  &=^((b)) P(Omega) = P(A union A^c) \
-  &=^((c)) P(A) + P(A^c) \
+  1 = P(Omega) = P(A) + P(A^c)
 $
+
+Thus,
 
 $
   P(A) = 1 - P(A^c) lt.eq^((a)) 1
 $
 
-
-
 === $P(emptyset) = 0$
 
 $
-  1 
+  1
+  &= P(Omega) \ 
   &= P(Omega) + P(Omega^c) \
   &= 1 + P(emptyset) 
   quad arrow.double quad 
@@ -189,14 +197,27 @@ $
 
 === $P(A) + P(A^c) = 1$
 
-=== Proability of Disjoint Events
+Follows immediately from additivity applied to
+$A$ and $A^c$.
 
-We want to show:
+=== Probability of Finite Unions of Disjoint Events
+
+For three mutually disjoint sets:
 
 $
   P(A union B union C) 
   &= P(A) + P(B) + P(C)
 $
+
+More generally, if:
+
+$
+  A_i inter A_j = emptyset quad "for" i eq.not j
+$
+
+then:
+
+
 
 #align(center)[
     #cetz.canvas({

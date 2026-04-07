@@ -1,87 +1,125 @@
+#import "../utils/examples.typ": eg
+#import "../utils/code.typ": code
+
 == Sets
 
-Collection of distinct elements
+A *set* is a collection of distinct elements
 
-- ${a, b, c, d}$: finite
-- $RR$: inifinite
+- ${a, b, c, d}$: a finite set
 
-If $S$ is a set and $x$ is in $S$:
+- $RR$: an inifinite set
+
+*Membership*
+
+If $S$ is a set and $x$ is an element of $S$:
 
 $
   x in S
 $
 
-If $S$ is a set and $x$ is not in $S$:
+If $S$ is a set and $x$ is not an element of $S$:
 
 $
   x in.not S
 $
 
-$S$ is the set of real numbers such that the $cos$ of $x$ is greater than $1/2$:
+#eg[
+  Let $S$ be the set of real numbers whose cosine is greater than $1/2$:
 
-$
-  S = {x in RR: cos(x) > 1/2}
-$
+  $
+    S = {x in RR: cos(x) > 1/2}
+  $
+]
 
-$Omega$: universal set
+*Universal Sets and Complements*
+
+$Omega$: universal set (sample space)
 
 Compliment of a set
 
-$x in S^c$ if: 
-- $x in Omega$ 
-- $x in.not S$
+$
+  x in S^c quad "iff" x in Omega "and" x in.not S
+$
+
+Key identities:
 
 $
   (S^c)^c = S
 $
 
-$emptyset$: empty set
+$emptyset$: the empty set
 
-$Omega^c = emptyset$
+$
+  Omega^c = emptyset
+$
 
-If the set $S$ is a subset of the set $T$:
+*Subsets*
+
+If set $S$ is a subset of the set $T$:
 
 $
   S subset T
 $
 
-- $x in S arrow.double x in T$
+This means:
 
-Union
+$
+  x in S arrow.double x in T
+$
+
+*Union*
 
 $
   S union T
 $
 
-- $x in S union T arrow.l.r.double x in S or x in T$
+Membership Rule
 
-Intersection
+$
+  x in S union T 
+  quad 
+  arrow.l.r.double 
+  quad
+  x in S or x in T
+$
+
+*Intersection*
 
 $
   S inter T
 $
 
-- $x in S inter T arrow.l.r.double x in S and x in T$
+Membership Rule
 
-=== Inifinite Sets
+$
+  x in S inter T 
+  quad
+  arrow.l.r.double 
+  quad
+  x in S and x in T
+$
+
+=== Inifinite Collection of Sets
+
+Let 
 
 $
   S_n quad n = 1, 2, dots
 $
 
-Union
+*Countable Union*
 
 $
-  x in union.big_n S_n "iff" x in S_n bold("for some") n
+  x in union.big_n S_n quad "iff" quad x in S_n bold("for some") n
 $
 
-Intersection
+*Countable Intersection*
 
 $
-  x in inter.big_n S_n "iff" x in S_n bold("for all") n
+  x in inter.big_n S_n quad "iff" quad x in S_n bold("for all") n
 $
 
-Set properties
+*Set properties*
 
 #align(center)[
   #grid(

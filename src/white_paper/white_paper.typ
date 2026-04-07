@@ -48,6 +48,26 @@ Objectives:
 - *Efficiency*: Optimize flows to minimize costs, transport distances, and resource usage, while meeting fairness and sustainability constraints.
 - *Transparency* and *Participation*: Make allocation decisions visible, accountable, and open to democratic oversight at all administrative levels.
 
+	1.	Cross-product correlations:
+	•	Let the network learn them via attention or graph connections.
+	2.	Lagged effects:
+	•	Include a long enough lookback window.
+	3.	Continuous updates:
+	•	Use streaming updates or sliding windows.
+
+so the model should account for *spacial* correlations in addition to *temporal* ones (seasonality and trend and product correlations)
+
+Scales 
+There can be a seasonal demand peak at the households, neighborhoods, ..., national (levels) scales
+Correlated with space (GIS)
+
+Seasonality
+
+GeoSpacial
+Given the administrative hierarchy we need to determine where to place different sized dcs and stores 
+
+
+
 == Administrative Hierarchy and Demographics
 
 

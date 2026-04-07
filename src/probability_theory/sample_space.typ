@@ -1,20 +1,27 @@
 #import "@preview/cetz:0.4.2" 
 
-== Spample Space
+== Sample Space
 
-Two steps:
-1. Describe possible *outcomes*
-2. Describe beliefs about *likelihood* of outcomes
+A probability model begins with two tasks:
 
-- $Omega$: *set* of all possible outcomes
-- *Elements* of $Omega$:
-  - Mutually *exclusive*
-  - Collectively *exhaustive*
+1.	Specify the set of all possible *outcomes*
 
-#cetz.canvas({
-import cetz.draw: * 
-    // grid((0,0), (3,2), help-lines: true)
-    
-    rect((0, 0), (3, 2), name: "sample_space")
-    content("sample_space", $ Omega $, anchor: "south-west", padding: (x: 1, y: 0.5))
-})
+2.	Specify beliefs about how *likely* each outcome is
+
+The Sample Space
+
+- The sample space, denoted by $Omega$, is the set of all possible outcomes of an experiment
+
+- The elements of $Omega$, called outcomes, must satisfy:
+
+  - *Mutually exclusivity*: No two distinct outcomes can occur simultaneously
+
+  - *Collective exhaustiveness*: Every possible result of the experiment must be included in $Omega$
+
+#align(center)[
+  #cetz.canvas({
+    import cetz.draw: * 
+    rect((0, 0), (5, 3), name: "sample_space")
+    content((5-0.5, 3-0.5), $ Omega $, anchor: "south-west", padding: (x: 0, y: 0))
+  })
+]

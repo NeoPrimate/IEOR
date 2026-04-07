@@ -818,7 +818,3 @@ If you reorder the rows of $X$ (node features) and both rows and columns of $A$ 
     f(P colorMath(X, #red), P colorMath(A, #blue) P^T) = f(colorMath(X, #red), colorMath(A, #blue))
   $
 ]
-
-#code[
-
-]
