@@ -28,7 +28,7 @@ fi
 
 # Compile the Typst file into the PDF
 echo "Compiling Typst file into $OUTPUT_PDF..."
-if typst compile "$ROOT_TYPST_FILE" "$OUTPUT_PDF"; then
+if typst compile --root . "$ROOT_TYPST_FILE" "$OUTPUT_PDF"; then
     echo "PDF successfully generated at $OUTPUT_PDF."
 else
     echo "Error during Typst compilation."

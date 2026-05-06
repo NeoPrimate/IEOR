@@ -1,6 +1,4 @@
-#import "../utils/examples.typ": eg
-#import "../utils/code.typ": code
-#import "../utils/color_math.typ": colorMath
+#import "/src/imports.typ": *
 
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
@@ -32,17 +30,17 @@ $
   mat(
     augment: #1,
     A, I
-  ) 
-  quad quad 
-  arrow.long 
-  quad quad 
+  )
+  quad quad
+  arrow.long
+  quad quad
   mat(
     augment: #1,
     I, A^(-1)
   )
 $
 
-#eg[
+#example[
   $
     A = mat(
       2, 1;
@@ -50,8 +48,8 @@ $
     )
   $
 
-  Step 1. Set up augmented matrix 
-  
+  Step 1. Set up augmented matrix
+
   $
     [A | I] = mat(
       augment: #2,
@@ -60,8 +58,8 @@ $
     )
   $
 
-  Step 2. Make the pivot of the first column equal to 1 
-  
+  Step 2. Make the pivot of the first column equal to 1
+
   $
     (R_1 arrow 1/2 R_1)
   $

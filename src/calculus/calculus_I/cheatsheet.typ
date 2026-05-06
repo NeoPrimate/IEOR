@@ -1,9 +1,4 @@
-#import "../../utils/examples.typ": eg
-#import "../../utils/code.typ": code
-#import "../../utils/color_math.typ": colorMath
-#import "../../utils/result.typ": result
-
-#import "@preview/cetz:0.3.4"
+#import "/src/imports.typ": *
 
 = Cheatsheet
 
@@ -33,7 +28,6 @@ The limit of $f(x)$ as $x$ approaches $x_0$ equals $L$ if and only if, for every
       [$x arrow infinity, f(x) arrow L$], [epsilon-N], [$forall epsilon, exists N$],
       [$x arrow infinity, f(x) arrow infinity$], [M-N], [$forall M, exists N$],
     ),
-    
   )
 ]
 
@@ -97,7 +91,7 @@ $
 // #align(center)[
 //   #cetz.canvas(length: 6cm, {
 //     cetz.plot.plot(
-//       x-tick-step: none, 
+//       x-tick-step: none,
 //       y-tick-step: none,
 //       y-min: 0,
 //       y-max: 16,
@@ -108,8 +102,8 @@ $
 //       axis-style: "school-book",
 //       {
 //         cetz.plot.add(
-//           f, 
-//           domain: (0, 4), 
+//           f,
+//           domain: (0, 4),
 //           style: (stroke: black),
 //           label: none
 //         )
@@ -160,12 +154,12 @@ $
 == Derivatives
 
 $
-  (d f) / (d x) (x) = f'(x) = lim_(h arrow 0) (f(x + h) - f(x)) / h 
+  (d f) / (d x) (x) = f'(x) = lim_(h arrow 0) (f(x + h) - f(x)) / h
 $
 
 
 
-#eg[
+#example[
   Let $f(x) = x^2$
 
   _*a. Find $f'(x)$*_
@@ -177,15 +171,14 @@ $
   _*b. Prove a*_
 
   $
-    f'(x) 
-    &= lim_(h arrow 0) (f(x + h) - f(x)) / ((cancel(x) + h) - cancel(x)) \
-    &= lim_(h arrow 0) (f(x + h) - f(x)) / h \
-    &= lim_(h arrow 0) ((x + h)^2 - x^2) / h \
-    &= lim_(h arrow 0) (cancel(x^2) + 2 x h + h^2 - cancel(x^2)) / h \
-    &= lim_(h arrow 0) (cancel(h) (2x + h)) / cancel(h) \
-    &= lim_(h arrow 0) (2x + h) \
-    &= lim_(h arrow colorMath(0, #red)) (2x + colorMath(0, #red)) \
-    &= #result[2x]
+    f'(x) & = lim_(h arrow 0) (f(x + h) - f(x)) / ((cancel(x) + h) - cancel(x)) \
+          & = lim_(h arrow 0) (f(x + h) - f(x)) / h \
+          & = lim_(h arrow 0) ((x + h)^2 - x^2) / h \
+          & = lim_(h arrow 0) (cancel(x^2) + 2 x h + h^2 - cancel(x^2)) / h \
+          & = lim_(h arrow 0) (cancel(h) (2x + h)) / cancel(h) \
+          & = lim_(h arrow 0) (2x + h) \
+          & = lim_(h arrow colorMath(0, #red)) (2x + colorMath(0, #red)) \
+          & = #result[2x]
   $
 
   _*c. Prove b*_
@@ -194,25 +187,25 @@ $
     lim_(x arrow x_0) f(x) = L arrow.l.r.double.long forall epsilon gt 0, exists delta gt 0 "s.t." 0 < abs(x - x_0) < delta arrow.double abs(f(x) - L) lt epsilon
   $
 
-  p.f.: 
-  
+  p.f.:
+
   Let $epsilon gt 0$
 
   Choose $delta = epsilon$
 
   Suppose $0 < abs(h - 0) lt delta$
 
-  Check 
-  
+  Check
+
   $
-  abs(((x + h)^2 - x^2) / h - 2x)
+    abs(((x + h)^2 - x^2) / h - 2x)
   $
 
   $
-    &= abs((cancel(x^2) + 2 x h + h^2 - cancel(x^2)) / h - 2x) \
-    &= abs((cancel(h) (2x + h)) / cancel(h) - 2x) \
-    &= abs(cancel(2x) + h - cancel(2x)) \
-    &= #result[$abs(h) lt delta = epsilon$]
+    & = abs((cancel(x^2) + 2 x h + h^2 - cancel(x^2)) / h - 2x) \
+    & = abs((cancel(h) (2x + h)) / cancel(h) - 2x) \
+    & = abs(cancel(2x) + h - cancel(2x)) \
+    & = #result[$abs(h) lt delta = epsilon$]
   $
 
 
@@ -248,7 +241,7 @@ $
   dif y = (dif y) / (dif x) dot dif x
 $
 
-#eg[
+#example[
   Let's say"
 
   $
@@ -282,54 +275,61 @@ $
   columns: (auto, auto, auto, auto, auto),
   inset: 10pt,
   align: horizon,
-  table.header(
-    [Operation], [Notation], [Input], [Output], [Meaning],
-  ),
-  [Derivative], [
+  table.header([Operation], [Notation], [Input], [Output], [Meaning]),
+  [Derivative],
+  [
     $
       (d f) / (d x)
     $
-  ], 
+  ],
   [
     $
       "Function"\ f(x) \
     $
-  ], [
+  ],
+  [
     $
       "Function"\ f'(x)
     $
-  ], [Slope/Rate of change\ at each $x$],
-  [Indefinite Integral], [
+  ],
+  [Slope/Rate of change\ at each $x$],
+
+  [Indefinite Integral],
+  [
     $
       integral f(x) d x
     $
-  ], 
+  ],
   [
     $
       "Function"\ f(x) \
     $
-  ], 
+  ],
   [
     $
       "Family of functions"\ F(x) + C
     $
-  ], [Function whose slope\ is $f(x)$],
-  [Definite Integral], [
+  ],
+  [Function whose slope\ is $f(x)$],
+
+  [Definite Integral],
+  [
     $
       integral_a^b f(x) d x
     $
-  ], 
+  ],
   [
     $
-      "Function"\ f(x) \ 
+      "Function"\ f(x) \
       "Bounds"\ [a, b]
     $
-  ], 
+  ],
   [
     $
       "Number"
     $
-  ], [Total signed area\ between $a$ and $b$],
+  ],
+  [Total signed area\ between $a$ and $b$],
 )
 
 #linebreak()
@@ -338,146 +338,161 @@ $
   columns: (auto, auto, auto, auto, auto),
   inset: 10pt,
   align: horizon,
-  table.header(
-    [Rule], [$d / (dif x)$ Rule], [$d / (dif x)$ Example], [$integral$ Rule], [$integral$ Example]
-  ),
-  [Constant], [
+  table.header([Rule], [$d / (dif x)$ Rule], [$d / (dif x)$ Example], [$integral$ Rule], [$integral$ Example]),
+  [Constant],
+  [
     $
       d / (dif x)[c] = 0
     $
-  ], [
+  ],
+  [
     $
       d / (dif x)[7] = 0
     $
-  ], [
+  ],
+  [
     $
       integral colorMath(c, #red) dif x = colorMath(c, #red) x + C
     $
-  ], [
+  ],
+  [
     $
       integral 7 dif x = 7x + C
     $
   ],
 
-  [Power], [
+  [Power],
+  [
     $
       d / (dif x)[x^n] = n x^(n-1)
     $
-  ], [
+  ],
+  [
     $
       d / (dif x) [x^4] = 4x^3
     $
-  ], [
+  ],
+  [
     $
       integral x^n dif x = (x^(n+1)) / (n+1) + C \ (n eq.not -1)
     $
-  ], [
+  ],
+  [
     $
       integral x^3 dif x = x^4 / 4 + C
     $
   ],
-  
-  [Constant Multiple], [
+
+  [Constant Multiple],
+  [
     $
       d / (dif x)[colorMath(c, #red) f] = colorMath(c, #red) f'
     $
-  ], [
+  ],
+  [
     $
-      d / (dif x) [3x^2] 
-      &= 3 dot 2x \
-      &= 6x
+      d / (dif x) [3x^2] & = 3 dot 2x \
+                         & = 6x
     $
-  ], [
+  ],
+  [
     $
       integral colorMath(c, #red) f dif x = colorMath(c, #red) integral f dif x
     $
-  ], [
+  ],
+  [
     $
-      integral 3x^2 dif x 
-      &= 3 dot x^3 / 3 \
-      &= x^3 + C
+      integral 3x^2 dif x & = 3 dot x^3 / 3 \
+                          & = x^3 + C
     $
   ],
 
-  [Sum], 
+  [Sum],
   [
     $
       d / (d x) [colorMath(f, #red) + colorMath(g, #blue)] = colorMath(f', #red) + colorMath(g', #blue)
     $
-  ], 
+  ],
   [
     $
-      &d / (dif x) (x^2 + x) \
-      &= d / (dif x) (x^2) + d / (dif x) (x) \
-      &= 2x + 1
+      & d / (dif x) (x^2 + x) \
+      & = d / (dif x) (x^2) + d / (dif x) (x) \
+      & = 2x + 1
     $
-  ], [
+  ],
+  [
     $
       integral (colorMath(f, #red) + colorMath(g, #blue)) dif x \ = integral colorMath(f, #red) dif x + integral colorMath(g, #blue) dif x
     $
-  ], [
+  ],
+  [
     $
-      &integral (x^2 + x) dif x \
-      &= integral x^2 dif x + integral x dif x \
-      &= x^3 / 3 + 3^2 / 2 + C
+      & integral (x^2 + x) dif x \
+      & = integral x^2 dif x + integral x dif x \
+      & = x^3 / 3 + 3^2 / 2 + C
     $
   ],
-  
-  [Difference], 
+
+  [Difference],
   [
     $
       d / (d x) [colorMath(f, #red) - colorMath(g, #blue)] = colorMath(f', #red) - colorMath(g', #blue)
     $
-  ], 
+  ],
   [
     $
-     &d / (dif x) (x^2 - x) \
-     &= d / (dif x) (x^2) - d / (dif x) (x) \
-     &= 2x - 1
+      & d / (dif x) (x^2 - x) \
+      & = d / (dif x) (x^2) - d / (dif x) (x) \
+      & = 2x - 1
     $
-  ], [
+  ],
+  [
     $
       integral (colorMath(f, #red) - colorMath(g, #blue)) dif x \ = integral colorMath(f, #red) dif x - integral colorMath(g, #blue) dif x
     $
-  ], [
+  ],
+  [
     $
-      &integral (x^2 - x) dif x \
-      &= integral x^2 dif x - integral x dif x \
-      &= x^3 / 3 - x^2 / 2 + C
+      & integral (x^2 - x) dif x \
+      & = integral x^2 dif x - integral x dif x \
+      & = x^3 / 3 - x^2 / 2 + C
     $
   ],
-  
-  [Product], 
+
+  [Product],
   [
     $
       d / (d x) [colorMath(f, #blue) colorMath(g, #red)] = colorMath(f', #blue) colorMath(g, #red) + colorMath(f, #blue) colorMath(g', #red)
     $
-  ], [
+  ],
+  [
     $
-      &d / (dif x) [x sin x] \
-      &= 1 dot sin x + x dot cos x
+      & d / (dif x) [x sin x] \
+      & = 1 dot sin x + x dot cos x
     $
-  ], [
+  ],
+  [
     Integration by Parts
 
     $
       integral u dif v = u v - integral v dif u
     $
-  ], [
+  ],
+  [
 
   ],
 
-  [Quotient], 
+  [Quotient],
   [
     $
-    d / (d x)[colorMath(f, #red) / colorMath(g, #blue)] = (colorMath(f', #red) colorMath(g, #blue) - colorMath(f, #red) colorMath(g', #blue)) / colorMath(g, #blue)^2
+      d / (d x)[colorMath(f, #red) / colorMath(g, #blue)] = (colorMath(f', #red) colorMath(g, #blue) - colorMath(f, #red) colorMath(g', #blue)) / colorMath(g, #blue)^2
     $
-  ], 
+  ],
   [
     $
-      &d / (dif x) [x^2 / (x + 1)] \
-      &= (2x (x + 1) - x^2 (1)) / (x + 1)^2 \
-      &= (x^2 + 2x) / (x + 1)^2
+      & d / (dif x) [x^2 / (x + 1)] \
+      & = (2x (x + 1) - x^2 (1)) / (x + 1)^2 \
+      & = (x^2 + 2x) / (x + 1)^2
     $
   ],
   [
@@ -487,166 +502,195 @@ $
 
   ],
 
-  [Chain], 
+  [Chain],
   [
     $
-    &d / (d x)[colorMath(f(colorMath(g(x), #blue)), #red)] \
-    &= colorMath(f'(colorMath(g(x), #blue)), #red) dot colorMath(g'(x), #blue)
+      & d / (d x)[colorMath(f(colorMath(g(x), #blue)), #red)] \
+      & = colorMath(f'(colorMath(g(x), #blue)), #red) dot colorMath(g'(x), #blue)
     $],
   [
     $
-     &d / (dif x) [sin(x^2)] \
-     &= cos(x^2) dot 2x
+      & d / (dif x) [sin(x^2)] \
+      & = cos(x^2) dot 2x
     $
-  ], [
+  ],
+  [
     Integration by Subsitution
 
     $
-  integral f(g(x)) g'(x) dif x \
-  = integral f(u) dif u
-$
-  ], [
+      integral f(g(x)) g'(x) dif x \
+      = integral f(u) dif u
+    $
+  ],
+  [
 
   ],
-  
-  [Exponential], [
+
+  [Exponential],
+  [
     $
       d / (dif x) [colorMath(e^x, #red)] = e^x
     $
-  ], [
+  ],
+  [
     $
       d / (dif x) [colorMath(e^x, #red)] = e^x
     $
-  ], [
-    $
-      integral colorMath(e^x, #red) dif x = e^x + C
-    $
-  ], [
+  ],
+  [
     $
       integral colorMath(e^x, #red) dif x = e^x + C
     $
   ],
-  
-  [], [
+  [
+    $
+      integral colorMath(e^x, #red) dif x = e^x + C
+    $
+  ],
+
+  [],
+  [
     $
       d / (d x) [a^x] = a^x ln(a)
     $
-  ], [
+  ],
+  [
     $
       d / (dif x) [2^x] = 2^x ln 2
     $
-  ], [
+  ],
+  [
     $
       integral a^x d x = (a^x) / (ln a) + C
     $
-  ], [
+  ],
+  [
     $
       integral 2^x dif x = 2^x / (ln 2) + C
     $
   ],
-  
-  [Logarithmic], [
+
+  [Logarithmic],
+  [
     $
       d / (d x) [colorMath(ln, #red)(x)] = 1 / x
     $
-  ], [
+  ],
+  [
     $
       d / (d x) [colorMath(ln, #red)(x)] = 1 / x
     $
-  ], [
-    $
-      integral colorMath(ln, #red)(x) dif x \
-      = x ln x - x + C
-    $
-  ], [
+  ],
+  [
     $
       integral colorMath(ln, #red)(x) dif x \
       = x ln x - x + C
     $
   ],
-  
-  [], [
+  [
+    $
+      integral colorMath(ln, #red)(x) dif x \
+      = x ln x - x + C
+    $
+  ],
+
+  [],
+  [
     $
       d / (d x) [colorMath(log, #red)_a (x)] = 1 / (x ln(a))
     $
-  ], [
+  ],
+  [
     $
       d / (dif x) colorMath(log, #red)_2 (x) = 1 / (x ln(2))
     $
-  ], [
+  ],
+  [
     $
       integral colorMath(log, #red)_a (x) dif x = \
       = (x ln x) / (ln a) - x / (ln a) + C
     $
-  ], [
+  ],
+  [
     $
       integral colorMath(log, #red)_(10) (x) dif x \
       = (x ln x) / (ln 10) - x / (ln 10) + C
     $
   ],
 
-  [Sin], [
+  [Sin],
+  [
     $
       d / (d x) [colorMath(sin, #red)(x)] = cos(x)
     $
-  ], [
+  ],
+  [
     $
       d / (d x) [colorMath(sin, #red)(x)] = cos(x)
     $
-  ], [
-    $
-      integral colorMath(sin, #red)(x) dif x \
-      = -cos x + C
-    $
-  ], [
+  ],
+  [
     $
       integral colorMath(sin, #red)(x) dif x \
       = -cos x + C
     $
   ],
-  
-  [Cos], [
+  [
+    $
+      integral colorMath(sin, #red)(x) dif x \
+      = -cos x + C
+    $
+  ],
+
+  [Cos],
+  [
     $
       d / (d x) [colorMath(cos, #red)(x)] = -sin(x)
     $
-  ], [
+  ],
+  [
     $
       d / (d x) [colorMath(cos, #red)(x)] = -sin(x)
     $
-  ], [
+  ],
+  [
     $
       integral colorMath(cos, #red)(x) dif x \
       = sin x + C
     $
-  ], [
+  ],
+  [
     $
       integral colorMath(cos, #red)(x) dif x \
       = sin x + C
     $
   ],
 
-  [Tan], [
+  [Tan],
+  [
     $
       d / (d x) [colorMath(tan, #red)(x)] \
       = sec^2(x)
     $
-  ], [
+  ],
+  [
     $
       d / (d x) [colorMath(tan, #red)(x)] \
       = sec^2(x)
     $
-  ], [
+  ],
+  [
     $
-      integral colorMath(tan, #red)(x) dif x \ 
-      = -ln abs(cos x) + C
-    $
-  ], [
-    $
-      integral colorMath(tan, #red)(x) dif x \ 
+      integral colorMath(tan, #red)(x) dif x \
       = -ln abs(cos x) + C
     $
   ],
-  
+  [
+    $
+      integral colorMath(tan, #red)(x) dif x \
+      = -ln abs(cos x) + C
+    $
+  ],
 )
 
 #pagebreak()
@@ -657,7 +701,7 @@ $
   integral u dif v = u v - integral v dif u
 $
 
-#eg[
+#example[
   Given a function:
 
   $
@@ -693,9 +737,8 @@ $
   *Step 3:* Plug into formula
 
   $
-    integral x dot e^x dif x 
-    &= u dot v - integral v dot dif u \
-    &= x dot e^x dif x - integral e^x dot dif x \
+    integral x dot e^x dif x & = u dot v - integral v dot dif u \
+                             & = x dot e^x dif x - integral e^x dot dif x \
   $
 
   #linebreak()
@@ -711,9 +754,8 @@ $
   *Step 5:* Finish the expression:
 
   $
-    integral x dot e^x 
-    &= x dot e^x - e^x + C \
-    &= e^x (x - 1) + C \
+    integral x dot e^x & = x dot e^x - e^x + C \
+                       & = e^x (x - 1) + C \
   $
 
 ]

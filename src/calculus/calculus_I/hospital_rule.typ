@@ -1,7 +1,4 @@
-#import "../../utils/examples.typ": eg
-#import "../../utils/code.typ": code
-#import "../../utils/color_math.typ": colorMath
-#import "../../utils/result.typ": result
+#import "/src/imports.typ": *
 
 == L'Hôpital's Rule
 
@@ -13,7 +10,7 @@ $
   lim_(x arrow a) f(x) / g(x) = lim_(x arrow a) (f'(x)) / (g'(x))
 $
 
-#eg[
+#example[
   Consider:
 
   $
@@ -21,7 +18,7 @@ $
   $
 
   *Step 1*: Direct Substitution
-  
+
   Substituting $x = 0$:
 
   $
@@ -35,7 +32,7 @@ $
   Differentiate the numerator and denominator:
 
   - Numerator: $f(x) = 1 - cos(x) arrow.double f'(x) = sin(x)$
-  
+
   - Denominator: $g(x) = x^2 arrow.double g'(x) = 2x$
 
   Thus, applying L'Hôpital's Rule:
@@ -59,7 +56,7 @@ $
   Differentiate again:
 
   - Numerator: $f'(x) = sin(x) arrow.double f''(x) = cos(x)$
-  
+
   - Denominator: $g'(x) = 2 x arrow.double g''(x) = 2$
 
   Applying L'Hôpital's Rule again:

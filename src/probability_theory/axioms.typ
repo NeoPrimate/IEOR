@@ -1,9 +1,4 @@
-#import "@preview/cetz:0.4.2" 
-#import "../utils/color_math.typ": colorMath
-#import "../utils/examples.typ": eg
-
-#import "../utils/code.typ": code
-#import "@preview/cetz-plot:0.1.3"
+#import "/src/imports.typ": *
 
 #show sym.emptyset: set text(font: "Fira Sans")
 
@@ -17,13 +12,13 @@
 
 #align(center)[
   #cetz.canvas({
-    import cetz.draw: * 
-    
+    import cetz.draw: *
+
     rect((0, 0), (5, 3), name: "sample_space")
 
-    content((5-0.25, 3+0.25), $ Omega $)
+    content((5 - 0.25, 3 + 0.25), $ Omega $)
 
-    circle((1.5,1.5), name: "A", radius: (1, 0.75), fill: blue.transparentize(80%), stroke: color.blue + 2pt)
+    circle((1.5, 1.5), name: "A", radius: (1, 0.75), fill: blue.transparentize(80%), stroke: color.blue + 2pt)
     content("A", $ A $, anchor: "center", padding: (x: 0, y: 0))
 
     circle((1, 1.5), name: "event_1", radius: 0.1, fill: red)
@@ -44,7 +39,7 @@ $
 The probability of the sample space is always 1
 
 $
-P(Omega) = 1
+  P(Omega) = 1
 $
 
 === Finite Additivity Axiom
@@ -73,12 +68,12 @@ $
     ],
     [
       #cetz.canvas({
-        import cetz.draw: * 
+        import cetz.draw: *
         // grid((0,0), (3,2), help-lines: true)
 
-        circle((1,1), name: "A", radius: 1)
+        circle((1, 1), name: "A", radius: 1)
         content("A", $ A $, anchor: "east", padding: (x: 0.5, y: 0))
-        circle((2,1), name: "B", radius: 1)
+        circle((2, 1), name: "B", radius: 1)
         content("B", $ B $, anchor: "west", padding: (x: 0.5, y: 0))
 
         intersections("i", "A", "B")
@@ -90,22 +85,22 @@ $
           {
             arc-through("i.0", "A.east", "i.1")
             arc-through("i.1", "B.west", "i.0")
-          }
+          },
         )
-
       })
     ],
+
     [
       $A union B$
     ],
     [
       #cetz.canvas({
-        import cetz.draw: * 
+        import cetz.draw: *
         // grid((0,0), (3,2), help-lines: true)
 
-        circle((1,1), name: "A", radius: 1)
+        circle((1, 1), name: "A", radius: 1)
         content("A", $ A $, anchor: "east", padding: (x: 0.5, y: 0))
-        circle((2,1), name: "B", radius: 1)
+        circle((2, 1), name: "B", radius: 1)
         content("B", $ B $, anchor: "west", padding: (x: 0.5, y: 0))
 
         intersections("i", "A", "B")
@@ -117,46 +112,46 @@ $
           {
             arc-through("i.0", "A.west", "i.1")
             arc-through("i.1", "B.east", "i.0")
-          }
+          },
         )
-
       })
     ],
+
     [
       $A inter B = emptyset$
     ],
     [
       #cetz.canvas({
-        import cetz.draw: * 
+        import cetz.draw: *
         // grid((0,0), (3,2), help-lines: true)
 
-        circle((1,1), name: "A", radius: 1, fill: blue.transparentize(80%), stroke: color.blue + 2pt)
+        circle((1, 1), name: "A", radius: 1, fill: blue.transparentize(80%), stroke: color.blue + 2pt)
         content("A", $ A $, anchor: "center", padding: (x: 0, y: 0))
-        circle((3.5,1), name: "B", radius: 1, fill: red.transparentize(80%), stroke: color.red + 2pt)
+        circle((3.5, 1), name: "B", radius: 1, fill: red.transparentize(80%), stroke: color.red + 2pt)
         content("B", $ B $, anchor: "center", padding: (x: 0, y: 0))
-
       })
     ],
+
     [
       $A^c$
     ],
     [
       #align(center)[
         #cetz.canvas({
-        import cetz.draw: * 
+          import cetz.draw: *
 
-        // grid((0,0), (5,3), help-lines: true)
-        
-        rect((0, 0), (5, 3), name: "sample_space", fill: red.transparentize(80%), stroke: color.red + 2pt)
-        content((3.5, 1.5), $ A^c $)
+          // grid((0,0), (5,3), help-lines: true)
 
-        content((5-0.25, 3+0.25), $ Omega $)
+          rect((0, 0), (5, 3), name: "sample_space", fill: red.transparentize(80%), stroke: color.red + 2pt)
+          content((3.5, 1.5), $ A^c $)
 
-        circle((1.5,1.5), name: "A", radius: (1, 0.75), fill: blue.lighten(80%), stroke: color.blue + 2pt)
-        content("A", $ A $, anchor: "center", padding: (x: 0, y: 0))
-      })
-    ]
-    ]
+          content((5 - 0.25, 3 + 0.25), $ Omega $)
+
+          circle((1.5, 1.5), name: "A", radius: (1, 0.75), fill: blue.lighten(80%), stroke: color.blue + 2pt)
+          content("A", $ A $, anchor: "center", padding: (x: 0, y: 0))
+        })
+      ]
+    ],
   )
 ]
 
@@ -167,7 +162,7 @@ Consequences of the Axioms:
 Since
 
 $
-  A union A^c = Omega, 
+  A union A^c = Omega,
   quad quad
   A inter A^c = emptyset \
 $
@@ -187,12 +182,11 @@ $
 === $P(emptyset) = 0$
 
 $
-  1
-  &= P(Omega) \ 
-  &= P(Omega) + P(Omega^c) \
-  &= 1 + P(emptyset) 
-  quad arrow.double quad 
-  P(emptyset) = 0
+  1 & = P(Omega) \
+    & = P(Omega) + P(Omega^c) \
+    & = 1 + P(emptyset)
+      quad arrow.double quad
+      P(emptyset) = 0
 $
 
 === $P(A) + P(A^c) = 1$
@@ -205,8 +199,7 @@ $A$ and $A^c$.
 For three mutually disjoint sets:
 
 $
-  P(A union B union C) 
-  &= P(A) + P(B) + P(C)
+  P(A union B union C) & = P(A) + P(B) + P(C)
 $
 
 More generally, if:
@@ -220,22 +213,22 @@ then:
 
 
 #align(center)[
-    #cetz.canvas({
-    import cetz.draw: * 
+  #cetz.canvas({
+    import cetz.draw: *
 
     // grid((0,0), (5,3), help-lines: true)
-    
+
     rect((0, 0), (5, 4), name: "sample_space")
 
-    content((5-0.25, 4+0.25), $ Omega $)
+    content((5 - 0.25, 4 + 0.25), $ Omega $)
 
-    circle((1.5,3), name: "A", radius: (1, 0.75), fill: blue.lighten(80%), stroke: color.blue + 2pt)
+    circle((1.5, 3), name: "A", radius: (1, 0.75), fill: blue.lighten(80%), stroke: color.blue + 2pt)
     content("A", $ A $, anchor: "center", padding: (x: 0, y: 0))
-    
-    circle((1.5,1), name: "B", radius: (1, 0.75), fill: red.lighten(80%), stroke: color.red + 2pt)
+
+    circle((1.5, 1), name: "B", radius: (1, 0.75), fill: red.lighten(80%), stroke: color.red + 2pt)
     content("B", $ B $, anchor: "center", padding: (x: 0, y: 0))
-    
-    circle((3.75,2), name: "C", radius: (1, 0.75), fill: green.lighten(80%), stroke: color.green + 2pt)
+
+    circle((3.75, 2), name: "C", radius: (1, 0.75), fill: green.lighten(80%), stroke: color.green + 2pt)
     content("C", $ C $, anchor: "center", padding: (x: 0, y: 0))
   })
 ]
@@ -243,39 +236,37 @@ then:
 From (Finite) Additivity, we have:
 
 $
-  P(A union B) 
-  &= P(A) + P(B) \
+  P(A union B) & = P(A) + P(B) \
 $
 
 So,
 
 $
-  P(A union B union C) 
-  &= P((A union B) union C) \
-  &= P(A union B) + P(C) \
-  &= P(A) + P(B) + P(C) \
+  P(A union B union C) & = P((A union B) union C) \
+                       & = P(A union B) + P(C) \
+                       & = P(A) + P(B) + P(C) \
 $
 
 
- 
- 
- #align(center)[
-    #cetz.canvas({
-    import cetz.draw: * 
+
+
+#align(center)[
+  #cetz.canvas({
+    import cetz.draw: *
 
     // grid((0,0), (5,3), help-lines: true)
-    
+
     rect((0, 0), (5, 4), name: "sample_space")
 
-    content((5-0.25, 4+0.25), $ Omega $)
+    content((5 - 0.25, 4 + 0.25), $ Omega $)
 
-    circle((1.5,3), name: "A", radius: (1, 0.75), fill: blue.lighten(80%), stroke: color.blue + 2pt)
+    circle((1.5, 3), name: "A", radius: (1, 0.75), fill: blue.lighten(80%), stroke: color.blue + 2pt)
     content("A", $ A $, anchor: "center", padding: (x: 0, y: 0))
-    
-    circle((1.5,1), name: "B", radius: (1, 0.75), fill: blue.lighten(80%), stroke: color.blue + 2pt)
+
+    circle((1.5, 1), name: "B", radius: (1, 0.75), fill: blue.lighten(80%), stroke: color.blue + 2pt)
     content("B", $ B $, anchor: "center", padding: (x: 0, y: 0))
-    
-    circle((3.75,2), name: "C", radius: (1, 0.75), fill: green.lighten(80%), stroke: color.green + 2pt)
+
+    circle((3.75, 2), name: "C", radius: (1, 0.75), fill: green.lighten(80%), stroke: color.green + 2pt)
     content("C", $ C $, anchor: "center", padding: (x: 0, y: 0))
   })
 ]
@@ -283,10 +274,10 @@ $
 More generally, by induction:
 
 $
-  P(union.big^n_(i=1) A_i) = sum^n_(i=1) P(A_i) 
+  P(union.big^n_(i=1) A_i) = sum^n_(i=1) P(A_i)
   quad quad
-  A_i inter A_j = emptyset, 
-  quad 
+  A_i inter A_j = emptyset,
+  quad
   "for" i eq.not j
 $
 
@@ -297,25 +288,24 @@ $
 ]
 
 #align(center)[
-    #cetz.canvas({
-    import cetz.draw: * 
-    
+  #cetz.canvas({
+    import cetz.draw: *
+
     rect(
-      (0, 0), (5, 3), 
-      name: "sample_space", 
+      (0, 0),
+      (5, 3),
+      name: "sample_space",
     )
 
-    content((5-0.25, 3+0.25), $ Omega $)
+    content((5 - 0.25, 3 + 0.25), $ Omega $)
 
-    circle((1.5,1.5), name: "B", radius: (1.35, 1.35), fill: pat, stroke: none)
-    
-    circle((1.5,1.5), name: "B", radius: (1.35, 1.35), fill: red.transparentize(80%), stroke: color.red + 2pt)
+    circle((1.5, 1.5), name: "B", radius: (1.35, 1.35), fill: pat, stroke: none)
+
+    circle((1.5, 1.5), name: "B", radius: (1.35, 1.35), fill: red.transparentize(80%), stroke: color.red + 2pt)
     content("B", $ B $, anchor: "south", padding: (x: 0, y: 0.75))
 
-    circle((1.5,1.05), name: "A", radius: (1, 0.75), fill: blue.lighten(80%), stroke: color.blue + 2pt)
+    circle((1.5, 1.05), name: "A", radius: (1, 0.75), fill: blue.lighten(80%), stroke: color.blue + 2pt)
     content("A", $ A $, anchor: "center", padding: (x: 0, y: 0))
-    
-    
   })
 ]
 
@@ -329,14 +319,14 @@ $
 
 #align(center)[
   #cetz.canvas({
-    import cetz.draw: * 
+    import cetz.draw: *
     // grid((0,0), (3,2), help-lines: true)
 
-    circle((0,1), name: "A", radius: 3)
+    circle((0, 1), name: "A", radius: 3)
     content("A", $ P(A inter B^c) $, anchor: "east", padding: (x: 0.5, y: 0))
-    circle((3,1), name: "B", radius: 3)
+    circle((3, 1), name: "B", radius: 3)
     content("B", $ P(B inter A^c) $, anchor: "west", padding: (x: 0.5, y: 0))
-    
+
     content((1.5, 1), $ P(A inter B) $, anchor: "center", padding: (x: 0, y: 0))
 
     intersections("i", "A", "B")
@@ -348,7 +338,7 @@ $
       {
         arc-through("i.0", "A.west", "i.1")
         arc-through("i.1", "B.west", "i.0")
-      }
+      },
     )
 
     merge-path(
@@ -358,9 +348,9 @@ $
       {
         arc-through("i.0", "A.east", "i.1")
         arc-through("i.1", "B.east", "i.0")
-      }
+      },
     )
-    
+
     merge-path(
       stroke: color.green + 2pt,
       fill: color.green.transparentize(80%),
@@ -368,30 +358,28 @@ $
       {
         arc-through("i.0", "A.east", "i.1")
         arc-through("i.1", "B.west", "i.0")
-      }
+      },
     )
-
   })
 ]
 
 $
-  P(A union B) = 
-  colorMath(P(A inter B^c), #blue) + 
-  colorMath(P(A inter B), #green) + 
+  P(A union B) =
+  colorMath(P(A inter B^c), #blue) +
+  colorMath(P(A inter B), #green) +
   colorMath(P(B inter A^c), #red)
 $
 
 $
-  P(A) + P(B) - P(A inter B) 
-  &= 
-  (colorMath(P(A inter B^c), #blue) + 
-  colorMath(P(A inter B), #green)) +
-  (cancel(colorMath(P(A inter B), #green)) + colorMath(P(B inter A^c), #red)) 
-  cancel(- colorMath(P(A inter B), #green)) \
-  &= 
-  colorMath(P(A inter B^c), #blue) + 
-  colorMath(P(A inter B), #green) + 
-  colorMath(P(B inter A^c), #red)) 
+  P(A) + P(B) - P(A inter B) & =
+                               (colorMath(P(A inter B^c), #blue) +
+                                 colorMath(P(A inter B), #green)) +
+                               (cancel(colorMath(P(A inter B), #green)) + colorMath(P(B inter A^c), #red))
+                               cancel(- colorMath(P(A inter B), #green)) \
+                             & =
+                               colorMath(P(A inter B^c), #blue) +
+                               colorMath(P(A inter B), #green) +
+                               colorMath(P(B inter A^c), #red))
 $
 
 === Union Bound
@@ -405,23 +393,23 @@ Since $P(A inter B) gt.eq 0$
 === Union of more than two overlapping (non disjoint) sets
 
 $
-  P(A union B union C) 
+  P(A union B union C)
   =
-  P(A) + P(A^c inter B) + P(A^c inter B^c inter C) 
+  P(A) + P(A^c inter B) + P(A^c inter B^c inter C)
 $
 
 #align(center)[
   #cetz.canvas({
-    import cetz.draw: * 
+    import cetz.draw: *
     // grid((0,0), (3,2), help-lines: true)
 
-    circle((0,1), name: "A", radius: 3)
+    circle((0, 1), name: "A", radius: 3)
     content("A", $ A $, anchor: "south-east", padding: (x: 1, y: 1))
-    
-    circle((3,1), name: "B", radius: 3)
+
+    circle((3, 1), name: "B", radius: 3)
     content("B", $ B $, anchor: "south-west", padding: (x: 1, y: 1))
 
-    circle((1.5,-1.5), name: "C", radius: 3)
+    circle((1.5, -1.5), name: "C", radius: 3)
     content("C", $ C $, anchor: "north", padding: (x: 0.5, y: 2))
 
     intersections("i1", "A", "B")
@@ -435,7 +423,7 @@ $
       {
         arc-through("i1.0", "A.west", "i1.1")
         arc-through("i1.1", "A.east", "i1.0")
-      }
+      },
     )
 
     merge-path(
@@ -445,9 +433,9 @@ $
       {
         arc-through("i1.0", "A.east", "i1.1")
         arc-through("i1.1", "B.east", "i1.0")
-      }
+      },
     )
-    
+
     merge-path(
       stroke: color.green + 2pt,
       fill: color.green.transparentize(80%),
@@ -456,19 +444,16 @@ $
         arc-through("i2.0", "A.south", "i1.0")
         arc-through("i1.0", "B.south", "i3.1")
         arc-through("i3.1", "C.south", "i2.0")
-      }
+      },
     )
-
   })
 ]
 
 $
-  A union B union C 
+  A union B union C
   &= colorMath(A, #blue) union colorMath(B inter A^c, #red) union colorMath(C inter A^c inter B^c, #green) \
-  
-  P(A union B union C) 
+  P(A union B union C)
   &= colorMath(P(A), #blue) + colorMath(P(B inter A^c), #red) + colorMath(P(C inter A^c inter B^c), #green) \
-
 $
 
 == Discrete Uniform Law
@@ -489,10 +474,10 @@ $
 
 Discrete but inifinite sample space
 
-#eg[
-   Number of coin tosses until we observe a heads toss
+#example[
+  Number of coin tosses until we observe a heads toss
 
-   Sample Space
+  Sample Space
 
   $
     Omega = {1, 2, ..., infinity }
@@ -500,7 +485,7 @@ Discrete but inifinite sample space
 
   We are given $P(n) = 1 / (2^n), quad n = 1, 2, dots$
 
-  
+
   #align(center)[
     #cetz.canvas({
       import cetz.draw: *
@@ -521,35 +506,33 @@ Discrete but inifinite sample space
         legend: none,
         label: none,
         {
-          for k in range(1, n+1) {
+          for k in range(1, n + 1) {
             plot.add-vline(
               k,
               max: f(k),
-              style: (stroke: (paint: black))
+              style: (stroke: (paint: black)),
             )
           }
 
           plot.add(
-            range(1, n+1).map(k => (k, f(k))), 
+            range(1, n + 1).map(k => (k, f(k))),
             mark: "o",
-            domain: (0, 5), 
+            domain: (0, 5),
             style: (stroke: none),
             mark-style: (fill: gray, stroke: 1pt),
           )
 
-          for k in range(1, n+1) {
-            plot.annotate(
-              {
-                content(
-                  (k, f(k)),
-                  $1 / #calc.pow(2, k)$,
-                  anchor: "east",
-                  padding: 0.1,
-                )
-              }
-            )
+          for k in range(1, n + 1) {
+            plot.annotate({
+              content(
+                (k, f(k)),
+                $1 / #calc.pow(2, k)$,
+                anchor: "east",
+                padding: 0.1,
+              )
+            })
           }
-        }
+        },
       )
     })
   ]
@@ -559,14 +542,13 @@ Discrete but inifinite sample space
   $
 
   $
-    P("outcome is even") 
-    &= P({2, 4, dots}) \
-    &= P({2} union {4} union dots) \
-    &= P(2) + P(4) + dots \
-    &= 1/2^2 + 1/2^4 + dots \
-    & 1/4 (1 + 1/4 + 1/4^2 + dots) \
-    &= 1/4 dot 1 / (1 - 1/4) \
-    &= 1/3
+    P("outcome is even") & = P({2, 4, dots}) \
+                         & = P({2} union {4} union dots) \
+                         & = P(2) + P(4) + dots \
+                         & = 1/2^2 + 1/2^4 + dots \
+                         & 1/4 (1 + 1/4 + 1/4^2 + dots) \
+                         & = 1/4 dot 1 / (1 - 1/4) \
+                         & = 1/3
   $
 ]
 
@@ -578,11 +560,10 @@ If $a_1, A_2, A_3 dots$ is an infinite *sequence* of *disjoint* events, then $P(
 $
   P(union.big^infinity_(i=1) A_i) = sum^infinity_(i=1) P(A_i)
   quad quad
-  A_i inter A_j = emptyset, 
-  quad 
+  A_i inter A_j = emptyset,
+  quad
   "for" i eq.not j
 $
 
 - Additivity holds only for "countable" sequences of events
   - The unit square (or real line) if *not countable*
-

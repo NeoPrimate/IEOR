@@ -1,4 +1,4 @@
-#import "@preview/numty:0.0.4" as nt
+#import "@preview/numty:0.1.0" as nt
 
 #let matvec_mult(A, x) = {
   let X = x.map(x => (x,))

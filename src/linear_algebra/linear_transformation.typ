@@ -1,9 +1,4 @@
-#import "../utils/code.typ": code
-#import "../utils/examples.typ": eg
-#import "../utils/result.typ": result
-#import "../utils/blob.typ": draw-blob
-
-#import "@preview/cetz:0.3.1"
+#import "/src/imports.typ": *
 
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
@@ -24,83 +19,95 @@ $
 #align(center)[
   #cetz.canvas({
     draw-blob(
-      2, (0, 0), 1.5,
+      2,
+      (0, 0),
+      1.5,
       stroke: green,
-      name: "blob1"
+      name: "blob1",
     )
     draw-blob(
-      8, (5, 0), 1.5,
+      8,
+      (5, 0),
+      1.5,
       n-pts: 10,
       stroke: orange,
-      name: "blob2"
+      name: "blob2",
     )
     cetz.draw.circle(
       "blob1.center",
       radius: .05,
       fill: black,
       stroke: none,
-      name: "x"
+      name: "x",
     )
     cetz.draw.circle(
       "blob2.center",
       radius: .05,
       fill: black,
       stroke: none,
-      name: "y"
+      name: "y",
     )
     cetz.draw.content(
-      "x", [$arrow(x)$],
+      "x",
+      [$arrow(x)$],
       anchor: "east",
-      padding: 3pt
+      padding: 3pt,
     )
     cetz.draw.content(
-      "y", [$arrow(y)$],
+      "y",
+      [$arrow(y)$],
       anchor: "west",
-      padding: 3pt
+      padding: 3pt,
     )
     cetz.draw.content(
-      (-1.2, .8), text(fill: green)[$RR^n$]
+      (-1.2, .8),
+      text(fill: green)[$RR^n$],
     )
     cetz.draw.content(
-      (4.6, 1.4), text(fill: orange)[$RR^m$]
+      (4.6, 1.4),
+      text(fill: orange)[$RR^m$],
     )
     let mid = (2.5, .5)
     cetz.draw.bezier-through(
-      "x.north-east", mid, "y.north-west",
+      "x.north-east",
+      mid,
+      "y.north-west",
       stroke: blue + .5pt,
       mark: (end: ">", fill: blue),
-      name: "arrow"
+      name: "arrow",
     )
     cetz.draw.content(
-      mid, [$f$],
+      mid,
+      [$f$],
       anchor: "south",
-      padding: 3pt
+      padding: 3pt,
     )
     cetz.draw.content(
-      (2.5, -1), text(fill: blue)[$f: RR^n -> RR^m$]
+      (2.5, -1),
+      text(fill: blue)[$f: RR^n -> RR^m$],
     )
   })
 ]
 
-#eg[
-  If 
-  
+#example[
+  If
+
   $
-  f: RR arrow RR
-  $ 
-  
-  is defined by 
-  
+    f: RR arrow RR
   $
-  f(x) = x^2 \
-  f: x arrow.bar x^2 \
+
+  is defined by
+
   $
-  
+    f(x) = x^2 \
+    f: x arrow.bar x^2 \
+  $
+
   then:
 
   - *Domain*: $X = RR$, any real number ($(infinity, infinity)$)
 
-  - *Codomain*: $Y = RR$, any real number ($(infinity, infinity)$) 
+  - *Codomain*: $Y = RR$, any real number ($(infinity, infinity)$)
 
   - *Range*: the subset of the codomain ($RR$), $[0, infinity\)$
 ]
@@ -137,39 +144,39 @@ The output $accent(y, arrow)$ is an $m$-dimensional vector, and each component $
 
 The function $f$ takes an $n$-dimensional vector of real numbers as input and produces an $m$-dimensional vector of real numbers as output
 
-#eg[
+#example[
   $
-  f(x_1, x_2, x_3) = (x_1 + 2 x_2, 3 x_3)
+    f(x_1, x_2, x_3) = (x_1 + 2 x_2, 3 x_3)
   $
-  
+
   $
-  f: RR^3 arrow RR^2
+    f: RR^3 arrow RR^2
   $
-  
+
   $
-  f(vec(x_1, x_2, x_3)) = vec(x_1 + 2 x_2, 3 x_3)
+    f(vec(x_1, x_2, x_3)) = vec(x_1 + 2 x_2, 3 x_3)
   $
-  
+
   $
-  f(vec(1, 1, 1)) = vec(3, 3)
+    f(vec(1, 1, 1)) = vec(3, 3)
   $
 
   #align(center)[
     #grid(
       columns: (1fr, 1fr),
-      rows: (auto),
+      rows: auto,
       gutter: 0pt,
       cetz.canvas({
         import cetz.draw: *
         ortho(x: 25deg, y: 25deg, {
-        line((0, 0), (x: 3), stroke: blue, name: "x", mark: (end: "straight", scale: 1))
-        content((), $ x_2 $, anchor: "west", padding: 5pt)
-        line((0, 0), (y: 3), stroke: blue, name: "y", mark: (end: "straight", scale: 1))
-        content((), $ x_3 $, anchor: "north", padding: 5pt)
-        line((0, 0), (z: 3), stroke: blue, name: "z", mark: (end: "straight", scale: 1))
-        content((), $ x_1 $, anchor: "east", padding: 5pt)
-        line((0, 0), (x: 2, y: 2, z: 2), stroke: red, name: "z", mark: (end: "straight", scale: 1))
-        content((), $ vec(1, 1, 1) $, anchor: "north", padding: 5pt)
+          line((0, 0), (x: 3), stroke: blue, name: "x", mark: (end: "straight", scale: 1))
+          content((), $ x_2 $, anchor: "west", padding: 5pt)
+          line((0, 0), (y: 3), stroke: blue, name: "y", mark: (end: "straight", scale: 1))
+          content((), $ x_3 $, anchor: "north", padding: 5pt)
+          line((0, 0), (z: 3), stroke: blue, name: "z", mark: (end: "straight", scale: 1))
+          content((), $ x_1 $, anchor: "east", padding: 5pt)
+          line((0, 0), (x: 2, y: 2, z: 2), stroke: red, name: "z", mark: (end: "straight", scale: 1))
+          content((), $ vec(1, 1, 1) $, anchor: "north", padding: 5pt)
         })
       }),
 
@@ -181,7 +188,7 @@ The function $f$ takes an $n$-dimensional vector of real numbers as input and pr
         content((), $ x_2 $, anchor: "south", padding: 5pt)
         line((0, 0), (x: 2, y: 2), stroke: red, name: "y", mark: (end: "straight", scale: 1))
         content((), $ vec(3, 3) $, anchor: "south", padding: 5pt)
-      })
+      }),
     )
   ]
 ]
@@ -206,9 +213,9 @@ For a transformation *linear* it must satisfy two conditions:
   $
 ]
 
-#eg[
+#example[
   Let's consider a linear transformation $T: RR^2 arrow RR^2$
-  
+
   $
     T(vec(x, y)) = vec(2x, 3y)
   $
@@ -248,9 +255,9 @@ For a transformation *linear* it must satisfy two conditions:
   $
 ]
 
-#eg[
+#example[
   Let's consider a linear transformation $T: RR^2 arrow RR^2$
-  
+
   $
     T(vec(x, y)) = vec(2x, 3y)
   $
@@ -324,19 +331,18 @@ $
 
 $
   A = mat(
-     , , , ;
+    , , , ;
     v_1, v_2, dots, v_n;
-     , , , ;
+    , , , ;
   ) \
-
   accent(x, arrow) = vec(x_1, x_2, dots.v, x_n)
 $
 
 $
   A accent(x, arrow) = mat(
-     , , , ;
+    , , , ;
     v_1, v_2, dots, v_n;
-     , , , ;
+    , , , ;
   ) vec(x_1, x_2, dots.v, x_n) = x_1 v_1 + x_2 v_2 + dots + x_n v_n
 $
 
@@ -350,15 +356,12 @@ $
 
 $
   A dot (accent(a, arrow) + accent(b, arrow)) = A vec(a_1 + b_1, a_2 + b_2, dots.v, a_n + b_n) &= (a_1 + b_1) v_1 + (a_2 + b_2) v_2 + dots + (a_n + b_n) v_n \
-
   &= a_1 v_1 + b_1 v_1 + a_2 v_2 + b_2 v_2 + dots + a_n v_n + b_n v_n \
-
   &= (a_1 v_1 + a_2 v_2 + dots + a_n v_n) + (b_1 v_1 + b_2 v_2 + dots + b_n v_n) \
-
   &= A vec(a_1, a_2, dots.v, a_n) + A vec(b_1, b_2, dots.v, b_n) \
 $
 
-#eg[
+#example[
   $
     A = mat(
       2, 1;
@@ -369,47 +372,42 @@ $
   1. Calculate $A(bold(u) + bold(v))$
 
   $
-    bold(u) + bold(v) 
-    &= vec(1, 2) + vec(3, 4) \
-    &=  vec(4, 6)
+    bold(u) + bold(v) & = vec(1, 2) + vec(3, 4) \
+                      & = vec(4, 6)
   $
 
   $
-    A(bold(u) + bold(v)) 
-    &= mat(
-      2, 1;
-      0, 3;
-    ) vec(4, 6) \
-    &= vec((2 dot 1) + (1 dot 6), (0 dot 4) + (3 dot 6)) \
-    &= #result[$vec(14, 18)$]
+    A(bold(u) + bold(v)) & = mat(
+                             2, 1;
+                             0, 3;
+                           ) vec(4, 6) \
+                         & = vec((2 dot 1) + (1 dot 6), (0 dot 4) + (3 dot 6)) \
+                         & = #result[$vec(14, 18)$]
   $
 
-  2. Calculate $A bold(u) + A  bold(v)$
+  2. Calculate $A bold(u) + A bold(v)$
 
   $
-    A bold(u) 
-    &= mat(
-      2, 1;
-      0, 3;
-    ) vec(1, 2) \
-    &= vec((2 dot 1) + (1 dot 2), (0 dot 1) + (3 dot 2)) \
-    &= vec(4, 6)
+    A bold(u) & = mat(
+                  2, 1;
+                  0, 3;
+                ) vec(1, 2) \
+              & = vec((2 dot 1) + (1 dot 2), (0 dot 1) + (3 dot 2)) \
+              & = vec(4, 6)
   $
 
   $
-    A bold(v)
-    &= mat(
-      2, 1;
-      0, 3;
-    ) vec(3, 4) \
-    &= vec((2 dot 3) + (1 dot 4), (0 dot 3) + (3 dot 4)) \
-    &= vec(10, 12) \
+    A bold(v) & = mat(
+                  2, 1;
+                  0, 3;
+                ) vec(3, 4) \
+              & = vec((2 dot 3) + (1 dot 4), (0 dot 3) + (3 dot 4)) \
+              & = vec(10, 12) \
   $
 
   $
-    A bold(u) + A bold(v) 
-    &= vec(4, 6) + vec(10, 12) \
-    &= #result[$vec(14, 18)$] 
+    A bold(u) + A bold(v) & = vec(4, 6) + vec(10, 12) \
+                          & = #result[$vec(14, 18)$]
   $
 ]
 
@@ -418,20 +416,20 @@ $
 #result[
   $
     T(c accent(a, arrow)) = c T(accent(a, arrow))
-  $  
+  $
 ]
 
 $
-  A dot (c accent(a, arrow)) &= mat(
-     , , , ;
-    v_1, v_2, dots, v_n;
-     , , , ;
-  ) vec(c a_1, c a_2, dots.v, c a_n) \
-  &= c a_1 v_1 + c a_2 v_2 + dots + c a_n v_n \
-   &= c underbrace((a_1 v_1 + a_2 v_2 + dots + a_n v_n), A accent(a, arrow))
+  A dot (c accent(a, arrow)) & = mat(
+                                 , , , ;
+                                 v_1, v_2, dots, v_n;
+                                 , , , ;
+                               ) vec(c a_1, c a_2, dots.v, c a_n) \
+                             & = c a_1 v_1 + c a_2 v_2 + dots + c a_n v_n \
+                             & = c underbrace((a_1 v_1 + a_2 v_2 + dots + a_n v_n), A accent(a, arrow))
 $
 
-#eg[
+#example[
   $
     A = mat(
       2, 1;
@@ -446,31 +444,28 @@ $
   $
 
   $
-    A(c bold(v)) 
-    &= mat(
-      2, 1;
-      0, 3;
-    ) vec(15, 20) \
-    &= vec((2 dot 15) + (1 dot 20), (0 dot 15) + (3 dot 20)) \
-    &= #result[$vec(50, 60)$]
+    A(c bold(v)) & = mat(
+                     2, 1;
+                     0, 3;
+                   ) vec(15, 20) \
+                 & = vec((2 dot 15) + (1 dot 20), (0 dot 15) + (3 dot 20)) \
+                 & = #result[$vec(50, 60)$]
   $
 
   2. Calculate $c (A bold(v))$
 
   $
-    A bold(v) 
-    &= mat(
-      2, 1;
-      0, 3;
-    ) vec(3, 4) \
-    &= vec((2 dot 3) + (1 dot 4), (0 dot 3) + (3 dot 4)) \
-    &= vec(10, 12)
+    A bold(v) & = mat(
+                  2, 1;
+                  0, 3;
+                ) vec(3, 4) \
+              & = vec((2 dot 3) + (1 dot 4), (0 dot 3) + (3 dot 4)) \
+              & = vec(10, 12)
   $
 
   $
-    c(A bold(v))
-    &= 5 dot vec(10, 12) \
-    &= #result[$vec(50, 60)$]
+    c(A bold(v)) & = 5 dot vec(10, 12) \
+                 & = #result[$vec(50, 60)$]
   $
 ]
 
@@ -486,11 +481,10 @@ $
     dots.v, dots.v, dots.v, dots.down, dots.v;
     0, 0, 0, dots, 1;
   )
-
 $
 
 $
-accent(x, arrow) = vec(x_1, x_2, dots.v, x_n)
+  accent(x, arrow) = vec(x_1, x_2, dots.v, x_n)
 $
 
 $

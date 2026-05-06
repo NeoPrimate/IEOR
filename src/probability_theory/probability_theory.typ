@@ -1,6 +1,6 @@
 = Probability Theory
 
-
+#include("./cheatsheet.typ")
 
 #include("./sample_space.typ")
 

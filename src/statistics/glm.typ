@@ -1,14 +1,4 @@
-#import "@preview/cetz:0.3.4"
-#import "@preview/cetz-plot:0.1.1"
-#import "@preview/cetz:0.4.0": canvas, draw, tree
-#import "@preview/fletcher:0.5.7" as fletcher: diagram, node, edge
-
-
-#import "../utils/examples.typ": eg
-#import "../utils/code.typ": code
-#import "../utils/color_math.typ": colorMath
-#import "../utils/definition.typ": definition
-
+#import "/src/imports.typ": *
 
 == Generalized Linear Models (GLM)
 
@@ -16,7 +6,7 @@ Three components:
 
 1. Random Component
 
-Specifies the distribution of the response variable $Y$. 
+Specifies the distribution of the response variable $Y$.
 
 $Y$ can come from the exponential family of distributions (which includes Normal, Binomial, Poisson, Gamma, etc.)
 
@@ -25,7 +15,7 @@ $Y$ can come from the exponential family of distributions (which includes Normal
 Specifies the linear predictor, a linear combination of explanatory variables:
 
 $
-   eta = beta_0 + beta_1 x_1 + beta_2 x_2 + dots + beta_p x_p
+  eta = beta_0 + beta_1 x_1 + beta_2 x_2 + dots + beta_p x_p
 $
 
 3. Link Function
@@ -52,7 +42,7 @@ Where $g(dot)$ is called the link function
   )
 ]
 
-#eg[
+#example[
   Logistic Regression
 
   #let data = (
@@ -72,16 +62,21 @@ Where $g(dot)$ is called the link function
   }
 
   #let xbar = xs.sum() / xs.len()
-  
+
   #let ybar = ys.sum() / ys.len()
 
   #let x_deviation = xs.map(x => x - xbar)
   #let y_deviation = ys.map(y => y - ybar)
 
-  #let numerator = x_deviation.zip(y_deviation).map(xy => {
-    let (x, y) = xy
-    x * y
-  }).sum()
+  #let numerator = (
+    x_deviation
+      .zip(y_deviation)
+      .map(xy => {
+        let (x, y) = xy
+        x * y
+      })
+      .sum()
+  )
 
   #let denominator = xs.map(x => calc.pow(x - xbar, 2)).sum()
 
@@ -93,7 +88,7 @@ Where $g(dot)$ is called the link function
 
   #let f(x) = b0 + b1 * x
 
-  #let probit(x) = 1 / (1 + calc.exp(- f(x)))
+  #let probit(x) = 1 / (1 + calc.exp(-f(x)))
 
 
   #align(center)[
@@ -104,7 +99,7 @@ Where $g(dot)$ is called the link function
       [*x*], [*y*],
       ..for (x, y) in data {
         (str(x), str(y))
-      }
+      },
     )
   ]
 
@@ -114,29 +109,33 @@ Where $g(dot)$ is called the link function
       import cetz-plot: *
 
       plot.plot(
-        size: (5,5),
-          axis-style: "school-book",
-          x-tick-step: 1, 
-          y-tick-step: 0.5, 
-          x-grid: true,
-          y-grid: true,
-          x-label: [$x$],
-          y-label: [$y$],
-          x-min: 0, x-max: 6.1,
-          y-min: 0, y-max: 1.1,
-          axes: (
-            stroke: none,
-            tick: (stroke: none),
-          ),
-      {
-        plot.add(
-          data,
-          mark: "o",
-          mark-size: 0.15,
-          mark-style: (fill: black, stroke: 2pt),
-          style: (stroke: none)
-        )
-      }, name: "plot")
+        size: (5, 5),
+        axis-style: "school-book",
+        x-tick-step: 1,
+        y-tick-step: 0.5,
+        x-grid: true,
+        y-grid: true,
+        x-label: [$x$],
+        y-label: [$y$],
+        x-min: 0,
+        x-max: 6.1,
+        y-min: 0,
+        y-max: 1.1,
+        axes: (
+          stroke: none,
+          tick: (stroke: none),
+        ),
+        {
+          plot.add(
+            data,
+            mark: "o",
+            mark-size: 0.15,
+            mark-style: (fill: black, stroke: 2pt),
+            style: (stroke: none),
+          )
+        },
+        name: "plot",
+      )
     })
   ]
 
@@ -147,8 +146,8 @@ Where $g(dot)$ is called the link function
   $
 
   $
-    beta_0 &= #b0 \
-    beta_1 &= #b1 \
+    beta_0 & = #b0 \
+    beta_1 & = #b1 \
   $
 
   #align(center)[
@@ -157,35 +156,39 @@ Where $g(dot)$ is called the link function
       import cetz-plot: *
 
       plot.plot(
-        size: (5,5),
-          axis-style: "school-book",
-          x-tick-step: 1, 
-          y-tick-step: 0.5, 
-          x-grid: true,
-          y-grid: true,
-          x-label: [$x$],
-          y-label: [$y$],
-          x-min: 0, x-max: 6.1,
-          y-min: 0, y-max: 1.1,
-          axes: (
-            stroke: none,
-            tick: (stroke: none),
-          ),
-      {
-        plot.add(
-          data,
-          mark: "o",
-          mark-size: 0.15,
-          mark-style: (fill: black, stroke: 2pt),
-          style: (stroke: none)
-        )
+        size: (5, 5),
+        axis-style: "school-book",
+        x-tick-step: 1,
+        y-tick-step: 0.5,
+        x-grid: true,
+        y-grid: true,
+        x-label: [$x$],
+        y-label: [$y$],
+        x-min: 0,
+        x-max: 6.1,
+        y-min: 0,
+        y-max: 1.1,
+        axes: (
+          stroke: none,
+          tick: (stroke: none),
+        ),
+        {
+          plot.add(
+            data,
+            mark: "o",
+            mark-size: 0.15,
+            mark-style: (fill: black, stroke: 2pt),
+            style: (stroke: none),
+          )
 
-        plot.add(
-          domain: (0, 7),
-          f,
-          style: (stroke: (dash: none, paint: red, thickness: 1pt)),
-        )  
-      }, name: "plot")
+          plot.add(
+            domain: (0, 7),
+            f,
+            style: (stroke: (dash: none, paint: red, thickness: 1pt)),
+          )
+        },
+        name: "plot",
+      )
     })
   ]
 
@@ -206,44 +209,47 @@ Where $g(dot)$ is called the link function
   $
     p = 1 / (1 + e^(-(beta_0 + b_1 x)))
   $
-  
+
   #align(center)[
     #cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
       plot.plot(
-        size: (5,5),
-          axis-style: "school-book",
-          x-tick-step: 1, 
-          y-tick-step: 0.5, 
-          x-grid: true,
-          y-grid: true,
-          x-label: [$x$],
-          y-label: [$y$],
-          x-min: 0, x-max: 6.1,
-          y-min: 0, y-max: 1.1,
-          axes: (
-            stroke: none,
-            tick: (stroke: none),
-          ),
-      {
-        plot.add(
-          data,
-          mark: "o",
-          mark-size: 0.15,
-          mark-style: (fill: black, stroke: 2pt),
-          style: (stroke: none)
-        )
+        size: (5, 5),
+        axis-style: "school-book",
+        x-tick-step: 1,
+        y-tick-step: 0.5,
+        x-grid: true,
+        y-grid: true,
+        x-label: [$x$],
+        y-label: [$y$],
+        x-min: 0,
+        x-max: 6.1,
+        y-min: 0,
+        y-max: 1.1,
+        axes: (
+          stroke: none,
+          tick: (stroke: none),
+        ),
+        {
+          plot.add(
+            data,
+            mark: "o",
+            mark-size: 0.15,
+            mark-style: (fill: black, stroke: 2pt),
+            style: (stroke: none),
+          )
 
-        plot.add(
-          domain: (0, 7),
-          probit,
-          style: (stroke: (dash: none, paint: red, thickness: 1pt)),
-        )  
-      }, name: "plot")
+          plot.add(
+            domain: (0, 7),
+            probit,
+            style: (stroke: (dash: none, paint: red, thickness: 1pt)),
+          )
+        },
+        name: "plot",
+      )
     })
   ]
-  
-]
 
+]

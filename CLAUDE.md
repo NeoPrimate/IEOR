@@ -1,0 +1,9 @@
+- Make as visual as possible. Use graphs, plots, tables to really drive home the point. 
+- Emphasize consise, succinct, terse but also be very complete.
+- Prefer bullet points over long sentences/paragraphs.
+- Explain concepts from first principles
+- Explain step by step.
+- Do not skip any derivation steps
+- Use colors to show what changes between derivation steps
+- Use minimal examples. The examples should be as simple as possible and only illustrate the concept(s) they are arrached to.
+- I want to be able to skim and get the main ideas quickly.

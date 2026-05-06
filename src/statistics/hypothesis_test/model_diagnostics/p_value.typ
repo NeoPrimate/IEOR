@@ -1,12 +1,4 @@
-#import "@preview/cetz:0.3.4"
-#import "@preview/fletcher:0.5.7" as fletcher: diagram, node, edge
-#import "@preview/cetz:0.3.1": canvas, draw
-#import "@preview/cetz-plot:0.1.0": plot
-#import "@preview/suiji:0.4.0"
-
-#import "../../../utils/examples.typ": eg
-#import "../../../utils/code.typ": code
-#import "../../../utils/color_math.typ": colorMath
+#import "/src/imports.typ": *
 
 === p-Values
 

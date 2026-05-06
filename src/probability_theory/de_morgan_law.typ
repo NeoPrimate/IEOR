@@ -1,10 +1,4 @@
-#import "@preview/cetz:0.4.2" 
-#import "../utils/color_math.typ": colorMath
-#import "../utils/examples.typ": eg
-#import "@preview/modpattern:0.1.0": modpattern
-
-#import "../utils/code.typ": code
-#import "@preview/cetz-plot:0.1.3"
+#import "/src/imports.typ": *
 
 #show sym.emptyset: set text(font: "Fira Sans")
 

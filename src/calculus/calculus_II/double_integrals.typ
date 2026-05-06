@@ -29,4 +29,4 @@ $
 
 *Final Output*:
 
-A family of functions $G(x,y) + C_2$, representing all functions whose mixed partial derivative $diff^2 / (diff y diff x)$ is $f(x,y)$
+A family of functions $G(x,y) + C_2$, representing all functions whose mixed partial derivative $partial^2 / (partial y partial x)$ is $f(x,y)$

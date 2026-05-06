@@ -1,1 +1,0 @@
-== ARMA (AutoRegressive Moving Average)

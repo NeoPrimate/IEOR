@@ -1,5 +1,4 @@
-#import "../utils/proof.typ": proof
-#import "../utils/color_math.typ": colorMath
+#import "/src/imports.typ": *
 
 == Bonferroni Inequality
 

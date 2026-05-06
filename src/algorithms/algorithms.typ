@@ -1,4 +1,4 @@
-#import "../utils/title_page.typ": title_page
+#import "/src/imports.typ": *
 
 #title_page("Algorithms")
 

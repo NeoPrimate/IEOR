@@ -1,10 +1,4 @@
-#import "../../utils/examples.typ": eg
-#import "../../utils/code.typ": code
-#import "../../utils/color_math.typ": colorMath
-#import "../../utils/result.typ": result
-
-#import "@preview/cetz:0.3.4"
-#import "@preview/cetz-plot:0.1.1"
+#import "/src/imports.typ": *
 
 == Differential Equations
 
@@ -18,7 +12,7 @@ Initial or boundary conditions to select a unique solution
 
 The *dependent* variable and its derivatives each appear only to the first power, are not multiplied together, and are not inside any other function
 
-#eg[
+#example[
   Linear
 
   $
@@ -36,11 +30,11 @@ The *dependent* variable and its derivatives each appear only to the first power
 
 === Homogeneity
 
-  - *Homogeneous*: No terms with just the *independent* varible of *constant*
+- *Homogeneous*: No terms with just the *independent* varible of *constant*
 
-  - *Nonhomogeneous*: Has term(s) with just the *independent* variable or *constants*
+- *Nonhomogeneous*: Has term(s) with just the *independent* variable or *constants*
 
-#eg[
+#example[
   Homogeneous
 
   $
@@ -59,16 +53,16 @@ The *dependent* variable and its derivatives each appear only to the first power
 
 === Order & Degree
 
-  - Order: highest derivative
+- Order: highest derivative
 
-  - Degree: exponent on highest derivative
+- Degree: exponent on highest derivative
 
-#eg[
+#example[
   Order
 
   $
-    (dif y) / (dif x) + y = x quad quad &"1st order" \
-    (dif^colorMath(2, #red) y) / (dif x^colorMath(2, #red)) + y = x quad quad &"2st order" \
+                                          (dif y) / (dif x) + y = x quad quad & "1st order" \
+    (dif^colorMath(2, #red) y) / (dif x^colorMath(2, #red)) + y = x quad quad & "2st order" \
   $
 
   Degree
@@ -82,10 +76,10 @@ The *dependent* variable and its derivatives each appear only to the first power
 
 The *independent* variable does not appear explicitly in the equation (rate of change depends only on the dependent variable)
 
-#eg[
-  
+#example[
+
   - Autonomous
-  
+
   $
     (dif y) / (dif t) = y
   $
@@ -107,16 +101,16 @@ The *independent* variable does not appear explicitly in the equation (rate of c
 
 === Summary
 
-- Inputs 
+- Inputs
   - Equation itself
   - Initial/boundary conditions (optional)
 - Outputs
   - Function(s) that satisfy it
 - Defined for *continuous variables*
 
-#eg[
+#example[
   #text(size: 16pt, weight: "semibold")[Non-coupled ODE]
-  
+
   #text(size: 14pt, weight: "semibold")[Exponential Population Growth]
 
   $
@@ -137,9 +131,9 @@ The *independent* variable does not appear explicitly in the equation (rate of c
       import cetz-plot: *
       import math: exp
 
-      let min = 0      // t-axis
+      let min = 0 // t-axis
       let max = 10
-      let Pmin = 0     // population axis
+      let Pmin = 0 // population axis
       let Pmax = 20
       let L = 0.75
 
@@ -154,31 +148,31 @@ The *independent* variable does not appear explicitly in the equation (rate of c
       let h = 0.1
 
       // Slope field function
-      let slope = (t,P) => r*P
+      let slope = (t, P) => r * P
 
       // Euler solver
       let euler = (f, t0, P0, h, n) => {
-        let pts = ((t0,P0),)
+        let pts = ((t0, P0),)
         let t = t0
         let P = P0
-        for i in range(0,n) {
-          P = P + h * f(t,P)
+        for i in range(0, n) {
+          P = P + h * f(t, P)
           t = t + h
-          pts.push((t,P))
+          pts.push((t, P))
         }
         pts
       }
 
       // number of steps forward/backward
-      let n_forward = int((max - t0)/h)
-      let n_backward = int((t0 - min)/h)
+      let n_forward = int((max - t0) / h)
+      let n_backward = int((t0 - min) / h)
 
       let forward = euler(slope, t0, P0, h, n_forward)
       let backward = euler(slope, t0, P0, -h, n_backward)
       let sol = backward.rev() + forward
 
       plot.plot(
-        x-tick-step: 2, 
+        x-tick-step: 2,
         y-tick-step: 2,
         y-min: Pmin,
         y-max: Pmax,
@@ -189,12 +183,12 @@ The *independent* variable does not appear explicitly in the equation (rate of c
         axis-style: "scientific",
         {
           // slope field
-          for t in range(min, max+1) {
-            for P in range(Pmin, Pmax+1) {
-              let m = slope(t,P)
-              let norm = calc.sqrt(1 + m*m)
-              let dx = (L/2) * (1 / norm)
-              let dy = (L/2) * (m / norm)
+          for t in range(min, max + 1) {
+            for P in range(Pmin, Pmax + 1) {
+              let m = slope(t, P)
+              let norm = calc.sqrt(1 + m * m)
+              let dx = (L / 2) * (1 / norm)
+              let dy = (L / 2) * (m / norm)
 
               let p1 = (t - dx, P - dy)
               let p2 = (t + dx, P + dy)
@@ -207,28 +201,24 @@ The *independent* variable does not appear explicitly in the equation (rate of c
           plot.add(sol, style: (stroke: (paint: red, thickness: 2pt)))
 
           // mark initial condition
-          plot.add(((t0,P0),),
-            mark: "o",
-            mark-size: 0.05,
-            mark-style: (fill: red, stroke: black)
-          )
-        }
+          plot.add(((t0, P0),), mark: "o", mark-size: 0.05, mark-style: (fill: red, stroke: black))
+        },
       )
     })
   ]
 
 ]
 
-#eg[
+#example[
   #text(size: 16pt, weight: "semibold")[Coupled ODE]
-  
+
   #text(size: 14pt, weight: "semibold")[Lotka-Volterra ODEs (predator-prey)]
 
-  
+
 
   $
-    (dif) / (dif t) x(t) &= alpha x(t) - beta x(t) y(t) \
-    (dif) / (dif t) y(t) &= delta x(t) y(t) - gamma y(t) \
+    (dif) / (dif t) x(t) & = alpha x(t) - beta x(t) y(t) \
+    (dif) / (dif t) y(t) & = delta x(t) y(t) - gamma y(t) \
   $
 
   - $x(t)$ = prey population
@@ -236,7 +226,7 @@ The *independent* variable does not appear explicitly in the equation (rate of c
   - $y(t)$ = predator population
 
   - $(dif) / (dif t) x(t)$: The rate of change of the prey population at time $t$
-  
+
   - $(dif) / (dif t) y(t)$: The rate of change of the predator population at time $t$
 
   - $alpha$: Prey growth rate — how fast the prey multiply in the absence of predators
@@ -251,8 +241,8 @@ The *independent* variable does not appear explicitly in the equation (rate of c
 
   - $- beta x(t) y(t)$: prey lost to predation, proportional to encounters with predators
 
-  - $delta x(t) y(t)$: predators grow in number based on how much prey they consume  
-  
+  - $delta x(t) y(t)$: predators grow in number based on how much prey they consume
+
   - $- gamma y(t)$: predators die naturally when there isn't enough food
 
   #align(center)[
@@ -264,7 +254,7 @@ The *independent* variable does not appear explicitly in the equation (rate of c
       let maxX = 20
       let minY = 0
       let maxY = 20
-      let L = 0.5  // length of slope vectors
+      let L = 0.5 // length of slope vectors
 
       // Lotka-Volterra parameters
       let alpha = 1.1
@@ -280,22 +270,22 @@ The *independent* variable does not appear explicitly in the equation (rate of c
       let h = 0.05
       let n = 1000
 
-      let x_eq = gamma/delta
-      let y_eq = alpha/beta
+      let x_eq = gamma / delta
+      let y_eq = alpha / beta
 
       // Vector field function
-      let LV = (x,y) => ((alpha*x - beta*x*y), (delta*x*y - gamma*y))
+      let LV = (x, y) => ((alpha * x - beta * x * y), (delta * x * y - gamma * y))
 
       // Euler solver for vector system
       let euler2D = (f, x0, y0, h, n) => {
-        let pts = ((x0,y0),)
+        let pts = ((x0, y0),)
         let x = x0
         let y = y0
-        for i in range(0,n) {
-          let (dx, dy) = f(x,y)
-          x = x + h*dx
-          y = y + h*dy
-          pts.push((x,y))
+        for i in range(0, n) {
+          let (dx, dy) = f(x, y)
+          x = x + h * dx
+          y = y + h * dy
+          pts.push((x, y))
         }
         pts
       }
@@ -315,14 +305,14 @@ The *independent* variable does not appear explicitly in the equation (rate of c
         axis-style: "scientific",
         {
           // slope field (phase plane)
-          for x in range(minX, maxX+1) {
-            for y in range(minY, maxY+1) {
-              let (dx, dy) = LV(x,y)
-              let norm = calc.sqrt(dx*dx + dy*dy)
+          for x in range(minX, maxX + 1) {
+            for y in range(minY, maxY + 1) {
+              let (dx, dy) = LV(x, y)
+              let norm = calc.sqrt(dx * dx + dy * dy)
               if norm != 0 {
-                let p1 = (x - L/2 * dx/norm, y - L/2 * dy/norm)
-                let p2 = (x + L/2 * dx/norm, y + L/2 * dy/norm)
-                plot.add((p1,p2), style: (stroke: black))
+                let p1 = (x - L / 2 * dx / norm, y - L / 2 * dy / norm)
+                let p2 = (x + L / 2 * dx / norm, y + L / 2 * dy / norm)
+                plot.add((p1, p2), style: (stroke: black))
               }
             }
           }
@@ -331,18 +321,10 @@ The *independent* variable does not appear explicitly in the equation (rate of c
           plot.add(traj, style: (stroke: (paint: red, thickness: 2pt)))
 
           // mark initial condition
-          plot.add(((x0,y0),),
-            mark: "o",
-            mark-size: 0.05,
-            mark-style: (fill: red, stroke: black)
-          )
+          plot.add(((x0, y0),), mark: "o", mark-size: 0.05, mark-style: (fill: red, stroke: black))
 
-          plot.add(((x_eq, y_eq),),
-            mark: "o",
-            mark-size: 0.025,
-            mark-style: (fill: red, stroke: black)
-          )
-        }
+          plot.add(((x_eq, y_eq),), mark: "o", mark-size: 0.025, mark-style: (fill: red, stroke: black))
+        },
       )
     })
   ]
@@ -351,7 +333,7 @@ The *independent* variable does not appear explicitly in the equation (rate of c
 
 == Slope Field (Direction Field)
 
-#eg[
+#example[
   IVP (Initial Value Problem)
 
   // Initial condition
@@ -378,26 +360,26 @@ The *independent* variable does not appear explicitly in the equation (rate of c
       let h = 0.1
 
       // Define slope field function dy/dx = f(x,y)
-      let slope = (x,y) => y   // try changing to: x - y, x*y, y*(1-y), etc.
+      let slope = (x, y) => y // try changing to: x - y, x*y, y*(1-y), etc.
 
       // ---------------------------
       // Euler solver (forward or backward)
       // ---------------------------
       let euler = (f, x0, y0, h, n) => {
-        let pts = ((x0,y0),)
+        let pts = ((x0, y0),)
         let x = x0
         let y = y0
-        for i in range(0,n) {
-          y = y + h * f(x,y)
+        for i in range(0, n) {
+          y = y + h * f(x, y)
           x = x + h
-          pts.push((x,y))
+          pts.push((x, y))
         }
         pts
       }
 
       // number of steps forward/backward
-      let n_forward = int((max - x1)/h)
-      let n_backward = int((x1 - min)/h)
+      let n_forward = int((max - x1) / h)
+      let n_backward = int((x1 - min) / h)
 
       // integrate forward
       let forward = euler(slope, x1, y1, h, n_forward)
@@ -409,7 +391,7 @@ The *independent* variable does not appear explicitly in the equation (rate of c
       let sol = backward.rev() + forward
 
       plot.plot(
-        x-tick-step: 5, 
+        x-tick-step: 5,
         y-tick-step: 5,
         y-min: min,
         y-max: max,
@@ -420,12 +402,12 @@ The *independent* variable does not appear explicitly in the equation (rate of c
         axis-style: "scientific",
         {
           // slope field
-          for x in range(min, max+1) {
-            for y in range(min, max+1) {
-              let m = slope(x,y)
-              let norm = calc.sqrt(1 + m*m)
-              let dx = (L/2) * (1 / norm)
-              let dy = (L/2) * (m / norm)
+          for x in range(min, max + 1) {
+            for y in range(min, max + 1) {
+              let m = slope(x, y)
+              let norm = calc.sqrt(1 + m * m)
+              let dx = (L / 2) * (1 / norm)
+              let dy = (L / 2) * (m / norm)
 
               let p1 = (x - dx, y - dy)
               let p2 = (x + dx, y + dy)
@@ -438,18 +420,14 @@ The *independent* variable does not appear explicitly in the equation (rate of c
           plot.add(sol, style: (stroke: (paint: red, thickness: 2pt)))
 
           // mark initial condition
-          plot.add(((x1,y1),),
-            mark: "o",
-            mark-size: 0.05,
-            mark-style: (fill: red, stroke: black)
-          )
-        }
+          plot.add(((x1, y1),), mark: "o", mark-size: 0.05, mark-style: (fill: red, stroke: black))
+        },
       )
     })
   ]
 ]
 
-#eg[
+#example[
   IVP (Initial Value Problem)
 
   // Initial condition
@@ -476,26 +454,26 @@ The *independent* variable does not appear explicitly in the equation (rate of c
       let h = 0.1
 
       // Define slope field function dy/dx = f(x,y)
-      let slope = (x,y) => x - y   // try changing to: x - y, x*y, y*(1-y), etc.
+      let slope = (x, y) => x - y // try changing to: x - y, x*y, y*(1-y), etc.
 
       // ---------------------------
       // Euler solver (forward or backward)
       // ---------------------------
       let euler = (f, x0, y0, h, n) => {
-        let pts = ((x0,y0),)
+        let pts = ((x0, y0),)
         let x = x0
         let y = y0
-        for i in range(0,n) {
-          y = y + h * f(x,y)
+        for i in range(0, n) {
+          y = y + h * f(x, y)
           x = x + h
-          pts.push((x,y))
+          pts.push((x, y))
         }
         pts
       }
 
       // number of steps forward/backward
-      let n_forward = int((max - x1)/h)
-      let n_backward = int((x1 - min)/h)
+      let n_forward = int((max - x1) / h)
+      let n_backward = int((x1 - min) / h)
 
       // integrate forward
       let forward = euler(slope, x1, y1, h, n_forward)
@@ -507,7 +485,7 @@ The *independent* variable does not appear explicitly in the equation (rate of c
       let sol = backward.rev() + forward
 
       plot.plot(
-        x-tick-step: 5, 
+        x-tick-step: 5,
         y-tick-step: 5,
         y-min: min,
         y-max: max,
@@ -518,12 +496,12 @@ The *independent* variable does not appear explicitly in the equation (rate of c
         axis-style: "scientific",
         {
           // slope field
-          for x in range(min, max+1) {
-            for y in range(min, max+1) {
-              let m = slope(x,y)
-              let norm = calc.sqrt(1 + m*m)
-              let dx = (L/2) * (1 / norm)
-              let dy = (L/2) * (m / norm)
+          for x in range(min, max + 1) {
+            for y in range(min, max + 1) {
+              let m = slope(x, y)
+              let norm = calc.sqrt(1 + m * m)
+              let dx = (L / 2) * (1 / norm)
+              let dy = (L / 2) * (m / norm)
 
               let p1 = (x - dx, y - dy)
               let p2 = (x + dx, y + dy)
@@ -536,12 +514,8 @@ The *independent* variable does not appear explicitly in the equation (rate of c
           plot.add(sol, style: (stroke: (paint: red, thickness: 2pt)))
 
           // mark initial condition
-          plot.add(((x1,y1),),
-            mark: "o",
-            mark-size: 0.05,
-            mark-style: (fill: red, stroke: black)
-          )
-        }
+          plot.add(((x1, y1),), mark: "o", mark-size: 0.05, mark-style: (fill: red, stroke: black))
+        },
       )
     })
   ]

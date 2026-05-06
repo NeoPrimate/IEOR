@@ -1,29 +1,28 @@
-#import "../../../utils/examples.typ": eg
-#import "../../../utils/code.typ": code
+#import "/src/imports.typ": *
 
 === Mode
 
 Value that appears most frequently
 
-#eg[
-$
-[1, 1, 2, 3]
-$
+#example[
+  $
+    [1, 1, 2, 3]
+  $
 
-- *Step 1*: Identify the Most Frequent Number
+  - *Step 1*: Identify the Most Frequent Number
 
-$
-1: 2
-\
-2: 1
-\
-3: 1
-$
+  $
+    1: 2
+    \
+    2: 1
+    \
+    3: 1
+  $
 
-- *Step 2*: Determine the Mode
+  - *Step 2*: Determine the Mode
 
-$
-"Mode" = 1
-$
+  $
+    "Mode" = 1
+  $
 
 ]

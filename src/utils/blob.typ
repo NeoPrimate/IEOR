@@ -1,4 +1,4 @@
-#import "@preview/cetz:0.3.1"
+#import "@preview/cetz:0.5.0"
 
 #let rand-consts = (
   a: 1103515245,

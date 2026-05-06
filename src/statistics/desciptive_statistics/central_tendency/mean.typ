@@ -1,20 +1,19 @@
-#import "../../../utils/examples.typ": eg
-#import "../../../utils/code.typ": code
+#import "/src/imports.typ": *
 
 === Mean
 
 Sum of all the values divided by the number of values
 
 $
-mu = ( sum_(i=1)^n x_i ) / n
+  mu = ( sum_(i=1)^n x_i ) / n
 $
 
-#eg[
-$
-[1, 2, 3]
-$
+#example[
+  $
+    [1, 2, 3]
+  $
 
-$
-macron(x) = (1 + 2 + 3) / 3 = 150
-$
+  $
+    macron(x) = (1 + 2 + 3) / 3 = 150
+  $
 ]

@@ -1,12 +1,4 @@
-#import "../../utils/examples.typ": eg
-#import "../../utils/code.typ": code
-#import "../../utils/color_math.typ": colorMath
-#import "../../utils/result.typ": result
-#import "@preview/cetz:0.3.1": canvas, draw
-#import "@preview/cetz-plot:0.1.0": plot
-
-
-#import "@preview/cetz:0.3.4"
+#import "/src/imports.typ": *
 
 == Product Rule
 
@@ -14,7 +6,7 @@ $
   d / (d x) [colorMath(f(x), #blue) colorMath(g(x), #red)] = colorMath(f'(x), #blue) colorMath(g(x), #red) + colorMath(f(x), #blue) colorMath(g'(x), #red)
 $
 
-#eg[
+#example[
   $
     d / (d x) [colorMath(x^2, #blue) colorMath(sin(x), #red)]
   $

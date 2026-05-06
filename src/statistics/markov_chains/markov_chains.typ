@@ -1,7 +1,4 @@
-#import "../../../../utils/examples.typ": eg
-#import "../../../../utils/code.typ": code
-
-#import "@preview/fletcher:0.5.1" as fletcher: diagram, node, edge, shapes
+#import "/src/imports.typ": *
 
 == Markov Chains
 
@@ -13,7 +10,7 @@
 - Custommer service times: Geometric($q$)
 - State $X_n$: Number of cusommers at time $n$
 
-#figure(image("../../vis/exponential_interarrival_times_poisson_number_arrivals.png", width: 90%))
+// #figure(image("../../vis/exponential_interarrival_times_poisson_number_arrivals.png", width: 90%))
 
 #linebreak()
 

@@ -1,9 +1,4 @@
-#import "../../utils/examples.typ": eg
-#import "../../utils/code.typ": code
-#import "../../utils/color_math.typ": colorMath
-#import "../../utils/result.typ": result
-#import "@preview/cetz:0.3.1": canvas, draw
-#import "@preview/cetz-plot:0.1.0": plot
+#import "/src/imports.typ": *
 
 == Bernoulli Trial (Binomial trial)
 
@@ -19,7 +14,7 @@ $q = 1 - p$
 
 $p + q = 1$
 
-#eg[
+#example[
   - Flipping a fair coin where "heads" is considered a *success* ($p = 0.5$) and "tails" a *failure* ($1 - p = 0.5$).
 
   - Rolling a die and checking if the outcome is a 6 (*success*) or not (*failure*). If the die is fair, the probability of success is $p = 1 / 6$ and the probability of failure is $1 - p = 5 / 6$.

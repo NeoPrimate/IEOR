@@ -1,94 +1,98 @@
-#import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
-
-#import "../utils/examples.typ": eg
+#import "/src/imports.typ": *
 
 == Counting Principle
 
 Count the total number of possible outcomes in a multi-step process
 
--	The first stage has $n_1$ possible outcomes,
--	The second stage has $n_2$ possible outcomes,
--	…
--	The k-th stage has $n_k$ possible outcomes
+- The first stage has $n_1$ possible outcomes,
+- The second stage has $n_2$ possible outcomes,
+- …
+- The k-th stage has $n_k$ possible outcomes
 
 then the total number of outcomes is:
 
 $
-  n_1 dot n_2 dot dots dot n_k = product_(i=1)^k n_i 
+  n_1 dot n_2 dot dots dot n_k = product_(i=1)^k n_i
 $
 
 
-  #align(center)[
-    #diagram(
-      node-stroke: .0em,
-      spacing: 4em,
-      node((0,0), [], radius: 0em, name: "A"),
-      
-      node(
-        (0.5,-1), 
-        [#align(center)[#move(dy: -15pt)[$A$]]], 
-        radius: 0em,
-        stroke: none, 
-      ),
-      node(
-        (0.5,1), 
-        [#align(center)[#move(dy: 5pt)[$A^c$]]], 
-        radius: 0em,
-        stroke: none, 
-      ),
-      
-      node((2,-1.5), [$A inter B$], radius: 3em),
-      node((2,-0.5), [$A inter B^c$], radius: 3em),
-      
-      node((2,0.5), [$A^c inter B$], radius: 3em),
-      node((2,1.5), [$A^c inter B^c$], radius: 3em),
+#align(center)[
+  #diagram(
+    node-stroke: .0em,
+    spacing: 4em,
+    node((0, 0), [], radius: 0em, name: "A"),
 
-      edge(
-        (0,0), (0.5,-1), 
-        [$P(A) = 0.05$], 
-        "-", 
-        label-pos: 0.5, 
-        label-side: left
-      ),
-      edge(
-        (0,0), (0.5,1), 
-        [$P(A^c) = 0.95$], 
-        "-", 
-        label-pos: 0.5, 
-        label-side: right
-      ),
+    node(
+      (0.5, -1),
+      [#align(center)[#move(dy: -15pt)[$A$]]],
+      radius: 0em,
+      stroke: none,
+    ),
+    node(
+      (0.5, 1),
+      [#align(center)[#move(dy: 5pt)[$A^c$]]],
+      radius: 0em,
+      stroke: none,
+    ),
 
-      edge(
-        (0.5,-1), (2,-1.5), 
-        [$0.99$],
-        "-",
-        label-pos: 0.5, 
-        label-side: left
-      ),
-      edge(
-        (0.5,-1), (2,-0.5), 
-        [$0.01$],
-        "-",
-        label-pos: 0.5, 
-        label-side: right
-      ),
+    node((2, -1.5), [$A inter B$], radius: 3em),
+    node((2, -0.5), [$A inter B^c$], radius: 3em),
 
-      edge(
-        (0.5,1), (2,0.5), 
-        [$0.10$],
-        "-",
-        label-pos: 0.5, 
-        label-side: left
-      ),
-      edge(
-        (0.5,1), (2,1.5), 
-        [$0.90$],
-        "-",
-        label-pos: 0.5, 
-        label-side: right
-      ),
-    )
-  ]
+    node((2, 0.5), [$A^c inter B$], radius: 3em),
+    node((2, 1.5), [$A^c inter B^c$], radius: 3em),
+
+    edge(
+      (0, 0),
+      (0.5, -1),
+      [$P(A) = 0.05$],
+      "-",
+      label-pos: 0.5,
+      label-side: left,
+    ),
+    edge(
+      (0, 0),
+      (0.5, 1),
+      [$P(A^c) = 0.95$],
+      "-",
+      label-pos: 0.5,
+      label-side: right,
+    ),
+
+    edge(
+      (0.5, -1),
+      (2, -1.5),
+      [$0.99$],
+      "-",
+      label-pos: 0.5,
+      label-side: left,
+    ),
+    edge(
+      (0.5, -1),
+      (2, -0.5),
+      [$0.01$],
+      "-",
+      label-pos: 0.5,
+      label-side: right,
+    ),
+
+    edge(
+      (0.5, 1),
+      (2, 0.5),
+      [$0.10$],
+      "-",
+      label-pos: 0.5,
+      label-side: left,
+    ),
+    edge(
+      (0.5, 1),
+      (2, 1.5),
+      [$0.90$],
+      "-",
+      label-pos: 0.5,
+      label-side: right,
+    ),
+  )
+]
 
 *Permutations*
 
@@ -115,34 +119,43 @@ $
 #table(
   columns: 2,
   inset: 2em,
-  [Ordering $n$ elements], [
+  [Ordering $n$ elements],
+  [
     $
       n!
     $
   ],
-  [Ordering $k$ out of $n$], [
+
+  [Ordering $k$ out of $n$],
+  [
     $
       P(n,k) = n!/(n-k)!
     $
   ],
-  [Choosing and ordering $k$ out of $m$], [
+
+  [Choosing and ordering $k$ out of $m$],
+  [
     $
       binom(m, k) k!
     $
   ],
-  [Number of subsets of $n$], [
+
+  [Number of subsets of $n$],
+  [
     $
       2^n
     $
   ],
-  [Sequences of length $n$ from $m$ choices], [
+
+  [Sequences of length $n$ from $m$ choices],
+  [
     $
-      m^n    
+      m^n
     $
   ],
 )
 
-#eg[
+#example[
   Find the probability that 6 rolls of a fair 6-sided die all give different numbers
 
   $
@@ -150,7 +163,7 @@ $
   $
 
   - Total outcomes for 6 rolls: $6^6$
-  - Favorable outcomes (all numbers different): $6! = 6 dot 5 dot 4 dot 3 dot 2 dot 1$ 
+  - Favorable outcomes (all numbers different): $6! = 6 dot 5 dot 4 dot 3 dot 2 dot 1$
 
   Therefore:
 
@@ -179,4 +192,3 @@ $
 $
   binom(n, k) k!
 $
-

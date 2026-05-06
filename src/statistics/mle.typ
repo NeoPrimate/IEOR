@@ -1,13 +1,4 @@
-#import "@preview/cetz:0.3.4"
-#import "@preview/cetz-plot:0.1.1"
-#import "@preview/cetz:0.4.0": canvas, draw, tree
-#import "@preview/suiji:0.4.0": *
-
-#import "../utils/examples.typ": eg
-#import "../utils/code.typ": code
-#import "../utils/color_math.typ": colorMath
-#import "../utils/definition.typ": definition
-#import "../utils/distributions/gaussian.typ": gaussian_pdf
+#import "/src/imports.typ": *
 
 == Maximum Likelihood Estimation
 

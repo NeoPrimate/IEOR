@@ -1,13 +1,4 @@
-#import "../utils/title_page.typ": title_page
-
-#import "../utils/examples.typ": eg
-#import "../utils/code.typ": code
-#import "../utils/color_math.typ": colorMath
-#import "../utils/definition.typ": definition
-#import "../utils/color_mat.typ": colorMat
-
-#import "@preview/fletcher:0.5.7" as fletcher: diagram, node, edge, shapes
-
+#import "/src/imports.typ": *
 
 #title_page("White Paper")
 

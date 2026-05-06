@@ -1,5 +1,4 @@
-#import "../../utils/code.typ": code
-#import "../../utils/examples.typ": eg
+#import "/src/imports.typ": *
 
 == Spearman's Rank
 

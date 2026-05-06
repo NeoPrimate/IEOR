@@ -1,11 +1,4 @@
-#import "../../utils/examples.typ": eg
-#import "../../utils/code.typ": code
-#import "../../utils/color_math.typ": colorMath
-#import "../../utils/result.typ": result
-
-#import "@preview/cetz:0.3.4"
-#import "@preview/cetz-plot:0.1.1"
-
+#import "/src/imports.typ": *
 
 === Critical points
 
@@ -15,7 +8,7 @@ A critical point of a function $f(x)$ is a point in the domain where either:
 
 - $f'(x)$ is undefined
 
-#eg[
+#example[
   $f(x)=1/x$ on $(0,1]$ has no maximum because it keeps increasing as $x arrow 0$.
 
   #let f(x) = calc.pow(x, 3) - 3 * x + 1
@@ -28,7 +21,7 @@ A critical point of a function $f(x)$ is a point in the domain where either:
       import cetz-plot: *
 
       plot.plot(
-        x-tick-step: 1, 
+        x-tick-step: 1,
         y-tick-step: 1,
         y-min: -5,
         y-max: 5,
@@ -41,23 +34,23 @@ A critical point of a function $f(x)$ is a point in the domain where either:
             spacing: 0.025,
             preview: (
               width: 0.25,
-            )
-          )
+            ),
+          ),
         ),
         {
           plot.add(
-            f, 
-            domain: (-3, 3), 
+            f,
+            domain: (-3, 3),
             style: (stroke: blue),
-            label: $f(x)$
+            label: $f(x)$,
           )
           plot.add(
-            f_prime, 
-            domain: (-3, 3), 
+            f_prime,
+            domain: (-3, 3),
             style: (stroke: red),
-            label: $f'(x)$
+            label: $f'(x)$,
           )
-        }
+        },
       )
     })
   ]

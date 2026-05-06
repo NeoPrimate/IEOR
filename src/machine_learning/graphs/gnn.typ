@@ -1,13 +1,4 @@
-#import "@preview/cetz:0.3.4"
-#import "@preview/cetz-plot:0.1.1"
-#import "@preview/cetz:0.4.0": canvas, draw, tree
-#import "@preview/fletcher:0.5.7" as fletcher: diagram, node, edge
-
-
-#import "../../utils/examples.typ": eg
-#import "../../utils/code.typ": code
-#import "../../utils/color_math.typ": colorMath
-#import "../../utils/definition.typ": definition
+#import "/src/imports.typ": *
 
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
@@ -16,18 +7,17 @@
   // #show table: set text(size: 7pt)
 
   #diagram(
-    
     node-inset: 0pt,
 
     node(
-      pos: (-1,0),
+      pos: (-1, 0),
       label: $1$,
       stroke: 0.1em,
       radius: 1em,
       // fill: blue.transparentize(75%),
-      name: <1>
+      name: <1>,
     ),
-    
+
     // Invisible node for the table
     node(
       pos: (-1.7, 0),
@@ -41,16 +31,16 @@
         )
       ],
       stroke: none,
-      name: <table1>
+      name: <table1>,
     ),
-    
+
     node(
-      pos: (1,-1), 
-      label: $2$, 
-      stroke: 0.1em, 
-      radius: 1em, 
+      pos: (1, -1),
+      label: $2$,
+      stroke: 0.1em,
+      radius: 1em,
       // fill: blue.transparentize(75%),
-      name: <2>
+      name: <2>,
     ),
 
     // Invisible node for the table
@@ -66,16 +56,16 @@
         )
       ],
       stroke: none,
-      name: <table2>
+      name: <table2>,
     ),
-    
+
     node(
-      pos: (1,1), 
-      label: $3$, 
-      stroke: 0.1em, 
-      radius: 1em, 
+      pos: (1, 1),
+      label: $3$,
+      stroke: 0.1em,
+      radius: 1em,
       // fill: blue.transparentize(75%),
-      name: <3>
+      name: <3>,
     ),
 
     // Invisible node for the table
@@ -91,16 +81,16 @@
         )
       ],
       stroke: none,
-      name: <table3>
+      name: <table3>,
     ),
-    
+
     node(
-      pos: (4,-1), 
-      label: $4$, 
-      stroke: 0.1em, 
-      radius: 1em, 
+      pos: (4, -1),
+      label: $4$,
+      stroke: 0.1em,
+      radius: 1em,
       // fill: blue.transparentize(75%),
-      name: <4>
+      name: <4>,
     ),
 
     // Invisible node for the table
@@ -116,16 +106,16 @@
         )
       ],
       stroke: none,
-      name: <table4>
+      name: <table4>,
     ),
-    
+
     node(
-      pos: (4,1), 
-      label: $5$, 
-      stroke: 0.1em, 
-      radius: 1em, 
+      pos: (4, 1),
+      label: $5$,
+      stroke: 0.1em,
+      radius: 1em,
       // fill: blue.transparentize(75%),
-      name: <5>
+      name: <5>,
     ),
 
     // Invisible node for the table
@@ -141,12 +131,13 @@
         )
       ],
       stroke: none,
-      name: <table5>
+      name: <table5>,
     ),
-    
+
     edge(
-      <1>, <2>, 
-      // "-|>", 
+      <1>,
+      <2>,
+      // "-|>",
       label: [
         #table(
           columns: range(4).map(_ => auto),
@@ -155,16 +146,17 @@
           fill: green.transparentize(75%),
           [$x_1$], [$x_2$], [$dots$], [$x_n$]
         )
-      ], 
-      label-side: center, 
-      bend: 0deg, 
-      shift: 0pt, 
-      label-fill: white
+      ],
+      label-side: center,
+      bend: 0deg,
+      shift: 0pt,
+      label-fill: white,
     ),
-    
+
     edge(
-      <1>, <3>, 
-      // "-|>", 
+      <1>,
+      <3>,
+      // "-|>",
       label: [
         #table(
           columns: range(4).map(_ => auto),
@@ -173,16 +165,17 @@
           fill: green.transparentize(75%),
           [$x_1$], [$x_2$], [$dots$], [$x_n$]
         )
-      ], 
-      label-side: center, 
-      bend: 0deg, 
-      shift: 0pt, 
-      label-fill: white
+      ],
+      label-side: center,
+      bend: 0deg,
+      shift: 0pt,
+      label-fill: white,
     ),
-    
+
     edge(
-      <2>, <3>, 
-      // "-|>", 
+      <2>,
+      <3>,
+      // "-|>",
       label: [
         #table(
           columns: range(4).map(_ => auto),
@@ -191,15 +184,16 @@
           fill: green.transparentize(75%),
           [$x_1$], [$x_2$], [$dots$], [$x_n$]
         )
-      ], 
-      label-side: center, 
-      shift: 0pt, 
-      label-fill: white
+      ],
+      label-side: center,
+      shift: 0pt,
+      label-fill: white,
     ),
-    
+
     edge(
-      <2>, <4>, 
-      // "-|>", 
+      <2>,
+      <4>,
+      // "-|>",
       label: [
         #table(
           columns: range(4).map(_ => auto),
@@ -208,15 +202,16 @@
           fill: green.transparentize(75%),
           [$x_1$], [$x_2$], [$dots$], [$x_n$]
         )
-      ], 
-      label-side: center, 
-      shift: 0pt, 
-      label-fill: white
+      ],
+      label-side: center,
+      shift: 0pt,
+      label-fill: white,
     ),
-    
+
     edge(
-      <4>, <5>, 
-      // "-|>", 
+      <4>,
+      <5>,
+      // "-|>",
       label: [
         #table(
           columns: range(4).map(_ => auto),
@@ -225,13 +220,13 @@
           fill: green.transparentize(75%),
           [$x_1$], [$x_2$], [$dots$], [$x_n$]
         )
-      ], 
-      label-side: center, 
-      shift: 0pt, 
-      label-fill: white
+      ],
+      label-side: center,
+      shift: 0pt,
+      label-fill: white,
     ),
-  )    
-  
+  )
+
   #linebreak()
   #linebreak()
 
@@ -241,7 +236,8 @@
     stroke: none,
     align: horizon,
     gutter: 1em,
-    [Node Embedding:], [
+    [Node Embedding:],
+    [
       #table(
         columns: range(4).map(_ => auto),
         inset: 3pt,
@@ -250,7 +246,9 @@
         [$x_1$], [$x_2$], [$dots$], [$x_n$]
       )
     ],
-    [Edge Embedding:], [
+
+    [Edge Embedding:],
+    [
       #table(
         columns: range(4).map(_ => auto),
         inset: 3pt,
@@ -259,9 +257,11 @@
         [$x_1$], [$x_2$], [$dots$], [$x_n$]
       )
     ],
-    [Adjacency Matrix:], [
+
+    [Adjacency Matrix:],
+    [
       $
-      mat(
+        mat(
           0, 1, 1, 0, 0;
           1, 0, 1, 1, 0;
           1, 1, 0, 0, 0;
@@ -275,7 +275,7 @@
 
 
 
- 
+
 
 
 
@@ -353,36 +353,35 @@ Where:
 - $sigma$: non-linearity (ReLU, tanh)
 - $W$: learnable weights
 
-#eg[
+#example[
   #align(center)[
     #diagram(
-      
       // node-inset: 0pt,
 
       node(
-        pos: (0,0),
+        pos: (0, 0),
         label: $0$,
         stroke: 0.1em,
         radius: 1em,
         // fill: blue.transparentize(75%),
-        name: <0>
+        name: <0>,
       ),
-      
+
       // Invisible node for the table
       node(
         pos: (0.5, 0),
         label: $vec(1, 0)$,
         stroke: none,
-        name: <vec0>
+        name: <vec0>,
       ),
-      
+
       node(
-        pos: (-1,2), 
-        label: $1$, 
-        stroke: 0.1em, 
-        radius: 1em, 
+        pos: (-1, 2),
+        label: $1$,
+        stroke: 0.1em,
+        radius: 1em,
         // fill: blue.transparentize(75%),
-        name: <1>
+        name: <1>,
       ),
 
       // Invisible node for the table
@@ -390,15 +389,15 @@ Where:
         pos: (-1.5, 2),
         label: $vec(0, 1)$,
         stroke: none,
-        name: <vec1>
+        name: <vec1>,
       ),
-      
+
       node(
-        pos: (1,2), 
-        label: $2$, 
-        stroke: 0.1em, 
-        radius: 1em, 
-        name: <2>
+        pos: (1, 2),
+        label: $2$,
+        stroke: 0.1em,
+        radius: 1em,
+        name: <2>,
       ),
 
       // Invisible node for the vec
@@ -406,29 +405,31 @@ Where:
         pos: (1.5, 2),
         label: $vec(1, 1)$,
         stroke: none,
-        name: <vec2>
+        name: <vec2>,
       ),
-      
+
       edge(
-        <0>, <1>, 
-        "-|>", 
-        label: $vec(2, 0)$, 
-        label-side: center, 
-        bend: 0deg, 
-        shift: 0pt, 
-        label-fill: luma(230)
+        <0>,
+        <1>,
+        "-|>",
+        label: $vec(2, 0)$,
+        label-side: center,
+        bend: 0deg,
+        shift: 0pt,
+        label-fill: luma(230),
       ),
-      
+
       edge(
-        <0>, <2>, 
-        "-|>", 
-        label: $vec(0, 3)$, 
-        label-side: center, 
-        bend: 0deg, 
-        shift: 0pt, 
-        label-fill: luma(230)
+        <0>,
+        <2>,
+        "-|>",
+        label: $vec(0, 3)$,
+        label-side: center,
+        bend: 0deg,
+        shift: 0pt,
+        label-fill: luma(230),
       ),
-    )    
+    )
   ]
 ]
 
@@ -457,43 +458,42 @@ If you shuffle the nodes in the input graph, the output values (e.g., node embed
 If you reorder the rows of $X$ (node features) and both rows and columns of $A$ (adjacency matrix) using the same permutation matrix $P$, the output is reordered in the same way — i.e., its rows are permuted by $P$ too
 
 
-#eg[
-  Let $G = (V, E)$ be a directed graph where 
+#example[
+  Let $G = (V, E)$ be a directed graph where
 
   $
-    V &= {0,1} \
-    E &= {(0, 1)} \
+    V & = {0,1} \
+    E & = {(0, 1)} \
   $
 
   #align(center)[
     #diagram(
-      
       // node-inset: 0pt,
 
       node(
-        pos: (0,0),
+        pos: (0, 0),
         label: $0$,
         stroke: 0.1em,
         radius: 1em,
         // fill: blue.transparentize(75%),
-        name: <0>
+        name: <0>,
       ),
-      
+
       // Invisible node for the table
       node(
         pos: (0.5, 0),
         // label: $vec(1, 0)$,
         stroke: none,
-        name: <vec0>
+        name: <vec0>,
       ),
-      
+
       node(
-        pos: (2,0), 
-        label: $1$, 
-        stroke: 0.1em, 
-        radius: 1em, 
+        pos: (2, 0),
+        label: $1$,
+        stroke: 0.1em,
+        radius: 1em,
         // fill: blue.transparentize(75%),
-        name: <1>
+        name: <1>,
       ),
 
       // Invisible node for the table
@@ -501,20 +501,21 @@ If you reorder the rows of $X$ (node features) and both rows and columns of $A$ 
         pos: (-1.5, 2),
         // label: $vec(0, 1)$,
         stroke: none,
-        name: <vec1>
+        name: <vec1>,
       ),
-      
-      
+
+
       edge(
-        <0>, <1>, 
-        "-|>", 
-        // label: $vec(2, 0)$, 
-        label-side: center, 
-        bend: 0deg, 
-        shift: 0pt, 
-        label-fill: luma(230)
+        <0>,
+        <1>,
+        "-|>",
+        // label: $vec(2, 0)$,
+        label-side: center,
+        bend: 0deg,
+        shift: 0pt,
+        label-fill: luma(230),
       ),
-    )    
+    )
   ]
 
   Adjacency matrix:
@@ -557,8 +558,8 @@ If you reorder the rows of $X$ (node features) and both rows and columns of $A$ 
   *Step 1*: Compute output without permutation
 
   $
-    f(X, A) 
-    = A X 
+    f(X, A)
+    = A X
     = mat(
       0, 1;
       0, 0;
@@ -578,71 +579,68 @@ If you reorder the rows of $X$ (node features) and both rows and columns of $A$ 
   - Permute $X$
 
   $
-    P X 
-    &= mat(
-      0, 1;
-      1, 0;
-    )
-    mat(
-      1, 2; 
-      3, 4;
-    )
-    = mat(
-      3, 4;
-      1, 2;
-    )
+    P X & = mat(
+            0, 1;
+            1, 0;
+          )
+          mat(
+            1, 2;
+            3, 4;
+          )
+          = mat(
+            3, 4;
+            1, 2;
+          )
   $
-  
+
   - Permute $A$
 
   $
-    P A P^T 
-    &= mat(
-      0, 1;
-      1, 0;
-    ) mat(
-      0, 1;
-      0, 0;
-    ) mat(
-      0, 1;
-      1, 0;
-    ) = mat(
-      0, 0;
-      1, 0;
-    )
+    P A P^T & = mat(
+                0, 1;
+                1, 0;
+              ) mat(
+                0, 1;
+                0, 0;
+              ) mat(
+                0, 1;
+                1, 0;
+              ) = mat(
+                0, 0;
+                1, 0;
+              )
   $
 
   This is now node 1 pointing to node 0
 
   #align(center)[
     #diagram(
-      
       // node-inset: 0pt,
 
       node(
-        pos: (0,0),
+        pos: (0, 0),
         label: $0$,
         stroke: 0.1em,
         radius: 1em,
         // fill: blue.transparentize(75%),
-        name: <0>
+        name: <0>,
       ),
-      
+
       // Invisible node for the table
       node(
         pos: (0.5, 0),
         // label: $vec(1, 0)$,
         stroke: none,
-        name: <vec0>
+        name: <vec0>,
       ),
-      
+
       node(
-        pos: (2,0), 
-        label: $1$, 
-        stroke: 0.1em, 
-        radius: 1em, 
+        pos: (2, 0),
+        label: $1$,
+        stroke: 0.1em,
+        radius: 1em,
         // fill: blue.transparentize(75%),
-        name: <1>
+        name: <1>,
       ),
 
       // Invisible node for the table
@@ -650,27 +648,28 @@ If you reorder the rows of $X$ (node features) and both rows and columns of $A$ 
         pos: (-1.5, 2),
         // label: $vec(0, 1)$,
         stroke: none,
-        name: <vec1>
+        name: <vec1>,
       ),
-      
-      
+
+
       edge(
-        <1>, <0>, 
-        "-|>", 
-        // label: $vec(2, 0)$, 
-        label-side: center, 
-        bend: 0deg, 
-        shift: 0pt, 
-        label-fill: luma(230)
+        <1>,
+        <0>,
+        "-|>",
+        // label: $vec(2, 0)$,
+        label-side: center,
+        bend: 0deg,
+        shift: 0pt,
+        label-fill: luma(230),
       ),
-    )    
+    )
   ]
 
   *Step 3*: Apply function to permuted inputs
 
   $
-    f(P X, P A P^T) 
-    = (P A P^T)(P X) 
+    f(P X, P A P^T)
+    = (P A P^T)(P X)
     = mat(
       0, 0;
       1, 0;
@@ -718,7 +717,7 @@ If you reorder the rows of $X$ (node features) and both rows and columns of $A$ 
   *Step 1*: Compute $g(X, A)$
 
   $
-    A X 
+    A X
     = mat(
       0, 1;
       0, 0;
@@ -744,44 +743,42 @@ If you reorder the rows of $X$ (node features) and both rows and columns of $A$ 
   - Permute $X$
 
   $
-    P X 
-    &= mat(
-      0, 1;
-      1, 0;
-    )
-    mat(
-      1, 2; 
-      3, 4;
-    )
-    = mat(
-      3, 4;
-      1, 2;
-    )
+    P X & = mat(
+            0, 1;
+            1, 0;
+          )
+          mat(
+            1, 2;
+            3, 4;
+          )
+          = mat(
+            3, 4;
+            1, 2;
+          )
   $
-  
+
   - Permute $A$
 
   $
-    P A P^T 
-    &= mat(
-      0, 1;
-      1, 0;
-    ) mat(
-      0, 1;
-      0, 0;
-    ) mat(
-      0, 1;
-      1, 0;
-    ) = mat(
-      0, 0;
-      1, 0;
-    )
+    P A P^T & = mat(
+                0, 1;
+                1, 0;
+              ) mat(
+                0, 1;
+                0, 0;
+              ) mat(
+                0, 1;
+                1, 0;
+              ) = mat(
+                0, 0;
+                1, 0;
+              )
   $
 
   *Step 3*: Compute new output
 
   $
-    P A P^T dot P X = 
+    P A P^T dot P X =
     mat(
       0, 0;
       1, 0;

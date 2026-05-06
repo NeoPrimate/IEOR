@@ -1,5 +1,4 @@
-#import "../utils/examples.typ": eg
-#import "../utils/code.typ": code
+#import "/src/imports.typ": *
 
 == Sets
 
@@ -23,7 +22,7 @@ $
   x in.not S
 $
 
-#eg[
+#example[
   Let $S$ be the set of real numbers whose cosine is greater than $1/2$:
 
   $
@@ -76,9 +75,9 @@ $
 Membership Rule
 
 $
-  x in S union T 
-  quad 
-  arrow.l.r.double 
+  x in S union T
+  quad
+  arrow.l.r.double
   quad
   x in S or x in T
 $
@@ -92,16 +91,16 @@ $
 Membership Rule
 
 $
-  x in S inter T 
+  x in S inter T
   quad
-  arrow.l.r.double 
+  arrow.l.r.double
   quad
   x in S and x in T
 $
 
 === Inifinite Collection of Sets
 
-Let 
+Let
 
 $
   S_n quad n = 1, 2, dots
@@ -128,54 +127,47 @@ $
     align: top,
     [
       $
-        S union T 
-        &= T union S
+        S union T & = T union S
       $
     ],
     [
       $
-        S union (T union U) 
-        &= (S union T) union U \
-        &= S union T union U\
+        S union (T union U) & = (S union T) union U \
+                            & = S union T union U \
+      $
+    ],
+
+    [
+      $
+        S inter (T union U) & = (S inter T) union (S inter U)
       $
     ],
     [
       $
-        S inter (T union U) 
-        &= (S inter T) union (S inter U)
+        S union (T inter U) & = (S union T) inter (S union U)
+      $
+    ],
+
+    [
+      $
+        (S^c)^c & = S
       $
     ],
     [
       $
-        S union (T inter U) 
-        &= (S union T) inter (S union U)
+        (S inter S^c) & = emptyset
+      $
+    ],
+
+    [
+      $
+        S union Omega & = Omega
       $
     ],
     [
       $
-        (S^c)^c 
-        &= S
+        S inter Omega & = S
       $
     ],
-    [
-      $
-        (S inter S^c) 
-        &= emptyset
-      $
-    ],
-    [
-      $
-        S union Omega 
-        &= Omega
-      $
-    ],
-    [
-      $
-        S inter Omega 
-        &= S
-      $
-    ]
   )
 ]
-
-

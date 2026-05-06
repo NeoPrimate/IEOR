@@ -1,10 +1,4 @@
-#import "../../utils/examples.typ": eg
-#import "../../utils/code.typ": code
-#import "../../utils/color_math.typ": colorMath
-#import "../../utils/result.typ": result
-
-#import "@preview/cetz:0.3.4"
-#import "@preview/cetz-plot:0.1.1"
+#import "/src/imports.typ": *
 
 == Extreme Value Theorem
 
@@ -16,7 +10,7 @@ $
 
 1. *Continuity*: The function must be continuous on $[a, b]$. Discontinuities (jumps, asymptotes, holes) can prevent the function from attaining an extreme value
 
-#eg[
+#example[
   #let c = 3
   #let f(x) = -x * x + c
 
@@ -26,7 +20,7 @@ $
       import cetz-plot: *
 
       plot.plot(
-        x-tick-step: 2, 
+        x-tick-step: 2,
         y-tick-step: 2,
         y-min: -4,
         y-max: 4,
@@ -35,18 +29,18 @@ $
         mark-style: (fill: black, stroke: black),
         {
           plot.add(
-            f, 
-            domain: (-4, 4), 
+            f,
+            domain: (-4, 4),
             style: (stroke: black),
-            label: none
+            label: none,
           )
           plot.add(
-            ((0,c),),
+            ((0, c),),
             mark: "o",
             mark-size: 0.04,
-            mark-style: (fill: white)
+            mark-style: (fill: white),
           )
-        }
+        },
       )
     })
   ]
@@ -55,7 +49,7 @@ $
 
 2. *Closed Interval*: If the function is defined on an open interval $(a,b)$, an extremum may not exist
 
-#eg[
+#example[
   $f(x)=1/x$on $(0,1]$ has no maximum because it keeps increasing as $x arrow 0$.
 
   #let f(x) = 1 / x
@@ -66,7 +60,7 @@ $
       import cetz-plot: *
 
       plot.plot(
-        x-tick-step: 1, 
+        x-tick-step: 1,
         y-tick-step: 50,
         y-min: 0,
         y-max: 100,
@@ -75,12 +69,12 @@ $
         mark-style: (fill: black, stroke: black),
         {
           plot.add(
-            f, 
-            domain: (0.001, 1), 
+            f,
+            domain: (0.001, 1),
             style: (stroke: black),
-            label: none
+            label: none,
           )
-        }
+        },
       )
     })
   ]

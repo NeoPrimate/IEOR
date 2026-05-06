@@ -1,28 +1,27 @@
-#import "../../../utils/examples.typ": eg
-#import "../../../utils/code.typ": code
+#import "/src/imports.typ": *
 
 === Range
 
 $
-"Range" = max - min
+  "Range" = max - min
 $
 
-#eg[
-$
-[1, 2, 3, 4, 5]
-$
+#example[
+  $
+    [1, 2, 3, 4, 5]
+  $
 
-- *Step 1*: Identify the Maximum and Minimum Values
+  - *Step 1*: Identify the Maximum and Minimum Values
 
-$
-max = 5
-\
-min = 1
-$
+  $
+    max = 5
+    \
+    min = 1
+  $
 
-- *Step 2*: Calculate the Range
+  - *Step 2*: Calculate the Range
 
-$
-"Range" = 5 - 1 = 4
-$
+  $
+    "Range" = 5 - 1 = 4
+  $
 ]

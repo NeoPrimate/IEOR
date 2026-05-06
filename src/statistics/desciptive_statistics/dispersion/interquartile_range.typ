@@ -1,50 +1,49 @@
-#import "../../../utils/examples.typ": eg
-#import "../../../utils/code.typ": code
+#import "/src/imports.typ": *
 
 === Interquartile Range (IQR)
 
 $
-"IQR" = "Q3" - "Q1"
+  "IQR" = "Q3" - "Q1"
 $
 
-#eg[
-$
-[1, 2, 3, 4, 5, 6, 7]
-$
+#example[
+  $
+    [1, 2, 3, 4, 5, 6, 7]
+  $
 
-Step 1: Arrange the Data in Ascending Order
+  Step 1: Arrange the Data in Ascending Order
 
-$
-[1, 2, 3, 4, 5, 6, 7]
-$
+  $
+    [1, 2, 3, 4, 5, 6, 7]
+  $
 
-Step 2: Find the Quartiles
+  Step 2: Find the Quartiles
 
-1. Calculate the Median (Q2)
+  1. Calculate the Median (Q2)
 
-$
-"Median" ("Q2") = 4
-$
+  $
+    "Median" ("Q2") = 4
+  $
 
-2. Find First Quartile (Q1)
+  2. Find First Quartile (Q1)
 
-Q1 is the median of the first half of the dataset
+  Q1 is the median of the first half of the dataset
 
-$
-"Q1" = 2
-$
+  $
+    "Q1" = 2
+  $
 
-3. Find Third Quartile (Q3)
+  3. Find Third Quartile (Q3)
 
-Q3 is the median of the second half of the dataset
+  Q3 is the median of the second half of the dataset
 
-$
-"Q3" = 5
-$
+  $
+    "Q3" = 5
+  $
 
-Step 3: Calculate the Interquartile Range (IQR)
+  Step 3: Calculate the Interquartile Range (IQR)
 
-$
-"IQR" = 5 - 2 = 3
-$
+  $
+    "IQR" = 5 - 2 = 3
+  $
 ]

@@ -1,10 +1,4 @@
-#import "../../utils/examples.typ": eg
-#import "../../utils/code.typ": code
-#import "../../utils/color_math.typ": colorMath
-#import "../../utils/result.typ": result
-
-
-#import "@preview/fletcher:0.5.7" as fletcher: diagram, node, edge, shapes
+#import "/src/imports.typ": *
 
 #align(center)[
 
@@ -16,43 +10,43 @@
   #diagram(
     node-inset: 0pt,
 
-    node(pos: (0,0), label: $z$, stroke: none, radius: 0.75em, name: <z>),
-    
-    node(pos: (1,-0.5), label: $colorMath(u, #red)$, stroke: none, radius: 0.75em, name: <u>),
-    
-    node(pos: (1,0.5), label: $colorMath(v, #blue)$, stroke: none, radius: 0.75em, name: <v>),
-    
-    node(pos: (2.5,-0.5), label: $x$, stroke: none, radius: 0.75em, name: <x>),
+    node(pos: (0, 0), label: $z$, stroke: none, radius: 0.75em, name: <z>),
 
-    node(pos: (2.5,0.5), label: $y$, stroke: none, radius: 0.75em, name: <y>),
+    node(pos: (1, -0.5), label: $colorMath(u, #red)$, stroke: none, radius: 0.75em, name: <u>),
+
+    node(pos: (1, 0.5), label: $colorMath(v, #blue)$, stroke: none, radius: 0.75em, name: <v>),
+
+    node(pos: (2.5, -0.5), label: $x$, stroke: none, radius: 0.75em, name: <x>),
+
+    node(pos: (2.5, 0.5), label: $y$, stroke: none, radius: 0.75em, name: <y>),
 
     edge(<z>, <u>, "-|>", label: {}),
-    
+
     edge(<z>, <v>, "-|>", label: {}),
-    
+
     edge(<u>, <x>, "-|>", label: {}),
-    
+
     edge(<u>, <y>, "-|>", label: {}),
-    
+
     edge(<v>, <x>, "-|>", label: {}),
-    
+
     edge(<v>, <y>, "-|>", label: {}),
   )
-  ]
+]
 
 The derivative of $z$ with respect to $x$ is the sum of all possible paths from $z$ to $x$:
 
 $
-   (partial z) / (partial x) = (partial z) / (partial u) (partial u) / (partial x) + (partial z) / (partial v) (partial v) / (partial x)
+  (partial z) / (partial x) = (partial z) / (partial u) (partial u) / (partial x) + (partial z) / (partial v) (partial v) / (partial x)
 $
 
-#eg[
+#example[
   Let:
-  
+
   - $u = x + y$
-  
+
   - $v = x y$
-  
+
   - $z = u^2 + sin(v)$
 
   We want to compute:
@@ -80,9 +74,8 @@ $
   *Step 3*: Plug in:
 
   $
-    (partial z) / (partial x) 
-    &= 2u dot 1 + cos(v) dot y \
-    &= 2 (x + y) + y cos(x y)
+    (partial z) / (partial x) & = 2u dot 1 + cos(v) dot y \
+                              & = 2 (x + y) + y cos(x y)
   $
 
 ]

@@ -1,12 +1,4 @@
-#import "../../utils/examples.typ": eg
-#import "../../utils/code.typ": code
-#import "../../utils/color_math.typ": colorMath
-#import "../../utils/result.typ": result
-#import "@preview/cetz:0.3.1": canvas, draw
-#import "@preview/cetz-plot:0.1.0": plot
-#import "../../utils/blob.typ": draw-blob
-
-#import "@preview/cetz:0.3.1"
+#import "/src/imports.typ": *
 
 == Mean Value Theorem
 
@@ -24,7 +16,7 @@ $
 
 This means that the instantaneous rate of change (derivative) at some point $c$ is equal to the average rate of change over the entire interval
 
-#eg[
+#example[
 
   Consider $f(x) = x^2$ on $[1, 3]$
 
@@ -58,23 +50,23 @@ This means that the instantaneous rate of change (derivative) at some point $c$ 
   #align(center)[
     #canvas({
       import draw: *
-      
+
       plot.plot(
         size: (10, 10),
         axis-style: "school-book",
         x-tick-step: 1,
-        x-min: -1., 
+        x-min: -1.,
         x-max: 4.,
-        y-tick-step: 2, 
-        y-min: -5., 
+        y-tick-step: 2,
+        y-min: -5.,
         y-max: 12.,
         legend: "north-east",
         {
           plot.add(
-            f, 
-            domain: (0, 4), 
+            f,
+            domain: (0, 4),
             style: (stroke: black),
-            label: $f(x) = x^2$
+            label: $f(x) = x^2$,
           )
           plot.add(
             ((a, f(a)),),
@@ -101,19 +93,20 @@ This means that the instantaneous rate of change (derivative) at some point $c$ 
             mark-style: (fill: red, stroke: none),
           )
           plot.add(
-            secant_line, 
-            domain: (0, 4), 
+            secant_line,
+            domain: (0, 4),
             style: (stroke: blue),
-            label: "Secant Line"
+            label: "Secant Line",
           )
-          
+
           plot.add(
-            tangent_line, 
-            domain: (0, 4), 
+            tangent_line,
+            domain: (0, 4),
             style: (stroke: red),
-            label: "Tangent Line at c"
+            label: "Tangent Line at c",
           )
-        })
+        },
+      )
     })
   ]
 

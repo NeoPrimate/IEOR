@@ -1,6 +1,4 @@
-#import "@preview/cetz:0.4.2" 
-#import "../utils/color_math.typ": colorMath
-#import "../utils/proof.typ": proof
+#import "/src/imports.typ": *
 
 == Independence
 

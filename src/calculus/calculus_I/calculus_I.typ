@@ -1,10 +1,14 @@
-#import "../../utils/title_page.typ": title_page
+#import "/src/imports.typ": *
 
 #title_page("Calculus I")
 
 #include("cheatsheet.typ")
 
 #include("limits.typ")
+
+#include("derivatives.typ")
+
+#include("higher_order_derivatives.typ")
 
 #include("power_rule.typ")
 
@@ -29,5 +33,11 @@
 #include("critical_points.typ")
 
 #include("derivative_test.typ")
+
+#include("arc_length.typ")
+
+#include("series.typ")
+
+#include("taylor_series.typ")
 
 // #include("fundamental_theorem.typ")

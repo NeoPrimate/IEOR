@@ -1,4 +1,4 @@
-#import "@preview/cetz:0.4.2" 
+#import "/src/imports.typ": *
 
 == Sample Space
 

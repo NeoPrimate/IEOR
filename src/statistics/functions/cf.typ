@@ -1,4 +1,3 @@
-#import "../../../../utils/examples.typ": eg
-#import "../../../../utils/code.typ": code
+#import "/src/imports.typ": *
 
 == CF (Characteristic Function)

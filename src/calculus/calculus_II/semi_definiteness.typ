@@ -1,7 +1,4 @@
-#import "../../utils/examples.typ": eg
-#import "../../utils/code.typ": code
-#import "../../utils/color_math.typ": colorMath
-#import "../../utils/result.typ": result
+#import "/src/imports.typ": *
 
 == Positive/Negative Definite/Indefinite/Semidefinite Matrices
 

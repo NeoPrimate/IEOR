@@ -1,8 +1,4 @@
-#import "../utils/examples.typ": eg
-#import "../utils/code.typ": code
-#import "../utils/color_math.typ": colorMath
-#import "../utils/definition.typ": definition
-#import "../utils/color_mat.typ": colorMat
+#import "/src/imports.typ": *
 
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")

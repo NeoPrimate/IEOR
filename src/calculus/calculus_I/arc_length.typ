@@ -1,10 +1,5 @@
-#import "../../utils/examples.typ": eg
-#import "../../utils/code.typ": code
-#import "../../utils/color_math.typ": colorMath
-#import "../../utils/result.typ": result
+#import "/src/imports.typ": *
 
-#import "@preview/cetz:0.3.4"
-#import "@preview/cetz-plot:0.1.1"
 #cetz.canvas({
   import cetz.draw: *
   import cetz-plot: *

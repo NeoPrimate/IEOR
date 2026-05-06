@@ -1,4 +1,4 @@
-#import "../../utils/color_math.typ": colorMath
+#import "/src/imports.typ": *
 
 #set math.mat(gap: 0.75em)
 #set math.vec(gap: 1em)
@@ -45,7 +45,7 @@
       Scalar Function
     ], [*First*\ Order], [
       $
-        gradient f(x) = f'(x) = vec((diff f) / (diff x))
+        gradient f(x) = f'(x) = vec((partial f) / (partial x))
       $
     ],
 
@@ -58,10 +58,10 @@
     ], [*First*\ Order], [
       $
         J_f (x) = vec(
-          (diff f_colorMath(1, #red)) / (diff x),
-          (diff f_colorMath(2, #red)) / (diff x),
+          (partial f_colorMath(1, #red)) / (partial x),
+          (partial f_colorMath(2, #red)) / (partial x),
           dots.v,
-          (diff f_colorMath(m, #red)) / (diff x),
+          (partial f_colorMath(m, #red)) / (partial x),
         )
       $
     ],
@@ -74,10 +74,10 @@
     ], [*First*\ Order], [
       $
         gradient f(bold("x")) = vec(
-          (diff f) / (diff x_colorMath(1, #red)),
-          (diff f) / (diff x_colorMath(2, #red)),
+          (partial f) / (partial x_colorMath(1, #red)),
+          (partial f) / (partial x_colorMath(2, #red)),
           dots.v,
-          (diff f) / (diff x_colorMath(n, #red)),
+          (partial f) / (partial x_colorMath(n, #red)),
         )
       $
     ],
@@ -98,9 +98,9 @@
         )\
         
         &= mat(
-          (diff f_colorMath(1, #red)) / (diff x_colorMath(1, #red)), dots, (diff f_colorMath(1, #red)) / (diff x_colorMath(n, #red));
+          (partial f_colorMath(1, #red)) / (partial x_colorMath(1, #red)), dots, (partial f_colorMath(1, #red)) / (partial x_colorMath(n, #red));
           dots.v, dots.down, dots.v;
-          (diff f_colorMath(m, #red)) / (diff x_colorMath(1, #red)), dots, (diff f_colorMath(m, #red)) / (diff x_colorMath(n, #red));
+          (partial f_colorMath(m, #red)) / (partial x_colorMath(1, #red)), dots, (partial f_colorMath(m, #red)) / (partial x_colorMath(n, #red));
         ) \
       $
     ],
@@ -114,22 +114,22 @@
     ], [*Second*\ Order], [
       $
         gradient^2 f(bold("x")) = H_f (bold("x")) = mat(
-          (diff^2 f) / (diff x_1^2), dots, (diff^2 f) / (diff x_1 diff x_n);
+          (partial^2 f) / (partial x_1^2), dots, (partial^2 f) / (partial x_1 partial x_n);
           dots.v, dots.down, dots.v;
-          (diff^2 f) / (diff x_n diff x_1), dots, (diff^2 f) / (diff x_n^2);
+          (partial^2 f) / (partial x_n partial x_1), dots, (partial^2 f) / (partial x_n^2);
         )
       $
     ],
     [*Laplacian*], [Trace of the Hessian\ (sum of diagonal entries)], [], [
       $
-        tr(H_f (bold("x"))) = sum_(i=1)^n (diff^2 f) / (diff x_colorMath(i, #red)^2) (x)
+        tr(H_f (bold("x"))) = sum_(i=1)^n (partial^2 f) / (partial x_colorMath(i, #red)^2) (x)
       $
 
       $
         H_f (bold("x")) = mat(
-          colorMath((diff^2 f) / (diff x_1^2), #red), dots, (diff^2 f) / (diff x_1 diff x_n);
+          colorMath((partial^2 f) / (partial x_1^2), #red), dots, (partial^2 f) / (partial x_1 partial x_n);
           dots.v, colorMath(dots.down, #red), dots.v;
-          (diff^2 f) / (diff x_n diff x_1), dots, colorMath((diff^2 f) / (diff x_n^2), #red);
+          (partial^2 f) / (partial x_n partial x_1), dots, colorMath((partial^2 f) / (partial x_n^2), #red);
         )
       $
     ],

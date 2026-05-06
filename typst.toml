@@ -1,0 +1,3 @@
+# Workspace marker. Pins this directory as the Typst project root so that
+# absolute imports like "/src/imports.typ" resolve from here in both the CLI
+# (with --root .) and tinymist (which auto-detects this file).

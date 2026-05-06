@@ -1,11 +1,4 @@
-#import "../../utils/examples.typ": eg
-#import "../../utils/code.typ": code
-#import "../../utils/color_math.typ": colorMath
-#import "../../utils/result.typ": result
-#import "../../utils/distributions/gaussian.typ": gaussian_pdf, gaussian_cdf
-#import "@preview/cetz-plot:0.1.0": plot
-
-#import "@preview/cetz:0.3.4":  canvas, draw
+#import "/src/imports.typ": *
 
 == Likelihood
 

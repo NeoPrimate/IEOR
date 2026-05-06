@@ -1,5 +1,4 @@
-#import "../../utils/examples.typ": eg
-#import "../../utils/code.typ": code
+#import "/src/imports.typ": *
 
 == Dijkstra's
 
@@ -10,9 +9,9 @@
 - Set the distance to all other nodes as $infinity$
 - Create a priority queue (or a simple list) to keep track of unvisited nodes and their distances.
 
-#eg[
+#example[
   Graph nodes: A, B, C, D
-  
+
   Start node: A
 
   Distances:
@@ -30,14 +29,14 @@ Among all unvisited nodes, pick the one with the smallest known distance. Let's 
 
 For each neighbor of the current node:
 1. Calculate the tentative distance:
-  
+
   distance(current) + weight(current → neighbor)
 
 2. If this tentative distance is less than the known distance, update it.
 
-#eg[
-  If $A arrow.long  B$ has weight 4 and distance to A is 0:
-  
+#example[
+  If $A arrow.long B$ has weight 4 and distance to A is 0:
+
   Tentative distance to B = 0 + 4 = 4
 
   If current distance to B is ∞, update to 4
@@ -59,6 +58,6 @@ For each neighbor of the current node:
 - To find the actual shortest path, track the previous node for each visited node
 - Starting from the destination, backtrack through the previous nodes
 
-#eg[
-  
+#example[
+
 ]

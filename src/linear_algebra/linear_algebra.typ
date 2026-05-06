@@ -1,4 +1,4 @@
-#import "../utils/title_page.typ": title_page
+#import "/src/imports.typ": *
 
 #title_page("Linear Algebra")
 
@@ -37,6 +37,8 @@
 #include("composition_of_linear_transformations.typ")
 
 #include("eigenvectors_eigenvalues.typ")
+
+#include("matrix_inverse.typ")
 
 #include("lu_decomposition.typ")
 

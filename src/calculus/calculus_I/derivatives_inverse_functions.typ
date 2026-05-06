@@ -1,12 +1,4 @@
-#import "../../utils/examples.typ": eg
-#import "../../utils/code.typ": code
-#import "../../utils/color_math.typ": colorMath
-#import "../../utils/result.typ": result
-#import "@preview/cetz:0.3.1": canvas, draw
-#import "@preview/cetz-plot:0.1.0": plot
-#import "../../utils/blob.typ": draw-blob
-
-#import "@preview/cetz:0.3.1"
+#import "/src/imports.typ": *
 
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
@@ -19,7 +11,7 @@ $
   d / (d x)[f^(-1)(x)] = 1 / (f'(f^(-1)(x)))
 $
 
-This approach allows us to determine the derivative of the inverse function without needing to express $f^(-1)(x)$ explicitly. Instead, we find the value of $x$ that satisfies $f(x) = a$ (where 
+This approach allows us to determine the derivative of the inverse function without needing to express $f^(-1)(x)$ explicitly. Instead, we find the value of $x$ that satisfies $f(x) = a$ (where
 a
 a is the given point), evaluate $f'(x)$, and apply the formula.
 
@@ -33,63 +25,75 @@ $
 #align(center)[
   #cetz.canvas({
     draw-blob(
-      2, (0, 0), 1.5,
+      2,
+      (0, 0),
+      1.5,
       stroke: green,
-      name: "blob1"
+      name: "blob1",
     )
     draw-blob(
-      8, (5, 0), 1.5,
+      8,
+      (5, 0),
+      1.5,
       n-pts: 10,
       stroke: orange,
-      name: "blob2"
+      name: "blob2",
     )
     cetz.draw.circle(
       "blob1.center",
       radius: .05,
       fill: black,
       stroke: none,
-      name: "x"
+      name: "x",
     )
     cetz.draw.circle(
       "blob2.center",
       radius: .05,
       fill: black,
       stroke: none,
-      name: "y"
+      name: "y",
     )
     cetz.draw.content(
-      "x", [$x$],
+      "x",
+      [$x$],
       anchor: "east",
-      padding: 3pt
+      padding: 3pt,
     )
     cetz.draw.content(
-      "y", [$f(x)$],
+      "y",
+      [$f(x)$],
       anchor: "west",
-      padding: 3pt
+      padding: 3pt,
     )
     let mid = (2.5, .5)
     cetz.draw.bezier-through(
-      "x.north-east", mid, "y.north-west",
+      "x.north-east",
+      mid,
+      "y.north-west",
       stroke: blue + .5pt,
       mark: (end: ">", fill: blue),
-      name: "arrow"
+      name: "arrow",
     )
     cetz.draw.content(
-      mid, [$f$],
+      mid,
+      [$f$],
       anchor: "south",
-      padding: 3pt
+      padding: 3pt,
     )
     let mid = (2.5, -.5)
     cetz.draw.bezier-through(
-      "y.north-east", mid, "x.north-west",
+      "y.north-east",
+      mid,
+      "x.north-west",
       stroke: blue + .5pt,
       mark: (end: ">", fill: blue),
-      name: "arrow"
+      name: "arrow",
     )
     cetz.draw.content(
-      mid, [$f^(-1)$],
+      mid,
+      [$f^(-1)$],
       anchor: "north",
-      padding: 3pt
+      padding: 3pt,
     )
   })
 ]
@@ -108,7 +112,7 @@ $
   d / (d x) [ colorMath(f(colorMath(f^(-1)(colorMath(x, #black)), #blue)), #red)] = 1
 $
 
-Using chain-rule: 
+Using chain-rule:
 
 $
   d / (d x) [colorMath(f(colorMath(g(colorMath(x, #black)), #blue)), #red)] = colorMath(f'(colorMath(g(colorMath(x, #black)), #blue)), #red) dot colorMath(g'(colorMath(x, #black)), #blue)
@@ -134,15 +138,15 @@ $
   colorMath(d / (d x)[f^(-1)(colorMath(x, #black))], #blue) = 1 / colorMath(f'(colorMath(f^(-1)(colorMath(x, #black)), #blue)), #red)
 $
 
-#eg[
-  Given the function: 
-  
+#example[
+  Given the function:
+
   $
     f(x) = x^3
-  $ 
-  
+  $
+
   We want to find $d / (d x) f^(-1)(x)$ at $x = 0.5$ using the inverse function derivative formula:
-  
+
   $
     d / (d x) f^(-1)(x) = 1 / (f'(f^(-1)(x)))
   $
@@ -180,8 +184,7 @@ $
   Evaluate the derivative at $x = root(3, 0.5)$:
 
   $
-    f'(root(3, 0.5)) 
-    &= 3 (root(3, 0.5))^2
+    f'(root(3, 0.5)) & = 3 (root(3, 0.5))^2
   $
 
   #line(length: 100%)
@@ -189,8 +192,7 @@ $
   *4. Use the formula*
 
   $
-    d / (d x) f^(-1) (0.5)
-    &= 1 / (3(root(3, 0.5))^2) \
+    d / (d x) f^(-1) (0.5) & = 1 / (3(root(3, 0.5))^2) \
   $
 
   #line(length: 100%)
@@ -218,47 +220,47 @@ $
   #align(center)[
     #canvas({
       import draw: *
-      
+
       plot.plot(
         size: (10, 10),
         axis-style: "school-book",
         x-tick-step: 1,
-        x-min: -3., 
+        x-min: -3.,
         x-max: 3.,
-        y-tick-step: 1, 
-        y-min: -3., 
+        y-tick-step: 1,
+        y-min: -3.,
         y-max: 3.,
         legend: "north-east",
         {
           plot.add(
-            f, 
-            domain: (-3, 3), 
+            f,
+            domain: (-3, 3),
             style: (stroke: blue),
-            label: $f(x) = x^3$
+            label: $f(x) = x^3$,
           )
           plot.add(
-            f_inv, 
-            domain: (-3, 3), 
+            f_inv,
+            domain: (-3, 3),
             style: (stroke: red),
-            label: $f^(-1)(x) = root(3, x)$
+            label: $f^(-1)(x) = root(3, x)$,
           )
           plot.add(
-            lin, 
-            domain: (-3, 3), 
+            lin,
+            domain: (-3, 3),
             style: (stroke: gray),
-            label: $x = y$
+            label: $x = y$,
           )
           plot.add(
-            tangent_f, 
-            domain: (x0 - 1, x0 + 1), 
+            tangent_f,
+            domain: (x0 - 1, x0 + 1),
             style: (stroke: green),
-            label: none
+            label: none,
           )
           plot.add(
-            tangent_f_inv, 
-            domain: (y0 - 0.75, y0 + 0.75), 
+            tangent_f_inv,
+            domain: (y0 - 0.75, y0 + 0.75),
             style: (stroke: purple),
-            label: none
+            label: none,
           )
           plot.add(
             ((x0, y0),),
@@ -272,7 +274,8 @@ $
             mark-size: 0.2,
             mark-style: (fill: purple, stroke: none),
           )
-        })
+        },
+      )
     })
   ]
 
@@ -299,7 +302,7 @@ $
   inverse = solve(f, x)
 
   print(inverse)
-  ```
+  ```,
 )
 
 === Derivative Inverse Sin

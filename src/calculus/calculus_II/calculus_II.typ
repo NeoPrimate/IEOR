@@ -1,4 +1,4 @@
-#import "../../utils/title_page.typ": title_page
+#import "/src/imports.typ": *
 
 #title_page("Calculus II")
 
@@ -11,6 +11,8 @@
 #include("gradient.typ")
 
 #include("hessian_matrix.typ")
+
+#include("jacobian.typ")
 
 #include("semi_definiteness.typ")
 
