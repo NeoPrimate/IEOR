@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == $C_p$ (Process Capability Index)
 
@@ -11,7 +11,7 @@ $
 *Assumption*: Process is *centered* within the specification limits
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -213,7 +213,7 @@ $
 
 
   #align(center)[
-    #cetz.canvas(
+    #canvas(
       length: 72pt,
       {
         import cetz.draw: *

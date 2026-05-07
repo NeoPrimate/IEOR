@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #let cm(x) = text(fill: red, [$#x$])
 
@@ -35,7 +35,7 @@ Sawtooth, with order skipping:
 If $R$ is short relative to mean cycle, most reviews do *not* trigger orders. If $R$ is long, almost every review triggers.
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
 
     line((0, 0), (9, 0), name: "x_axis")

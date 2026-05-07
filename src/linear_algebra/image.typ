@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
@@ -61,7 +61,7 @@ $
   T(accent(x, arrow)_2) = #nt.print(A) nt.print(x2) = nt.print(Tx2) \
 $
 
-#let triangle = cetz.canvas(length: 6cm, {
+#let triangle = canvas(length: 6cm, {
   cetz-plot.plot.plot(
     x-tick-step: 5,
     y-tick-step: 5,
@@ -106,7 +106,7 @@ $
   cetz.draw.content("x2-x0.mid", text(purple)[$L_2$], anchor: "north", padding: 0.05, angle: 0deg, size: 3pt)
 })
 
-#let tranformation = cetz.canvas(length: 6cm, {
+#let transformation = canvas(length: 6cm, {
   cetz-plot.plot.plot(
     x-tick-step: 5,
     y-tick-step: 5,
@@ -162,7 +162,7 @@ $
     columns: (1fr, 1fr),
     rows: (auto, auto),
     gutter: 3pt,
-    triangle, tranformation,
+    triangle, transformation,
   )
 ]
 
@@ -188,7 +188,7 @@ $T(RR^n)$ is the image of $RR^2$ under $T$
 
 This is the set of all possible outputs when $T$ is applied to vectors in $RR^n$
 
-*Undertanding $T(RR^n)$*
+*Understanding $T(RR^n)$*
 
 1. Whole space transformation
 
@@ -234,7 +234,7 @@ $
 This is the set of all possible linear combinations of the columns of $A$, and thus represents all possible outputs of the transformation $T$
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     draw-blob(
       2,
       (0, 0),
@@ -324,7 +324,7 @@ This is the set of all possible linear combinations of the columns of $A$, and t
 ]
 
 #example[
-  Supose we have a matrix $A$:
+  Suppose we have a matrix $A$:
 
   $
     A = mat(
@@ -477,7 +477,7 @@ For any subset $S subset.eq RR^m$, the preimage $T^(-1) (S)$ collects all points
   $
 ]
 
-=== Kernel of a Transofrmation
+=== Kernel of a Transformation
 
 The kernel of a transformation $T: RR^n arrow RR^m$, denoted
 $ker(T)$, is the set of all vectors in $RR^n$ that $T$ maps to the zero vector in

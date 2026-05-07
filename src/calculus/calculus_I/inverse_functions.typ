@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == Inverse Functions
 
@@ -10,7 +10,7 @@ $
 $
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     draw-blob(
       2, (0, 0), 1.5,
       stroke: green,
@@ -94,7 +94,7 @@ To determine $f^(-1)$:
 
 *3. Graphical Representation*
 
-The graph of $f^(-1)$ is a reflection of the graph of $f$ accress the line $x = y$
+The graph of $f^(-1)$ is a reflection of the graph of $f$ access the line $x = y$
 
 #let lin(x) = x
 

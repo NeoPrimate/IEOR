@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #let cm(x) = text(fill: red, [$#x$])
 
@@ -35,7 +35,7 @@ Sawtooth, with two layers of discreteness:
 Average inventory is *higher* than (R, s, S) because the integer-pack rounding inflates each order. Difference is small if $Q << s$, large if $Q$ is comparable to $s$.
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
 
     line((0, 0), (9, 0), name: "x_axis")

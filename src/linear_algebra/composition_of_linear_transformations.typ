@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
@@ -19,7 +19,7 @@ $
 $
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     draw-blob(
       2,
       (0, 0),
@@ -194,7 +194,7 @@ $
                          & = underbrace(C, l times n) arrow(x)
 $
 
-The composition $T compose S$ is therefor represented by the matrix $C = A dot B$, where $C$ is of size $l times n$
+The composition $T compose S$ is therefore represented by the matrix $C = A dot B$, where $C$ is of size $l times n$
 
 *Column-Wise Interpretation*
 
@@ -243,7 +243,7 @@ $
       ) \
 $
 
-The composition $T compose S$ is the linear map respresented by *$C = B dot A$*
+The composition $T compose S$ is the linear map represented by *$C = B dot A$*
 
 Each column of $C$ reflects how $T$ transforms the action of $S$ on a standard basis vector
 

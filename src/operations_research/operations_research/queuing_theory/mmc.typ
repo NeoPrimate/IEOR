@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == M/M/c
 
@@ -47,7 +47,7 @@
 #let exp_probs = t_vals.map(t => exponential_pdf(λ, t))
 #let max_exp = calc.max(..exp_probs)
 
-#let pois_dist = cetz.canvas({
+#let pois_dist = canvas({
   import cetz.draw: *
   import cetz-plot: *
   
@@ -89,7 +89,7 @@
   )
 })
 
-#let exp_dist = cetz.canvas({
+#let exp_dist = canvas({
   import cetz.draw: *
   import cetz-plot: *
 
@@ -236,7 +236,7 @@
 }
 
 // Visualization
-#cetz.canvas({
+#canvas({
   import cetz.draw: *
   import cetz-plot: *
   

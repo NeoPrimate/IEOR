@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == Non-Linear Programming
 
@@ -24,7 +24,7 @@ Minimize annual total cost
   #let q = 5.0
 
 
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -100,7 +100,7 @@ $
 
   #let q = calc.sqrt((2 * K * D) / h)
 
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -325,7 +325,7 @@ $
 
   #align(center)[
 
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -378,7 +378,7 @@ $
   $
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -452,7 +452,7 @@ $
 
   #align(center)[
 
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -526,7 +526,7 @@ $
 
   #align(center)[
 
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 

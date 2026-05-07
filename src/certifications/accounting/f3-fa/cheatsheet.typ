@@ -1,7 +1,6 @@
-#set page(margin: (
-  y: 1em,
-  x: 1em,
-))
+#import "/lib/imports.typ": *
+
+// #set page(margin: 1em) — paged-only, can't apply inside bundle's document() container
 
 #let columns = 2
 
@@ -116,7 +115,7 @@
     [Sales order], [],
     [Purchase order], [],
     [Goods received note], [],
-    [Goods despatched note], [],
+    [Goods dispatched note], [],
     [Customer (sales) invoice], [],
     [Supplier (purchase) invoice], [],
     [Supplier statement], [],

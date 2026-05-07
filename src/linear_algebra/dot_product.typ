@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.vec(delim: "[")
 
@@ -25,7 +25,7 @@ $
   $
 
   #align(center)[
-    #cetz.canvas(length: 7cm, {
+    #canvas(length: 7cm, {
       import cetz.draw: *
       import cetz-plot: *
 

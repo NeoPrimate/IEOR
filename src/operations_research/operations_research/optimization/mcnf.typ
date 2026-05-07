@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
@@ -91,7 +91,7 @@ LP Formulation
 
 #example[
 
-  Decision valiables:
+  Decision variables:
 
   $x_(i j)$: Flow size of edge $(i, j)$
 
@@ -452,8 +452,8 @@ If different markets habe different unit retailing costs $c_j^R$
 
 == Assignment Problems
 
-- A manager assignes $n$ jobs to $m$ workers
-- The assigment is one-to-one (one job to one worker)
+- A manager assigns $n$ jobs to $m$ workers
+- The assignment is one-to-one (one job to one worker)
   - Jobs cannot be split
 - $c_(i j)$: cost for worker $j$ to complete job $i$
 
@@ -776,7 +776,7 @@ For all transhipment nodes $T$,
 
 #text(size: 16pt)[*Summary*]
 
-*Assigment* problems are a special case of *Transportation* problems where:
+*Assignment* problems are a special case of *Transportation* problems where:
 - $b_i = 1$: net supply at node $i$
 
 
@@ -825,7 +825,7 @@ For all transhipment nodes $T$,
           node(pos: (-4, 4), label: [Transportation], stroke: none, radius: 1em, name: <4>),
           node(pos: (0, 4), label: [Shortest Path], stroke: none, radius: 1em, name: <5>),
 
-          node(pos: (-4, 6), label: [Assigment], stroke: none, radius: 1em, name: <6>),
+          node(pos: (-4, 6), label: [Assignment], stroke: none, radius: 1em, name: <6>),
 
           edge(
             <2>,

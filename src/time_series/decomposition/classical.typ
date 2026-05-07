@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == Classical Decomposition
 
@@ -99,7 +99,7 @@ For a quick first pass, classical decomposition is fine. For production forecast
   *Step 5 — interpret*
 
   - *Trend*: ~+10 units / year (rough slope between year-1 and year-2 averages).
-  - *Seasonal*: clear December peak, January-February trough.
+  - *Seasonal*: clear December peak, January-February through.
   - *Noise*: small, well-explained.
 
   *Use*: forecast next month by extending the trend and adding the seasonal index. For Jan year 3: $hat(y)_(25) = hat(T)_(25) + hat(S)_("Jan") approx 145 + (-10) = 135$.

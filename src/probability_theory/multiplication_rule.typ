@@ -1,3 +1,5 @@
+#import "/lib/imports.typ": *
+
 == Multiplication Rule
 
 For $n$ events:

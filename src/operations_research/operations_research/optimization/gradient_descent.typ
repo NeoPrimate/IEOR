@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
@@ -145,7 +145,7 @@ $
 Where:
 - $x^k$: current iterate (point in domain of $f$)
 - $alpha_k$: *step size* or *learning rate* at iteration $k$
-- $gradient f(x^k)$: *gradient* of the funtion $f$ with respect to $theta$
+- $gradient f(x^k)$: *gradient* of the function $f$ with respect to $theta$
 - $x^(k+1)$: next iterate (point in domain of $f$)
 
 
@@ -674,7 +674,7 @@ Where:
 
   #align(center)[
 
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 

@@ -1,3 +1,5 @@
+#import "/lib/imports.typ": *
+
 == Network Effect
 
 Value of a good or service increases with the number of users

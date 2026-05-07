@@ -1,10 +1,11 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
+#show: formatting
 
 == Differential Equations
 
 A differential equation specifies a relationship between an unknown function and its derivatives
 
-Solving for (an) unknow function(s) that satisfy this relationship
+Solving for (an) unknown function(s) that satisfy this relationship
 
 Initial or boundary conditions to select a unique solution
 
@@ -30,7 +31,7 @@ The *dependent* variable and its derivatives each appear only to the first power
 
 === Homogeneity
 
-- *Homogeneous*: No terms with just the *independent* varible of *constant*
+- *Homogeneous*: No terms with just the *independent* variable of *constant*
 
 - *Nonhomogeneous*: Has term(s) with just the *independent* variable or *constants*
 
@@ -62,7 +63,7 @@ The *dependent* variable and its derivatives each appear only to the first power
 
   $
                                           (dif y) / (dif x) + y = x quad quad & "1st order" \
-    (dif^colorMath(2, #red) y) / (dif x^colorMath(2, #red)) + y = x quad quad & "2st order" \
+    (dif^colorMath(2, #red) y) / (dif x^colorMath(2, #red)) + y = x quad quad & "2nd order" \
   $
 
   Degree
@@ -126,7 +127,7 @@ The *independent* variable does not appear explicitly in the equation (rate of c
   - $r dot P(t)$: growth contribution proportional to the current population
 
   #align(center)[
-    #cetz.canvas(length: 10cm, {
+    #canvas(length: 10cm, {
       import cetz.draw: *
       import cetz-plot: *
       import math: exp
@@ -246,7 +247,7 @@ The *independent* variable does not appear explicitly in the equation (rate of c
   - $- gamma y(t)$: predators die naturally when there isn't enough food
 
   #align(center)[
-    #cetz.canvas(length: 12cm, {
+    #canvas(length: 12cm, {
       import cetz.draw: *
       import cetz-plot: *
 
@@ -348,7 +349,7 @@ The *independent* variable does not appear explicitly in the equation (rate of c
   $
 
   #align(center)[
-    #cetz.canvas(length: 10cm, {
+    #canvas(length: 10cm, {
       import cetz.draw: *
       import cetz-plot: *
 
@@ -442,7 +443,7 @@ The *independent* variable does not appear explicitly in the equation (rate of c
   $
 
   #align(center)[
-    #cetz.canvas(length: 10cm, {
+    #canvas(length: 10cm, {
       import cetz.draw: *
       import cetz-plot: *
 

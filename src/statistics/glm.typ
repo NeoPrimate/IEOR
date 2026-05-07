@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == Generalized Linear Models (GLM)
 
@@ -104,7 +104,7 @@ Where $g(dot)$ is called the link function
   ]
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -151,7 +151,7 @@ Where $g(dot)$ is called the link function
   $
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -211,7 +211,7 @@ Where $g(dot)$ is called the link function
   $
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 

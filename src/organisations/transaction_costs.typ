@@ -1,3 +1,5 @@
+#import "/lib/imports.typ": *
+
 === Transaction Costs
 
 // @coase1937 @williamson1975 @williamson1985
@@ -46,13 +48,13 @@ Questions:
 
 #line(length: 100%)
 
-Let the set of transcations be $T = {1, 2, dots, n}$
+Let the set of transactions be $T = {1, 2, dots, n}$
 For each transaction $i in T$, define:
 
 - $C_i^M$: transaction cost if done via *Market*
 - $C_i^H$: transaction cost if done via *Hierarchy*
 
-Then the total cost accross all transactions is:
+Then the total cost across all transactions is:
 
 $
   T C = sum_(i=1)^n min{C_i^M, C_i^H}

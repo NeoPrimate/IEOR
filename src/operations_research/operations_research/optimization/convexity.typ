@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
@@ -11,7 +11,7 @@
 #grid(
   columns: (auto, auto),
   [
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -67,7 +67,7 @@
     })
   ],
   [
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -122,7 +122,7 @@
   columns: (auto, auto),
   [
 
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -199,7 +199,7 @@
     })
   ],
   [
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 

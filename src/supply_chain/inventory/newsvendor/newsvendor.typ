@@ -1,4 +1,5 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
+#show: formatting
 
 #let cm(x) = text(fill: red, [$#x$])
 

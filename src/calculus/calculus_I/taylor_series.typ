@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #title_1[Taylor Series (Expansion)]
 
@@ -84,7 +84,7 @@ Where:
 
   #align(center)[
 
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -149,7 +149,7 @@ Where:
   ]
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 

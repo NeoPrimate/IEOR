@@ -1,3 +1,5 @@
+#import "/lib/imports.typ": *
+
 == Cross-Entropy Loss (Log Loss)
 
 Binary and multi-class classification

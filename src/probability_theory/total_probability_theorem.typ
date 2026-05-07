@@ -1,3 +1,5 @@
+#import "/lib/imports.typ": *
+
 == Total Probability Theorem
 
 Let $B_1, B_2, dots, B_n$ be a partition of the sample space $Omega$, meaning:

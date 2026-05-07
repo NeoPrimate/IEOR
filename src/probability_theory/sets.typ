@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == Sets
 
@@ -6,7 +6,7 @@ A *set* is a collection of distinct elements
 
 - ${a, b, c, d}$: a finite set
 
-- $RR$: an inifinite set
+- $RR$: an infinite set
 
 *Membership*
 
@@ -98,7 +98,7 @@ $
   x in S and x in T
 $
 
-=== Inifinite Collection of Sets
+=== Infinite Collection of Sets
 
 Let
 

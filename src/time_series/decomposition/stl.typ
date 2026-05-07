@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == STL Decomposition (Seasonal-Trend using Loess)
 

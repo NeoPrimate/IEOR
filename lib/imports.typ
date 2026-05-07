@@ -1,0 +1,59 @@
+// Single source of truth for utils + package versions.
+// Every content file should do: #import "/lib/imports.typ": *
+// Update versions HERE — never per-file — to avoid drift.
+
+// === Packages (modules) ===
+#import "@preview/cetz:0.5.0"
+#import "@preview/cetz-plot:0.1.3"
+#import "@preview/numty:0.1.0"
+#import "@preview/numty:0.1.0" as nt
+#import "@preview/oxifmt:1.0.0"
+#import "@preview/oxifmt:1.0.0": strfmt
+#import "@preview/suiji:0.5.1"
+#import "@preview/suiji:0.5.1": (
+  choice, discrete, gen-rng, gen-rng-f, integers, normal, normal-f, shuffle, uniform, uniform-f,
+)
+#import "@preview/plotsy-3d:0.2.1"
+#import "@preview/plotsy-3d:0.2.1": *
+#import "@preview/ribbony:0.1.0"
+#import "@preview/ribbony:0.1.0": *
+#import "@preview/modpattern:0.1.0": modpattern
+
+// === Convenience names (used inside cetz.canvas blocks etc.) ===
+#import "@preview/cetz:0.5.0": draw, tree
+#import "@preview/cetz-plot:0.1.3": plot
+#import "@preview/fletcher:0.5.8" as fletcher: edge, node, shapes
+#import "@preview/fletcher:0.5.8" as _fletcher_module
+
+// `canvas` and `diagram` are wrapped in `figure(...)` so the figure show rule
+// in web/setup.typ can fall them back to inline SVG in HTML mode. PDF is
+// unaffected — figure() with no caption renders identically to its body.
+#let canvas(..args) = figure(cetz.canvas(..args))
+#let diagram(..args) = figure(_fletcher_module.diagram(..args))
+
+// === Utils ===
+#import "/lib/utils/example.typ": example
+#import "/lib/utils/code.typ": code, code_output
+#import "/lib/utils/result.typ": result
+#import "/lib/utils/color_math.typ": colorMath
+#import "/lib/utils/colors.typ": highlight, focus, accent, support, ok, muted
+#import "/lib/utils/color_mat.typ": colorMat
+#import "/lib/utils/definition.typ": definition
+#import "/lib/utils/titles.typ": title_1, title_2
+#import "/lib/utils/title_page.typ": title_page
+#import "/lib/utils/blob.typ": draw-blob
+#import "/lib/utils/cancelto.typ": cancelto
+#import "/lib/utils/proof.typ": proof
+#import "/lib/utils/prerequisites.typ": prerequisites
+#import "/lib/utils/resources.typ": resources
+#import "/lib/utils/matvec_mult.typ": matvec_mult
+
+// === Document-wide formatting ===
+#import "/lib/formatting.typ": formatting
+#import "/web/setup.typ": web_setup
+
+// === Distribution helpers ===
+#import "/lib/utils/distributions/gaussian.typ": gaussian_cdf, gaussian_pdf
+#import "/lib/utils/distributions/exponential.typ": exponential_pdf
+#import "/lib/utils/distributions/poisson.typ": poisson_pmf
+#import "/lib/utils/distributions/t.typ": t_pdf

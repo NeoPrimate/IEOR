@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 = Limits & Continuity
 
@@ -13,7 +13,7 @@
 
 == Continuous
 
-=== Addition, Substraction, Multiplication, Division
+=== Addition, Subtraction, Multiplication, Division
 
 $
   lim_(x arrow c) (colorMath(f(x), #red) * colorMath(g(x), #blue)) = lim_(x arrow c) colorMath(f(x), #red) * lim_(x arrow c) colorMath(g(x), #blue) \
@@ -35,7 +35,7 @@ $
   * in {+, -, times, div}
 $
 
-#let f = cetz.canvas(length: 6cm, {
+#let f = canvas(length: 6cm, {
   import cetz.draw: *
   import cetz-plot: *
   plot.plot(
@@ -76,7 +76,7 @@ $
   )
 })
 
-#let g = cetz.canvas(length: 6cm, {
+#let g = canvas(length: 6cm, {
   import cetz.draw: *
   import cetz-plot: *
   plot.plot(
@@ -224,7 +224,7 @@ For this to hold true, two important conditions must be satisfied:
 - *Continuity of the outer function*: The function $f$ must be continuous at the point $L$. Continuity ensures that $f$ behaves predictably near $L$, without any jumps, gaps, or undefined points
 
 
-#let f = cetz.canvas(length: 6cm, {
+#let f = canvas(length: 6cm, {
   import cetz.draw: *
   import cetz-plot: *
   plot.plot(
@@ -264,7 +264,7 @@ For this to hold true, two important conditions must be satisfied:
   )
 })
 
-#let g = cetz.canvas(length: 6cm, {
+#let g = canvas(length: 6cm, {
   import cetz.draw: *
   import cetz-plot: *
   plot.plot(

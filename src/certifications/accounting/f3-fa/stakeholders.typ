@@ -1,3 +1,5 @@
+#import "/lib/imports.typ": *
+
 == Stakeholders' needs
 
 Identify the *users* of financial statements and state and differentiate between their *information needs*.

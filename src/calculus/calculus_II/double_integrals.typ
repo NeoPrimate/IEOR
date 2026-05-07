@@ -1,3 +1,5 @@
+#import "/lib/imports.typ": *
+
 == Double Integrals
 
 === 1. Double Indefinite Integral

@@ -1,4 +1,5 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
+#show: formatting
 
 #import "./summary.typ": cAR, cDiff, cMA
 #import "../_data.typ" as data

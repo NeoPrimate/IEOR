@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
@@ -23,7 +23,7 @@ $
 $
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     draw-blob(
       2,
       (0, 0),
@@ -285,7 +285,7 @@ $
     d / (d x) f^(-1)(0.5) = 1 / (3(root(3, 0.5))^2)
   $
 
-  represents the derivative of the inverse function $f^(-1)(x)$ evaluated at $x = 0.5$. This means it gives the slope of the tangent line to the inverse funcion at $x = 0.5$.
+  represents the derivative of the inverse function $f^(-1)(x)$ evaluated at $x = 0.5$. This means it gives the slope of the tangent line to the inverse function at $x = 0.5$.
 ]
 
 #code(

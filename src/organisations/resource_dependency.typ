@@ -1,3 +1,4 @@
+#import "/lib/imports.typ": *
 
 == Resource Dependency Theory (RDT)
 

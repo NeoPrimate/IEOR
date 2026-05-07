@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == Lagrangian
 
@@ -40,7 +40,7 @@ $
 ]
 
 #example[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     import cetz-plot: *
 

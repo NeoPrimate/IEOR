@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
@@ -36,7 +36,7 @@ When a transformation $A$ is applied to a vector $bold("x")$, it is equivalent t
     A = #nt.print(A)
   $
 
-  #let domain = cetz.canvas(length: 6cm, {
+  #let domain = canvas(length: 6cm, {
     cetz-plot.plot.plot(
       x-tick-step: 2,
       y-tick-step: 2,
@@ -70,7 +70,7 @@ When a transformation $A$ is applied to a vector $bold("x")$, it is equivalent t
     cetz.draw.content("j.end", text(green)[$ arrow(x) = #nt.print(x) $], anchor: "south", padding: 0.1, angle: "j.end")
   })
 
-  #let codomain = cetz.canvas(length: 6cm, {
+  #let codomain = canvas(length: 6cm, {
     cetz-plot.plot.plot(
       x-tick-step: 2,
       y-tick-step: 2,
@@ -170,7 +170,7 @@ When a transformation $A$ is applied to a vector $bold("x")$, it is equivalent t
     )
   $
   #align(center)[
-    #cetz.canvas(length: 6cm, {
+    #canvas(length: 6cm, {
       let o = (0, 0)
 
       let A = (

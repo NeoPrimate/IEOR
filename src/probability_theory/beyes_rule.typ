@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == Beyes' Rule
 
@@ -69,7 +69,7 @@ $
 $
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
 
     rect((0, 0), (10, 5))

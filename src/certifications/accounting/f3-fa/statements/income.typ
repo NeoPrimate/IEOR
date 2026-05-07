@@ -1,3 +1,5 @@
+#import "/lib/imports.typ": *
+
 == Income Statement
 
 *Revenue* and *expenses* over *time*
@@ -69,6 +71,6 @@ Expenses:
     - Amortization
   - Variable (loosely correlated)
     - Advertising
-    - Comissions
+    - Commissions
     - Utilities
 

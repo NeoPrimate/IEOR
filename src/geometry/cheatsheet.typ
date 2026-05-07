@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == Geometric Formulas
 
@@ -18,7 +18,7 @@ Formulas for:
 
      $A = 1/2 a b sin(theta)$
 
-     #cetz.canvas(length: 2cm, {
+     #canvas(length: 2cm, {
       import cetz.draw: *
       import cetz-plot: *
 
@@ -66,7 +66,7 @@ Formulas for:
 
     $C = 2 pi r$
 
-    #cetz.canvas(length: 2cm, {
+    #canvas(length: 2cm, {
       import cetz.draw: *
       import cetz-plot: *
 
@@ -102,7 +102,7 @@ Formulas for:
 
     $s = r theta$ ($theta$ in radians)
 
-    #cetz.canvas(length: 2cm, {
+    #canvas(length: 2cm, {
       import cetz.draw: *
       import cetz-plot: *
 
@@ -137,11 +137,11 @@ Formulas for:
   inset: 10pt,
   align: horizon,
   table.header([*Function*], [*Definition*], [*Reciprocal*]),
-  $sin(x)$, $"opposite" / "hypothenuse"$, $1 / sin(x) = csc(x)$,
-  $cos(x)$, $"adjacent" / "hypothenuse"$, $1 / cos(x) = sec(x)$,
+  $sin(x)$, $"opposite" / "hypotenuse"$, $1 / sin(x) = csc(x)$,
+  $cos(x)$, $"adjacent" / "hypotenuse"$, $1 / cos(x) = sec(x)$,
   $tan(x)$, $sin(x) / cos(x) = "opposite" / "adjacent"$, $1 / tan(x) = cot(x)$,
-  $csc(x)$, $sin(x) / cos(x) = "hypothenuse" / "opposite"$, $1 / csc(x) = sin(x)$,
-  $sec(x)$, $"hypothenuse" / "adjacent"$, $1 / sec(x) = cos(x)$,
+  $csc(x)$, $sin(x) / cos(x) = "hypotenuse" / "opposite"$, $1 / csc(x) = sin(x)$,
+  $sec(x)$, $"hypotenuse" / "adjacent"$, $1 / sec(x) = cos(x)$,
   $cot(x)$, $cos(x) / sin(x) = "adjacent" / "opposite"$, $1 / cot(x) = tan(x)$,
 )
 

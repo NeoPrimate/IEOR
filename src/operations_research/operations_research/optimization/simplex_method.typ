@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
@@ -19,7 +19,7 @@ $
 Solution: Intersection of $n$ lines or (hyper)planes
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -123,7 +123,7 @@ $
 $
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -220,7 +220,7 @@ $
   })
 ]
 
-A linear system is *singluar* if there is no unique solution
+A linear system is *singular* if there is no unique solution
 - Row view: the $n$ (hyper)planes do not intersect at exactly one point
 - Column view: the $n$ vectors do not span a complete $n$-dimensional space
 
@@ -363,7 +363,7 @@ $A^(-1)$ is *unique*
 
 Finding $A^(-1)$: Gauss-Jordan Elimination
 
-A square matrix is *nonsingular* iif it is *invertible*
+A square matrix is *nonsingular* iff it is *invertible*
 
 $
   mat(
@@ -580,7 +580,7 @@ A point $x$ in set $S subset.eq RR^n$ is extreme if it cannot be written as a st
   #let x_e = d
   #let x_ne = (2, 2)
 
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -771,7 +771,7 @@ Unused capacity
   - If $x_1 + x_2 = 5$, then $s = 0$
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -858,7 +858,7 @@ Excess above the required amount
   - If $x_1 + x_2 = 5$, then $e = 0$
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -1076,7 +1076,7 @@ Excess above the required amount
     - Objective: $z = 3x_1 + 2x_2 = 3(0) + 2(0) = 0$
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -1381,7 +1381,7 @@ Excess above the required amount
   )
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -1691,7 +1691,7 @@ Excess above the required amount
     - Objective: $z = 3x_1 + 2x_2 = 3(2) + 2(2) = 10$
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -3142,7 +3142,7 @@ $
 )
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -3268,7 +3268,7 @@ Degeneracy occurs when a basic variable takes the value zero in a basic feasible
   $
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -3433,7 +3433,7 @@ Degeneracy occurs when a basic variable takes the value zero in a basic feasible
   $
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -3617,7 +3617,7 @@ Degeneracy occurs when a basic variable takes the value zero in a basic feasible
   If after elimination a basic variable has a value of 0, it indicates degeneracy.
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -3985,7 +3985,7 @@ Can't perform ratio test $arrow.long$ no constraint limits the entering variable
   In a maximization or minimization linear programming problem, if there is a 0 in the $z$ row (objective function row) of the final (optimal) simplex tableau in a non-basic column (i.e. a variable not currently in the solution), then there are multiple optimal solutions.
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -4603,7 +4603,7 @@ $
             & x_B, x_N gt.eq 0 \
 $
 
-Rearange te terms of the constrains:
+Rearrange the terms of the constrains:
 
 $
    max quad & c_B^T B^(-1) b - (c_B^T B^(-1) N - c_N^T) x_N \
@@ -5028,7 +5028,7 @@ The Simplex Tableau is:
   $
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -5182,7 +5182,7 @@ The Simplex Tableau is:
   $
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -5354,7 +5354,7 @@ The Simplex Tableau is:
   $
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 

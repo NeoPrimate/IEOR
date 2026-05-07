@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == Simple linear regression
 
@@ -117,7 +117,7 @@ $
     "SS"_"total" = sum_(i=1)^n (y_i - macron(y))^2
   $
 
-  Adjusting for the numer of independent variables
+  Adjusting for the number of independent variables
 
   $
     R^2_"adj" = 1 - (((1 - R^2)(n - 1)) / (n - k - 1))

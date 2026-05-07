@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 = Supply Chains, Demand Management, and Forecasting
 
@@ -33,7 +33,7 @@ Types of supply chains
 
 - Information: Data exchanged between different parts of the supply chain (orders, inventory levels, product status)
 - Product: Physical movement of goods from suppliers to manufacturers, distributors, retails and consumers
-- Financial: Payement and credit processes between participants (cost transfers, invoicing, patments)
+- Financial: Payment and credit processes between participants (cost transfers, invoicing, patments)
 
 4. Globalization
 
@@ -86,9 +86,9 @@ Supply chain resilience
 
 10. Supply Chain Integration
 
-- Horizonal: Collaboration between different firms at the same level of the supply chain (2 manufacturers or 2 distributors)
-- veritcal: Multiple stages of the supply chain, from raw materials to final product distribution
-- Technology: Shared platforms for operations and communication accross supply chain
+- Horizontal: Collaboration between different firms at the same level of the supply chain (2 manufacturers or 2 distributors)
+- vertical: Multiple stages of the supply chain, from raw materials to final product distribution
+- Technology: Shared platforms for operations and communication across supply chain
 
 11. Ethical Supply Chains
 
@@ -158,7 +158,7 @@ Predict demand for products and services
 
 8. Measuring demand accuracy
 
-- Mean Absolute Deviation (MAD): Measures average magnitude of forecast errors, regarless of direction
+- Mean Absolute Deviation (MAD): Measures average magnitude of forecast errors, regardless of direction
 - Mean Squared Error (MSE): Squared errors, giving more weight to larger deviations
 - Tracking Signal: Monitors whether a forecast is consistently over or underestimating demand, detecting bias in forecasting methods
 
@@ -188,7 +188,7 @@ Predict demand for products and services
 
 3. Collaborative Demand Planning
 
-Collaborate accross
+Collaborate across
 - Internal Units (marketing, sales, production)
 - External partners (suppliers, retailers)
 
@@ -252,7 +252,7 @@ Predict future demand
 
 4. Causal Forecasting Models
 
-Cause-and-Effect relationship between demand and various external factors (price, economic indcators, marketing)
+Cause-and-Effect relationship between demand and various external factors (price, economic indicators, marketing)
 
 5. Forecasting Tools & Software
 

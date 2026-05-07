@@ -1,3 +1,5 @@
+#import "/lib/imports.typ": *
+
 // #typst-root: main.typ
 
 === Actor-Network Theory (ANT) 

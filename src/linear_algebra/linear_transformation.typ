@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
@@ -17,7 +17,7 @@ $
 - Codomain: The set $Y$ is the space where all possible outputs of $f$ reside, though not every element in $Y$ must be an output of $f$
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     draw-blob(
       2,
       (0, 0),
@@ -166,7 +166,7 @@ The function $f$ takes an $n$-dimensional vector of real numbers as input and pr
       columns: (1fr, 1fr),
       rows: auto,
       gutter: 0pt,
-      cetz.canvas({
+      canvas({
         import cetz.draw: *
         ortho(x: 25deg, y: 25deg, {
           line((0, 0), (x: 3), stroke: blue, name: "x", mark: (end: "straight", scale: 1))
@@ -180,7 +180,7 @@ The function $f$ takes an $n$-dimensional vector of real numbers as input and pr
         })
       }),
 
-      cetz.canvas({
+      canvas({
         import cetz.draw: *
         line((0, 0), (x: 3), stroke: blue, name: "x", mark: (end: "straight", scale: 1))
         content((), $ x_1 $, anchor: "south", padding: 5pt)

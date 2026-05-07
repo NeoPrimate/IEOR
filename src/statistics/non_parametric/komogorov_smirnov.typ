@@ -1,3 +1,5 @@
+#import "/lib/imports.typ": *
+
 == Kolmogorov-Smirnov
 
 Determine if a sample is drawn from a population with a specific distribution. 

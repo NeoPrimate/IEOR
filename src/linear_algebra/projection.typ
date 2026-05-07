@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
@@ -62,7 +62,7 @@ Where:
   $
 
   #align(center)[
-    #cetz.canvas(length: 6cm, {
+    #canvas(length: 6cm, {
       cetz-plot.plot.plot(
         x-tick-step: 5,
         y-tick-step: 5,
@@ -163,7 +163,7 @@ $
 #let u = nt.mult(1 / mag_v, v)
 
 #align(center)[
-  #cetz.canvas(length: 6cm, {
+  #canvas(length: 6cm, {
     cetz-plot.plot.plot(
       x-tick-step: 5,
       y-tick-step: 5,
@@ -308,7 +308,7 @@ $
   $
 
   #align(center)[
-    #cetz.canvas(length: 6cm, {
+    #canvas(length: 6cm, {
       cetz-plot.plot.plot(
         x-tick-step: 5,
         y-tick-step: 5,

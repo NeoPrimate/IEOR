@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #let bent-edge(from, to, ..args) = {
   let midpoint = (from, 50%, to)
@@ -34,7 +34,7 @@ Owner has unlimited liability
 2. Limited Liability Company
 Several people 
 
-Business seperate in law from owners
+Business separate in law from owners
 
 Owners have limited liability 
 
@@ -183,7 +183,7 @@ List of:
     [Inventory], [Goods held for resale or raw materials to make goods.], [Retail: finished goods; Manufacturing: raw materials.],
     [Accounts Payable\ Payable], [Money owed to suppliers/creditors.], [Purchase of goods on credit.],
     [Accounts Receivable\ Receivable], [Money owed to the business by customers.], [Sales on credit.],
-    [Drawings\ Withdrawls], [Assets taken out by owner for personal use.], [Cash withdrawn, goods taken for personal use.],
+    [Drawings\ Withdrawals], [Assets taken out by owner for personal use.], [Cash withdrawn, goods taken for personal use.],
     [Bank\ Cash], [Liquid assets held by the business.], [Cash in hand, cash at bank.],
     [], [], [],
   )

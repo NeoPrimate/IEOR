@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == Linear Programming Duality
 
@@ -267,7 +267,7 @@ $
   c^T x lt.eq b^T y
 $
 
-Suffciency of optimality
+Sufficiency of optimality
 
 If $macron(x)$ and $macron(y)$ are primal and dual feasible and $c^T macron(x) lt.eq macron(y)^T b$, then $macron(x)$ and $macron(y)$ are primal and dual optimal
 
@@ -287,7 +287,7 @@ If $macron(x)$ is primal optimal with basis $B$, then $macron(y)^T = c_B^T A_B^(
 
 If both primal and dual are feasible and at least one has an optimal solution:
 
-$macron(x)$ and $macron(y)$ are primal and dual optimal iif $macron(x)$ and $macron(y)$ are primal and dual feasible and
+$macron(x)$ and $macron(y)$ are primal and dual optimal iff $macron(x)$ and $macron(y)$ are primal and dual feasible and
 
 $
   c^T macron(x) = b^T macron(y)
@@ -446,7 +446,7 @@ $
       ],
     ),
     [
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -508,7 +508,7 @@ $
       })
     ],
     [
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -593,7 +593,7 @@ $
       ],
     ),
     [
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -675,7 +675,7 @@ $
       })
     ],
     [
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -809,7 +809,7 @@ $
       ],
     ),
     [
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -871,7 +871,7 @@ $
       })
     ],
     [
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -956,7 +956,7 @@ $
       ],
     ),
     [
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -1034,7 +1034,7 @@ $
       })
     ],
     [
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -1301,7 +1301,7 @@ $
             & v gt.eq 0
 $
 
-$macron(x)$ and $(macron(y), macron(v))$ are primal and dual opimal iif they are feasible and $macron(v)^T macron(x) = bold(0)$
+$macron(x)$ and $(macron(y), macron(v))$ are primal and dual optimal iff they are feasible and $macron(v)^T macron(x) = bold(0)$
 
 #proof[
   We have
@@ -1311,9 +1311,9 @@ $macron(x)$ and $(macron(y), macron(v))$ are primal and dual opimal iif they are
                   & = macron(y)^T b - macron(v)^T macron(x) \
   $
 
-  Therefore $macron(v)^T macron(x) = 0$ iif $c^T macron(x) = macron(y)^T b$, i.e., $macron(x)$ and $(macron(y), macron(v))$ are primal and dual optimal according to strong duality.
+  Therefore $macron(v)^T macron(x) = 0$ iff $c^T macron(x) = macron(y)^T b$, i.e., $macron(x)$ and $(macron(y), macron(v))$ are primal and dual optimal according to strong duality.
 
-  - Note that $v^T macron(x) = 0$ iif $macron(v)_i macron(x)_i = 0$ for all $i$ as $macron(x)_i gt.eq 0$ and $macron(v) gt.eq 0$
+  - Note that $v^T macron(x) = 0$ iff $macron(v)_i macron(x)_i = 0$ for all $i$ as $macron(x)_i gt.eq 0$ and $macron(v) gt.eq 0$
   - If a dual (primal) constraint is *nonbinding*, the corresponding primal (dual) variable is *zero*
 ]
 
@@ -1440,7 +1440,7 @@ For each resource there is a maximum price we are willing to pay for one additio
 
 Definition: Shadow Price
 
-For an LP that has an optimal colution, the *shadow price of a constraint* if the amount the objective value increases when the RHS of that constrint *increases* by 1, *assuming the current optimal basis remains optimal*
+For an LP that has an optimal colution, the *shadow price of a constraint* if the amount the objective value increases when the RHS of that constraint *increases* by 1, *assuming the current optimal basis remains optimal*
 
 Sign or Shadow Price
 
@@ -1468,7 +1468,7 @@ Sign or Shadow Price
   )
 ]
 
-- If shifting a constraint does not affect the optimal solution, the shadow price is zero. Shadow prices are zero for contraints that are nonbinding at the optimal solution.
+- If shifting a constraint does not affect the optimal solution, the shadow price is zero. Shadow prices are zero for constraints that are nonbinding at the optimal solution.
 
 Finding all shadow prices:
 - $m$: number of constraints
@@ -1498,7 +1498,7 @@ Finding all shadow prices:
 
   So shadow prices are 4 and 0 respectively
 
-  The shadow price is the absolute increate on the objective value given an increate of 1 on the RHS values
+  The shadow price is the absolute increase on the objective value given an increase of 1 on the RHS values
 
   Instead of solving $m$ LPs (one for each constraint increase by 1), we can just solve the dual LP
 ]

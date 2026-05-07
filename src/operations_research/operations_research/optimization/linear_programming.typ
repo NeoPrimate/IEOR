@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
@@ -156,13 +156,13 @@ $
   sum_(i=1)^n c_i x_i lt.eq b_i
 $
 
-=== Feasable Solutions
+=== Feasible Solutions
 
-- Feasable solution: Satisfies all constants
+- Feasible solution: Satisfies all constants
 - Infeasable solution: violates at least one constraint
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -195,7 +195,7 @@ $
           style: (fill: rgb(200, 200, 255, 80), stroke: black),
         )
         plot.annotate({
-          content((15, 40), [Feasable])
+          content((15, 40), [Feasible])
         })
         plot.annotate({
           content((45, 40), [Infeasable])
@@ -206,9 +206,9 @@ $
 ]
 
 
-=== Feasable Region and Optimal Solution
+=== Feasible Region and Optimal Solution
 
-- Feasable Region: Set of feasable solutions
+- Feasible Region: Set of feasible solutions
 
 - Optimal Solution: Attains largest (maximization) or smallest (minimization) objective value
 
@@ -224,7 +224,7 @@ Let $g(dot) lt.eq b$ be an inequality constraint and $bar(x)$ be a solution. $g(
   $
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -256,7 +256,7 @@ Let $g(dot) lt.eq b$ be an inequality constraint and $bar(x)$ be a solution. $g(
             x1 => 100 - 2 * x1,
             x1 => 0,
             style: (fill: rgb(200, 200, 255, 80), stroke: black),
-            // label: [Feasable Region]
+            // label: [Feasible Region]
           )
 
           plot.add(
@@ -313,7 +313,7 @@ Let $g(dot) lt.eq b$ be an inequality constraint and $bar(x)$ be a solution. $g(
   }
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -709,7 +709,7 @@ Let $g(dot) lt.eq b$ be an inequality constraint and $bar(x)$ be a solution. $g(
 
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
       set-style(axes: (y: (stroke: 0pt)))
@@ -795,7 +795,7 @@ Let $g(dot) lt.eq b$ be an inequality constraint and $bar(x)$ be a solution. $g(
   $
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -945,7 +945,7 @@ Let $g(dot) lt.eq b$ be an inequality constraint and $bar(x)$ be a solution. $g(
 
   Scheduling employees
 
-  Each employee must work for 5 consecutive days and then take 2 consectutive rest days
+  Each employee must work for 5 consecutive days and then take 2 consecutive rest days
 
   Number of employees required for each day
 

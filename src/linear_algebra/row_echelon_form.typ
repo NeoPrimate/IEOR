@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
@@ -182,7 +182,7 @@ $
 
 *3. No Unique Solution (Infinite Number of Solutions)*
 
-Column 2 and 4 indicate free variables $x_2$ and $x_4$ becuase they have no pivot entries
+Column 2 and 4 indicate free variables $x_2$ and $x_4$ because they have no pivot entries
 
 $
   mat(

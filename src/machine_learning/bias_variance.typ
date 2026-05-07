@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == Bias Variance Tradoff
 
@@ -28,7 +28,7 @@ $
 - Compare that average curve to the true function $f(x)$.
 The difference is the bias
 
-Consistently accross datasets
+Consistently across datasets
 
 *Variance (random error)*
 
@@ -276,7 +276,7 @@ Inconsistent across different data
     ],
   )
 
-  *Average accross datasets*
+  *Average across datasets*
 
   - $x = -1$
 
@@ -407,10 +407,10 @@ Overfitting
     columns: range(6).map(_ => auto),
     align: horizon,
     inset: 1em,
-    [*Model\ Complexity*], [*Bias*], [*Variance*], [*Traning\ Error*], [*Test\ Error*], [*Situation*],
+    [*Model\ Complexity*], [*Bias*], [*Variance*], [*Training\ Error*], [*Test\ Error*], [*Situation*],
     [Too Simple], [High], [Low], [High], [High], [Underfitting],
     [Just Right], [Moderate], [Moderate], [Low], [Lowest], [Good\ Generalization],
-    [Too Complext], [Low], [High], [Very Low], [High], [Overfitting],
+    [Too Complex], [Low], [High], [Very Low], [High], [Overfitting],
   )
 ]
 

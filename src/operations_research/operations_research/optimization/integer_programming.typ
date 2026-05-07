@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == IP (Integer Programming)
 
@@ -824,7 +824,7 @@ Where:
   Once a job starts processing on a machine, it must continue without interruption until completion
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -891,12 +891,12 @@ Where:
     })
   ]
 
-  - Premptive problems
+  - Preemptive problems
 
   A job can be interrupted and resumed later, possibly on a different machine, without losing progress
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
       set-style(
@@ -989,7 +989,7 @@ Where:
 === Single Machine Serial Production
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -1115,7 +1115,7 @@ Where:
 - $M = sum_(j in J) p_j$
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -1253,7 +1253,7 @@ $
 === Multiple Parallel Machines
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -1454,7 +1454,7 @@ $
   C_i = sum_(j in J) p_j x_(i j)
 $
 
-- The makespan $w$ is the maximum completion time accross all machines:
+- The makespan $w$ is the maximum completion time across all machines:
 
 $
   w gt.eq sum_(j in J) p_j x_(i j) quad forall i in I
@@ -1508,7 +1508,7 @@ $
 === Flow Shop
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     import cetz-plot: *
 

@@ -1,0 +1,10 @@
+{
+  "lsp": {
+    "tinymist": {
+      "initialization_options": {
+        "rootPath": ".",
+        "typstExtraArgs": ["--features", "html", "--root", ".", "src/main.typ"]
+      }
+    }
+  }
+}

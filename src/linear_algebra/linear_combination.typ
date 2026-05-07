@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.vec(delim: "[")
 
@@ -78,7 +78,7 @@ Any vector in $RR^2$ can be represented by a linear combination with some combin
   $
 
   #align(center)[
-    #cetz.canvas(length: 10cm, {
+    #canvas(length: 10cm, {
       import cetz.draw: *
       import cetz-plot: *
       plot.plot(
@@ -230,7 +230,7 @@ Any vector in $RR^2$ can be represented by a linear combination with some combin
   $
 
   #align(center)[
-    #cetz.canvas(length: 10cm, {
+    #canvas(length: 10cm, {
       import cetz.draw: *
       import cetz-plot: *
       plot.plot(
@@ -500,7 +500,7 @@ $
   $
 
   #align(center)[
-    #cetz.canvas(length: 10cm, {
+    #canvas(length: 10cm, {
       import cetz.draw: *
       import cetz-plot: *
       plot.plot(

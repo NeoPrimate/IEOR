@@ -1,6 +1,6 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
-#cetz.canvas({
+#canvas({
   import cetz.draw: *
   import cetz-plot: *
 })
@@ -10,7 +10,7 @@
 #let f(x) = 0.1*(x*x*x)+0.5
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 

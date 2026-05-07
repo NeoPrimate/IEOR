@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.cases(gap: 1em)
 #show math.equation.where(block: false): set text(12pt)
@@ -104,7 +104,7 @@
   - $c_B$: vector of objective coefficients corresponding to the basic variables
   - $c_N$: vector of objective coefficients corresponding to the non-basic variables
 
-  For a single nonbasic variable ($x_3$), ot simplifies to:
+  For a single nonbasic variable ($x_3$), it simplifies to:
 
   $
     c_B^T B^(-1) A_j - c_j
@@ -258,7 +258,7 @@
 
   #linebreak()
 
-  We add a new contraint:
+  We add a new constraint:
 
   *Dual*
 
@@ -360,7 +360,7 @@
   This is an invalid simplex tableau (RHS column column contains a negative value)
   - This means $B = (x_1, x_2, s_3)$ is infeasible (as we already know)
 
-  *Linear Programmin Duality*
+  *Linear Programming Duality*
 
   We know a primal constraint is a dual variable
 
@@ -394,7 +394,7 @@
 
   #linebreak()
 
-  We add a new contraint:
+  We add a new constraint:
 
   #align(center)[
     #grid(

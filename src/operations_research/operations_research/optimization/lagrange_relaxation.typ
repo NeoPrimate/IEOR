@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.cases(gap: 1em)
 #show math.equation.where(block: false): set text(12pt)
@@ -53,7 +53,7 @@ For constrained single variate:
   $
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -195,7 +195,7 @@ For constrained single variate:
     #let opt_constrained = (10 / 17, 14 / 17)
     #let closest = (0.8, 0.4)
 
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -322,7 +322,7 @@ $
 
 $lambda_i$ is the Lagrangian multiplier
 
-For a minization problem
+For a minimization problem
 
 $
   z^* = colorMath(min, #red)_(x in RR^n) & quad {f(x) | g_i(x) lt.eq b_i quad forall i = 1, dots, m}
@@ -359,7 +359,7 @@ $
     #let normal_start = (dst / 2, dst / 2)
     #let normal_end = (normal_start.at(0) + 1, normal_start.at(1) + 1)
 
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 

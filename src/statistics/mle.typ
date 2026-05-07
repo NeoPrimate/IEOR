@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == Maximum Likelihood Estimation
 
@@ -35,7 +35,7 @@ Where:
     inset: 0em,
     gutter: 0.5em,
     [
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: *
         import cetz-plot: *
         set-style(
@@ -92,7 +92,7 @@ Where:
       })
     ],
     [
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: *
         import cetz-plot: *
         set-style(
@@ -139,7 +139,7 @@ Where:
       })
     ],
     [
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: *
         import cetz-plot: *
         set-style(

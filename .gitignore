@@ -1,13 +1,17 @@
-# Ignore all PDF files
+# Build outputs — everything in build/ is regeneratable, except the canonical PDF.
+build/*
+!build/main.pdf
+
+# Other PDFs
 *.pdf
 **/*.pdf
-
-# Allow only the specific PDF in the build directory
-!build/
 !build/main.pdf
 
 # Ignore Typst build caches
 .typst/
+
+# Rust target dir (left over from cargo install)
+target/
 
 # Ignore editor-specific files
 *.swp              # Vim/Neovim swap files

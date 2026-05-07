@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
@@ -311,7 +311,7 @@ $
 Where:
 - $V$: set of nodes ($|V| = n$)
 - $E subset.eq V times V$: set of edges
-- $h_v^(k) in RR^d$: feature (embedding) of node $v$ at iteation $k$
+- $h_v^(k) in RR^d$: feature (embedding) of node $v$ at iteration $k$
 - $cal(N)(v)$: set of neighbors of node $v$
 
 *Step 1*: Message computation

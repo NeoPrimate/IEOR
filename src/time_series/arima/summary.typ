@@ -1,3 +1,5 @@
+#import "/lib/imports.typ": *
+
 // =============================================================
 // ARIMA family — 11 models in operator (backshift) notation
 // Color scheme: AR / MA / differencing

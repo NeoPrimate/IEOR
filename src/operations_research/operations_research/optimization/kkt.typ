@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.cases(gap: 1em)
 #show math.equation.where(block: false): set text(12pt)
@@ -97,7 +97,7 @@ $
 
   #let x_opt = (0, 0)
 
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -177,7 +177,7 @@ $
 
   #let x_opt = (0, 1)
 
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -262,7 +262,7 @@ $
 
     #let x_opt = (0, 0)
 
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -447,7 +447,7 @@ $
 
     #let x_opt = (0, 0)
 
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -529,7 +529,7 @@ $
 
     #let x_opt = (0, 1)
 
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -715,7 +715,7 @@ $
 
     #let x_opt = (0, 1)
 
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -857,7 +857,7 @@ $
     #let z(q1, q2) = q1 * (a1 - b1 * q1) + q2 * (a2 - b2 * q2)
     #let c(x) = K - x
 
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -1117,7 +1117,7 @@ $
     #let normal_start = (dst / 2, dst / 2)
     #let normal_end = (normal_start.at(0) + 1, normal_start.at(1) + 1)
 
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -1338,7 +1338,7 @@ $
     #let normal_start = (dst / 2, dst / 2)
     #let normal_end = (normal_start.at(0) + 1, normal_start.at(1) + 1)
 
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -1504,7 +1504,7 @@ $
     x_1^2 + (-x_1)^2 = 2x_1^2 = 4 quad arrow.double quad x_1^2 = 2 quad arrow.double quad x_1 = plus.minus sqrt(2), quad x_2 = minus.plus sqrt(2)
   $
 
-  Two cadidate solutions $x_1$ and $x_2$:
+  Two candidate solutions $x_1$ and $x_2$:
 
   $
     (-sqrt(2), sqrt(2)) quad "and" quad (sqrt(2), -sqrt(2))
@@ -1581,7 +1581,7 @@ $
     #let normal_start = (dst / 2, dst / 2)
     #let normal_end = (normal_start.at(0) + 1, normal_start.at(1) + 1)
 
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -1753,7 +1753,7 @@ $
     (- 1 / (2 lambda_2))^2 + (1 / (2 lambda_2) - 2 + 2)^2 = 4 quad arrow.double quad lambda_2 = plus.minus 1 / (2 sqrt(2))
   $
 
-  Two cadidate solutions $x_1$ and $x_2$:
+  Two candidate solutions $x_1$ and $x_2$:
 
   $
     (-sqrt(2), sqrt(2) - 2) quad "and" quad (sqrt(2), -sqrt(2) - 2)
@@ -1824,7 +1824,7 @@ $
     #let normal_start = (dst / 2, dst / 2)
     #let normal_end = (normal_start.at(0) + 1, normal_start.at(1) + 1)
 
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -1950,7 +1950,7 @@ $
 
   Step 2. Stationarity Condition
 
-  With $lambda_1 = 0$ and $lambda_2 = 0$, the stationarity equations siplify to:
+  With $lambda_1 = 0$ and $lambda_2 = 0$, the stationarity equations simplify to:
 
   $
     cases(
@@ -1980,7 +1980,7 @@ $
 
   These are the only candidates for local maxima (and thus global maxima)
 
-  Necessay, but not sufficient for non-convex NLPs
+  Necessary, but not sufficient for non-convex NLPs
 
   #align(center)[
 
@@ -2007,7 +2007,7 @@ $
     #let normal_start = (dst / 2, dst / 2)
     #let normal_end = (normal_start.at(0) + 1, normal_start.at(1) + 1)
 
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -2233,7 +2233,7 @@ $w^* = z^*$ is the primal NLP is a "regular" *convex* program
     #let normal_start = (dst / 2, dst / 2)
     #let normal_end = (normal_start.at(0) + 1, normal_start.at(1) + 1)
 
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 

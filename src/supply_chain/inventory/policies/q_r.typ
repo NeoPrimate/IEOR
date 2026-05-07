@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #let cm(x) = text(fill: red, [$#x$])
 
@@ -27,7 +27,7 @@ Sawtooth shape, but with random consumption rate:
 - *Service level* (probability of no stockout per cycle) = $P(D_L lt.eq r)$.
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
 
     line((0, 0), (9, 0), name: "x_axis")

@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == Cartesian & Polar Coordinates
 
@@ -38,7 +38,7 @@ $(r, θ)$, where:
 #let points_colors = points.zip(colors)
 
 #let cartesian = align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -77,7 +77,7 @@ $(r, θ)$, where:
   ]
 
   #let polar = align(center)[
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: *
         import cetz-plot: *
 

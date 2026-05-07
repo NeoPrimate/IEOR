@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 // #set math.cases(gap: 1em)
 #show math.equation.where(block: false): set text(12pt)

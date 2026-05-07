@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 = Cheatsheet
 
@@ -89,7 +89,7 @@ $
 // #let x0_plus_delta = calc.sqrt(L_plus_epsilon)
 
 // #align(center)[
-//   #cetz.canvas(length: 6cm, {
+//   #canvas(length: 6cm, {
 //     cetz.plot.plot(
 //       x-tick-step: none,
 //       y-tick-step: none,
@@ -257,7 +257,7 @@ $
 
 #pagebreak()
 
-#set page(margin: 0.5cm)
+// #set page(margin: 0.5cm)
 
 #align(center)[
   $
@@ -515,7 +515,7 @@ $
     $
   ],
   [
-    Integration by Subsitution
+    Integration by Substitution
 
     $
       integral f(g(x)) g'(x) dif x \

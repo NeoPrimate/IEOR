@@ -1,3 +1,5 @@
+#import "/lib/imports.typ": *
+
 #table(
   columns: (auto, auto, auto, auto, auto, auto),
   gutter: 0em,

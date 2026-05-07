@@ -1,10 +1,10 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.vec(delim: "[")
 
 === Plane in $RR^3$
 
-Plane: Each point $(x, y, z)$ on the satifies the equation
+Plane: Each point $(x, y, z)$ on the satisfies the equation
 
 $
   a x + b y + c y = d
@@ -17,7 +17,7 @@ Normal Vector: vector that is perpendicular (orthogonal) to a plane, line, or cu
 If a plane is defined by the equation $a x + b y + c z = d$, the vector $accent(n, arrow) = chevron.l a, b, c chevron.r$ is a normal vector to the plane because it is perpendicular to any vector that lies in the plane
 
 #align(center)[
-  #cetz.canvas(length: 6cm, {
+  #canvas(length: 6cm, {
     import cetz.draw: *
     import cetz-plot: *
     plot.plot(
@@ -140,7 +140,7 @@ $
 ]
 
 #align(center)[
-  #cetz.canvas(length: 6cm, {
+  #canvas(length: 6cm, {
     import cetz.draw: *
     import cetz-plot: *
     plot.plot(

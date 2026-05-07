@@ -1,28 +1,57 @@
 <h1 align="center">Industrial Engineering & Operations Research</h1>
 
-## Linear Algebra
+A working book covering math, statistics, time series, operations research, supply chain, and ML — built from one set of `.typ` sources into both a PDF and a multi-page HTML book.
 
-## Calculus
+- **PDF** — single document → `build/main.pdf` (the only tracked build output)
+- **HTML book** — multi-page, searchable, mdBook-style → <https://neoprimate.github.io/IEOR/>
 
-## Statistics
+## Run locally — PDF
 
-## IEOR
+Live preview while editing: open any `.typ` file in Zed. Tinymist auto-recompiles `main.typ` and follows your cursor (configured in `.zed/settings.json`).
 
-### Optimization
+One-shot build:
 
-## Algorithms
+```sh
+just build-pdf       # → build/main.pdf
+just preview file=src/linear_algebra/vectors.typ   # → build/dev/preview.pdf  (single leaf)
+```
 
-## Machine Learning
+## Run locally — HTML book
 
-## Organizational Theory
+```sh
+just build-html      # → build/html/  (also rebuilds build/main.pdf)
+just serve           # → http://localhost:8000
+```
 
-## White Paper
+Requires Typst HEAD (for `bundle` export) and Pagefind (for search). One-time setup on macOS arm64:
 
----
+```sh
+cargo install --git https://github.com/typst/typst --locked typst-cli
+curl -sL https://github.com/Pagefind/pagefind/releases/download/v1.5.2/pagefind-v1.5.2-aarch64-apple-darwin.tar.gz \
+  | tar -xz -C ~/.local/bin/
+```
 
-Push to GitHub:
+## Push to GitHub
+
+```sh
+git push
+```
+
+GitHub Actions rebuilds **both** artifacts on every push to `main`:
+
+- **HTML book** — deployed to <https://neoprimate.github.io/IEOR/>
+- **PDF** — served inline at <https://neoprimate.github.io/IEOR/main.pdf> (full document, no GitHub paging) and attached to the [latest release](https://github.com/NeoPrimate/IEOR/releases/latest)
+
+## Repository layout
 
 ```
-./script.sh
-
+book.toml          # book structure (single source of truth, drives PDF + HTML)
+main.typ           # PDF entry
+book.typ           # HTML book entry (bundle)
+src/               # content (mirrors book.toml's section tree)
+lib/               # typst plumbing (imports, formatting, utils)
+web/               # HTML build (setup.typ, style.css)
+code/              # Python — example code referenced by the book
+build/             # outputs — only main.pdf is tracked, rest is regenerated
+.github/workflows/ # CI: builds + deploys book and PDF
 ```

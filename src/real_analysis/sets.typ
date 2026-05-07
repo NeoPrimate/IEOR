@@ -1,3 +1,5 @@
+#import "/lib/imports.typ": *
+
 #set math.equation(numbering: "(1)")
 #show math.equation: it => {
   if it.block and not it.has("label") and it.numbering != none [

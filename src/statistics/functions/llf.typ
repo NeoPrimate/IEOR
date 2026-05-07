@@ -1,3 +1,3 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == LLF (Log-Likelihood Function)

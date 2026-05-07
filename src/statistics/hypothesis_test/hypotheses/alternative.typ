@@ -1,3 +1,5 @@
+#import "/lib/imports.typ": *
+
 === Alternative ($H_1$ or $H_a$)
 
 Presence of an effect or a difference

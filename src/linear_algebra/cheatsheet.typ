@@ -1,14 +1,9 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
 
-#set page(margin: (
-  right: 0.5cm,
-  left: 0.5cm,
-  top: 0.5cm,
-  bottom: 0.5cm,
-))
+// #set page(margin: 0.5cm) — paged-only, can't apply inside bundle's document() container
 
 #align(center, table(
   columns: (20%, auto, auto),

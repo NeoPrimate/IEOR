@@ -1,0 +1,90 @@
+name: Build and deploy book
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write    # for release upload
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Build Typst from main to get the bundle export feature.
+      # Cached on first build; subsequent builds reuse the binary.
+      - name: Cache typst-cli (HEAD)
+        id: cache-typst
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/bin/typst
+          key: typst-head-${{ runner.os }}
+
+      - name: Install Rust toolchain
+        if: steps.cache-typst.outputs.cache-hit != 'true'
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install typst-cli (HEAD)
+        if: steps.cache-typst.outputs.cache-hit != 'true'
+        run: cargo install --git https://github.com/typst/typst --locked typst-cli
+
+      - name: Install pagefind
+        run: |
+          curl -sL https://github.com/Pagefind/pagefind/releases/download/v1.5.2/pagefind-v1.5.2-x86_64-unknown-linux-musl.tar.gz \
+            | sudo tar -xz -C /usr/local/bin/
+          sudo chmod +x /usr/local/bin/pagefind
+
+      - name: Build PDF
+        run: |
+          mkdir -p build
+          ~/.cargo/bin/typst compile --features html --root . main.typ build/main.pdf
+
+      - name: Build HTML book
+        run: |
+          mkdir -p build/html
+          ~/.cargo/bin/typst compile --features bundle,html --format bundle --root . book.typ build/html/
+          pagefind --site build/html
+
+      - name: Bundle PDF into Pages output
+        run: cp build/main.pdf build/html/main.pdf
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/html
+
+      - name: Upload PDF as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: main-pdf
+          path: build/main.pdf
+
+      - name: Publish PDF to "latest" release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Latest build
+          body: Latest build of `main.pdf`. Auto-updated on every push to `main`.
+          files: build/main.pdf
+          prerelease: false
+          make_latest: true
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

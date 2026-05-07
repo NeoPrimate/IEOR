@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #show math.equation: set text(5pt)
 #set text(size: 7pt)
@@ -40,7 +40,7 @@
       union.big_(i=1)^n A_i    
     $
   ], [
-    #cetz.canvas(
+    #canvas(
       length: 0.5cm,
       {
         import cetz.draw: * 
@@ -68,7 +68,7 @@
       inter.big_(i=1)^n A_i
     $
   ], [
-    #cetz.canvas(
+    #canvas(
       length: 0.5cm,
       {
         import cetz.draw: * 
@@ -92,7 +92,7 @@
   ],
   [Empty set], [$P(emptyset) = 0$], [],
   [Disjoint\ (Mutually Exclusive)], [$A inter B = emptyset$], [
-    #cetz.canvas(
+    #canvas(
       length: 0.5cm,
       {
         import cetz.draw: * 
@@ -111,7 +111,7 @@
   [], [], [],
   [Compliment], [$A^c$], [
     #align(center)[
-      #cetz.canvas(
+      #canvas(
         length: 0.5cm,
         {
           import cetz.draw: * 
@@ -167,7 +167,7 @@
       &= S
     $
   ], [],
-    [Complement Law\ (Disjointness)],[
+    [Complement Law\ (Disjointedness)],[
     $
       (S inter S^c) 
       &= emptyset

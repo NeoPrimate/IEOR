@@ -1,3 +1,5 @@
+#import "/lib/imports.typ": *
+
 == Balance Sheet (Statement of Financial Position)
 
 *Assets*, *liabilities* and *equity* at a single time point
@@ -36,7 +38,7 @@
       [#h(4em) Account Payable], [X],
       [#h(4em) Tax Payable], [X],
       [#h(4em) Accrued Expenses], [X],
-      [#h(4em) Deffered Revenue], [X],
+      [#h(4em) Deferred Revenue], [X],
       [#h(2em) Total Current Liabilities], [X],
       [#h(2em) *Non-Current Liabilities*], [],
       [#h(4em) Long Term Loans], [X],

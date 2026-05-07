@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == Linear Regression
 
@@ -28,7 +28,7 @@ $
 #let noisy_data = xs.zip(noisy_ys)
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -191,7 +191,7 @@ Since each $gradient^2 f_i$ is positive semidefinite, and sums of convex functio
 
 ]
 
-=== Muliple Linear Regression
+=== Multiple Linear Regression
 
 ==== Data and Model
 

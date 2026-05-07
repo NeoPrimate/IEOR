@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == Independence
 
@@ -52,7 +52,7 @@ $
 
   #align(center)[
     #scale(50%)[
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: * 
 
         circle((0,1), name: "A", radius: 3)

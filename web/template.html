@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}} — {{site_title}}</title>
+  <link rel="stylesheet" href="{{css_href}}">
+  <link rel="stylesheet" href="{{root_href}}pagefind/pagefind-ui.css">
+  <script src="{{root_href}}pagefind/pagefind-ui.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.body.classList.toggle('nav-open')">☰</button>
+
+  <aside class="sidebar" aria-label="Site navigation">
+    <header class="site-title">
+      <a href="{{root_href}}index.html">{{site_title}}</a>
+    </header>
+    <div id="search"></div>
+    <nav>
+      {{sidebar}}
+    </nav>
+  </aside>
+
+  <main id="main">
+    <article data-pagefind-body>
+      {{content}}
+    </article>
+    <footer class="page-nav">
+      {{prev_link}}
+      {{next_link}}
+    </footer>
+  </main>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      if (typeof PagefindUI !== 'undefined') {
+        new PagefindUI({ element: '#search', showSubResults: true });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #show sym.emptyset: set text(font: "Fira Sans")
 
@@ -39,7 +39,7 @@ $
 )
 
 #align(center)[
-    #cetz.canvas({
+    #canvas({
     import cetz.draw: * 
     
     rect(

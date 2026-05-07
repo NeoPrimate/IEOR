@@ -1,3 +1,5 @@
+#import "/lib/imports.typ": *
+
 == Functional Theory of Stratification
 
 // @davis1945

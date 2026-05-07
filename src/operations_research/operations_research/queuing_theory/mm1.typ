@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == M/M/1
 
@@ -34,7 +34,7 @@
 #let exp_probs = t_vals.map(t => exponential_pdf(λ, t))
 #let max_exp = calc.max(..exp_probs)
 
-#let pois_dist = cetz.canvas({
+#let pois_dist = canvas({
   import cetz.draw: *
   import cetz-plot: *
 
@@ -75,7 +75,7 @@
   )
 })
 
-#let exp_dist = cetz.canvas({
+#let exp_dist = canvas({
   import cetz.draw: *
   import cetz-plot: *
 
@@ -235,7 +235,7 @@ $
   W_s = 1 / mu
 $
 
-11. Idel Time ($1 - rho$)
+11. Idle Time ($1 - rho$)
 
 Fraction of time that the server is idle (i.e., not serving any customers)
 
@@ -346,7 +346,7 @@ $
 
   On average, a customer spends 1.67 minutes being served by the teller
 
-  11. Idel Time ($1 - rho$)
+  11. Idle Time ($1 - rho$)
 
   $
     "Idle Time" = 1 - rho = 1 - 0.67 = 0.33

@@ -1,3 +1,5 @@
+#import "/lib/imports.typ": *
+
 == Sequences
 
 $
@@ -69,7 +71,7 @@ $
   
 When does a sequence converge?
 
-1. Increasing sequnce
+1. Increasing sequence
 
 $
   a_i lt.eq a_(i + 1) quad forall i

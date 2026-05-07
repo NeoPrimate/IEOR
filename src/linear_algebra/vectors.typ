@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.vec(delim: "[")
 
@@ -18,7 +18,7 @@ $
   #linebreak()
 
   #align(center)[
-    #cetz.canvas(length: 5cm, {
+    #canvas(length: 5cm, {
       import cetz.draw: *
       import cetz-plot: *
 
@@ -92,7 +92,7 @@ $
   $
 
   #align(center)[
-    #cetz.canvas(length: 5cm, {
+    #canvas(length: 5cm, {
       import cetz.draw: *
       import cetz-plot: *
 
@@ -129,7 +129,7 @@ $
   ]
 
   #align(center)[
-    #cetz.canvas(length: 5cm, {
+    #canvas(length: 5cm, {
       import cetz.draw: *
       import cetz-plot: *
 
@@ -185,7 +185,7 @@ $
 
   #align(center)[
 
-    #cetz.canvas(length: 6cm, {
+    #canvas(length: 6cm, {
       import cetz.draw: *
       import cetz-plot: *
       plot.plot(
@@ -247,7 +247,7 @@ $
   $
 
   #align(center)[
-    #cetz.canvas(length: 5cm, {
+    #canvas(length: 5cm, {
       import cetz.draw: *
       import cetz-plot: *
       plot.plot(
@@ -288,7 +288,7 @@ $
   $
 
   #align(center)[
-    #cetz.canvas(length: 5cm, {
+    #canvas(length: 5cm, {
       import cetz.draw: *
       import cetz-plot: *
       plot.plot(
@@ -369,7 +369,7 @@ $
   $
 
   #align(center)[
-    #cetz.canvas(length: 5cm, {
+    #canvas(length: 5cm, {
       import cetz.draw: *
       import cetz-plot: *
       plot.plot(
@@ -459,7 +459,7 @@ $
   })
 
   #align(center)[
-    #cetz.canvas(length: 10cm, {
+    #canvas(length: 10cm, {
       import cetz.draw: *
       import cetz-plot: *
       plot.plot(
@@ -523,7 +523,7 @@ $
   })
 
   #align(center)[
-    #cetz.canvas(length: 10cm, {
+    #canvas(length: 10cm, {
       import cetz.draw: *
       import cetz-plot: *
       plot.plot(
@@ -666,7 +666,7 @@ $
 
 
   #align(center)[
-    #cetz.canvas(length: 10cm, {
+    #canvas(length: 10cm, {
       import cetz.draw: *
       import cetz-plot: *
       plot.plot(

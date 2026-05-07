@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == Extreme Value Theorem
 
@@ -15,7 +15,7 @@ $
   #let f(x) = -x * x + c
 
   #align(center)[
-    #cetz.canvas(length: 6cm, {
+    #canvas(length: 6cm, {
       import cetz.draw: *
       import cetz-plot: *
 
@@ -55,7 +55,7 @@ $
   #let f(x) = 1 / x
 
   #align(center)[
-    #cetz.canvas(length: 6cm, {
+    #canvas(length: 6cm, {
       import cetz.draw: *
       import cetz-plot: *
 

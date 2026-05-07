@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 === Critical points
 
@@ -16,7 +16,7 @@ A critical point of a function $f(x)$ is a point in the domain where either:
 
 
   #align(center)[
-    #cetz.canvas(length: 6cm, {
+    #canvas(length: 6cm, {
       import cetz.draw: *
       import cetz-plot: *
 

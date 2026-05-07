@@ -1,3 +1,5 @@
+#import "/lib/imports.typ": *
+
 == Integral
 
 Measures the accumulation of quantities

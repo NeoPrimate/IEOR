@@ -1,3 +1,5 @@
+#import "/lib/imports.typ": *
+
 == Inventory Turns
 
 *Inventory Turns*: How many times inventory is turned over per year
@@ -140,7 +142,7 @@ Categorize Products
   columns: 4,
   align: center + horizon,
   inset: 1em,
-  table.cell(colspan: 2, rowspan: 2, []), table.cell(colspan: 2, [Volumne]),
+  table.cell(colspan: 2, rowspan: 2, []), table.cell(colspan: 2, [Volume]),
   [Low], [High],
   table.cell(rowspan: 2, [Price]),
   [Expensive], [Pull], [?],
@@ -151,7 +153,7 @@ Data Collection
 - Inventory Holding Cost
 - Shipping Cost
 - Picking / Packing Cost
-- Sales Volumne (by product)
+- Sales Volume (by product)
 - Inventory Levels (by product)
 
 Calculate:

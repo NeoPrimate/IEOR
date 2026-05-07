@@ -1,6 +1,6 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
-== Netwrok Flow Optimization
+== Network Flow Optimization
 
 Types of Problems:
 

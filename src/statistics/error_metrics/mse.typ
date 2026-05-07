@@ -1,3 +1,5 @@
+#import "/lib/imports.typ": *
+
 == MSE (Mean Squared Error)
 
 Average of squared differences between predicted ($hat(y)_i$) and actual ($y_i$) values

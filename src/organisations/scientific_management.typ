@@ -1,3 +1,5 @@
+#import "/lib/imports.typ": *
+
 == Scientific Management
 
 // @taylor1911

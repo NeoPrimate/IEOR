@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.vec(delim: "[")
 
@@ -14,7 +14,7 @@ Say $accent(u, arrow), accent(v, arrow) in RR^n$
   #let (bx, by) = (6, 1)
   #let (cx, cy) = (ax - bx, ay - by)
 
-  #cetz.canvas(length: 6cm, {
+  #canvas(length: 6cm, {
     import cetz.draw: *
     import cetz-plot: *
 
@@ -62,7 +62,7 @@ Say $accent(u, arrow), accent(v, arrow) in RR^n$
   #linebreak()
   #linebreak()
   
-  #cetz.canvas(length: 6cm, {
+  #canvas(length: 6cm, {
     import cetz.draw: *
     import cetz-plot: *
     plot.plot(
@@ -152,7 +152,7 @@ So, if $accent(u, arrow)$ is a scalar multiple of $accent(v, arrow)$ ($accent(u,
   #let (ax, ay) = (3, 3)
   #let (bx, by) = (5, 5)
 
-  #cetz.canvas(length: 5cm, {
+  #canvas(length: 5cm, {
     import cetz.draw: *
     import cetz-plot: *
     plot.plot(
@@ -195,7 +195,7 @@ And, if $accent(u, arrow)$ is a scalar multiple of $accent(v, arrow)$ ($accent(u
   #let (ax, ay) = (5, 5)
   #let (bx, by) = (-6, -6)
 
-  #cetz.canvas(length: 5cm, {
+  #canvas(length: 5cm, {
     import cetz.draw: *
     import cetz-plot: *
     plot.plot(
@@ -248,7 +248,7 @@ If $accent(u, arrow) dot accent(v, arrow) = 0$ then $accent(u, arrow)$ and $acce
   #let (ax, ay) = (0, 5)
   #let (bx, by) = (6, 0)
 
-  #cetz.canvas(length: 5cm, {
+  #canvas(length: 5cm, {
     import cetz.draw: *
     import cetz-plot: *
     plot.plot(

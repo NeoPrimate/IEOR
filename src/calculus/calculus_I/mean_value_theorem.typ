@@ -1,8 +1,8 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == Mean Value Theorem
 
-Let $f: [a, b] arrow RR$ be a function tha satifies the following conditions:
+Let $f: [a, b] arrow RR$ be a function that satisfies the following conditions:
 
 1. $f$ is *continuous* on the closed interval $[a, b]$
 

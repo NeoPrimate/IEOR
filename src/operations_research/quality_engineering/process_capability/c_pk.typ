@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == $C_(p k)$ (Process Capability Index with Centering)
 
@@ -79,7 +79,7 @@ If $C_(p k) lt C_p$, process is not centered
   #let cpk_process2 = calc_cpk(process2)
 
   #align(center)[
-    #cetz.canvas(
+    #canvas(
       length: 72pt,
       {
         import cetz.draw: *

@@ -1,3 +1,0 @@
-= Integration
-
-#include("rules.typ")

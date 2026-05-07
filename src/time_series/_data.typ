@@ -1,3 +1,5 @@
+#import "/lib/imports.typ": *
+
 // Shared dataset for ARIMA and ETS worked examples.
 //
 // Values are integers by construction so all arithmetic is verifiable by hand.

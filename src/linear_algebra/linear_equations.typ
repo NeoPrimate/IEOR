@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
@@ -77,7 +77,7 @@ Whether the equations in the system provide unique and non-redundant information
   Unique Solution (Consistent and Independent):
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -116,7 +116,7 @@ Whether the equations in the system provide unique and non-redundant information
   No Solution (Inconsistent):
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -156,7 +156,7 @@ Whether the equations in the system provide unique and non-redundant information
 
   Infinitely Many Solutions (Consistent and Dependent):
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -202,7 +202,7 @@ Whether the equations in the system provide unique and non-redundant information
 
 
 
-2. Matrix Respresentation
+2. Matrix Representation
 
 System of Equations
 
@@ -213,7 +213,7 @@ $
   a_(m 1) x_1 + a_(m 2) x_2 + dots + a_(m n) x_n = b_m \
 $
 
-Matrix Respresentation
+Matrix Representation
 
 Coefficient vector ($Alpha$)
 

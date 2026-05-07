@@ -1,3 +1,5 @@
+#import "/lib/imports.typ": *
+
 == Countable and Uncoutable Sets
 
 1. Countable (Discrete)

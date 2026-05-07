@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == Derivative Tests
 
@@ -71,7 +71,7 @@ If $f'(x)$ changes sign around a critical point $c$, we can determine if $f(c)$ 
     #grid(
       columns: (1fr, 1fr),
       [
-        #cetz.canvas({
+        #canvas({
           import cetz.draw: *
           import cetz-plot: *
 
@@ -114,7 +114,7 @@ If $f'(x)$ changes sign around a critical point $c$, we can determine if $f(c)$ 
         })
       ],
       [
-        #cetz.canvas({
+        #canvas({
           import cetz.draw: *
           import cetz-plot: *
 
@@ -204,7 +204,7 @@ If $f'(x)$ changes sign around a critical point $c$, we can determine if $f(c)$ 
     #grid(
       columns: (1fr, 1fr),
       [
-        #cetz.canvas({
+        #canvas({
           import cetz.draw: *
           import cetz-plot: *
 
@@ -246,7 +246,7 @@ If $f'(x)$ changes sign around a critical point $c$, we can determine if $f(c)$ 
         })
       ],
       [
-        #cetz.canvas({
+        #canvas({
           import cetz.draw: *
           import cetz-plot: *
 
@@ -336,7 +336,7 @@ If $f'(x)$ changes sign around a critical point $c$, we can determine if $f(c)$ 
     #grid(
       columns: (1fr, 1fr),
       [
-        #cetz.canvas({
+        #canvas({
           import cetz.draw: *
           import cetz-plot: *
 
@@ -379,7 +379,7 @@ If $f'(x)$ changes sign around a critical point $c$, we can determine if $f(c)$ 
         })
       ],
       [
-        #cetz.canvas({
+        #canvas({
           import cetz.draw: *
           import cetz-plot: *
 
@@ -475,7 +475,7 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
   #grid(
     columns: (1fr, 1fr, 1fr),
     [
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -511,7 +511,7 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
       })
     ],
     [
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -547,7 +547,7 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
       })
     ],
     [
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -620,7 +620,7 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
   #grid(
     columns: (1fr, 1fr, 1fr),
     [
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -656,7 +656,7 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
       })
     ],
     [
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -692,7 +692,7 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
       })
     ],
     [
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -766,7 +766,7 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
   #grid(
     columns: (1fr, 1fr, 1fr),
     [
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -802,7 +802,7 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
       })
     ],
     [
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -838,7 +838,7 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
       })
     ],
     [
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: *
         import cetz-plot: *
 

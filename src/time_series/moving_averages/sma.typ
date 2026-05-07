@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 == SMA (Simple Moving Average)
 
@@ -31,7 +31,7 @@ This is why SMA is poor for *trending* series — it's structurally late. Use ET
 The SMA filters the high-frequency noise and produces a smoother curve, but with a horizontal lag relative to the data.
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     import cetz-plot: *
 

@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.mat(gap: 0.75em)
 #set math.vec(gap: 1em)

@@ -1,4 +1,5 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
+#show: formatting
 
 // `cm` highlights the token that *changed* between the previous derivation line and this one.
 // `rm` highlights a token that *vanishes* (zeroed out, dropped, or cancelled).
@@ -108,7 +109,7 @@ $ "TRC"(Q) = S (D / Q) + h (Q / 2) $
 
 #figure(
   caption: [TRC and its two components, as functions of $Q$. The minimum is where the two component curves cross.],
-  cetz.canvas({
+  canvas({
     import cetz-plot: *
 
     plot.plot(
@@ -318,7 +319,7 @@ $ "TRC"(Q) / "TRC"^* = 1 / 2 (Q / Q^* + Q^* / Q) $
 
 #figure(
   caption: [Cost penalty curve: how much extra you pay when $Q != Q^*$.],
-  cetz.canvas({
+  canvas({
     import cetz-plot: *
 
     plot.plot(
@@ -366,7 +367,7 @@ Variables:
 
 #figure(
   caption: [Power-of-two safe zone: $T \/ T^* in [0.707, 1.414]$ guarantees ≤ 6% cost penalty.],
-  cetz.canvas({
+  canvas({
     import cetz-plot: *
 
     plot.plot(

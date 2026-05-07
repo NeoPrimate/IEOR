@@ -1,11 +1,6 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
-#set page(margin: (
-  right: 0.5cm,
-  left: 0.5cm,
-  top: 0.5cm,
-  bottom: 0.5cm,
-))
+// #set page(margin: 0.5cm) — paged-only, can't apply inside bundle's document() container
 
 = Linear Programming
 

@@ -1,4 +1,5 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
+#show: formatting
 
 #title_page("White Paper")
 
@@ -46,7 +47,7 @@ Objectives:
 	3.	Continuous updates:
 	•	Use streaming updates or sliding windows.
 
-so the model should account for *spacial* correlations in addition to *temporal* ones (seasonality and trend and product correlations)
+so the model should account for *spatial* correlations in addition to *temporal* ones (seasonality and trend and product correlations)
 
 Scales 
 There can be a seasonal demand peak at the households, neighborhoods, ..., national (levels) scales
@@ -141,7 +142,7 @@ Nodes
   #table(
     columns: range(5).map(_ => auto),
     inset: 1em,
-    [*Mode of\ Transport*], [*Type*], [*Attributes*], [*Desciption*], [*Code*],
+    [*Mode of\ Transport*], [*Type*], [*Attributes*], [*Description*], [*Code*],
     [Road], [Highway\ National\ Local], [], [], [],
     [Rail], [Freight\ Regional], [], [], [],
     [Air], [Flight Path\ Cargo Route], [], [], [],
@@ -199,7 +200,7 @@ Data
       - https://geoservices.ign.fr/contoursiris
       - https://geoservices.ign.fr/irisge
     ],
-    [Adminitrative\ Units], 
+    [Administrative\ Units], 
     [
       - https://geodatafr.github.io/IGN/ADMIN_EXPRESS_Administrative_boundaries/
     ],
@@ -210,7 +211,7 @@ Data
     [Rail], 
     [
       - https://www.data.gouv.fr/datasets/fichier-de-formes-des-lignes-du-reseau-ferre-national
-      - https://ressources.data.sncf.com/explore/dataset/formes-des-lignes-du-rfn/information/
+      - https://resources.data.sncf.com/explore/dataset/formes-des-lignes-du-rfn/information/
     ],
     [Train Stations],
     [

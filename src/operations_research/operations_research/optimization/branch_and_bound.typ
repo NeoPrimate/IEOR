@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
@@ -9,7 +9,7 @@
 Integer Program
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -221,7 +221,7 @@ $
 So, linear relaxation provides a lower bound on the optimal value of the integer program
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -366,7 +366,7 @@ $
 - So, linear relaxation provides an upper bound on the optimal value of the integer program
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -553,7 +553,7 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
     z = 12.75
   $
 
-  #let n0 = cetz.canvas({
+  #let n0 = canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -618,7 +618,7 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
     )
   })
 
-  #let n10 = cetz.canvas({
+  #let n10 = canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -689,7 +689,7 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
     )
   })
 
-  #let n11 = cetz.canvas({
+  #let n11 = canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -760,7 +760,7 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
     )
   })
 
-  #let n20 = cetz.canvas({
+  #let n20 = canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -840,7 +840,7 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
     )
   })
 
-  #let n21 = cetz.canvas({
+  #let n21 = canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -890,7 +890,7 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
     )
   })
 
-  #let n30 = cetz.canvas({
+  #let n30 = canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -977,7 +977,7 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
     )
   })
 
-  #let n31 = cetz.canvas({
+  #let n31 = canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -1274,7 +1274,7 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
 //   - $x^1 = (15/4, 9/4)$ is LR-optimal
 
 //   #align(center)[
-//   #cetz.canvas({
+//   #canvas({
 //     import cetz.draw: *
 //     import cetz-plot: *
 

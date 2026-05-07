@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #show math.equation.where(block: false): set text(12pt)
 #set math.vec(delim: "[")
@@ -15,7 +15,7 @@ Difficulties of NLP
 
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -87,7 +87,7 @@ Difficulties of NLP
 - An optimal solution may not be an extreme point optimal solution
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -186,7 +186,7 @@ for all $lambda in [0, 1]$ and $x_1, x_2 in F$
   columns: (auto, auto),
   align: horizon + center,
   [
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -243,7 +243,7 @@ for all $lambda in [0, 1]$ and $x_1, x_2 in F$
     })
   ],
   [
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -309,7 +309,7 @@ for all $lambda in [0, 1]$ and $x_1, x_2 in F$
   column-gutter: 1em,
   [
 
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -417,7 +417,7 @@ for all $lambda in [0, 1]$ and $x_1, x_2 in F$
     })
   ],
   [
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -552,7 +552,7 @@ $
 Which violates the fact that $f(dot)$ is convex. Therefore, by contradiction, the local minimum $x'$ must be a global minimum.
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -671,7 +671,7 @@ Minimize a concave function
 Extreme point: In convex analysis, an extreme point of a convex set $C$ is a point in $C$ that cannot be expressed as a strict convex combination of two other distinct points in $C$
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -721,7 +721,7 @@ For any LP we have both
   columns: (auto, auto, auto),
   align: center,
   [
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -782,7 +782,7 @@ For any LP we have both
     })
   ],
   [
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -842,7 +842,7 @@ For any LP we have both
     })
   ],
   [
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -987,9 +987,9 @@ If each constraint independently given a convex feasible region, then their inte
 #line(length: 100%)
 
 For a twice differentiable function $f: RR arrow RR$ over an interval $(a, b)$:
-- $f$ is convex over $(a, b)$ iif $f''(x) gt 0$ for all $x in (a, b)$
-- $macron(x)$ is a local minimum over $(a, b)$, iif $f'(x) = 0$
-- If $f$ is concave over $(a, b)$, $x^*$ is a global minimum over $(a, b)$ iif $f'(macron(x)) = 0$
+- $f$ is convex over $(a, b)$ iff $f''(x) gt 0$ for all $x in (a, b)$
+- $macron(x)$ is a local minimum over $(a, b)$, iff $f'(x) = 0$
+- If $f$ is concave over $(a, b)$, $x^*$ is a global minimum over $(a, b)$ iff $f'(macron(x)) = 0$
 
 First order condition (FOC) $f'(x) = 0$
 - FOC is necessary for local optimality
@@ -1051,7 +1051,7 @@ First order condition (FOC) $f'(x) = 0$
   $
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -1147,7 +1147,7 @@ First order condition (FOC) $f'(x) = 0$
 
   Therefore, $T C(q)$ is convex
 
-  Let $q^*$ be the quantity satifying the FOC:
+  Let $q^*$ be the quantity satisfying the FOC:
 
   $
     T C' (q^* ) = - (K D) / (q^* )^2 + h/2 = 0
@@ -1167,7 +1167,7 @@ An optimal solution either:
 - Satisfies the FOC
 - Lies on the boundary of the feasible region
 
-If a NLP is a CP, a feasible point satifying the FOC is optimal (any local minimum is a global minimum)
+If a NLP is a CP, a feasible point satisfying the FOC is optimal (any local minimum is a global minimum)
 
 For a function $f: RR^n arrow RR$, its $i$th partial derivative is $(partial f(x)) / (partial x_i)$
 
@@ -1181,7 +1181,7 @@ for all $i = 1, dots, n$ and $j = 1, dots, n$.
 
 Single variate case:
 
-- For $f: RR arrow RR$, $f$ is convex iif $f''(x) gt.eq 0$ for all $x$
+- For $f: RR arrow RR$, $f$ is convex iff $f''(x) gt.eq 0$ for all $x$
 
 Multivariate case:
 
@@ -1239,7 +1239,7 @@ $
   [
     - $f$ is convex in $[a, b]$ if $f''(x) gt.eq 0$ for all $x in [a, b]$
     - $macron(x)$ is an interior local minimum if $f'(macron(x)) = 0$
-    - If $f$ is convex in $[a, b]$, $x^*$ is a global minimum iif $f'(x^*) = 0$
+    - If $f$ is convex in $[a, b]$, $x^*$ is a global minimum iff $f'(x^*) = 0$
   ],
 
   [
@@ -1251,7 +1251,7 @@ $
   [
     - $f$ is convex in a convex set $F subset.eq RR^n$ if $gradient^2 f(x)$ is positive semi-definite for all $x in F$
     - $macron(x)$ is an interior local minimum if $gradient f(macron(x)) = bold(0)$
-    - If $f$ is convex in a convex set $F$, $x^*$ is a global minimum iif $gradient f(x^*) = 0$
+    - If $f$ is convex in a convex set $F$, $x^*$ is a global minimum iff $gradient f(x^*) = 0$
   ],
 )
 
@@ -1374,7 +1374,7 @@ The function is convex over that region
   - 2nd leading principal minor $6x_1 - 16 gt.eq 0$ ($x_1 gt.eq 8/3$)
   - $1 gt.eq 0$
 
-  Therefore, the function is convex iif $x_1 gt.eq 8/3$
+  Therefore, the function is convex iff $x_1 gt.eq 8/3$
 ]
 
 #example[
@@ -1429,7 +1429,7 @@ The function is convex over that region
 
   4. Solve problem
 
-  $gradient f(p) = 0$ rquires:
+  $gradient f(p) = 0$ requires:
   - $-a + 2p_1 - 2b p_2 = 0$
   - $-a + 2p_2 - 2b p_1 = 0$
 

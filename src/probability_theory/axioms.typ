@@ -1,4 +1,4 @@
-#import "/src/imports.typ": *
+#import "/lib/imports.typ": *
 
 #show sym.emptyset: set text(font: "Fira Sans")
 
@@ -11,7 +11,7 @@
 - After the experiment is performed, either the observed outcome lies in $A$ (event $A$ occurs) or it does not
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
 
     rect((0, 0), (5, 3), name: "sample_space")
@@ -67,7 +67,7 @@ $
       $A inter B$
     ],
     [
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: *
         // grid((0,0), (3,2), help-lines: true)
 
@@ -94,7 +94,7 @@ $
       $A union B$
     ],
     [
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: *
         // grid((0,0), (3,2), help-lines: true)
 
@@ -121,7 +121,7 @@ $
       $A inter B = emptyset$
     ],
     [
-      #cetz.canvas({
+      #canvas({
         import cetz.draw: *
         // grid((0,0), (3,2), help-lines: true)
 
@@ -137,7 +137,7 @@ $
     ],
     [
       #align(center)[
-        #cetz.canvas({
+        #canvas({
           import cetz.draw: *
 
           // grid((0,0), (5,3), help-lines: true)
@@ -213,7 +213,7 @@ then:
 
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
 
     // grid((0,0), (5,3), help-lines: true)
@@ -251,7 +251,7 @@ $
 
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
 
     // grid((0,0), (5,3), help-lines: true)
@@ -288,7 +288,7 @@ $
 ]
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
 
     rect(
@@ -318,7 +318,7 @@ $
 === $P(A union B) = P(A) + P(B) = P(A inter B)$
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     // grid((0,0), (3,2), help-lines: true)
 
@@ -399,7 +399,7 @@ $
 $
 
 #align(center)[
-  #cetz.canvas({
+  #canvas({
     import cetz.draw: *
     // grid((0,0), (3,2), help-lines: true)
 
@@ -472,7 +472,7 @@ $
 - Identify an event of interest
 - Calculate
 
-Discrete but inifinite sample space
+Discrete but infinite sample space
 
 #example[
   Number of coin tosses until we observe a heads toss
@@ -487,7 +487,7 @@ Discrete but inifinite sample space
 
 
   #align(center)[
-    #cetz.canvas({
+    #canvas({
       import cetz.draw: *
       import cetz-plot: *
 
