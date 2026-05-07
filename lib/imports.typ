@@ -36,7 +36,11 @@
 #import "/lib/utils/code.typ": code, code_output
 #import "/lib/utils/result.typ": result
 #import "/lib/utils/color_math.typ": colorMath
-#import "/lib/utils/colors.typ": highlight, focus, accent, support, ok, muted
+// NOTE: lib/utils/colors.typ defines a semantic palette (highlight, focus,
+// accent, support, ok, muted) but we don't re-export it — `accent` collides
+// with typst's built-in math.accent function (used for v⃗ etc) and would
+// shadow it across all 372 callsites. To use the palette, import the file
+// directly in the leaf that needs it.
 #import "/lib/utils/color_mat.typ": colorMat
 #import "/lib/utils/definition.typ": definition
 #import "/lib/utils/titles.typ": title_1, title_2
