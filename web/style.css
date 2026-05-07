@@ -3,7 +3,7 @@
 :root {
   --sidebar-w: 280px;
   --topbar-h: 48px;
-  --content-max: 880px;
+  --content-max: 1080px;
   --fg: #1a1a1a;
   --bg: #ffffff;
   --muted: #666;
@@ -174,32 +174,40 @@ article th, article td {
   padding: 0.4em 0.6em;
 }
 
-/* Figures (cetz, fletcher, etc.): centered */
+/* Figures (cetz, fletcher, etc.): centered, sized to natural width within container */
 article figure {
-  margin: 1em auto;
+  margin: 1em 0;
   text-align: center;
 }
-article figure svg { max-width: 100%; height: auto; }
+article figure svg {
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
 
 /* === Math === */
-/* Block-level math (figure role="math"): centered own line */
+/* Typst emits `<svg style="display: block">` for both inline and block math.
+   Inline-style has higher specificity than CSS rules, so we need !important
+   to bring inline math back to inline-block flow with text. */
+
+/* Block math (figure role="math"): centered on its own line */
 article figure[role="math"] {
   display: block;
+  margin: 0.75em 0;
   text-align: center;
-  margin: 0.75em auto;
 }
 article figure[role="math"] svg {
-  display: inline-block;
-  vertical-align: middle;
+  margin: 0 auto;       /* center the block-level SVG */
 }
-/* Inline math (span role="math"): align with text baseline */
+
+/* Inline math (span role="math"): flow with text, override the SVG's display:block */
 article span[role="math"] {
   display: inline-block;
   vertical-align: middle;
 }
 article span[role="math"] svg {
+  display: inline-block !important;
   vertical-align: middle;
-  display: inline-block;
 }
 
 /* Helper titles (proof, definition, code, code_output) */
