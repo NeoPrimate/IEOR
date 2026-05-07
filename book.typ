@@ -54,7 +54,12 @@
   if path == "" { "" } else { "../" * (path.split("/").len()) }
 }
 
-// === Render sidebar (nested <ul>) ===
+// === Render sidebar (nested <ul>, with <details> for collapsible groups) ===
+
+// True if `current-path` is inside the subtree rooted at `path` (ancestor or self).
+#let is-ancestor-of(path, current) = {
+  current == path or current.starts-with(path + "/")
+}
 
 #let render-sidebar(secs, current-path, rel, parent: "") = {
   html.elem("ul", attrs: (class: "nav-list"), {
@@ -63,14 +68,20 @@
       let is-leaf = "files" in sec
       let is-current = is-leaf and p == current-path
       let cls = "nav-item " + (if is-leaf { "nav-leaf" } else { "nav-group" }) + (if is-current { " current" } else { "" })
+
       html.elem("li", attrs: (class: cls), {
         if is-leaf {
           html.elem("a", attrs: (href: rel + p + "/index.html"), sec.title)
+        } else if "sections" in sec {
+          // Collapsible group via <details>. Open by default if the current
+          // page is inside this subtree, otherwise collapsed.
+          let open-attrs = if is-ancestor-of(p, current-path) { (open: "") } else { (:) }
+          html.elem("details", attrs: open-attrs, {
+            html.elem("summary", sec.title)
+            render-sidebar(sec.sections, current-path, rel, parent: p)
+          })
         } else {
           html.elem("span", attrs: (class: "nav-group-title"), sec.title)
-        }
-        if "sections" in sec {
-          render-sidebar(sec.sections, current-path, rel, parent: p)
         }
       })
     }
@@ -105,18 +116,33 @@
   html.elem("link", attrs: (rel: "stylesheet", href: rel + "pagefind/pagefind-ui.css"), [])
   html.elem("script", attrs: (src: rel + "pagefind/pagefind-ui.js"), [])
 
-  // Mobile nav toggle
-  html.elem(
-    "button",
-    attrs: (class: "nav-toggle", "aria-label": "Toggle navigation", onclick: "document.body.classList.toggle('nav-open')"),
-    "☰",
-  )
+  // === Top bar: nav-toggle (mobile), back/forward buttons, search === //
+  html.elem("header", attrs: (class: "topbar"), {
+    html.elem(
+      "button",
+      attrs: (class: "nav-toggle", "aria-label": "Toggle navigation", onclick: "document.body.classList.toggle('nav-open')"),
+      "☰",
+    )
+    html.elem("div", attrs: (class: "nav-buttons"), {
+      html.elem(
+        "button",
+        attrs: (class: "history-btn", "aria-label": "Back", onclick: "history.back()"),
+        "←",
+      )
+      html.elem(
+        "button",
+        attrs: (class: "history-btn", "aria-label": "Forward", onclick: "history.forward()"),
+        "→",
+      )
+    })
+    html.elem("div", attrs: (id: "search"))
+  })
 
+  // === Sidebar === //
   html.elem("aside", attrs: (class: "sidebar", "aria-label": "Site navigation"), {
     html.elem("header", attrs: (class: "site-title"), {
       html.elem("a", attrs: (href: rel + "index.html"), book.book.title)
     })
-    html.elem("div", attrs: (id: "search"))
     html.elem("nav", render-sidebar(book.sections, current-path, rel))
     html.elem(
       "a",

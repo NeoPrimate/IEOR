@@ -1,12 +1,16 @@
 #let example(title: none, content) = context if target() == "html" {
-  [
-    #html.elem(
-      "h4",
-      attrs: (class: "example-title"),
-      if title != none [Example: #title] else [Example],
-    )
-    #content
-  ]
+  // Collapsible <details> in HTML — default closed.
+  html.elem(
+    "details",
+    attrs: (class: "example"),
+    {
+      html.elem(
+        "summary",
+        if title != none [Example: #title] else [Example],
+      )
+      html.elem("div", attrs: (class: "example-body"), content)
+    },
+  )
 } else {
   stack(
     block(
