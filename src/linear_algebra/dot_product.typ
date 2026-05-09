@@ -25,7 +25,7 @@ $
   $
 
   #align(center)[
-    #canvas(length: 7cm, {
+    #frame(cetz.canvas(length: 7cm, {
       import cetz.draw: *
       import cetz-plot: *
 
@@ -62,7 +62,7 @@ $
       cetz.draw.content("a.mid", text(green)[$5$], anchor: "south", padding: 0.025)
       cetz.draw.line("plot.b", "plot.c", stroke: blue, mark: (fill: blue), name: "a")
       cetz.draw.content("a.mid", text(blue)[$2$], anchor: "west", padding: 0.025)
-    })
+    }))
   ]
 ]
 

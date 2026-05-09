@@ -11,7 +11,7 @@
 - After the experiment is performed, either the observed outcome lies in $A$ (event $A$ occurs) or it does not
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
 
     rect((0, 0), (5, 3), name: "sample_space")
@@ -23,7 +23,7 @@
 
     circle((1, 1.5), name: "event_1", radius: 0.1, fill: red)
     circle((4, 1), name: "event_2", radius: 0.1, fill: red)
-  })
+  }))
 ]
 
 === Non-Negativity Axiom
@@ -67,7 +67,7 @@ $
       $A inter B$
     ],
     [
-      #canvas({
+      #frame(cetz.canvas({
         import cetz.draw: *
         // grid((0,0), (3,2), help-lines: true)
 
@@ -87,14 +87,14 @@ $
             arc-through("i.1", "B.west", "i.0")
           },
         )
-      })
+      }))
     ],
 
     [
       $A union B$
     ],
     [
-      #canvas({
+      #frame(cetz.canvas({
         import cetz.draw: *
         // grid((0,0), (3,2), help-lines: true)
 
@@ -114,14 +114,14 @@ $
             arc-through("i.1", "B.east", "i.0")
           },
         )
-      })
+      }))
     ],
 
     [
       $A inter B = emptyset$
     ],
     [
-      #canvas({
+      #frame(cetz.canvas({
         import cetz.draw: *
         // grid((0,0), (3,2), help-lines: true)
 
@@ -129,7 +129,7 @@ $
         content("A", $ A $, anchor: "center", padding: (x: 0, y: 0))
         circle((3.5, 1), name: "B", radius: 1, fill: red.transparentize(80%), stroke: color.red + 2pt)
         content("B", $ B $, anchor: "center", padding: (x: 0, y: 0))
-      })
+      }))
     ],
 
     [
@@ -137,7 +137,7 @@ $
     ],
     [
       #align(center)[
-        #canvas({
+        #frame(cetz.canvas({
           import cetz.draw: *
 
           // grid((0,0), (5,3), help-lines: true)
@@ -149,7 +149,7 @@ $
 
           circle((1.5, 1.5), name: "A", radius: (1, 0.75), fill: blue.lighten(80%), stroke: color.blue + 2pt)
           content("A", $ A $, anchor: "center", padding: (x: 0, y: 0))
-        })
+        }))
       ]
     ],
   )
@@ -213,7 +213,7 @@ then:
 
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
 
     // grid((0,0), (5,3), help-lines: true)
@@ -230,7 +230,7 @@ then:
 
     circle((3.75, 2), name: "C", radius: (1, 0.75), fill: green.lighten(80%), stroke: color.green + 2pt)
     content("C", $ C $, anchor: "center", padding: (x: 0, y: 0))
-  })
+  }))
 ]
 
 From (Finite) Additivity, we have:
@@ -251,7 +251,7 @@ $
 
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
 
     // grid((0,0), (5,3), help-lines: true)
@@ -268,7 +268,7 @@ $
 
     circle((3.75, 2), name: "C", radius: (1, 0.75), fill: green.lighten(80%), stroke: color.green + 2pt)
     content("C", $ C $, anchor: "center", padding: (x: 0, y: 0))
-  })
+  }))
 ]
 
 More generally, by induction:
@@ -288,7 +288,7 @@ $
 ]
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
 
     rect(
@@ -306,7 +306,7 @@ $
 
     circle((1.5, 1.05), name: "A", radius: (1, 0.75), fill: blue.lighten(80%), stroke: color.blue + 2pt)
     content("A", $ A $, anchor: "center", padding: (x: 0, y: 0))
-  })
+  }))
 ]
 
 $
@@ -318,7 +318,7 @@ $
 === $P(A union B) = P(A) + P(B) = P(A inter B)$
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     // grid((0,0), (3,2), help-lines: true)
 
@@ -360,7 +360,7 @@ $
         arc-through("i.1", "B.west", "i.0")
       },
     )
-  })
+  }))
 ]
 
 $
@@ -399,7 +399,7 @@ $
 $
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     // grid((0,0), (3,2), help-lines: true)
 
@@ -446,7 +446,7 @@ $
         arc-through("i3.1", "C.south", "i2.0")
       },
     )
-  })
+  }))
 ]
 
 $
@@ -487,7 +487,7 @@ Discrete but infinite sample space
 
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -534,7 +534,7 @@ Discrete but infinite sample space
           }
         },
       )
-    })
+    }))
   ]
 
   $

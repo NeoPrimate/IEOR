@@ -127,7 +127,7 @@ The *independent* variable does not appear explicitly in the equation (rate of c
   - $r dot P(t)$: growth contribution proportional to the current population
 
   #align(center)[
-    #canvas(length: 10cm, {
+    #frame(cetz.canvas(length: 10cm, {
       import cetz.draw: *
       import cetz-plot: *
       import math: exp
@@ -205,7 +205,7 @@ The *independent* variable does not appear explicitly in the equation (rate of c
           plot.add(((t0, P0),), mark: "o", mark-size: 0.05, mark-style: (fill: red, stroke: black))
         },
       )
-    })
+    }))
   ]
 
 ]
@@ -247,7 +247,7 @@ The *independent* variable does not appear explicitly in the equation (rate of c
   - $- gamma y(t)$: predators die naturally when there isn't enough food
 
   #align(center)[
-    #canvas(length: 12cm, {
+    #frame(cetz.canvas(length: 12cm, {
       import cetz.draw: *
       import cetz-plot: *
 
@@ -327,7 +327,7 @@ The *independent* variable does not appear explicitly in the equation (rate of c
           plot.add(((x_eq, y_eq),), mark: "o", mark-size: 0.025, mark-style: (fill: red, stroke: black))
         },
       )
-    })
+    }))
   ]
 
 ]
@@ -349,7 +349,7 @@ The *independent* variable does not appear explicitly in the equation (rate of c
   $
 
   #align(center)[
-    #canvas(length: 10cm, {
+    #frame(cetz.canvas(length: 10cm, {
       import cetz.draw: *
       import cetz-plot: *
 
@@ -424,7 +424,7 @@ The *independent* variable does not appear explicitly in the equation (rate of c
           plot.add(((x1, y1),), mark: "o", mark-size: 0.05, mark-style: (fill: red, stroke: black))
         },
       )
-    })
+    }))
   ]
 ]
 
@@ -443,7 +443,7 @@ The *independent* variable does not appear explicitly in the equation (rate of c
   $
 
   #align(center)[
-    #canvas(length: 10cm, {
+    #frame(cetz.canvas(length: 10cm, {
       import cetz.draw: *
       import cetz-plot: *
 
@@ -518,7 +518,7 @@ The *independent* variable does not appear explicitly in the equation (rate of c
           plot.add(((x1, y1),), mark: "o", mark-size: 0.05, mark-style: (fill: red, stroke: black))
         },
       )
-    })
+    }))
   ]
 
 

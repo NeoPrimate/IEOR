@@ -116,7 +116,7 @@ $(I - A)^(-1)$: Leontief inverse, each element shows the total output needed fro
 
 
   #align(center)[
-    #diagram(
+    #frame(fletcher.diagram(
       node-inset: 0pt,
 
       node(pos: (0, 0), label: { $S$ }, stroke: 0.1em, radius: 1em, name: <s>),
@@ -223,7 +223,7 @@ $(I - A)^(-1)$: Leontief inverse, each element shows the total output needed fro
         bend: 140deg,
         shift: 0pt,
       ),
-    )
+    ))
   ]
 
   $

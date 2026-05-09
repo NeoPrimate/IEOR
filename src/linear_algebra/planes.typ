@@ -17,7 +17,7 @@ Normal Vector: vector that is perpendicular (orthogonal) to a plane, line, or cu
 If a plane is defined by the equation $a x + b y + c z = d$, the vector $accent(n, arrow) = chevron.l a, b, c chevron.r$ is a normal vector to the plane because it is perpendicular to any vector that lies in the plane
 
 #align(center)[
-  #canvas(length: 6cm, {
+  #frame(cetz.canvas(length: 6cm, {
     import cetz.draw: *
     import cetz-plot: *
     plot.plot(
@@ -71,7 +71,7 @@ If a plane is defined by the equation $a x + b y + c z = d$, the vector $accent(
     cetz.draw.content("p.mid", text(purple)[$accent(n, arrow)$], anchor: "west", padding: 0.025, angle: "p.mid")
 
     cetz.angle.right-angle("p.start", "a.end", "p.end", radius: 0.05)
-  })
+  }))
 ]
 
 $
@@ -140,7 +140,7 @@ $
 ]
 
 #align(center)[
-  #canvas(length: 6cm, {
+  #frame(cetz.canvas(length: 6cm, {
     import cetz.draw: *
     import cetz-plot: *
     plot.plot(
@@ -194,7 +194,7 @@ $
     cetz.draw.content("p.mid", text(purple)[$accent(n, arrow)$], anchor: "west", padding: 0.025, angle: "p.mid")
 
     cetz.angle.right-angle("p.start", "a.end", "p.end", radius: 0.05)
-  })
+  }))
 ]
 
 The normal vector to a plane can be directly obtained from the coefficients of $x$, $y$, and $z$ in the plane equation of the form:

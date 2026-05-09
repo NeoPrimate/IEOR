@@ -19,9 +19,9 @@ The Sample Space
   - *Collective exhaustiveness*: Every possible result of the experiment must be included in $Omega$
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: * 
     rect((0, 0), (5, 3), name: "sample_space")
     content((5-0.5, 3-0.5), $ Omega $, anchor: "south-west", padding: (x: 0, y: 0))
-  })
+  }))
 ]

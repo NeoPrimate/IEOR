@@ -9,7 +9,7 @@ S(t) = P(T > t)
 $
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
 
     let mu = 0
@@ -54,7 +54,7 @@ $
           label: none
         )
       })
-  })
+  }))
 ]
 
 Relationship to PDF:

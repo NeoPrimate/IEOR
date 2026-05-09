@@ -38,7 +38,7 @@ $
   $
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -85,7 +85,7 @@ $
           )
         },
       )
-    })
+    }))
   ]
 
   *Step 3*: Compute *Regression Sum of Squares* (SSR)
@@ -95,7 +95,7 @@ $
   $
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -145,7 +145,7 @@ $
           plot.add-hline(mean)
         },
       )
-    })
+    }))
   ]
 
 
@@ -157,7 +157,7 @@ $
   $
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -205,7 +205,7 @@ $
           }
         },
       )
-    })
+    }))
   ]
 
   *Step 5*: Calculate *$R^2$*

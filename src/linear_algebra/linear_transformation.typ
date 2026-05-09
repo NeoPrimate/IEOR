@@ -17,7 +17,7 @@ $
 - Codomain: The set $Y$ is the space where all possible outputs of $f$ reside, though not every element in $Y$ must be an output of $f$
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     draw-blob(
       2,
       (0, 0),
@@ -86,7 +86,7 @@ $
       (2.5, -1),
       text(fill: blue)[$f: RR^n -> RR^m$],
     )
-  })
+  }))
 ]
 
 #example[
@@ -166,7 +166,7 @@ The function $f$ takes an $n$-dimensional vector of real numbers as input and pr
       columns: (1fr, 1fr),
       rows: auto,
       gutter: 0pt,
-      canvas({
+      frame(cetz.canvas({
         import cetz.draw: *
         ortho(x: 25deg, y: 25deg, {
           line((0, 0), (x: 3), stroke: blue, name: "x", mark: (end: "straight", scale: 1))
@@ -178,9 +178,9 @@ The function $f$ takes an $n$-dimensional vector of real numbers as input and pr
           line((0, 0), (x: 2, y: 2, z: 2), stroke: red, name: "z", mark: (end: "straight", scale: 1))
           content((), $ vec(1, 1, 1) $, anchor: "north", padding: 5pt)
         })
-      }),
+      })),
 
-      canvas({
+      frame(cetz.canvas({
         import cetz.draw: *
         line((0, 0), (x: 3), stroke: blue, name: "x", mark: (end: "straight", scale: 1))
         content((), $ x_1 $, anchor: "south", padding: 5pt)
@@ -188,7 +188,7 @@ The function $f$ takes an $n$-dimensional vector of real numbers as input and pr
         content((), $ x_2 $, anchor: "south", padding: 5pt)
         line((0, 0), (x: 2, y: 2), stroke: red, name: "y", mark: (end: "straight", scale: 1))
         content((), $ vec(3, 3) $, anchor: "south", padding: 5pt)
-      }),
+      })),
     )
   ]
 ]

@@ -11,7 +11,7 @@ $
 *Assumption*: Process is *centered* within the specification limits
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -72,7 +72,7 @@ $
         )
       },
     )
-  })
+  }))
 ]
 
 #align(center)[
@@ -213,7 +213,7 @@ $
 
 
   #align(center)[
-    #canvas(
+    #frame(cetz.canvas(
       length: 72pt,
       {
         import cetz.draw: *
@@ -353,7 +353,7 @@ $
         line("g1.target_t", "g3.plot.target_b", stroke: (dash: "dashed"))
         line("g1.usl_t", "g3.plot.usl_b", stroke: (dash: "dashed"))
       },
-    )
+    ))
   ]
 
   *Step 3:* Interpretation

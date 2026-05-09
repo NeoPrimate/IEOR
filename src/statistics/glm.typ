@@ -104,7 +104,7 @@ Where $g(dot)$ is called the link function
   ]
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -136,7 +136,7 @@ Where $g(dot)$ is called the link function
         },
         name: "plot",
       )
-    })
+    }))
   ]
 
   Fit linear model
@@ -151,7 +151,7 @@ Where $g(dot)$ is called the link function
   $
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -189,7 +189,7 @@ Where $g(dot)$ is called the link function
         },
         name: "plot",
       )
-    })
+    }))
   ]
 
   Logit link function:
@@ -211,7 +211,7 @@ Where $g(dot)$ is called the link function
   $
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -249,7 +249,7 @@ Where $g(dot)$ is called the link function
         },
         name: "plot",
       )
-    })
+    }))
   ]
 
 ]

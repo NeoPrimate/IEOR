@@ -6,7 +6,7 @@
 #align(center)[
   // #show table: set text(size: 7pt)
 
-  #diagram(
+  #frame(fletcher.diagram(
     node-inset: 0pt,
 
     node(
@@ -225,7 +225,7 @@
       shift: 0pt,
       label-fill: white,
     ),
-  )
+  ))
 
   #linebreak()
   #linebreak()
@@ -355,7 +355,7 @@ Where:
 
 #example[
   #align(center)[
-    #diagram(
+    #frame(fletcher.diagram(
       // node-inset: 0pt,
 
       node(
@@ -429,7 +429,7 @@ Where:
         shift: 0pt,
         label-fill: luma(230),
       ),
-    )
+    ))
   ]
 ]
 
@@ -467,7 +467,7 @@ If you reorder the rows of $X$ (node features) and both rows and columns of $A$ 
   $
 
   #align(center)[
-    #diagram(
+    #frame(fletcher.diagram(
       // node-inset: 0pt,
 
       node(
@@ -515,7 +515,7 @@ If you reorder the rows of $X$ (node features) and both rows and columns of $A$ 
         shift: 0pt,
         label-fill: luma(230),
       ),
-    )
+    ))
   ]
 
   Adjacency matrix:
@@ -614,7 +614,7 @@ If you reorder the rows of $X$ (node features) and both rows and columns of $A$ 
   This is now node 1 pointing to node 0
 
   #align(center)[
-    #diagram(
+    #frame(fletcher.diagram(
       // node-inset: 0pt,
 
       node(
@@ -662,7 +662,7 @@ If you reorder the rows of $X$ (node features) and both rows and columns of $A$ 
         shift: 0pt,
         label-fill: luma(230),
       ),
-    )
+    ))
   ]
 
   *Step 3*: Apply function to permuted inputs

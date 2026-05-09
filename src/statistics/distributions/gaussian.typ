@@ -7,7 +7,7 @@ f(x bar mu, sigma^2) = 1 / (sqrt(2 pi sigma^2)) e^(-((x - mu)^2)/(2 sigma^2))
 $
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
 
     set-style(
@@ -40,5 +40,5 @@ $
           style: (stroke: black),
         )
       })
-  })
+  }))
 ]

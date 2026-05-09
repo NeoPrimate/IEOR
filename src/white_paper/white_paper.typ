@@ -153,7 +153,7 @@ Nodes
 
 #align(center)[
   #align(center)[
-    #diagram(
+    #frame(fletcher.diagram(
       node-inset: 0pt,
 
       node(pos: (0,-0.5), label: {$E$}, stroke: 0.1em, radius: 1em, name: <E>),
@@ -180,7 +180,7 @@ Nodes
       edge(<W>, <E>, "-|>", bend: -75deg, label: {}),
       edge(<DC>, <E>, "-|>", bend: -75deg, label: {}),
       edge(<DC>, <P>, "-|>", bend: -75deg, label: {}),
-    )
+    ))
   ]
 ]
 

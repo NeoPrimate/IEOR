@@ -53,7 +53,7 @@ For constrained single variate:
   $
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -165,7 +165,7 @@ For constrained single variate:
         },
         name: "plot",
       )
-    })
+    }))
 
   ]
 
@@ -195,7 +195,7 @@ For constrained single variate:
     #let opt_constrained = (10 / 17, 14 / 17)
     #let closest = (0.8, 0.4)
 
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -298,7 +298,7 @@ For constrained single variate:
         },
         name: "plot",
       )
-    })
+    }))
   ]
 ]
 
@@ -359,7 +359,7 @@ $
     #let normal_start = (dst / 2, dst / 2)
     #let normal_end = (normal_start.at(0) + 1, normal_start.at(1) + 1)
 
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -437,7 +437,7 @@ $
 
       // line("p1.south-east", (horizontal: (), vertical: "xline.end"))
       // line("p1.south-east", (vertical: (), horizontal: "yline.end"))
-    })
+    }))
   ]
 
   Original NLP

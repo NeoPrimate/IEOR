@@ -280,7 +280,7 @@
 
 // #pagebreak()
 
-#diagram(
+#frame(fletcher.diagram(
 	node-stroke: 1.5pt,
 
   node(
@@ -496,7 +496,7 @@
 
   edge((-1, 3), (0, 3), "-|>"),
 
-)
+))
 
 #pagebreak()
 
@@ -516,7 +516,7 @@
 
 #text(size: 13pt, weight: "semibold")[1. Convert to standard form]
 
-#diagram(
+#frame(fletcher.diagram(
   node-stroke: 1.5pt,
   node(
     (0,0),
@@ -580,7 +580,7 @@
     shape: rect,
     corner-radius: 2pt
   )
-)
+))
 
 #align(center)[
   #grid(

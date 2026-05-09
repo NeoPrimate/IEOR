@@ -674,7 +674,7 @@ Where:
 
   #align(center)[
 
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -813,6 +813,6 @@ Where:
         },
         name: "plot",
       )
-    })
+    }))
   ]
 ]

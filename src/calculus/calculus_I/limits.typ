@@ -35,7 +35,7 @@ $
   * in {+, -, times, div}
 $
 
-#let f = canvas(length: 6cm, {
+#let f = frame(cetz.canvas(length: 6cm, {
   import cetz.draw: *
   import cetz-plot: *
   plot.plot(
@@ -74,9 +74,9 @@ $
       plot.add(((1, -1),), mark: "o", mark-size: mark-size, mark-style: mark-style-white)
     },
   )
-})
+}))
 
-#let g = canvas(length: 6cm, {
+#let g = frame(cetz.canvas(length: 6cm, {
   import cetz.draw: *
   import cetz-plot: *
   plot.plot(
@@ -108,7 +108,7 @@ $
       )
     },
   )
-})
+}))
 
 
 
@@ -224,7 +224,7 @@ For this to hold true, two important conditions must be satisfied:
 - *Continuity of the outer function*: The function $f$ must be continuous at the point $L$. Continuity ensures that $f$ behaves predictably near $L$, without any jumps, gaps, or undefined points
 
 
-#let f = canvas(length: 6cm, {
+#let f = frame(cetz.canvas(length: 6cm, {
   import cetz.draw: *
   import cetz-plot: *
   plot.plot(
@@ -262,9 +262,9 @@ For this to hold true, two important conditions must be satisfied:
       plot.add(((2, 0),), mark: "o", mark-size: mark-size, mark-style: mark-style-white)
     },
   )
-})
+}))
 
-#let g = canvas(length: 6cm, {
+#let g = frame(cetz.canvas(length: 6cm, {
   import cetz.draw: *
   import cetz-plot: *
   plot.plot(
@@ -307,7 +307,7 @@ For this to hold true, two important conditions must be satisfied:
       )
     },
   )
-})
+}))
 
 #example[
   #figure(

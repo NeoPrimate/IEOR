@@ -74,7 +74,7 @@ $
 $
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -165,7 +165,7 @@ $
       },
       name: "plot",
     )
-  })
+  }))
 ]
 
 ==== nD Linear Approximation
@@ -211,7 +211,7 @@ $
 $
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -351,7 +351,7 @@ $
       },
       name: "plot",
     )
-  })
+  }))
 ]
 
 ==== nD Quadratic Approximation
@@ -386,7 +386,7 @@ $
     columns: (1fr, 1fr),
     [
       #figure(
-        canvas({
+        frame(cetz.canvas({
           import cetz.draw: *
           import cetz-plot: *
 
@@ -426,14 +426,14 @@ $
             },
             name: "plot",
           )
-        }),
+        })),
         caption: [$f(x)$],
         supplement: none,
       )
     ],
     [
       #figure(
-        canvas({
+        frame(cetz.canvas({
           import cetz.draw: *
           import cetz-plot: *
 
@@ -473,7 +473,7 @@ $
             },
             name: "plot",
           )
-        }),
+        })),
         caption: [$f'(x)$],
         supplement: none,
       )
@@ -498,7 +498,7 @@ $
     columns: (1fr, 1fr),
     [
       #figure(
-        canvas({
+        frame(cetz.canvas({
           import cetz.draw: *
           import cetz-plot: *
 
@@ -538,14 +538,14 @@ $
             },
             name: "plot",
           )
-        }),
+        })),
         caption: [$f(x)$],
         supplement: none,
       )
     ],
     [
       #figure(
-        canvas({
+        frame(cetz.canvas({
           import cetz.draw: *
           import cetz-plot: *
 
@@ -585,7 +585,7 @@ $
             },
             name: "plot",
           )
-        }),
+        })),
         caption: [$f'(x)$],
         supplement: none,
       )
@@ -611,7 +611,7 @@ $
 
   #align(center)[
 
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -653,7 +653,7 @@ $
         },
         name: "plot",
       )
-    })
+    }))
   ]
 ]
 

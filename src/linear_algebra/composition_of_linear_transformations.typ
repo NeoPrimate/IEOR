@@ -19,7 +19,7 @@ $
 $
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     draw-blob(
       2,
       (0, 0),
@@ -147,7 +147,7 @@ $
       anchor: "north",
       padding: 3pt,
     )
-  })
+  }))
 ]
 
 Consider two linear transformations $T$ and $S$, where:

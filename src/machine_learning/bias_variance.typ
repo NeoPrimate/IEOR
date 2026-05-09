@@ -97,7 +97,7 @@ Inconsistent across different data
     row-gutter: 1em,
     [Dataset 1], [Dataset 2], [Dataset 3],
     [
-      #canvas({
+      #frame(cetz.canvas({
         import draw: *
 
         plot.plot(
@@ -143,10 +143,10 @@ Inconsistent across different data
             )
           },
         )
-      })
+      }))
     ],
     [
-      #canvas({
+      #frame(cetz.canvas({
         import draw: *
 
         plot.plot(
@@ -192,10 +192,10 @@ Inconsistent across different data
             )
           },
         )
-      })
+      }))
     ],
     [
-      #canvas({
+      #frame(cetz.canvas({
         import draw: *
 
         plot.plot(
@@ -241,7 +241,7 @@ Inconsistent across different data
             )
           },
         )
-      })
+      }))
     ],
 
     [
@@ -466,7 +466,7 @@ Overfitting
   row-gutter: 0em,
   align: horizon + center,
   [
-    #canvas({
+    #frame(cetz.canvas({
       import draw: *
 
       plot.plot(
@@ -497,10 +497,10 @@ Overfitting
           )
         },
       )
-    })
+    }))
   ],
   [
-    #canvas({
+    #frame(cetz.canvas({
       import draw: *
 
       plot.plot(
@@ -531,10 +531,10 @@ Overfitting
           )
         },
       )
-    })
+    }))
   ],
   [
-    #canvas({
+    #frame(cetz.canvas({
       import draw: *
 
       plot.plot(
@@ -565,7 +565,7 @@ Overfitting
           )
         },
       )
-    })
+    }))
   ],
 
   [Underfit\ High Bias\ Low Variance], [Fit\ Low Bias\ Low Variance], [Overfit\ Low Bias\ High Variance],
@@ -574,7 +574,7 @@ Overfitting
 Bias-Variance Tradoff
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
 
     let bias_squared(x) = calc.pow((10 / (x + 1)), 2)
@@ -614,5 +614,5 @@ Bias-Variance Tradoff
         )
       },
     )
-  })
+  }))
 ]

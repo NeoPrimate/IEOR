@@ -31,7 +31,7 @@ This is why SMA is poor for *trending* series — it's structurally late. Use ET
 The SMA filters the high-frequency noise and produces a smoother curve, but with a horizontal lag relative to the data.
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -64,7 +64,7 @@ The SMA filters the high-frequency noise and produces a smoother curve, but with
         plot.add(sma, style: (stroke: 1pt + red.lighten(25%)))
       },
     )
-  })
+  }))
 ]
 
 - *Model parameters*

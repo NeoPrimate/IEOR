@@ -15,7 +15,7 @@ $
   #let f(x) = -x * x + c
 
   #align(center)[
-    #canvas(length: 6cm, {
+    #frame(cetz.canvas(length: 6cm, {
       import cetz.draw: *
       import cetz-plot: *
 
@@ -42,7 +42,7 @@ $
           )
         },
       )
-    })
+    }))
   ]
 ]
 
@@ -55,7 +55,7 @@ $
   #let f(x) = 1 / x
 
   #align(center)[
-    #canvas(length: 6cm, {
+    #frame(cetz.canvas(length: 6cm, {
       import cetz.draw: *
       import cetz-plot: *
 
@@ -76,6 +76,6 @@ $
           )
         },
       )
-    })
+    }))
   ]
 ]

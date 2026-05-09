@@ -24,7 +24,7 @@ Minimize annual total cost
   #let q = 5.0
 
 
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -58,7 +58,7 @@ Minimize annual total cost
         plot.add-hline(style: (stroke: (dash: "dotted")), q / 2)
       },
     )
-  })
+  }))
 ]
 
 - $q/2$: average inventory level
@@ -100,7 +100,7 @@ $
 
   #let q = calc.sqrt((2 * K * D) / h)
 
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -127,7 +127,7 @@ $
         plot.add-vline(q)
       },
     )
-  })
+  }))
 ]
 
 === Portfolio Optimization
@@ -325,7 +325,7 @@ $
 
   #align(center)[
 
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -348,7 +348,7 @@ $
           )
         },
       )
-    })
+    }))
   ]
 
   *Linearizing the Problem*
@@ -378,7 +378,7 @@ $
   $
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -437,7 +437,7 @@ $
         },
       )
       line("plot.pt_end", ((), "|-", "plot.pt_start"), mark: (start: ">", fill: black))
-    })
+    }))
   ]
 
   // , style: (stroke: (paint: red, dash: "dotted", thickness: 3pt))
@@ -452,7 +452,7 @@ $
 
   #align(center)[
 
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -494,7 +494,7 @@ $
           })
         },
       )
-    })
+    }))
   ]
 
   Therefore:
@@ -526,7 +526,7 @@ $
 
   #align(center)[
 
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -569,7 +569,7 @@ $
           )
         },
       )
-    })
+    }))
   ]
 
   We are minimizing $w$, which represents the difference between the two allocations. The solution occurs when the two inequalities intersect — that is, when both are equal:

@@ -71,7 +71,7 @@ If $f'(x)$ changes sign around a critical point $c$, we can determine if $f(c)$ 
     #grid(
       columns: (1fr, 1fr),
       [
-        #canvas({
+        #frame(cetz.canvas({
           import cetz.draw: *
           import cetz-plot: *
 
@@ -111,10 +111,10 @@ If $f'(x)$ changes sign around a critical point $c$, we can determine if $f(c)$ 
             },
             name: "plot",
           )
-        })
+        }))
       ],
       [
-        #canvas({
+        #frame(cetz.canvas({
           import cetz.draw: *
           import cetz-plot: *
 
@@ -153,7 +153,7 @@ If $f'(x)$ changes sign around a critical point $c$, we can determine if $f(c)$ 
             },
             name: "plot",
           )
-        })
+        }))
       ],
     )
   ]
@@ -204,7 +204,7 @@ If $f'(x)$ changes sign around a critical point $c$, we can determine if $f(c)$ 
     #grid(
       columns: (1fr, 1fr),
       [
-        #canvas({
+        #frame(cetz.canvas({
           import cetz.draw: *
           import cetz-plot: *
 
@@ -243,10 +243,10 @@ If $f'(x)$ changes sign around a critical point $c$, we can determine if $f(c)$ 
             },
             name: "plot",
           )
-        })
+        }))
       ],
       [
-        #canvas({
+        #frame(cetz.canvas({
           import cetz.draw: *
           import cetz-plot: *
 
@@ -285,7 +285,7 @@ If $f'(x)$ changes sign around a critical point $c$, we can determine if $f(c)$ 
             },
             name: "plot",
           )
-        })
+        }))
       ],
     )
   ]
@@ -336,7 +336,7 @@ If $f'(x)$ changes sign around a critical point $c$, we can determine if $f(c)$ 
     #grid(
       columns: (1fr, 1fr),
       [
-        #canvas({
+        #frame(cetz.canvas({
           import cetz.draw: *
           import cetz-plot: *
 
@@ -376,10 +376,10 @@ If $f'(x)$ changes sign around a critical point $c$, we can determine if $f(c)$ 
             },
             name: "plot",
           )
-        })
+        }))
       ],
       [
-        #canvas({
+        #frame(cetz.canvas({
           import cetz.draw: *
           import cetz-plot: *
 
@@ -419,7 +419,7 @@ If $f'(x)$ changes sign around a critical point $c$, we can determine if $f(c)$ 
             },
             name: "plot",
           )
-        })
+        }))
       ],
     )
   ]
@@ -475,7 +475,7 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
   #grid(
     columns: (1fr, 1fr, 1fr),
     [
-      #canvas({
+      #frame(cetz.canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -508,10 +508,10 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
           },
           name: "plot",
         )
-      })
+      }))
     ],
     [
-      #canvas({
+      #frame(cetz.canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -544,10 +544,10 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
           },
           name: "plot",
         )
-      })
+      }))
     ],
     [
-      #canvas({
+      #frame(cetz.canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -580,7 +580,7 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
           },
           name: "plot",
         )
-      })
+      }))
     ],
   )
 
@@ -620,7 +620,7 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
   #grid(
     columns: (1fr, 1fr, 1fr),
     [
-      #canvas({
+      #frame(cetz.canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -653,10 +653,10 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
           },
           name: "plot",
         )
-      })
+      }))
     ],
     [
-      #canvas({
+      #frame(cetz.canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -689,10 +689,10 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
           },
           name: "plot",
         )
-      })
+      }))
     ],
     [
-      #canvas({
+      #frame(cetz.canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -725,7 +725,7 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
           },
           name: "plot",
         )
-      })
+      }))
     ],
   )
 
@@ -766,7 +766,7 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
   #grid(
     columns: (1fr, 1fr, 1fr),
     [
-      #canvas({
+      #frame(cetz.canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -799,10 +799,10 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
           },
           name: "plot",
         )
-      })
+      }))
     ],
     [
-      #canvas({
+      #frame(cetz.canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -835,10 +835,10 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
           },
           name: "plot",
         )
-      })
+      }))
     ],
     [
-      #canvas({
+      #frame(cetz.canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -871,7 +871,7 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
           },
           name: "plot",
         )
-      })
+      }))
     ],
   )
 

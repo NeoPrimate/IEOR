@@ -36,7 +36,7 @@ When a transformation $A$ is applied to a vector $bold("x")$, it is equivalent t
     A = #nt.print(A)
   $
 
-  #let domain = canvas(length: 6cm, {
+  #let domain = frame(cetz.canvas(length: 6cm, {
     cetz-plot.plot.plot(
       x-tick-step: 2,
       y-tick-step: 2,
@@ -68,9 +68,9 @@ When a transformation $A$ is applied to a vector $bold("x")$, it is equivalent t
 
     cetz.draw.line("plot.o", "plot.x", stroke: green, mark: (fill: green, end: ">", size: .25), name: "j")
     cetz.draw.content("j.end", text(green)[$ arrow(x) = #nt.print(x) $], anchor: "south", padding: 0.1, angle: "j.end")
-  })
+  }))
 
-  #let codomain = canvas(length: 6cm, {
+  #let codomain = frame(cetz.canvas(length: 6cm, {
     cetz-plot.plot.plot(
       x-tick-step: 2,
       y-tick-step: 2,
@@ -120,7 +120,7 @@ When a transformation $A$ is applied to a vector $bold("x")$, it is equivalent t
       padding: 0.1,
       angle: "Tx.end",
     )
-  })
+  }))
 
   #align(center)[
     #grid(
@@ -170,7 +170,7 @@ When a transformation $A$ is applied to a vector $bold("x")$, it is equivalent t
     )
   $
   #align(center)[
-    #canvas(length: 6cm, {
+    #frame(cetz.canvas(length: 6cm, {
       let o = (0, 0)
 
       let A = (
@@ -237,7 +237,7 @@ When a transformation $A$ is applied to a vector $bold("x")$, it is equivalent t
       cetz.draw.content("v_2.end", text(green)[$hat(v)_2$], anchor: "north", padding: 0.025, angle: "v_2.end")
       cetz.draw.line("plot.o", "plot.Av_2", stroke: green, mark: (fill: green, end: ">", size: .25), name: "Av_2")
       cetz.draw.content("Av_2.end", text(green)[$A hat(v)_2$], anchor: "south", padding: 0.05, angle: "Av_2.end")
-    })
+    }))
   ]
 ]
 

@@ -40,7 +40,7 @@ $
 ]
 
 #example[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -91,6 +91,6 @@ $
       },
       name: "plot",
     )
-  })
+  }))
 
 ]

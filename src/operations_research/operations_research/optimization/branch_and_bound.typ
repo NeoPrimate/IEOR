@@ -9,7 +9,7 @@
 Integer Program
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -141,7 +141,7 @@ Integer Program
       },
       name: "plot",
     )
-  })
+  }))
 ]
 
 
@@ -221,7 +221,7 @@ $
 So, linear relaxation provides a lower bound on the optimal value of the integer program
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -350,7 +350,7 @@ So, linear relaxation provides a lower bound on the optimal value of the integer
       },
       name: "plot",
     )
-  })
+  }))
 ]
 
 2. Maximization
@@ -366,7 +366,7 @@ $
 - So, linear relaxation provides an upper bound on the optimal value of the integer program
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -507,7 +507,7 @@ $
       },
       name: "plot",
     )
-  })
+  }))
 ]
 
 #linebreak()
@@ -553,7 +553,7 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
     z = 12.75
   $
 
-  #let n0 = canvas({
+  #let n0 = frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -616,9 +616,9 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
       },
       name: "plot",
     )
-  })
+  }))
 
-  #let n10 = canvas({
+  #let n10 = frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -687,9 +687,9 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
       },
       name: "plot",
     )
-  })
+  }))
 
-  #let n11 = canvas({
+  #let n11 = frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -758,9 +758,9 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
       },
       name: "plot",
     )
-  })
+  }))
 
-  #let n20 = canvas({
+  #let n20 = frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -838,9 +838,9 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
       },
       name: "plot",
     )
-  })
+  }))
 
-  #let n21 = canvas({
+  #let n21 = frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -888,9 +888,9 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
       },
       name: "plot",
     )
-  })
+  }))
 
-  #let n30 = canvas({
+  #let n30 = frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -975,9 +975,9 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
       },
       name: "plot",
     )
-  })
+  }))
 
-  #let n31 = canvas({
+  #let n31 = frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -1062,7 +1062,7 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
       },
       name: "plot",
     )
-  })
+  }))
 
   #linebreak()
   #linebreak()
@@ -1073,7 +1073,7 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
   #linebreak()
 
   #align(center)[
-    #diagram(
+    #frame(fletcher.diagram(
       node-inset: 0pt,
 
       node(
@@ -1248,7 +1248,7 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
         shift: 0pt,
         label-fill: luma(230),
       ),
-    )
+    ))
   ]
 
 

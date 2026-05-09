@@ -69,7 +69,7 @@ $
 $
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
 
     rect((0, 0), (10, 5))
@@ -90,7 +90,7 @@ $
     content((3., 2.5), $ A_1 inter B $, anchor: "center", padding: (x: 0, y: 0))
     content((6.5, 3.5), $ A_2 inter B $, anchor: "center", padding: (x: 0, y: 0))
     content((6.5, 1.5), $ A_3 inter B $, anchor: "center", padding: (x: 0, y: 0))
-  })
+  }))
 ]
 
 

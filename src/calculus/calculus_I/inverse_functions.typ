@@ -10,7 +10,7 @@ $
 $
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     draw-blob(
       2, (0, 0), 1.5,
       stroke: green,
@@ -70,7 +70,7 @@ $
       anchor: "north",
       padding: 3pt
     )
-  })
+  }))
 ]
 
 A function $f: A arrow B$ has an inverse function $f^(-1)$ if and only if $f$ is *bijective* (i.e., both one-to-one and onto):
@@ -102,7 +102,7 @@ The graph of $f^(-1)$ is a reflection of the graph of $f$ access the line $x = y
 #let f_inv(x) = (x - 3) / 2
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
     
     plot.plot(
@@ -135,14 +135,14 @@ The graph of $f^(-1)$ is a reflection of the graph of $f$ access the line $x = y
           label: $x = y$
         )
       })
-  })
+  }))
 ]
 
 #let f(x) = calc.pow(x, 2)
 #let f_inv(x) = calc.sqrt(x)
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
     
     plot.plot(
@@ -175,14 +175,14 @@ The graph of $f^(-1)$ is a reflection of the graph of $f$ access the line $x = y
           label: $x = y$
         )
       })
-  })
+  }))
 ]
 
 #let f(x) = calc.pow(x, 3)
 #let f_inv(x) = calc.root(x, 3)
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
     
     plot.plot(
@@ -215,11 +215,11 @@ The graph of $f^(-1)$ is a reflection of the graph of $f$ access the line $x = y
           label: $x = y$
         )
       })
-  })
+  }))
 ]
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
     
     plot.plot(
@@ -252,11 +252,11 @@ The graph of $f^(-1)$ is a reflection of the graph of $f$ access the line $x = y
           label: $x = y$
         )
       })
-  })
+  }))
 ]
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
     
     plot.plot(
@@ -289,11 +289,11 @@ The graph of $f^(-1)$ is a reflection of the graph of $f$ access the line $x = y
           label: $x = y$
         )
       })
-  })
+  }))
 ]
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
     
     plot.plot(
@@ -326,14 +326,14 @@ The graph of $f^(-1)$ is a reflection of the graph of $f$ access the line $x = y
           label: $x = y$
         )
       })
-  })
+  }))
 ]
 
 2. Derivative of Inverse Functions
 
 #align(center)[
 
-  #canvas(length: 1cm, {
+  #frame(cetz.canvas(length: 1cm, {
     import draw: *
     
     plot.plot(
@@ -400,5 +400,5 @@ The graph of $f^(-1)$ is a reflection of the graph of $f$ access the line $x = y
         )
       }
     )
-  })
+  }))
 ]

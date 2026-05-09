@@ -18,7 +18,7 @@ Formulas for:
 
      $A = 1/2 a b sin(theta)$
 
-     #canvas(length: 2cm, {
+     #frame(cetz.canvas(length: 2cm, {
       import cetz.draw: *
       import cetz-plot: *
 
@@ -57,7 +57,7 @@ Formulas for:
         cetz.draw.content("d.mid", $h$, anchor: "east", padding: 0.05, angle: "d.mid")
 
         cetz.angle.angle("a.start", "a.end", "b.end", label: $theta$, radius: 30%, label-radius: 130%, inner: true)
-    })
+    }))
   ],
   [
     #text(weight: "bold")[Circle]
@@ -66,7 +66,7 @@ Formulas for:
 
     $C = 2 pi r$
 
-    #canvas(length: 2cm, {
+    #frame(cetz.canvas(length: 2cm, {
       import cetz.draw: *
       import cetz-plot: *
 
@@ -92,7 +92,7 @@ Formulas for:
         cetz.draw.line((0, 0), (0.5, 0), stroke: black, name: "c")
         cetz.draw.content("c.mid", $r$, anchor: "south", padding: 0.05, angle: "c.mid")
         
-    })
+    }))
 
   ],
   [
@@ -102,7 +102,7 @@ Formulas for:
 
     $s = r theta$ ($theta$ in radians)
 
-    #canvas(length: 2cm, {
+    #frame(cetz.canvas(length: 2cm, {
       import cetz.draw: *
       import cetz-plot: *
 
@@ -125,7 +125,7 @@ Formulas for:
         cetz.draw.set-style(line: (mark: (end: none, size: .25)))
 
         cetz.draw.arc((0,0), stop: 45deg, delta: 45deg, mode: "PIE", stroke: blue)  
-    })
+    }))
 
   ]
 )

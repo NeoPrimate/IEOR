@@ -52,7 +52,7 @@ Instead of solving for $y$ explicitly in terms of $x$, implicit differentiation 
 #let tangent(x) = -(3 / 4) * x + (25 / 4)
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
 
     plot.plot(
@@ -92,7 +92,7 @@ Instead of solving for $y$ explicitly in terms of $x$, implicit differentiation 
         )
       },
     )
-  })
+  }))
 ]
 
 $

@@ -66,7 +66,7 @@
 ]
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -125,9 +125,9 @@
       )
     }
   )
-  })
+  }))
 
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -186,5 +186,5 @@
       )
     }
   )
-  })
+  }))
 ]

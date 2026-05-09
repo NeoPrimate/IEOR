@@ -34,7 +34,7 @@
 #let exp_probs = t_vals.map(t => exponential_pdf(λ, t))
 #let max_exp = calc.max(..exp_probs)
 
-#let pois_dist = canvas({
+#let pois_dist = frame(cetz.canvas({
   import cetz.draw: *
   import cetz-plot: *
 
@@ -73,9 +73,9 @@
       }
     },
   )
-})
+}))
 
-#let exp_dist = canvas({
+#let exp_dist = frame(cetz.canvas({
   import cetz.draw: *
   import cetz-plot: *
 
@@ -118,7 +118,7 @@
       })
     },
   )
-})
+}))
 
 #table(
   columns: (auto, auto),

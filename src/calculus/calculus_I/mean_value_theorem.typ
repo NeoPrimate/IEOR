@@ -48,7 +48,7 @@ This means that the instantaneous rate of change (derivative) at some point $c$ 
   #let tangent_line(x) = tangent_slope * (x - c) + f(c)
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import draw: *
 
       plot.plot(
@@ -107,7 +107,7 @@ This means that the instantaneous rate of change (derivative) at some point $c$ 
           )
         },
       )
-    })
+    }))
   ]
 
 ]

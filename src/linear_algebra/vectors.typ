@@ -18,7 +18,7 @@ $
   #linebreak()
 
   #align(center)[
-    #canvas(length: 5cm, {
+    #frame(cetz.canvas(length: 5cm, {
       import cetz.draw: *
       import cetz-plot: *
 
@@ -45,7 +45,7 @@ $
 
       cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
       cetz.draw.line("plot.a", "plot.b", stroke: red, mark: (fill: red))
-    })
+    }))
   ]
 ]
 
@@ -92,7 +92,7 @@ $
   $
 
   #align(center)[
-    #canvas(length: 5cm, {
+    #frame(cetz.canvas(length: 5cm, {
       import cetz.draw: *
       import cetz-plot: *
 
@@ -125,11 +125,11 @@ $
       cetz.draw.line("plot.a", "plot.b", stroke: red, mark: (fill: red))
       cetz.draw.line("plot.c", "plot.d", stroke: blue, mark: (fill: blue))
       cetz.draw.line("plot.e", "plot.f", stroke: green, mark: (fill: green))
-    })
+    }))
   ]
 
   #align(center)[
-    #canvas(length: 5cm, {
+    #frame(cetz.canvas(length: 5cm, {
       import cetz.draw: *
       import cetz-plot: *
 
@@ -162,7 +162,7 @@ $
       cetz.draw.line("plot.a", "plot.b", stroke: red, mark: (fill: red))
       cetz.draw.line("plot.c", "plot.d", stroke: blue, mark: (fill: blue))
       cetz.draw.line("plot.e", "plot.f", stroke: green, mark: (fill: green))
-    })
+    }))
   ]
 ]
 
@@ -185,7 +185,7 @@ $
 
   #align(center)[
 
-    #canvas(length: 6cm, {
+    #frame(cetz.canvas(length: 6cm, {
       import cetz.draw: *
       import cetz-plot: *
       plot.plot(
@@ -226,7 +226,7 @@ $
         padding: 0.025,
         angle: "a.end",
       )
-    })
+    }))
   ]
 ]
 
@@ -247,7 +247,7 @@ $
   $
 
   #align(center)[
-    #canvas(length: 5cm, {
+    #frame(cetz.canvas(length: 5cm, {
       import cetz.draw: *
       import cetz-plot: *
       plot.plot(
@@ -276,7 +276,7 @@ $
       cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
       cetz.draw.line("plot.c", "plot.d", stroke: red, mark: (fill: red))
       cetz.draw.line("plot.a", "plot.b", stroke: green, mark: (fill: green))
-    })
+    }))
   ]
 
   $
@@ -288,7 +288,7 @@ $
   $
 
   #align(center)[
-    #canvas(length: 5cm, {
+    #frame(cetz.canvas(length: 5cm, {
       import cetz.draw: *
       import cetz-plot: *
       plot.plot(
@@ -317,7 +317,7 @@ $
       cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
       cetz.draw.line("plot.c", "plot.d", stroke: red, mark: (fill: red))
       cetz.draw.line("plot.a", "plot.b", stroke: green, mark: (fill: green))
-    })
+    }))
   ]
 ]
 
@@ -369,7 +369,7 @@ $
   $
 
   #align(center)[
-    #canvas(length: 5cm, {
+    #frame(cetz.canvas(length: 5cm, {
       import cetz.draw: *
       import cetz-plot: *
       plot.plot(
@@ -400,7 +400,7 @@ $
       cetz.draw.content("line.end", text(red)[$accent(a, arrow)$], anchor: "south", padding: 0.05)
       cetz.draw.line("plot.c", "plot.d", stroke: blue, mark: (fill: blue), name: "line")
       cetz.draw.content("line.end", text(blue)[$hat(u)$], anchor: "south", padding: 0.05)
-    })
+    }))
   ]
 
 ]
@@ -459,7 +459,7 @@ $
   })
 
   #align(center)[
-    #canvas(length: 10cm, {
+    #frame(cetz.canvas(length: 10cm, {
       import cetz.draw: *
       import cetz-plot: *
       plot.plot(
@@ -503,7 +503,7 @@ $
       for (i, z) in vecs.enumerate() {
         cetz.draw.line("plot.L", "plot." + str(i), stroke: purple, mark: (fill: purple), name: "line")
       }
-    })
+    }))
   ]
 
   The line $L$ can also be defined as:
@@ -523,7 +523,7 @@ $
   })
 
   #align(center)[
-    #canvas(length: 10cm, {
+    #frame(cetz.canvas(length: 10cm, {
       import cetz.draw: *
       import cetz-plot: *
       plot.plot(
@@ -567,7 +567,7 @@ $
       for (i, z) in vecs.enumerate() {
         cetz.draw.line("plot.L", "plot." + str(i), stroke: purple, mark: (fill: purple), name: "line")
       }
-    })
+    }))
   ]
 ]
 
@@ -666,7 +666,7 @@ $
 
 
   #align(center)[
-    #canvas(length: 10cm, {
+    #frame(cetz.canvas(length: 10cm, {
       import cetz.draw: *
       import cetz-plot: *
       plot.plot(
@@ -703,7 +703,7 @@ $
         },
         name: "plot",
       )
-    })
+    }))
   ]
 
 ]

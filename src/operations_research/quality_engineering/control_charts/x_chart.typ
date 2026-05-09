@@ -18,7 +18,7 @@ Where:
 #example[
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import draw: *
 
       let k = 25 // number of subgroups
@@ -60,7 +60,7 @@ Where:
           plot.add-hline(lcl, label: $"LCL"$, style: (stroke: red))
         },
       )
-    })
+    }))
   ]
 
 ]

@@ -19,7 +19,7 @@ $
 Solution: Intersection of $n$ lines or (hyper)planes
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -111,7 +111,7 @@ Solution: Intersection of $n$ lines or (hyper)planes
         )
       },
     )
-  })
+  }))
 ]
 
 *Column* View
@@ -123,7 +123,7 @@ $
 $
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -217,7 +217,7 @@ $
     cetz.draw.line("plot.b1", "plot.c", stroke: (dash: "dashed", paint: black), mark: (fill: black))
 
     cetz.draw.line("plot.o", "plot.c", stroke: blue, mark: (fill: black))
-  })
+  }))
 ]
 
 A linear system is *singular* if there is no unique solution
@@ -580,7 +580,7 @@ A point $x$ in set $S subset.eq RR^n$ is extreme if it cannot be written as a st
   #let x_e = d
   #let x_ne = (2, 2)
 
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -730,7 +730,7 @@ A point $x$ in set $S subset.eq RR^n$ is extreme if it cannot be written as a st
       },
       name: "plot",
     )
-  })
+  }))
 ]
 
 Convex Combination
@@ -771,7 +771,7 @@ Unused capacity
   - If $x_1 + x_2 = 5$, then $s = 0$
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -833,7 +833,7 @@ Unused capacity
       cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
 
       cetz.draw.line("plot.a", "plot.b", stroke: (dash: "dashed", paint: black), mark: (fill: black))
-    })
+    }))
   ]
 ]
 
@@ -858,7 +858,7 @@ Excess above the required amount
   - If $x_1 + x_2 = 5$, then $e = 0$
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -920,7 +920,7 @@ Excess above the required amount
       cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
 
       cetz.draw.line("plot.a", "plot.b", stroke: (dash: "dashed", paint: black), mark: (fill: black))
-    })
+    }))
   ]
 ]
 
@@ -1076,7 +1076,7 @@ Excess above the required amount
     - Objective: $z = 3x_1 + 2x_2 = 3(0) + 2(0) = 0$
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -1129,7 +1129,7 @@ Excess above the required amount
         },
         name: "plot",
       )
-    })
+    }))
   ]
 
   *Step 3*: Choose entering variable
@@ -1381,7 +1381,7 @@ Excess above the required amount
   )
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -1450,7 +1450,7 @@ Excess above the required amount
       cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
 
       cetz.draw.line("plot.V_1", "plot.V_2", stroke: (dash: "dashed", paint: red, thickness: 3pt), mark: (fill: black))
-    })
+    }))
   ]
 
   *Step 3*: Choose entering variable
@@ -1691,7 +1691,7 @@ Excess above the required amount
     - Objective: $z = 3x_1 + 2x_2 = 3(2) + 2(2) = 10$
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -1771,7 +1771,7 @@ Excess above the required amount
       cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
 
       cetz.draw.line("plot.V_1", "plot.V_2", stroke: (dash: "dashed", paint: red, thickness: 3pt), mark: (fill: black))
-    })
+    }))
   ]
 ]
 
@@ -3142,7 +3142,7 @@ $
 )
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -3205,7 +3205,7 @@ $
       },
       name: "plot",
     )
-  })
+  }))
 ]
 
 $
@@ -3268,7 +3268,7 @@ Degeneracy occurs when a basic variable takes the value zero in a basic feasible
   $
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -3336,7 +3336,7 @@ Degeneracy occurs when a basic variable takes the value zero in a basic feasible
         },
         name: "plot",
       )
-    })
+    }))
   ]
 
   Minimum Test
@@ -3433,7 +3433,7 @@ Degeneracy occurs when a basic variable takes the value zero in a basic feasible
   $
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -3512,7 +3512,7 @@ Degeneracy occurs when a basic variable takes the value zero in a basic feasible
         },
         name: "plot",
       )
-    })
+    }))
   ]
 
   Minimum Test
@@ -3617,7 +3617,7 @@ Degeneracy occurs when a basic variable takes the value zero in a basic feasible
   If after elimination a basic variable has a value of 0, it indicates degeneracy.
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -3707,7 +3707,7 @@ Degeneracy occurs when a basic variable takes the value zero in a basic feasible
         },
         name: "plot",
       )
-    })
+    }))
   ]
 
   Degeneracy comes from redundant constraints
@@ -3985,7 +3985,7 @@ Can't perform ratio test $arrow.long$ no constraint limits the entering variable
   In a maximization or minimization linear programming problem, if there is a 0 in the $z$ row (objective function row) of the final (optimal) simplex tableau in a non-basic column (i.e. a variable not currently in the solution), then there are multiple optimal solutions.
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -4061,7 +4061,7 @@ Can't perform ratio test $arrow.long$ no constraint limits the entering variable
         },
         name: "plot",
       )
-    })
+    }))
   ]
 
 ]
@@ -5028,7 +5028,7 @@ The Simplex Tableau is:
   $
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -5092,7 +5092,7 @@ The Simplex Tableau is:
         },
         name: "plot",
       )
-    })
+    }))
   ]
 
   #line(length: 100%)
@@ -5182,7 +5182,7 @@ The Simplex Tableau is:
   $
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -5246,7 +5246,7 @@ The Simplex Tableau is:
         },
         name: "plot",
       )
-    })
+    }))
   ]
 
   #line(length: 100%)
@@ -5354,7 +5354,7 @@ The Simplex Tableau is:
   $
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -5418,7 +5418,7 @@ The Simplex Tableau is:
         },
         name: "plot",
       )
-    })
+    }))
   ]
 
 

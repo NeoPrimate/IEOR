@@ -97,7 +97,7 @@ $
 
   #let x_opt = (0, 0)
 
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -158,7 +158,7 @@ $
       },
       name: "plot",
     )
-  })
+  }))
 ]
 
 - The constraint does not affect the optimum
@@ -177,7 +177,7 @@ $
 
   #let x_opt = (0, 1)
 
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -238,7 +238,7 @@ $
       },
       name: "plot",
     )
-  })
+  }))
 ]
 
 
@@ -262,7 +262,7 @@ $
 
     #let x_opt = (0, 0)
 
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -307,7 +307,7 @@ $
         },
         name: "plot",
       )
-    })
+    }))
   ]
 
   *Step 1. Standardize constraints*
@@ -447,7 +447,7 @@ $
 
     #let x_opt = (0, 0)
 
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -508,7 +508,7 @@ $
         },
         name: "plot",
       )
-    })
+    }))
   ]
 
   *Step 8. Check Convexity*
@@ -529,7 +529,7 @@ $
 
     #let x_opt = (0, 1)
 
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -574,7 +574,7 @@ $
         },
         name: "plot",
       )
-    })
+    }))
   ]
 
   *Step 1. Standardize constraints*
@@ -715,7 +715,7 @@ $
 
     #let x_opt = (0, 1)
 
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -776,7 +776,7 @@ $
         },
         name: "plot",
       )
-    })
+    }))
   ]
 
   *Step 8. Check Convexity*
@@ -857,7 +857,7 @@ $
     #let z(q1, q2) = q1 * (a1 - b1 * q1) + q2 * (a2 - b2 * q2)
     #let c(x) = K - x
 
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -924,7 +924,7 @@ $
         },
         name: "plot",
       )
-    })
+    }))
   ]
 
   2. Lagrangian
@@ -1117,7 +1117,7 @@ $
     #let normal_start = (dst / 2, dst / 2)
     #let normal_end = (normal_start.at(0) + 1, normal_start.at(1) + 1)
 
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -1189,7 +1189,7 @@ $
         },
         name: "plot",
       )
-    })
+    }))
   ]
 
   1️⃣ Lagrangian
@@ -1338,7 +1338,7 @@ $
     #let normal_start = (dst / 2, dst / 2)
     #let normal_end = (normal_start.at(0) + 1, normal_start.at(1) + 1)
 
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -1446,7 +1446,7 @@ $
         },
         name: "plot",
       )
-    })
+    }))
   ]
 
   ✅ Both $(sqrt(3), -1)$ and $(-sqrt(3), -1)$ satisfy dual feasibility $arrow$ both are KKT points.
@@ -1581,7 +1581,7 @@ $
     #let normal_start = (dst / 2, dst / 2)
     #let normal_end = (normal_start.at(0) + 1, normal_start.at(1) + 1)
 
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -1689,7 +1689,7 @@ $
         },
         name: "plot",
       )
-    })
+    }))
   ]
 
   ❌ $(x_1, x_2) = (sqrt(2), -sqrt(2))$ is rejected because it violates the inequality $g_2 (x) lt.eq 0$
@@ -1824,7 +1824,7 @@ $
     #let normal_start = (dst / 2, dst / 2)
     #let normal_end = (normal_start.at(0) + 1, normal_start.at(1) + 1)
 
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -1932,7 +1932,7 @@ $
         },
         name: "plot",
       )
-    })
+    }))
   ]
 
   ✅ $(x_1, x_2) = (-sqrt(2), sqrt(2) - 2)$ is a valid KKT point under this assumption.
@@ -2007,7 +2007,7 @@ $
     #let normal_start = (dst / 2, dst / 2)
     #let normal_end = (normal_start.at(0) + 1, normal_start.at(1) + 1)
 
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -2133,7 +2133,7 @@ $
         },
         name: "plot",
       )
-    })
+    }))
   ]
 
 
@@ -2233,7 +2233,7 @@ $w^* = z^*$ is the primal NLP is a "regular" *convex* program
     #let normal_start = (dst / 2, dst / 2)
     #let normal_end = (normal_start.at(0) + 1, normal_start.at(1) + 1)
 
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -2307,7 +2307,7 @@ $w^* = z^*$ is the primal NLP is a "regular" *convex* program
       cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
 
       cetz.draw.line("plot.normal_start", "plot.normal_end", stroke: black, mark: (fill: black))
-    })
+    }))
   ]
 
   Lagragian relaxation

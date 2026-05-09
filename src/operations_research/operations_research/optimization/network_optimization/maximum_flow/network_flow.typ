@@ -14,7 +14,7 @@ Types of Problems:
 #linebreak()
 
 #align(center)[
-  #diagram(
+  #frame(fletcher.diagram(
     node-inset: 0pt,
 
     node(
@@ -46,7 +46,7 @@ Types of Problems:
     edge(<i>, <j>, "-|>", label: {
       place(bottom + center, dy: -3mm, $c_(i j)$)
     }),
-  )
+  ))
 ]
 
 #linebreak()
@@ -65,7 +65,7 @@ Node $i$
 #linebreak()
 
 #align(center)[
-  #diagram(
+  #frame(fletcher.diagram(
     node-inset: 0pt,
 
     node(
@@ -131,7 +131,7 @@ Node $i$
       radius: 1em,
       name: <k>,
     ),
-  )
+  ))
 ]
 
 #linebreak()
@@ -176,7 +176,7 @@ Where:
 #linebreak()
 
 #align(center)[
-  #diagram(
+  #frame(fletcher.diagram(
     node-inset: 0pt,
     node(pos: (-1, 0), label: $x_(j i)$, name: <1>, radius: 1em),
     node(pos: (-1, 0.3), name: <2>, radius: 1em),
@@ -204,7 +204,7 @@ Where:
     edge(<i>, <4>, "-|>"),
     edge(<i>, <5>, "-|>", shift: -5pt),
     edge(<i>, <6>, "-|>", shift: 5pt),
-  )
+  ))
 ]
 
 #linebreak()
@@ -229,7 +229,7 @@ Important:
   #linebreak()
 
   #align(center)[
-    #diagram(
+    #frame(fletcher.diagram(
       node-inset: 0pt,
 
       node(
@@ -330,7 +330,7 @@ Important:
       edge(<1>, <2>, "-|>", label: "30", label-side: center, shift: 0pt, label-fill: luma(230)),
 
       edge(<2>, <3>, "-|>", label: "50", label-side: center, shift: 0pt, label-fill: luma(230)),
-    )
+    ))
   ]
 
   #linebreak()
@@ -373,7 +373,7 @@ Important:
   #linebreak()
 
   #align(center)[
-    #diagram(
+    #frame(fletcher.diagram(
       node-inset: 0pt,
 
       node(
@@ -611,7 +611,7 @@ Important:
         shift: 0pt,
         label-size: 0.5em,
       ),
-    )
+    ))
   ]
   #linebreak()
   #linebreak()

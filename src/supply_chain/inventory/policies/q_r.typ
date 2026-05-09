@@ -27,7 +27,7 @@ Sawtooth shape, but with random consumption rate:
 - *Service level* (probability of no stockout per cycle) = $P(D_L lt.eq r)$.
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
 
     line((0, 0), (9, 0), name: "x_axis")
@@ -62,7 +62,7 @@ Sawtooth shape, but with random consumption rate:
       fill: white,
       inset: 0.5em,
     )])
-  })
+  }))
 ]
 
 === Set $r$ — the reorder point

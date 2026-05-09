@@ -9,7 +9,7 @@ F(x) = P(X ≤ x)
 $
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
 
     let mu = 0
@@ -64,7 +64,7 @@ $
           label: none
         )
       })
-  })
+  }))
 ]
 
 1. Categorical

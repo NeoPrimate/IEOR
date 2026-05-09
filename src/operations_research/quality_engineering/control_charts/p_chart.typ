@@ -28,7 +28,7 @@ $
 - $n_i$: sample size for sample $i$
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
 
     let k = 25
@@ -64,5 +64,5 @@ $
         plot.add-hline(p_bar, label: $macron(p)$, style: (stroke: green))
         plot.add(lcl_series, style: (stroke: red), label: $"LCL"$)
       })
-  })
+  }))
 ]

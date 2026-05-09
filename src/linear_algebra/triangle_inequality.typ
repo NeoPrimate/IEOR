@@ -11,7 +11,7 @@ $
 // #linebreak()
 
 #align(center)[
-  #canvas(length: 6cm, {
+  #frame(cetz.canvas(length: 6cm, {
     import cetz.draw: *
     import cetz-plot: *
 
@@ -44,7 +44,7 @@ $
       
       cetz.draw.line("plot.o", "plot.b", stroke: purple, mark: (fill: purple), name: "a")
       cetz.draw.content("a.mid", text(purple)[$||accent(u, arrow) + accent(v, arrow)||$], anchor: "north", padding: 0.025, angle: "a.start")
-  })
+  }))
 ]
 
 // #linebreak()
@@ -56,7 +56,7 @@ $
 // #linebreak()
 
 #align(center)[
-  #canvas(length: 6cm, {
+  #frame(cetz.canvas(length: 6cm, {
     import cetz.draw: *
     import cetz-plot: *
     plot.plot(
@@ -88,7 +88,7 @@ $
       
       cetz.draw.line("plot.o", "plot.b", stroke: 0pt, mark: (fill: none), name: "c")
       cetz.draw.content("c.mid", text(purple)[$||accent(u, arrow) + accent(v, arrow)||$], anchor: "north", padding: 0.05, angle: "c.start")
-  })
+  }))
 ]
 
 // #linebreak()

@@ -175,7 +175,7 @@ $$
   $
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import draw: *
 
       plot.plot(
@@ -201,7 +201,7 @@ $$
           )
         },
       )
-    })
+    }))
   ]
 ]
 
@@ -212,7 +212,7 @@ $
 $
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
 
     plot.plot(
@@ -240,7 +240,7 @@ $
         )
       },
     )
-  })
+  }))
 ]
 
 == Cos
@@ -252,7 +252,7 @@ $
 #let ddx_cos(x) = -calc.sin(x)
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
 
     plot.plot(
@@ -280,7 +280,7 @@ $
         )
       },
     )
-  })
+  }))
 ]
 
 == $bold(e^x)$
@@ -297,7 +297,7 @@ $
 
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
 
     plot.plot(
@@ -325,7 +325,7 @@ $
         )
       },
     )
-  })
+  }))
 ]
 
 == $bold(ln(x))$
@@ -340,7 +340,7 @@ $
 #let f_tangent(x) = m * x + b
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
 
     plot.plot(
@@ -368,5 +368,5 @@ $
         )
       },
     )
-  })
+  }))
 ]

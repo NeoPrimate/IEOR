@@ -109,7 +109,7 @@ $ "TRC"(Q) = S (D / Q) + h (Q / 2) $
 
 #figure(
   caption: [TRC and its two components, as functions of $Q$. The minimum is where the two component curves cross.],
-  canvas({
+  frame(cetz.canvas({
     import cetz-plot: *
 
     plot.plot(
@@ -124,7 +124,7 @@ $ "TRC"(Q) = S (D / Q) + h (Q / 2) $
         plot.add(trc, domain: (20, 300), style: (stroke: black, dash: "dashed"), label: "TRC (total)")
       },
     )
-  }),
+  })),
 )
 
 === Derive $Q^*$ (first-order condition)
@@ -319,7 +319,7 @@ $ "TRC"(Q) / "TRC"^* = 1 / 2 (Q / Q^* + Q^* / Q) $
 
 #figure(
   caption: [Cost penalty curve: how much extra you pay when $Q != Q^*$.],
-  canvas({
+  frame(cetz.canvas({
     import cetz-plot: *
 
     plot.plot(
@@ -333,7 +333,7 @@ $ "TRC"(Q) / "TRC"^* = 1 / 2 (Q / Q^* + Q^* / Q) $
         plot.add-hline(1, style: (stroke: (paint: gray, dash: "dashed")))
       },
     )
-  }),
+  })),
 )
 
 Snapshots:
@@ -367,7 +367,7 @@ Variables:
 
 #figure(
   caption: [Power-of-two safe zone: $T \/ T^* in [0.707, 1.414]$ guarantees ≤ 6% cost penalty.],
-  canvas({
+  frame(cetz.canvas({
     import cetz-plot: *
 
     plot.plot(
@@ -393,7 +393,7 @@ Variables:
         plot.add(((2.0, penalty(2.0)),), mark: "o", style: (stroke: blue))
       },
     )
-  }),
+  })),
 )
 
 *Safe zone.* For any $T^*$, *some* power-of-two $T$ is always within a factor of $sqrt(2)$ of it. So $T \/ T^* in [0.707, 1.414]$ is always achievable, which from the cost-penalty curve gives at most a *6% cost penalty*.

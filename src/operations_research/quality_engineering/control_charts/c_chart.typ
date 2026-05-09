@@ -26,7 +26,7 @@ Where:
 #example[
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import draw: *
 
       let k = 25
@@ -61,7 +61,7 @@ Where:
           plot.add-hline(lcl, label: $"LCL"$, style: (stroke: red))
         },
       )
-    })
+    }))
   ]
 
   This C-chart displays the number of defects identified in each of 25 inspected units, where each unit is of fixed size. The center line represents the average number of defects across all samples, calculated as:

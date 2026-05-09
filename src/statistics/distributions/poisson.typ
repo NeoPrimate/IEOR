@@ -9,7 +9,7 @@ P(X = k) = (lambda^k e^(- lambda)) / k!
 $
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
 
     set-style(
@@ -54,5 +54,5 @@ $
         )
 
       })
-  })
+  }))
 ]

@@ -16,7 +16,7 @@ A critical point of a function $f(x)$ is a point in the domain where either:
 
 
   #align(center)[
-    #canvas(length: 6cm, {
+    #frame(cetz.canvas(length: 6cm, {
       import cetz.draw: *
       import cetz-plot: *
 
@@ -52,7 +52,7 @@ A critical point of a function $f(x)$ is a point in the domain where either:
           )
         },
       )
-    })
+    }))
   ]
 ]
 

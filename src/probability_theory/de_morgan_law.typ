@@ -39,7 +39,7 @@ $
 )
 
 #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
     import cetz.draw: * 
     
     rect(
@@ -108,7 +108,7 @@ $
     )
 
     content("E", $ T^c $, anchor: "center", padding: (x: 0, y: 0), fill: white)
-  })
+  }))
 ]
 
 $

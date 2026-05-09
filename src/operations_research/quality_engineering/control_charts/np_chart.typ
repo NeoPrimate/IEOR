@@ -25,7 +25,7 @@ $
 
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
 
     let k = 25
@@ -62,6 +62,6 @@ $
         plot.add-hline(np_bar, label: $macron(n p)$, style: (stroke: green))
         plot.add-hline(lcl, label: $"LCL"$, style: (stroke: red))
       })
-  })
+  }))
 ]
 

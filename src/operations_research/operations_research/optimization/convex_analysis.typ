@@ -15,7 +15,7 @@ Difficulties of NLP
 
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -81,13 +81,13 @@ Difficulties of NLP
       },
       name: "plot",
     )
-  })
+  }))
 ]
 
 - An optimal solution may not be an extreme point optimal solution
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -165,7 +165,7 @@ Difficulties of NLP
       },
       name: "plot",
     )
-  })
+  }))
 ]
 
 === Convexity
@@ -186,7 +186,7 @@ for all $lambda in [0, 1]$ and $x_1, x_2 in F$
   columns: (auto, auto),
   align: horizon + center,
   [
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -240,10 +240,10 @@ for all $lambda in [0, 1]$ and $x_1, x_2 in F$
         name: "plot",
       )
       cetz.draw.line("plot.a", "plot.b", stroke: black, mark: (fill: blue), name: "a")
-    })
+    }))
   ],
   [
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -289,7 +289,7 @@ for all $lambda in [0, 1]$ and $x_1, x_2 in F$
       cetz.draw.line("plot.a", "plot.b", stroke: black, mark: (fill: blue), name: "a")
 
       circle("plot.o", radius: (2.5, 1.5), stroke: red)
-    })
+    }))
   ],
 )
 
@@ -309,7 +309,7 @@ for all $lambda in [0, 1]$ and $x_1, x_2 in F$
   column-gutter: 1em,
   [
 
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -414,10 +414,10 @@ for all $lambda in [0, 1]$ and $x_1, x_2 in F$
         anchor: "east",
         padding: 1em,
       )
-    })
+    }))
   ],
   [
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -522,7 +522,7 @@ for all $lambda in [0, 1]$ and $x_1, x_2 in F$
         anchor: "east",
         padding: 1em,
       )
-    })
+    }))
   ],
 )
 
@@ -552,7 +552,7 @@ $
 Which violates the fact that $f(dot)$ is convex. Therefore, by contradiction, the local minimum $x'$ must be a global minimum.
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -661,7 +661,7 @@ Which violates the fact that $f(dot)$ is convex. Therefore, by contradiction, th
     //   anchor: "east",
     //   padding: 1em,
     // )
-  })
+  }))
 ]
 
 Minimize a concave function
@@ -671,7 +671,7 @@ Minimize a concave function
 Extreme point: In convex analysis, an extreme point of a convex set $C$ is a point in $C$ that cannot be expressed as a strict convex combination of two other distinct points in $C$
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -706,7 +706,7 @@ Extreme point: In convex analysis, an extreme point of a convex set $C$ is a poi
       },
       name: "plot",
     )
-  })
+  }))
 ]
 
 Special Case: LP
@@ -721,7 +721,7 @@ For any LP we have both
   columns: (auto, auto, auto),
   align: center,
   [
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -779,10 +779,10 @@ For any LP we have both
         },
         name: "plot",
       )
-    })
+    }))
   ],
   [
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -839,10 +839,10 @@ For any LP we have both
         },
         name: "plot",
       )
-    })
+    }))
   ],
   [
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -894,7 +894,7 @@ For any LP we have both
         },
         name: "plot",
       )
-    })
+    }))
   ],
 )
 
@@ -1051,7 +1051,7 @@ First order condition (FOC) $f'(x) = 0$
   $
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -1106,7 +1106,7 @@ First order condition (FOC) $f'(x) = 0$
         },
         name: "plot",
       )
-    })
+    }))
   ]
 
   For:

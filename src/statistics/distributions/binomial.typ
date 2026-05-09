@@ -17,7 +17,7 @@ $
 #let b3 = range(1, 25).map((n) => (n, binomial(n, 1, 0.9)))
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
     
     plot.plot(
@@ -48,6 +48,6 @@ $
           mark: "o"
         )
       })
-  })
+  }))
 ]
 

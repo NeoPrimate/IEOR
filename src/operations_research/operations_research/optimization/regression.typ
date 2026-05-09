@@ -28,7 +28,7 @@ $
 #let noisy_data = xs.zip(noisy_ys)
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -60,7 +60,7 @@ $
       },
       name: "plot",
     )
-  })
+  }))
 ]
 
 We assume a linear relationship between $x$ and $y$:

@@ -7,7 +7,7 @@
     colorMath(u, #red) = f(x, y) quad quad colorMath(v, #blue) = f(x, y)
   $
 
-  #diagram(
+  #frame(fletcher.diagram(
     node-inset: 0pt,
 
     node(pos: (0, 0), label: $z$, stroke: none, radius: 0.75em, name: <z>),
@@ -31,7 +31,7 @@
     edge(<v>, <x>, "-|>", label: {}),
 
     edge(<v>, <y>, "-|>", label: {}),
-  )
+  ))
 ]
 
 The derivative of $z$ with respect to $x$ is the sum of all possible paths from $z$ to $x$:

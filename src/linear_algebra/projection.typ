@@ -62,7 +62,7 @@ Where:
   $
 
   #align(center)[
-    #canvas(length: 6cm, {
+    #frame(cetz.canvas(length: 6cm, {
       cetz-plot.plot.plot(
         x-tick-step: 5,
         y-tick-step: 5,
@@ -112,7 +112,7 @@ Where:
       //   "conn.end",
       //   radius: 1.5
       // )
-    })
+    }))
   ]
 ]
 
@@ -163,7 +163,7 @@ $
 #let u = nt.mult(1 / mag_v, v)
 
 #align(center)[
-  #canvas(length: 6cm, {
+  #frame(cetz.canvas(length: 6cm, {
     cetz-plot.plot.plot(
       x-tick-step: 5,
       y-tick-step: 5,
@@ -205,7 +205,7 @@ $
       padding: 0.075,
       angle: "u.end",
     )
-  })
+  }))
 ]
 
 *Projection as a Linear Transformation*
@@ -308,7 +308,7 @@ $
   $
 
   #align(center)[
-    #canvas(length: 6cm, {
+    #frame(cetz.canvas(length: 6cm, {
       cetz-plot.plot.plot(
         x-tick-step: 5,
         y-tick-step: 5,
@@ -344,7 +344,7 @@ $
 
       cetz.draw.line("plot.o", "plot.u", stroke: green, mark: (fill: green), name: "u")
       cetz.draw.content("u.end", text(green)[$hat(u)$], anchor: "south", padding: 0.05, angle: "u.end")
-    })
+    }))
   ]
 ]
 

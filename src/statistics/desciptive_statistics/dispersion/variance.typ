@@ -86,7 +86,7 @@ $
   $
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import draw: *
 
       plot.plot(
@@ -122,7 +122,7 @@ $
           }
         },
       )
-    })
+    }))
   ]
 
 ]

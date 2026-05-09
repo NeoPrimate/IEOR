@@ -31,7 +31,7 @@ $
 
 
   #align(center)[
-    #canvas(length: 6cm, {
+    #frame(cetz.canvas(length: 6cm, {
       cetz-plot.plot.plot(
         x-tick-step: 10,
         y-tick-step: 0.1,
@@ -50,7 +50,7 @@ $
           cetz-plot.plot.add-hline(convergence)
         },
       )
-    })
+    }))
   ]
 
 ]
@@ -68,7 +68,7 @@ $
   #let convergence = calc.ln(2)
 
   #align(center)[
-    #canvas(length: 6cm, {
+    #frame(cetz.canvas(length: 6cm, {
       cetz-plot.plot.plot(
         x-tick-step: 10,
         y-tick-step: 0.1,
@@ -87,7 +87,7 @@ $
           cetz-plot.plot.add-hline(convergence)
         },
       )
-    })
+    }))
   ]
 ]
 
@@ -101,7 +101,7 @@ $
   #let series = range(1, 50).map(n => (n, range(1, n + 1).map(n => (1 / n)).sum()))
 
   #align(center)[
-    #canvas(length: 6cm, {
+    #frame(cetz.canvas(length: 6cm, {
       cetz-plot.plot.plot(
         x-tick-step: 10,
         y-tick-step: 1,
@@ -119,6 +119,6 @@ $
           )
         },
       )
-    })
+    }))
   ]
 ]

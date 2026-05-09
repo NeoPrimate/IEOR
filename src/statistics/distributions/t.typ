@@ -12,7 +12,7 @@ Where:
 - $Gamma$: Gamma function (generalizes the factorial function)
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
 
     set-style(
@@ -44,7 +44,7 @@ Where:
           style: (stroke: black),
         )
       })
-  })
+  }))
 ]
 
 Continuous probability distribution for estimating the mean of a normally distributed population in situations where:

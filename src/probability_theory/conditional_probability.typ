@@ -48,7 +48,7 @@ $
   $
 
   #align(center)[
-    #diagram(
+    #frame(fletcher.diagram(
       node-stroke: .0em,
       spacing: 4em,
       node((0, 0), [], radius: 0em, name: "A"),
@@ -122,7 +122,7 @@ $
         label-pos: 0.5,
         label-side: right,
       ),
-    )
+    ))
   ]
 
   $

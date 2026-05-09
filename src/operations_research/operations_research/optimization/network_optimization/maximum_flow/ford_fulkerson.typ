@@ -9,7 +9,7 @@ Find augmenting paths in the network and increase the flow until no more augment
   #linebreak()
 
   #align(center)[
-    #diagram(
+    #frame(fletcher.diagram(
       node-inset: 0pt,
 
       node(pos: (0, 0), label: $s$, stroke: 0.1em, radius: 1em, name: <s>),
@@ -40,7 +40,7 @@ Find augmenting paths in the network and increase the flow until no more augment
       edge(<B>, <t>, "-|>", label: {
         place(bottom + center, dy: 0mm, $10$)
       }),
-    )
+    ))
   ]
 
   #linebreak()
@@ -62,7 +62,7 @@ Find augmenting paths in the network and increase the flow until no more augment
   All flows through the edges are initially set to 0.
 
   #align(center)[
-    #diagram(
+    #frame(fletcher.diagram(
       node-inset: 0pt,
 
       node(pos: (0, 0), label: $s$, stroke: 0.1em, radius: 1em, name: <s>),
@@ -93,7 +93,7 @@ Find augmenting paths in the network and increase the flow until no more augment
       edge(<B>, <t>, "-|>", label: {
         place(bottom + center, dy: 0mm, $0$)
       }),
-    )
+    ))
   ]
 
 
@@ -115,7 +115,7 @@ Find augmenting paths in the network and increase the flow until no more augment
   - $A arrow t$: Capacity becomes $10 - 10 = 0$ (no residual capacity)
 
   #align(center)[
-    #diagram(
+    #frame(fletcher.diagram(
       node-inset: 0pt,
 
       node(pos: (0, 0), label: $s$, stroke: 0.1em, radius: 1em, name: <s>),
@@ -146,7 +146,7 @@ Find augmenting paths in the network and increase the flow until no more augment
       edge(<B>, <t>, "-|>", label: {
         place(bottom + center, dy: 0mm, $0$)
       }),
-    )
+    ))
   ]
 
   *Step 4*: Find another augmenting path
@@ -169,7 +169,7 @@ Find augmenting paths in the network and increase the flow until no more augment
   - $B arrow t$: Capacity becomes $10 - 5 = 5$
 
   #align(center)[
-    #diagram(
+    #frame(fletcher.diagram(
       node-inset: 0pt,
 
       node(pos: (0, 0), label: $s$, stroke: 0.1em, radius: 1em, name: <s>),
@@ -200,7 +200,7 @@ Find augmenting paths in the network and increase the flow until no more augment
       edge(<B>, <t>, "-|>", label: {
         place(bottom + center, dy: 0mm, $5$)
       }),
-    )
+    ))
   ]
 
   *Step 6*: Termination
@@ -217,7 +217,7 @@ Find augmenting paths in the network and increase the flow until no more augment
   *Step 7*: Final Flow Distribution
 
   #align(center)[
-    #diagram(
+    #frame(fletcher.diagram(
       node-inset: 0pt,
 
       node(pos: (0, 0), label: $s$, stroke: 0.1em, radius: 1em, name: <s>),
@@ -248,7 +248,7 @@ Find augmenting paths in the network and increase the flow until no more augment
       edge(<B>, <t>, "-|>", label: {
         place(bottom + center, dy: 0mm, $5$)
       }),
-    )
+    ))
   ]
 
 ]

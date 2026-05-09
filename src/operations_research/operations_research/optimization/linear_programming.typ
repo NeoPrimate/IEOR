@@ -162,7 +162,7 @@ $
 - Infeasable solution: violates at least one constraint
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -202,7 +202,7 @@ $
         })
       },
     )
-  })
+  }))
 ]
 
 
@@ -224,7 +224,7 @@ Let $g(dot) lt.eq b$ be an inequality constraint and $bar(x)$ be a solution. $g(
   $
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -284,7 +284,7 @@ Let $g(dot) lt.eq b$ be an inequality constraint and $bar(x)$ be a solution. $g(
           })
         },
       )
-    })
+    }))
   ]
 ]
 
@@ -313,7 +313,7 @@ Let $g(dot) lt.eq b$ be an inequality constraint and $bar(x)$ be a solution. $g(
   }
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -390,14 +390,14 @@ Let $g(dot) lt.eq b$ be an inequality constraint and $bar(x)$ be a solution. $g(
           })
         },
       )
-    })
+    }))
   ]
 ]
 
 === Types of LP
 
 #align(center)[
-  #diagram(
+  #frame(fletcher.diagram(
     node-inset: 0pt,
 
     node(pos: (0, 0), label: {}, stroke: 0em, radius: 0em, name: <root>),
@@ -471,7 +471,7 @@ Let $g(dot) lt.eq b$ be an inequality constraint and $bar(x)$ be a solution. $g(
     edge(<feasible>, <unbounded>, "-|>", label: {}),
     edge(<optimal>, <unique>, "-|>", label: {}),
     edge(<optimal>, <multiple>, "-|>", label: {}),
-  )
+  ))
 ]
 
 === LP Formulation
@@ -709,7 +709,7 @@ Let $g(dot) lt.eq b$ be an inequality constraint and $bar(x)$ be a solution. $g(
 
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
       set-style(axes: (y: (stroke: 0pt)))
@@ -767,7 +767,7 @@ Let $g(dot) lt.eq b$ be an inequality constraint and $bar(x)$ be a solution. $g(
 
       line("plot.ending-inventory", ((), "|-", (0, 0.1)), mark: (start: ">", fill: black), name: "ending-inventoryline")
       content("ending-inventoryline.end", [beginning\ inventory], anchor: "north", padding: 0.1)
-    })
+    }))
   ]
 
   $
@@ -795,7 +795,7 @@ Let $g(dot) lt.eq b$ be an inequality constraint and $bar(x)$ be a solution. $g(
   $
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -854,7 +854,7 @@ Let $g(dot) lt.eq b$ be an inequality constraint and $bar(x)$ be a solution. $g(
 
       line("plot.s4", ((), "|-", (0, 1.5)), mark: (start: ">", fill: black), name: "s4line")
       content("s4line.end", [$-170$], anchor: "south", padding: .1)
-    })
+    }))
   ]
 
   Inventory balancing constraints:

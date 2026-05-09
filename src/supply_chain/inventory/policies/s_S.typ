@@ -25,7 +25,7 @@ Same as (Q, r): demand rate $d$ with std $sigma_d$, lead time $L$, costs $S_"set
 In practice, *with continuous review and small per-period demand* (smooth depletion), the two are nearly identical. Differences emerge under *lumpy demand* — large discrete withdrawals can drop inventory well below $s$ in one go.
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
 
     line((0, 0), (9, 0), name: "x_axis")
@@ -58,7 +58,7 @@ In practice, *with continuous review and small per-period demand* (smooth deplet
       fill: white,
       inset: 0.5em,
     )])
-  })
+  }))
 ]
 
 === Set $s$

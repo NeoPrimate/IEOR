@@ -35,7 +35,7 @@ Sawtooth, with order skipping:
 If $R$ is short relative to mean cycle, most reviews do *not* trigger orders. If $R$ is long, almost every review triggers.
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
 
     line((0, 0), (9, 0), name: "x_axis")
@@ -98,7 +98,7 @@ If $R$ is short relative to mean cycle, most reviews do *not* trigger orders. If
       fill: white,
       inset: 0.5em,
     )])
-  })
+  }))
 ]
 
 === Set $s$ — protection-window logic

@@ -60,7 +60,7 @@ $
 $
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
 
     plot.plot(
@@ -94,7 +94,7 @@ $
         )
       },
     )
-  })
+  }))
 ]
 
 === *$cot(x)$*
@@ -108,7 +108,7 @@ $
 $
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
 
     plot.plot(
@@ -142,7 +142,7 @@ $
         )
       },
     )
-  })
+  }))
 ]
 
 
@@ -158,7 +158,7 @@ $
 $
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
 
     plot.plot(
@@ -192,7 +192,7 @@ $
         )
       },
     )
-  })
+  }))
 ]
 
 === *$csc(x)$*
@@ -207,7 +207,7 @@ $
 $
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
 
     plot.plot(
@@ -241,5 +241,5 @@ $
         )
       },
     )
-  })
+  }))
 ]

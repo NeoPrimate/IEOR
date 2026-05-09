@@ -40,7 +40,7 @@
       union.big_(i=1)^n A_i    
     $
   ], [
-    #canvas(
+    #frame(cetz.canvas(
       length: 0.5cm,
       {
         import cetz.draw: * 
@@ -60,7 +60,7 @@
           }
         )
       }
-    )
+    ))
   ],
 
   [Intersection], [
@@ -68,7 +68,7 @@
       inter.big_(i=1)^n A_i
     $
   ], [
-    #canvas(
+    #frame(cetz.canvas(
       length: 0.5cm,
       {
         import cetz.draw: * 
@@ -88,11 +88,11 @@
           }
         )
       }
-    )
+    ))
   ],
   [Empty set], [$P(emptyset) = 0$], [],
   [Disjoint\ (Mutually Exclusive)], [$A inter B = emptyset$], [
-    #canvas(
+    #frame(cetz.canvas(
       length: 0.5cm,
       {
         import cetz.draw: * 
@@ -101,7 +101,7 @@
         circle((3.5,1), name: "B", radius: 1, fill: red.transparentize(80%), stroke: color.red + 1.5pt)
         content("B", $ B $, anchor: "center", padding: (x: 0, y: 0))
       }
-    )
+    ))
   ],
 
 
@@ -111,7 +111,7 @@
   [], [], [],
   [Compliment], [$A^c$], [
     #align(center)[
-      #canvas(
+      #frame(cetz.canvas(
         length: 0.5cm,
         {
           import cetz.draw: * 
@@ -124,7 +124,7 @@
           circle((1.5,1.5), name: "A", radius: (1, 0.75), fill: blue.lighten(80%), stroke: color.blue + 1.5pt)
           content("A", $ A $, anchor: "center", padding: (x: 0, y: 0))
         }
-      )
+      ))
     ]
   ],
   [Compliment\ Rule], [

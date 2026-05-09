@@ -5,7 +5,7 @@
 Function that describes the likelihood of a continuous random variable taking on a particular value
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
 
     set-style(
@@ -43,7 +43,7 @@ Function that describes the likelihood of a continuous random variable taking on
           style: (stroke: (thickness: 10pt, paint: red.transparentize(75%)))
         )
       })
-  })
+  }))
 ]
 
 Properties:

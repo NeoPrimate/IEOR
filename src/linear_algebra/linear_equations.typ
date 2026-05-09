@@ -77,7 +77,7 @@ Whether the equations in the system provide unique and non-redundant information
   Unique Solution (Consistent and Independent):
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -110,13 +110,13 @@ Whether the equations in the system provide unique and non-redundant information
           )
         },
       )
-    })
+    }))
   ]
 
   No Solution (Inconsistent):
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -149,14 +149,14 @@ Whether the equations in the system provide unique and non-redundant information
           )
         },
       )
-    })
+    }))
   ]
 
 
 
   Infinitely Many Solutions (Consistent and Dependent):
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -189,7 +189,7 @@ Whether the equations in the system provide unique and non-redundant information
           )
         },
       )
-    })
+    }))
   ]
 
 

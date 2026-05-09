@@ -13,23 +13,26 @@
 #import "@preview/suiji:0.5.1": (
   choice, discrete, gen-rng, gen-rng-f, integers, normal, normal-f, shuffle, uniform, uniform-f,
 )
-#import "@preview/plotsy-3d:0.2.1"
-#import "@preview/plotsy-3d:0.2.1": *
-#import "@preview/ribbony:0.1.0"
-#import "@preview/ribbony:0.1.0": *
+// plotsy-3d / ribbony: explicit imports only. Wildcard `*` brought
+// cetz 0.4.1's `canvas` into scope (plotsy-3d uses cetz 0.4.1
+// internally), which conflicted with cetz 0.5.0's canvas under
+// nested cetz-plot calls. List the symbols actually used here.
+#import "@preview/plotsy-3d:0.2.1": plot-3d-surface
+#import "@preview/ribbony:0.1.0": (
+  ribbony-diagram, sankey-diagram, chord-diagram,
+  layout, ribbon-stylizer, tinter, label,
+)
 #import "@preview/modpattern:0.1.0": modpattern
 
 // === Convenience names (used inside cetz.canvas blocks etc.) ===
 #import "@preview/cetz:0.5.0": draw, tree
 #import "@preview/cetz-plot:0.1.3": plot
 #import "@preview/fletcher:0.5.8" as fletcher: edge, node, shapes
-#import "@preview/fletcher:0.5.8" as _fletcher_module
 
-// `canvas` and `diagram` are wrapped in `figure(...)` so the figure show rule
-// in web/setup.typ can fall them back to inline SVG in HTML mode. PDF is
-// unaffected — figure() with no caption renders identically to its body.
-#let canvas(..args) = figure(cetz.canvas(..args))
-#let diagram(..args) = figure(_fletcher_module.diagram(..args))
+// `frame` is the elembic wrapper for cetz canvases / fletcher diagrams —
+// see web/setup.typ. Call sites: `#frame(cetz.canvas({...}))` and
+// `#frame(fletcher.diagram(...))`.
+#import "/web/setup.typ": web_setup, frame
 
 // === Utils ===
 #import "/lib/utils/example.typ": example
@@ -54,7 +57,6 @@
 
 // === Document-wide formatting ===
 #import "/lib/formatting.typ": formatting
-#import "/web/setup.typ": web_setup
 
 // === Distribution helpers ===
 #import "/lib/utils/distributions/gaussian.typ": gaussian_cdf, gaussian_pdf

@@ -7,7 +7,7 @@ f(x bar lambda) = lambda e^(- lambda x)
 $
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
 
     set-style(
@@ -39,7 +39,7 @@ $
           style: (stroke: black),
         )
       })
-  })
+  }))
 ]
 
 

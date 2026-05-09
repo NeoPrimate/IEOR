@@ -78,7 +78,7 @@ Any vector in $RR^2$ can be represented by a linear combination with some combin
   $
 
   #align(center)[
-    #canvas(length: 10cm, {
+    #frame(cetz.canvas(length: 10cm, {
       import cetz.draw: *
       import cetz-plot: *
       plot.plot(
@@ -129,7 +129,7 @@ Any vector in $RR^2$ can be represented by a linear combination with some combin
         anchor: "south-west",
         padding: 0.025,
       )
-    })
+    }))
   ]
 
   Any point $accent(x, arrow)$ can be represented as a linear combination of $accent(a, arrow)$ and $accent(b, arrow)$
@@ -230,7 +230,7 @@ Any vector in $RR^2$ can be represented by a linear combination with some combin
   $
 
   #align(center)[
-    #canvas(length: 10cm, {
+    #frame(cetz.canvas(length: 10cm, {
       import cetz.draw: *
       import cetz-plot: *
       plot.plot(
@@ -281,7 +281,7 @@ Any vector in $RR^2$ can be represented by a linear combination with some combin
         anchor: "north-west",
         padding: 0.025,
       )
-    })
+    }))
   ]
 ]
 
@@ -500,7 +500,7 @@ $
   $
 
   #align(center)[
-    #canvas(length: 10cm, {
+    #frame(cetz.canvas(length: 10cm, {
       import cetz.draw: *
       import cetz-plot: *
       plot.plot(
@@ -536,7 +536,7 @@ $
       cetz.draw.content("a.end", text(green)[$vec(a, b)$], anchor: "south", padding: 0.05)
       cetz.draw.line("plot.o", "plot.b", stroke: red, mark: (fill: red), name: "b")
       cetz.draw.content("b.end", text(red)[$vec(-a, -b)$], anchor: "south", padding: 0.1)
-    })
+    }))
   ]
 
   - *Non-emptiness* #emoji.checkmark.box

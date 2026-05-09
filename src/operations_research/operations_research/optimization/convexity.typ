@@ -11,7 +11,7 @@
 #grid(
   columns: (auto, auto),
   [
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -64,10 +64,10 @@
       }, name: "plot")
       cetz.draw.line("plot.a", "plot.b", stroke: black, mark: (fill: blue), name: "a")
       
-    })
+    }))
   ],
   [
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -111,7 +111,7 @@
       cetz.draw.line("plot.a", "plot.b", stroke: black, mark: (fill: blue), name: "a")
 
       circle("plot.o", radius: (2.5, 1.5), stroke: red)
-    })
+    }))
   ]
 )
 
@@ -122,7 +122,7 @@
   columns: (auto, auto),
   [
 
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -196,10 +196,10 @@
       }, name: "plot"
     )
     cetz.draw.line("plot.o", "plot.a", stroke: black, mark: (fill: blue), name: "a")
-    })
+    }))
   ],
   [
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -281,6 +281,6 @@
 
       }, name: "plot")
     cetz.draw.line("plot.o", "plot.a", stroke: black, mark: (fill: blue), name: "a")
-    })
+    }))
   ]
 )

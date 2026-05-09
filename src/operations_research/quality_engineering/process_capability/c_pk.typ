@@ -79,7 +79,7 @@ If $C_(p k) lt C_p$, process is not centered
   #let cpk_process2 = calc_cpk(process2)
 
   #align(center)[
-    #canvas(
+    #frame(cetz.canvas(
       length: 72pt,
       {
         import cetz.draw: *
@@ -184,7 +184,7 @@ If $C_(p k) lt C_p$, process is not centered
 
         line("g1.usl_t", "g2.plot.usl_b", stroke: (dash: "dashed", paint: black, thickness: 2pt))
       },
-    )
+    ))
   ]
 
   Suppose a company manufactures metal rods, and the specification limits for the diameter of the rods are:

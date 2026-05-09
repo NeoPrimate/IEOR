@@ -11,7 +11,7 @@ p = P(Z > z_"observed")
 $
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
 
     let mu = 0
@@ -61,7 +61,7 @@ $
           style: (stroke: 0.5pt + gray, dash: "dashed"),
         )
       })
-  })
+  }))
 ]
 
 2. Two-Tailed
@@ -71,7 +71,7 @@ p = 2 dot P(Z > |z_"observed"|)
 $
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
 
     let mu = 0
@@ -134,7 +134,7 @@ $
           style: (stroke: 0.5pt + gray, dash: "dashed"),
         )
       })
-  })
+  }))
 ]
 
 #code(

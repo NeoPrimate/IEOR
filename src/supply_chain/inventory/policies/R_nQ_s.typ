@@ -35,7 +35,7 @@ Sawtooth, with two layers of discreteness:
 Average inventory is *higher* than (R, s, S) because the integer-pack rounding inflates each order. Difference is small if $Q << s$, large if $Q$ is comparable to $s$.
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
 
     line((0, 0), (9, 0), name: "x_axis")
@@ -101,7 +101,7 @@ Average inventory is *higher* than (R, s, S) because the integer-pack rounding i
       fill: white,
       inset: 0.5em,
     )])
-  })
+  }))
 ]
 
 === Set $s$

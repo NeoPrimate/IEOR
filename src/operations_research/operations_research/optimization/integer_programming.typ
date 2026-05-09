@@ -824,7 +824,7 @@ Where:
   Once a job starts processing on a machine, it must continue without interruption until completion
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -888,7 +888,7 @@ Where:
           })
         },
       )
-    })
+    }))
   ]
 
   - Preemptive problems
@@ -896,7 +896,7 @@ Where:
   A job can be interrupted and resumed later, possibly on a different machine, without losing progress
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
       set-style(
@@ -969,7 +969,7 @@ Where:
           })
         },
       )
-    })
+    }))
   ]
 
 - Performance Metrics
@@ -989,7 +989,7 @@ Where:
 === Single Machine Serial Production
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -1063,7 +1063,7 @@ Where:
         })
       },
     )
-  })
+  }))
 ]
 
 *Notation*
@@ -1115,7 +1115,7 @@ Where:
 - $M = sum_(j in J) p_j$
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -1214,7 +1214,7 @@ Where:
       anchor: "south",
       padding: 1em,
     )
-  })
+  }))
 ]
 
 *Complete Formulation*
@@ -1253,7 +1253,7 @@ $
 === Multiple Parallel Machines
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -1427,7 +1427,7 @@ $
         },
       )
     })
-  })
+  }))
 ]
 
 We aim to assign jobs to machines such that:
@@ -1508,7 +1508,7 @@ $
 === Flow Shop
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import cetz.draw: *
     import cetz-plot: *
 
@@ -1695,7 +1695,7 @@ $
         },
       )
     })
-  })
+  }))
 ]
 
 === Job Shop

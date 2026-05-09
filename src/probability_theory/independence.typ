@@ -52,7 +52,7 @@ $
 
   #align(center)[
     #scale(50%)[
-      #canvas({
+      #frame(cetz.canvas({
         import cetz.draw: * 
 
         circle((0,1), name: "A", radius: 3)
@@ -93,7 +93,7 @@ $
             arc-through("i.1", "B.west", "i.0")
           }
         )
-      })
+      }))
     ]
   ]
 

@@ -23,7 +23,7 @@ $
 $
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     draw-blob(
       2,
       (0, 0),
@@ -95,7 +95,7 @@ $
       anchor: "north",
       padding: 3pt,
     )
-  })
+  }))
 ]
 
 *2. Differentiate Both Sides*
@@ -218,7 +218,7 @@ $
 
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import draw: *
 
       plot.plot(
@@ -276,7 +276,7 @@ $
           )
         },
       )
-    })
+    }))
   ]
 
   The expression:

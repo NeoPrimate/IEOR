@@ -16,7 +16,7 @@
 #linebreak()
 
 #align(center)[
-  #diagram(
+  #frame(fletcher.diagram(
     node-inset: 0pt,
 
     node(pos: (0,0), label: $0$, stroke: 0.1em, radius: 1.5em, name: <0>),
@@ -53,7 +53,7 @@
     edge(<6>, <5>, "-|>-", label: $q$, bend: 50deg, label-size: 0.75em),
     edge(<6>, <6>, "-|>-", label: $1 - q$, bend: 130deg, label-size: 0.75em),
 
-  )
+  ))
 ]
 
 #linebreak()
@@ -77,7 +77,7 @@ r_(i j) = P(X_n = j | X_0 = i)
 $
 
 #align(center)[
-  #diagram(
+  #frame(fletcher.diagram(
     node-inset: 0pt,
 
     node(pos: (-3,0), label: $i$, stroke: 0.1em, radius: 1.5em, name: <i>),
@@ -99,7 +99,7 @@ $
     edge(<m>, <j>, "-|>", label: $p_(m j)$, bend: 0deg, label-size: 0.75em),
     edge(<k>, <j>, "-|>", label: $p_(k j)$, bend: 0deg, label-size: 0.75em),
     
-  )
+  ))
 ]
 
 === Key Recursion

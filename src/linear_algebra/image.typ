@@ -61,7 +61,7 @@ $
   T(accent(x, arrow)_2) = #nt.print(A) nt.print(x2) = nt.print(Tx2) \
 $
 
-#let triangle = canvas(length: 6cm, {
+#let triangle = frame(cetz.canvas(length: 6cm, {
   cetz-plot.plot.plot(
     x-tick-step: 5,
     y-tick-step: 5,
@@ -104,9 +104,9 @@ $
 
   cetz.draw.line("plot.x2", "plot.x0", stroke: purple, mark: none, name: "x2-x0")
   cetz.draw.content("x2-x0.mid", text(purple)[$L_2$], anchor: "north", padding: 0.05, angle: 0deg, size: 3pt)
-})
+}))
 
-#let transformation = canvas(length: 6cm, {
+#let transformation = frame(cetz.canvas(length: 6cm, {
   cetz-plot.plot.plot(
     x-tick-step: 5,
     y-tick-step: 5,
@@ -155,7 +155,7 @@ $
 
   cetz.draw.line("plot.x2", "plot.x0", stroke: purple, mark: none, name: "x2-x0")
   cetz.draw.content("x2-x0.mid", text(purple)[$T(L_2)$], anchor: "north-west", padding: 0.05, angle: 0deg, size: 3pt)
-})
+}))
 
 #align(center)[
   #grid(
@@ -234,7 +234,7 @@ $
 This is the set of all possible linear combinations of the columns of $A$, and thus represents all possible outputs of the transformation $T$
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     draw-blob(
       2,
       (0, 0),
@@ -320,7 +320,7 @@ This is the set of all possible linear combinations of the columns of $A$, and t
       (2.5, -1),
       text(fill: black)[$f: RR^n -> RR^m$],
     )
-  })
+  }))
 ]
 
 #example[

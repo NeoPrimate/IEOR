@@ -11,7 +11,7 @@ Where:
 - $x$: observed data
 
 #align(center)[
-  #canvas({
+  #frame(cetz.canvas({
     import draw: *
 
     set-style(
@@ -57,5 +57,5 @@ Where:
           style: (stroke: (paint: red, dash: "dashed")),
         )
       })
-  })
+  }))
 ]

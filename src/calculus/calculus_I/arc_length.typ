@@ -1,16 +1,16 @@
 #import "/lib/imports.typ": *
 
-#canvas({
+#frame(cetz.canvas({
   import cetz.draw: *
   import cetz-plot: *
-})
+}))
 
 == Arc Length
 
 #let f(x) = 0.1*(x*x*x)+0.5
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -81,7 +81,7 @@
           })
         }
       )
-    })
+    }))
   ]
 
 $

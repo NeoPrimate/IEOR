@@ -47,7 +47,7 @@
 #let exp_probs = t_vals.map(t => exponential_pdf(λ, t))
 #let max_exp = calc.max(..exp_probs)
 
-#let pois_dist = canvas({
+#let pois_dist = frame(cetz.canvas({
   import cetz.draw: *
   import cetz-plot: *
   
@@ -87,9 +87,9 @@
       
     }
   )
-})
+}))
 
-#let exp_dist = canvas({
+#let exp_dist = frame(cetz.canvas({
   import cetz.draw: *
   import cetz-plot: *
 
@@ -132,7 +132,7 @@
       })
     }
   )
-})
+}))
 
 #table(
   columns: (auto, auto),
@@ -236,7 +236,7 @@
 }
 
 // Visualization
-#canvas({
+#frame(cetz.canvas({
   import cetz.draw: *
   import cetz-plot: *
   
@@ -302,7 +302,7 @@
       stroke: green
     )
   }
-})
+}))
 
 
 Performance Metrics
@@ -369,7 +369,7 @@ $
 #linebreak()
 
 #align(center)[
-  #diagram(
+  #frame(fletcher.diagram(
     node-inset: 0pt,
 
     node(pos: (0,0), label: $0$, stroke: 0.1em, radius: 1.5em, name: <0>),
@@ -438,7 +438,7 @@ $
       place(bottom+center, dy: 2mm, $c mu$)
     }, bend: 50deg, label-size: 1em),
 
-  )
+  ))
 ]
 
 #linebreak()

@@ -14,7 +14,7 @@ Say $accent(u, arrow), accent(v, arrow) in RR^n$
   #let (bx, by) = (6, 1)
   #let (cx, cy) = (ax - bx, ay - by)
 
-  #canvas(length: 6cm, {
+  #frame(cetz.canvas(length: 6cm, {
     import cetz.draw: *
     import cetz-plot: *
 
@@ -57,12 +57,12 @@ Say $accent(u, arrow), accent(v, arrow) in RR^n$
       cetz.draw.content("c.mid", text(purple)[$accent(u, arrow) - accent(v, arrow)$], anchor: "south", padding: 0.025, angle: "c.start")
 
       cetz.angle.angle("a.start", "a.end", "b.end", label: $Theta$, radius: 30%, label-radius: 130%, inner: true)
-  })
+  }))
 
   #linebreak()
   #linebreak()
   
-  #canvas(length: 6cm, {
+  #frame(cetz.canvas(length: 6cm, {
     import cetz.draw: *
     import cetz-plot: *
     plot.plot(
@@ -98,7 +98,7 @@ Say $accent(u, arrow), accent(v, arrow) in RR^n$
       cetz.draw.content("c.mid", text(purple)[$||accent(u, arrow) - accent(v, arrow)||$], anchor: "south", padding: 0.05, angle: "c.start")
 
       cetz.angle.angle("a.start", "a.end", "b.end", label: $Theta$, radius: 30%, label-radius: 130%, inner: true)
-  })
+  }))
 ]
 
 Law of Cosines
@@ -152,7 +152,7 @@ So, if $accent(u, arrow)$ is a scalar multiple of $accent(v, arrow)$ ($accent(u,
   #let (ax, ay) = (3, 3)
   #let (bx, by) = (5, 5)
 
-  #canvas(length: 5cm, {
+  #frame(cetz.canvas(length: 5cm, {
     import cetz.draw: *
     import cetz-plot: *
     plot.plot(
@@ -185,7 +185,7 @@ So, if $accent(u, arrow)$ is a scalar multiple of $accent(v, arrow)$ ($accent(u,
       cetz.draw.content("a.end", text(red)[$accent(u, arrow)$], anchor: "south", padding: 0.05, angle: "a.end")
 
       // cetz.angle.angle("a.start", "a.end", "b.end", label-radius: 130%, label: $Theta$, radius: 30%, inner: true)
-  })
+  }))
 ]
 
 And, if $accent(u, arrow)$ is a scalar multiple of $accent(v, arrow)$ ($accent(u, arrow) = c accent(v, arrow)$) where $c < 0$, then $Theta = 180 degree$
@@ -195,7 +195,7 @@ And, if $accent(u, arrow)$ is a scalar multiple of $accent(v, arrow)$ ($accent(u
   #let (ax, ay) = (5, 5)
   #let (bx, by) = (-6, -6)
 
-  #canvas(length: 5cm, {
+  #frame(cetz.canvas(length: 5cm, {
     import cetz.draw: *
     import cetz-plot: *
     plot.plot(
@@ -226,7 +226,7 @@ And, if $accent(u, arrow)$ is a scalar multiple of $accent(v, arrow)$ ($accent(u
       cetz.draw.content("b.end", text(blue)[$accent(v, arrow)$], anchor: "south", padding: 0.05, angle: "b.end")
 
       cetz.angle.angle("a.start", "a.end", "b.end", label-radius: 130%, label: $Theta$, radius: 30%, inner: false)
-  })
+  }))
 ]
 
 $accent(u, arrow)$ and $accent(v, arrow)$ are perpendicular if the angle $Theta$ between them is $90 degree$
@@ -248,7 +248,7 @@ If $accent(u, arrow) dot accent(v, arrow) = 0$ then $accent(u, arrow)$ and $acce
   #let (ax, ay) = (0, 5)
   #let (bx, by) = (6, 0)
 
-  #canvas(length: 5cm, {
+  #frame(cetz.canvas(length: 5cm, {
     import cetz.draw: *
     import cetz-plot: *
     plot.plot(
@@ -279,5 +279,5 @@ If $accent(u, arrow) dot accent(v, arrow) = 0$ then $accent(u, arrow)$ and $acce
       cetz.draw.content("b.end", text(blue)[$accent(v, arrow)$], anchor: "south", padding: 0.05, angle: "b.end")
 
       cetz.angle.angle("a.start", "a.end", "b.end", label-radius: 140%, label: $Theta$, radius: 30%, inner: true)
-  })
+  }))
 ]

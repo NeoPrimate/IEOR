@@ -35,7 +35,7 @@ Where:
     inset: 0em,
     gutter: 0.5em,
     [
-      #canvas({
+      #frame(cetz.canvas({
         import cetz.draw: *
         import cetz-plot: *
         set-style(
@@ -89,10 +89,10 @@ Where:
           )
         }
       )
-      })
+      }))
     ],
     [
-      #canvas({
+      #frame(cetz.canvas({
         import cetz.draw: *
         import cetz-plot: *
         set-style(
@@ -136,10 +136,10 @@ Where:
           }
         }
       )
-      })
+      }))
     ],
     [
-      #canvas({
+      #frame(cetz.canvas({
         import cetz.draw: *
         import cetz-plot: *
         set-style(
@@ -183,7 +183,7 @@ Where:
           }
         }
       )
-      })
+      }))
     ]
   )
   

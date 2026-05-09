@@ -38,7 +38,7 @@ $(r, θ)$, where:
 #let points_colors = points.zip(colors)
 
 #let cartesian = align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -73,11 +73,11 @@ $(r, θ)$, where:
           }
         }
       )
-    })
+    }))
   ]
 
   #let polar = align(center)[
-      #canvas({
+      #frame(cetz.canvas({
         import cetz.draw: *
         import cetz-plot: *
 
@@ -133,7 +133,7 @@ $(r, θ)$, where:
             }
           }
         )
-      })
+      }))
     ]
 
 #grid(

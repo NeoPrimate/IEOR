@@ -32,6 +32,11 @@
   if parent == "" { slug(title) } else { parent + "/" + slug(title) }
 }
 
+// Cross-page link tag: section path with "/" → "-" (e.g.
+// calculus/calculus-i/quotient-rule → calculus-calculus-i-quotient-rule).
+// Source files reference it via #link(<calculus-calculus-i-quotient-rule>)[…].
+#let path-tag(p) = p.replace("/", "-")
+
 // Collect leaves in book.toml order — used for prev/next navigation.
 #let collect-leaves(secs, parent: "") = {
   let r = ()
@@ -144,11 +149,6 @@
       html.elem("a", attrs: (href: rel + "index.html"), book.book.title)
     })
     html.elem("nav", render-sidebar(book.sections, current-path, rel))
-    html.elem(
-      "a",
-      attrs: (class: "pdf-link", href: rel + "main.pdf", target: "_blank"),
-      "📄 Read as PDF",
-    )
   })
 
   html.elem("main", attrs: (id: "main"), content)
@@ -170,7 +170,7 @@
     document(p + "/index.html", title: sec.title)[
       #page-shell(p, {
         html.elem("article", attrs: ("data-pagefind-body": ""), {
-          heading(level: 1, sec.title)
+          [#heading(level: 1, sec.title) #std.label(path-tag(p))]
           for f in sec.files {
             include src-prefix + f
           }
@@ -190,10 +190,7 @@
   #page-shell("", {
     html.elem("article", {
       heading(level: 1, book.book.title)
-      html.elem("p", "An interactive book covering linear algebra, calculus, probability, statistics, time series, operations research, supply chain, and more. Use the sidebar to navigate, search the index, or read as a single PDF.")
-      html.elem("p", {
-        html.elem("a", attrs: (class: "cta", href: "main.pdf", target: "_blank"), "📄 Read as PDF")
-      })
+      html.elem("p", "An interactive book covering linear algebra, calculus, probability, statistics, time series, operations research, supply chain, and more. Use the sidebar to navigate or search the index.")
     })
   })
 ]

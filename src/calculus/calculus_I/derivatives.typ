@@ -27,7 +27,7 @@ General Pattern:
   - Fourth derivative: $f'''''(x) = 0$ (*zero*)
 
   #align(center)[
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -82,9 +82,9 @@ General Pattern:
         },
         name: "plot",
       )
-    })
+    }))
 
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -154,9 +154,9 @@ General Pattern:
         },
         name: "plot",
       )
-    })
+    }))
 
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -214,9 +214,9 @@ General Pattern:
         },
         name: "plot",
       )
-    })
+    }))
 
-    #canvas({
+    #frame(cetz.canvas({
       import cetz.draw: *
       import cetz-plot: *
 
@@ -257,7 +257,7 @@ General Pattern:
         },
         name: "plot",
       )
-    })
+    }))
   ]
 ]
 

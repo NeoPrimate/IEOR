@@ -33,7 +33,7 @@ such that $s$ and $t$ are connected
 #linebreak()
 
 #align(center)[
-  #diagram(
+  #frame(fletcher.diagram(
     node-inset: 0pt,
 
     node(pos: (0, 0), label: { $s$ }, stroke: 0.1em, radius: 1em, name: <s>),
@@ -49,7 +49,7 @@ such that $s$ and $t$ are connected
     edge(<n1>, <n2>, "-|>", label: {}),
 
     edge(<n2>, <t>, "-|>", label: {}),
-  )
+  ))
 ]
 
 - $s$: *source*
@@ -100,7 +100,7 @@ LP Formulation
   #linebreak()
 
   #align(center)[
-    #diagram(
+    #frame(fletcher.diagram(
       node-inset: 0pt,
 
       node(
@@ -175,7 +175,7 @@ LP Formulation
       edge(<3>, <4>, "-|>", label: $(12, \$2)$, label-side: center, label-pos: 0.75, label-fill: luma(230)),
 
       edge(<4>, <5>, "-|>", label: $(infinity, \$2)$, label-side: center, label-fill: luma(230)),
-    )
+    ))
   ]
 
   *Objective* function:
@@ -329,7 +329,7 @@ Between factory $i$ and market $j$ there is a route
 How to produce and ship the product to fulfill all demands while minimizing the total cost?
 
 #align(center)[
-  #diagram(
+  #frame(fletcher.diagram(
     node-inset: 0pt,
 
     node(
@@ -376,7 +376,7 @@ How to produce and ship the product to fulfill all demands while minimizing the 
     edge(<3>, <6>, "-|>"),
 
     edge(<7>, <8>, "-|>", label: $c_(i j)$, label-side: right, label-fill: none),
-  )
+  ))
 ]
 
 if $sum^n_(i=1) s_i = sum^n_(j=1) d_j$
@@ -400,7 +400,7 @@ $
 - Shipping to market 0 just means some factory capacity is unused
 
 #align(center)[
-  #diagram(
+  #frame(fletcher.diagram(
     node-inset: 0pt,
 
     node(pos: (1, -0.75), label: $0$, stroke: 0.1em, radius: 1em, name: <0>),
@@ -440,7 +440,7 @@ $
     edge(<2>, <0>, "-|>", label: $0$, label-side: center, label-fill: white),
     edge(<3>, <0>, "-|>", label: $0$, label-side: center, label-fill: white),
     edge(<7>, <0>, "-|>", label: $0$, label-side: center, label-pos: 50%, label-fill: white),
-  )
+  ))
 ]
 
 If different factories have different unit production costs $c_i^P$
@@ -465,7 +465,7 @@ Special case of Transportation Problem
 - Cost of shipping one item from factory $i$ to maket $j$ is $c_(i j)$
 
 #align(center)[
-  #diagram(
+  #frame(fletcher.diagram(
     node-inset: 0pt,
 
     node(
@@ -512,7 +512,7 @@ Special case of Transportation Problem
     edge(<3>, <6>, "-|>"),
 
     edge(<7>, <8>, "-|>", label: $c_(i j)$, label-side: right, label-fill: none),
-  )
+  ))
 ]
 
 What if there are fewer jobs then workers:
@@ -526,7 +526,7 @@ $
 - Assigning job 0 just means some workers are unused
 
 #align(center)[
-  #diagram(
+  #frame(fletcher.diagram(
     node-inset: 0pt,
 
     node(pos: (0, -0.75), label: $0$, stroke: 0.1em, radius: 1em, name: <0>),
@@ -566,7 +566,7 @@ $
     edge(<0>, <5>, "-|>", label: $0$, label-side: center, label-fill: white),
     edge(<0>, <6>, "-|>", label: $0$, label-side: center, label-fill: white),
     edge(<0>, <8>, "-|>", label: $0$, label-side: center, label-pos: 50%, label-fill: white),
-  )
+  ))
 ]
 
 IP Formulation
@@ -606,7 +606,7 @@ If there are intermediary nodes in the transportation problem it is a transhipme
 == Maximum Flow Problems
 
 #align(center)[
-  #diagram(
+  #frame(fletcher.diagram(
     node-inset: 0pt,
 
     node(pos: (0, 0), label: $s$, stroke: 0.1em, radius: 1em, name: <s>),
@@ -628,7 +628,7 @@ If there are intermediary nodes in the transportation problem it is a transhipme
     edge(<4>, <t>, "-|>", label: $7$, label-side: center, label-fill: white),
 
     edge(<t>, <s>, "-|>", label: $-1$, bend: 90deg, label-side: center, label-fill: white, stroke: (dash: "dashed")),
-  )
+  ))
 ]
 
 $
@@ -676,7 +676,7 @@ Out of all outgoing edges from $s$, one must be selected:
       $
     ],
     [
-      #diagram(
+      #frame(fletcher.diagram(
         node-inset: 0pt,
 
         node(pos: (0, 1.875), label: $s$, stroke: 0.1em, radius: 1em, name: <1>),
@@ -691,7 +691,7 @@ Out of all outgoing edges from $s$, one must be selected:
         edge(<1>, <2>, "-|>"),
         edge(<1>, <3>, "-|>", stroke: (paint: red, thickness: 1pt)),
         edge(<1>, <4>, "-|>"),
-      )
+      ))
     ],
   )
 ]
@@ -710,7 +710,7 @@ Out of all ingoing edges to $t$, one must be selected:
       $
     ],
     [
-      #diagram(
+      #frame(fletcher.diagram(
         node-inset: 0pt,
 
         node(pos: (1, 1.875), label: $t$, stroke: 0.1em, radius: 1em, name: <1>),
@@ -725,7 +725,7 @@ Out of all ingoing edges to $t$, one must be selected:
         edge(<2>, <1>, "-|>", stroke: (paint: red, thickness: 1pt)),
         edge(<3>, <1>, "-|>"),
         edge(<4>, <1>, "-|>"),
-      )
+      ))
     ],
   )
 ]
@@ -744,7 +744,7 @@ For all transhipment nodes $T$,
       $
     ],
     [
-      #diagram(
+      #frame(fletcher.diagram(
         node-inset: 0pt,
 
         node(pos: (1, 1.875), label: $k$, stroke: 0.1em, radius: 1em, name: <1>),
@@ -769,7 +769,7 @@ For all transhipment nodes $T$,
         edge(<1>, <5>, "-|>"),
         edge(<1>, <6>, "-|>", stroke: (paint: red, thickness: 1pt)),
         edge(<1>, <7>, "-|>"),
-      )
+      ))
     ],
   )
 ]
@@ -814,7 +814,7 @@ For all transhipment nodes $T$,
     ],
     [
       #align(center)[
-        #diagram(
+        #frame(fletcher.diagram(
           node-inset: 0pt,
 
           node(pos: (0, 0), label: [MCNF], stroke: none, radius: 1em, name: <1>),
@@ -877,7 +877,7 @@ For all transhipment nodes $T$,
             label-side: center,
             label-fill: white,
           ),
-        )
+        ))
       ]
     ],
   )
@@ -885,7 +885,7 @@ For all transhipment nodes $T$,
 
 #example[
   #align(center)[
-    #diagram(
+    #frame(fletcher.diagram(
       node-inset: 0pt,
 
       node(pos: (0, 0), label: $s$, stroke: 0.1em, radius: 1em, name: <s>),
@@ -910,7 +910,7 @@ For all transhipment nodes $T$,
       edge(<E>, <t>, "-|>", label: $7$, label-side: center, label-fill: luma(225)),
 
       // edge(<t>, <s>, "-|>", label: $-1$, bend: 90deg, label-side: center, label-fill: white, stroke: (dash: "dashed")),
-    )
+    ))
   ]
 
   $
