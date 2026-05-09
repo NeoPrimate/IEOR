@@ -64,13 +64,13 @@
   // Standalone grids (not inside a figure) — needed because html.frame has no
   // page width, so a fractional `columns: 2` collapses to its content
   // minimum and stacks vertically. Wrap the grid in a fixed-width box, then
-  // frame. CSS in web/style.css scales the resulting SVG to the article
-  // column via `max-width: 100%; height: auto`.
+  // emit a <figure> so `article figure svg { max-width: 100%; height: auto }`
+  // in web/style.css scales it to the article column width.
   //
   // REMOVE WHEN: typst/typst#5512 — grid lands in HTML export. Not listed in
   // the milestone as of Typst 0.14.2; no timeline.
   show grid: it => context if target() == "html" {
-    html.frame(box(width: 1000pt, it))
+    html.elem("figure", html.frame(box(width: 1000pt, it)))
   } else { it }
 
   // Pagebreaks are meaningless in HTML. Suppress.

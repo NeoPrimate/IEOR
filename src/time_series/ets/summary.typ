@@ -17,10 +17,16 @@
 #let cT(body) = text(fill: trend-color, body)
 #let cS(body) = text(fill: season-color, body)
 
+// Legend is target-aware: typst HTML export drops `text(fill:)` for
+// non-math content (the bullet and label text would render in default
+// black). Emit inline-styled spans in HTML; keep `text(fill:)` for PDF.
+#let _swatch(color, label) = context if target() == "html" {
+  html.elem("span", attrs: (style: "color: " + color.to-hex()), label)
+} else { text(fill: color, label) }
 #let component-legend = box(inset: 4pt)[
-  #cL[■ level $l_t$] #h(1em)
-  #cT[■ trend $b_t$] #h(1em)
-  #cS[■ seasonality $s_t$]
+  #_swatch(level-color)[■ level] $l_t$ #h(1em)
+  #_swatch(trend-color)[■ trend] $b_t$ #h(1em)
+  #_swatch(season-color)[■ seasonality] $s_t$
 ]
 
 #let ets-cell(title, subtitle, observation, equations) = block(
@@ -507,40 +513,33 @@ ETS stands for *Error, Trend, Seasonality* — a family of forecasting models th
 Before exponential smoothing, ask: *how much should past observations count?* Two extremes and two interpolators:
 
 #align(center)[
-  #block(
+  #set text(size: 9pt)
+  #grid(
+    columns: 4,
+    inset: 7.5pt,
+    align: center + horizon,
     stroke: 0.5pt + luma(60%),
-    radius: 4pt,
-    inset: 10pt,
-    width: 95%,
-  )[
-    #set text(size: 9pt)
-    #grid(
-      columns: 4,
-      inset: 7.5pt,
-      align: center + horizon,
 
-      [*Naïve*], [*Moving average*], [*SES*], [*Cumulative*],
+    [*Naïve*], [*Moving average*], [*SES*], [*Cumulative*],
 
-      [_Only the last point matters_],
-      [_Last $M$ points, equal weight_],
-      [_All history, geometric decay_],
-      [_All history, equal weight_],
+    [_Only the last point matters_],
+    [_Last $M$ points, equal weight_],
+    [_All history, geometric decay_],
+    [_All history, equal weight_],
 
-      [$ hat(x)_(t, t+1) = x_t $],
-      [$ hat(x)_(t, t+1) = 1/M sum_(i=t-M+1)^t x_i $],
-      [$ hat(x)_(t, t+1) = alpha sum_(i=0)^t (1-alpha)^i x_(t-i) $],
-      [$ hat(x)_(t, t+1) = 1/t sum_(i=1)^t x_i $],
+    [$ hat(x)_(t, t+1) = x_t $],
+    [$ hat(x)_(t, t+1) = 1/M sum_(i=t-M+1)^t x_i $],
+    [$ hat(x)_(t, t+1) = alpha sum_(i=0)^t (1-alpha)^i x_(t-i) $],
+    [$ hat(x)_(t, t+1) = 1/t sum_(i=1)^t x_i $],
 
-      [#text(size: 7pt)[Weights: $(1, 0, 0, ..., 0)$]],
-      [#text(size: 7pt)[Weights: $(1/M, ..., 1/M, 0, ..., 0)$]],
-      [#text(size: 7pt)[Weights: $alpha, alpha(1-alpha), alpha(1-alpha)^2, ...$]],
-      [#text(size: 7pt)[Weights: $(1/t, 1/t, ..., 1/t)$]],
-    )
+    [#text(size: 7pt)[Weights: $(1, 0, 0, ..., 0)$]],
+    [#text(size: 7pt)[Weights: $(1/M, ..., 1/M, 0, ..., 0)$]],
+    [#text(size: 7pt)[Weights: $alpha, alpha(1-alpha), alpha(1-alpha)^2, ...$]],
+    [#text(size: 7pt)[Weights: $(1/t, 1/t, ..., 1/t)$]],
+  )
 
-    #v(0.3em)
-    #text(size: 8pt)[
-      Naïve ($M = 1$) and Cumulative ($M = t$) are the two extremes of a single "how much history counts" axis. MA sits between them with a finite equal-weight window; SES sits between them with infinite geometrically-decaying weights. *The rest of this section builds on SES.*
-    ]
+  #v(0.3em)
+  #text(size: 8pt)[
+    Naïve ($M = 1$) and Cumulative ($M = t$) are the two extremes of a single "how much history counts" axis. MA sits between them with a finite equal-weight window; SES sits between them with infinite geometrically-decaying weights. *The rest of this section builds on SES.*
   ]
 ]
-

@@ -47,20 +47,87 @@ body {
   gap: 0.5em;
   padding: 0 1em;
   background: var(--bg);
-  border-bottom: 1px solid var(--rule);
 }
 .topbar .nav-buttons { display: flex; gap: 0.25em; }
 .topbar .history-btn {
   background: none;
   border: 1px solid var(--rule);
   border-radius: 4px;
-  padding: 0.25em 0.6em;
+  height: 26px;
+  padding: 0 0.6em;
   font-size: 1em;
+  line-height: 1;
   cursor: pointer;
   color: var(--fg);
 }
 .topbar .history-btn:hover { background: var(--code-bg); }
-.topbar #search { margin-left: auto; min-width: 240px; max-width: 380px; }
+.topbar #search { margin-left: auto; width: 240px; max-width: 100%; position: relative; }
+
+/* === Pagefind UI: theming + fit into the 48px topbar ===
+   Defaults assume a full-page search (64px input, large drawer below).
+   We scale the input to topbar height and float the drawer as a dropdown. */
+:root {
+  --pagefind-ui-scale: 0.65;
+  --pagefind-ui-primary: var(--accent);
+  --pagefind-ui-text: var(--fg);
+  --pagefind-ui-background: var(--bg);
+  --pagefind-ui-border: var(--rule);
+  --pagefind-ui-tag: var(--code-bg);
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 6px;
+}
+
+/* Topbar must let the dropdown overflow its bottom edge. */
+.topbar { overflow: visible; }
+
+/* Compact input that matches the 26px back/forward button height. */
+.topbar .pagefind-ui__form { position: relative; height: 26px; }
+.topbar .pagefind-ui__search-input {
+  height: 26px;
+  font-size: 0.85em;
+  font-weight: 500;
+  padding: 0 2em 0 2em;
+}
+/* Magnifying-glass icon: vertical-center inside the 26px input.
+   Icon size 14px → top = (26 - 14) / 2 = 6px. Override Pagefind defaults
+   (which scale top/size with --pagefind-ui-scale and don't fit a small bar). */
+.topbar .pagefind-ui__form::before {
+  width: 14px;
+  height: 14px;
+  top: 6px;
+  left: 8px;
+}
+.topbar .pagefind-ui__search-clear {
+  height: 20px;
+  top: 3px;
+  right: 3px;
+  font-size: 0.75em;
+  padding: 0 0.6em;
+}
+
+/* Results dropdown: absolute under the input, solid bg, shadow,
+   above other content. */
+.topbar .pagefind-ui__drawer {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  width: min(560px, 92vw);
+  max-height: 70vh;
+  overflow-y: auto;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 0.25em 1em;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  z-index: 20;
+}
+.topbar .pagefind-ui__drawer.pagefind-ui__hidden { display: none; }
+.topbar .pagefind-ui__results-area { margin-top: 0.5em; }
+
+/* Highlight style for `<mark>` when browsers render the text-fragment
+   landing target. (Native :target-text styling is still spotty across
+   browsers — `mark` covers most of it.) */
+mark { background: #fff3a3; padding: 0 0.1em; border-radius: 2px; }
 
 /* === Sidebar === */
 .sidebar {
@@ -121,21 +188,6 @@ body {
 }
 .nav-item.nav-group > details[open] > summary::before { transform: rotate(90deg); }
 .nav-item.nav-group > details > summary:hover { background: rgba(0,0,0,0.05); }
-
-/* PDF link */
-.pdf-link {
-  display: block;
-  margin-top: 1.5em;
-  padding: 0.5em 0.8em;
-  background: var(--accent);
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-  text-align: center;
-  font-weight: 500;
-  font-size: 0.95em;
-}
-.pdf-link:hover { opacity: 0.9; }
 
 /* === Main column (mdBook-style: full-width with centered max-width article) === */
 main {
@@ -277,30 +329,46 @@ article details.example > .example-body {
 }
 .nav-arrow:hover { background: var(--code-bg); }
 
-.cta {
-  display: inline-block;
-  padding: 0.7em 1.2em;
-  background: var(--accent);
-  color: white !important;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: 500;
-  margin-top: 1em;
-}
-.cta:hover { opacity: 0.9; }
-
-/* === Mobile === */
+/* === Sidebar toggle button (always visible) === */
 .nav-toggle {
-  display: none;
+  display: inline-block;
   background: none;
   border: 1px solid var(--rule);
   border-radius: 4px;
-  padding: 0.3em 0.6em;
-  font-size: 1.1em;
+  height: 26px;
+  padding: 0 0.55em;
+  font-size: 1em;
+  line-height: 1;
   cursor: pointer;
   color: var(--fg);
 }
+.nav-toggle:hover { background: var(--code-bg); }
 
+/* === Sidebar resize handle === */
+.sidebar-resizer {
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-w);
+  width: 6px;
+  height: 100vh;
+  cursor: col-resize;
+  z-index: 11;
+  transform: translateX(-3px);
+  background: transparent;
+  transition: background 0.15s;
+}
+.sidebar-resizer:hover,
+body.resizing .sidebar-resizer { background: var(--accent); opacity: 0.4; }
+body.resizing { user-select: none; cursor: col-resize; }
+
+/* === Desktop: collapsed sidebar === */
+body.sidebar-collapsed {
+  grid-template-columns: 0 1fr;
+}
+body.sidebar-collapsed .sidebar { display: none; }
+body.sidebar-collapsed .sidebar-resizer { display: none; }
+
+/* === Mobile === */
 @media (max-width: 900px) {
   body {
     grid-template-areas:
@@ -317,6 +385,6 @@ article details.example > .example-body {
     transition: transform 0.2s;
   }
   body.nav-open .sidebar { transform: none; }
-  .nav-toggle { display: inline-block; }
+  .sidebar-resizer { display: none; }
   .topbar #search { min-width: 0; }
 }

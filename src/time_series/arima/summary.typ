@@ -14,10 +14,16 @@
 #let cMA(body) = text(fill: ma-color, body)
 #let cDiff(body) = text(fill: partial-color, body)
 
+// Legend is target-aware: typst HTML export drops `text(fill:)` for
+// non-math content (the bullet and label text would render in default
+// black). Emit inline-styled spans in HTML; keep `text(fill:)` for PDF.
+#let _swatch(color, label) = context if target() == "html" {
+  html.elem("span", attrs: (style: "color: " + color.to-hex()), label)
+} else { text(fill: color, label) }
 #let arima-legend = box(inset: 4pt)[
-  #cAR[■ AR $phi(B)$] #h(1em)
-  #cMA[■ MA $theta(B)$] #h(1em)
-  #cDiff[■ differencing $(1-B)^d$]
+  #_swatch(ar-color)[■ AR] $phi(B)$ #h(1em)
+  #_swatch(ma-color)[■ MA] $theta(B)$ #h(1em)
+  #_swatch(partial-color)[■ differencing] $(1-B)^d$
 ]
 
 #let arima-cell(title, subtitle, definition, equations, footer) = block(

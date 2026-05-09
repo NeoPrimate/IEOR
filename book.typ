@@ -116,16 +116,21 @@
 
 #let page-shell(current-path, content) = {
   let rel = rel-to-root(current-path)
-  // CSS + Pagefind UI assets (linked relatively)
-  html.elem("link", attrs: (rel: "stylesheet", href: rel + "style.css"), [])
+  // CSS + Pagefind UI assets (linked relatively).
+  // Order matters: style.css must come AFTER pagefind-ui.css so our
+  // overrides (input height, drawer position, scaled icon) win on
+  // ties of specificity with Pagefind's `.svelte-...` scoped rules.
   html.elem("link", attrs: (rel: "stylesheet", href: rel + "pagefind/pagefind-ui.css"), [])
+  html.elem("link", attrs: (rel: "stylesheet", href: rel + "style.css"), [])
   html.elem("script", attrs: (src: rel + "pagefind/pagefind-ui.js"), [])
 
-  // === Top bar: nav-toggle (mobile), back/forward buttons, search === //
+  // === Top bar: nav-toggle, back/forward buttons, search === //
+  // nav-toggle handler is wired up in the JS block at the bottom
+  // (handles desktop collapse + mobile slide-in based on viewport).
   html.elem("header", attrs: (class: "topbar"), {
     html.elem(
       "button",
-      attrs: (class: "nav-toggle", "aria-label": "Toggle navigation", onclick: "document.body.classList.toggle('nav-open')"),
+      attrs: (class: "nav-toggle", "aria-label": "Toggle navigation"),
       "☰",
     )
     html.elem("div", attrs: (class: "nav-buttons"), {
@@ -151,12 +156,100 @@
     html.elem("nav", render-sidebar(book.sections, current-path, rel))
   })
 
+  // Drag handle for resizing the sidebar (desktop only — hidden on mobile
+  // and when the sidebar is collapsed). JS below tracks pointer drag and
+  // updates --sidebar-w (persisted in localStorage).
+  html.elem("div", attrs: (class: "sidebar-resizer", "aria-hidden": "true"))
+
   html.elem("main", attrs: (id: "main"), content)
 
-  // Pagefind UI init
+  // Pagefind UI init. processResult appends a text-fragment
+  // (`#:~:text=<query>`) to each result URL so that clicking a result lands
+  // on the page scrolled to the matched text with native browser highlight
+  // (no extra JS / mark.js needed; supported in Chrome, Edge, Safari 16.1+,
+  // Firefox 131+).
   html.elem(
     "script",
-    "window.addEventListener('DOMContentLoaded', () => { if (typeof PagefindUI !== 'undefined') new PagefindUI({ element: '#search', showSubResults: true }); });",
+    "window.addEventListener('DOMContentLoaded', () => {"
+      + " if (typeof PagefindUI === 'undefined') return;"
+      + " const addTextFrag = (url, q) => {"
+      + "   if (!q) return url;"
+      + "   const enc = encodeURIComponent(q);"
+      + "   if (url.includes(':~:text=')) return url;"
+      + "   return url.includes('#') ? url + ':~:text=' + enc"
+      + "                            : url + '#:~:text=' + enc;"
+      + " };"
+      + " new PagefindUI({"
+      + "   element: '#search',"
+      + "   showSubResults: true,"
+      + "   processResult: (result) => {"
+      + "     const inp = document.querySelector('.pagefind-ui__search-input');"
+      + "     const q = inp ? inp.value.trim() : '';"
+      + "     result.url = addTextFrag(result.url, q);"
+      + "     if (result.sub_results) {"
+      + "       result.sub_results.forEach(sr => { sr.url = addTextFrag(sr.url, q); });"
+      + "     }"
+      + "     return result;"
+      + "   },"
+      + " });"
+      + "});",
+  )
+
+  // Sidebar toggle (top-left button) + drag-to-resize handle.
+  // - Toggle: click button → on desktop collapses/expands the sidebar
+  //   (body class `sidebar-collapsed`, persisted); on mobile, slides it in
+  //   (body class `nav-open`, the existing overlay behavior).
+  // - Resize: pointer-drag the .sidebar-resizer to set --sidebar-w
+  //   (clamped 180–600px, persisted in localStorage). Drag below 120px
+  //   auto-collapses the sidebar (release threshold).
+  html.elem(
+    "script",
+    "(() => {"
+      + " const root = document.documentElement, body = document.body;"
+      + " const W_KEY = 'ieor-sidebar-w', C_KEY = 'ieor-sidebar-collapsed';"
+      + " const MOBILE = 900;"
+      + " const savedW = localStorage.getItem(W_KEY);"
+      + " if (savedW) root.style.setProperty('--sidebar-w', savedW + 'px');"
+      + " if (localStorage.getItem(C_KEY) === '1' && window.innerWidth > MOBILE)"
+      + "   body.classList.add('sidebar-collapsed');"
+      + " const btn = document.querySelector('.nav-toggle');"
+      + " if (btn) btn.addEventListener('click', () => {"
+      + "   if (window.innerWidth <= MOBILE) {"
+      + "     body.classList.toggle('nav-open');"
+      + "   } else {"
+      + "     body.classList.toggle('sidebar-collapsed');"
+      + "     localStorage.setItem(C_KEY, body.classList.contains('sidebar-collapsed') ? '1' : '0');"
+      + "   }"
+      + " });"
+      + " const rz = document.querySelector('.sidebar-resizer');"
+      + " if (rz) rz.addEventListener('pointerdown', (e) => {"
+      + "   e.preventDefault();"
+      + "   rz.setPointerCapture(e.pointerId);"
+      + "   body.classList.add('resizing');"
+      + "   const COLLAPSE_AT = 120;"
+      + "   let cleanup;"
+      + "   const onMove = (ev) => {"
+      + "     if (ev.clientX < COLLAPSE_AT) {"
+      + "       body.classList.add('sidebar-collapsed');"
+      + "       localStorage.setItem(C_KEY, '1');"
+      + "       cleanup();"
+      + "       return;"
+      + "     }"
+      + "     const w = Math.min(600, Math.max(180, ev.clientX));"
+      + "     root.style.setProperty('--sidebar-w', w + 'px');"
+      + "   };"
+      + "   cleanup = () => {"
+      + "     try { rz.releasePointerCapture(e.pointerId); } catch (_) {}"
+      + "     body.classList.remove('resizing');"
+      + "     rz.removeEventListener('pointermove', onMove);"
+      + "     rz.removeEventListener('pointerup', cleanup);"
+      + "     const w = parseInt(getComputedStyle(root).getPropertyValue('--sidebar-w'));"
+      + "     if (!isNaN(w)) localStorage.setItem(W_KEY, String(w));"
+      + "   };"
+      + "   rz.addEventListener('pointermove', onMove);"
+      + "   rz.addEventListener('pointerup', cleanup);"
+      + " });"
+      + "})();",
   )
 }
 
