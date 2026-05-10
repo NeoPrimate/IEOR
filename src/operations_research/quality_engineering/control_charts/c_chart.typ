@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== C-charts (Count)
-
 Count of defects (fixed unit size)
 
 Number of defects observed in each sample or inspection unit
@@ -20,8 +18,6 @@ Where:
 - $c$: number of defects
 
 - $k$: number of samples
-
-
 
 #example[
 
@@ -77,7 +73,5 @@ Where:
               quad quad quad
               "LCL"_c & = max(0, colorMath(macron(c) - 3 sqrt(macron(c)), #red)) \
   $
-
-
 
 ]

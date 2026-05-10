@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-=== F-Statistic
-
 $
 F = "MSR" / "MSE"
 $
@@ -18,8 +16,6 @@ $
   Where:
 
   - $p$: Number of independent
-
-
 
 - Mean Square Error (MSE):
 

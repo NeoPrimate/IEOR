@@ -3,8 +3,6 @@
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
 
-== Linear Transformation
-
 === Functions
 
 A function $f$ that maps elements from a set $X$ (the domain) to a set $Y$ (the codomain):

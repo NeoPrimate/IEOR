@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-=== Mode
-
 Value that appears most frequently
 
 #example[

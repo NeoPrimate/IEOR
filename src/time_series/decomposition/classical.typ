@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Classical Decomposition
-
 Decompose a time series $y_t$ into four components that *add up* (or *multiply*) back to the original:
 
 - *Level* $L_t$: baseline value around which the series fluctuates
@@ -45,7 +43,6 @@ The classic step-by-step:
 - *Sensitivity to outliers*: a single anomalous month can distort the seasonal index for that slot. Robust methods (STL with robust loess) address this.
 
 For a quick first pass, classical decomposition is fine. For production forecasting, prefer STL.
-
 
 #example[
   *Given* (24 months of monthly sales data, additive case):

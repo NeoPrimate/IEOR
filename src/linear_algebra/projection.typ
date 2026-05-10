@@ -3,9 +3,6 @@
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
 
-
-== Projection
-
 The projection of a vector $accent(x, arrow)$, onto a line $L$, denoted as $"Proj"_L (accent(x, arrow))$, is a vector that lies on the line $L$, such that the difference between $accent(x, arrow)$ and its projection, $"Proj"_L (accent(x, arrow)) - accent(x, arrow)$, is orthogonal to $L$
 
 $"Proj"_L (accent(x, arrow))$ can be seen as the "shadow"cast by $accent(x, arrow)$ onto $L$ when light shines perpendicularly to $L$.
@@ -25,7 +22,6 @@ Where:
 - $c = (accent(x, arrow) dot accent(v, arrow)) / (accent(v, arrow) dot accent(v, arrow))$ is a scalar
 
 #example[
-
 
   #let x = (2, 3)
   #let v = (2, 1)

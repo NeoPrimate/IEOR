@@ -3,9 +3,6 @@
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
 
-
-== Row Echelon Form (REF)
-
 Visual Structure:
 
 1. Pivot (leading 1): The leading entry of each non-zero row is 1
@@ -23,13 +20,10 @@ $
   )
 $
 
-
 Elementary row operations:
 1. *Row Swapping*: Swap two rows
 2. *Row Multiplication*: Multiply a row by a non-zero scalar
 3. *Row Addition / Subtraction*: Add or subtract a multiple of one row from another row
-
-
 
 #example[
 
@@ -160,7 +154,7 @@ Elementary row operations:
 
 ]
 
-=== Solution Types in Linear Systems: Unique, Infinite, or None
+== Solution Types in Linear Systems: Unique, Infinite, or None
 
 *1. Unique Solution*
 
@@ -194,7 +188,7 @@ $
   )
 $
 
-=== Special Cases
+== Special Cases
 
 Rows of all zeros appear in row echelon form (REF) in the following situations:
 

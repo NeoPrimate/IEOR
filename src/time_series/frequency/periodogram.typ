@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Periodogram
-
 Estimate the *power spectral density* (PSD) of a time series — i.e., how much variance is at each frequency. The simplest spectrum estimator; built directly from the Fourier transform.
 
 === Definition
@@ -66,7 +64,6 @@ A peak in the periodogram at frequency $f$ corresponds to oscillating autocorrel
 - *ACF*: better for confirming and characterizing a *known* periodicity.
 
 Most time-series analyses use both.
-
 
 #example(title: "Periodogram of daily energy demand")[
   *Given*: 2 years (730 days) of daily electricity demand.

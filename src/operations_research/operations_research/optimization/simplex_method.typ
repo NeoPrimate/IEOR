@@ -5,9 +5,7 @@
 #set math.mat(gap: 1em)
 #set math.vec(gap: 1em)
 
-== Simplex Method
-
-=== Linear Algebra Review
+==== Linear Algebra Review
 
 $
   colorMath(&x + y = 5, #red) \
@@ -224,7 +222,7 @@ A linear system is *singular* if there is no unique solution
 - Row view: the $n$ (hyper)planes do not intersect at exactly one point
 - Column view: the $n$ vectors do not span a complete $n$-dimensional space
 
-=== Gaussian Elimination
+==== Gaussian Elimination
 
 Given a system $A x = b$, or augmented matrix $mat(augment: #1, A, b)$, use the following 3 rules:
 
@@ -350,10 +348,10 @@ To solve the system:
     )
   $
 
-  $A$ has *determinant* 0, so it's *not invertible*
+  $A$ has #link(<linear-algebra-determinant>)[*determinant*] 0, so it's *not invertible*
 ]
 
-=== Inverse
+==== Inverse
 
 $
   A^(-1) A = I quad and quad A A^(-1) A = I
@@ -439,7 +437,7 @@ $
 
 ]
 
-=== Linear Dependence and Independence
+==== Linear Dependence and Independence
 
 A set of $m$ $n$-dimensional vectors $x_1, x_2, dots, x_m$ are *linearly dependent* if there exists a non-zero vector $w in RR^m$ such that:
 
@@ -554,7 +552,7 @@ $
 - ❌ The second row leads to a *contradiction*
 - ❌ The system is *inconsistent* (*no solution*)
 
-=== Extreme Points
+==== Extreme Points
 
 Given that $x$, $x_1$, and $x_2$ are points in the set $S$:
 - If you can find two different points $x_1$ and $x_2$ in $S$ such that $x$ lies somewhere strictly between them on the straight line connecting $x_1$ and $x_2$, then $x$ is not an extreme point
@@ -671,7 +669,6 @@ A point $x$ in set $S subset.eq RR^n$ is extreme if it cannot be written as a st
           mark-style: (fill: red, stroke: 0pt),
         )
 
-
         plot.annotate({
           content((a.at(0) - 0.25, a.at(1) - 0.25), text(size: 7.5pt, repr(a)))
         })
@@ -747,8 +744,7 @@ where:
 
 $x$ lies strictly between $x_1$ and $x_2$ on the line segment connecting them, not equal to either one
 
-
-=== Slack and Suplus
+==== Slack and Suplus
 
 *1. Slack*
 
@@ -924,8 +920,6 @@ Excess above the required amount
   ]
 ]
 
-
-
 #line(length: 100%)
 
 #align(center)[
@@ -1013,7 +1007,6 @@ Excess above the required amount
       2. Select the *minimum ratio*:
       - The row with the *smallest non-negative ratio* becomes the pivot row
       - The basic variable in this row is the *leaving variable* (exits the basis)
-
 
     ]),
     [],
@@ -1205,10 +1198,7 @@ Excess above the required amount
     ),
   )
 
-
-
   *Step 5*: Pivot on row 2, column $x_1$
-
 
   Now eliminate $x_1$ from other rows:
 
@@ -1253,7 +1243,6 @@ Excess above the required amount
       [$z$], [-3], [-2], [0], [3], [0], [0],
     ),
   )
-
 
   $
     R_(s_1) := R_(s_1) - R_(x_1)
@@ -1352,8 +1341,6 @@ Excess above the required amount
       [$z$], [0], [-2], [0], [3], [0], [6],
     ),
   )
-
-
 
   - Basic Variables: $x_1 = 2$, $s_1 = 2$, $s_3 = 3$
   - Non-basic variables: $x_2 = 0$
@@ -1902,7 +1889,6 @@ Excess above the required amount
               & x_1, x'_2, x''_2, s_1, s_2, s_3, a_1, a_2, a_3 gt.eq 0 \
   $
 
-
   #text(size: 16pt, weight: "semibold", [Phase I])
 
   *Objective*
@@ -2086,7 +2072,6 @@ Excess above the required amount
 
   *4. Gauss-Jordan Elimination*
 
-
 ]
 
 #example[
@@ -2140,7 +2125,6 @@ Excess above the required amount
       [$w$], [-5], [4], [-4], [0], [1], [1], [0], [0], [0], [12],
     ),
   )
-
 
   $
     R_(a_2) = R_(a_2) - 1R_(x_1)
@@ -2693,7 +2677,6 @@ Excess above the required amount
   //   )
   // )
 
-
   // *Step 5*: Phase I pivoting
 
   // We look for the most positive coefficient in the $w$-row, because we are minimizing.
@@ -2767,7 +2750,6 @@ Excess above the required amount
 
   //   )
   // )
-
 
   // *Step 6*: Step 3: Pivot on $x_1$ in row $A_2$
 
@@ -2938,7 +2920,6 @@ Excess above the required amount
 
   // *Step 3*: Pivot on $x_2$ in row $A_1$ (2nd row)
 
-
   // #align(
   //   center,
   //   table(
@@ -2999,7 +2980,6 @@ Excess above the required amount
   //     b& \:   quad &3 - 3(1/3) = 3 - 1 = 2,
   //   )
   // $
-
 
   // Row $x_1$
 
@@ -3076,8 +3056,6 @@ Excess above the required amount
 
   // *Phase II*
 
-
-
 ]
 
 #let format_lp(
@@ -3097,7 +3075,6 @@ Excess above the required amount
     x_1, x_2 gt.eq 0
   $,
 )
-
 
 #line(length: 100%)
 
@@ -3214,8 +3191,6 @@ $
   && &x_1& && && && && &-& &e_2& && && &gt.eq& quad 1 \
   && &x_1& &+& &x_2& && && && && &+& &s_1& &lt.eq& 5 \
 $
-
-
 
 #text(size: 16pt, weight: "semibold", [Degeneracy])
 
@@ -4068,10 +4043,9 @@ Can't perform ratio test $arrow.long$ no constraint limits the entering variable
 
 $$
 
-
 #line(length: 100%)
 
-=== Standard Form
+==== Standard Form
 
 - *Equalities*: Convert inequalities (using slack, surplus, or artificial variables)
 
@@ -4107,7 +4081,7 @@ $$
   $
 ]
 
-=== Simplex Method
+==== Simplex Method
 
 #example[
   $
@@ -4178,8 +4152,6 @@ $$
     ),
   )
 
-
-
 ]
 
 #line(length: 100%)
@@ -4233,7 +4205,6 @@ $
 $
 
 Or *matrix notation*,
-
 
 $
   "max" quad & z = c^T x \
@@ -4291,11 +4262,6 @@ $
     $],
   )
 ]
-
-
-
-
-
 
 3. Set up Simplex Tableau
 
@@ -4466,7 +4432,7 @@ The final tableau will give the values of the variables at the optimal solution.
   )
 ]
 
-== Matrix Notation
+=== Matrix Notation
 
 $
    max quad & c^T x \
@@ -5420,7 +5386,6 @@ The Simplex Tableau is:
       )
     }))
   ]
-
 
   // No negative reduced costs $arrow.double$ optimal
 

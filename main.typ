@@ -11,21 +11,46 @@
 #let book = toml("/book.toml")
 #let src-prefix = "/" + book.book.src + "/"
 
+// Path/label helpers — mirrored from book.typ so cross-page #link(<…>) refs
+// resolve in PDF builds too. Source files write `#link(<linear-algebra-determinant>)[…]`.
+#let slug(s) = {
+  let r = lower(s)
+  for replacement in (
+    ("& ", ""), (" & ", " "), ("&", ""),
+    ("–", "-"), ("—", "-"),
+    (" ", "-"), ("/", "-"), ("(", ""), (")", ""),
+    (",", ""), (".", ""), ("?", ""), ("'", ""),
+  ) {
+    r = r.replace(replacement.at(0), replacement.at(1))
+  }
+  r
+}
+
+#let section-path(title, parent: "") = {
+  if parent == "" { slug(title) } else { parent + "/" + slug(title) }
+}
+
+#let path-tag(p) = p.replace("/", "-")
+
 // Recursively walk sections.
 //   depth 1  → top-level section, gets a title page
 //   depth ≥2 → heading at level (depth − 1)
-#let render(sections, depth: 1) = {
+#let render(sections, depth: 1, parent: "") = {
   for sec in sections {
+    let p = section-path(sec.title, parent: parent)
     if depth == 1 {
       title_page(sec.title)
+      // Attach the cross-page label after the title page so #link(<path-tag>) resolves.
+      [#metadata(none) #std.label(path-tag(p))]
     } else {
-      heading(level: depth - 1, sec.title)
+      // Emit heading + label together so the label attaches to the heading.
+      [#heading(level: depth - 1, sec.title) #std.label(path-tag(p))]
     }
     for f in sec.at("files", default: ()) {
       include src-prefix + f
     }
     if "sections" in sec {
-      render(sec.sections, depth: depth + 1)
+      render(sec.sections, depth: depth + 1, parent: p)
     }
   }
 }

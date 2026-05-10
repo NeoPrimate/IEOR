@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-=== p-Values
-
 Probability of obtaining results at least as extreme as the observed results
 
 1. One-Tailed

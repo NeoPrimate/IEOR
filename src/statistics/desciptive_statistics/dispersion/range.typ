@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-=== Range
-
 $
   "Range" = max - min
 $

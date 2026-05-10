@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Product Rule
-
 $
   d / (d x) [colorMath(f(x), #blue) colorMath(g(x), #red)] = colorMath(f'(x), #blue) colorMath(g(x), #red) + colorMath(f(x), #blue) colorMath(g'(x), #red)
 $

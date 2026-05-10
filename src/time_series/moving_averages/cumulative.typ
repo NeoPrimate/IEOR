@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Cumulative Average
-
 Average of *every* observation since the start of the series. The expanding-window endpoint of the moving-averages axis.
 
 $ s_t = 1/t sum_(i=1)^t x_i $
@@ -44,7 +42,6 @@ Don't use it as a *forecast* for a non-stationary series. Cumulative gives equal
 The cumulative average is the *maximum likelihood estimator* of the population mean for an i.i.d. process. So if you genuinely believe the data are i.i.d. with constant mean, cumulative average is *optimal* — best you can do.
 
 If you don't believe i.i.d. (which is true of almost all real time series), use SES, ETS, or ARIMA instead.
-
 
 #example[
   *Given*:

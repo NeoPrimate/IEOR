@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Lagrangian
-
 $
   gradient f = lambda gradient g \
   g = 0

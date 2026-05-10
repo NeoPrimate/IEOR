@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Power Rule
-
 $
    f(x) & = x^colorMath(n, #red), quad quad n eq.not 0 \
   f'(x) & = colorMath(n, #red) x^colorMath(n - 1, #red) \
@@ -23,7 +21,7 @@ $
   $
 ]
 
-== Constant Rule
+=== Constant Rule
 
 $
   d / (d x) [colorMath(k, #red)] = 0
@@ -35,7 +33,7 @@ $
   $
 ]
 
-== Constant Multiple Rule
+=== Constant Multiple Rule
 
 $
   d / (d x) [colorMath(k, #red) colorMath(f(x), #blue)] & = colorMath(k, #red) d / (d x) [colorMath(f(x), #blue)] \
@@ -50,7 +48,7 @@ $
   $
 ]
 
-== Sum Rule
+=== Sum Rule
 
 $
   d / (d x) [colorMath(f(x), #red) + colorMath(g(x), #blue)]
@@ -67,7 +65,7 @@ $
   $
 ]
 
-== Difference Rule
+=== Difference Rule
 
 $
   d / (d x) [colorMath(f(x), #red) - colorMath(g(x), #blue)]
@@ -83,7 +81,7 @@ $
   $
 ]
 
-== Square Root
+=== Square Root
 
 $$
 
@@ -97,7 +95,7 @@ $$
   $
 ]
 
-== Derivative of a Polynomial
+=== Derivative of a Polynomial
 
 #example[
   $
@@ -205,7 +203,7 @@ $$
   ]
 ]
 
-== Sin
+=== Sin
 
 $
   d / (d x) sin(x) = cos(x) \
@@ -243,7 +241,7 @@ $
   }))
 ]
 
-== Cos
+=== Cos
 
 $
   d / (d x) cos(x) = - sin(x) \
@@ -283,7 +281,7 @@ $
   }))
 ]
 
-== $bold(e^x)$
+=== $bold(e^x)$
 
 $
   d / (d x) e^x = e^x
@@ -294,7 +292,6 @@ $
 #let m = calc.round(calc.exp(x), digits: 2)
 #let b = calc.round(m - m * x, digits: 2)
 #let f_tangent(x) = m * x + b
-
 
 #align(center)[
   #frame(cetz.canvas({
@@ -328,7 +325,7 @@ $
   }))
 ]
 
-== $bold(ln(x))$
+=== $bold(ln(x))$
 
 $
   ln(x) = 1 / x

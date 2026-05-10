@@ -58,7 +58,7 @@ build: build-pdf build-html
 # === Publishing ===
 
 # Build PDF and push to git.
-publish-pdf: build-pdf
+publish: build-pdf
     git add -A
-    git commit -m "Build PDF"
+    git commit -m "Build"
     git push

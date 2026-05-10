@@ -2,8 +2,6 @@
 
 #let cm(x) = text(fill: red, [$#x$])
 
-== Inventory Turnover
-
 How many times the inventory "turns over" (is sold and replaced) per year. The single most-cited inventory metric.
 
 $ "Turnover" = "Annual COGS" / "Average inventory value" $
@@ -71,7 +69,6 @@ If turnover = 12, you hold ~30 days of inventory. If turnover = 4, you hold ~91 
 - *Seasonality* — annual averages mask quarterly swings (use seasonally adjusted turnover or rolling windows).
 
 Turnover is a *summary* metric. Pair with stockout rate, FSN analysis, and days-of-supply distribution for diagnosis.
-
 
 #example[
   *Given*:

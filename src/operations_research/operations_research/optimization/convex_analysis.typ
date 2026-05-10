@@ -6,13 +6,9 @@
 #set math.mat(gap: 1em)
 #set math.vec(gap: 1em)
 
-
-== Convex Analysis
-
 Difficulties of NLP
 
 - A local minimum is not always a global minimum
-
 
 #align(center)[
   #frame(cetz.canvas({
@@ -168,7 +164,7 @@ Difficulties of NLP
   }))
 ]
 
-=== Convexity
+==== Convexity
 
 Convex Set
 
@@ -353,7 +349,6 @@ for all $lambda in [0, 1]$ and $x_1, x_2 in F$
           plot.add-anchor("f0", (0, f(0)))
           plot.add-anchor("fx", (0, f1(0)))
 
-
           plot.add(
             domain: (-1, 1),
             f,
@@ -456,7 +451,6 @@ for all $lambda in [0, 1]$ and $x_1, x_2 in F$
         {
           plot.add-anchor("o", p1)
           plot.add-anchor("a", p2)
-
 
           plot.add-anchor("oo", (0, 0))
           plot.add-anchor("f0", (0, f(0)))
@@ -1161,7 +1155,7 @@ First order condition (FOC) $f'(x) = 0$
   - If holding cost $h$ increases, order quantity $q^*$ decreases
 ]
 
-== Multivariate Convex Analysis
+=== Multivariate Convex Analysis
 
 An optimal solution either:
 - Satisfies the FOC
@@ -1225,7 +1219,6 @@ $
   - What is the Hessian at a point: $gradient^2 f(3, 2, 1)$
 ]
 
-
 #table(
   columns: (auto, auto),
   align: left,
@@ -1286,7 +1279,7 @@ For a symmetric matrix $A$, the following statements are equivalent:
 - All *eigenvalues* of $A$ are non-negative
 - All *principal minors* of $A$ are non-negative
 
-$A$'s level-$k$ principal minors is the determinant of a $k times k$ submatrix whose diagonal is a subset of $A$'s diagonal.
+$A$'s level-$k$ principal minors is the #link(<linear-algebra-determinant>)[determinant] of a $k times k$ submatrix whose diagonal is a subset of $A$'s diagonal.
 
 A sufficient condition is for $A$'s *leading* principl minors to all *positive*
 

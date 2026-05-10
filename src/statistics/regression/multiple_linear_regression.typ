@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Multiple Linear Regression (OLS)
-
 #align(center)[
   #block(
     stroke: 0.5pt + luma(60%),

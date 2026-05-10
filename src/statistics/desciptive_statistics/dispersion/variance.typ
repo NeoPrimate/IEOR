@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-=== Variance
-
 Quantifies the spread or dispersion of a set of data points in a dataset
 
 - Population

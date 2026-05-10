@@ -1,10 +1,6 @@
 #import "/lib/imports.typ": *
 
-=== Transaction Costs
-
 // @coase1937 @williamson1975 @williamson1985
-
-
 
 Why do firms / organizations exist? Why not many atomized individuals (market)?
 
@@ -34,8 +30,6 @@ Costs are a function of:
 - Asset Specificity
 - Uncertainty
 - Frequency
-
-
 
 Efficient alignment hypothesis:
 Transactions, which vary in their characteristics, should be matched with governance structures that differ in their costs and competencies. Alignment aims to minimize transactions costs.
@@ -104,4 +98,3 @@ $
 $
 
 If this inequality holds, hierarchy creates a *net benefit*, predicting *stable interdependence*, i.e., symbiosis
-

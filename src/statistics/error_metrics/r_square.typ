@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== R-squared
-
 Proportion of variance explained by the model
 
 $
@@ -11,7 +9,6 @@ $
 - 1: model explains all the variance in the dependent variable
 
 - 0: model explains none of the variance in the dependent variable
-
 
 #example[
 
@@ -148,8 +145,6 @@ $
     }))
   ]
 
-
-
   *Step 4*: Compute *Residual Sum of Squares* (SSE)
 
   $
@@ -215,7 +210,7 @@ $
   $
 ]
 
-== Adj R-squared
+=== Adj R-squared
 
 Adjusts the  $R^2$  value based on the number of predictors (penalty for adding non-informative variables)
 

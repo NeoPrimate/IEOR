@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-=== LU Decomposition
-
 Given a matrix $A$, LU decomposition aims to express $A$ as:
 
 $

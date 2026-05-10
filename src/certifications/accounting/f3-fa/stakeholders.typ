@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Stakeholders' needs
-
 Identify the *users* of financial statements and state and differentiate between their *information needs*.
 
 #table(
@@ -41,5 +39,3 @@ Need information on profits, revenue, and compliance to assess tax liabilities a
 - *Management* (internal user, but examinable)
 
 Need detailed information on performance, costs, and financial position to plan, control, and make decisions.
-
-

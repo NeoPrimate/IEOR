@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Conditional Probability
-
 Probability of $A$ given that $B$ has occurred
 
 $

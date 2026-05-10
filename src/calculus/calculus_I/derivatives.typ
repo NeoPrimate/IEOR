@@ -3,8 +3,6 @@
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
 
-== Derivative
-
 Measures the instantaneous rate of change of a function
 
 Derivative of of a function $f(x)$

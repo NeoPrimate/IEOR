@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Pearson
-
 Linear relationships
 
 $
@@ -30,7 +28,5 @@ Interpretation:
   $
 
   *Step 2*: Calculate the Differences from the Mean
-
-
 
 ]

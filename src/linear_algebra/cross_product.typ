@@ -2,8 +2,6 @@
 
 #set math.vec(delim: "[")
 
-=== Cross Product
-
 Only defined in $RR^3$
 
 Returns a vector orthogonal to the two vectors
@@ -23,8 +21,6 @@ $
     a_1 b_2 - a_2 b_1,
   )
 $
-
-
 
 #example[
   $
@@ -86,7 +82,7 @@ $
   cancel(b_1 a_2 b_3, stroke: #(paint: red)) cancel(- b_1 a_3 b_2, stroke: #(paint: green)) + cancel(b_2 a_3 b_1, stroke: #(paint: green)) cancel(- b_2 a_1 b_3, stroke: #(paint: blue)) + cancel(b_3 a_1 b_2, stroke: #(paint: blue)) cancel(- b_3 a_2 b_1, stroke: #(paint: red)) = 0
 $
 
-=== Proof: Relationship Between Cross Product and Sin of Angle
+== Proof: Relationship Between Cross Product and Sin of Angle
 
 $
   accent(a, arrow) = vec(a_1, a_2, a_3) quad quad accent(b, arrow) = vec(b_1, b_2, b_3)
@@ -112,7 +108,7 @@ $
   ||accent(a, arrow) times accent(b, arrow)|| = ||accent(a, arrow)|| ||accent(b, arrow)|| sin(Theta)
 $
 
-=== Dot and Cross Products
+== Dot and Cross Products
 
 $
   accent(a, arrow) dot accent(b, arrow) = ||accent(a, arrow)|| ||accent(b, arrow)|| cos(Theta) \

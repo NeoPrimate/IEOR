@@ -2,8 +2,6 @@
 
 #let cm(x) = text(fill: red, [$#x$])
 
-== ABC Analysis
-
 Classify items by *annual consumption value* (annual demand × unit cost). The Pareto principle says a small fraction of items dominates total value — so spend management effort proportionally.
 
 === The Pareto split
@@ -40,7 +38,6 @@ B items get medium attention.
   [B], [~15-25%], [~30%], [Standard: $(R, S)$ with monthly review; modest safety stock],
   [C], [~5-10%], [~50-70%], [Loose: two-bin or fixed periodic order; generous safety stock],
 )
-
 
 #example[
   *Given*: 6 SKUs in a small electronics warehouse.

@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Standard Form
-
 $
    min quad & c^T x \
   s.t. quad & A x = b \

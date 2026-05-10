@@ -7,8 +7,6 @@
 #set math.mat(gap: 1em)
 #set math.vec(gap: 1em)
 
-== Lagrange Relaxation
-
 2 types of points:
 - *Interior* point
 - *Boundary* point
@@ -173,7 +171,6 @@ For constrained single variate:
 ]
 
 === Multi Variate
-
 
 #example[
 

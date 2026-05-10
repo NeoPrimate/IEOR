@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-=== Interquartile Range (IQR)
-
 $
   "IQR" = "Q3" - "Q1"
 $

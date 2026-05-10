@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Likelihood
-
 $
   #math.cal("L") (theta | x) = f(x | theta)
 $

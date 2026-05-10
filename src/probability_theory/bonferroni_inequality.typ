@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Bonferroni Inequality
-
 1. Two Sets
 
 $
@@ -104,4 +102,3 @@ $
     P(inter.big_(i=1)^n A_n) gt.eq sum_{i=1}^n P(A_i) - (n-1)
   $ 
 ]
-

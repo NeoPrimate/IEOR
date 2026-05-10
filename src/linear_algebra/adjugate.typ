@@ -3,15 +3,13 @@
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
 
-== Adjugate
-
 $
   "adj"(A)
 $
 
 1. Compute *Minor* $M_(i j)$
 
-For each entry $A_(i j)$ of $A$, take the determinant of the submatrix that remains when row $i$ and column $j$ are removed
+For each entry $A_(i j)$ of $A$, take the #link(<linear-algebra-determinant>)[determinant] of the submatrix that remains when row $i$ and column $j$ are removed
 
 #align(center)[
   #grid(
@@ -172,8 +170,6 @@ Take the transpose:
 $
   "adj"(A) = C^T
 $
-
-
 
 #example[
   $

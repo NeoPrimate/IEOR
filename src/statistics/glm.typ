@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Generalized Linear Models (GLM)
-
 Three components:
 
 1. Random Component
@@ -89,7 +87,6 @@ Where $g(dot)$ is called the link function
   #let f(x) = b0 + b1 * x
 
   #let probit(x) = 1 / (1 + calc.exp(-f(x)))
-
 
   #align(center)[
     #table(

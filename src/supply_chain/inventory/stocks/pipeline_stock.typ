@@ -2,8 +2,6 @@
 
 #let cm(x) = text(fill: red, [$#x$])
 
-== Pipeline Stock
-
 Inventory that is *in transit* — already ordered and paid for, but not yet received. Sometimes called "in-transit inventory" or "work-in-progress" (WIP) when between production stages.
 
 $ "Pipeline stock" = bar(d) dot bar(L) $
@@ -62,7 +60,6 @@ Cycle stock and safety stock can be tuned by changing $Q$ or $z$. *Pipeline stoc
   [Anticipation stock], [planned], [Smoother demand or flexible capacity],
   [Decoupling stock], [planned], [Tighter inter-stage coordination],
 )
-
 
 #example[
   *Given* (shared params):

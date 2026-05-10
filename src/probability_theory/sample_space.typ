@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Sample Space
-
 A probability model begins with two tasks:
 
 1.	Specify the set of all possible *outcomes*

@@ -2,8 +2,6 @@
 
 #let cm(x) = text(fill: red, [$#x$])
 
-== Bullwhip Effect
-
 The phenomenon where *demand variability amplifies up the supply chain*. Small fluctuations at the retail level cause progressively larger swings at the distributor, manufacturer, and raw-material supplier — like a bullwhip cracked at the handle.
 
 Quantitatively measured by the *bullwhip ratio*:
@@ -12,7 +10,7 @@ $ "BW"_"stage" = "Var"("orders out of stage") / "Var"("demand into stage") $
 
 If $"BW" > 1$: variability is amplified. If $"BW" = 1$: variability is preserved. *Real supply chains exhibit ratios of 2–5 per stage, compounding multiplicatively as you move upstream.*
 
-=== Why it matters
+== Why it matters
 
 Consequences of bullwhip:
 - *Excess inventory* upstream (forced to absorb spikes).
@@ -23,15 +21,15 @@ Consequences of bullwhip:
 
 Most damaging in industries with long lead times (electronics, pharmaceuticals, automotive) where amplified variance forces high safety stocks at every stage.
 
-=== The four classical causes (Lee, Padmanabhan, Whang 1997)
+== The four classical causes (Lee, Padmanabhan, Whang 1997)
 
-==== 1. Demand-signal processing
+=== 1. Demand-signal processing
 
 Each stage forecasts based on *orders received*, not *true downstream demand*. When the retailer's demand spikes once, the retailer increases its safety stock — placing a *larger* order to the distributor. The distributor sees a spike and overreacts: even larger order to the manufacturer. The signal is amplified at each step.
 
 *Math*: if each stage uses simple exponential smoothing or moving averages on *orders* (not demand), they bake the bullwhip from the previous stage into their next forecast — a positive feedback loop.
 
-==== 2. Order batching
+=== 2. Order batching
 
 Retailers don't reorder every day — they batch orders into weekly or monthly shipments (driven by EOQ-style fixed costs, transportation economics, or supplier minimum order quantities).
 
@@ -39,19 +37,19 @@ The distributor sees a long pattern of *zero* orders followed by a single *large
 
 If batch size is $Q$ and underlying demand is smooth: order variance scales with $Q$ (lumpy spikes); demand variance is small. Bullwhip ratio $approx Q / (Q\/N) = N$ where $N$ is the smoothing factor — easily $10times$ amplification.
 
-==== 3. Price fluctuations and forward buying
+=== 3. Price fluctuations and forward buying
 
 Promotions, volume discounts, end-of-quarter pushes — all incentivize buyers to *forward-buy* (purchase ahead of need to capture the deal). Order pattern: huge spikes at promotion times, troughs in between.
 
 The retailer's actual sell-through is smooth; their *purchase* pattern is spiky → upstream sees the spiky pattern, not the smooth demand. Pure artifact of pricing strategy.
 
-==== 4. Rationing and shortage gaming
+=== 4. Rationing and shortage gaming
 
 When supply is constrained, the supplier rations: each customer gets a fraction of what they ordered. Rational customer response: *over-order* (order $1\/r$ × what you actually need, expecting fraction $r$ to be filled).
 
 When supply normalizes, the inflated orders cancel or get returned, leaving the supplier with phantom demand signals. The 1990s computer-component shortages were full of this.
 
-=== Mitigation strategies
+== Mitigation strategies
 
 #table(
   columns: 2,
@@ -73,7 +71,7 @@ When supply normalizes, the inflated orders cancel or get returned, leaving the 
 
 The most effective single intervention: *information sharing*. POS-level visibility flowing upstream eliminates 60-80% of bullwhip in most studies.
 
-=== The beer game
+== The beer game
 
 The MIT "beer distribution game" is a 4-stage simulation (retailer, wholesaler, distributor, factory) where players try to manage inventory and orders. Even with simple smooth demand, bullwhip emerges naturally — players aren't aware of upstream impacts and overreact based on local information.
 
@@ -82,7 +80,6 @@ Lessons consistently observed:
 - Inventory swings grow upstream.
 - Total system cost is much higher than optimal.
 - Sharing demand information dramatically improves performance.
-
 
 #example(title: "Bullwhip from order batching")[
   *Given* (4-stage chain: customer → retailer → wholesaler → factory):

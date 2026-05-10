@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== P-charts (Proportion)
-
 The p-chart monitors the proportion of defectives in each sample, accounting for variable sample sizes.
 
 $

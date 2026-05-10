@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Fourier Transform
-
 A *frequency-domain* representation of a time series. Decompose the series into a sum of sines and cosines at different frequencies. Useful for finding *dominant cycles* that aren't obvious in the time-domain view.
 
 === Discrete Fourier Transform (DFT)
@@ -75,7 +73,6 @@ Smoothed version of the periodogram → see [periodogram.typ](periodogram.typ).
 === Connection to seasonality
 
 If your series has a known seasonal period $m$, you'd expect a peak in the spectrum at $k = N\/m$. Conversely, *unknown* periodicities are *discovered* via the spectrum — perhaps weekly + monthly + yearly all show up in the same series. Fourier analysis is the natural tool for this.
-
 
 #example(title: "Fourier analysis of monthly retail sales")[
   *Given*: $N = 60$ months of sales data (5 years).

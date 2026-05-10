@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Chain Rule
-
 Compute the derivative of a composite function
 
 $
@@ -57,7 +55,6 @@ $
     ] = colorMath(1 / (colorMath(sin(colorMath(x, #black)), #blue)), #red) dot colorMath(cos(colorMath(x, #black)), #blue)
   $
 ]
-
 
 $
   f(x) = colorMath(cos^colorMath(3, #red)(colorMath(x, #black)), #blue) = colorMath((colorMath(cos(colorMath(x, #black)), #blue))^3, #red)

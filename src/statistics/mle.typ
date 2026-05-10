@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Maximum Likelihood Estimation
-
 $
   L(theta) = product_(i=1)^n f(x_i | theta)
 $
@@ -187,7 +185,6 @@ Where:
     ]
   )
   
-  
 ]
 
 Log Likelihood
@@ -195,7 +192,3 @@ Log Likelihood
 $
   cal(l) (theta) = log L(theta) = sum_(i=1)^n log f(x_i | theta)
 $
-
-
-
-

@@ -2,8 +2,6 @@
 
 #let cm(x) = text(fill: red, [$#x$])
 
-== Safety Stock
-
 The portion of inventory held *as a buffer against uncertainty* — in demand, in lead time, or both. Distinguished from cycle stock (which exists due to *batching*, not uncertainty).
 
 $ "SS" = z dot sigma_"LD" $
@@ -62,7 +60,6 @@ When inventory is held centrally rather than distributed across $n$ independent 
 - *Centralized*: one location holds $z sigma_d sqrt(L) sqrt(n)$ (because aggregate variance scales with $n$, std with $sqrt(n)$).
 
 *Total safety stock falls by factor $sqrt(n)$* under centralization (assuming independent demands across locations). This is the *square-root law* of inventory aggregation.
-
 
 #example[
   *Given* (compare four scenarios):

@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-=== Perfect Order Rate
-
 Measures the percentage of orders delivered to customers in full, on time, and without any damage
 
 $

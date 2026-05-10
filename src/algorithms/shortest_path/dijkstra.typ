@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Dijkstra's
-
 *Step 1*: Initialize
 
 - Mark all nodes as unvisited

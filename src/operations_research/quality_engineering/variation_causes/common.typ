@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Common
-
 Common Cause Variation: Normal, expected variation inherent to the process; predictable and stable.
 
 #example[

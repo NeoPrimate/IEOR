@@ -1,9 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-== Markov Chains
-
-=== Checkout Counter Model
+== Checkout Counter Model
 
 - Discrete time ($n = 0, 1, dots$)
 - Custommer arrivals: Benoulli($p$)
@@ -68,7 +66,7 @@ Where:
 - $p (1 - q)$: Probability of custommer arrival without a custommer departure
 - $q (1 - p)$: Probability of custommer departure without a custommer arrival
 
-=== $bold(n)$-Step Transition Probabilities
+== $bold(n)$-Step Transition Probabilities
 
 State occupance probabilities given initial state $i$:
 
@@ -102,7 +100,7 @@ $
   ))
 ]
 
-=== Key Recursion
+== Key Recursion
 
 The total probability of ending at with state $j$ is the sum of probabilities of the different paths to get to state $j$
 
@@ -110,9 +108,8 @@ $
 r_(i j) = sum_(k = 1)^m r_(i k) (n - 1) p_(k j)
 $
 
-=== Random Initial State
+== Random Initial State
 
 $
 P(X_n = j) = sum_(i = 1)^m P(X_0 = i) r_(i j) (n)
 $
-

@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Quotient Rule
-
 $
   d / (d x) [colorMath(f(x), #blue) / colorMath(g(x), #red)] = (colorMath(f'(x), #blue) colorMath(g(x), #red) - colorMath(f(x), #blue) colorMath(g'(x), #red)) / [colorMath(g(x), #red)]^2
 $
@@ -144,7 +142,6 @@ $
     )
   }))
 ]
-
 
 === *$sec(x)$*
 

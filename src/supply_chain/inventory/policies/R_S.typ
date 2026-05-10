@@ -2,8 +2,6 @@
 
 #let cm(x) = text(fill: red, [$#x$])
 
-== (R, S) Policy
-
 Periodic review, *order-up-to* $S$. The simplest periodic-review policy.
 
 *Decision rule*: at every review point (every $R$ time units), observe the inventory position and order *just enough to bring it up to* $S$. No reorder point — order at every review whether or not inventory is depleted.
@@ -52,7 +50,6 @@ $
   quad
   Q_"actual" = S - I_"current"
 $
-
 
 #example[
   *Given* (same policy-comparison params + a 30-day review):

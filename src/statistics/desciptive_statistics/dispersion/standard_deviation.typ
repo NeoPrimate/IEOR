@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-=== Standard deviation
-
 Quantifies the amount of variation or dispersion in a set of data points
 
 - Population

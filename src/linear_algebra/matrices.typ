@@ -3,8 +3,6 @@
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
 
-= Matrices
-
 $m times n$ matrix $bold(A)$
 - $m$: rows
 - $n$: columns

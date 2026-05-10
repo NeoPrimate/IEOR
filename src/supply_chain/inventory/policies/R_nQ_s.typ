@@ -2,8 +2,6 @@
 
 #let cm(x) = text(fill: red, [$#x$])
 
-== (R, nQ, s) Policy
-
 Periodic review, *fixed pack size, with reorder point*. Combines the periodic-review structure of (R, s, S) with the fixed-pack constraint of (nQ, r).
 
 *Decision rule*: at every review point (every $R$ time units), observe inventory position $I_t$.
@@ -133,7 +131,6 @@ $
   quad
   n = ceil((s - I_t + Q) / Q)
 $
-
 
 #example[
   *Given* (same policy-comparison params + a fixed pack):

@@ -2,8 +2,6 @@
 
 #set math.vec(delim: "[")
 
-=== Cauchy-Schwarz Inequality
-
 $
   abs(accent(u, arrow) dot accent(v, arrow)) &lt.eq ||accent(u, arrow)|| ||accent(v, arrow)|| \
   abs(accent(u, arrow) dot accent(v, arrow)) &eq ||accent(u, arrow)|| ||accent(v, arrow)|| quad "when" quad accent(u, arrow) = c accent(v, arrow)

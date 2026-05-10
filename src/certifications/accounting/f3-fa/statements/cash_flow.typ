@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Cash Flow
-
 *Cash* *inflows* and *outflows* over a period of time
 
 #align(center)[
@@ -22,7 +20,5 @@
 ]
 
 === Direct Method
-
-
 
 === Indirect Method

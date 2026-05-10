@@ -5,8 +5,6 @@
 
 #set math.mat(gap: 1em)
 
-== Matrix Inverse
-
 $
   A dot A^(-1) = A^(-1) dot A = I
 $
@@ -20,7 +18,7 @@ A matrix $A$ is invertible (nonsingluar) if:
 - It is square ($n times n$)
 - $det(A) eq.not 0$
 
-=== Calculating inverse
+== Calculating inverse
 
 Row Reduction (Gauss-Jordan Elimination)
 

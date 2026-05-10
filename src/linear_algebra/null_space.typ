@@ -1,4 +1,4 @@
-== Null Space
+#import "/lib/imports.typ": *
 
 The null space (or kernel) of a matrix $bold(A)$ is the set of all vectors $bold(x)$ that satisfy the equation:
 

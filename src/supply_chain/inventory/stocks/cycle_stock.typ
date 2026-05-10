@@ -2,8 +2,6 @@
 
 #let cm(x) = text(fill: red, [$#x$])
 
-== Cycle Stock
-
 The portion of inventory that exists *because we order in batches instead of unit-by-unit*. Pure consequence of fixed ordering costs and the EOQ trade-off.
 
 $ "Cycle stock (average)" = Q / 2 $
@@ -57,7 +55,6 @@ Cycle stock is just one of *five* inventory components in a typical operation:
 )
 
 Total average inventory = sum of all components.
-
 
 #example[
   *Given* (the same shared params as EOQ / policies):

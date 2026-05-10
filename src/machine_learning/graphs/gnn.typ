@@ -273,23 +273,9 @@
   )
 ]
 
-
-
-
-
-
-
-
-
-
-
-
-
 #linebreak()
 #linebreak()
 #linebreak()
-
-= Graph Neural Networks (GNNs)
 
 - Node-level predictions
 - Edge-level predictions
@@ -300,7 +286,7 @@ Graph Data
 - Isomorphism: permutation invariance
 - Grid structure: non-euclidian
 
-== Message Passing
+=== Message Passing
 
 Allows nodes in a graph to exchange information and update their representations (embeddings) based on their local neighborhood
 
@@ -433,7 +419,7 @@ Where:
   ]
 ]
 
-== Invariance
+=== Invariance
 
 A function is invariant to node permutations if its output stays the same no matter how the nodes are reordered (i.e., relabeled)
 
@@ -445,7 +431,7 @@ If you shuffle the node labels, the graph is still the same — just redrawn
 
 If you reorder the rows of $X$ (node features) and both rows and columns of $A$ (adjacency matrix) using the same permutation matrix $P$, the output does not change
 
-== Equivariance
+=== Equivariance
 
 A function is equivariant to node permutations if permuting the input nodes results in the output being permuted in the same way
 
@@ -456,7 +442,6 @@ $
 If you shuffle the nodes in the input graph, the output values (e.g., node embeddings or predictions) shuffle in the same way
 
 If you reorder the rows of $X$ (node features) and both rows and columns of $A$ (adjacency matrix) using the same permutation matrix $P$, the output is reordered in the same way — i.e., its rows are permuted by $P$ too
-
 
 #example[
   Let $G = (V, E)$ be a directed graph where
@@ -503,7 +488,6 @@ If you reorder the rows of $X$ (node features) and both rows and columns of $A$ 
         stroke: none,
         name: <vec1>,
       ),
-
 
       edge(
         <0>,
@@ -650,7 +634,6 @@ If you reorder the rows of $X$ (node features) and both rows and columns of $A$ 
         stroke: none,
         name: <vec1>,
       ),
-
 
       edge(
         <1>,
@@ -807,7 +790,6 @@ If you reorder the rows of $X$ (node features) and both rows and columns of $A$ 
   $
     g(X, A) = mat(3, 4) = g(P X, P A P^T)
   $
-
 
   So the function is invariant under node permutation:
 

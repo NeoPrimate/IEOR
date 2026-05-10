@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Inverse Functions
-
 *1. Definition*
 
 $

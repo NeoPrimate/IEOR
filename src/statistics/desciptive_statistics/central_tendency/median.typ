@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-=== Median
-
 Middle value in a set of values when they are arranged in ascending or descending order
 
 #example[

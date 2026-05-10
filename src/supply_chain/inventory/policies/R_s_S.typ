@@ -2,8 +2,6 @@
 
 #let cm(x) = text(fill: red, [$#x$])
 
-== (R, s, S) Policy
-
 Periodic review with a reorder point. Generalizes (R, S) by adding a "do nothing" option when inventory is high.
 
 *Decision rule*: at every review point (every $R$ time units), observe the inventory position $I_t$.
@@ -130,7 +128,6 @@ $
   quad
   "SS" = z sigma_(R+L)
 $
-
 
 #example[
   *Given* (same policy-comparison params):

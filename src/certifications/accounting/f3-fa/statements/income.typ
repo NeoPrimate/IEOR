@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Income Statement
-
 *Revenue* and *expenses* over *time*
 
 Simple:
@@ -73,4 +71,3 @@ Expenses:
     - Advertising
     - Commissions
     - Utilities
-

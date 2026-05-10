@@ -1,8 +1,6 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-== Differential Equations
-
 A differential equation specifies a relationship between an unknown function and its derivatives
 
 Solving for (an) unknown function(s) that satisfy this relationship
@@ -214,8 +212,6 @@ The *independent* variable does not appear explicitly in the equation (rate of c
   #text(size: 16pt, weight: "semibold")[Coupled ODE]
 
   #text(size: 14pt, weight: "semibold")[Lotka-Volterra ODEs (predator-prey)]
-
-
 
   $
     (dif) / (dif t) x(t) & = alpha x(t) - beta x(t) y(t) \
@@ -520,6 +516,5 @@ The *independent* variable does not appear explicitly in the equation (rate of c
       )
     }))
   ]
-
 
 ]

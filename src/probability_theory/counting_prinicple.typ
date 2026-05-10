@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Counting Principle
-
 Count the total number of possible outcomes in a multi-step process
 
 - The first stage has $n_1$ possible outcomes,
@@ -14,7 +12,6 @@ then the total number of outcomes is:
 $
   n_1 dot n_2 dot dots dot n_k = product_(i=1)^k n_i
 $
-
 
 #align(center)[
   #frame(fletcher.diagram(

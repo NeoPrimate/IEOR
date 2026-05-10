@@ -2,8 +2,6 @@
 
 #let cm(x) = text(fill: red, [$#x$])
 
-== Decoupling Stock
-
 Inventory held *between two production stages* (or between a supplier and a buyer) so each stage can operate independently — without being immediately blocked by problems in the upstream stage.
 
 Conceptually similar to safety stock, but for *internal* stages rather than external customer demand.
@@ -71,7 +69,6 @@ Closed forms exist for some special cases (e.g., M/M/1 stages); more often simul
   [Anticipation stock], [planned], [Centralized for known events],
   [*Decoupling stock*], [varies (insurance / SS-like)], [Between production stages — physically a queue or buffer area],
 )
-
 
 #example(title: "Two-stage manufacturing line")[
   *Given*:

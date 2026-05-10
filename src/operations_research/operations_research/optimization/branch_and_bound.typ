@@ -3,9 +3,6 @@
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
 
-
-== Branch-and-Bound
-
 Integer Program
 
 #align(center)[
@@ -143,7 +140,6 @@ Integer Program
     )
   }))
 ]
-
 
 Linear Relaxation:
 
@@ -807,7 +803,6 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
           style: (stroke: (thickness: 1pt, paint: purple)),
         )
 
-
         plot.add(
           domain: (-1, 5),
           x => 2,
@@ -879,7 +874,6 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
           style: (stroke: (thickness: 1pt, paint: purple)),
         )
 
-
         plot.add(
           domain: (-1, 5),
           x => 2,
@@ -936,7 +930,6 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
           1,
           style: (stroke: (thickness: 1pt, paint: purple)),
         )
-
 
         plot.add(
           domain: (-1, 5),
@@ -1023,7 +1016,6 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
           1,
           style: (stroke: (thickness: 1pt, paint: purple)),
         )
-
 
         plot.add(
           domain: (-1, 5),
@@ -1251,16 +1243,7 @@ Let $x'$ be an optimal solutions to the linear relaxation of an IP. If $x'$ is f
     ))
   ]
 
-
-
-
-
-
 ]
-
-
-
-
 
 // #example[
 //   $

@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== U-charts (Unit)
-
 Defects per unit (variable unit size)
 
 $

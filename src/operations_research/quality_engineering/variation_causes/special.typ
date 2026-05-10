@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Special
-
 Special Cause Variation: Abnormal, unexpected variation due to specific causes; unpredictable and requires immediate action.
 
 External disruptions

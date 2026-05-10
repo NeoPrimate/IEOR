@@ -2,8 +2,6 @@
 
 #let cm(x) = text(fill: red, [$#x$])
 
-== Capacity-constrained EOQ
-
 Relax one dimension from basic EOQ: *capacity is no longer unlimited*. A shared resource — warehouse space, working-capital budget, or shelf footprint — caps the total inventory you can hold at any moment. Multiple items compete for the same budget.
 
 === Setup
@@ -73,7 +71,6 @@ $
 $
 
 Sanity check: if $V -> infinity$ (no constraint), $lambda -> 0$ and $Q_i^* -> sqrt(2 S_i D_i \/ h_i)$ — basic EOQs ✓.
-
 
 #example[
   *Given* (2 items sharing a budget-constrained warehouse):

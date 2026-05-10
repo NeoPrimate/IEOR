@@ -3,9 +3,6 @@
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
 
-
-== Composition of Linear Transformations
-
 $
   S: colorMath(X, #purple) arrow colorMath(Y, #green) quad quad T: colorMath(Y, #green) arrow colorMath(Z, #red)
 $
@@ -222,8 +219,6 @@ $
 To compute $C$:
 
 1. For each $arrow(e)_i$ in the basis of $RR^n$, $A arrow(e)_i = arrow(a)_i$, the $i$-th column of $A$
-
-
 
 $
   C & = mat(

@@ -7,9 +7,6 @@
 #set math.mat(gap: 1em)
 #set math.vec(gap: 1em)
 
-
-== KKT Conditions
-
 Conditions that a solution must satisfy in order to be optimal for a nonlinear optimization problem
 
 Conditions are necessary for optimality, and sufficient if:
@@ -241,7 +238,6 @@ $
   }))
 ]
 
-
 - The constraint is tight at the optimum — it holds with equality
 - $lambda_i^*$ is the shadow price:
   - It measures how much the objective value would improve per unit relaxation of the constraint
@@ -315,7 +311,6 @@ $
   Constraints already in the form $g(x) lt.eq 0$ for minimization
 
   Sign convention $lambda gt.eq 0$
-
 
   *Step 2. Formulate Lagrangian*
 
@@ -512,7 +507,6 @@ $
   ]
 
   *Step 8. Check Convexity*
-
 
 ]
 
@@ -781,8 +775,6 @@ $
 
   *Step 8. Check Convexity*
 
-
-
 ]
 
 #line(length: 100%)
@@ -804,7 +796,6 @@ $
 #example[
 
   Retailer Maximizing Profit under a Capacity Constraint
-
 
   A retailer sells product 1 and 2 with quantities $q_1$ and $q_2$. For product $i$ the market-clearing prices are:
 
@@ -935,8 +926,6 @@ $
     cal(L) (q_1, q_2, lambda) = overbrace(q_1 (a_1 - b_1 q_1) + q_2 (a_2 - b_2 q_2), f) + lambda overbrace((K - q_1 - q_2), b - g)
   $
 
-
-
   3. KKT Conditions
 
   #h(1em) 1. Stationarity
@@ -1034,7 +1023,6 @@ $
        (partial cal(L)) / (partial q_2) & = a_2 - 2 b_2 q_2 - lambda \
     (partial cal(L)) / (partial lambda) & = K - q_1 - q_2 \
   $
-
 
   Set derivatives to 0 (stationarity)
 
@@ -1239,7 +1227,6 @@ $
   *Case 1.* ($lambda_1 gt 0, lambda_2 gt 0$)
 
   Step 1: Complementary Slackness
-
 
   Since both multipliers are positive, the corresponding constraints must be active:
 
@@ -2136,7 +2123,6 @@ $
     }))
   ]
 
-
 ]
 
 === Sensitivity Analysis and Shadow Prices
@@ -2467,8 +2453,6 @@ $
              s.t. quad & A x = b \
 $
 
-
-
 #example[
 
   $
@@ -2515,7 +2499,6 @@ $
     )
   $
 
-
   $
     2(x_1 - 4) = 0 \
     x_1 = 4 \
@@ -2561,13 +2544,9 @@ $
     (x_1, x_2) = (4, 2)
   $
 
-
   *$x_1 - 2x_2 = 0$* ✅
 
-
-
   Case 2. $lambda = 0$
-
 
   4. What is a local optimal solution to the nonlinear program?
 

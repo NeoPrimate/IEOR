@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-=== Gaussian Elimination
-
 Convert a matrix into its row echelon form (REF) or reduced row echelon form (RREF)
 
 $
@@ -36,14 +34,9 @@ Where
 - $R_k$: $k$-th row
 - $R_i$: $i$-th row
 
-
 3. Back Substitution
 
-
-
 4. Reduced Row Echelon Form (RREF)
-
-
 
 #example[
   $

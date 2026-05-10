@@ -3,8 +3,6 @@
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
 
-== Derivatives of Inverse Functions
-
 Finding the derivative of the inverse function $f^(-1)(x)$ at a given point directly from the function $f(x)$. Instead of explicitly computing the inverse function $f^(-1)(x)$, we use the inverse function derivative formula:
 
 $
@@ -215,7 +213,6 @@ $
 
   #let tangent_f(x) = m_f * (x - x0) + y0
   #let tangent_f_inv(x) = m_f_inv * (x - y0) + x0
-
 
   #align(center)[
     #frame(cetz.canvas({

@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Network Flow Optimization
-
 Types of Problems:
 
 - Maximum Flow
@@ -88,7 +86,6 @@ Node $i$
       radius: 1em,
       name: <i>,
     ),
-
 
     node(
       pos: (2, 0),
@@ -672,7 +669,6 @@ Node Properties:
 - *Storage Capacity (Intermediary)*: Maximum amount of goods that can be held at a node
 - *Penalty for Unfulfilled Demand (Sink)*: Cost for unmet demand.
 - *Disruption Risk (All Nodes)*: Probability of a node being unavailable due to unforeseen circumstances
-
 
 Edge Properties:
 

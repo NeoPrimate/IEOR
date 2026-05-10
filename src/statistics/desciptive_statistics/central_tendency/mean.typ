@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-=== Mean
-
 Sum of all the values divided by the number of values
 
 $

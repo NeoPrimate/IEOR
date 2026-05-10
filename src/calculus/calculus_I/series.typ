@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Series
-
 Given the series $(a_n) = a_1 + a_2 + ...$, then
 
 $
@@ -19,7 +17,6 @@ $
       & dots.v
 $
 
-
 #example[
   $
     sum_(n=1)^infinity 1 / n^2
@@ -28,7 +25,6 @@ $
   #let series = range(1, 51).map(n => (n, range(1, n + 1).map(n => (1 / calc.pow(n, 2))).sum()))
 
   #let convergence = calc.pow(calc.pi, 2) / 6
-
 
   #align(center)[
     #frame(cetz.canvas(length: 6cm, {

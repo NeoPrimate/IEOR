@@ -5,9 +5,6 @@
 #set math.mat(gap: 1em)
 #set math.vec(gap: 1em)
 
-
-== Convexity
-
 #grid(
   columns: (auto, auto),
   [
@@ -114,9 +111,6 @@
     }))
   ]
 )
-
-
-
 
 #grid(
   columns: (auto, auto),

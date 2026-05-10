@@ -3,10 +3,7 @@
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
 
-
-== Minor
-
-*Determinant* of some smaller square matrix obtained by deleting certain rows and columns from the original matrix
+#link(<linear-algebra-determinant>)[*Determinant*] of some smaller square matrix obtained by deleting certain rows and columns from the original matrix
 
 $
   #colorMat(
@@ -33,9 +30,9 @@ $
   )
 $
 
-=== Principal Minor
+== Principal Minor
 
-*Determinant* of some smaller square matrix obtained by deleting certain rows and columns from the original matrix
+#link(<linear-algebra-determinant>)[*Determinant*] of some smaller square matrix obtained by deleting certain rows and columns from the original matrix
 
 The diagonal of the principal minor is a subset of the diagonal of $A$
 
@@ -64,15 +61,15 @@ $
   )
 $
 
-=== Levels
+== Levels
 
-$A$'s level-$k$ principal minors is the determinant of a $k times k$ submatrix whose diagonal is a subset of $A$'s diagonal
+$A$'s level-$k$ principal minors is the #link(<linear-algebra-determinant>)[determinant] of a $k times k$ submatrix whose diagonal is a subset of $A$'s diagonal
 
 For an $n times n$
 - There are $n$ levels of minors
 - The number of principle minors at level $k$ is $binom(n, k)$
 
-=== Leading Principal Minor
+== Leading Principal Minor
 
 #align(center)[
 

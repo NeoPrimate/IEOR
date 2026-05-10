@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-=== One-way
-
 Compares the means of three or more groups based on one independent variable
 
 - $H_0$: $mu_1 = mu_2 = ... = mu_k$

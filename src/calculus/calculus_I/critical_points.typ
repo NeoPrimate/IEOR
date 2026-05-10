@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-=== Critical points
-
 A critical point of a function $f(x)$ is a point in the domain where either:
 
 - $f'(x) = 0$
@@ -13,7 +11,6 @@ A critical point of a function $f(x)$ is a point in the domain where either:
 
   #let f(x) = calc.pow(x, 3) - 3 * x + 1
   #let f_prime(x) = 3 * calc.pow(x, 2) - 3
-
 
   #align(center)[
     #frame(cetz.canvas(length: 6cm, {

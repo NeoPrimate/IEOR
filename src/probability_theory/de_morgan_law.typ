@@ -2,8 +2,6 @@
 
 #show sym.emptyset: set text(font: "Fira Sans")
 
-== De Morgan's Law
-
 Allows going back and forth between unions and intersections
 
 #align(center)[
@@ -76,7 +74,6 @@ $
     )
     content("C", $ S inter T $, anchor: "center", padding: (x: 0, y: 0.75))
 
-    
     rect(
       (0, 2), (5, 5), 
       name: "D",
@@ -169,6 +166,3 @@ since the compliment of a compliment is the set itself:
 $
   S^c inter T^c = (S union T)^C
 $
-
-
-

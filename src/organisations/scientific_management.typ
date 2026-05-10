@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Scientific Management
-
 // @taylor1911
 
 - Work Study (Time and Motion Analysis) "One best way"

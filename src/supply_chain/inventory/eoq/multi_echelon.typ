@@ -2,8 +2,6 @@
 
 #let cm(x) = text(fill: red, [$#x$])
 
-== Multi-echelon EOQ
-
 Relax one dimension from basic EOQ: *number of echelons* is no longer one. Inventory is held at multiple stages of a supply chain (warehouse → retailer, supplier → factory → distributor, etc.). Orders cascade up the chain, and each stage has its own setup and holding costs.
 
 Key concept: *echelon inventory* $-$ at each stage, count not just on-hand but also all downstream inventory you've already paid to put in motion.
@@ -60,7 +58,6 @@ $ T_r^*(k) = sqrt((2 (S_r + S_w \/ k)) / ((h_r + k h_w) d)) $
 $ "TC"^*(k) = sqrt(2 (S_r + S_w \/ k) (h_r + k h_w) d) $
 
 Now optimize over integer $k gt.eq 1$ — small search (typically $k in {1, 2, 4, 8}$).
-
 
 #example[
   *Given* (two-echelon: warehouse $arrow.r$ retailer):

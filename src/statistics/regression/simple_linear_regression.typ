@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Simple linear regression
-
 $
   y = beta_0 + beta_1 x_1 + epsilon
 $
@@ -69,7 +67,6 @@ $
   $
     beta_1 = macron(y) - beta_1 macron(x) = 1.3
   $
-
 
   *Step 4*: Calculate p-Value
 

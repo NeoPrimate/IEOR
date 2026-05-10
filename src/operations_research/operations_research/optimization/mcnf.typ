@@ -262,7 +262,7 @@ $
 
 Where:
 - $A_B^"adj"$: adjugate matrix of $A_B$
-- $(A_B^"adj")_(i j)$: determinant of the matrix obtained by removing row $j$ and column $i$ from $A_B$
+- $(A_B^"adj")_(i j)$: #link(<linear-algebra-determinant>)[determinant] of the matrix obtained by removing row $j$ and column $i$ from $A_B$
 
 If A is totally unimodular, $det(A_B)$ will be either 1 or -1 for any basis $B$. $x_B$ is then an integer vector if $b$ is an integer vector.
 

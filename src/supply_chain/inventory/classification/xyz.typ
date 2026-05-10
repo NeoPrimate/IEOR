@@ -2,8 +2,6 @@
 
 #let cm(x) = text(fill: red, [$#x$])
 
-== XYZ Analysis
-
 Classify items by *demand variability*, measured via the *coefficient of variation* (CV) of demand over time:
 
 $ "CV" = sigma / mu $
@@ -51,7 +49,6 @@ Notes:
 - Use *enough* history (at least 12 periods, ideally 24+) so CV is stable.
 - Detrend if you have a strong trend — otherwise CV is inflated by drift, not noise.
 - For seasonal items: deseasonalize first or use within-season variability.
-
 
 #example[
   *Given* (same 6 SKUs as ABC, with 12-month demand histories):

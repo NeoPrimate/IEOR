@@ -2,8 +2,6 @@
 
 #let cm(x) = text(fill: red, [$#x$])
 
-== (s, S) Policy
-
 Continuous review, *order-up-to* $S$. Generalizes (Q, r): instead of always ordering the same Q, top up to a target level.
 
 *Decision rule*: monitor inventory continuously. When inventory position drops to (or below) the reorder point $s$, order *enough to bring inventory position back up to* $S$.
@@ -88,7 +86,6 @@ $
 $
 
 Average inventory under (s, S) is *slightly higher* than (Q, r) because of the overshoot correction — but only by an amount proportional to expected overshoot per cycle, usually small.
-
 
 #example[
   *Given* (same policy-comparison params):

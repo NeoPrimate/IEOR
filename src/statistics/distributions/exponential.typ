@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Exponential distribution
-
 $
 f(x bar lambda) = lambda e^(- lambda x)
 $
@@ -41,6 +39,3 @@ $
       })
   }))
 ]
-
-
-

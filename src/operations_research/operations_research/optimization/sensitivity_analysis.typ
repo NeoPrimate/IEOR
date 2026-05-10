@@ -7,8 +7,6 @@
 #set math.mat(gap: 1em)
 #set math.vec(gap: 1em)
 
-== Sensitivity Analysis
-
 === Dual Simplex Method
 
 #example[
@@ -390,8 +388,6 @@
     )
   ]
 
-
-
   #linebreak()
 
   We add a new constraint:
@@ -426,9 +422,6 @@
 
   #linebreak()
 ]
-
-
-
 
 // #import "@preview/numty:0.1.0"
 
@@ -575,20 +568,14 @@
 //     ..cells
 //   )
 
-
-
 //   [
 //     Ratios:
 //     - $#{4 / 1} = 4$
 //     - $6 / 2 = 3$
 //   ]
 
-
-
 //   break;
 // }
-
-
 
 // #let zeros = range((m+1) * (n+m+1)).map(_ => 0)
 // #let tableau = zeros.chunks(m+1, exact: true)

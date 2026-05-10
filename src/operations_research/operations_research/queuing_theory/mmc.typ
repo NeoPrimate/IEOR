@@ -1,11 +1,8 @@
 #import "/lib/imports.typ": *
 
-== M/M/c
-
 - M: Memoryliss interarrival times
 - M: Memoryless service times
 - c: number of servers
-
 
 *Input parameters*:
 
@@ -17,7 +14,6 @@
 - $lambda$: average rate of arrivals per unit of time
   - Poisson process: number of arrivals in a given time period
   - Exponential distribution: time between successive arrivals
-
 
 // Common rate parameter - this links the two distributions
 #let λ = 2
@@ -303,7 +299,6 @@
     )
   }
 }))
-
 
 Performance Metrics
 

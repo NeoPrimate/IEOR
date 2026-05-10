@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Implicit Differentiation
-
 When a function is not explicitly solved for one variable in terms of another. E.g.: \
 
 $

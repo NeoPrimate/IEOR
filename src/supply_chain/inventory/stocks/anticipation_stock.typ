@@ -2,8 +2,6 @@
 
 #let cm(x) = text(fill: red, [$#x$])
 
-== Anticipation Stock
-
 Inventory built up *in advance* of a *known* future demand spike. Distinct from safety stock (which buffers *unknown* uncertainty) — anticipation stock buffers *known* but *concentrated* demand.
 
 === When you build it
@@ -71,7 +69,6 @@ Total inventory at a moment in time:
 $ "Total inventory" = "Cycle stock" + "Safety stock" + "Pipeline stock" + "Anticipation stock" + "Decoupling stock" $
 
 Anticipation is "spiky" — zero most of the year, large around events.
-
 
 #example(title: "Seasonal anticipation stock for a snowblower factory")[
   *Given*:

@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== M/M/1
-
 - Arrival rate ($lambda$): Average number of customers arriving per unit of time
 
 - Service rate ($mu$): Average number of customers served per unit of time
@@ -150,10 +148,6 @@ Both distributions share the same rate parameter $lambda$ = #λ
 - Mean inter-arrival time = $1/lambda$ = #calc.round(1 / λ, digits: 2)
 - Mean arrivals per unit time = $lambda$ = #λ
 - Mean arrivals in time period #time_period = $lambda$t = #lambda_t
-
-
-
-
 
 1. Utilization ($rho$)
 

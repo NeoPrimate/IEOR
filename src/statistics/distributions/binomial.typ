@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Binomial distribution
-
 Discrete probability distribution that describes the number of successes in a fixed number of independent Bernoulli trials, each with the same probability of success
 
 $
@@ -50,4 +48,3 @@ $
       })
   }))
 ]
-

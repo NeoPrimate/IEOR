@@ -2,8 +2,6 @@
 
 #let cm(x) = text(fill: red, [$#x$])
 
-== Days of Supply (DOS)
-
 How many days the current inventory will last at the current consumption rate. The "human-readable" cousin of turnover.
 
 $ "DOS" = "Average inventory" / "Average daily consumption" $
@@ -69,7 +67,6 @@ Compare DOS to lead time:
 - *DOS > $L$*: have at least lead-time coverage; safety stock + cycle stock above $L$.
 
 Healthy operations target $"DOS" approx 1.5 times L$ to $2 times L$, with the excess coming from cycle stock and modest safety stock.
-
 
 #example[
   *Given*:

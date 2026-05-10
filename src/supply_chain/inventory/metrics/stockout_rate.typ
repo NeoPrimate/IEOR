@@ -2,8 +2,6 @@
 
 #let cm(x) = text(fill: red, [$#x$])
 
-== Stockout Rate
-
 The *measured* frequency of stockouts. A KPI for assessing how well an inventory system is actually performing — distinct from the *target* service level used to design the policy.
 
 Three common formulations:
@@ -72,7 +70,6 @@ Different denominators measuring "how often things go wrong" — choose what you
 - *High cycle stockout rate, low time stockout rate*: stockouts are *frequent but short*. Replenishment is reactive but fast.
 - *Low cycle stockout rate, high time stockout rate*: stockouts are *rare but long*. When they happen, they linger — usually a supply-side problem (lead time, supplier issue).
 - *Item stockout rate growing over time*: catalog-wide degradation — could be a forecasting drift, a supplier-base issue, or demand surge across products.
-
 
 #example[
   *Given* (one quarter of inventory data):

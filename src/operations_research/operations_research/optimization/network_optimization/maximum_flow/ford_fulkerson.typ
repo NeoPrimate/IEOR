@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Ford-Fulkerson
-
 Find augmenting paths in the network and increase the flow until no more augmenting paths can be found
 
 #example[
@@ -13,7 +11,6 @@ Find augmenting paths in the network and increase the flow until no more augment
       node-inset: 0pt,
 
       node(pos: (0, 0), label: $s$, stroke: 0.1em, radius: 1em, name: <s>),
-
 
       node(pos: (2, -2), label: $A$, stroke: 0.1em, radius: 1em, name: <A>),
 
@@ -67,7 +64,6 @@ Find augmenting paths in the network and increase the flow until no more augment
 
       node(pos: (0, 0), label: $s$, stroke: 0.1em, radius: 1em, name: <s>),
 
-
       node(pos: (2, -2), label: $A$, stroke: 0.1em, radius: 1em, name: <A>),
 
       node(pos: (2, 2), label: $B$, stroke: 0.1em, radius: 1em, name: <B>),
@@ -96,7 +92,6 @@ Find augmenting paths in the network and increase the flow until no more augment
     ))
   ]
 
-
   *Step 2*: Find an augmenting path
 
   Find an augmenting path using Depth-First Search (DFS). Start from the source $s$
@@ -119,7 +114,6 @@ Find augmenting paths in the network and increase the flow until no more augment
       node-inset: 0pt,
 
       node(pos: (0, 0), label: $s$, stroke: 0.1em, radius: 1em, name: <s>),
-
 
       node(pos: (2, -2), label: $A$, stroke: 0.1em, radius: 1em, name: <A>),
 
@@ -174,7 +168,6 @@ Find augmenting paths in the network and increase the flow until no more augment
 
       node(pos: (0, 0), label: $s$, stroke: 0.1em, radius: 1em, name: <s>),
 
-
       node(pos: (2, -2), label: $A$, stroke: 0.1em, radius: 1em, name: <A>),
 
       node(pos: (2, 2), label: $B$, stroke: 0.1em, radius: 1em, name: <B>),
@@ -221,7 +214,6 @@ Find augmenting paths in the network and increase the flow until no more augment
       node-inset: 0pt,
 
       node(pos: (0, 0), label: $s$, stroke: 0.1em, radius: 1em, name: <s>),
-
 
       node(pos: (2, -2), label: $A$, stroke: 0.1em, radius: 1em, name: <A>),
 

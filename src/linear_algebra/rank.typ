@@ -1,4 +1,4 @@
-=== Rank
+#import "/lib/imports.typ": *
 
 *Dimension* of the column *space*
 

@@ -117,7 +117,7 @@ $
 
 ==== Convexity
 
-The Hessian is constant (does not depend on $alpha$, $beta$) and symmetric. We check positive semidefiniteness via the determinant:
+The Hessian is constant (does not depend on $alpha$, $beta$) and symmetric. We check positive semidefiniteness via the #link(<linear-algebra-determinant>)[determinant]:
 
 $
   det(gradient^2 f)

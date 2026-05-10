@@ -2,8 +2,6 @@
 
 #let cm(x) = text(fill: red, [$#x$])
 
-== ABC-XYZ Matrix
-
 Combine ABC (consumption value) and XYZ (demand variability) into a *3 × 3 grid*. Each cell suggests a distinct inventory strategy.
 
 === The grid
@@ -52,7 +50,6 @@ The 9-cell grid is a useful starting heuristic but doesn't capture every dimensi
 - *Lead time* (long-lead items need more safety stock regardless of XYZ)
 
 Most operations apply the matrix as a *first-pass policy assignment*, then refine on the dimensions above.
-
 
 #example[
   *Given* (same 6 SKUs from ABC and XYZ):

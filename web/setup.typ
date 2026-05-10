@@ -58,7 +58,7 @@
   // HTML, pass through unchanged in PDF. See the comment block at the top
   // of this file for the rationale (and the typst#147 cleanup path).
   show: e.show_(frame, it => context if target() == "html" {
-    html.frame(e.fields(it).body)
+    html.elem("figure", html.frame(e.fields(it).body))
   } else { e.fields(it).body })
 
   // Standalone grids (not inside a figure) — needed because html.frame has no
@@ -81,10 +81,11 @@
   show pagebreak: it => if target() == "html" { none } else { it }
 
   // align(center)[…] drops its body in HTML export. Strip the wrapper so the
-  // body still renders. We lose the centering in HTML — acceptable for v1.
+  // body still renders. Centering is applied only to #frame (see frame rule
+  // above) — text-aligned content like #align(center)[caption] flows left in
+  // HTML for now.
   //
-  // REMOVE WHEN: typst/typst#5512 — `align` gets an HTML mapping (likely
-  // emits a wrapper with text-align CSS). Not listed in the milestone yet.
+  // REMOVE WHEN: typst/typst#5512 — `align` gets an HTML mapping.
   show align: it => if target() == "html" { it.body } else { it }
 
   body

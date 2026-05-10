@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Multiplication Rule
-
 For $n$ events:
 
 $
@@ -29,4 +27,3 @@ $
   = P(A_1) P(A_2 | A_1) P(A_3 | A_1 inter A_2) P(A_4 | A_1 inter A_2 inter A_3)
 
 $
-

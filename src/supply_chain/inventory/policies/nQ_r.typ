@@ -2,8 +2,6 @@
 
 #let cm(x) = text(fill: red, [$#x$])
 
-== (nQ, r) Policy
-
 Continuous review, *fixed pack size*. Like (Q, r), but the supplier requires orders in multiples of a fixed batch $Q$ (cases, dozens, pallet quantities).
 
 *Decision rule*: monitor inventory continuously. When inventory position drops to (or below) reorder point $r$, order the *smallest integer multiple* $n Q$ that brings inventory position back above $r$.
@@ -56,7 +54,6 @@ $
   quad
   n = ceil(("triggered position deficit" + Q) / Q)
 $
-
 
 #example[
   *Given* (same policy-comparison params):

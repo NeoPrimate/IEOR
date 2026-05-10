@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Sequences
-
 $
   a_1, a_2, a_3, dots
 $

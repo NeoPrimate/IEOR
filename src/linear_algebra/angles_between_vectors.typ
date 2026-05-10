@@ -2,8 +2,6 @@
 
 #set math.vec(delim: "[")
 
-== Angles Between Vectors
-
 The scalar $||accent(u, arrow)||$ is the length of the vector $accent(u, arrow)$
 
 Say $accent(u, arrow), accent(v, arrow) in RR^n$
@@ -43,8 +41,6 @@ Say $accent(u, arrow), accent(v, arrow) in RR^n$
         plot.add-hline(0, style: (stroke: (paint: black, thickness: 1pt)))
         plot.add-vline(0, style: (stroke: (paint: black, thickness: 1pt)))
       }, name: "plot")
-
-      
 
       cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
       cetz.draw.line("plot.o", "plot.a", stroke: red, mark: (fill: red), name: "a")
@@ -146,7 +142,6 @@ $
 
 So, if $accent(u, arrow)$ is a scalar multiple of $accent(v, arrow)$ ($accent(u, arrow) = c accent(v, arrow)$) where $c > 0$, then $Theta = 0 degree$
 
-
 #align(center)[
 
   #let (ax, ay) = (3, 3)
@@ -176,7 +171,6 @@ So, if $accent(u, arrow)$ is a scalar multiple of $accent(v, arrow)$ ($accent(u,
       }, name: "plot")
 
       cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
-
 
       cetz.draw.line("plot.o", "plot.b", stroke: blue, mark: (fill: blue), name: "b")
       cetz.draw.content("b.end", text(blue)[$accent(v, arrow)$], anchor: "south", padding: 0.05, angle: "b.end")

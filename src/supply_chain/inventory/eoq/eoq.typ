@@ -6,8 +6,6 @@
 #let cm(x) = text(fill: red, [$#x$])
 #let rm(x) = text(fill: red, $cancel(#x)$)
 
-== EOQ
-
 The inventory replenishment trade-off:
 - Order *too much* → high *holding cost* (storage, capital tied up)
 - Order *too little* → high *order cost* (frequent setups, paperwork)

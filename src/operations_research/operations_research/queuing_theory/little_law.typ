@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Little's Law
-
 $
   L = lambda W
 $

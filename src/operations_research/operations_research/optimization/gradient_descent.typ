@@ -5,10 +5,6 @@
 
 #let fuchsia = fuchsia.lighten(40%)
 
-== Gradient Descent
-
-=== Gradient
-
 The gradient tells us the direction of steepest increase
 
 For a function
@@ -107,7 +103,6 @@ $
   - The gradient vector $(2, 4)$ at $(1, 2)$ points in the *direction* where the function $f$ *increases most rapidly*
   - Its *magnitude* $sqrt(2^2 + 4^2) = sqrt(20) approx 4.47$ measures the *steepness* of that increase
 
-
   - *Moving one unit along the $x_1$*	axis alone would *increase the function by the partial derivative with respect to $x_1$*, which is 2
   - *Moving one unit along the $x_2$* axis alone would *increase the function by the partial derivative with respect to $x_2$*, which is 4
   - *Moving from $(1, 2)$ in the direction of $(2, 4)$*, the function value will rise fastest and at a rate roughly proportional to *$4.47$ per unit distance moved*
@@ -147,7 +142,6 @@ Where:
 - $alpha_k$: *step size* or *learning rate* at iteration $k$
 - $gradient f(x^k)$: *gradient* of the function $f$ with respect to $theta$
 - $x^(k+1)$: next iterate (point in domain of $f$)
-
 
 #code(
   "gradient_descent.py",
@@ -337,7 +331,6 @@ Where:
     x_1 = 0.512 quad quad x_2 = 1.024
   $
 ]
-
 
 #example[
 

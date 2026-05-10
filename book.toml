@@ -19,7 +19,10 @@ src     = "src"
 
 [[sections]]
 title = "Algebra"
-files = ["algebra/cheatsheet.typ"]
+
+  [[sections.sections]]
+  title = "Cheatsheet"
+  files = ["algebra/cheatsheet.typ"]
 
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -35,12 +38,48 @@ title = "Linear Algebra"
   files = ["linear_algebra/vectors.typ"]
 
   [[sections.sections]]
-  title = "Matrices"
-  files = ["linear_algebra/matrices.typ"]
+  title = "Real Coordinate Spaces"
+  files = ["linear_algebra/real_coordinate_spaces.typ"]
+
+  [[sections.sections]]
+  title = "Vector Operations"
+  files = ["linear_algebra/vector_operations.typ"]
+
+  [[sections.sections]]
+  title = "Norm"
+  files = ["linear_algebra/norm.typ"]
+
+  [[sections.sections]]
+  title = "Unit Vector"
+  files = ["linear_algebra/unit_vector.typ"]
+
+  [[sections.sections]]
+  title = "Parametric Line"
+  files = ["linear_algebra/parametric_line.typ"]
+
+  [[sections.sections]]
+  title = "Vector Space"
+  files = ["linear_algebra/vector_space.typ"]
 
   [[sections.sections]]
   title = "Linear Combination"
   files = ["linear_algebra/linear_combination.typ"]
+
+  [[sections.sections]]
+  title = "Span"
+  files = ["linear_algebra/span.typ"]
+
+  [[sections.sections]]
+  title = "Linear Independence"
+  files = ["linear_algebra/linear_independence.typ"]
+
+  [[sections.sections]]
+  title = "Subspace"
+  files = ["linear_algebra/subspace.typ"]
+
+  [[sections.sections]]
+  title = "Basis"
+  files = ["linear_algebra/basis.typ"]
 
   [[sections.sections]]
   title = "Dot Product"
@@ -55,8 +94,12 @@ title = "Linear Algebra"
   files = ["linear_algebra/triangle_inequality.typ"]
 
   [[sections.sections]]
-  title = "Coordinate System"
-  files = ["linear_algebra/coordinate_system.typ"]
+  title = "Cartesian Coordinates"
+  files = ["linear_algebra/cartesian_coordinates.typ"]
+
+  [[sections.sections]]
+  title = "Polar Coordinates"
+  files = ["linear_algebra/polar_coordinates.typ"]
 
   [[sections.sections]]
   title = "Angles Between Vectors"
@@ -71,6 +114,10 @@ title = "Linear Algebra"
   files = ["linear_algebra/cross_product.typ"]
 
   [[sections.sections]]
+  title = "Matrices"
+  files = ["linear_algebra/matrices.typ"]
+
+  [[sections.sections]]
   title = "Row Echelon Form"
   files = ["linear_algebra/row_echelon_form.typ"]
 
@@ -81,6 +128,18 @@ title = "Linear Algebra"
   [[sections.sections]]
   title = "Image"
   files = ["linear_algebra/image.typ"]
+
+  [[sections.sections]]
+  title = "Column Space"
+  files = ["linear_algebra/column_space.typ"]
+
+  [[sections.sections]]
+  title = "Null Space"
+  files = ["linear_algebra/null_space.typ"]
+
+  [[sections.sections]]
+  title = "Rank"
+  files = ["linear_algebra/rank.typ"]
 
   [[sections.sections]]
   title = "Projection"
@@ -113,6 +172,10 @@ title = "Linear Algebra"
   [[sections.sections]]
   title = "Minor"
   files = ["linear_algebra/minor.typ"]
+
+  [[sections.sections]]
+  title = "Determinant"
+  files = ["linear_algebra/determinant.typ"]
 
   [[sections.sections]]
   title = "Linear Equations"
@@ -276,7 +339,10 @@ title = "Calculus"
 
 [[sections]]
 title = "Geometry"
-files = ["geometry/cheatsheet.typ"]
+
+  [[sections.sections]]
+  title = "Cheatsheet"
+  files = ["geometry/cheatsheet.typ"]
 
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -1257,7 +1323,10 @@ title = "Supply Chain"
 
 [[sections]]
 title = "Graph Theory"
-files = ["graph_theory/graph_theory.typ"]
+
+  [[sections.sections]]
+  title = "Overview"
+  files = ["graph_theory/graph_theory.typ"]
 
 # ─────────────────────────────────────────────────────────────────────────────
 

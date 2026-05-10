@@ -1,0 +1,74 @@
+#import "/lib/imports.typ": *
+
+Describe a point's position using a distance from the origin and an angle from a reference direction.
+
+The coordinates are $(r, theta)$, where:
+- $r$: distance from the origin
+- $theta$: angle from the positive $x$-axis (in radians or degrees)
+
+#let create-gradient-colors(n, start-color: blue, end-color: red) = {
+  let grad = gradient.linear(start-color, end-color)
+  range(n).map(i => grad.sample(i / (n - 1) * 100%))
+}
+
+#let n = 6
+#let n_points = 12
+
+#let points = range(n, step: 1)
+#let colors = create-gradient-colors(n)
+
+#let points_colors = points.zip(colors)
+
+#align(center)[
+  #frame(cetz.canvas({
+    import cetz.draw: *
+    import cetz-plot: *
+
+    set-style(axes: (shared-zero: false))
+
+    plot.plot(
+      size: (5, 5),
+      axis-style: "school-book",
+      x-tick-step: 1,
+      x-min: 0,
+      x-max: n - 1,
+      y-tick-step: none,
+      y-ticks: range(n).map(n => {
+        if n >= 2 {
+          (n * calc.pi, str(n) + $pi$)
+        } else if n == 1 {
+          (n * calc.pi, $pi$)
+        } else {
+          (n * calc.pi, 0)
+        }
+      }),
+      y-min: 0,
+      y-max: 2 * calc.pi,
+      x-label: $rho$,
+      y-label: $theta$,
+      {
+        for (radius, color) in points_colors {
+          for i in range(n_points) {
+            let angle = 2 * calc.pi * i / n_points
+            let rho = radius
+            let theta = angle
+
+            plot.add(
+              ((rho, theta),),
+              mark: "o",
+              mark-size: 0.15,
+              mark-style: (stroke: none, fill: color),
+            )
+          }
+        }
+
+        for theta_val in (0, calc.pi / 2, calc.pi, 3 * calc.pi / 2, 2 * calc.pi) {
+          plot.add(
+            ((0, theta_val), (5, theta_val)),
+            style: (stroke: gray + 0.5pt),
+          )
+        }
+      },
+    )
+  }))
+]

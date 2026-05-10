@@ -1,4 +1,4 @@
-=== Column Space
+#import "/lib/imports.typ": *
 
 The *columns space* (or range) of matrix $A$ is span of its columns vectors
 

@@ -3,9 +3,6 @@
 #set math.vec(delim: "[")
 #set math.mat(delim: "[")
 
-
-== Gradient <gradient>
-
 The gradient $gradient f(x, y)$ is a vector of expressions (equations)
 
 If

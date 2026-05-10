@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Independence
-
 Two events are said to be independent if the occurrence of one event does not change our beliefs about the other
 
 Events A and B are independent from each other if:
@@ -121,7 +119,6 @@ $
   $
 ]
 
-
 == Conditional Independence
 
 $
@@ -139,9 +136,3 @@ $
   A collection of events can be pairwise independent but not mutually independent.
 
 == Reliability
-
-
-
-
-
-

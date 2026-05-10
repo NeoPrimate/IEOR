@@ -2,8 +2,6 @@
 
 #let cm(x) = text(fill: red, [$#x$])
 
-== (Q, r) Policy
-
 Continuous review, fixed order quantity. The most common stochastic-demand policy in textbooks and practice.
 
 *Decision rule*: monitor inventory position continuously. When it drops to (or below) the reorder point $r$, order a fixed quantity $Q$.
@@ -97,7 +95,6 @@ $
 $
 
 Average inventory (approximation): $Q\/2 + "SS"$, so total holding cost $approx h (Q\/2 + z sigma_L)$.
-
 
 #example[
   *Given* (shared policy-comparison params):

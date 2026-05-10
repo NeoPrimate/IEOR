@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Sets
-
 A *set* is a collection of distinct elements
 
 - ${a, b, c, d}$: a finite set
@@ -98,7 +96,7 @@ $
   x in S and x in T
 $
 
-=== Infinite Collection of Sets
+== Infinite Collection of Sets
 
 Let
 

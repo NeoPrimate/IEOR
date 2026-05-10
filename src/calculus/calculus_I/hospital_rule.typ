@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== L'Hôpital's Rule
-
 Evaluating limits that result in a indeterminite form like $0 / 0$ or $infinity / infinity$
 
 If $lim_(x arrow a) f(x) = 0$ and $lim_(x arrow a) g(x) = 0$ (or both go to $plus.minus infinity$), and $f(x)$ and $g(x)$ are differentiable near $a$, then:

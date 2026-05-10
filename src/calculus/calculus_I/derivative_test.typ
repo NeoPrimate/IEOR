@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-== Derivative Tests
-
 Find critical points by solving $f'(x) = 0$
 
 #align(center)[
@@ -65,7 +63,6 @@ If $f'(x)$ changes sign around a critical point $c$, we can determine if $f(c)$ 
   $
     f'(1) = 2(1) = 2 gt 0 quad arrow.long.double quad f "is" bold("increasing")
   $
-
 
   #align(center)[
     #grid(
