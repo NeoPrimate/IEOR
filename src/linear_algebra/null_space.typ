@@ -1,19 +1,27 @@
 #import "/lib/imports.typ": *
 
-The null space (or kernel) of a matrix $bold(A)$ is the set of all vectors $bold(x)$ that satisfy the equation:
+#set math.mat(delim: "[")
+#set math.vec(delim: "[")
+
+The *null space* (or #link(<linear-algebra-kernel>)[kernel]) of a matrix $bold(A)$ is the set of all vectors $accent(x, arrow)$ that satisfy:
 
 $
   bold(A) accent(x, arrow) = bold(0)
 $
 
-Where:
-- $bold(A)$: $m times n$ matrix
-- $accent(x, arrow)$: $n$-dimansional vector
-- $bold(0)$: zero vecor in $RR^m$
+For an $m times n$ matrix $A$:
+- $accent(x, arrow) in RR^n$
+- $bold(0) in RR^m$
+
+The null space is a #link(<linear-algebra-subspace>)[subspace] of $RR^n$. By the #link(<linear-algebra-rank-nullity-theorem>)[Rank–Nullity Theorem]:
 
 $
-  N(bold(A)) = N("rref"(bold(A))) = "span"(accent(v, arrow)_1, accent(v, arrow)_2, accent(v, arrow)_3)
+  dim("Null"(A)) = n - "rank"(A)
 $
+
+== Computing the null space
+
+Row-reduce $A$ to #link(<linear-algebra-rref>)[RREF]. The non-pivot columns correspond to *free variables*; the pivot columns are expressed in terms of those free variables. A basis for the null space is built from one vector per free variable.
 
 #example[
   $
@@ -24,13 +32,7 @@ $
     )
   $
 
-  We want to find the null space of $A$, which consists of all vectors $x = vec(x_1, x_2, x_3, x_4)$ that satisfy:
-
-  $
-    bold(A) accent(x, arrow) = bold(0)
-  $
-
-  This expands to the following system of linear equations:
+  Find $accent(x, arrow) = vec(x_1, x_2, x_3, x_4)$ with $bold(A) accent(x, arrow) = bold(0)$:
 
   $
     cases(
@@ -40,7 +42,7 @@ $
     )
   $
 
-  This can be represented as the augmented matrix:
+  Augmented matrix:
 
   $
     mat(
@@ -51,85 +53,43 @@ $
     )
   $
 
+  Row-reduce to find the null space. (See #link(<linear-algebra-gaussian-elimination>)[Gaussian Elimination].)
 ]
 
-=== Nullity
+== Nullity
 
-*Dimension* of the *Null Space*
-
-$
-  dim(N(bold(A)))
-$
-
-The nullity of $A$: number of non-pivot columns (i.e., free variables) in the rref of A
-
-
-
-== Matrix Multiplication
-
-$m times n$ matrix:
+The *nullity* of $A$ is the dimension of its null space:
 
 $
-  A = mat(
-    a_(1 1), a_(1 2), ..., a_(1 m);
-    a_(2 1), a_(2 2), ..., a_(2 m);
-    dots.v, dots.v, dots.down, dots.v;
-    a_(n 1), a_(n 2), dots.h, a_(n m);
-  )
+  "nullity"(A) = dim("Null"(A))
 $
 
-$n times p$ matrix:
+After row-reducing $A$ to #link(<linear-algebra-rref>)[RREF], nullity equals the number of *non-pivot columns* (= number of free variables).
+
+== Kernel vs null space
+
+For a #link(<linear-algebra-linear-transformation>)[linear transformation] $T(accent(x, arrow)) = A accent(x, arrow)$:
 
 $
-  B = mat(
-    a_(1 1), a_(1 2), ..., a_(1 p);
-    a_(2 1), a_(2 2), ..., a_(2 p);
-    dots.v, dots.v, dots.down, dots.v;
-    a_(n 1), a_(n 2), dots.h, a_(n p);
-  )
+  ker(T) = "Null"(A)
 $
 
-Compute Each Element of Result Matrix $C$
+Same set, different names: *kernel* is the linear-map perspective, *null space* is the matrix perspective. See #link(<linear-algebra-kernel>)[Kernel].
+
+== Left null space
+
+The null space of $A^T$ is called the *left null space* of $A$:
 
 $
-  c_(i j) = sum_(k=1)^n = a_(i k) b_(k j)
+  "Null"(A^T) = { accent(y, arrow) : accent(y, arrow)^T A = bold(0) }
 $
 
-#example[
-  Let $A$ be an $n times m$ matrix:
+It's orthogonal to the #link(<linear-algebra-column-space>)[column space] of $A$. Together with $"Null"(A)$ and $"Row"(A)$, these are the *four fundamental subspaces*.
 
-  $
-    A = mat(
-      1, 2, 3;
-      4, 5, 6;
-    )
-  $
+== See also
 
-  Let $B$ an $p times n$ matrix:
-
-  $
-    B = mat(
-      7, 8;
-      9, 10;
-      11, 12;
-    )
-  $
-
-  Calculate Each Element of $C$
-
-  $
-    c_(1 1) = (1 dot 7) + (2 dot 9) + (3 dot 11) = 58 \
-    c_(1 2) = (1 dot 8) + (2 dot 10) + (3 dot 12) = 64 \
-    c_(2 1) = (4 dot 7) + (5 dot 9) + (6 dot 11) = 138 \
-    c_(2 2) = (4 dot 8) + (5 dot 10) + (6 dot 12) = 154 \
-  $
-
-  $C$ is a $m times p$ matrix
-
-  $
-    C = mat(
-      58, 64;
-      139, 154;
-    )
-  $
-]
+- *#link(<linear-algebra-kernel>)[Kernel]* — same concept, transformation perspective
+- *#link(<linear-algebra-rank-nullity-theorem>)[Rank–Nullity Theorem]*
+- *#link(<linear-algebra-rank>)[Rank]*
+- *#link(<linear-algebra-homogeneous-system>)[Homogeneous System]*
+- *#link(<linear-algebra-column-space>)[Column Space]* — the "output side" counterpart

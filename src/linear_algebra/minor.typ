@@ -1,9 +1,8 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
 #set math.mat(delim: "[")
 
-#link(<linear-algebra-determinant>)[*Determinant*] of some smaller square matrix obtained by deleting certain rows and columns from the original matrix
+A *minor* of a matrix $A$ is the #link(<linear-algebra-determinant>)[determinant] of a smaller square matrix obtained by deleting some rows and some columns of $A$. The deleted rows and columns *do not need to share indices* — that distinguishes a minor from a #link(<linear-algebra-principal-minor>)[principal minor].
 
 $
   #colorMat(
@@ -22,101 +21,33 @@ $
   )
 $
 
+Pick rows $\{1, 3\}$ and columns $\{2, 4\}$ — different sets, this is *not* a principal minor:
+
 $
   mat(
     delim: "|",
     a_12, a_14;
-    a_32, a_24;
+    a_32, a_34;
   )
 $
 
-== Principal Minor
+== $(i, j)$-minor (cofactor expansion)
 
-#link(<linear-algebra-determinant>)[*Determinant*] of some smaller square matrix obtained by deleting certain rows and columns from the original matrix
-
-The diagonal of the principal minor is a subset of the diagonal of $A$
+The most-used minor is the $(i, j)$-minor $M_(i j)$: delete row $i$ and column $j$ from $A$ and take the determinant of what's left. Used in #link(<linear-algebra-determinant>)[cofactor expansion]:
 
 $
-  #colorMat(
-    (
-      ($a_11$, $a_12$, $a_13$, $a_14$),
-      ($a_21$, $a_22$, $a_23$, $a_24$),
-      ($a_31$, $a_32$, $a_33$, $a_34$),
-      ($a_41$, $a_42$, $a_43$, $a_44$),
-    ),
-    (
-      (((0,0), (0, 0)), red),
-      (((2,0), (2, 0)), red),
-      (((2,2), (2, 2)), red),
-      (((0,2), (0, 2)), red),
-    )
-  )
+  det(A) = sum_(j=1)^n (-1)^(i+j) a_(i j) #h(0.2em) M_(i j)
 $
 
-$
-  mat(
-    delim: "|",
-    a_11, a_13;
-    a_31, a_23;
-  )
-$
+== Variants
 
-== Levels
+- *#link(<linear-algebra-principal-minor>)[Principal minor]* — same row and column indices deleted
+- *#link(<linear-algebra-leading-principal-minor>)[Leading principal minor]* — keep only the top-left $k times k$ block
+- *Cofactor* $C_(i j) = (-1)^(i+j) M_(i j)$ — signed minor used in #link(<linear-algebra-adjugate>)[adjugate] and inverse formulas
 
-$A$'s level-$k$ principal minors is the #link(<linear-algebra-determinant>)[determinant] of a $k times k$ submatrix whose diagonal is a subset of $A$'s diagonal
+== Where minors show up
 
-For an $n times n$
-- There are $n$ levels of minors
-- The number of principle minors at level $k$ is $binom(n, k)$
-
-== Leading Principal Minor
-
-#align(center)[
-
-  #grid(
-    columns: 3,
-    gutter: 2em,
-    [
-      $
-        #colorMat(
-          (
-            ($a_11$, $a_12$, $a_13$),
-            ($a_21$, $a_22$, $a_23$),
-            ($a_31$, $a_32$, $a_33$),
-          ),
-          (
-            (((0,0), (0, 0)), red),
-          )
-        )
-      $
-    ],
-    [
-      $
-        #colorMat(
-          (
-            ($a_11$, $a_12$, $a_13$),
-            ($a_21$, $a_22$, $a_23$),
-            ($a_31$, $a_32$, $a_33$),
-          ),
-          (
-            (((0,0), (1, 1)), red),
-          )
-        )
-      $
-    ],
-    [
-      $
-        #colorMat(
-          (
-            ($a_11$, $a_12$, $a_13$),
-            ($a_21$, $a_22$, $a_23$),
-            ($a_31$, $a_32$, $a_33$),
-          ),
-          (
-            (((0,0), (2, 2)), red),
-          )
-        )
-      $
-    ],
-  )
-]
+- *#link(<linear-algebra-determinant>)[Determinant]* via cofactor expansion
+- *#link(<linear-algebra-adjugate>)[Adjugate]* matrix and the inverse formula $A^(-1) = "adj"(A) / det(A)$
+- *#link(<linear-algebra-rank>)[Rank]* — equals the size of the largest non-zero minor
+- *Cramer's Rule* — see #link(<linear-algebra-cramers-rule>)[Cramer's Rule]

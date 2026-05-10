@@ -2,98 +2,75 @@
 
 #set math.vec(delim: "[")
 
-== Vector Dot Product
+The *dot product* (or *scalar product*) of two vectors of the same dimension returns a scalar — the sum of componentwise products.
 
 $
-  accent(a, arrow) dot accent(b, arrow) = vec(a_1, a_2, dots.v, a_n) dot vec(b_1, b_2, dots.v, b_n) = a_1 b_1 + a_2 b_2 + dots + a_n b_n
-$
-
-=== Magnitude (Length)
-
-$
-  ||accent(a, arrow)|| = sqrt(a_1^2 + a_2^2 + dots + a_n^2)
+  accent(a, arrow) dot accent(b, arrow) = vec(a_1, a_2, dots.v, a_n) dot vec(b_1, b_2, dots.v, b_n) = a_1 b_1 + a_2 b_2 + dots + a_n b_n = sum_(i=1)^n a_i b_i
 $
 
 #example[
+  $accent(a, arrow) = vec(2, -1, 3)$, $accent(b, arrow) = vec(4, 5, -2)$:
 
   $
-    accent(a, arrow) = vec(5, 2)
+    accent(a, arrow) dot accent(b, arrow) = 2 dot 4 + (-1) dot 5 + 3 dot (-2) = 8 - 5 - 6 = -3
   $
-
-  $
-    ||accent(a, arrow)|| = sqrt(5^2 + 2^2)
-  $
-
-  #align(center)[
-    #frame(cetz.canvas(length: 7cm, {
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        x-tick-step: 1,
-        y-tick-step: 1,
-        x-minor-tick-step: 1,
-        y-minor-tick-step: 1,
-        x-min: -6,
-        y-min: -6,
-        x-max: 6,
-        y-max: 6,
-        axis-style: "school-book",
-        x-label: $x$,
-        y-label: $y$,
-        x-grid: "both",
-        y-grid: "both",
-        {
-          plot.add-anchor("o", (0, 0))
-          plot.add-anchor("a", (5, 2))
-
-          plot.add-anchor("b", (5, 0))
-          plot.add-anchor("c", (5, 2))
-        },
-        name: "plot",
-      )
-
-      cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
-      cetz.draw.line("plot.o", "plot.a", stroke: red, mark: (fill: red), name: "a")
-      cetz.draw.content("a.mid", text(red)[$sqrt(5^2 + 2^2)$], anchor: "south", padding: 0.05, angle: "a.end")
-
-      cetz.draw.set-style(line: (mark: (symbol: ">", size: .25)))
-      cetz.draw.line("plot.o", "plot.b", stroke: green, mark: (fill: green), name: "a")
-      cetz.draw.content("a.mid", text(green)[$5$], anchor: "south", padding: 0.025)
-      cetz.draw.line("plot.b", "plot.c", stroke: blue, mark: (fill: blue), name: "a")
-      cetz.draw.content("a.mid", text(blue)[$2$], anchor: "west", padding: 0.025)
-    }))
-  ]
 ]
 
-$
-  accent(a, arrow) dot accent(a, arrow) = vec(a_1, a_2, dots.v, a_n) dot vec(a_1, a_2, dots.v, a_n) = a_1^2 + a_2^2 + dots + a_n^2
-$
+== Geometric formula
 
 $
-  ||accent(a, arrow)|| = sqrt(accent(a, arrow) dot accent(a, arrow))
+  accent(a, arrow) dot accent(b, arrow) = ||accent(a, arrow)|| #h(0.2em) ||accent(b, arrow)|| #h(0.2em) cos theta
 $
+
+where $theta$ is the angle between $accent(a, arrow)$ and $accent(b, arrow)$ — and $||dot||$ is the #link(<linear-algebra-norm>)[norm].
+
+This links the algebraic dot product to geometric intuition: the dot product measures how much the vectors point in the same direction.
+
+== Connection to norm
+
+The square of the norm is the dot product of a vector with itself:
 
 $
   ||accent(a, arrow)||^2 = accent(a, arrow) dot accent(a, arrow)
 $
 
-=== Properties
+See #link(<linear-algebra-norm>)[Norm] for the full story.
 
-==== Commutative
+== Properties
 
+*Commutative*:
 $
   accent(v, arrow) dot accent(w, arrow) = accent(w, arrow) dot accent(v, arrow)
 $
 
-==== Distributive
-
+*Distributive over vector addition*:
 $
   (accent(v, arrow) + accent(w, arrow)) dot accent(x, arrow) = accent(v, arrow) dot accent(x, arrow) + accent(w, arrow) dot accent(x, arrow)
 $
 
-==== Associativity
-
+*Compatible with scalar multiplication*:
 $
   (c accent(v, arrow)) dot accent(w, arrow) = c (accent(v, arrow) dot accent(w, arrow))
 $
+
+*Bilinear*: linear in each argument separately (the three properties above combined).
+
+== Matrix form
+
+For column vectors, the dot product is just matrix multiplication of $accent(a, arrow)^T$ with $accent(b, arrow)$:
+
+$
+  accent(a, arrow) dot accent(b, arrow) = accent(a, arrow)^T accent(b, arrow)
+$
+
+(See #link(<linear-algebra-transpose>)[Transpose].)
+
+== See also
+
+- *#link(<linear-algebra-norm>)[Norm]* — $||accent(v, arrow)|| = sqrt(accent(v, arrow) dot accent(v, arrow))$
+- *#link(<linear-algebra-angles-between-vectors>)[Angles Between Vectors]* — $cos theta = (accent(a, arrow) dot accent(b, arrow)) / (||accent(a, arrow)|| ||accent(b, arrow)||)$
+- *#link(<linear-algebra-cauchy-schwarz-inequality>)[Cauchy–Schwarz Inequality]*
+- *#link(<linear-algebra-triangle-inequality>)[Triangle Inequality]*
+- *#link(<linear-algebra-orthogonality>)[Orthogonality]* — $accent(a, arrow) perp accent(b, arrow) arrow.l.r.double accent(a, arrow) dot accent(b, arrow) = 0$
+- *#link(<linear-algebra-cross-product>)[Cross Product]* + *#link(<linear-algebra-dot-vs-cross-product>)[Dot vs Cross]*
+- *#link(<linear-algebra-inner-product>)[Inner Product]* — generalization

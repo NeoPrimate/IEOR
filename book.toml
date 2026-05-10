@@ -54,8 +54,68 @@ title = "Linear Algebra"
   files = ["linear_algebra/unit_vector.typ"]
 
   [[sections.sections]]
+  title = "Dot Product"
+  files = ["linear_algebra/dot_product.typ"]
+
+  [[sections.sections]]
+  title = "Inner Product"
+  files = ["linear_algebra/inner_product.typ"]
+
+  [[sections.sections]]
+  title = "Cauchy–Schwarz Inequality"
+  files = ["linear_algebra/cauchy_shwarz_inequality.typ"]
+
+  [[sections.sections]]
+  title = "Triangle Inequality"
+  files = ["linear_algebra/triangle_inequality.typ"]
+
+  [[sections.sections]]
+  title = "Orthogonality"
+  files = ["linear_algebra/orthogonality.typ"]
+
+  [[sections.sections]]
+  title = "Angles Between Vectors"
+  files = ["linear_algebra/angles_between_vectors.typ"]
+
+  [[sections.sections]]
+  title = "Cartesian Coordinates"
+  files = ["linear_algebra/cartesian_coordinates.typ"]
+
+  [[sections.sections]]
+  title = "Polar Coordinates"
+  files = ["linear_algebra/polar_coordinates.typ"]
+
+  [[sections.sections]]
   title = "Parametric Line"
   files = ["linear_algebra/parametric_line.typ"]
+
+  [[sections.sections]]
+  title = "Planes"
+  files = ["linear_algebra/planes.typ"]
+
+  [[sections.sections]]
+  title = "Point–Plane Distance"
+  files = ["linear_algebra/point_plane_distance.typ"]
+
+  [[sections.sections]]
+  title = "Plane–Plane Distance"
+  files = ["linear_algebra/plane_plane_distance.typ"]
+
+  [[sections.sections]]
+  title = "Hyperplane"
+  files = ["linear_algebra/hyperplane.typ"]
+
+  [[sections.sections]]
+  title = "Cross Product"
+  files = ["linear_algebra/cross_product.typ"]
+
+  [[sections.sections]]
+  title = "Cross Product Magnitude"
+  files = ["linear_algebra/cross_product_magnitude.typ"]
+
+  [[sections.sections]]
+  title = "Dot vs Cross Product"
+  files = ["linear_algebra/dot_cross_comparison.typ"]
 
   [[sections.sections]]
   title = "Vector Space"
@@ -82,52 +142,144 @@ title = "Linear Algebra"
   files = ["linear_algebra/basis.typ"]
 
   [[sections.sections]]
-  title = "Dot Product"
-  files = ["linear_algebra/dot_product.typ"]
+  title = "Dimension"
+  files = ["linear_algebra/dimension.typ"]
 
   [[sections.sections]]
-  title = "Cauchy–Schwarz Inequality"
-  files = ["linear_algebra/cauchy_shwarz_inequality.typ"]
+  title = "Coordinate Vector"
+  files = ["linear_algebra/coordinate_vector.typ"]
 
   [[sections.sections]]
-  title = "Triangle Inequality"
-  files = ["linear_algebra/triangle_inequality.typ"]
+  title = "Change of Basis"
+  files = ["linear_algebra/change_of_basis.typ"]
 
   [[sections.sections]]
-  title = "Cartesian Coordinates"
-  files = ["linear_algebra/cartesian_coordinates.typ"]
-
-  [[sections.sections]]
-  title = "Polar Coordinates"
-  files = ["linear_algebra/polar_coordinates.typ"]
-
-  [[sections.sections]]
-  title = "Angles Between Vectors"
-  files = ["linear_algebra/angles_between_vectors.typ"]
-
-  [[sections.sections]]
-  title = "Planes"
-  files = ["linear_algebra/planes.typ"]
-
-  [[sections.sections]]
-  title = "Cross Product"
-  files = ["linear_algebra/cross_product.typ"]
+  title = "Gram–Schmidt"
+  files = ["linear_algebra/gram_schmidt.typ"]
 
   [[sections.sections]]
   title = "Matrices"
   files = ["linear_algebra/matrices.typ"]
 
   [[sections.sections]]
+  title = "Matrix–Vector Product"
+  files = ["linear_algebra/matrix_vector_product.typ"]
+
+  [[sections.sections]]
+  title = "Matrix Multiplication"
+  files = ["linear_algebra/matrix_multiplication.typ"]
+
+  [[sections.sections]]
+  title = "Transpose"
+  files = ["linear_algebra/transpose.typ"]
+
+  [[sections.sections]]
+  title = "Trace"
+  files = ["linear_algebra/trace.typ"]
+
+  [[sections.sections]]
+  title = "Identity Matrix"
+  files = ["linear_algebra/identity_matrix.typ"]
+
+  [[sections.sections]]
+  title = "Zero Matrix"
+  files = ["linear_algebra/zero_matrix.typ"]
+
+  [[sections.sections]]
+  title = "Diagonal Matrix"
+  files = ["linear_algebra/diagonal_matrix.typ"]
+
+  [[sections.sections]]
+  title = "Triangular Matrix"
+  files = ["linear_algebra/triangular_matrix.typ"]
+
+  [[sections.sections]]
+  title = "Symmetric Matrix"
+  files = ["linear_algebra/symmetric_matrix.typ"]
+
+  [[sections.sections]]
+  title = "Orthogonal Matrix"
+  files = ["linear_algebra/orthogonal_matrix.typ"]
+
+  [[sections.sections]]
+  title = "Linear Equations"
+  files = ["linear_algebra/linear_equations.typ"]
+
+  [[sections.sections]]
+  title = "Augmented Matrix"
+  files = ["linear_algebra/augmented_matrix.typ"]
+
+  [[sections.sections]]
   title = "Row Echelon Form"
   files = ["linear_algebra/row_echelon_form.typ"]
+
+  [[sections.sections]]
+  title = "RREF"
+  files = ["linear_algebra/rref.typ"]
+
+  [[sections.sections]]
+  title = "Gaussian Elimination"
+  files = ["linear_algebra/gaussian_elimination.typ"]
+
+  [[sections.sections]]
+  title = "Gauss–Jordan Elimination"
+  files = ["linear_algebra/gauss_jordan_elimination.typ"]
+
+  [[sections.sections]]
+  title = "Substitution"
+  files = ["linear_algebra/substitution.typ"]
+
+  [[sections.sections]]
+  title = "Addition / Subtraction"
+  files = ["linear_algebra/addition_subtraction.typ"]
+
+  [[sections.sections]]
+  title = "Linear System Solutions"
+  files = ["linear_algebra/linear_system_solutions.typ"]
+
+  [[sections.sections]]
+  title = "Linear System Special Cases"
+  files = ["linear_algebra/linear_system_special_cases.typ"]
+
+  [[sections.sections]]
+  title = "Homogeneous System"
+  files = ["linear_algebra/homogeneous_system.typ"]
 
   [[sections.sections]]
   title = "Linear Transformation"
   files = ["linear_algebra/linear_transformation.typ"]
 
   [[sections.sections]]
+  title = "Matrix Representation"
+  files = ["linear_algebra/matrix_representation.typ"]
+
+  [[sections.sections]]
+  title = "Domain"
+  files = ["linear_algebra/domain.typ"]
+
+  [[sections.sections]]
+  title = "Codomain"
+  files = ["linear_algebra/codomain.typ"]
+
+  [[sections.sections]]
+  title = "Surjective, Injective, Bijective"
+  files = ["linear_algebra/surjective_injective_bijective.typ"]
+
+  [[sections.sections]]
   title = "Image"
   files = ["linear_algebra/image.typ"]
+
+  [[sections.sections]]
+  title = "Image of Subset"
+  files = ["linear_algebra/image_subset.typ"]
+
+  [[sections.sections]]
+  title = "Preimage"
+  files = ["linear_algebra/preimage.typ"]
+
+  [[sections.sections]]
+  title = "Kernel"
+  files = ["linear_algebra/kernel.typ"]
 
   [[sections.sections]]
   title = "Column Space"
@@ -142,6 +294,10 @@ title = "Linear Algebra"
   files = ["linear_algebra/rank.typ"]
 
   [[sections.sections]]
+  title = "Rank–Nullity Theorem"
+  files = ["linear_algebra/rank_nullity_theorem.typ"]
+
+  [[sections.sections]]
   title = "Projection"
   files = ["linear_algebra/projection.typ"]
 
@@ -150,8 +306,56 @@ title = "Linear Algebra"
   files = ["linear_algebra/composition_of_linear_transformations.typ"]
 
   [[sections.sections]]
-  title = "Eigenvectors & Eigenvalues"
-  files = ["linear_algebra/eigenvectors_eigenvalues.typ"]
+  title = "Transformation Sum"
+  files = ["linear_algebra/transformation_sum.typ"]
+
+  [[sections.sections]]
+  title = "Transformation Scalar Multiplication"
+  files = ["linear_algebra/transformation_scalar_mult.typ"]
+
+  [[sections.sections]]
+  title = "Rotation Matrix"
+  files = ["linear_algebra/rotation_matrix.typ"]
+
+  [[sections.sections]]
+  title = "Reflection Matrix"
+  files = ["linear_algebra/reflection_matrix.typ"]
+
+  [[sections.sections]]
+  title = "Scaling Matrix"
+  files = ["linear_algebra/scaling_matrix.typ"]
+
+  [[sections.sections]]
+  title = "Shear Matrix"
+  files = ["linear_algebra/shear_matrix.typ"]
+
+  [[sections.sections]]
+  title = "Minor"
+  files = ["linear_algebra/minor.typ"]
+
+  [[sections.sections]]
+  title = "Principal Minor"
+  files = ["linear_algebra/principal_minor.typ"]
+
+  [[sections.sections]]
+  title = "Leading Principal Minor"
+  files = ["linear_algebra/leading_principal_minor.typ"]
+
+  [[sections.sections]]
+  title = "Determinant"
+  files = ["linear_algebra/determinant.typ"]
+
+  [[sections.sections]]
+  title = "Cramer's Rule"
+  files = ["linear_algebra/cramer_rule.typ"]
+
+  [[sections.sections]]
+  title = "Adjugate"
+  files = ["linear_algebra/adjugate.typ"]
+
+  [[sections.sections]]
+  title = "Unimodularity"
+  files = ["linear_algebra/unimodularity.typ"]
 
   [[sections.sections]]
   title = "Matrix Inverse"
@@ -162,36 +366,44 @@ title = "Linear Algebra"
   files = ["linear_algebra/lu_decomposition.typ"]
 
   [[sections.sections]]
-  title = "Unimodularity"
-  files = ["linear_algebra/unimodularity.typ"]
+  title = "QR Decomposition"
+  files = ["linear_algebra/qr_decomposition.typ"]
 
   [[sections.sections]]
-  title = "Adjugate"
-  files = ["linear_algebra/adjugate.typ"]
+  title = "Cholesky Decomposition"
+  files = ["linear_algebra/cholesky_decomposition.typ"]
 
   [[sections.sections]]
-  title = "Minor"
-  files = ["linear_algebra/minor.typ"]
+  title = "SVD"
+  files = ["linear_algebra/svd.typ"]
 
   [[sections.sections]]
-  title = "Determinant"
-  files = ["linear_algebra/determinant.typ"]
+  title = "Pseudoinverse"
+  files = ["linear_algebra/pseudoinverse.typ"]
 
   [[sections.sections]]
-  title = "Linear Equations"
-  files = ["linear_algebra/linear_equations.typ"]
+  title = "Eigenvectors & Eigenvalues"
+  files = ["linear_algebra/eigenvectors_eigenvalues.typ"]
 
   [[sections.sections]]
-  title = "Gaussian Elimination"
-  files = ["linear_algebra/gaussian_elimination.typ"]
+  title = "Characteristic Polynomial"
+  files = ["linear_algebra/characteristic_polynomial.typ"]
 
   [[sections.sections]]
-  title = "Substitution"
-  files = ["linear_algebra/substitution.typ"]
+  title = "Diagonalization"
+  files = ["linear_algebra/diagonalization.typ"]
 
   [[sections.sections]]
-  title = "Addition / Subtraction"
-  files = ["linear_algebra/addition_subtraction.typ"]
+  title = "Spectral Theorem"
+  files = ["linear_algebra/spectral_theorem.typ"]
+
+  [[sections.sections]]
+  title = "Jordan Canonical Form"
+  files = ["linear_algebra/jordan_canonical_form.typ"]
+
+  [[sections.sections]]
+  title = "Quadratic Form"
+  files = ["linear_algebra/quadratic_form.typ"]
 
 # ─────────────────────────────────────────────────────────────────────────────
 
