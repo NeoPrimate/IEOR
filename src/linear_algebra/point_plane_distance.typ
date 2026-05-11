@@ -1,6 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
+
 
 For a plane in $RR^3$ defined by $A x + B y + C z = D$ and a point $(x_0, y_0, z_0)$, the perpendicular distance from the point to the plane is:
 

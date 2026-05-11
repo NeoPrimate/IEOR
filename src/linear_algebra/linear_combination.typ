@@ -1,6 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
+
 
 Set of vector
 

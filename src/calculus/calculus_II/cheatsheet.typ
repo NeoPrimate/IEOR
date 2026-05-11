@@ -2,8 +2,7 @@
 
 #set math.mat(gap: 0.75em)
 #set math.vec(gap: 1em)
-#set math.vec(delim: "[")
-#set math.mat(delim: "[")
+
 
 == Derivative Objects
 
@@ -12,19 +11,19 @@
   inset: 1em,
   align: horizon,
 
-  [*Gradient*], 
-  [$f: RR^n arrow RR$], 
-  [$n times 1$], 
+  [*Gradient*],
+  [$f: RR^n arrow RR$],
+  [$n times 1$],
   [Vector of first derivatives; special case of Jacobian (scalar output)],
 
-  [*Jacobian*], 
-  [$F: RR^n arrow RR^m$], 
-  [$m times n$], 
+  [*Jacobian*],
+  [$F: RR^n arrow RR^m$],
+  [$m times n$],
   [Matrix of first derivatives; general case for vector-valued functions],
 
-  [*Hessian*], 
-  [$f: RR^n arrow RR$], 
-  [$n times n$], 
+  [*Hessian*],
+  [$f: RR^n arrow RR$],
+  [$n times n$],
   [Matrix of second derivatives; Jacobian of the gradient],
 )
 
@@ -35,13 +34,13 @@
     columns: range(4).map(_ => auto),
     inset: 1.5em,
     align: horizon,
-    
+
     [], [*Input/Output*], [*Derivatives*], [*Notation*],
-    [*Gradient*\ (Derivative)\ ($1 times 1$)], 
+    [*Gradient*\ (Derivative)\ ($1 times 1$)],
     [
       $f: RR arrow RR$\
-      One Input\ 
-      *One Output*\ 
+      One Input\
+      *One Output*\
       Scalar Function
     ], [*First*\ Order], [
       $
@@ -49,11 +48,11 @@
       $
     ],
 
-    [*Jacobian*\ ($m times 1$)], 
+    [*Jacobian*\ ($m times 1$)],
     [
       $f: RR arrow RR^m$\
-      One Input\ 
-      *Multiple Output*\ 
+      One Input\
+      *Multiple Output*\
       Vector Function
     ], [*First*\ Order], [
       $
@@ -65,11 +64,11 @@
         )
       $
     ],
-    [*Gradient*\ ($n times 1$)], 
+    [*Gradient*\ ($n times 1$)],
     [
       $f: RR^n arrow RR$\
-      Multiple Input\ 
-      *One Output*\ 
+      Multiple Input\
+      *One Output*\
       Scalar Function
     ], [*First*\ Order], [
       $
@@ -81,22 +80,22 @@
         )
       $
     ],
-    [*Jacobian*\ ($m times n$)], 
+    [*Jacobian*\ ($m times n$)],
     [
       $f: RR^n arrow RR^m$\
-      Multiple Input\ 
-      *Multiple Output*\ 
+      Multiple Input\
+      *Multiple Output*\
       Vector Function
     ], [*First*\ Order], [
       $
-        J_f (bold("x")) 
+        J_f (bold("x"))
         &= vec(
           gradient g_1 (x)^T,
           gradient g_2 (x)^T,
           dots.v,
           gradient g_m (x)^T,
         )\
-        
+
         &= mat(
           (partial f_colorMath(1, #red)) / (partial x_colorMath(1, #red)), dots, (partial f_colorMath(1, #red)) / (partial x_colorMath(n, #red));
           dots.v, dots.down, dots.v;
@@ -105,11 +104,11 @@
       $
     ],
 
-    [*Hessian*\ ($n times n$)], 
+    [*Hessian*\ ($n times n$)],
     [
-      $f: RR^n arrow RR$\ 
-      Multiple Input\ 
-      One Output\ 
+      $f: RR^n arrow RR$\
+      Multiple Input\
+      One Output\
       Scalar Function
     ], [*Second*\ Order], [
       $

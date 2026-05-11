@@ -1,6 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
+
 
 The scalar $||accent(u, arrow)||$ is the length of the vector $accent(u, arrow)$
 
@@ -48,7 +48,7 @@ Say $accent(u, arrow), accent(v, arrow) in RR^n$
 
       cetz.draw.line("plot.o", "plot.b", stroke: blue, mark: (fill: blue), name: "b")
       cetz.draw.content("b.end", text(blue)[$accent(v, arrow)$], anchor: "south", padding: 0.025, angle: "b.end")
-      
+
       cetz.draw.line("plot.b", "plot.a", stroke: purple, mark: (fill: purple), name: "c")
       cetz.draw.content("c.mid", text(purple)[$accent(u, arrow) - accent(v, arrow)$], anchor: "south", padding: 0.025, angle: "c.start")
 
@@ -57,7 +57,7 @@ Say $accent(u, arrow), accent(v, arrow) in RR^n$
 
   #linebreak()
   #linebreak()
-  
+
   #frame(cetz.canvas(length: 6cm, {
     import cetz.draw: *
     import cetz-plot: *
@@ -89,7 +89,7 @@ Say $accent(u, arrow), accent(v, arrow) in RR^n$
 
       cetz.draw.line("plot.o", "plot.b", stroke: blue, mark: (fill: blue), name: "b")
       cetz.draw.content("b.mid", text(blue)[$||accent(v, arrow)||$], anchor: "north", padding: 0.05, angle: "b.end")
-      
+
       cetz.draw.line("plot.b", "plot.a", stroke: purple, mark: (fill: purple), name: "c")
       cetz.draw.content("c.mid", text(purple)[$||accent(u, arrow) - accent(v, arrow)||$], anchor: "south", padding: 0.05, angle: "c.start")
 
@@ -100,7 +100,7 @@ Say $accent(u, arrow), accent(v, arrow) in RR^n$
 Law of Cosines
 
 $
-c^2 = a^2 + b^2 - 2 a b dot cos(C) 
+c^2 = a^2 + b^2 - 2 a b dot cos(C)
 $
 
 Where:
@@ -174,7 +174,7 @@ So, if $accent(u, arrow)$ is a scalar multiple of $accent(v, arrow)$ ($accent(u,
 
       cetz.draw.line("plot.o", "plot.b", stroke: blue, mark: (fill: blue), name: "b")
       cetz.draw.content("b.end", text(blue)[$accent(v, arrow)$], anchor: "south", padding: 0.05, angle: "b.end")
-      
+
       cetz.draw.line("plot.o", "plot.a", stroke: red, mark: (fill: red), name: "a")
       cetz.draw.content("a.end", text(red)[$accent(u, arrow)$], anchor: "south", padding: 0.05, angle: "a.end")
 

@@ -1,6 +1,5 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
 
 A matrix is in *Row Echelon Form (REF)* if it satisfies all of:
 

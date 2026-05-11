@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
-#set math.mat(delim: "[")
+
 
 == Unimodular Matrix
 
@@ -48,7 +47,7 @@ $
       )
     )
   ) = 0
-  quad quad 
+  quad quad
   det(
     #colorMat(
       (

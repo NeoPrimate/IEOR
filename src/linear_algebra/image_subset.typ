@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
-#set math.mat(delim: "[")
+
 
 For a #link(<linear-algebra-linear-transformation>)[linear transformation] $T: RR^n -> RR^m$ and a subset $V subset.eq RR^n$, the *image of $V$ under $T$* is:
 

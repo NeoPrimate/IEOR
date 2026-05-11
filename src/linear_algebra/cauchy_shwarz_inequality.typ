@@ -1,6 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
+
 
 $
   abs(accent(u, arrow) dot accent(v, arrow)) &lt.eq ||accent(u, arrow)|| ||accent(v, arrow)|| \

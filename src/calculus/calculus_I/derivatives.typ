@@ -1,7 +1,5 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
-#set math.mat(delim: "[")
 
 Measures the instantaneous rate of change of a function
 

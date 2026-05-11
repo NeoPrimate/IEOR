@@ -1,6 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
+
 
 Only defined in $RR^3$. Returns a vector orthogonal to the two inputs.
 

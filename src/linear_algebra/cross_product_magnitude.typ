@@ -1,6 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
+
 
 The #link(<linear-algebra-norm>)[norm] of the #link(<linear-algebra-cross-product>)[cross product] is related to the angle between the two vectors:
 

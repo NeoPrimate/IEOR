@@ -1,6 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
+
 
 A vector that has a #link(<linear-algebra-norm>)[norm] (length) of exactly 1.
 

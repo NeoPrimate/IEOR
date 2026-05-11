@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
-#set math.mat(delim: "[")
+
 
 The same vector or transformation gets different #link(<linear-algebra-coordinate-vector>)[coordinate representations] depending on which #link(<linear-algebra-basis>)[basis] you use. *Change of basis* converts between two such representations.
 

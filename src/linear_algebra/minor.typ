@@ -1,6 +1,5 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
 
 A *minor* of a matrix $A$ is the #link(<linear-algebra-determinant>)[determinant] of a smaller square matrix obtained by deleting some rows and some columns of $A$. The deleted rows and columns *do not need to share indices* — that distinguishes a minor from a #link(<linear-algebra-principal-minor>)[principal minor].
 

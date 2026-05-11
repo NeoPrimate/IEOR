@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
-#set math.vec(delim: "[")
+
 
 A reflection matrix maps each point to its *mirror image* across a fixed line (in 2D), plane (in 3D), or #link(<linear-algebra-hyperplane>)[hyperplane] (in $RR^n$).
 

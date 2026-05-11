@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
-#set math.mat(delim: "[")
+
 
 For two #link(<linear-algebra-linear-transformation>)[linear transformations] $S: X -> Y$ and $T: Y -> Z$, the *composition* $T compose S: X -> Z$ applies $S$ first, then $T$:
 

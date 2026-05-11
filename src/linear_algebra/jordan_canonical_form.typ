@@ -1,6 +1,5 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
 
 When a matrix is *not* #link(<linear-algebra-diagonalization>)[diagonalizable] (geometric multiplicity $<$ algebraic multiplicity for some eigenvalue), the Jordan canonical form is the next-best thing — *almost* diagonal, with $1$'s just above the diagonal in certain blocks.
 

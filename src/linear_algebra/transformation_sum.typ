@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
-#set math.mat(delim: "[")
+
 
 For #link(<linear-algebra-linear-transformation>)[linear transformations] $T, S: RR^n -> RR^m$, define the sum $T + S: RR^n -> RR^m$ pointwise:
 

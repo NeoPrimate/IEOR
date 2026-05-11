@@ -1,6 +1,5 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
 
 A square matrix in which all entries on one side of the main diagonal are zero.
 

@@ -1,8 +1,7 @@
 #import "/lib/imports.typ": *
 
 #show math.equation.where(block: false): set text(12pt)
-#set math.vec(delim: "[")
-#set math.mat(delim: "[")
+
 #set math.mat(gap: 1em)
 #set math.vec(gap: 1em)
 

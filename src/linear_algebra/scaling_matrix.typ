@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
-#set math.vec(delim: "[")
+
 
 A *scaling matrix* stretches (or compresses) each coordinate independently. It's a #link(<linear-algebra-diagonal-matrix>)[diagonal matrix]:
 

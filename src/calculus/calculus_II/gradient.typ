@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
-#set math.mat(delim: "[")
+
 
 The gradient $gradient f(x, y)$ is a vector of expressions (equations)
 

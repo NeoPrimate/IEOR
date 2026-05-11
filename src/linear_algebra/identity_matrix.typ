@@ -1,6 +1,5 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
 
 The *identity matrix* $I_n$ is the $n times n$ #link(<linear-algebra-diagonal-matrix>)[diagonal matrix] with $1$ on every diagonal entry and $0$ elsewhere.
 

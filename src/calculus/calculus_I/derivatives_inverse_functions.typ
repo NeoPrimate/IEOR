@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
-#set math.mat(delim: "[")
+
 
 Finding the derivative of the inverse function $f^(-1)(x)$ at a given point directly from the function $f(x)$. Instead of explicitly computing the inverse function $f^(-1)(x)$, we use the inverse function derivative formula:
 

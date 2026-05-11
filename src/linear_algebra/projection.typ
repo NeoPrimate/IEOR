@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
-#set math.mat(delim: "[")
+
 
 The projection of a vector $accent(x, arrow)$, onto a line $L$, denoted as $"Proj"_L (accent(x, arrow))$, is a vector that lies on the line $L$, such that the difference between $accent(x, arrow)$ and its projection, $"Proj"_L (accent(x, arrow)) - accent(x, arrow)$, is orthogonal to $L$
 

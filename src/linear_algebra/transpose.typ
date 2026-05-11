@@ -1,6 +1,5 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
 
 The *transpose* $A^T$ of a matrix $A$ flips it across its main diagonal — rows become columns:
 

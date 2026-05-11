@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
-#set math.vec(delim: "[")
+
 
 A rotation matrix rotates vectors about the origin by an angle $theta$ without changing their lengths.
 

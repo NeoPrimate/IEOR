@@ -1,6 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
+
 
 A plane in $RR^3$ is the set of points $(x, y, z)$ satisfying a single linear equation:
 

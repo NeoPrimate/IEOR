@@ -1,6 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
+
 
 A *hyperplane* in $RR^n$ is an $(n-1)$-dimensional affine subspace — the natural generalization of a line in $RR^2$ or a #link(<linear-algebra-planes>)[plane] in $RR^3$.
 

@@ -1,6 +1,5 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
 
 Every real matrix $A$ — square or rectangular, full-rank or rank-deficient — has a *Singular Value Decomposition*:
 

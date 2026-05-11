@@ -1,6 +1,5 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
 
 Every *symmetric positive-definite* matrix $A$ has a unique factorization:
 

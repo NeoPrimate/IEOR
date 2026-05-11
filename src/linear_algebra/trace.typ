@@ -1,6 +1,5 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
 
 The *trace* of a square matrix $A$ is the sum of its main diagonal entries:
 

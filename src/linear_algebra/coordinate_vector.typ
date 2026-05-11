@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
-#set math.mat(delim: "[")
+
 
 Given a #link(<linear-algebra-basis>)[basis] $B = {accent(v, arrow)_1, accent(v, arrow)_2, dots, accent(v, arrow)_n}$ of a vector space $V$, every $accent(x, arrow) in V$ has a *unique* representation as a #link(<linear-algebra-linear-combination>)[linear combination] of the basis vectors:
 

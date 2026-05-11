@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
-#set math.vec(delim: "[")
+
 
 The *null space* (or #link(<linear-algebra-kernel>)[kernel]) of a matrix $bold(A)$ is the set of all vectors $accent(x, arrow)$ that satisfy:
 

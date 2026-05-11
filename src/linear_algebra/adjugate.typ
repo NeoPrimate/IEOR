@@ -1,8 +1,5 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
-#set math.mat(delim: "[")
-
 $
   "adj"(A)
 $

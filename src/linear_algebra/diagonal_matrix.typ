@@ -1,6 +1,5 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
 
 A square matrix whose only non-zero entries lie on the *main diagonal*:
 

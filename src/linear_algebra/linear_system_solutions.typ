@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
-#set math.vec(delim: "[")
+
 
 A linear system $A accent(x, arrow) = accent(b, arrow)$ has *exactly* one of three outcomes:
 

@@ -1,6 +1,5 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
 
 Three properties a function $T: V -> W$ might (or might not) have, with clean characterizations for #link(<linear-algebra-linear-transformation>)[linear transformations].
 

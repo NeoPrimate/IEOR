@@ -1,6 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
+
 
 === Vector Triangle Inequality
 
@@ -41,7 +41,7 @@ $
 
       cetz.draw.line("plot.a", "plot.b", stroke: blue, mark: (fill: blue), name: "a")
       cetz.draw.content("a.mid", text(blue)[$||accent(v, arrow)||$], anchor: "south", padding: 0.05, angle: "a.start")
-      
+
       cetz.draw.line("plot.o", "plot.b", stroke: purple, mark: (fill: purple), name: "a")
       cetz.draw.content("a.mid", text(purple)[$||accent(u, arrow) + accent(v, arrow)||$], anchor: "north", padding: 0.025, angle: "a.start")
   }))
@@ -85,7 +85,7 @@ $
 
       cetz.draw.line("plot.a", "plot.b", stroke: blue, mark: (fill: blue), name: "b")
       cetz.draw.content("b.mid", text(blue)[$||accent(v, arrow)||$], anchor: "south", padding: 0.05, angle: "b.start")
-      
+
       cetz.draw.line("plot.o", "plot.b", stroke: 0pt, mark: (fill: none), name: "c")
       cetz.draw.content("c.mid", text(purple)[$||accent(u, arrow) + accent(v, arrow)||$], anchor: "north", padding: 0.05, angle: "c.start")
   }))

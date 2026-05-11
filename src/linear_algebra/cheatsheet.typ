@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
-#set math.mat(delim: "[")
+
 
 // #set page(margin: 0.5cm) — paged-only, can't apply inside bundle's document() container
 

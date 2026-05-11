@@ -1,6 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
+
 
 Set $L$ of all points (i.e., line) equal to the set of all vectors $accent(x, arrow)$ plus some scalar $t$ times the vector $accent(v, arrow)$ such that $t$ can be any real number ($RR$)
 

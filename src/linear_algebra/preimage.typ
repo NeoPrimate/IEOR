@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
-#set math.mat(delim: "[")
+
 
 For a transformation $T: RR^n -> RR^m$ and a subset $S subset.eq RR^m$, the *preimage of $S$ under $T$* is the set of inputs that map into $S$:
 

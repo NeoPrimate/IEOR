@@ -2,8 +2,7 @@
 
 // #set math.cases(gap: 1em)
 #show math.equation.where(block: false): set text(12pt)
-#set math.vec(delim: "[")
-#set math.mat(delim: "[")
+
 #set math.mat(gap: 1em)
 #set math.vec(gap: 1em)
 
@@ -17,30 +16,30 @@
 // #diagram(
 // 	node-stroke: 1.5pt,
 // 	node(
-//     (0,0), 
+//     (0,0),
 //     text(size: text-size)[
 //       *Initialization* \
-//       Constraints in\ 
+//       Constraints in\
 //       canonical form
 //     ],
 //     shape: rect,
 //     corner-radius: 2pt,
 //   ),
-	
+
 //   edge("-|>"),
 
 // 	node(
-//     (0,1), 
+//     (0,1),
 //     text(size: text-size)[
-//       Artificial\ 
-//       variables\ 
+//       Artificial\
+//       variables\
 //       added?
-//     ], 
+//     ],
 //     shape: diamond
 //   ),
 
 // 	edge((0, 1), (-1, 1), "-|>", [Yes], label-pos: 0.5),
-  
+
 //   node(
 //     (-1, 1),
 //     text(size: text-size)[
@@ -64,12 +63,12 @@
 //     shape: rect,
 //     corner-radius: 2pt,
 //   ),
-  
+
 //   node(
 //     (-1, 2),
 //     text(size: text-size)[
-//       Place objective\ 
-//       in canonical\ 
+//       Place objective\
+//       in canonical\
 //       form
 //     ],
 //     shape: rect,
@@ -85,13 +84,13 @@
 //     (-1, 3),
 //     fill: yellow.lighten(50%),
 //     text(size: text-size)[
-//       *Basic Feasible Solution*\ 
+//       *Basic Feasible Solution*\
 //       $
 //         x_B = B^(-1) b \
 //         x_N = bold(0)
 //       $
-//       Current basic feasible\ 
-//       solution (BFS) corresponding\ 
+//       Current basic feasible\
+//       solution (BFS) corresponding\
 //       to the current basis
 //     ],
 //     shape: rect,
@@ -99,18 +98,18 @@
 //   ),
 
 //   edge((-1, 3), (0, 3), "-|>", [], label-pos: 0.5),
-  
+
 //   node(
 //     (0, 3),
 //     fill: yellow.lighten(50%),
 //     text(size: text-size)[
-//       *Reduced Costs (vector)*\ 
+//       *Reduced Costs (vector)*\
 //       $
 //         macron(c)_N = c_N^T - c_B^T B^(-1) N
 //       $
-//       Represents the change in\ 
-//       the objective value per\ 
-//       unit increase of nonbasic\ 
+//       Represents the change in\
+//       the objective value per\
+//       unit increase of nonbasic\
 //       variable $x_j$
 //     ],
 //     shape: rect,
@@ -124,27 +123,27 @@
 //     fill: yellow.lighten(50%),
 //     text(size: text-size)[
 //       *Optimality\ Test*\
-//       Is any objective\ 
-//       function coefficient\ 
+//       Is any objective\
+//       function coefficient\
 //       positive?
 //     ],
 //     shape: diamond
 //   ),
 
 //   edge((1, 3), (1, 4), "-|>", [Yes], label-pos: 0.5),
-  
+
 //   node(
 //     (1, 4),
 //     fill: yellow.lighten(50%),
 //     text(size: text-size)[
-//       Select variable $x_s$\ 
-//       to introduce into the basis\ 
-//       as the variable\ 
-//       with the largest\ 
+//       Select variable $x_s$\
+//       to introduce into the basis\
+//       as the variable\
+//       with the largest\
 //       objective coefficient
 //     ],
 //     shape: rect,
-//     corner-radius: 2pt,    
+//     corner-radius: 2pt,
 //   ),
 
 //   edge((1, 4), (1, 5), "-|>", [], label-pos: 0.5),
@@ -154,8 +153,8 @@
 //     fill: yellow.lighten(50%),
 //     text(size: text-size)[
 //       *Unbounded\ Test*\
-//       Does $x_s$ appear\ 
-//       with a positive\ 
+//       Does $x_s$ appear\
+//       with a positive\
 //       coefficient in some\ constraint?
 //     ],
 //     shape: diamond,
@@ -167,11 +166,11 @@
 //     (1, 6),
 //     fill: yellow.lighten(50%),
 //     text(size: text-size)[
-//       *Ratio Test*\ 
-//       Select pivot row $r$\ 
-//       as the row with the\ 
-//       minimum ratio of RHS\ 
-//       coefficients to positive\ 
+//       *Ratio Test*\
+//       Select pivot row $r$\
+//       as the row with the\
+//       minimum ratio of RHS\
+//       coefficients to positive\
 //       $x_s$ coefficient
 //     ],
 //     shape: rect,
@@ -179,16 +178,16 @@
 //   ),
 
 //   edge((1, 6), (-1, 6), "-|>", [], label-pos: 0.5),
-  
+
 //   node(
 //     (-1, 6),
 //     fill: yellow.lighten(50%),
 //     text(size: text-size)[
-//       *Ratio Test*\ 
-//       Select pivot row $r$\ 
-//       as the row with the\ 
-//       minimum ratio of RHS\ 
-//       coefficients to positive\ 
+//       *Ratio Test*\
+//       Select pivot row $r$\
+//       as the row with the\
+//       minimum ratio of RHS\
+//       coefficients to positive\
 //       $x_s$ coefficient
 //     ],
 //     shape: rect,
@@ -203,8 +202,8 @@
 //     (2, 5),
 //     fill: green.lighten(50%),
 //     text(size: text-size)[
-//       *Terminate*\ 
-//       $z$ is\ 
+//       *Terminate*\
+//       $z$ is\
 //       unbounded
 //     ],
 //     shape: rect,
@@ -222,13 +221,13 @@
 //   ),
 
 //   edge((2, 3), (2, 4), "-|>", [No], label-pos: 0.5),
-  
+
 //   node(
 //     (2, 4),
 //     fill: green.lighten(50%),
 //     text(size: text-size)[
 //       *Terminate*\
-//       Current solution\ 
+//       Current solution\
 //       is optimal
 
 //     ],
@@ -251,14 +250,14 @@
 //     text(size: text-size)[
 //       *Phase I - Phase II\
 //       Transition*\
-//       Use Phase II\ 
+//       Use Phase II\
 //       objective\
 //       ($z$)
 //     ],
 //     shape: rect,
 //     corner-radius: 2pt,
 //   ),
-  
+
 //   edge((2, 1), (1, 1), "-|>", [No], label-pos: 0.5),
 //   edge((2, 1), (2, 0), "-|>", [Yes], label-pos: 0.5),
 
@@ -269,8 +268,8 @@
 //     fill: green.lighten(50%),
 //     text(size: text-size)[
 //       *Terminate*\
-//       No feasible\ 
-//       solution\ 
+//       No feasible\
+//       solution\
 //     ],
 //     shape: rect,
 //     corner-radius: 2pt,
@@ -287,7 +286,7 @@
     (-1, 0),
     fill: yellow.lighten(50%),
     text(size: text-size)[
-      *LP\ (Standard Form)*\ 
+      *LP\ (Standard Form)*\
       $
         bold(max) &z = c^T x \
         &A x = b \
@@ -304,7 +303,7 @@
     (0, 0),
     fill: yellow.lighten(50%),
     text(size: text-size)[
-      *Partition*\ 
+      *Partition*\
       $
         A = mat(B, N) \
         c = vec(c_B, c_N) quad x = vec(x_B, x_N)
@@ -320,7 +319,7 @@
     (0, 1),
     fill: yellow.lighten(50%),
     text(size: text-size)[
-      *Basic Feasible Solution*\ 
+      *Basic Feasible Solution*\
       $
         x_B &= B^(-1) b \
         x_N &= bold(0)
@@ -341,7 +340,7 @@
     shape: diamond
   ),
 
-  
+
   edge((0, 2), (0, 3), "-|>", [Yes], label-pos: 0.5),
   edge((0, 2), (1, 2), "-|>", [No], label-pos: 0.5),
 
@@ -359,14 +358,14 @@
     (0, 3),
     fill: yellow.lighten(50%),
     text(size: text-size)[
-      *Reduced Costs*\ 
+      *Reduced Costs*\
       $
         macron(c)_N^T = c_N^T - c_B^T B^(-1) N \
         macron(c)_j = c_j - c_B^T B^(-1) a_j
       $
-      $macron(c)_j$ represents the change\ 
-      in the objective value per\ 
-      unit increase of nonbasic\ 
+      $macron(c)_j$ represents the change\
+      in the objective value per\
+      unit increase of nonbasic\
       variable $x_j$
     ],
     shape: rect,
@@ -396,12 +395,12 @@
     shape: rect,
     corner-radius: 2pt,
   ),
-  
+
   node(
     (0, 5),
     fill: yellow.lighten(50%),
     text(size: text-size)[
-      *Entering Variable*\ 
+      *Entering Variable*\
       $
         j = arg max_i macron(c)_N_i
       $
@@ -415,18 +414,18 @@
   ),
 
   edge((0, 5), (0, 6), "-|>"),
-  
+
   node(
     (0, 6),
     fill: yellow.lighten(50%),
     text(size: text-size)[
-      *Direction Vector*\ 
+      *Direction Vector*\
       $
         d = B^(-1) A_j
       $
-      Shows how the basic\ 
-      variables $x_B$ change\ 
-      as the entering variable\ 
+      Shows how the basic\
+      variables $x_B$ change\
+      as the entering variable\
       $x_j$ increases
     ],
     shape: rect,
@@ -456,18 +455,18 @@
     shape: rect,
     corner-radius: 2pt,
   ),
-  
+
   node(
     (-1, 7),
     fill: yellow.lighten(50%),
     text(size: text-size)[
-      *Ratio Test\ (Leaving Variable)*\ 
+      *Ratio Test\ (Leaving Variable)*\
       $
         theta_i = ((B^(-1) b)_i) / d_i quad d_i gt 0
       $
-      The leaving variable\ 
+      The leaving variable\
       is the basic variable\
-      $x_(B_(i^*))$ corresponding to the\ 
+      $x_(B_(i^*))$ corresponding to the\
       *smallest positive ratio*\ \
       If there is a tie:\
       Choose smallest index\
@@ -478,13 +477,13 @@
   ),
 
   edge((-1, 7), (-1, 3), "-|>"),
-  
+
   node(
     (-1, 3),
     fill: yellow.lighten(50%),
     text(size: text-size)[
       *Pivot\ (Update Basis)*\ \
-      Replace $x_(B_(i^*))$ with\ 
+      Replace $x_(B_(i^*))$ with\
       $x_j$ in the basis\
       \
       New basis \
@@ -590,7 +589,7 @@
     [
       $
         &cases(
-          &z = min c^T x, 
+          &z = min c^T x,
           &z = max c^T x,
         ) \
         &A x = b \
@@ -678,7 +677,7 @@
 ]
 
 
-*Negative/Free Variables* 
+*Negative/Free Variables*
 
 #align(center)[
   #grid(
@@ -712,7 +711,7 @@ $
 Constraints:
 
 $
-  B x_b + N x_n = b  
+  B x_b + N x_n = b
 $
 
 #text(size: 13pt, weight: "semibold")[3. Basic Feasible Solution]

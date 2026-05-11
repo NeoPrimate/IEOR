@@ -1,6 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
+
 
 A linear system is *homogeneous* if its right-hand side is the zero vector:
 

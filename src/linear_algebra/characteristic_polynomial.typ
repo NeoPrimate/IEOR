@@ -1,6 +1,5 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
 
 For an $n times n$ matrix $A$, the *characteristic polynomial* is:
 

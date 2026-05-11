@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
-#set math.mat(delim: "[")
+
 
 A function $T: RR^n -> RR^m$ between vector spaces is a *linear transformation* if it preserves vector addition and scalar multiplication.
 

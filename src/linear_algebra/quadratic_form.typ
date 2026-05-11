@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
-#set math.vec(delim: "[")
+
 
 A *quadratic form* is a polynomial expression in $n$ variables where every term has total degree exactly $2$:
 

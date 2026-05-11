@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
-#set math.vec(delim: "[")
+
 
 When solving the linear system $A accent(x, arrow) = accent(b, arrow)$, the *augmented matrix* $[A | accent(b, arrow)]$ stacks the coefficient matrix and the right-hand side into one $m times (n+1)$ matrix:
 

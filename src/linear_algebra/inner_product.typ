@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
-#set math.mat(delim: "[")
+
 
 An *inner product* is a function $⟨ dot, dot ⟩: V times V -> RR$ that generalizes the #link(<linear-algebra-dot-product>)[dot product] to arbitrary vector spaces.
 

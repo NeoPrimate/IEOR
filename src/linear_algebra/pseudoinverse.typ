@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
-#set math.vec(delim: "[")
+
 
 The *Moore–Penrose pseudoinverse* $A^+$ generalizes the matrix #link(<linear-algebra-matrix-inverse>)[inverse] to *every* matrix — square, rectangular, full-rank, or rank-deficient.
 

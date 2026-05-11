@@ -60,7 +60,7 @@ Legend: 🔴 critical · 🟡 high-value · 🟢 nice-to-have
 - [ ] 🔴 Min-cost flow algorithms — negative-cycle canceling, successive shortest paths
 - [ ] 🟡 Minimum spanning tree — Prim, Kruskal
 - [ ] 🟡 Floyd-Warshall all-pairs shortest path
-- [ ] 🟢 A* search
+- [ ] 🟢 A\* search
 - [ ] 🟡 Topological sort, DAG shortest path
 - [ ] 🟡 Bipartite matching
 - [ ] 🔴 TSP — DFJ + MTZ formulations, nearest-neighbor, 2-opt/3-opt, Lin-Kernighan, Christofides 3/2-bound
@@ -319,7 +319,7 @@ Legend: 🔴 critical · 🟡 high-value · 🟢 nice-to-have
 ## 21. Algorithms (sparse)
 
 - [ ] 🟡 Floyd-Warshall all-pairs SP
-- [ ] 🟡 A* heuristic search
+- [ ] 🟡 A\* heuristic search
 - [ ] 🟡 Topological sort
 - [ ] 🟡 MST: Prim, Kruskal
 - [ ] 🟡 Bipartite matching (Hopcroft-Karp)

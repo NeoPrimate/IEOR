@@ -1,6 +1,5 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
 
 Every $m times n$ matrix $A$ with $m >= n$ can be factored as:
 

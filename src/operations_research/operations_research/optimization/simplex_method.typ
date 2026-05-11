@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
-#set math.mat(delim: "[")
+
 #set math.mat(gap: 1em)
 #set math.vec(gap: 1em)
 

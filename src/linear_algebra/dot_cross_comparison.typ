@@ -1,6 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
+
 
 The #link(<linear-algebra-dot-product>)[dot product] and #link(<linear-algebra-cross-product>)[cross product] are the two fundamental products of vectors. They give complementary geometric information.
 

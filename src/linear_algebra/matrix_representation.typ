@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
-#set math.mat(delim: "[")
+
 
 Every #link(<linear-algebra-linear-transformation>)[linear transformation] $T: RR^n -> RR^m$ can be uniquely represented by an $m times n$ matrix $A$ such that:
 

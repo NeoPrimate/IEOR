@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
-#set math.mat(delim: "[")
+
 #set math.mat(gap: 1em)
 #set math.vec(gap: 1em)
 
@@ -18,8 +17,8 @@
       plot.plot(
         size: (7,7),
         axis-style: "scientific",
-        x-tick-step: none, 
-        y-tick-step: none, 
+        x-tick-step: none,
+        y-tick-step: none,
         x-label: [$$],
         y-label: [$$],
         x-min: -1.5, x-max: 1.5,
@@ -34,12 +33,12 @@
         plot.add-anchor("b", p2)
 
         let z(x, y) = x*x + calc.pow(((y - 2*calc.exp(-0.9*x*x)) / 0.7),2) - 1
-        
+
         plot.add-contour(
-          x-domain: (-1.6, 1.5), 
+          x-domain: (-1.6, 1.5),
           y-domain: (-0.1, 3),
-          z, 
-          z: (.1), 
+          z,
+          z: (.1),
           fill: false,
           style: (stroke: red),
         )
@@ -57,10 +56,10 @@
           mark-size: 0.15,
           mark-style: (fill: black, stroke: 2pt)
         )
-        
+
       }, name: "plot")
       cetz.draw.line("plot.a", "plot.b", stroke: black, mark: (fill: blue), name: "a")
-      
+
     }))
   ],
   [
@@ -74,8 +73,8 @@
       plot.plot(
         size: (7,7),
         axis-style: "scientific",
-        x-tick-step: none, 
-        y-tick-step: none, 
+        x-tick-step: none,
+        y-tick-step: none,
         x-label: [$$],
         y-label: [$$],
         x-min: -1, x-max: 1,
@@ -103,7 +102,7 @@
           mark-size: 0.15,
           mark-style: (fill: black, stroke: 2pt)
         )
-        
+
       }, name: "plot")
       cetz.draw.line("plot.a", "plot.b", stroke: black, mark: (fill: blue), name: "a")
 
@@ -139,8 +138,8 @@
       plot.plot(
         size: (7,7),
         axis-style: "scientific",
-        x-tick-step: none, 
-        y-tick-step: none, 
+        x-tick-step: none,
+        y-tick-step: none,
         x-ticks: ((x1, "x"), (x2, "y"), (0, "z")),
         x-label: [$$],
         y-label: [$$],
@@ -160,7 +159,7 @@
           style: (stroke: (thickness: 1pt, paint: red)),
           label: none,
         )
-        
+
         plot.add(
           (p1,),
           mark: "o",
@@ -173,7 +172,7 @@
           mark-size: 0.15,
           mark-style: (fill: black, stroke: 2pt)
         )
-        
+
         plot.add-vline(x1, max: f(x1), style: (stroke: (paint: black, dash: "dashed")))
 
         plot.add-vline(x2, max: f(x2), style: (stroke: (paint: black, dash: "dashed")))
@@ -216,8 +215,8 @@
       plot.plot(
         size: (7,7),
         axis-style: "scientific",
-        x-tick-step: none, 
-        y-tick-step: none, 
+        x-tick-step: none,
+        y-tick-step: none,
         x-ticks: ((x1, "x"), (x2, "y"), (0, "z")),
         x-label: [$$],
         y-label: [$$],
@@ -265,7 +264,7 @@
           mark-size: 0.15,
           mark-style: (fill: black, stroke: 2pt)
         )
-        
+
         plot.add(
           ((0, f(0)),),
           mark: "o",

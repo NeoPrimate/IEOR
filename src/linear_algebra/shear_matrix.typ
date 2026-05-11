@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
-#set math.vec(delim: "[")
+
 
 A *shear matrix* shifts each point in one direction by an amount proportional to its coordinate in another. The result: parallelograms slide into other parallelograms, preserving area.
 

@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
-#set math.vec(delim: "[")
+
 
 The *zero matrix* $0_(m times n)$ is the $m times n$ matrix with every entry equal to $0$.
 

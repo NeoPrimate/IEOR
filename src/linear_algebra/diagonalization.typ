@@ -1,6 +1,5 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
 
 A square matrix $A$ is *diagonalizable* if it can be written as
 

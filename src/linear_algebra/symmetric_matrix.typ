@@ -1,6 +1,5 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
 
 A square matrix that equals its own #link(<linear-algebra-transpose>)[transpose]:
 

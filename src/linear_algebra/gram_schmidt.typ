@@ -1,6 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
+
 
 Given a #link(<linear-algebra-linear-independence>)[linearly independent] set $\{accent(v, arrow)_1, accent(v, arrow)_2, dots, accent(v, arrow)_k\}$, the *Gram–Schmidt process* produces an #link(<linear-algebra-orthogonality>)[orthonormal] set $\{accent(q, arrow)_1, accent(q, arrow)_2, dots, accent(q, arrow)_k\}$ that spans the same subspace.
 

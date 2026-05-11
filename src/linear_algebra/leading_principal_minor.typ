@@ -1,6 +1,5 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
 
 A *leading principal minor* of order $k$ is the #link(<linear-algebra-determinant>)[determinant] of the *top-left* $k times k$ submatrix of $A$.
 

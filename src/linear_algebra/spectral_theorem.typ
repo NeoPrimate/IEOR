@@ -1,6 +1,5 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
 
 The *Spectral Theorem* says that every real #link(<linear-algebra-symmetric-matrix>)[symmetric matrix] is *orthogonally diagonalizable*:
 

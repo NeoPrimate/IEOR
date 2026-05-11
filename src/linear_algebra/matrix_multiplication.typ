@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
-#set math.vec(delim: "[")
+
 
 For matrices $A$ ($m times n$) and $B$ ($n times p$), the product $C = A B$ is the $m times p$ matrix with entries:
 

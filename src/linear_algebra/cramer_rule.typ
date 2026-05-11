@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
-#set math.vec(delim: "[")
+
 
 For a square system $A accent(x, arrow) = accent(b, arrow)$ where $A$ is $n times n$ and #link(<linear-algebra-matrix-inverse>)[invertible] (i.e., $det(A) eq.not 0$), each component of the solution is a ratio of #link(<linear-algebra-determinant>)[determinants]:
 

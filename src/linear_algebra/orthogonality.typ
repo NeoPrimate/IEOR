@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
-#set math.mat(delim: "[")
+
 
 Two vectors $accent(u, arrow), accent(v, arrow)$ are *orthogonal* (written $accent(u, arrow) perp accent(v, arrow)$) if their #link(<linear-algebra-dot-product>)[dot product] is zero:
 

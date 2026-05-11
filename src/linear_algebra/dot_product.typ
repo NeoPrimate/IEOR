@@ -1,6 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
+
 
 The *dot product* (or *scalar product*) of two vectors of the same dimension returns a scalar — the sum of componentwise products.
 

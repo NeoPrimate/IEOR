@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.vec(delim: "[")
-#set math.mat(delim: "[")
+
 
 The *image* (or *range*) of a #link(<linear-algebra-linear-transformation>)[linear transformation] $T: RR^n -> RR^m$ is the set of all possible outputs:
 

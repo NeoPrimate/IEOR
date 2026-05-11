@@ -712,6 +712,10 @@ title = "Statistics"
     files = ["statistics/functions/sf.typ"]
 
     [[sections.sections.sections]]
+    title = "Standard Normal Loss Function"
+    files = ["statistics/functions/standard_normal_loss.typ"]
+
+    [[sections.sections.sections]]
     title = "Likelihood"
     files = ["statistics/functions/likelihood.typ"]
 
@@ -1136,6 +1140,79 @@ title = "Time Series"
 # ─────────────────────────────────────────────────────────────────────────────
 
 [[sections]]
+title = "System Dynamics"
+
+  [[sections.sections]]
+  title = "System Dynamics"
+  files = ["system_dynamics/system_dynamics.typ"]
+
+  [[sections.sections]]
+  title = "Stocks Flows"
+  files = ["system_dynamics/stocks_flows.typ"]
+
+  [[sections.sections]]
+  title = "Causal Loop Diagrams"
+  files = ["system_dynamics/causal_loop_diagrams.typ"]
+
+  [[sections.sections]]
+  title = "Feedback Loops"
+  files = ["system_dynamics/feedback_loops.typ"]
+
+  [[sections.sections]]
+  title = "Delays"
+  files = ["system_dynamics/delays.typ"]
+
+  [[sections.sections]]
+  title = "Second-Order"
+  files = ["system_dynamics/second_order.typ"]
+
+  [[sections.sections]]
+  title = "Smoothing"
+  files = ["system_dynamics/smoothing.typ"]
+
+  [[sections.sections]]
+  title = "Stock Management"
+  files = ["system_dynamics/stock_management.typ"]
+
+  [[sections.sections]]
+  title = "Bullwhip SD"
+  files = ["system_dynamics/bullwhip_sd.typ"]
+
+  [[sections.sections]]
+  title = "Beer Game"
+  files = ["system_dynamics/beer_game.typ"]
+
+  [[sections.sections]]
+  title = "Bass Diffusion"
+  files = ["system_dynamics/bass_diffusion.typ"]
+
+  [[sections.sections]]
+  title = "Logistic Growth"
+  files = ["system_dynamics/logistic_growth.typ"]
+
+  [[sections.sections]]
+  title = "SIR SEIR"
+  files = ["system_dynamics/sir_seir.typ"]
+
+  [[sections.sections]]
+  title = "Lotka-Volterra"
+  files = ["system_dynamics/lotka_volterra.typ"]
+
+  [[sections.sections]]
+  title = "Phase Plane"
+  files = ["system_dynamics/phase_plane.typ"]
+
+  [[sections.sections]]
+  title = "Numerical Integration"
+  files = ["system_dynamics/numerical_integration.typ"]
+
+  [[sections.sections]]
+  title = "Validation"
+  files = ["system_dynamics/validation.typ"]
+
+# ─────────────────────────────────────────────────────────────────────────────
+
+[[sections]]
 title = "Operations Research"
 
   [[sections.sections]]
@@ -1226,6 +1303,122 @@ title = "Operations Research"
     files = ["operations_research/operations_research/optimization/network_optimization/maximum_flow/edmonds_karp.typ"]
 
     [[sections.sections.sections]]
+    title = "Transportation Problem"
+    files = ["operations_research/operations_research/optimization/transportation_problem.typ"]
+
+    [[sections.sections.sections]]
+    title = "Assignment Problem"
+    files = ["operations_research/operations_research/optimization/assignment_problem.typ"]
+
+    [[sections.sections.sections]]
+    title = "Hungarian Algorithm"
+    files = ["operations_research/operations_research/optimization/hungarian_algorithm.typ"]
+
+    [[sections.sections.sections]]
+    title = "Transshipment Problem"
+    files = ["operations_research/operations_research/optimization/transshipment_problem.typ"]
+
+    [[sections.sections.sections]]
+    title = "Min-Cost Flow Algorithms"
+    files = ["operations_research/operations_research/optimization/min_cost_flow_algorithms.typ"]
+
+    [[sections.sections.sections]]
+    title = "Network Simplex"
+    files = ["operations_research/operations_research/optimization/network_simplex.typ"]
+
+    [[sections.sections.sections]]
+    title = "Min Spanning Tree"
+    files = ["operations_research/operations_research/optimization/min_spanning_tree.typ"]
+
+    [[sections.sections.sections]]
+    title = "Floyd-Warshall"
+    files = ["operations_research/operations_research/optimization/floyd_warshall.typ"]
+
+    [[sections.sections.sections]]
+    title = "TSP"
+    files = ["operations_research/operations_research/optimization/tsp.typ"]
+
+    [[sections.sections.sections]]
+    title = "TSP 2opt"
+    files = ["operations_research/operations_research/optimization/tsp_2opt.typ"]
+
+    [[sections.sections.sections]]
+    title = "Christofides"
+    files = ["operations_research/operations_research/optimization/christofides.typ"]
+
+    [[sections.sections.sections]]
+    title = "VRP"
+    files = ["operations_research/operations_research/optimization/vrp.typ"]
+
+    [[sections.sections.sections]]
+    title = "VRP Time Windows"
+    files = ["operations_research/operations_research/optimization/vrp_time_windows.typ"]
+
+    [[sections.sections.sections]]
+    title = "Clarke-Wright"
+    files = ["operations_research/operations_research/optimization/clarke_wright.typ"]
+
+    [[sections.sections.sections]]
+    title = "Daganzo Continuous"
+    files = ["operations_research/operations_research/optimization/daganzo_continuous.typ"]
+
+    [[sections.sections.sections]]
+    title = "Facility Location"
+    files = ["operations_research/operations_research/optimization/facility_location.typ"]
+
+    [[sections.sections.sections]]
+    title = "UFLP"
+    files = ["operations_research/operations_research/optimization/uflp.typ"]
+
+    [[sections.sections.sections]]
+    title = "CFLP"
+    files = ["operations_research/operations_research/optimization/cflp.typ"]
+
+    [[sections.sections.sections]]
+    title = "p-Median"
+    files = ["operations_research/operations_research/optimization/p_median.typ"]
+
+    [[sections.sections.sections]]
+    title = "p-Center"
+    files = ["operations_research/operations_research/optimization/p_center.typ"]
+
+    [[sections.sections.sections]]
+    title = "Set Covering"
+    files = ["operations_research/operations_research/optimization/set_covering.typ"]
+
+    [[sections.sections.sections]]
+    title = "Max Covering"
+    files = ["operations_research/operations_research/optimization/max_covering.typ"]
+
+    [[sections.sections.sections]]
+    title = "Center of Gravity"
+    files = ["operations_research/operations_research/optimization/center_of_gravity.typ"]
+
+    [[sections.sections.sections]]
+    title = "Stochastic Programming"
+    files = ["operations_research/operations_research/optimization/stochastic_programming.typ"]
+
+    [[sections.sections.sections]]
+    title = "Two-stage Recourse"
+    files = ["operations_research/operations_research/optimization/two_stage_recourse.typ"]
+
+    [[sections.sections.sections]]
+    title = "Scenario Trees"
+    files = ["operations_research/operations_research/optimization/scenario_trees.typ"]
+
+    [[sections.sections.sections]]
+    title = "Chance Constraints"
+    files = ["operations_research/operations_research/optimization/chance_constraints.typ"]
+
+    [[sections.sections.sections]]
+    title = "Sample Average Approximation"
+    files = ["operations_research/operations_research/optimization/sample_average_approximation.typ"]
+
+    [[sections.sections.sections]]
+    title = "EVPI vs VSS"
+    files = ["operations_research/operations_research/optimization/evpi_vss.typ"]
+
+    [[sections.sections.sections]]
     title = "Lagrange Relaxation"
     files = ["operations_research/operations_research/optimization/lagrange_relaxation.typ"]
 
@@ -1236,6 +1429,34 @@ title = "Operations Research"
     [[sections.sections.sections]]
     title = "KKT Conditions"
     files = ["operations_research/operations_research/optimization/kkt.typ"]
+
+    [[sections.sections.sections]]
+    title = "Dynamic Programming"
+    files = ["operations_research/operations_research/optimization/dynamic_programming.typ"]
+
+    [[sections.sections.sections]]
+    title = "Bellman Equation"
+    files = ["operations_research/operations_research/optimization/bellman_equation.typ"]
+
+    [[sections.sections.sections]]
+    title = "Backward Induction"
+    files = ["operations_research/operations_research/optimization/backward_induction.typ"]
+
+    [[sections.sections.sections]]
+    title = "Forward Induction"
+    files = ["operations_research/operations_research/optimization/forward_induction.typ"]
+
+    [[sections.sections.sections]]
+    title = "Stochastic DP"
+    files = ["operations_research/operations_research/optimization/stochastic_dp.typ"]
+
+    [[sections.sections.sections]]
+    title = "Value Iteration"
+    files = ["operations_research/operations_research/optimization/value_iteration.typ"]
+
+    [[sections.sections.sections]]
+    title = "Policy Iteration"
+    files = ["operations_research/operations_research/optimization/policy_iteration.typ"]
 
     [[sections.sections.sections]]
     title = "Regression"
@@ -1259,6 +1480,65 @@ title = "Operations Research"
     [[sections.sections.sections]]
     title = "Little's Law"
     files = ["operations_research/operations_research/queuing_theory/little_law.typ"]
+
+    [[sections.sections.sections]]
+    title = "Kingman VUT"
+    files = ["operations_research/operations_research/queuing_theory/kingman_vut.typ"]
+
+    [[sections.sections.sections]]
+    title = "Sakasegawa"
+    files = ["operations_research/operations_research/queuing_theory/sakasegawa.typ"]
+
+    [[sections.sections.sections]]
+    title = "Linking Equation"
+    files = ["operations_research/operations_research/queuing_theory/linking_equation.typ"]
+
+    [[sections.sections.sections]]
+    title = "Erlang B"
+    files = ["operations_research/operations_research/queuing_theory/erlang_b.typ"]
+
+    [[sections.sections.sections]]
+    title = "Erlang C"
+    files = ["operations_research/operations_research/queuing_theory/erlang_c.typ"]
+
+    [[sections.sections.sections]]
+    title = "MMc Abandonment"
+    files = ["operations_research/operations_research/queuing_theory/mmc_abandonment.typ"]
+
+    [[sections.sections.sections]]
+    title = "Square-Root Staffing"
+    files = ["operations_research/operations_research/queuing_theory/square_root_staffing.typ"]
+
+  [[sections.sections]]
+  title = "Decision Analysis"
+
+    [[sections.sections.sections]]
+    title = "Decision Analysis"
+    files = ["operations_research/decision_analysis/decision_analysis.typ"]
+
+    [[sections.sections.sections]]
+    title = "Decision Trees"
+    files = ["operations_research/decision_analysis/decision_trees.typ"]
+
+    [[sections.sections.sections]]
+    title = "EMV"
+    files = ["operations_research/decision_analysis/emv.typ"]
+
+    [[sections.sections.sections]]
+    title = "EVPI"
+    files = ["operations_research/decision_analysis/evpi.typ"]
+
+    [[sections.sections.sections]]
+    title = "EVSI"
+    files = ["operations_research/decision_analysis/evsi.typ"]
+
+    [[sections.sections.sections]]
+    title = "Decision Criteria"
+    files = ["operations_research/decision_analysis/decision_criteria.typ"]
+
+    [[sections.sections.sections]]
+    title = "Utility Theory"
+    files = ["operations_research/decision_analysis/utility_theory.typ"]
 
   [[sections.sections]]
   title = "Control Charts"
@@ -1329,6 +1609,84 @@ title = "Operations Research"
 
 [[sections]]
 title = "Supply Chain"
+
+  [[sections.sections]]
+  title = "Planning"
+
+    [[sections.sections.sections]]
+    title = "Aggregate Planning"
+    files = ["supply_chain/planning/aggregate_planning.typ"]
+
+    [[sections.sections.sections]]
+    title = "MPS"
+    files = ["supply_chain/planning/mps.typ"]
+
+    [[sections.sections.sections]]
+    title = "MRP"
+    files = ["supply_chain/planning/mrp.typ"]
+
+    [[sections.sections.sections]]
+    title = "DRP"
+    files = ["supply_chain/planning/drp.typ"]
+
+    [[sections.sections.sections]]
+    title = "RCCP"
+    files = ["supply_chain/planning/rccp.typ"]
+
+    [[sections.sections.sections]]
+    title = "Silver-Meal"
+    files = ["supply_chain/planning/silver_meal.typ"]
+
+    [[sections.sections.sections]]
+    title = "Least Unit Cost"
+    files = ["supply_chain/planning/least_unit_cost.typ"]
+
+    [[sections.sections.sections]]
+    title = "Part-Period Balancing"
+    files = ["supply_chain/planning/part_period_balancing.typ"]
+
+  [[sections.sections]]
+  title = "Manufacturing"
+
+    [[sections.sections.sections]]
+    title = "Factory Physics"
+    files = ["supply_chain/manufacturing/factory_physics.typ"]
+
+    [[sections.sections.sections]]
+    title = "Best Worst PWC"
+    files = ["supply_chain/manufacturing/best_worst_pwc.typ"]
+
+    [[sections.sections.sections]]
+    title = "Critical WIP"
+    files = ["supply_chain/manufacturing/critical_wip.typ"]
+
+    [[sections.sections.sections]]
+    title = "CONWIP"
+    files = ["supply_chain/manufacturing/conwip.typ"]
+
+    [[sections.sections.sections]]
+    title = "Kanban Sizing"
+    files = ["supply_chain/manufacturing/kanban_sizing.typ"]
+
+    [[sections.sections.sections]]
+    title = "Takt Time"
+    files = ["supply_chain/manufacturing/takt_time.typ"]
+
+    [[sections.sections.sections]]
+    title = "Line Balancing"
+    files = ["supply_chain/manufacturing/line_balancing.typ"]
+
+    [[sections.sections.sections]]
+    title = "Theory of Constraints"
+    files = ["supply_chain/manufacturing/theory_of_constraints.typ"]
+
+    [[sections.sections.sections]]
+    title = "Learning Curves"
+    files = ["supply_chain/manufacturing/learning_curves.typ"]
+
+    [[sections.sections.sections]]
+    title = "Heijunka"
+    files = ["supply_chain/manufacturing/heijunka.typ"]
 
   [[sections.sections]]
   title = "Bullwhip Effect"
@@ -1452,6 +1810,60 @@ title = "Supply Chain"
     [[sections.sections.sections]]
     title = "Capacity-Constrained"
     files = ["supply_chain/inventory/newsvendor/capacity_constrained.typ"]
+
+  [[sections.sections]]
+  title = "Multi-Echelon"
+
+    [[sections.sections.sections]]
+    title = "Multi-Echelon"
+    files = ["supply_chain/inventory/multi_echelon/multi_echelon.typ"]
+
+    [[sections.sections.sections]]
+    title = "Clark-Scarf"
+    files = ["supply_chain/inventory/multi_echelon/clark_scarf.typ"]
+
+    [[sections.sections.sections]]
+    title = "Graves-Willems"
+    files = ["supply_chain/inventory/multi_echelon/graves_willems.typ"]
+
+    [[sections.sections.sections]]
+    title = "Stochastic-service"
+    files = ["supply_chain/inventory/multi_echelon/stochastic_service.typ"]
+
+    [[sections.sections.sections]]
+    title = "METRIC"
+    files = ["supply_chain/inventory/multi_echelon/metric.typ"]
+
+    [[sections.sections.sections]]
+    title = "VARI-METRIC"
+    files = ["supply_chain/inventory/multi_echelon/vari_metric.typ"]
+
+  [[sections.sections]]
+  title = "Risk Pooling"
+
+    [[sections.sections.sections]]
+    title = "Risk Pooling"
+    files = ["supply_chain/inventory/risk_pooling/risk_pooling.typ"]
+
+    [[sections.sections.sections]]
+    title = "Square-Root Law"
+    files = ["supply_chain/inventory/risk_pooling/square_root_law.typ"]
+
+    [[sections.sections.sections]]
+    title = "Correlated Pooling"
+    files = ["supply_chain/inventory/risk_pooling/correlated_pooling.typ"]
+
+    [[sections.sections.sections]]
+    title = "Location Pooling"
+    files = ["supply_chain/inventory/risk_pooling/location_pooling.typ"]
+
+    [[sections.sections.sections]]
+    title = "Product Pooling"
+    files = ["supply_chain/inventory/risk_pooling/product_pooling.typ"]
+
+    [[sections.sections.sections]]
+    title = "Lead-time Pooling"
+    files = ["supply_chain/inventory/risk_pooling/lead_time_pooling.typ"]
 
   [[sections.sections]]
   title = "EOQ"

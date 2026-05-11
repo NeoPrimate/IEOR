@@ -1,7 +1,6 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
-#set math.vec(delim: "[")
+
 
 A special case of #link(<linear-algebra-matrix-multiplication>)[matrix multiplication]: a matrix times a single column vector.
 

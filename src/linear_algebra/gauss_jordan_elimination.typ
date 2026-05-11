@@ -1,6 +1,5 @@
 #import "/lib/imports.typ": *
 
-#set math.mat(delim: "[")
 
 An extension of #link(<linear-algebra-gaussian-elimination>)[Gaussian elimination] that takes the matrix all the way to *Reduced Row Echelon Form* (#link(<linear-algebra-rref>)[RREF]) — not just to upper-triangular #link(<linear-algebra-row-echelon-form>)[REF].
 
