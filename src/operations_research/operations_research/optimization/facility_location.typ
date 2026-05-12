@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A family of combinatorial optimization problems: *where* should warehouses / stores / hospitals / cell towers be located to best serve known demand?
 

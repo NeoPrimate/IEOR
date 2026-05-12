@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A mid-term (3–18 month) production / staffing plan that matches *aggregated* output to *aggregated* demand, deciding levels of:
 

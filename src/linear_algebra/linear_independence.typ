@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 1. Definition of Linear Independence
 

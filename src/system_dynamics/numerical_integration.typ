@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Methods for *numerically integrating* the ODEs of a #link(<system-dynamics-system-dynamics>)[system-dynamics] model. Critical for simulation accuracy.
 

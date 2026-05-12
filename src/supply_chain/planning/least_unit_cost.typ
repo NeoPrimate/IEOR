@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A lot-sizing heuristic similar to #link(<supply-chain-planning-silver-meal>)[Silver-Meal], but minimizing *cost per unit produced* instead of *cost per period covered*.
 

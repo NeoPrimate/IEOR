@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Generalization of the #link(<operations-research-queuing-theory-kingman-vut>)[VUT formula] to *G/G/c* — multi-server queues with general arrival and service distributions.
 

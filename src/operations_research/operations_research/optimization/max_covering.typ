@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 *Max Covering Location Problem (MCLP)*: place exactly $p$ facilities to *maximize the demand covered*. Inversion of #link(<operations-research-optimization-set-covering>)[set covering]: fix count, maximize coverage.
 

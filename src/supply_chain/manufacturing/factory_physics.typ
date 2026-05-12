@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A framework (Hopp & Spearman, *Factory Physics* 1996) that applies *queueing theory* + *Little's Law* + variability analysis to manufacturing. Replaces folk wisdom with quantitative laws.
 

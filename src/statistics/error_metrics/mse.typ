@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 == MSE (Mean Squared Error)
 

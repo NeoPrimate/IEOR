@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Describe a point's position using perpendicular axes.
 

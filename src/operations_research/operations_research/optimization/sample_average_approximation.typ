@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 *Sample Average Approximation* (SAA) — replace an intractable expectation in a #link(<operations-research-optimization-stochastic-programming>)[stochastic program] with a Monte Carlo average over scenarios.
 

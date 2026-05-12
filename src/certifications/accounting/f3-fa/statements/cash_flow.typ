@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 *Cash* *inflows* and *outflows* over a period of time
 

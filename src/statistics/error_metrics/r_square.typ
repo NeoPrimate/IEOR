@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Proportion of variance explained by the model
 

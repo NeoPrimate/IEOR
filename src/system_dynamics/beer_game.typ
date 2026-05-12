@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The *Beer Distribution Game* (MIT Sloan, 1960s) — a tabletop / simulation exercise demonstrating the #link(<supply-chain-bullwhip-effect>)[bullwhip effect]. The most-played management game ever.
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Extends #link(<operations-research-optimization-dynamic-programming>)[deterministic DP] to problems with random transitions. The framework underlying *Markov Decision Processes* (MDPs), reinforcement learning, and most multi-period stochastic optimization in operations.
 

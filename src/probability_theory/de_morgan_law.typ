@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 #show sym.emptyset: set text(font: "Fira Sans")
 

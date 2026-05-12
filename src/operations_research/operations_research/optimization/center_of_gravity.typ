@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The *single-facility continuous-space* location problem: place *one* facility anywhere in the plane to minimize total weighted distance to customers.
 

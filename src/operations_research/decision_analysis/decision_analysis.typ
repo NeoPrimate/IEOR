@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A framework for making *decisions under uncertainty*. Distinguishes:
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 *Multi-Echelon Technique for Recoverable Item Control* (Sherbrooke 1968). A closed-form model for spare-parts networks with *Poisson demand* and *one-for-one (S - 1, S) base-stock policy*.
 

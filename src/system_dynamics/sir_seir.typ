@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Compartmental models of *epidemic spread*. The mathematical foundation of mainstream epidemiology.
 

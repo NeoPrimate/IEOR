@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 *Heijunka* (平準化, "leveling"): a Toyota Production System technique for *smoothing* production by mixing products in a level cadence rather than running batches.
 

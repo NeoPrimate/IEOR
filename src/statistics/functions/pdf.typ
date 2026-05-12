@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 == PDF (Probability Density Function)
 

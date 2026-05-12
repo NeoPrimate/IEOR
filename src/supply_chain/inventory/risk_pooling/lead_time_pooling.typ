@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Reducing safety stock by *shortening or stabilizing lead times*, not by aggregating demand. Substitutes responsiveness for inventory — a different lever than #link(<supply-chain-risk-pooling-location-pooling>)[location pooling].
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Probability of obtaining results at least as extreme as the observed results
 

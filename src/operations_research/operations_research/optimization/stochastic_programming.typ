@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Optimization with *uncertain parameters* whose probability distribution is known. Distinguishes:
 

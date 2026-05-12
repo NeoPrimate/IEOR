@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The standard algorithm for solving *infinite-horizon* Markov Decision Processes. Iteratively applies the #link(<operations-research-optimization-bellman-equation>)[Bellman equation] until the value function converges.
 

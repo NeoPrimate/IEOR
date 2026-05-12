@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 // Shared dataset for ARIMA and ETS worked examples.
 //

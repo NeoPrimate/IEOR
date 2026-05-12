@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The generic structure for inventory / stock control in #link(<system-dynamics-system-dynamics>)[system dynamics]: order based on *expected loss* + *inventory gap* + *supply-line gap*.
 

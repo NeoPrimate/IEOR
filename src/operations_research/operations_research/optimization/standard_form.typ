@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 $
    min quad & c^T x \

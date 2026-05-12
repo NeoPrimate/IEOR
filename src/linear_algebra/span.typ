@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Represents the subspace of the vector space that is "covered" by these vectors through their linear combinations
 

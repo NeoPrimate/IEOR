@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 
 #set math.mat(gap: 1em)

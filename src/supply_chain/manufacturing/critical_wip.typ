@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 $
   W_0 = r_b T_0

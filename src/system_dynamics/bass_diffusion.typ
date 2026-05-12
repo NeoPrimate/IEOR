@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A simple #link(<system-dynamics-system-dynamics>)[SD] model of new-product adoption. Frank Bass (1969). Predicts the characteristic *S-shaped* adoption curve from two parameters.
 

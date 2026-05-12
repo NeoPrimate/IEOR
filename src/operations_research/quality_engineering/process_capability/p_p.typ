@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 == $P_p$ (Process Performance Index)
 

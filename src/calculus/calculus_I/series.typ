@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Given the series $(a_n) = a_1 + a_2 + ...$, then
 

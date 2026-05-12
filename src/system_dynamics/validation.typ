@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Tests for confirming that a #link(<system-dynamics-system-dynamics>)[system-dynamics] model represents reality usefully. Sterman (2000, Ch. 21) gives a canonical 12-test battery, divided into *structure-oriented* and *behavior-oriented* tests.
 

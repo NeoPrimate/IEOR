@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The fundamental supply-chain insight that *combining demand streams reduces variability* — so total safety stock to cover combined demand is less than the sum of safety stocks for each stream alone.
 

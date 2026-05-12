@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 *Capacitated Facility Location Problem*: like #link(<operations-research-optimization-uflp>)[UFLP], but each facility has a maximum capacity it can serve.
 

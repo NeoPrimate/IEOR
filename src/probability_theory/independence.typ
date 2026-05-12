@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Two events are said to be independent if the occurrence of one event does not change our beliefs about the other
 

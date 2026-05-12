@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A lot-sizing heuristic for time-varying demand (Silver & Meal, 1973). Chooses order intervals to minimize *average cost per period* covered.
 

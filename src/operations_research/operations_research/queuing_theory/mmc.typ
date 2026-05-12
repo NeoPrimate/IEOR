@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 - M: Memoryliss interarrival times
 - M: Memoryless service times

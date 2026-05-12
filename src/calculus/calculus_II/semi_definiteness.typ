@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 == Positive/Negative Definite/Indefinite/Semidefinite Matrices
 

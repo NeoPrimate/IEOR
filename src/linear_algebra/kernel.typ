@@ -1,6 +1,5 @@
 #import "/lib/imports.typ": *
-
-
+#show: formatting
 
 For a #link(<linear-algebra-linear-transformation>)[linear transformation] $T: RR^n -> RR^m$, the *kernel* (or *null space* of $T$) is the set of vectors that map to the zero vector:
 

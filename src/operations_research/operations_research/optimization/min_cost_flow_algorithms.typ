@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Algorithms that solve the *minimum-cost flow* problem more efficiently than the generic LP. Given a network with arc capacities $u_(i j)$ and costs $c_(i j)$, find feasible flow satisfying supply / demand at minimum total cost.
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A simple but powerful approximation for *how variability propagates through tandem queues*. The departure-process variability from one station is the arrival variability for the next.
 

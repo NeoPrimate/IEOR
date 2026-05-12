@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 *Expected Monetary Value* (EMV) — the standard decision criterion under #link(<operations-research-decision-analysis-decision-analysis>)[decision analysis]: pick the act with the highest expected payoff.
 

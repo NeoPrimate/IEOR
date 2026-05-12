@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 #let cm(x) = text(fill: red, [$#x$])
 #let rm(x) = text(fill: red, $cancel(#x)$)

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A scalar attached to every *square* matrix that measures the *signed scale factor* the matrix applies to areas / volumes when used as a linear map.
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The *savings algorithm* (Clarke & Wright, 1964) — the classical constructive heuristic for #link(<operations-research-optimization-vrp>)[VRP]. Simple, fast, surprisingly good for capacitated VRP.
 

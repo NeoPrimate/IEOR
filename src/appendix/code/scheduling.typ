@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 #let code = read("../../../code/mathematical_programming/linear_programming/scheduling/model.py")
 #raw(code, lang: "python", block: true)

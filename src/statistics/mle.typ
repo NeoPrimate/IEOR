@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 $
   L(theta) = product_(i=1)^n f(x_i | theta)

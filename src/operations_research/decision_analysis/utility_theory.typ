@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A framework for decisions under *risk aversion*. Instead of maximizing expected payoff (#link(<operations-research-decision-analysis-emv>)[EMV]), maximize *expected utility* — where the utility function $u(x)$ encodes the decision-maker's preferences over wealth.
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Quantifies the spread or dispersion of a set of data points in a dataset
 

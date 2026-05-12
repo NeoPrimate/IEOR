@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 $
   a_1, a_2, a_3, dots

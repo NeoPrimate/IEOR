@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The *standard normal loss function*, denoted $L(z)$ or $G(z)$, is the *expected shortfall above a threshold $z$* for a standard normal random variable $Z ~ cal(N)(0, 1)$:
 

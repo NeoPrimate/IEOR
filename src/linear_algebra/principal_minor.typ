@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 
 A *principal minor* of an $n times n$ matrix $A$ is the #link(<linear-algebra-determinant>)[determinant] of a square submatrix whose diagonal is a subset of $A$'s diagonal.

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 An extension of #link(<supply-chain-multi-echelon-metric>)[METRIC] (Graves 1985) that captures the *variance* of pipeline orders, not just the mean. The pipeline is modeled as *Negative Binomial* instead of Poisson — same mean, larger variance, more realistic for low-stock scenarios.
 

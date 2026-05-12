@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 *Master Production Schedule* (MPS): the *disaggregated* version of #link(<supply-chain-planning-aggregate-planning>)[aggregate planning]. Specifies how many of *each individual product* to make in each *week* (or shorter bucket).
 

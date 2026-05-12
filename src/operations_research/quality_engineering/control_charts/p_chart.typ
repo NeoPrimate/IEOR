@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The p-chart monitors the proportion of defectives in each sample, accounting for variable sample sizes.
 

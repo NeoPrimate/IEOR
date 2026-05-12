@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Determine if a sample is drawn from a population with a specific distribution. 
 

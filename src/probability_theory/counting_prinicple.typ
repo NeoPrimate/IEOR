@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Count the total number of possible outcomes in a multi-step process
 

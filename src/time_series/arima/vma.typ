@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 #import "./summary.typ": cMA
 #import "../_data.typ" as data

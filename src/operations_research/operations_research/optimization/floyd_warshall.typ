@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 *All-pairs shortest path* algorithm — finds the shortest distance from every node to every other node in $O(V^3)$.
 

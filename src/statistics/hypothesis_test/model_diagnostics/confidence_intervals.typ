@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Range within which we can be confident that the true value (population parameter) lies, based on the sample data
 

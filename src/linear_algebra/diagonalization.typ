@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 
 A square matrix $A$ is *diagonalizable* if it can be written as

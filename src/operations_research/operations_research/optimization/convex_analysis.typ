@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 #show math.equation.where(block: false): set text(12pt)
 

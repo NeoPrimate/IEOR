@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Given a connected, undirected, weighted graph, find a *spanning tree* (acyclic connected subgraph touching every vertex) of minimum total edge weight.
 

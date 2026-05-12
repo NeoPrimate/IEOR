@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 
 When you reduce an #link(<linear-algebra-augmented-matrix>)[augmented matrix] $[A | accent(b, arrow)]$ to #link(<linear-algebra-row-echelon-form>)[REF], rows of all zeros (or zero coefficients with non-zero RHS) signal one of three structural situations.

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 = Supply Chains, Demand Management, and Forecasting
 

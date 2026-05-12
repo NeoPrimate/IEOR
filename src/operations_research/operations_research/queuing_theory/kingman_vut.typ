@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A foundational approximation for the *G/G/1* queue (general arrival distribution, general service distribution, single server). The VUT equation:
 

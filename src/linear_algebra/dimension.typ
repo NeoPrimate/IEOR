@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The *dimension* of a #link(<linear-algebra-vector-space>)[vector space] $V$ is the number of vectors in any #link(<linear-algebra-basis>)[basis] of $V$.
 

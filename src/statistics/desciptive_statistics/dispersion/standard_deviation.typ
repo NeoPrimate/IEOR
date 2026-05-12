@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Quantifies the amount of variation or dispersion in a set of data points
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Convert a matrix into its row echelon form (REF) or reduced row echelon form (RREF)
 

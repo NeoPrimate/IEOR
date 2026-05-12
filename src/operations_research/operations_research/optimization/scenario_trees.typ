@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The data structure that represents multi-stage uncertainty in #link(<operations-research-optimization-stochastic-programming>)[stochastic programming]. A *branching tree* where each node represents a state of information at a point in time.
 

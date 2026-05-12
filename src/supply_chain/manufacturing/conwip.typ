@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 *Constant Work-In-Process*: a production-control discipline that caps WIP at a constant level $w$. New work enters only when finished work exits — a *pull* system but with one global cap instead of per-station kanbans.
 

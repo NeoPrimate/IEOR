@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A relaxation of #link(<supply-chain-multi-echelon-graves-willems>)[Graves-Willems guaranteed-service] that allows *random wait times* upstream when stockouts occur. Originated with Lee & Billington (1993) and Ettl et al. (2000).
 

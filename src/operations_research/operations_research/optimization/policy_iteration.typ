@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 An alternative to #link(<operations-research-optimization-value-iteration>)[value iteration] for infinite-horizon MDPs. Alternates between *evaluating* the current policy and *improving* it.
 

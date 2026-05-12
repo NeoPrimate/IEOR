@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 #set math.equation(numbering: "(1)")
 #show math.equation: it => {

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A discipline for modeling and simulating *complex dynamic systems* with *feedback*. Developed by Jay Forrester (MIT, 1956) to understand industrial dynamics, urban dynamics, and social systems. Codified by John Sterman (*Business Dynamics*, 2000).
 

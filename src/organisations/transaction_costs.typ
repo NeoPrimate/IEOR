@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 // @coase1937 @williamson1975 @williamson1985
 

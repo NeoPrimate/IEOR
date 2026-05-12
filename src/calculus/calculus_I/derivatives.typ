@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 
 Measures the instantaneous rate of change of a function

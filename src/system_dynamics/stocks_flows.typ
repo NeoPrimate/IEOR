@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The foundation of #link(<system-dynamics-system-dynamics>)[system dynamics] modeling. Two element types:
 

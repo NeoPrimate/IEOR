@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The empirical observation that *cost or time per unit decreases by a constant percentage* every time cumulative production doubles. Discovered by T. P. Wright (1936) studying aircraft production at Curtiss-Wright.
 

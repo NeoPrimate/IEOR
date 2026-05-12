@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Non-redundant set of vectors that span $RR^n$
 

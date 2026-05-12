@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 *Distribution Requirements Planning* (DRP): MRP applied to the *distribution side* of the supply chain. Plans replenishment of regional warehouses / DCs / retail stores from upstream sources.
 

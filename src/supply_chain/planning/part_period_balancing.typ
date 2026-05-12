@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A lot-sizing heuristic (DeMatteis, 1968) based on the *EOQ balance condition*: at the EOQ optimum, ordering cost equals holding cost. Replicate this for time-varying demand.
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Holding inventory at *one central location* (or fewer central locations) instead of at every demand point. The simplest and most direct application of #link(<supply-chain-risk-pooling-square-root-law>)[risk pooling].
 

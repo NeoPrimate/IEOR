@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The standard algorithm for solving finite-horizon #link(<operations-research-optimization-dynamic-programming>)[dynamic programming] problems. Computes the optimal cost-to-go $J_t (s)$ from the back ($t = T$) toward the start ($t = 0$).
 

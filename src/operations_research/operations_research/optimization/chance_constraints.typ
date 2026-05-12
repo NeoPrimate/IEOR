@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Constraints required to hold *with high probability* rather than always. Useful when:
 

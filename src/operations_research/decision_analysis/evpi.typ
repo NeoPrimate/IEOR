@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 *Expected Value of Perfect Information* (EVPI) — how much more you'd earn by *knowing the state of nature in advance*. The upper bound on what information is worth.
 

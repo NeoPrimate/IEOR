@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 *Material Requirements Planning* (MRP): explodes the #link(<supply-chain-planning-mps>)[MPS] into time-phased requirements for *every part / component / material* needed to make the planned products.
 

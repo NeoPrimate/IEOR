@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A *continuous-approximation* approach to large-scale routing and logistics design (Daganzo, 1984+). Replaces discrete combinatorial optimization with closed-form formulas — sacrifices exactness for *insight* and *fast strategic design*.
 

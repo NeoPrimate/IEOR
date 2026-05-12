@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Time lags between cause and effect. Critical for explaining oscillation and instability in #link(<system-dynamics-feedback-loops>)[feedback systems].
 

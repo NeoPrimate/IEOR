@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 == Balance Sheet (Statement of Financial Position)
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Compares the means of three or more groups based on one independent variable
 

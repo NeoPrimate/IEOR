@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Measures the percentage of orders delivered to customers in full, on time, and without any damage
 

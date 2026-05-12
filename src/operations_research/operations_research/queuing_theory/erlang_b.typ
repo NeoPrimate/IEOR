@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The *Erlang B formula*: probability that all servers in an M/M/c/c queue (Poisson arrivals, exponential service, $c$ servers, $c$ capacity = no queue) are busy. Arriving customers facing all-busy are *blocked / lost*.
 

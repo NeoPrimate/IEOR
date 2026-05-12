@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The *Erlang C formula*: probability that an arriving customer has to *wait* in an M/M/c queue (Poisson arrivals, exponential service, $c$ servers, infinite buffer).
 

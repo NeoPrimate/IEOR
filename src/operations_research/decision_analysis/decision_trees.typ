@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A *decision tree* is the standard graphical model for #link(<operations-research-decision-analysis-decision-analysis>)[decision analysis]. Branches represent decisions or random outcomes; leaves carry payoffs; the tree's root is "now".
 

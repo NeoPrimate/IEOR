@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A method for solving multi-stage decision problems by breaking them into overlapping sub-problems, each solved once and reused.
 

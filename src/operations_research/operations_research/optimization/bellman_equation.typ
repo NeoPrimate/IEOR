@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The recursion at the heart of #link(<operations-research-optimization-dynamic-programming>)[dynamic programming]. Defines the optimal cost-to-go $J_t (s)$ — minimum cost to complete the problem from stage $t$ in state $s$ — as a function of cost-to-go from the next stage.
 

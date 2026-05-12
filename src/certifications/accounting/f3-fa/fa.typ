@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 #let bent-edge(from, to, ..args) = {
   let midpoint = (from, 50%, to)

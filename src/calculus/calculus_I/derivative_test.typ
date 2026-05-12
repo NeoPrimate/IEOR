@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Find critical points by solving $f'(x) = 0$
 

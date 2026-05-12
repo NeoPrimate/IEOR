@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 *Expected Value of Sample Information* (EVSI) — value of *imperfect* information, like a market survey that updates (but doesn't fully reveal) the state of nature.
 

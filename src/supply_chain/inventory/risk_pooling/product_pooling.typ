@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Reducing inventory by *sharing parts / components across product variants* rather than holding stock for each finished SKU separately. Two main mechanisms:
 

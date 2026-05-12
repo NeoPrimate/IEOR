@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A classical LP: ship supply from $m$ sources to $n$ destinations at minimum cost.
 

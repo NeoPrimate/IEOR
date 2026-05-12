@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 *Uncapacitated Facility Location Problem*: open a subset of candidate facilities and assign each customer to one open facility, minimizing fixed + transport costs. No capacity limits.
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Let $f: [a, b] arrow RR$ be a function that satisfies the following conditions:
 

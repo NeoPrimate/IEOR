@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 #show math.equation: set text(5pt)
 #set text(size: 7pt)

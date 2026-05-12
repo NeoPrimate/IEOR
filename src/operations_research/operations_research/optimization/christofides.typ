@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A $3/2$-approximation algorithm for the *metric* #link(<operations-research-optimization-tsp>)[TSP] — produces tours guaranteed within $1.5 times$ optimal.
 

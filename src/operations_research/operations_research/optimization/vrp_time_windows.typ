@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 *VRP with Time Windows* (VRPTW): each customer $i$ specifies a *time window* $[a_i, b_i]$ during which service must begin.
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Average of *every* observation since the start of the series. The expanding-window endpoint of the moving-averages axis.
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Middle value in a set of values when they are arranged in ascending or descending order
 

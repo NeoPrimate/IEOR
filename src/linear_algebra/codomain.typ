@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 For a function $f: X -> Y$, the *codomain* is the set $Y$ where outputs are declared to live — though outputs don't necessarily fill it.
 

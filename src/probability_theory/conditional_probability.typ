@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Probability of $A$ given that $B$ has occurred
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The task of allocating work to stations on a production line so each station's work time is below the #link(<supply-chain-manufacturing-takt-time>)[takt time], minimizing idle time and station count.
 

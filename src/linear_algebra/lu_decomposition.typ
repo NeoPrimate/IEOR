@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Given a matrix $A$, LU decomposition aims to express $A$ as:
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 - Arrival rate ($lambda$): Average number of customers arriving per unit of time
 

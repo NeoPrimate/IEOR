@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A specialization of the #link(<operations-research-optimization-simplex-method>)[simplex method] for network flow problems (transportation, transshipment, min-cost flow). Exploits the *tree structure* of basic feasible solutions for $50-100times$ speed-up over generic simplex.
 

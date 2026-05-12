@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A *frequency-domain* representation of a time series. Decompose the series into a sum of sines and cosines at different frequencies. Useful for finding *dominant cycles* that aren't obvious in the time-domain view.
 

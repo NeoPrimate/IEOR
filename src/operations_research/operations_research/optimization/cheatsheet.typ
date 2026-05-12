@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 // #set page(margin: 0.5cm) — paged-only, can't apply inside bundle's document() container
 

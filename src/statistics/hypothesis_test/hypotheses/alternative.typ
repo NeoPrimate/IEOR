@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 === Alternative ($H_1$ or $H_a$)
 

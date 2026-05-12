@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The simplest #link(<operations-research-optimization-stochastic-programming>)[stochastic program]: decide $x$ now, observe random $xi$, then adapt with second-stage decision $y$.
 

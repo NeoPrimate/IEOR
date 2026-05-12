@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 When a function is not explicitly solved for one variable in terms of another. E.g.: \
 

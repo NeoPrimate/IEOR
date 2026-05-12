@@ -18,6 +18,25 @@
 
   set text(font: "Helvetica")
 
+  // Gracefully degrade #link(<label>)[body] when the label isn't in scope —
+  // e.g. when previewing a chapter in isolation, where labels created by
+  // main.typ's render() recursion don't exist. The user `show link:` rule
+  // runs before typst's built-in LINK_RULE (typst-layout/src/rules.rs),
+  // which is what calls resolve_early() and emits the "label does not exist"
+  // diagnostic. Returning `it.body` instead of `it` for missing labels means
+  // no LinkElem reaches the built-in rule, so no diagnostic fires. In the
+  // full-book compile every label resolves and the rule falls through to it.
+  // Revisit when https://github.com/typst/typst/issues/4035 lands — typst
+  // is adding first-class support for optional/soft links that would make
+  // this manual fallback unnecessary.
+  show link: it => context {
+    if type(it.dest) == label and query(it.dest).len() == 0 {
+      it.body
+    } else {
+      it
+    }
+  }
+
   set list(indent: 30pt)
   show strong: set text(blue.darken(25%))
   set math.cases(gap: 1em)

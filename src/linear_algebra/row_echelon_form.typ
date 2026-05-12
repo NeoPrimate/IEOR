@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 
 A matrix is in *Row Echelon Form (REF)* if it satisfies all of:

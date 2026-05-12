@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 For any production line with bottleneck rate $r_b$, raw processing time $T_0$, and WIP level $w$, throughput is bounded by three curves (Hopp & Spearman). Real lines fall between these curves.
 

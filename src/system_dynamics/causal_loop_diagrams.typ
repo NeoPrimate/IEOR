@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A *qualitative* diagram showing causal relationships between variables in a system. Used for understanding feedback structure without building a quantitative model.
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A two-stock system with delay between input and output. The classic *oscillator* structure in #link(<system-dynamics-system-dynamics>)[system dynamics].
 

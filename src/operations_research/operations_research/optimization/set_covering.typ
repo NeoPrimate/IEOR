@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 *Set Covering Location Problem (LSCP)*: minimize the *number* of facilities needed to cover every customer at least once. "Cover" = customer is within an acceptable distance $d_("max")$ of some facility.
 

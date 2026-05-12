@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Describe a point's position using a distance from the origin and an angle from a reference direction.
 

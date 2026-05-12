@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 == MAPE (Mean Absolute Percentage Error)
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 
 For an $n times n$ matrix $A$, the *characteristic polynomial* is:

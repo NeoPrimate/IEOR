@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 For $N$ independent demand sources with identical mean $mu$ and standard deviation $sigma$, the standard deviation of total demand grows with $sqrt(N)$ (not $N$). This is the *square-root law* — the central result of #link(<supply-chain-risk-pooling-risk-pooling>)[risk pooling].
 

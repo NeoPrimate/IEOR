@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Two complementary metrics for *how much uncertainty modeling adds* to a decision problem:
 

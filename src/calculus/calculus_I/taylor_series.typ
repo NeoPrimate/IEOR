@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 #title_1[Taylor Series (Expansion)]
 

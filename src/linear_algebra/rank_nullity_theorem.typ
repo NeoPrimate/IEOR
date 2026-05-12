@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 For a #link(<linear-algebra-linear-transformation>)[linear transformation] $T: V -> W$ between finite-dimensional vector spaces:
 

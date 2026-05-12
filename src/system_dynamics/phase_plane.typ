@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A graphical method for analyzing 2-state dynamical systems. Plot the two state variables on axes; the system's trajectory traces a curve in this plane.
 

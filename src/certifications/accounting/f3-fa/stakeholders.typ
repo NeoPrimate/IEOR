@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Identify the *users* of financial statements and state and differentiate between their *information needs*.
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Cost or benefit that affects a third party who is not involved in the economic transaction
 

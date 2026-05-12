@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 
 The *transpose* $A^T$ of a matrix $A$ flips it across its main diagonal — rows become columns:

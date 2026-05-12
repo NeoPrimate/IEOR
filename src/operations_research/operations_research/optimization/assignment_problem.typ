@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The special case of the #link(<operations-research-optimization-transportation-problem>)[transportation problem] where $n$ agents are assigned to $n$ tasks one-to-one.
 

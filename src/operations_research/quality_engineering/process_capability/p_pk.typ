@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 == $P_(p k)$ (Process Performance Index with Centering)
 

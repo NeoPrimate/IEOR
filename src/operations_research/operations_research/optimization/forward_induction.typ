@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The dual of #link(<operations-research-optimization-backward-induction>)[backward induction]. Instead of computing the optimal cost-*from* each state, compute the optimal cost *to arrive at* each state from $s_0$.
 

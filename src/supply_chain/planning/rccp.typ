@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 *Rough-Cut Capacity Planning* (RCCP): a *feasibility check* on the #link(<supply-chain-planning-mps>)[MPS]. Estimates whether key resources (workforce, machines, materials) can support the planned production *before* committing to MRP.
 

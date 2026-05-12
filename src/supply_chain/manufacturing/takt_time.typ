@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The *pace of production* needed to match customer demand. From German *Takt* (beat, rhythm).
 

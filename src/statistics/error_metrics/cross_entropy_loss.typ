@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 == Cross-Entropy Loss (Log Loss)
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 
 A square matrix in which all entries on one side of the main diagonal are zero.

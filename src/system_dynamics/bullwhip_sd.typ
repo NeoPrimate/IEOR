@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The *quantitative* analysis of supply-chain order amplification, from the system-dynamics perspective. Closed-form result by Chen, Drezner, Ryan, Simchi-Levi (2000) for the *order-up-to* (OUT) policy with AR(1) demand.
 

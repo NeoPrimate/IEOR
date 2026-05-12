@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 
 Every real matrix $A$ — square or rectangular, full-rank or rank-deficient — has a *Singular Value Decomposition*:

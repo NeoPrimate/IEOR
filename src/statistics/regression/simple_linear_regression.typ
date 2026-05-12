@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 $
   y = beta_0 + beta_1 x_1 + epsilon

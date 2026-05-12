@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Operators that compute smoothed (averaged) versions of input signals. Implemented as #link(<system-dynamics-delays>)[exponential delays] but used to model *perception* rather than physical transit.
 

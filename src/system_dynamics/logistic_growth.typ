@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The simplest *limits-to-growth* model. A population (or any quantity) grows exponentially when small, then saturates as it approaches a *carrying capacity* $K$.
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 For a function $f: X -> Y$, the *domain* is the set $X$ of inputs.
 

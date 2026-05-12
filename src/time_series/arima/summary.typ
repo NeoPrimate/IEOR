@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 // =============================================================
 // ARIMA family — 11 models in operator (backshift) notation

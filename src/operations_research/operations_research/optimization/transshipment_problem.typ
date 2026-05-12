@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Generalization of the #link(<operations-research-optimization-transportation-problem>)[transportation problem] allowing *intermediate transshipment nodes* — locations that neither produce nor consume, but pass flow through.
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The generalization of the #link(<supply-chain-risk-pooling-square-root-law>)[square-root law] to demand sources with non-zero pairwise correlation. The crucial formula:
 

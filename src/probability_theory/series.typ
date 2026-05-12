@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 $
   sum_(i=1)^infinity a_i = lim_(n arrow infinity) sum_(i=1)^n a_i

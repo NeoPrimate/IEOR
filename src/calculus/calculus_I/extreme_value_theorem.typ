@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The Extreme Value Theorem states that if a function $f(x)$ is continuous on a closed interval $[a,b]$, then $f(x)$ must attain both a maximum and a minimum value within that interval. This means there exist points $c, d in [a, b]$ such that:
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The *Vehicle Routing Problem*: given a fleet of vehicles based at a depot, serve a set of customers with minimum total cost (distance / time). Generalization of #link(<operations-research-optimization-tsp>)[TSP] to multiple vehicles.
 

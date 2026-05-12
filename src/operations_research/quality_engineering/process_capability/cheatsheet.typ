@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 #table(
   columns: range(5).map(_ => auto),

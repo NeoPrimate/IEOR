@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Decompose a time series $y_t$ into four components that *add up* (or *multiply*) back to the original:
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Two #link(<linear-algebra-planes>)[planes] in $RR^3$ are either:
 - *Identical* — distance $0$

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A scalar that measures the *length* (or *magnitude*) of a vector.
 

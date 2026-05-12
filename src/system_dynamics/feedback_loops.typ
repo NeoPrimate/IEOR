@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Closed causal chains where an effect comes back to influence its cause. The engine of dynamic behavior in #link(<system-dynamics-system-dynamics>)[system dynamics].
 

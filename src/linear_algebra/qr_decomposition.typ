@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 
 Every $m times n$ matrix $A$ with $m >= n$ can be factored as:

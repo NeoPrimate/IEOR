@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Five classical criteria for decisions under uncertainty when *probabilities are unknown* or *deeply uncertain* (probability estimates aren't trustworthy). Used when #link(<operations-research-decision-analysis-emv>)[EMV] doesn't apply.
 

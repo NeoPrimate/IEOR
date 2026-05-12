@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A supply chain with *multiple stocking points* between supply and demand — e.g., factory → central warehouse → regional DCs → retail stores. Multi-echelon inventory theory studies how to position stock optimally across these levels.
 

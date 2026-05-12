@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The classical $O(n^3)$ algorithm for the #link(<operations-research-optimization-assignment-problem>)[assignment problem]. Kuhn (1955), based on work by Hungarian mathematicians Egerváry & König.
 

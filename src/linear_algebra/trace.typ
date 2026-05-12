@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 
 The *trace* of a square matrix $A$ is the sum of its main diagonal entries:

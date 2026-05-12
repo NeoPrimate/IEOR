@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 == MSLE (Mean Squared Logarithmic Error)
 

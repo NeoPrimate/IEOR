@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 *$p$-Median Problem*: place exactly $p$ facilities among candidates to minimize the *total* assigned distance / cost. No fixed facility cost — the constraint is "exactly $p$".
 

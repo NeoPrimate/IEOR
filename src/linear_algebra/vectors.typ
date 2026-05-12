@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 $
   accent(v, arrow) = vec(x_1, dots.v, x_n)

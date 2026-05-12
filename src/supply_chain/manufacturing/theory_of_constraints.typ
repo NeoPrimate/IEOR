@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 *Theory of Constraints* (TOC, Goldratt 1984): a management philosophy that says system performance is determined by the *bottleneck* (the constraint). Identify the bottleneck, exploit it, subordinate everything else.
 

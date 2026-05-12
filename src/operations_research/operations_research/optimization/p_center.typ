@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 *$p$-Center Problem*: place $p$ facilities to *minimize the maximum* distance any customer must travel to its nearest facility. A *minimax* objective — focuses on the worst-served customer, not average.
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 
 A matrix is in *Reduced Row Echelon Form* (RREF) if it satisfies all of the following:

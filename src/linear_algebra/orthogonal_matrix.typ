@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 
 A square matrix $Q$ whose #link(<linear-algebra-transpose>)[transpose] is its #link(<linear-algebra-matrix-inverse>)[inverse]:

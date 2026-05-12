@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A critical point of a function $f(x)$ is a point in the domain where either:
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 
 A square matrix that equals its own #link(<linear-algebra-transpose>)[transpose]:

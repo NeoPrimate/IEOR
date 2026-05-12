@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A simple but effective *local search* heuristic for the #link(<operations-research-optimization-tsp>)[TSP]. Iteratively replaces pairs of edges with a *cheaper* pair until no improvement is possible.
 

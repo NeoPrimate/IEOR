@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The classical Toyota Production System formula for sizing kanban (replenishment-authorization cards) between two production stages:
 

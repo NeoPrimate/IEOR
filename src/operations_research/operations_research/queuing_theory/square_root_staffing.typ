@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 A simple rule of thumb for sizing call-center / service-system capacity. *Halfin-Whitt* asymptotic regime (1981).
 

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 *Erlang A* (also written M/M/c+M): M/M/c queue with *abandonment* — customers leave after waiting too long. More realistic for call centers, where impatient callers hang up.
 

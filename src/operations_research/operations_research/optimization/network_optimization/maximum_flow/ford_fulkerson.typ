@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Find augmenting paths in the network and increase the flow until no more augmenting paths can be found
 

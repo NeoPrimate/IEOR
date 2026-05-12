@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 $
 f(x bar lambda) = lambda e^(- lambda x)

@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 Evaluating limits that result in a indeterminite form like $0 / 0$ or $infinity / infinity$
 

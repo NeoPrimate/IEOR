@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The *guaranteed-service* multi-echelon inventory model (Graves & Willems 2000). Each stage promises a *service time* (max lead time it'll deliver in) to its downstream customer. Safety stocks are placed to make those service times achievable given bounded demand.
 

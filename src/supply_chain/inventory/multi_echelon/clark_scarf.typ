@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The foundational result for *stochastic* multi-echelon inventory in serial systems (Clark & Scarf 1960). Shows that the multi-echelon problem decomposes into *independent single-echelon problems* — one per stage, each solved as a #link(<supply-chain-newsvendor-overview>)[newsvendor]-like base-stock problem with an *induced penalty cost*.
 

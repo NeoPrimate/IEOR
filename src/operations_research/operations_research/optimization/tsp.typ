@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 The *Traveling Salesman Problem*: visit $n$ cities exactly once and return to start, minimizing total distance.
 

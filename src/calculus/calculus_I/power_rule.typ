@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#show: formatting
 
 $
    f(x) & = x^colorMath(n, #red), quad quad n eq.not 0 \
