@@ -190,8 +190,6 @@ $
   (dif C) / (dif Q) = c_o dot F(Q) - c_u dot (1 - F(Q))
 $
 
-
-
 == Set the Derivative to Zero
 
 $
@@ -217,7 +215,26 @@ $
 
 == Check It's a Minimum (Not a Maximum)
 
+Take the second derivative of:
 
+$
+  (dif C) / (dif Q) = c_0 dot F(Q) - c_u dot (1 - F(Q))
+$
+
+Using:
+
+$
+  dif / (dif Q) F(Q) = f(Q) \
+  dif / (dif Q) [1 - F(Q)] = -f(Q) \ 
+$
+
+We get:
+
+$
+  (dif^2 C) / (dif Q^2) = c_o dot f(Q) + c_u dot f(Q) = (c_o + c_u) f(Q) gt.eq 0
+$
+
+Since this is non-negative (assuming $f(Q) gt 0$), $C(Q)$ is convex and the critical ratio is the global minimum. 
 
 #code("")[
 ```py
@@ -316,4 +333,14 @@ $
 
 $
   dif / (dif Q) integral_a(Q)^b(Q) h(x, Q) dif x = underbrace(integral_a(Q)^b(Q) (partial h) / (partial Q) dif x, "swap") + underbrace(h(b, Q) dot b'(Q) - h(a, Q) dot a'(Q), "boundary term")
+$
+
+= PDF & CDF
+
+$
+  f(x) = dif / (dif x) F(x)
+$
+
+$
+  F(x) = integral_(-infinity)^x f(t) dif t
 $
