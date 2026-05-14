@@ -267,22 +267,22 @@ article span[role="math"] svg {
   top: -0.15em;
 }
 
-/* Helper titles (proof, definition, code, code_output) */
-article .proof-title, article .definition-title, article .code-title, article .code-output-title {
+/* Helper titles (proof, definition, code_output) */
+article .proof-title, article .definition-title, article .code-output-title {
   margin-top: 1.5em;
   margin-bottom: 0.25em;
   color: var(--accent);
   font-weight: 600;
 }
 
-/* === Examples (collapsible <details>) === */
-article details.example {
+/* === Collapsible blocks: examples + code === */
+article details.example, article details.code {
   border: 1px solid var(--rule);
   border-radius: 4px;
   margin: 1em 0;
   background: var(--shade);
 }
-article details.example > summary {
+article details.example > summary, article details.code > summary {
   cursor: pointer;
   padding: 0.6em 1em;
   font-weight: 600;
@@ -294,20 +294,26 @@ article details.example > summary {
   gap: 0.5em;
 }
 article details.example > summary::-webkit-details-marker,
-article details.example > summary::marker { display: none; content: ""; }
-article details.example > summary::before {
+article details.code > summary::-webkit-details-marker,
+article details.example > summary::marker,
+article details.code > summary::marker { display: none; content: ""; }
+article details.example > summary::before, article details.code > summary::before {
   content: "▶";
   display: inline-block;
   font-size: 0.75em;
   color: var(--muted);
   transition: transform 0.15s;
 }
-article details.example[open] > summary::before { transform: rotate(90deg); }
-article details.example > summary:hover { background: rgba(0,0,0,0.03); }
-article details.example > .example-body {
+article details.example[open] > summary::before,
+article details.code[open] > summary::before { transform: rotate(90deg); }
+article details.example > summary:hover, article details.code > summary:hover { background: rgba(0,0,0,0.03); }
+article details.example > .example-body, article details.code > .code-body {
   padding: 0 1em 1em 1em;
   border-top: 1px solid var(--rule);
 }
+
+/* Code summary shows a filename — render in monospace. */
+article details.code > summary { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 
 /* === Page nav (prev/next at bottom of each page) === */
 .page-nav {

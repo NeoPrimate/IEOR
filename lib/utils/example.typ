@@ -1,4 +1,12 @@
-#let example(title: none, content) = context if target() == "html" {
+// Accepts `#example[body]`, `#example("title")[body]`, or the legacy
+// `#example(title: "title")[body]`. The trailing content block is appended
+// to the positional args list, so we read off `args.pos()` and fall back
+// to the named `title:` for the 48 existing callsites that still use it.
+#let example(..args) = {
+  let p = args.pos()
+  let (pos_title, content) = if p.len() >= 2 { (p.at(0), p.at(1)) } else { (none, p.at(0)) }
+  let title = if pos_title != none { pos_title } else { args.named().at("title", default: none) }
+  context if target() == "html" {
   // Collapsible <details> in HTML — default closed.
   html.elem(
     "details",
@@ -53,4 +61,5 @@
       ],
     ),
   )
+  }
 }
