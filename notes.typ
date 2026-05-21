@@ -1,4 +1,5 @@
 #import "/lib/imports.typ": *
+#import "@local/tystats:0.1.0": norm
 
 - If you don't understand the continuous, try the discrete
 - If you don't understand the multivariate, try the univariate
@@ -60,9 +61,67 @@ Setup:
 
 Consider a serial system with $N$ stages, where stage $N$ faces stochastic customer demand and each replenished from stage $j + 1$ with deterministic lead time $L_j$:
 
-$
-  "Stage" N arrow "Stage" (N - 1) arrow dots arrow "Stage" 1 arrow "External Supplier"
-$
+#let start-x = 0
+#let start-y = 0
+#let spacing = 1
+
+// --- The Auto-Scaling Wrapper ---
+#std.layout(size => context {
+  let diagram-content = fletcher.diagram(
+    node-corner-radius: 4pt,
+    node-fill: luma(97%),
+    node-outset: 1em,
+    node-inset: 1em,
+    spacing: (5.5em, 2.5em), 
+
+    node((start-x + 0*spacing, start-y), [Vendor], name: <vendor>),
+    node((start-x + 4*spacing, start-y), [$S_1$ \ $h_1$], name: <s1>),
+    node((start-x + 3*spacing, start-y), [$S_2$ \ $h_2$], name: <s2>),
+    node((start-x + 2*spacing, start-y), $dots$, name: <dots>),
+    node((start-x + 1*spacing, start-y), [$S_n$ \ $h_n$], name: <sn>),
+    node((start-x + 5*spacing, start-y), [Demand], name: <demand>),
+
+    edge(<vendor>, <sn>, "-|>"),
+    edge(<sn>, <dots>,  "-|>", label: $L_1$),
+    edge(<dots>, <s2>,  "-|>", label: $L_2$),
+    edge(<s2>, <s1>,  "-|>", label: $L_...$),
+    edge(<s1>, <demand>,  "-|>", label: $L_n$),
+
+    edge(<s1>, <s2>, "-|>", label: $G_1$, dash: "dashed", bend: 30deg),
+    edge(<s2>, <dots>, "-|>", label: $G_2$, dash: "dashed", bend: 30deg),
+    edge(<dots>, <sn>, "-|>", label: $G_n$, dash: "dashed", bend: 30deg),
+
+    node((start-x + 4*spacing, start-y + 0.5), [Echelon 1], stroke: none, fill: none, name: <lbl1>),
+    node((start-x + 3*spacing, start-y + 0.9), [Echelon 2], stroke: none, fill: none, name: <lbl2>),
+    node((start-x + 1*spacing, start-y + 1.3), [Echelon $n$], stroke: none, fill: none, name: <lbln>),
+
+    node(
+      enclose: (<s1>, <lbl1>), 
+      stroke: gray + 0.5pt, fill: rgb(0, 0, 0, 4%), 
+      outset: 0.3em, name: <ech1>
+    ),
+    node(
+      enclose: (<s2>, <s1>, <lbl1>, <lbl2>), 
+      stroke: gray + 0.5pt, fill: rgb(0, 0, 0, 4%), 
+      outset: 0.7em, name: <ech2>
+    ),
+    node(
+      enclose: (<sn>, <dots>, <s2>, <s1>, <lbl1>, <lbl2>, <lbln>), 
+      stroke: gray + 0.5pt, fill: rgb(0, 0, 0, 4%), 
+      outset: 1.1em, name: <echn>
+    ),
+  )
+
+  let diagram-width = measure(diagram-content).width
+  let available-width = size.width
+
+  if diagram-width > available-width {
+    let factor = (available-width / diagram-width) * 100%
+    scale(x: factor, y: factor, reflow: true, diagram-content)
+  } else {
+    diagram-content
+  }
+})
 
 = Newsvendor Model
 
@@ -363,6 +422,16 @@ $
 
 = Standard Normal Loss Function
 
+$
+  L(k) = EE[(Z - k)^+]
+$
+
+$L(k)$ is the expected amount by which $Z$ exceeds the threshold $k$:
+- $Z < k$: excess is 0
+- $Z > k$: excess is $Z - k$. Average this across all the ways $Z$ could come in above $k$, weighted by probability 
+
+
+
 #result[
   $
     L(k) = integral_k^infinity (z - k) phi.alt (z) dif z
@@ -374,8 +443,73 @@ $
   $
 ]
 
+We want $EE[max(X - k, 0)]$ - the average excess of $X$ above the threshold $k$, where the excess is *zero* when $X lt.eq k$.
 
+Imaging 2 related quantities:
 
+*Quantity A*: Tail Contribution
+
+Sum up the value of $X$ at each tail outcome, weighted by probability:
+
+$
+  A = integral_k^infinity u dot phi.alt(u) dif u = phi.alt(k)
+$
+
+This is "if $X$ is in the tail, what value does it take, on average - weighted by likelihood?" Note that this counts the *full* value of $u$, not the excess $u - k$.
+
+*Quantity B*: Threshold Contribution
+
+$
+  B = integral_k^infinity k dot phi.alt(u) dif u = k dot [1 - Phi(k)] = k dot "sf"(k)
+$
+
+This is "for every tail outcome, count $k$ once, weighted by probability of being there"
+
+*Subtraction*
+
+Each tail outcome at value $u$ contributes $u$ to A and $k$ to B. So the difference A - B contributes (u - k) per tail outcome - *exactly the excess we want*
+
+$
+  L(k) = A - B = underbrace(integral_k^infinity u phi.alt(u) dif u, "total tail values") - underbrace(integral_k^infinity k phi.alt(u) dif u, "treshold counted across tail")
+$
+
+The subtraction strips off the "baseline up to $k$" porton of each tail outcome, leaving only the part *above* $k$. Without that subtraction, we'd be over counting by $k$ for every tail occurrence.
+
+// #import "@preview/cetz:0.4.2"
+// #import "@preview/cetz-plot:0.1.3"
+
+#let L(k) = norm.pdf(k) - k * (1.0 - norm.cdf(k))
+
+#cetz.canvas({
+  import cetz.draw: *
+
+  cetz-plot.plot.plot(
+    size: (10, 6),
+    x-label: $k$,
+    y-label: $L(k)$,
+    x-tick-step: 1,
+    y-tick-step: 0.5,
+    x-min: -3, x-max: 3,
+    y-min: 0, y-max: 3.2,
+    {
+      cetz-plot.plot.add(
+        domain: (-3, 3),
+        samples: 200,
+        style: (stroke: rgb("#534AB7") + 2pt),
+        k => L(k),
+      )
+
+      // Mark L(0) ≈ 0.399
+      cetz-plot.plot.add(
+        ((0, L(0)),),
+        mark: "o",
+        mark-size: 0.15,
+        mark-style: (fill: rgb("#534AB7"), stroke: none),
+        style: (stroke: none),
+      )
+    }
+  )
+})
 
 #code([$L(k) = phi.alt(k) - k dot (1 - Phi(k))$])[
   ```py
@@ -399,6 +533,111 @@ $
   expected_leftover = Q_star - mu + sigma * L(k_star)
   ```
 ]
+
+#table(
+  columns: 2,
+  inset: 1em,
+  [$ phi.alt(u) $], [PDF],
+  [$ phi.alt'(u) = - u phi.alt(u) $], [Derivative of PDF],
+  [$ u phi.alt(u) = -phi.alt'(u) $], [Negative derivative of PDF],
+)
+
+#let norm_pdf(x, mu, sigma) = {
+  let var = calc.pow(sigma, 2)
+  1.0 / calc.sqrt(2.0 * calc.pi * var) * calc.exp(-calc.pow(x - mu, 2) / (2.0 * var))
+}
+
+#let _phi(x) = norm_pdf(x, 0.0, 1.0)
+#let u_phi(x) = x * _phi(x)
+#let zero(x) = 0.0
+
+#let k = -1.0
+
+// Plot 1: the bell curve ϕ(u) with k marked
+#cetz.canvas({
+  import cetz.draw: *
+  cetz-plot.plot.plot(
+    size: (10, 6),
+    x-label: $u$,
+    y-label: $phi.alt(u)$,
+    x-tick-step: 5,
+    y-tick-step: 1,
+    x-min: -3, x-max: 3,
+    y-min: 0, y-max: 0.45,
+    {
+      cetz-plot.plot.add(
+        domain: (-3, 3),
+        samples: 200,
+        style: (stroke: rgb("#534AB7") + 2pt),
+        x => _phi(x),
+      )
+      cetz-plot.plot.add-vline(k, style: (stroke: red + 1pt))
+    }
+  )
+})
+
+// Plot 2: u·ϕ(u) with tail area from k to ∞ shaded
+#cetz.canvas({
+  import cetz.draw: *
+  cetz-plot.plot.plot(
+    size: (10, 6),
+    x-label: $u$,
+    y-label: $- u dot phi.alt(u)$,
+    x-tick-step: 5,
+    y-tick-step: 1,
+    x-min: -3, x-max: 3,
+    y-min: -0.3, y-max: 0.3,
+    {
+      // Shade tail area between u·ϕ(u) and the x-axis from k to 3
+      cetz-plot.plot.add-fill-between(
+        domain: (k, 3),
+        samples: 100,
+        style: (fill: rgb("#EF9F2799"), stroke: none),
+        x => - u_phi(x),
+        zero,
+      )
+      cetz-plot.plot.add(
+        domain: (-3, 3),
+        samples: 200,
+        style: (stroke: rgb("#534AB7") + 2pt),
+        x => - u_phi(x),
+      )
+      cetz-plot.plot.add-hline(0, style: (stroke: black + 0.5pt))
+      cetz-plot.plot.add-vline(k, style: (stroke: red + 1pt))
+    }
+  )
+})
+
+#cetz.canvas({
+  import cetz.draw: *
+  cetz-plot.plot.plot(
+    size: (10, 6),
+    x-label: $u$,
+    y-label: $u dot phi.alt(u)$,
+    x-tick-step: 5,
+    y-tick-step: 1,
+    x-min: -3, x-max: 3,
+    y-min: -0.3, y-max: 0.3,
+    {
+      // Shade tail area between u·ϕ(u) and the x-axis from k to 3
+      cetz-plot.plot.add-fill-between(
+        domain: (k, 3),
+        samples: 100,
+        style: (fill: rgb("#EF9F2799"), stroke: none),
+        u_phi,
+        zero,
+      )
+      cetz-plot.plot.add(
+        domain: (-3, 3),
+        samples: 200,
+        style: (stroke: rgb("#534AB7") + 2pt),
+        u_phi,
+      )
+      cetz-plot.plot.add-hline(0, style: (stroke: black + 0.5pt))
+      cetz-plot.plot.add-vline(k, style: (stroke: red + 1pt))
+    }
+  )
+})
 
 
 = Differentiating Normal Distribution
@@ -723,3 +962,50 @@ $
 $
   cal(L)(mu, sigma | x_1, dots, x_n) = product_(i=1)^n phi.alt (x_i; mu, sigma)
 $
+
+= Risk Pooling
+
+Combine multiple uncertain things together, the relative uncertainty of the whole tends to be smaller than the uncertainty of the individual pieces.
+
+== The square-root law (independent demands)
+
+For independent demands:
+
+$
+  sigma_"pool"^2 = sigma_1^2 + sigma_2^2 + dots + sigma_n^2
+$
+
+For $n$ identical regions with variance $sigma^2$:
+$
+  sigma_"pool"^2 = n sigma^2 quad => quad sigma_"pool" = sigma sqrt(n)
+$
+
+#example([])[
+  
+]
+
+== Correlated Pooling (dependent demand)
+
+$
+  sigma_"pool"^2 = sum_(i=1)^n sigma_i^2 + 2 sum_(i lt j) rho_(i j) sigma_i sigma_j
+$
+
+- $rho_(i j)$: correlation coefficient between region $i$ and $j$
+- $sigma_i sigma_j$: product of theur standard deviations
+- $sum_(i lt j)$: goes over each pair of regions exactly once
+- Factor of 2: each pair contributes a "cross term" twice when expanding $(X_1 + X_2 + dots + X_n)^2$ - once as $X_i X_j$ and once $X_j X_i$
+
+Three regimes
+
+$
+  sigma_"pool"^2 = 2 sigma^2 (1 + rho)
+$
+
+- $rho = 0$: $sigma_"pool" = sigma sqrt(2)$ (square-root law)
+- $rho = +1$: $sigma_"pool" = 2 sigma$ (no benefit)
+- $rho = -1$: $sigma_"pool" = 0$ (risks cancel)
+
+#example([])[
+  
+]
+

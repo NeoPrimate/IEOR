@@ -1,0 +1,233 @@
+<h2 class="sr-only">Three integrands drawn honestly: A is u times phi of u, B is k times phi of u, L of k is u minus k times phi of u. Each bar is anchored to the x axis at its own true integrand value. The identity A equals B plus L of k holds pointwise as signed numbers.</h2>
+
+<div style="display:flex; align-items:center; gap:12px; margin: 0 0 1rem; font-size:13px; color: var(--color-text-secondary); flex-wrap:wrap;">
+  <label style="display:flex; align-items:center; gap:8px;">Threshold k
+    <input type="range" id="k" min="-2" max="2.5" step="0.05" value="-1.0" style="width:240px;">
+    <span id="kval" style="min-width:40px; text-align:right; color: var(--color-text-primary); font-weight:500;">-1.0</span>
+  </label>
+</div>
+
+<div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:10px; margin-bottom: 1rem;">
+
+<div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 10px;">
+  <div style="font-size:12px; font-weight:500;">A integrand: u·ϕ(u)</div>
+  <svg id="svgA" viewBox="0 0 240 200" width="100%"></svg>
+  <div style="display:flex; justify-content:space-between; margin-top:4px; font-size:11px;">
+    <span style="color: var(--color-text-secondary);">A = ϕ(k) =</span>
+    <span id="Aval" style="font-weight:500;">—</span>
+  </div>
+</div>
+
+<div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 10px;">
+  <div style="font-size:12px; font-weight:500;">B integrand: k·ϕ(u)</div>
+  <svg id="svgB" viewBox="0 0 240 200" width="100%"></svg>
+  <div style="display:flex; justify-content:space-between; margin-top:4px; font-size:11px;">
+    <span style="color: var(--color-text-secondary);">B = k·sf(k) =</span>
+    <span id="Bval" style="font-weight:500;">—</span>
+  </div>
+</div>
+
+<div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 10px;">
+  <div style="font-size:12px; font-weight:500;">L(k) integrand: (u−k)·ϕ(u)</div>
+  <svg id="svgC" viewBox="0 0 240 200" width="100%"></svg>
+  <div style="display:flex; justify-content:space-between; margin-top:4px; font-size:11px;">
+    <span style="color: var(--color-text-secondary);">L(k) =</span>
+    <span id="Lval" style="font-weight:500;">—</span>
+  </div>
+</div>
+
+</div>
+
+<div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 12px;">
+  <div style="font-size:13px; font-weight:500; margin-bottom:4px;">All three integrands overlaid (axis-anchored, transparent)</div>
+  <div style="font-size:11px; color: var(--color-text-secondary); margin-bottom:8px;">Each curve shows its own integrand value at u. At every point, purple = blue + orange (pointwise algebraic identity). When blue is negative and orange is positive, they add to give the purple value.</div>
+  <svg id="svgOverlay" viewBox="0 0 700 280" width="100%"></svg>
+  <div id="checkBox" style="margin-top: 6px; font-size: 11px; color: var(--color-text-secondary); font-family: monospace;"></div>
+</div>
+
+<div style="display:flex; align-items:center; gap:16px; margin-top:8px; font-size:12px; color: var(--color-text-secondary); flex-wrap:wrap;">
+  <span style="display:inline-flex; align-items:center; gap:6px;"><span style="display:inline-block; width:14px; height:10px; background:#534AB7; opacity:0.5;"></span>u·ϕ(u) (A)</span>
+  <span style="display:inline-flex; align-items:center; gap:6px;"><span style="display:inline-block; width:14px; height:10px; background:#185FA5; opacity:0.5;"></span>k·ϕ(u) (B)</span>
+  <span style="display:inline-flex; align-items:center; gap:6px;"><span style="display:inline-block; width:14px; height:10px; background:#EF9F27; opacity:0.6;"></span>(u−k)·ϕ(u) (L)</span>
+</div>
+
+<script>
+(function(){
+  const SQRT2PI = Math.sqrt(2 * Math.PI);
+  function phi(u){ return Math.exp(-u*u/2) / SQRT2PI; }
+  function Phi(u){
+    const t = 1/(1+0.2316419*Math.abs(u));
+    const d = 0.3989423*Math.exp(-u*u/2);
+    const p = d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));
+    return u >= 0 ? 1-p : p;
+  }
+  function Lfn(k){ return phi(k) - k*(1-Phi(k)); }
+
+  const slider = document.getElementById('k');
+  const kvalEl = document.getElementById('kval');
+  const Aval = document.getElementById('Aval');
+  const Bval = document.getElementById('Bval');
+  const Lval = document.getElementById('Lval');
+
+  function drawSmall(svgId, kind){
+    return function(k){
+      const svg = document.getElementById(svgId);
+      const W = 240, H = 200;
+      const left = 30, right = W - 10, top = 14, bot = H - 24;
+      const xMin = -3, xMax = 3.2;
+      const xToPx = u => left + (u - xMin)/(xMax - xMin) * (right - left);
+      const yMax = 0.6, yMin = -0.6;
+      const yToPx = y => bot - (y - yMin)/(yMax - yMin) * (bot - top);
+      const zeroY = yToPx(0);
+
+      let h = '';
+      h += `<line x1="${left}" y1="${zeroY}" x2="${right}" y2="${zeroY}" stroke="var(--color-text-tertiary)" stroke-width="0.6"/>`;
+      h += `<line x1="${left}" y1="${top}" x2="${left}" y2="${bot}" stroke="var(--color-text-tertiary)" stroke-width="0.5"/>`;
+      for (const t of [-2, -1, 0, 1, 2]){
+        const x = xToPx(t);
+        h += `<text x="${x}" y="${bot + 12}" text-anchor="middle" font-size="9" fill="var(--color-text-secondary)">${t}</text>`;
+      }
+      for (const t of [-0.4, -0.2, 0.2, 0.4]){
+        const y = yToPx(t);
+        h += `<text x="${left - 4}" y="${y+3}" text-anchor="end" font-size="8" fill="var(--color-text-secondary)">${t}</text>`;
+      }
+
+      const N = 120;
+      const du = (xMax - xMin) / N;
+      for (let i = 0; i < N; i++){
+        const u = xMin + (i + 0.5)*du;
+        const p = phi(u);
+        const inTail = u > k;
+        let value;
+        if (kind === 'A') value = u * p;
+        else if (kind === 'B') value = k * p;
+        else value = (u - k) * p;
+
+        if (kind === 'C' && !inTail) continue;
+        if (Math.abs(value) < 1e-9) continue;
+
+        const color = !inTail ? '#888780' : (kind === 'A' ? '#534AB7' : (kind === 'B' ? '#185FA5' : '#EF9F27'));
+        const opacity = !inTail ? 0.18 : (kind === 'C' ? 0.9 : 0.75);
+
+        const x = xToPx(u);
+        const w = (xToPx(u + du) - xToPx(u)) + 0.4;
+        const yV = yToPx(value);
+        const yA = Math.min(zeroY, yV);
+        const hRect = Math.abs(yV - zeroY);
+        h += `<rect x="${x - w/2}" y="${yA}" width="${w}" height="${hRect}" fill="${color}" fill-opacity="${opacity}"/>`;
+      }
+
+      const kx = xToPx(k);
+      h += `<line x1="${kx}" y1="${top}" x2="${kx}" y2="${bot}" stroke="#E24B4A" stroke-width="1.2" stroke-dasharray="3 3"/>`;
+      h += `<text x="${kx}" y="${top - 2}" text-anchor="middle" font-size="10" font-weight="500" fill="#A32D2D">k</text>`;
+
+      svg.innerHTML = h;
+    };
+  }
+
+  const drawA = drawSmall('svgA', 'A');
+  const drawB = drawSmall('svgB', 'B');
+  const drawC = drawSmall('svgC', 'C');
+
+  function drawOverlay(k){
+    const svg = document.getElementById('svgOverlay');
+    const W = 700, H = 280;
+    const left = 50, right = W - 20, top = 16, bot = H - 36;
+    const xMin = -3, xMax = 3.5;
+    const xToPx = u => left + (u - xMin)/(xMax - xMin) * (right - left);
+    const yMax = 0.7, yMin = -0.7;
+    const yToPx = y => bot - (y - yMin)/(yMax - yMin) * (bot - top);
+    const zeroY = yToPx(0);
+
+    let h = '';
+    h += `<line x1="${left}" y1="${zeroY}" x2="${right}" y2="${zeroY}" stroke="var(--color-text-tertiary)" stroke-width="0.7"/>`;
+    h += `<line x1="${left}" y1="${top}" x2="${left}" y2="${bot}" stroke="var(--color-text-tertiary)" stroke-width="0.5"/>`;
+    for (const t of [-2, -1, 0, 1, 2, 3]){
+      const x = xToPx(t);
+      h += `<line x1="${x}" y1="${zeroY}" x2="${x}" y2="${zeroY+4}" stroke="var(--color-text-tertiary)" stroke-width="0.5"/>`;
+      h += `<text x="${x}" y="${bot + 14}" text-anchor="middle" font-size="11" fill="var(--color-text-secondary)">${t}</text>`;
+    }
+    h += `<text x="${(left+right)/2}" y="${H - 8}" text-anchor="middle" font-size="11" fill="var(--color-text-secondary)">u</text>`;
+    for (const t of [-0.6, -0.4, -0.2, 0.2, 0.4, 0.6]){
+      const y = yToPx(t);
+      h += `<line x1="${left-3}" y1="${y}" x2="${left}" y2="${y}" stroke="var(--color-text-tertiary)" stroke-width="0.4"/>`;
+      h += `<text x="${left - 5}" y="${y+3}" text-anchor="end" font-size="9" fill="var(--color-text-secondary)">${t}</text>`;
+    }
+
+    function shadedPath(fn, startU, endU, color, opacity){
+      const N = 200;
+      let d = `M ${xToPx(startU).toFixed(1)} ${zeroY.toFixed(1)} `;
+      for (let i = 0; i <= N; i++){
+        const u = startU + (endU - startU)*i/N;
+        const x = xToPx(u);
+        const y = yToPx(fn(u));
+        d += `L ${x.toFixed(1)} ${y.toFixed(1)} `;
+      }
+      d += `L ${xToPx(endU).toFixed(1)} ${zeroY.toFixed(1)} Z`;
+      return `<path d="${d}" fill="${color}" fill-opacity="${opacity}"/>`;
+    }
+
+    h += shadedPath(u => u*phi(u), k, xMax, '#534AB7', 0.35);
+    h += shadedPath(u => k*phi(u), k, xMax, '#185FA5', 0.4);
+    h += shadedPath(u => (u-k)*phi(u), k, xMax, '#EF9F27', 0.55);
+
+    function curvePath(fn, color, width, dash){
+      let d = '';
+      const N = 220;
+      for (let i = 0; i <= N; i++){
+        const u = xMin + (xMax - xMin) * i / N;
+        const x = xToPx(u);
+        const y = yToPx(fn(u));
+        d += (i === 0 ? 'M' : 'L') + x.toFixed(1) + ' ' + y.toFixed(1) + ' ';
+      }
+      const dashAttr = dash ? `stroke-dasharray="${dash}"` : '';
+      return `<path d="${d}" fill="none" stroke="${color}" stroke-width="${width}" ${dashAttr} stroke-linejoin="round"/>`;
+    }
+    h += curvePath(u => u*phi(u), '#534AB7', 1.8);
+    h += curvePath(u => k*phi(u), '#185FA5', 1.8);
+    h += curvePath(u => (u > k ? (u-k)*phi(u) : 0), '#EF9F27', 2);
+
+    const kx = xToPx(k);
+    h += `<line x1="${kx}" y1="${top}" x2="${kx}" y2="${bot}" stroke="#E24B4A" stroke-width="1.3" stroke-dasharray="4 3"/>`;
+    h += `<text x="${kx}" y="${top - 2}" text-anchor="middle" font-size="12" font-weight="500" fill="#A32D2D">k = ${k.toFixed(2)}</text>`;
+
+    const sampleUs = [-0.5, 0, 0.5, 1, 1.5].filter(u => u > k + 0.05 && u < xMax - 0.2);
+    if (sampleUs.length > 0){
+      const u = sampleUs[Math.floor(sampleUs.length/2)];
+      const yPurple = yToPx(u*phi(u));
+      const yBlue = yToPx(k*phi(u));
+      const yOrange = yToPx((u-k)*phi(u));
+      const sx = xToPx(u);
+      h += `<circle cx="${sx}" cy="${yPurple}" r="3" fill="#534AB7"/>`;
+      h += `<circle cx="${sx}" cy="${yBlue}" r="3" fill="#185FA5"/>`;
+      h += `<circle cx="${sx}" cy="${yOrange}" r="3" fill="#EF9F27"/>`;
+      h += `<text x="${sx + 8}" y="${yPurple + 4}" font-size="10" fill="#3C3489">u·ϕ(u) = ${(u*phi(u)).toFixed(3)}</text>`;
+      h += `<text x="${sx + 8}" y="${yBlue + 4}" font-size="10" fill="#0C447C">k·ϕ(u) = ${(k*phi(u)).toFixed(3)}</text>`;
+      h += `<text x="${sx + 8}" y="${yOrange + 4}" font-size="10" fill="#854F0B">(u−k)·ϕ(u) = ${((u-k)*phi(u)).toFixed(3)}</text>`;
+    }
+
+    svg.innerHTML = h;
+
+    const sumCheck = sampleUs.length > 0 ? sampleUs[Math.floor(sampleUs.length/2)] : 0;
+    if (sumCheck > k){
+      const u = sumCheck;
+      const v1 = k*phi(u), v2 = (u-k)*phi(u), v3 = u*phi(u);
+      document.getElementById('checkBox').textContent =
+        `pointwise check at u=${u.toFixed(2)}: blue(${v1.toFixed(3)}) + orange(${v2.toFixed(3)}) = purple(${(v1+v2).toFixed(3)}) ≈ ${v3.toFixed(3)} ✓`;
+    } else {
+      document.getElementById('checkBox').textContent = '';
+    }
+  }
+
+  function render(){
+    const k = parseFloat(slider.value);
+    kvalEl.textContent = k.toFixed(2);
+    Aval.textContent = phi(k).toFixed(4);
+    Bval.textContent = (k*(1-Phi(k))).toFixed(4);
+    Lval.textContent = Lfn(k).toFixed(4);
+    drawA(k); drawB(k); drawC(k); drawOverlay(k);
+  }
+  slider.addEventListener('input', render);
+  render();
+})();
+</script>
