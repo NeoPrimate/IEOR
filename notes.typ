@@ -1143,3 +1143,207 @@ $
   
 ]
 
+= Facility Location
+
+== UFLP — Uncapacitated Facility Location Problem
+
+#let f1_color = blue
+#let f2_color = green
+
+#let customer = (x, y, name, w: 1, r: 5pt, col: gray.lighten(50%), bd: black) => node(
+  (x, y), none,
+  shape: circle, radius: (3 + w * 0.9) * 1pt,
+  fill: col, stroke: bd + 0.4pt,
+  name: name,
+)
+
+#let facility = (x, y, col, label, name) => node(
+  (x, y),
+  text(fill: col.darken(25%))[#label],
+  shape: rect,
+  width: 16pt,
+  height: 16pt,
+  corner-radius: 0.25em,
+  fill: col.lighten(70%),
+  stroke: col + 0.5pt,
+  inset: 1pt,
+  name: name
+)
+
+#fletcher.diagram(spacing: 8pt,
+
+  edge(<f1>,<c1>, stroke: f1_color),
+  edge(<f1>,<c2>, stroke: f1_color),
+  edge(<f1>,<c3>, stroke: f1_color),
+  edge(<f1>,<c4>, stroke: f1_color),
+  edge(<f1>,<c5>, stroke: f1_color),
+  edge(<f2>,<c6>, stroke: f2_color),
+  edge(<f2>,<c7>, stroke: f2_color),
+  edge(<f2>,<c8>, stroke: f2_color),
+  edge(<f2>,<c9>, stroke: f2_color),
+  
+  customer(0.9,0.0, <c1>),
+  customer(0.5,2.0, <c2>),
+  customer(2.3,0.0, <c3>),
+  customer(2.5,2., <c4>),
+  customer(1.8,3.2, <c5>),
+  customer(4.5,1.1, <c6>),
+  customer(5.9,1.0, <c7>),
+  customer(6.1,2.5, <c8>),
+  customer(4.6,3.1, <c9>),
+  
+  facility(1.7,1.6, f1_color, "F1", <f1>),
+  facility(5.2,2.0, f2_color, "F2", <f2>),
+  
+  node((3.4,5.0), none, shape: rect, width: 14pt, height: 14pt,
+    fill: none, stroke: (paint: rgb("#888780"), dash: "dashed", thickness: 0.5pt)),
+
+  node((3.4,5.6), text(size: 8pt, fill: gray)[closed]),
+  node((1.7,3.9), text(size: 8pt, fill: f1_color)[open · serves 5]),
+  node((5.2,3.9), text(size: 8pt, fill: f2_color)[open · serves 4]),
+)
+
+== CFLP — Capacitated Facility Location Problem
+
+#let bar = (frac, col) => box(width: 64pt, height: 8pt, stroke: col + 0.4pt, radius: 1pt,
+  clip: true, fill: white, inset: 0pt,
+  align(left)[#box(width: 64pt * frac, height: 8pt, fill: col.lighten(20%))])
+
+#let over_color = red
+
+#fletcher.diagram(spacing: 8pt,
+
+  edge(<f1>,<c1>, stroke: f1_color),
+  edge(<f1>,<c2>, stroke: f1_color),
+  edge(<f1>,<c3>, stroke: f1_color),
+  edge(<f2>,<c4>, stroke: over_color),
+  edge(<f1>,<c5>, stroke: f1_color),
+  edge(<f2>,<c6>, stroke: f2_color),
+  edge(<f2>,<c7>, stroke: f2_color),
+  edge(<f2>,<c8>, stroke: f2_color),
+  edge(<f2>,<c9>, stroke: f2_color),
+  
+  customer(0.9,0.0, <c1>),
+  customer(0.5,2.0, <c2>),
+  customer(2.3,0.0, <c3>),
+  customer(2.5,2., <c4>),
+  customer(1.8,3.2, <c5>),
+  customer(4.5,1.1, <c6>),
+  customer(5.9,1.0, <c7>),
+  customer(6.1,2.5, <c8>),
+  customer(4.6,3.1, <c9>),
+  
+  facility(1.7,1.6, f1_color, "F1", <f1>),
+  facility(5.2,2.0, f2_color, "F2", <f2>),
+  
+  node((1.7, 4.0), bar(1.0, f1_color)),
+  node((1.7, 4.45), text(size: 8pt, fill: f1_color)[capacity]),
+  node((5.2, 4.0), bar(0.6, f2_color)),
+  node((5.2, 4.45), text(size: 8pt, fill: f2_color)[capacity]),
+)
+
+== p-median
+
+
+#let c1_color = purple
+#let c2_color = maroon
+
+#fletcher.diagram(spacing: 8pt,
+
+  edge(<f1>,<c1>, stroke: f1_color),
+  edge(<f1>,<c2>, stroke: f1_color),
+  edge(<f1>,<c3>, stroke: f1_color),
+  edge(<f1>,<c4>, stroke: f1_color),
+  edge(<f1>,<c5>, stroke: f1_color),
+  edge(<f2>,<c6>, stroke: f2_color),
+  edge(<f2>,<c7>, stroke: f2_color),
+  edge(<f2>,<c8>, stroke: f2_color),
+  edge(<f2>,<c9>, stroke: f2_color),
+  
+  customer(0.9,0.0, <c1>, w: 5),
+  customer(0.5,2.0, <c2>, w: 3),
+  customer(2.3,0.0, <c3>, w: 0.5),
+  customer(2.5,2., <c4>, w: 10),
+  customer(1.8,3.2, <c5>, w: 1),
+  customer(4.5,1.1, <c6>, w: 4),
+  customer(5.9,1.0, <c7>, w: 0.5),
+  customer(6.1,2.5, <c8>, w: 10),
+  customer(4.6,3.1, <c9>, w: 5),
+  
+  facility(1.7,1.6, f1_color, "F1", <f1>),
+  facility(5.2,2.0, f2_color, "F2", <f2>),
+  
+  node((3.4,5.0), none, shape: rect, width: 14pt, height: 14pt,
+    fill: none, stroke: (paint: rgb("#888780"), dash: "dashed", thickness: 0.5pt)),
+
+  node((3.4,5.6), text(size: 8pt, fill: gray)[closed]),
+  node((1.7,3.9), text(size: 8pt, fill: f1_color)[open · serves 5]),
+  node((5.2,3.9), text(size: 8pt, fill: f2_color)[open · serves 4]),
+)
+
+== Covering problems
+
+=== Set Covering — cover everyone, as cheaply as possible
+
+#let f1_color = blue
+#let f2_color = green
+#let f3_color = orange
+
+#let coverage = (x, y, col, name) => node(
+  (x, y), none,
+  shape: circle, radius: 50pt,
+  fill: col.lighten(88%), stroke: (paint: col, dash: "dashed", thickness: 0.5pt),
+  layer: -1, name: name,
+)
+
+#fletcher.diagram(spacing: 8pt,
+  coverage(1.7, 1.7, f1_color, <cov1>),
+  coverage(4.3, 1.7, f2_color, <cov2>),
+  coverage(3.0, 3.4, f3_color, <cov3>),
+
+  customer(1.35, 1.45, <c1>),
+  customer(2.05, 1.55, <c2>),
+  customer(1.65, 2.15, <c3>),
+  customer(3.95, 1.50, <c4>),
+  customer(4.65, 1.55, <c5>),
+  customer(4.35, 2.20, <c6>),
+  customer(2.70, 3.20, <c7>),
+  customer(3.30, 3.25, <c8>),
+  customer(3.00, 3.95, <c9>),
+
+  facility(1.7, 1.7, f1_color, [F1], <f1>),
+  facility(4.3, 1.7, f2_color, [F2], <f2>),
+  facility(3.0, 3.4, f3_color, [F3], <f3>),
+
+  // node((3.0, 4.7), text(size: 8pt, fill: gray)[every customer inside ≥ 1 circle · minimize \# facilities]),
+)
+
+=== Maximal Covering (Max Covering) — fixed budget, cover as much demand as possible
+
+#let f1_color = blue
+#let f2_color = green
+#let miss_color = red
+
+
+#fletcher.diagram(spacing: 8pt,
+  coverage(1.7, 1.7, f1_color, <cov1>),
+  coverage(4.7, 1.8, f2_color, <cov2>),
+
+  customer(1.1, 1.1, <c1>, r: 6pt),
+  customer(2.2, 1.0, <c2>, r: 6pt),
+  customer(1.3, 2.2, <c3>, r: 7pt),
+  customer(2.3, 2.2, <c4>, r: 5pt),
+  customer(4.1, 1.2, <c5>, r: 6pt),
+  customer(5.3, 1.4, <c6>, r: 7pt),
+  customer(4.5, 2.4, <c7>, r: 6pt),
+  customer(5.4, 2.3, <c8>, r: 5pt),
+  customer(3.2, 3.4, <miss>, r: 4pt, col: miss_color.lighten(40%), bd: miss_color),
+
+  facility(1.7, 1.7, f1_color, [F1], <f1>),
+  facility(4.7, 1.8, f2_color, [F2], <f2>),
+
+  // node((3.2, 4.0), text(size: 8pt, fill: miss_color)[low-demand outlier left uncovered (budget p=2)]),
+)
+
+
+== Center-of-gravity & the Weiszfeld algorithm
