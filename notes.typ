@@ -1343,3 +1343,94 @@ $
 
 
 == Center-of-gravity & the Weiszfeld algorithm
+
+#let cust_color  = gray
+#let trail_color = purple
+#let opt_color   = maroon
+
+// single source of truth: customer points (x, y, weight)
+#let customers = (
+  (1.2, 1.1, 1),
+  (3.0, 0.9, 1),
+  (5.2, 1.4, 5),
+  (1.8, 3.3, 1),
+  (4.7, 3.2, 1),
+)
+
+// Weiszfeld fixed-point iteration -> (start, trail, opt)
+#let weiszfeld(pts) = {
+  let sw = pts.fold(0.0, (a, p) => a + p.at(2))
+  let cx = pts.fold(0.0, (a, p) => a + p.at(2) * p.at(0)) / sw
+  let cy = pts.fold(0.0, (a, p) => a + p.at(2) * p.at(1)) / sw
+  let trail = ((cx, cy),)
+  let px = cx
+  let py = cy
+  for _ in range(40) {
+    let nx = 0.0
+    let ny = 0.0
+    let den = 0.0
+    for p in pts {
+      let dx = px - p.at(0)
+      let dy = py - p.at(1)
+      let d = calc.max(calc.sqrt(dx * dx + dy * dy), 0.0001)
+      let om = p.at(2) / d
+      nx += om * p.at(0)
+      ny += om * p.at(1)
+      den += om
+    }
+    nx = nx / den
+    ny = ny / den
+    trail.push((nx, ny))
+    if calc.abs(nx - px) < 0.002 and calc.abs(ny - py) < 0.002 {
+      px = nx; py = ny; break
+    }
+    px = nx; py = ny
+  }
+  (start: (cx, cy), trail: trail, opt: (px, py))
+}
+
+#let r = weiszfeld(customers)
+
+#cetz.canvas(length: 1cm, {
+  import cetz.draw: *
+
+  // axes
+  // line((0.4, 0.4), (6.2, 0.4), stroke: gray.lighten(30%) + 0.4pt)
+  // line((0.4, 0.4), (0.4, 4.0), stroke: gray.lighten(30%) + 0.4pt)
+
+  // spokes from optimum to each customer
+  for p in customers {
+    line(r.opt, (p.at(0), p.at(1)), stroke: trail_color.lighten(40%) + 0.5pt)
+  }
+
+  // customers sized by weight
+  for p in customers {
+    circle((p.at(0), p.at(1)), radius: 0.08 + calc.sqrt(p.at(2)) * 0.04,
+      fill: cust_color, stroke: cust_color.darken(20%) + 0.4pt)
+  }
+
+  // centroid start (dashed ring)
+  circle(r.start, radius: 0.1, fill: none,
+    stroke: (paint: cust_color, dash: "dashed", thickness: 0.6pt))
+
+  // iteration trail, fading in toward the optimum
+  for i in range(r.trail.len()) {
+    let t = r.trail.at(i)
+    let frac = i / calc.max(1, r.trail.len() - 1)
+    if i > 0 {
+      line(r.trail.at(i - 1), t, stroke: trail_color + 0.5pt)
+    }
+    circle(t, radius: 0.05,
+      fill: trail_color.transparentize((1 - (0.3 + 0.6 * frac)) * 100%), stroke: none)
+  }
+
+  // optimal point (diamond)
+  let o = r.opt
+  line((o.at(0), o.at(1) + 0.13), (o.at(0) + 0.13, o.at(1)),
+       (o.at(0), o.at(1) - 0.13), (o.at(0) - 0.13, o.at(1)), close: true,
+       fill: opt_color, stroke: none)
+
+  content((3.0, 0.0),
+    text(size: 8pt, fill: opt_color)[diamond = optimal point · trail = iterations from centroid (ring)])
+})
+
