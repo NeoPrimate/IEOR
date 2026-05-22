@@ -1273,10 +1273,6 @@ $
   facility(1.7,1.6, f1_color, "F1", <f1>),
   facility(5.2,2.0, f2_color, "F2", <f2>),
   
-  node((3.4,5.0), none, shape: rect, width: 14pt, height: 14pt,
-    fill: none, stroke: (paint: rgb("#888780"), dash: "dashed", thickness: 0.5pt)),
-
-  node((3.4,5.6), text(size: 8pt, fill: gray)[closed]),
   node((1.7,3.9), text(size: 8pt, fill: f1_color)[open · serves 5]),
   node((5.2,3.9), text(size: 8pt, fill: f2_color)[open · serves 4]),
 )
