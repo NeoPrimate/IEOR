@@ -971,14 +971,14 @@ $
   columns: 2,
   inset: 1em,
   [Distribution], [Derivative],
+  [General Normal $f(x)$], [
+    $
+      f'(x) = - (x - mu) / sigma^2 dot f(x)
+    $
+  ],
   [Standard Normal $phi.alt(x)$], [
     $
       phi.alt'(z) = -z dot phi.alt(z)
-    $
-  ],
-  [General Normal $f(x)$], [
-    $
-      f'(x) = (x - mu) / sigma^2 dot f(x)
     $
   ],
 )
@@ -1147,6 +1147,19 @@ $
 
 == UFLP — Uncapacitated Facility Location Problem
 
+$
+  & min && sum_i f_i y_i + sum_i sum_j c_(i j) x_(i j) \
+  & "s.t." && sum_i x_(i j) = 1 forall j, quad quad x_(i j) lt.eq y_i forall i, j
+$
+
+Where:
+- $I$: candidate sites
+- $J$: customers
+- $f_i$: fixed cost to open site $i$ 
+- $y_i in {0, 1}$: 1 if facility $i$ is open
+- $c_(i j)$: cost to serve $j$ from $i$
+- $x_(i j) in {0, 1}$: 1 if customer $j$ is served by facility $i$, else 0
+
 #let f1_color = blue
 #let f2_color = green
 
@@ -1204,6 +1217,22 @@ $
 )
 
 == CFLP — Capacitated Facility Location Problem
+
+$
+  & min && sum_i f_i y_i + sum_i sum_j c_(i j) x_(i j) \
+  & "s.t." && sum_i x_(i j) = 1 forall j, quad quad x_(i j) lt.eq y_i forall i, j \
+  & && sum_j d_j x_(i j) lt.eq b_i y_i quad quad forall i
+$
+
+Where:
+- $I$: candidate sites
+- $J$: customers
+- $f_i$: fixed cost to open site $i$ 
+- $y_i in {0, 1}$: 1 if facility $i$ is open
+- $c_(i j)$: cost to serve $j$ from $i$
+- $x_(i j) in {0, 1}$: 1 if customer $j$ is served by facility $i$, else 0
+- $d_j$: demand of customer $j$
+- $b_i$: capacity of candidate site $i$
 
 #let bar = (frac, col) => box(width: 64pt, height: 8pt, stroke: col + 0.4pt, radius: 1pt,
   clip: true, fill: white, inset: 0pt,
