@@ -29,6 +29,90 @@ where $Phi$ is the standard normal CDF. Both $phi(z)$ and $Phi(z)$ are tabulated
   $L(z)$ decreases rapidly with $z$ — large thresholds have negligible expected shortfall.
 ]
 
+== Derivation: tail minus threshold
+
+Where does the closed form come from? Split the excess $(t - z)$ accumulated over the tail into *total tail value* minus *threshold counted across the tail*.
+
+*Quantity $A$ — tail value.* The full value $t$ over the tail, weighted by likelihood. Using $t phi(t) = -phi'(t)$:
+
+$
+  A = integral_z^infinity t #h(0.1em) phi(t) #h(0.1em) d t = phi(z)
+$
+
+*Quantity $B$ — threshold across the tail.* Count $z$ once per tail outcome:
+
+$
+  B = integral_z^infinity z #h(0.1em) phi(t) #h(0.1em) d t = z #h(0.1em) [1 - Phi(z)]
+$
+
+*Subtract.* Each tail outcome contributes $t$ to $A$ and $z$ to $B$, so $A - B$ strips the baseline and leaves exactly the excess $(t - z)$:
+
+$
+  L(z) = A - B = underbrace(integral_z^infinity t phi(t) #h(0.1em) d t, "total tail value") - underbrace(integral_z^infinity z phi(t) #h(0.1em) d t, "threshold across tail") = phi(z) - z [1 - Phi(z)]
+$
+
+The shaded tail below is the region both integrals run over; $L(z)$ is the per-tail gap between the two.
+
+#align(center)[
+  #frame(cetz.canvas({
+    import draw: *
+    let _phi(x) = gaussian_pdf(x, 0, 1)
+    let zero(x) = 0.0
+    let z = 1.0
+    plot.plot(
+      size: (10, 5),
+      x-label: $u$,
+      y-label: $phi(u)$,
+      x-tick-step: 1,
+      y-tick-step: 0.1,
+      x-min: -3, x-max: 3,
+      y-min: 0, y-max: 0.45,
+      {
+        plot.add-fill-between(
+          domain: (z, 3),
+          samples: 100,
+          style: (fill: rgb("#EF9F2799"), stroke: none),
+          x => _phi(x),
+          zero,
+        )
+        plot.add(
+          domain: (-3, 3),
+          samples: 200,
+          style: (stroke: rgb("#534AB7") + 2pt),
+          x => _phi(x),
+        )
+        plot.add-vline(z, style: (stroke: red + 1pt))
+      },
+    )
+  }))
+]
+
+$L(z)$ itself decreases monotonically and convexly toward 0:
+
+#align(center)[
+  #frame(cetz.canvas({
+    import draw: *
+    let L(k) = gaussian_pdf(k, 0, 1) - k * (1.0 - gaussian_cdf(k, 0, 1))
+    plot.plot(
+      size: (10, 5),
+      x-label: $z$,
+      y-label: $L(z)$,
+      x-tick-step: 1,
+      y-tick-step: 0.5,
+      x-min: -3, x-max: 3,
+      y-min: 0, y-max: 3.2,
+      {
+        plot.add(
+          domain: (-3, 3),
+          samples: 200,
+          style: (stroke: rgb("#534AB7") + 2pt),
+          k => L(k),
+        )
+      },
+    )
+  }))
+]
+
 == Table of values
 
 #table(

@@ -1273,6 +1273,21 @@ Where:
 
 == p-median
 
+$
+  & min   && sum_i sum_j d_j c_(i j) x_(i j) \
+  & "s.t." && sum_i x_(i j) = 1 quad forall j \
+  &        && x_(i j) lt.eq y_i quad forall i, j \
+  &        && sum_i y_i = p
+$
+Where:
+- $I$: candidate sites
+- $J$: customers
+- $y_i in {0, 1}$: is $i$ open?
+- $c_(i j)$: cost (distance) to serve $j$ from $i$
+- $x_(i j)$: fraction of $j$ served by $i$
+- $d_j$: demand of customer $j$
+- $p$: number of facilities to open
+
 
 #let c1_color = purple
 #let c2_color = maroon
@@ -1310,6 +1325,17 @@ Where:
 
 === Set Covering — cover everyone, as cheaply as possible
 
+$
+  & min   && sum_i y_i \
+  & "s.t." && sum_i a_(i j) y_i gt.eq 1 quad forall j
+$
+
+Where:
+- $I$: candidate sites
+- $J$: customers
+- $y_i in {0, 1}$: is $i$ open?
+- $a_(i j) in {0, 1}$: does site $i$ cover customer $j$?
+
 #let f1_color = blue
 #let f2_color = green
 #let f3_color = orange
@@ -1344,6 +1370,21 @@ Where:
 )
 
 === Maximal Covering (Max Covering) — fixed budget, cover as much demand as possible
+
+$
+  & max   && sum_j d_j z_j \
+  & "s.t." && z_j lt.eq sum_i a_(i j) y_i quad forall j \
+  &        && sum_i y_i = p
+$
+
+Where:
+- $I$: candidate sites
+- $J$: customers
+- $y_i in {0, 1}$: is $i$ open?
+- $a_(i j) in {0, 1}$: does site $i$ cover customer $j$?
+- $z_j in {0, 1}$: is customer $j$ covered?
+- $d_j$: demand of customer $j$
+- $p$: number of facilities to open
 
 #let f1_color = blue
 #let f2_color = green
@@ -1463,3 +1504,200 @@ Where:
     text(size: 8pt, fill: opt_color)[diamond = optimal point · trail = iterations from centroid (ring)])
 })
 
+= Phase Spaces
+
+- State
+- State variables
+- State space
+
+== Transhipment Problem
+
+Goal: Move goods from supply nodes to demand nodes at minimum cost, allowing flow to pass through intermediate nodes.
+
+*Node types* (defined by their net flow requirement $b_i$):
+
+- Source: produces goods $arrow.long$ $b_i = s_i gt 0$ (more flow out than in)
+- Sink: consumes goods $arrow.long$ $b_i = −d_i < 0$ (more flow in than out)
+- Transhipment: pass-through only $arrow.long$ $b_i = 0$ (flow in = flow out)
+
+Decision variables:
+
+$x_(i j) gt.eq 0$ = units shipped along edge $(i, j)$
+
+Parameters:
+
+- $c_(i j)$ = cost per unit on edge $(i, j)$
+- $b_i$ = net supply (signed):
+  - positive = supplies
+  - negative = demands
+  - zero = trashipment
+
+$
+  &min && sum_((i, j) in E) c_(i j) x_(i j) \
+  &s.t. && underbrace(sum_((i, j) in E) x_(i j), "flow out of" i) - underbrace(sum_((j, i) in E) x_(j i), "flow into" i) = b_i quad forall i \
+$
+
+In words: (outflow − inflow) = net supply at the node.
+
+Total supply = total demand: $sum_i b_i = 0$ (summing the constraint over all nodes forces this, since every $x_(i j)$ appears once as + and once as -).
+
+== Capacitated Transhipment Problem
+
+Goal: Move goods from supply nodes to demand nodes at minimum cost, allowing flow to pass through intermediate nodes.
+Each edge now has a maximum capacity. You can't push unlimited flow along an edge.
+
+Decision variables:
+
+- $x_(i j)$ = units shipped along edge $(i, j)$
+
+Parameters:
+
+- $c_(i j)$ = cost per unit on edge $(i, j)$
+- $b_i$ = net supply (signed):
+  - positive = source
+  - negative = sink
+  - zero = transhipment
+- $u_(i j)$ = upper bound (capacity) on edge $(i,j)$ — the max units that edge can carry
+
+$
+  &min && sum_((i, j) in E) c_(i j) x_(i j) \
+  &s.t. && sum_((i, j) in E) x_(i j) - sum_((j, i) in E) x_(j i) = b_i quad forall i \
+  &&& colorMath(0 lt.eq x_(i j) lt.eq u_(i j), #red)
+$
+
+Capacity bounds (one per edge)
+- lower bound 0: no negative/reverse flow on the edge
+- upper bound $u_(i j)$: edge can't carry more than its capacity
+
+== Bipartite Assiment Problem
+
+=== Balanced
+
+$
+  &min && sum_((i, j) in E) c_(i j) x_(i j) \
+  &s.t. && sum_j x_(i j) = 1 quad forall i \
+  &&& sum_i x_(i j) = 1 quad forall j \
+  &&& x_(i j) gt.eq 0
+$
+
+=== Unbalanced (Dummy)
+
+$
+  &min && sum_(i j) c_(i j) x_(i j) \
+  &"s.t." && sum_j x_(i j) lt.eq 1 quad forall i \
+  &&& sum_i x_(i j) = 1 quad forall j \
+  &&& x_(i j) gt.eq 0
+$
+
+Equivalently:
+
+$
+  &min && sum_(i=1)^n sum_(j=1)^(m+1) c_(i j) x_(i j) \
+  &"s.t." && sum_(j=1)^(m+1) x_(i j) = 1 quad forall i in {1, dots, n} \
+  &&& sum_(i=1)^n x_(i j) = 1 quad forall j in {1, dots, m} \
+  &&& sum_(i=1)^n x_(i, m+1) = n - m \
+  &&&x_(i j) gt.eq 0
+$
+
+
+
+= (MI)LP Cheatsheet
+
+Phrasebook of LP/MILP modeling idioms: small algebraic constructs
+
+#set text(size: 9pt)
+#show table.cell.where(y: 0): strong
+
+#table(
+  columns: (auto, 1fr),
+  align: (left, left),
+  stroke: 0.5pt + gray,
+  inset: 5pt,
+  table.cell(colspan: 2, fill: luma(230))[*Network / flow*],
+  $sum_j x_(i j) - sum_j x_(j i) = b_i$, [conservation: $b_i$ source/sink/0],
+  $x_(i j) - x_(j i)$, [net arc flow (single signed var)],
+  $0 <= x_(i j) <= u_(i j)$, [arc capacity],
+  $sum_(i in S, j in.not S) x_(i j)$, [flow across a cut],
+  table.cell(colspan: 2, fill: luma(230))[*Conditional (Big-M)*],
+  $a^T x <= b + M(1 - y)$, [active only if $y = 1$],
+  [
+    $
+    a^T x <= b_1 + M y \
+    a^T x <= b_2 + M(1 - y)
+    $
+  ], [either/or],
+  [tight $M$], [loose $M$ ruins relaxation],
+  table.cell(colspan: 2, fill: luma(230))[*Binary ↔ continuous*],
+  $x <= M y$, [fixed-charge on/off],
+  $l y <= x <= u y$, [semi-continuous: 0 or $[l, u]$],
+  $x >= epsilon y$, [force strictly positive],
+  table.cell(colspan: 2, fill: luma(230))[*Binary logic*],
+  $sum y_i <= 1$, [at most one],
+  $sum y_i = 1$, [exactly one (SOS1)],
+  $sum y_i >= 1$, [OR],
+  [
+    $
+    sum y_i <= k \
+    sum y_i >= k
+    $
+  ], [cardinality],
+  $y_a <= y_b$, [implication $a => b$],
+  table.cell(colspan: 2, fill: luma(230))[*Products*],
+  [
+    $
+    z <= y_1 \
+    z <= y_2 \
+    z >= y_1 + y_2 - 1
+    $
+  ], [bin × bin],
+  [
+    $
+    z <= u y \
+    z <= x \
+    z >= x - u(1 - y) \
+    z >= 0
+    $
+  ], [bin × cont, $x in [0,u]$],
+  [McCormick envelope], [cont × cont relaxation],
+  table.cell(colspan: 2, fill: luma(230))[*Abs / norms*],
+  [
+    $
+    x = x^+ - x^- \
+    x^+, x^- >= 0
+    $
+  ], [$|x| = x^+ + x^-$ (L1)],
+  [
+    $
+    t >= x \
+    t >= -x
+    $
+  ], [$|x|$, epigraph],
+  table.cell(colspan: 2, fill: luma(230))[*Min / max*],
+  $t >= f_i (x) forall i$, [min $t$ ⇒ minimax],
+  $t <= f_i (x) forall i$, [max $t$ ⇒ maximin],
+  table.cell(colspan: 2, fill: luma(230))[*Piecewise-linear*],
+  [λ-method + SOS2], [convex combo of breakpoints],
+  [δ-method], [incremental encoding],
+  table.cell(colspan: 2, fill: luma(230))[*Sequencing*],
+  $u_i - u_j + n x_(i j) <= n - 1$, [MTZ subtour elim.],
+  $s_j >= s_i + d_i$, [precedence],
+  table.cell(colspan: 2, fill: luma(230))[*Covering family*],
+  $sum a_(i j) x_j >= 1$, [set covering],
+  $sum a_(i j) x_j <= 1$, [set packing],
+  $sum a_(i j) x_j = 1$, [partitioning],
+  $sum w_i x_i <= W$, [knapsack],
+  table.cell(colspan: 2, fill: luma(230))[*Slack / deviation*],
+  [
+    $
+    a^T x + s = b \
+    s >= 0
+    $
+  ], [slack (≤ → =); surplus $-s$],
+  $f(x) + d^- - d^+ = "tgt"$, [goal prog. / soft],
+  table.cell(colspan: 2, fill: luma(230))[*Temporal*],
+  $I_t = I_(t-1) + p_t - d_t$, [inventory balance],
+  table.cell(colspan: 2, fill: luma(230))[*Transforms*],
+  $sum x = 1, x >= 0$, [unit simplex],
+  [Charnes–Cooper], [linear-fractional → LP],
+  $y_i >= y_(i+1)$, [symmetry breaking],
+)

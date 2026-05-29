@@ -58,3 +58,28 @@ Where:
       })
   }))
 ]
+
+== PDF vs. Likelihood
+
+Same formula, read two ways — what is held *fixed* and what *varies* swap:
+
+$
+  phi.alt (x; mu, sigma) = 1 / (sigma sqrt(2 pi)) exp(- (x - mu)^2 / (2 sigma^2))
+$
+
+#table(
+  columns: 4,
+  inset: 1em,
+  [Quantity], [Fixed], [Varies], [Integrates / sums to 1],
+  [PDF $phi.alt(x; mu, sigma)$], [$mu, sigma$], [$x$], [Yes],
+  [Likelihood $cal(L)(mu, sigma | x)$], [$x$], [$mu, sigma$], [No],
+)
+
+- *PDF*: parameters fixed, sweep $x$ — a curve over outcomes that integrates to 1.
+- *Likelihood*: data fixed, sweep the parameters — *not* a density in $mu, sigma$, so it need not integrate to 1.
+
+For $n$ independent observations the likelihood is the product of per-point densities:
+
+$
+  cal(L)(mu, sigma | x_1, dots, x_n) = product_(i=1)^n phi.alt (x_i; mu, sigma)
+$

@@ -52,3 +52,11 @@ Properties:
 - The PDF itself is non-negative everywhere
 - The probability that the variable falls within a certain range is given by the integral of the PDF over that range
 
+=== Relationship to the CDF
+
+The PDF is the derivative of the CDF; integrating the PDF back recovers the CDF:
+
+$
+  f(x) = dif / (dif x) F(x) quad <==> quad F(x) = integral_(-infinity)^x f(t) dif t
+$
+

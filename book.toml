@@ -543,6 +543,10 @@ title = "Calculus"
     title = "Rules"
     files = ["calculus/integral/rules.typ"]
 
+    [[sections.sections.sections]]
+    title = "Leibniz's Rule"
+    files = ["calculus/integral/leibniz_rule.typ"]
+
   [[sections.sections]]
   title = "Differential Equations"
   files = ["calculus/differential_equations/differential_equations.typ"]
@@ -620,6 +624,10 @@ title = "Probability Theory"
   [[sections.sections]]
   title = "Counting Principle"
   files = ["probability_theory/counting_prinicple.typ"]
+
+  [[sections.sections]]
+  title = "Expected Value"
+  files = ["probability_theory/expected_value.typ"]
 
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -1220,294 +1228,298 @@ title = "Operations Research"
 
     [[sections.sections.sections]]
     title = "Cheatsheet"
-    files = ["operations_research/operations_research/optimization/cheatsheet.typ"]
+    files = ["operations_research/optimization/cheatsheet.typ"]
+
+    [[sections.sections.sections]]
+    title = "MILP Idioms"
+    files = ["operations_research/optimization/milp_idioms.typ"]
 
     [[sections.sections.sections]]
     title = "Standard Form"
-    files = ["operations_research/operations_research/optimization/standard_form.typ"]
+    files = ["operations_research/optimization/linear_programming/standard_form.typ"]
 
     [[sections.sections.sections]]
     title = "Linear Programming"
-    files = ["operations_research/operations_research/optimization/linear_programming.typ"]
+    files = ["operations_research/optimization/linear_programming/linear_programming.typ"]
 
     [[sections.sections.sections]]
     title = "Simplex Method"
-    files = ["operations_research/operations_research/optimization/simplex_method.typ"]
+    files = ["operations_research/optimization/linear_programming/simplex_method.typ"]
 
     [[sections.sections.sections]]
     title = "Simplex Cheatsheet"
-    files = ["operations_research/operations_research/optimization/simplex_cheatsheet.typ"]
+    files = ["operations_research/optimization/linear_programming/simplex_cheatsheet.typ"]
 
     [[sections.sections.sections]]
     title = "Input / Output"
-    files = ["operations_research/operations_research/optimization/input_output.typ"]
+    files = ["operations_research/optimization/linear_programming/input_output.typ"]
 
     [[sections.sections.sections]]
     title = "Integer Programming"
-    files = ["operations_research/operations_research/optimization/integer_programming.typ"]
+    files = ["operations_research/optimization/integer_programming/integer_programming.typ"]
 
     [[sections.sections.sections]]
     title = "Branch and Bound"
-    files = ["operations_research/operations_research/optimization/branch_and_bound.typ"]
+    files = ["operations_research/optimization/integer_programming/branch_and_bound.typ"]
 
     [[sections.sections.sections]]
     title = "Mixed Integer Programming"
-    files = ["operations_research/operations_research/optimization/mixed_integer_programming.typ"]
+    files = ["operations_research/optimization/integer_programming/mixed_integer_programming.typ"]
 
     [[sections.sections.sections]]
     title = "Non-Linear Programming"
-    files = ["operations_research/operations_research/optimization/non_linear_programming.typ"]
+    files = ["operations_research/optimization/nonlinear/non_linear_programming.typ"]
 
     [[sections.sections.sections]]
     title = "Convexity"
-    files = ["operations_research/operations_research/optimization/convexity.typ"]
+    files = ["operations_research/optimization/nonlinear/convexity.typ"]
 
     [[sections.sections.sections]]
     title = "Convex Analysis"
-    files = ["operations_research/operations_research/optimization/convex_analysis.typ"]
+    files = ["operations_research/optimization/nonlinear/convex_analysis.typ"]
 
     [[sections.sections.sections]]
     title = "Gradient Descent"
-    files = ["operations_research/operations_research/optimization/gradient_descent.typ"]
+    files = ["operations_research/optimization/nonlinear/gradient_descent.typ"]
 
     [[sections.sections.sections]]
     title = "Newton's Method"
-    files = ["operations_research/operations_research/optimization/newton_method.typ"]
+    files = ["operations_research/optimization/nonlinear/newton_method.typ"]
 
     [[sections.sections.sections]]
     title = "Heuristic Algorithms"
-    files = ["operations_research/operations_research/optimization/heuritic_algorithms.typ"]
+    files = ["operations_research/optimization/heuritic_algorithms.typ"]
 
     [[sections.sections.sections]]
     title = "Duality"
-    files = ["operations_research/operations_research/optimization/duality.typ"]
+    files = ["operations_research/optimization/linear_programming/duality.typ"]
 
     [[sections.sections.sections]]
     title = "Multi-Commodity Network Flow"
-    files = ["operations_research/operations_research/optimization/mcnf.typ"]
+    files = ["operations_research/optimization/networks/mcnf.typ"]
 
     [[sections.sections.sections]]
     title = "Sensitivity Analysis"
-    files = ["operations_research/operations_research/optimization/sensitivity_analysis.typ"]
+    files = ["operations_research/optimization/linear_programming/sensitivity_analysis.typ"]
 
     [[sections.sections.sections]]
     title = "Network Flow"
-    files = ["operations_research/operations_research/optimization/network_optimization/maximum_flow/network_flow.typ"]
+    files = ["operations_research/optimization/networks/maximum_flow/network_flow.typ"]
 
     [[sections.sections.sections]]
     title = "Ford–Fulkerson"
-    files = ["operations_research/operations_research/optimization/network_optimization/maximum_flow/ford_fulkerson.typ"]
+    files = ["operations_research/optimization/networks/maximum_flow/ford_fulkerson.typ"]
 
     [[sections.sections.sections]]
     title = "Edmonds–Karp"
-    files = ["operations_research/operations_research/optimization/network_optimization/maximum_flow/edmonds_karp.typ"]
+    files = ["operations_research/optimization/networks/maximum_flow/edmonds_karp.typ"]
 
     [[sections.sections.sections]]
     title = "Transportation Problem"
-    files = ["operations_research/operations_research/optimization/transportation_problem.typ"]
+    files = ["operations_research/optimization/networks/transportation_problem.typ"]
 
     [[sections.sections.sections]]
     title = "Assignment Problem"
-    files = ["operations_research/operations_research/optimization/assignment_problem.typ"]
+    files = ["operations_research/optimization/networks/assignment_problem.typ"]
 
     [[sections.sections.sections]]
     title = "Hungarian Algorithm"
-    files = ["operations_research/operations_research/optimization/hungarian_algorithm.typ"]
+    files = ["operations_research/optimization/networks/hungarian_algorithm.typ"]
 
     [[sections.sections.sections]]
     title = "Transshipment Problem"
-    files = ["operations_research/operations_research/optimization/transshipment_problem.typ"]
+    files = ["operations_research/optimization/networks/transhipment_problem.typ"]
 
     [[sections.sections.sections]]
     title = "Min-Cost Flow Algorithms"
-    files = ["operations_research/operations_research/optimization/min_cost_flow_algorithms.typ"]
+    files = ["operations_research/optimization/networks/min_cost_flow_algorithms.typ"]
 
     [[sections.sections.sections]]
     title = "Network Simplex"
-    files = ["operations_research/operations_research/optimization/network_simplex.typ"]
+    files = ["operations_research/optimization/networks/network_simplex.typ"]
 
     [[sections.sections.sections]]
     title = "Min Spanning Tree"
-    files = ["operations_research/operations_research/optimization/min_spanning_tree.typ"]
+    files = ["operations_research/optimization/networks/min_spanning_tree.typ"]
 
     [[sections.sections.sections]]
     title = "Floyd-Warshall"
-    files = ["operations_research/operations_research/optimization/floyd_warshall.typ"]
+    files = ["operations_research/optimization/networks/floyd_warshall.typ"]
 
     [[sections.sections.sections]]
     title = "TSP"
-    files = ["operations_research/operations_research/optimization/tsp.typ"]
+    files = ["operations_research/optimization/routing/tsp.typ"]
 
     [[sections.sections.sections]]
     title = "TSP 2opt"
-    files = ["operations_research/operations_research/optimization/tsp_2opt.typ"]
+    files = ["operations_research/optimization/routing/tsp_2opt.typ"]
 
     [[sections.sections.sections]]
     title = "Christofides"
-    files = ["operations_research/operations_research/optimization/christofides.typ"]
+    files = ["operations_research/optimization/routing/christofides.typ"]
 
     [[sections.sections.sections]]
     title = "VRP"
-    files = ["operations_research/operations_research/optimization/vrp.typ"]
+    files = ["operations_research/optimization/routing/vrp.typ"]
 
     [[sections.sections.sections]]
     title = "VRP Time Windows"
-    files = ["operations_research/operations_research/optimization/vrp_time_windows.typ"]
+    files = ["operations_research/optimization/routing/vrp_time_windows.typ"]
 
     [[sections.sections.sections]]
     title = "Clarke-Wright"
-    files = ["operations_research/operations_research/optimization/clarke_wright.typ"]
+    files = ["operations_research/optimization/routing/clarke_wright.typ"]
 
     [[sections.sections.sections]]
     title = "Daganzo Continuous"
-    files = ["operations_research/operations_research/optimization/daganzo_continuous.typ"]
+    files = ["operations_research/optimization/routing/daganzo_continuous.typ"]
 
     [[sections.sections.sections]]
     title = "Facility Location"
-    files = ["operations_research/operations_research/optimization/facility_location.typ"]
+    files = ["operations_research/optimization/facility_location/facility_location.typ"]
 
     [[sections.sections.sections]]
     title = "UFLP"
-    files = ["operations_research/operations_research/optimization/uflp.typ"]
+    files = ["operations_research/optimization/facility_location/uflp.typ"]
 
     [[sections.sections.sections]]
     title = "CFLP"
-    files = ["operations_research/operations_research/optimization/cflp.typ"]
+    files = ["operations_research/optimization/facility_location/cflp.typ"]
 
     [[sections.sections.sections]]
     title = "p-Median"
-    files = ["operations_research/operations_research/optimization/p_median.typ"]
+    files = ["operations_research/optimization/facility_location/p_median.typ"]
 
     [[sections.sections.sections]]
     title = "p-Center"
-    files = ["operations_research/operations_research/optimization/p_center.typ"]
+    files = ["operations_research/optimization/facility_location/p_center.typ"]
 
     [[sections.sections.sections]]
     title = "Set Covering"
-    files = ["operations_research/operations_research/optimization/set_covering.typ"]
+    files = ["operations_research/optimization/facility_location/set_covering.typ"]
 
     [[sections.sections.sections]]
     title = "Max Covering"
-    files = ["operations_research/operations_research/optimization/max_covering.typ"]
+    files = ["operations_research/optimization/facility_location/max_covering.typ"]
 
     [[sections.sections.sections]]
     title = "Center of Gravity"
-    files = ["operations_research/operations_research/optimization/center_of_gravity.typ"]
+    files = ["operations_research/optimization/facility_location/center_of_gravity.typ"]
 
     [[sections.sections.sections]]
     title = "Stochastic Programming"
-    files = ["operations_research/operations_research/optimization/stochastic_programming.typ"]
+    files = ["operations_research/optimization/stochastic/stochastic_programming.typ"]
 
     [[sections.sections.sections]]
     title = "Two-stage Recourse"
-    files = ["operations_research/operations_research/optimization/two_stage_recourse.typ"]
+    files = ["operations_research/optimization/stochastic/two_stage_recourse.typ"]
 
     [[sections.sections.sections]]
     title = "Scenario Trees"
-    files = ["operations_research/operations_research/optimization/scenario_trees.typ"]
+    files = ["operations_research/optimization/stochastic/scenario_trees.typ"]
 
     [[sections.sections.sections]]
     title = "Chance Constraints"
-    files = ["operations_research/operations_research/optimization/chance_constraints.typ"]
+    files = ["operations_research/optimization/stochastic/chance_constraints.typ"]
 
     [[sections.sections.sections]]
     title = "Sample Average Approximation"
-    files = ["operations_research/operations_research/optimization/sample_average_approximation.typ"]
+    files = ["operations_research/optimization/stochastic/sample_average_approximation.typ"]
 
     [[sections.sections.sections]]
     title = "EVPI vs VSS"
-    files = ["operations_research/operations_research/optimization/evpi_vss.typ"]
+    files = ["operations_research/optimization/stochastic/evpi_vss.typ"]
 
     [[sections.sections.sections]]
     title = "Lagrange Relaxation"
-    files = ["operations_research/operations_research/optimization/lagrange_relaxation.typ"]
+    files = ["operations_research/optimization/integer_programming/lagrange_relaxation.typ"]
 
     [[sections.sections.sections]]
     title = "Lagrangian"
-    files = ["operations_research/operations_research/optimization/lagrangian.typ"]
+    files = ["operations_research/optimization/nonlinear/lagrangian.typ"]
 
     [[sections.sections.sections]]
     title = "KKT Conditions"
-    files = ["operations_research/operations_research/optimization/kkt.typ"]
+    files = ["operations_research/optimization/nonlinear/kkt.typ"]
 
     [[sections.sections.sections]]
     title = "Dynamic Programming"
-    files = ["operations_research/operations_research/optimization/dynamic_programming.typ"]
+    files = ["operations_research/optimization/dynamic_programming/dynamic_programming.typ"]
 
     [[sections.sections.sections]]
     title = "Bellman Equation"
-    files = ["operations_research/operations_research/optimization/bellman_equation.typ"]
+    files = ["operations_research/optimization/dynamic_programming/bellman_equation.typ"]
 
     [[sections.sections.sections]]
     title = "Backward Induction"
-    files = ["operations_research/operations_research/optimization/backward_induction.typ"]
+    files = ["operations_research/optimization/dynamic_programming/backward_induction.typ"]
 
     [[sections.sections.sections]]
     title = "Forward Induction"
-    files = ["operations_research/operations_research/optimization/forward_induction.typ"]
+    files = ["operations_research/optimization/dynamic_programming/forward_induction.typ"]
 
     [[sections.sections.sections]]
     title = "Stochastic DP"
-    files = ["operations_research/operations_research/optimization/stochastic_dp.typ"]
+    files = ["operations_research/optimization/dynamic_programming/stochastic_dp.typ"]
 
     [[sections.sections.sections]]
     title = "Value Iteration"
-    files = ["operations_research/operations_research/optimization/value_iteration.typ"]
+    files = ["operations_research/optimization/dynamic_programming/value_iteration.typ"]
 
     [[sections.sections.sections]]
     title = "Policy Iteration"
-    files = ["operations_research/operations_research/optimization/policy_iteration.typ"]
+    files = ["operations_research/optimization/dynamic_programming/policy_iteration.typ"]
 
     [[sections.sections.sections]]
     title = "Regression"
-    files = ["operations_research/operations_research/optimization/regression.typ"]
+    files = ["operations_research/optimization/learning/regression.typ"]
 
     [[sections.sections.sections]]
     title = "Support Vector Machine"
-    files = ["operations_research/operations_research/optimization/support_vector_machine.typ"]
+    files = ["operations_research/optimization/learning/support_vector_machine.typ"]
 
   [[sections.sections]]
   title = "Queuing Theory"
 
     [[sections.sections.sections]]
     title = "M/M/1"
-    files = ["operations_research/operations_research/queuing_theory/mm1.typ"]
+    files = ["operations_research/queuing_theory/mm1.typ"]
 
     [[sections.sections.sections]]
     title = "M/M/c"
-    files = ["operations_research/operations_research/queuing_theory/mmc.typ"]
+    files = ["operations_research/queuing_theory/mmc.typ"]
 
     [[sections.sections.sections]]
     title = "Little's Law"
-    files = ["operations_research/operations_research/queuing_theory/little_law.typ"]
+    files = ["operations_research/queuing_theory/little_law.typ"]
 
     [[sections.sections.sections]]
     title = "Kingman VUT"
-    files = ["operations_research/operations_research/queuing_theory/kingman_vut.typ"]
+    files = ["operations_research/queuing_theory/kingman_vut.typ"]
 
     [[sections.sections.sections]]
     title = "Sakasegawa"
-    files = ["operations_research/operations_research/queuing_theory/sakasegawa.typ"]
+    files = ["operations_research/queuing_theory/sakasegawa.typ"]
 
     [[sections.sections.sections]]
     title = "Linking Equation"
-    files = ["operations_research/operations_research/queuing_theory/linking_equation.typ"]
+    files = ["operations_research/queuing_theory/linking_equation.typ"]
 
     [[sections.sections.sections]]
     title = "Erlang B"
-    files = ["operations_research/operations_research/queuing_theory/erlang_b.typ"]
+    files = ["operations_research/queuing_theory/erlang_b.typ"]
 
     [[sections.sections.sections]]
     title = "Erlang C"
-    files = ["operations_research/operations_research/queuing_theory/erlang_c.typ"]
+    files = ["operations_research/queuing_theory/erlang_c.typ"]
 
     [[sections.sections.sections]]
     title = "MMc Abandonment"
-    files = ["operations_research/operations_research/queuing_theory/mmc_abandonment.typ"]
+    files = ["operations_research/queuing_theory/mmc_abandonment.typ"]
 
     [[sections.sections.sections]]
     title = "Square-Root Staffing"
-    files = ["operations_research/operations_research/queuing_theory/square_root_staffing.typ"]
+    files = ["operations_research/queuing_theory/square_root_staffing.typ"]
 
   [[sections.sections]]
   title = "Decision Analysis"
@@ -1763,6 +1775,10 @@ title = "Supply Chain"
     [[sections.sections.sections]]
     title = "Cycle Stock"
     files = ["supply_chain/inventory/stocks/cycle_stock.typ"]
+
+    [[sections.sections.sections]]
+    title = "Lead Time"
+    files = ["supply_chain/inventory/stocks/lead_time.typ"]
 
     [[sections.sections.sections]]
     title = "Safety Stock"

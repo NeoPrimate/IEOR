@@ -117,3 +117,36 @@ When $C_u >> C_o$ (stockouts much worse than leftovers), CR $-> 1$ and $z^*$ pus
   Q_star = mu + z_star * sigma
   ```,
 )
+
+=== Derivation via calculus (integral form)
+
+The marginal argument above has a continuous twin: write expected cost as a function of $Q$ and minimize directly. With overage $C_o$ and underage $C_u$:
+
+$
+  cal(C)(Q) = C_o dot EE[(Q - D)^+] + C_u dot EE[(D - Q)^+]
+$
+
+*Rewrite the expectations as integrals.* Each $(dot)^+$ clips the integrand to one side of $Q$:
+
+$
+  EE[(Q - D)^+] = integral_0^Q (Q - x) f(x) dif x, quad quad
+  EE[(D - Q)^+] = integral_Q^infinity (x - Q) f(x) dif x
+$
+
+$
+  cal(C)(Q) = C_o integral_0^Q (Q - x) f(x) dif x + C_u integral_Q^infinity (x - Q) f(x) dif x
+$
+
+*Differentiate* (Leibniz's rule — the boundary terms vanish because the integrand is $0$ at $x = Q$):
+
+$
+  (dif cal(C)) / (dif Q) = C_o F(Q) - C_u (1 - F(Q))
+$
+
+*Set to zero* and solve:
+
+$
+  C_o F(Q^*) = C_u (1 - F(Q^*)) quad ==> quad F(Q^*) = C_u / (C_u + C_o)
+$
+
+— the same critical ratio. *Convexity check*: $(dif^2 cal(C)) \/ (dif Q^2) = (C_o + C_u) f(Q) gt.eq 0$, so the stationary point is the global minimum.
