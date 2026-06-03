@@ -1,5 +1,5 @@
 #import "/lib/imports.typ": *
-#import "@local/tystats:0.1.0": norm
+#import "@local/tystats:0.1.0": norm, poisson
 
 - If you don't understand the continuous, try the discrete
 - If you don't understand the multivariate, try the univariate
@@ -1701,3 +1701,268 @@ Phrasebook of LP/MILP modeling idioms: small algebraic constructs
   [Charnes–Cooper], [linear-fractional → LP],
   $y_i >= y_(i+1)$, [symmetry breaking],
 )
+
+= Bootstrap & resampling
+
+= Acceptance sampling: OC curve, AOQ, AOQL, single/double/sequential plans
+
+
+
+= PCA as application
+
+
+= Joint, Conditional and Marginal Probabilities
+
+*Setup*
+
+Imagine we have 100 emails. We track two things about each one: is it spam or not, and does it contain the word "free" or not. Here's the count of every combination:
+
+#align(center)[
+  #table(
+    stroke: none,
+    inset: 1em,
+    columns: 4,
+    align: center + horizon,
+    [], [$F$], [$F^c$], [margin],
+    table.hline(),
+    table.vline(x: 1),
+    table.vline(x: 3),
+    [$S$], [0.20], [0.10], [0.30],
+    [$S^c$], [0.05], [0.65], [0.70],
+    table.hline(),
+    [margin], [0.25], [0.75], [1.00],
+  )
+]
+
+== Joint Probability
+
+$
+  P(S inter F) = 0.20
+$
+
+== Marginal Probability
+
+$
+  P(A) = sum_(i=1)^n P(A inter B_i)
+$
+
+$
+  P(S)
+  &= P(S inter F) + P(S inter F^c)\
+  &= 0.20 + 0.10 \
+  &= 0.30
+$
+
+== Conditional Probability
+
+$
+  P(A | B) = P(A inter B) / P(B)
+$
+
+$
+  P(S | F) = P(S inter F) / P(F) = 0.20 / 0.25 = 0.80
+$
+
+== Convolution
+
+You have two independent random variables, $X$ and $Y$. You add them: $Z = X + Y$. What's the distribution of $Z$?
+
+=== Discrete
+
+$
+  P(Z = z) = sum_x P(X = x) P(Y = z - x)
+$
+
+// discrete convolution: P(X + Y = z) = sum_k p_X(k) p_Y(z - k)
+#let conv-pmf(z, la, lb) = {
+  let total = 0.0
+  for k in range(0, z + 1) { total += poisson.pmf(k, la) * poisson.pmf(z - k, lb) }
+  total
+}
+
+#let lam-x = 2      // blue, fixed
+#let lam-y = 3      // red, the one we flip & slide
+#let kmax  = 14
+
+#let input-plot(z) = cetz.canvas({
+  import cetz.draw: *
+  cetz-plot.plot.plot(
+    size: (8, 2), x-tick-step: 2, y-tick-step: none,
+    x-min: -1, x-max: kmax + 1, y-min: 0, y-max: 0.30,
+    {
+      for k in range(0, kmax + 1) {
+        // blue p_X(k), nudged left
+        plot.add(((k - 0.15, 0), (k - 0.15, poisson.pmf(k, lam-x))),
+          style: (stroke: blue + 5pt))
+        // red p_Y(z - k), nudged right
+        let h = poisson.pmf(z - k, lam-y)
+        if h > 0 {
+          plot.add(((k + 0.15, 0), (k + 0.15, h)),
+            style: (stroke: red + 5pt))
+        }
+      }
+      plot.add-vline(z, style: (stroke: purple + 1pt))
+    }
+  )
+})
+
+#let conv-plot(z) = cetz.canvas({
+  import cetz.draw: *
+  cetz-plot.plot.plot(
+    size: (6, 2), x-tick-step: 2, y-tick-step: none,
+    x-min: -1, x-max: kmax + 1, y-min: 0, y-max: 0.20,
+    {
+      for j in range(0, z + 1) {
+        let p = conv-pmf(j, lam-x, lam-y)
+        plot.add(((j, 0), (j, p)), style: (stroke: black + 1.5pt))
+        plot.add(((j, p),), mark: "o", mark-size: 0.12,
+          mark-style: (fill: gray, stroke: black))   // dot on top; drop if it errors
+      }
+      plot.add-vline(z, style: (stroke: purple + 1pt))
+    }
+  )
+})
+
+#let zs = (1, 3, 5, 7, 9)
+#grid(columns: 2, column-gutter: 1em, row-gutter: 1em,
+  ..zs.map(z => input-plot(z)).zip(zs.map(z => conv-plot(z))).flatten())
+=== Continuous
+
+$
+  f_Z (z) = integral_(-infinity)^(+infinity) f_X (x) f_Y (z - x) 
+$
+
+#let density-plot(shift) = cetz.canvas({
+  import cetz.draw: *
+  cetz-plot.plot.plot(
+    size: (8, 2),
+    x-label: $$,
+    y-label: $$,
+    x-tick-step: 2,
+    y-tick-step: 1,
+    x-min: -8, x-max: 8,
+    y-min: 0, y-max: 0.45,
+    {
+      plot.add-fill-between(
+        domain: (-8, 8),
+        samples: 500,
+        style: (fill: blue.transparentize(75%), stroke: blue),
+        x => norm.pdf(x, mean: 0, std_dev: 1),
+        x => 0,
+      )
+      plot.add-fill-between(
+        domain: (-8, 8),
+        samples: 500,
+        style: (fill: red.transparentize(75%), stroke: red),
+        x => norm.pdf(x, mean: shift, std_dev: 1),
+        x => 0,
+      )
+      plot.add-vline(
+        shift,
+        style: (stroke: purple + 1.5pt),
+      )
+    }
+  )
+})
+
+#let conv(z) = calc.exp(-calc.pow(z, 2) / 4) / (2 * calc.sqrt(calc.pi))
+
+#let conv-plot(shift) = cetz.canvas({
+  import cetz.draw: *
+  cetz-plot.plot.plot(
+    size: (6, 2),
+    x-tick-step: 2,
+    y-tick-step: none,            // not 1 — your axis only reaches 0.45
+    x-min: -8, x-max: 8,
+    y-min: 0, y-max: 0.45,
+    {
+      // reveal the convolution curve only up to the current shift
+      plot.add-fill-between(
+        domain: (-8, shift),
+        samples: 500,
+        style: (fill: gray.transparentize(60%), stroke: black),
+        z => conv(z),
+        z => 0,
+      )
+      // vertical marker at the current shift position
+      plot.add-vline(
+        shift,
+        style: (stroke: purple + 1.5pt),
+      )
+    }
+  )
+})
+
+#let shifts = range(5).map(i => -6 + i * 3)
+
+// iterate once → all of column 1
+#let col1 = shifts.map(s => density-plot(s))
+
+// iterate a second time → all of column 2
+#let col2 = shifts.map(s => conv-plot(s))   // your other plot function
+
+#grid(
+  columns: 2,
+  column-gutter: 1em,
+  row-gutter: 1em,
+  ..col1.zip(col2).flatten(),
+)
+
+
+= Mixture distributions
+
+A mixture is what you get when you randomly pick one of several distributions and then draw from it. You're not combining the random variables — you're choosing between them.
+
+$
+  f(x) = sum_i w_i f_i (x) quad quad w_i gt.eq 0, sum_i w_i = 1
+$
+
+- Flip a biased coin: with probability $w_1$, pick component 1, with probability $w_2 = 1 - w_1$ pick component 2.
+- Draw your value from whichever component the coin selected.
+
+#example[
+  $
+    f(x) = 0.7 dot cal(N)(x; 0, 1) + 0.3 dot cal(N)(x; 5, 1)
+  $
+
+#let w1 = 0.7
+#let w2 = 0.3
+
+// mixture: weighted sum — no simplification possible
+#let mix(x) = w1 * norm.pdf(x, mean: 0, std_dev: 1) + w2 * norm.pdf(x, mean: 5, std_dev: 1)
+
+#cetz.canvas({
+  import cetz.draw: *
+  cetz-plot.plot.plot(
+    size: (8, 3),
+    x-label: $$, y-label: $$,
+    x-tick-step: 2,
+    y-tick-step: 0.1,            // not 1 — axis only reaches ~0.32
+    x-min: -4, x-max: 9,
+    y-min: 0, y-max: 0.35,
+    {
+      // faint scaled components (dashed), to show the mixture is their sum
+      plot.add(domain: (-4, 9), samples: 300,
+        style: (stroke: (paint: gray, dash: "dashed")),
+        x => w1 * norm.pdf(x, mean: 0, std_dev: 1))
+      plot.add(domain: (-4, 9), samples: 300,
+        style: (stroke: (paint: gray, dash: "dashed")),
+        x => w2 * norm.pdf(x, mean: 5, std_dev: 1))
+
+      // mixture (filled blue) — bimodal
+      plot.add-fill-between(domain: (-4, 9), samples: 500,
+        style: (fill: blue.transparentize(80%), stroke: blue + 1.5pt),
+        x => mix(x), x => 0)
+
+      // convolution (red) — single Gaussian via closed form
+      plot.add(domain: (-4, 9), samples: 500,
+        style: (stroke: red + 1.5pt),
+        x => norm.pdf(x, mean: 5, std_dev: calc.sqrt(2)))
+
+      plot.add(domain: (-4, 9), samples: 500,
+        style: (stroke: red + 1.5pt),
+        x => norm.pdf(x, mean: 0, std_dev: calc.sqrt(2)))
+    }
+  )
+})    
+]

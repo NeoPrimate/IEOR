@@ -14,28 +14,28 @@ Legend: 🔴 critical · 🟡 high-value · 🟢 nice-to-have
 
 ## Top 12 highest-impact additions (do these first)
 
-- [ ] 🔴 **Dynamic Programming** — Bellman recursion, principle of optimality, forward/backward induction; deterministic + stochastic
-- [ ] 🔴 **Standard normal loss function** $L(z)=\phi(z)-z(1-\Phi(z))$ + table — unlocks every fill-rate / safety-stock derivation
-- [ ] 🔴 **Multi-echelon inventory** — Clark-Scarf serial system + Graves-Willems guaranteed-service
-- [ ] 🔴 **Risk pooling** — square-root law, correlated pooling $\sigma_{pool}^2=\sum\sigma_i^2+2\sum\rho_{ij}\sigma_i\sigma_j$, postponement
-- [ ] 🔴 **Network optimization core** — transportation problem, assignment + Hungarian, transshipment, MCNF algorithms
-- [ ] 🔴 **TSP + VRP** — formulations, Clarke-Wright savings, Daganzo continuous approximation
-- [ ] 🔴 **Facility location** — UFLP, CFLP, p-median, set/max covering, center-of-gravity (Weiszfeld)
-- [ ] 🔴 **Decision analysis** — decision trees, EMV, EVPI, EVSI
-- [ ] 🔴 **Stochastic programming** — two-stage with recourse, EVPI vs VSS
-- [ ] 🔴 **Aggregate planning + MRP/MPS/DRP arithmetic**
-- [ ] 🔴 **System Dynamics core** — stocks/flows, causal loops, Erlang-$n$ delays, beer-game/bullwhip closed forms, goal-seeking-with-delays ODE
-- [ ] 🔴 **Factory physics** — VUT/Kingman/Sakasegawa, Hopp-Spearman best/worst/PWC, kanban, takt time, learning curves, line balancing
+- [x] 🔴 **Dynamic Programming** — Bellman recursion, principle of optimality, forward/backward induction; deterministic + stochastic
+- [x] 🔴 **Standard normal loss function** $L(z)=\phi(z)-z(1-\Phi(z))$ + table — unlocks every fill-rate / safety-stock derivation
+- [x] 🔴 **Multi-echelon inventory** — Clark-Scarf serial system + Graves-Willems guaranteed-service
+- [x] 🔴 **Risk pooling** — square-root law, correlated pooling $\sigma_{pool}^2=\sum\sigma_i^2+2\sum\rho_{ij}\sigma_i\sigma_j$, postponement
+- [x] 🔴 **Network optimization core** — transportation problem, assignment + Hungarian, transshipment, MCNF algorithms
+- [x] 🔴 **TSP + VRP** — formulations, Clarke-Wright savings, Daganzo continuous approximation
+- [x] 🔴 **Facility location** — UFLP, CFLP, p-median, set/max covering, center-of-gravity (Weiszfeld)
+- [x] 🔴 **Decision analysis** — decision trees, EMV, EVPI, EVSI
+- [x] 🔴 **Stochastic programming** — two-stage with recourse, EVPI vs VSS
+- [x] 🔴 **Aggregate planning + MRP/MPS/DRP arithmetic**
+- [x] 🔴 **System Dynamics core** — stocks/flows, causal loops, Erlang-$n$ delays, beer-game/bullwhip closed forms, goal-seeking-with-delays ODE
+- [x] 🔴 **Factory physics** — VUT/Kingman/Sakasegawa, Hopp-Spearman best/worst/PWC, kanban, takt time, learning curves, line balancing
 
 ---
 
 ## 1. Optimization
 
-- [ ] 🔴 Dynamic programming (Bellman, knapsack-DP, shortest-path-DP, equipment replacement)
-- [ ] 🔴 Stochastic DP / MDPs (states/actions/rewards, value & policy iteration, infinite horizon, discounted reward)
-- [ ] 🔴 Decision trees / EVPI / EVSI / Bayesian update on tree
-- [ ] 🔴 Decision criteria under uncertainty: maximin, maximax, minimax-regret, Hurwicz, Laplace
-- [ ] 🔴 Stochastic programming: two-stage with recourse, scenario trees, deterministic equivalent, chance constraints
+- [x] 🔴 Dynamic programming (Bellman, knapsack-DP, shortest-path-DP, equipment replacement)
+- [x] 🔴 Stochastic DP / MDPs (states/actions/rewards, value & policy iteration, infinite horizon, discounted reward)
+- [x] 🔴 Decision trees / EVPI / EVSI / Bayesian update on tree
+- [x] 🔴 Decision criteria under uncertainty: maximin, maximax, minimax-regret, Hurwicz, Laplace
+- [x] 🔴 Stochastic programming: two-stage with recourse, scenario trees, deterministic equivalent, chance constraints
 - [ ] 🟡 Robust optimization: box / ellipsoidal / Bertsimas-Sim Γ-budget; robust LP counterpart
 - [ ] 🟡 Cutting planes — Gomory pure & mixed, cover/clique/lifted inequalities, branch-and-cut
 - [ ] 🟡 Column generation — restricted master + pricing subproblem (cutting-stock)
@@ -44,30 +44,30 @@ Legend: 🔴 critical · 🟡 high-value · 🟢 nice-to-have
 - [ ] 🟡 Quadratic Programming (Markowitz, regression-as-QP)
 - [ ] 🟢 SOCP / SDP intro
 - [ ] 🟢 Interior-point methods, ellipsoid method
-- [ ] 🟡 Network simplex
+- [x] 🟡 Network simplex
 - [ ] 🟡 Two-phase / Big-M simplex initialization (verify present)
 - [ ] 🟢 Anti-cycling: Bland's rule, lexicographic
-- [ ] 🟡 Total unimodularity theorems explicit
+- [x] 🟡 Total unimodularity theorems explicit
 - [ ] 🟡 Subgradient method (Lagrangian dual updates)
 - [ ] 🟡 Farkas lemma / theorems of the alternative / separating hyperplane
 - [ ] 🟡 Metaheuristics individually: simulated annealing, tabu search, GRASP, GA, ant colony, VNS
 
 ## 2. Network Optimization
 
-- [ ] 🔴 Transportation problem — LP form, NW-corner, MODI, Vogel
-- [ ] 🔴 Assignment problem + Hungarian algorithm
-- [ ] 🔴 Transshipment problem
-- [ ] 🔴 Min-cost flow algorithms — negative-cycle canceling, successive shortest paths
-- [ ] 🟡 Minimum spanning tree — Prim, Kruskal
-- [ ] 🟡 Floyd-Warshall all-pairs shortest path
+- [x] 🔴 Transportation problem — LP form, NW-corner, MODI, Vogel
+- [x] 🔴 Assignment problem + Hungarian algorithm
+- [x] 🔴 Transshipment problem
+- [x] 🔴 Min-cost flow algorithms — negative-cycle canceling, successive shortest paths
+- [x] 🟡 Minimum spanning tree — Prim, Kruskal
+- [x] 🟡 Floyd-Warshall all-pairs shortest path
 - [ ] 🟢 A\* search
 - [ ] 🟡 Topological sort, DAG shortest path
 - [ ] 🟡 Bipartite matching
-- [ ] 🔴 TSP — DFJ + MTZ formulations, nearest-neighbor, 2-opt/3-opt, Lin-Kernighan, Christofides 3/2-bound
-- [ ] 🔴 VRP family — CVRP, VRPTW formulations
-- [ ] 🔴 Clarke-Wright savings $s_{ij}=c_{0i}+c_{0j}-c_{ij}$
+- [x] 🔴 TSP — DFJ + MTZ formulations, nearest-neighbor, 2-opt/3-opt, Lin-Kernighan, Christofides 3/2-bound
+- [x] 🔴 VRP family — CVRP, VRPTW formulations
+- [x] 🔴 Clarke-Wright savings $s_{ij}=c_{0i}+c_{0j}-c_{ij}$
 - [ ] 🟡 Sweep heuristic, Fisher-Jaikumar
-- [ ] 🔴 Daganzo continuous-approximation routing $L\approx k\sqrt{nA}$
+- [x] 🔴 Daganzo continuous-approximation routing $L\approx k\sqrt{nA}$
 - [ ] 🔴 CPM (forward/backward pass, slack)
 - [ ] 🔴 PERT (beta-PERT $\mu=(a+4m+b)/6$, $\sigma^2=((b-a)/6)^2$, CLT on critical path)
 - [ ] 🟡 Crashing LP
@@ -75,25 +75,25 @@ Legend: 🔴 critical · 🟡 high-value · 🟢 nice-to-have
 
 ## 3. Facility Location & Network Design
 
-- [ ] 🔴 Center of gravity / Weiszfeld iteration
-- [ ] 🔴 p-median (MIP)
-- [ ] 🟡 p-center (minimax)
-- [ ] 🔴 Set covering (LSCP), max covering (MCLP)
-- [ ] 🔴 UFLP — uncapacitated, dual-ascent (Erlenkotter), Lagrangian
-- [ ] 🔴 CFLP — capacitated, Lagrangian relaxation
+- [x] 🔴 Center of gravity / Weiszfeld iteration
+- [x] 🔴 p-median (MIP)
+- [x] 🟡 p-center (minimax)
+- [x] 🔴 Set covering (LSCP), max covering (MCLP)
+- [x] 🔴 UFLP — uncapacitated, dual-ascent (Erlenkotter), Lagrangian
+- [x] 🔴 CFLP — capacitated, Lagrangian relaxation
 - [ ] 🔴 Two-echelon location (plant→DC→customer) MIP
 - [ ] 🟡 Hub location — p-hub median, flow-aggregation discount α
 
 ## 4. Queueing
 
-- [ ] 🔴 Erlang C formula named, with derivation
-- [ ] 🟡 Erlang B (loss) formula
-- [ ] 🔴 G/G/1 Kingman / VUT equation $CT_q\approx\frac{c_a^2+c_e^2}{2}\frac{\rho}{1-\rho}t_e$
-- [ ] 🔴 G/G/c Sakasegawa approximation
-- [ ] 🔴 Linking equation $c_d^2=(1-\rho^2)c_a^2+\rho^2 c_e^2$ (variance propagation)
+- [x] 🔴 Erlang C formula named, with derivation
+- [x] 🟡 Erlang B (loss) formula
+- [x] 🔴 G/G/1 Kingman / VUT equation $CT_q\approx\frac{c_a^2+c_e^2}{2}\frac{\rho}{1-\rho}t_e$
+- [x] 🔴 G/G/c Sakasegawa approximation
+- [x] 🔴 Linking equation $c_d^2=(1-\rho^2)c_a^2+\rho^2 c_e^2$ (variance propagation)
 - [ ] 🟡 M/M/c/K finite capacity
-- [ ] 🟡 M/M/c+M (Erlang A) with abandonment
-- [ ] 🟡 Square-root staffing $c\approx\rho+\beta\sqrt{\rho}$ (Halfin-Whitt)
+- [x] 🟡 M/M/c+M (Erlang A) with abandonment
+- [x] 🟡 Square-root staffing $c\approx\rho+\beta\sqrt{\rho}$ (Halfin-Whitt)
 - [ ] 🟡 Jackson networks (open, product-form)
 - [ ] 🟢 Two-machine finite-buffer, Buzacott-Shanthikumar; decomposition
 - [ ] 🔴 Poisson process as a process — superposition, thinning, PASTA, Palm's theorem
@@ -104,21 +104,21 @@ Legend: 🔴 critical · 🟡 high-value · 🟢 nice-to-have
 
 ## 5. Inventory
 
-- [ ] 🔴 Standard normal loss function $L(z)$ chapter with table
-- [ ] 🔴 Clark-Scarf serial multi-echelon (echelon vs installation stock, induced penalty)
-- [ ] 🔴 METRIC (Sherbrooke) for repairables
-- [ ] 🟡 VARI-METRIC (Graves variance correction)
-- [ ] 🔴 Guaranteed-service Graves-Willems $\tau_i=s_{i-1}+T_i-s_i$, $SS_i=z\sigma_i\sqrt{\tau_i}$
-- [ ] 🟡 Stochastic-service Lee-Billington / Ettl
+- [x] 🔴 Standard normal loss function $L(z)$ chapter with table
+- [x] 🔴 Clark-Scarf serial multi-echelon (echelon vs installation stock, induced penalty)
+- [x] 🔴 METRIC (Sherbrooke) for repairables
+- [x] 🟡 VARI-METRIC (Graves variance correction)
+- [x] 🔴 Guaranteed-service Graves-Willems $\tau_i=s_{i-1}+T_i-s_i$, $SS_i=z\sigma_i\sqrt{\tau_i}$
+- [x] 🟡 Stochastic-service Lee-Billington / Ettl
 - [ ] 🟡 Eppen-Schrage allocation (OWMR)
 - [ ] 🟡 Power-of-two policies + Roundy 98% bound
-- [ ] 🔴 Lot-sizing heuristics: Silver-Meal, Least Unit Cost, Part-Period Balancing, POQ
+- [x] 🔴 Lot-sizing heuristics: Silver-Meal, Least Unit Cost, Part-Period Balancing, POQ
 - [ ] 🟡 CLSP / DLSP / CSLP / PLSP capacitated lot-sizing MIPs
 - [ ] 🟢 ELSP (economic lot scheduling problem)
-- [ ] 🔴 Risk-pooling formulas: square-root law + correlated extension
+- [x] 🔴 Risk-pooling formulas: square-root law + correlated extension
 - [ ] 🔴 Postponement / delayed differentiation (Lee-Tang)
 - [ ] 🟡 Component commonality (Baker-Magazine-Nuttle)
-- [ ] 🔴 Stochastic lead-time SS $\sigma_{DL}=\sqrt{L\sigma_D^2+\bar D^2\sigma_L^2}$ explicit
+- [x] 🔴 Stochastic lead-time SS $\sigma_{DL}=\sqrt{L\sigma_D^2+\bar D^2\sigma_L^2}$ explicit
 - [ ] 🟢 Random yield models (Yano-Lee)
 - [ ] 🔴 Bullwhip closed form $\frac{Var(O)}{Var(D)}=1+\frac{2L}{p}+\frac{2L^2}{p^2}$ (verify in `bullwhip.typ`)
 - [ ] 🟡 Service-parts $(S{-}1, S)$ policy
@@ -141,10 +141,10 @@ Legend: 🔴 critical · 🟡 high-value · 🟢 nice-to-have
 
 ## 7. Decision Analysis (entirely missing)
 
-- [ ] 🔴 Decision trees, rollback / folding-back
-- [ ] 🔴 EMV, EVPI, EVSI
-- [ ] 🟡 Utility theory: risk aversion, certainty equivalent, risk premium
-- [ ] 🟡 Maximin / maximax / minimax-regret / Hurwicz / Laplace criteria
+- [x] 🔴 Decision trees, rollback / folding-back
+- [x] 🔴 EMV, EVPI, EVSI
+- [x] 🟡 Utility theory: risk aversion, certainty equivalent, risk premium
+- [x] 🟡 Maximin / maximax / minimax-regret / Hurwicz / Laplace criteria
 - [ ] 🟡 AHP (Analytic Hierarchy Process)
 - [ ] 🟢 TOPSIS / weighted-sum / goal programming
 
@@ -187,27 +187,27 @@ Legend: 🔴 critical · 🟡 high-value · 🟢 nice-to-have
 
 ## 11. Manufacturing / Factory Physics (entirely missing)
 
-- [ ] 🔴 Hopp-Spearman Best/Worst/PWC triplet, critical WIP $W_0=r_b T_0$
-- [ ] 🔴 CONWIP; comparison vs kanban / MRP
-- [ ] 🔴 Kanban sizing $K=\lceil DL(1+\alpha)/C\rceil$
-- [ ] 🔴 Takt time = available time / demand
-- [ ] 🔴 Line balancing — theoretical-min stations, balance efficiency, LTT, Ranked Positional Weight
-- [ ] 🟡 Heijunka / EPEI
+- [x] 🔴 Hopp-Spearman Best/Worst/PWC triplet, critical WIP $W_0=r_b T_0$
+- [x] 🔴 CONWIP; comparison vs kanban / MRP
+- [x] 🔴 Kanban sizing $K=\lceil DL(1+\alpha)/C\rceil$
+- [x] 🔴 Takt time = available time / demand
+- [x] 🔴 Line balancing — theoretical-min stations, balance efficiency, LTT, Ranked Positional Weight
+- [x] 🟡 Heijunka / EPEI
 - [ ] 🟡 Karmarkar clearing function $TH=f(WIP)$
 - [ ] 🟡 OEE = Availability × Performance × Quality
 - [ ] 🟡 Effective process time with breakdowns: $t_e=t_0/A$, variance inflation
-- [ ] 🔴 Theory of Constraints throughput accounting ($T, OE, I, NP$); DBR; product-mix LP
-- [ ] 🔴 Learning curves: Wright $T_n=T_1 n^{-b}$ + Crawford; cumulative-cost integral
+- [x] 🔴 Theory of Constraints throughput accounting ($T, OE, I, NP$); DBR; product-mix LP
+- [x] 🔴 Learning curves: Wright $T_n=T_1 n^{-b}$ + Crawford; cumulative-cost integral
 
 ## 12. Aggregate Planning / MRP (entirely missing)
 
-- [ ] 🔴 Aggregate planning LP (chase, level, mixed; hire/fire/OT/inventory/backlog)
+- [x] 🔴 Aggregate planning LP (chase, level, mixed; hire/fire/OT/inventory/backlog)
 - [ ] 🟡 Bowman transportation-LP form of APP
 - [ ] 🟢 HMMS Holt-Modigliani-Muth-Simon quadratic / linear decision rule
-- [ ] 🔴 MRP — gross-to-net, BOM explosion, lead-time offsetting
-- [ ] 🔴 MPS / time-phased records
-- [ ] 🟡 DRP pull-up logic
-- [ ] 🟡 RCCP (rough-cut capacity) bills of capacity
+- [x] 🔴 MRP — gross-to-net, BOM explosion, lead-time offsetting
+- [x] 🔴 MPS / time-phased records
+- [x] 🟡 DRP pull-up logic
+- [x] 🟡 RCCP (rough-cut capacity) bills of capacity
 - [ ] 🟢 Hax-Meal hierarchical planning (item / family / type)
 
 ## 13. SC Contracts & Coordination (entirely missing)
@@ -232,30 +232,30 @@ Legend: 🔴 critical · 🟡 high-value · 🟢 nice-to-have
 
 ## 15. System Dynamics (entirely missing chapter family)
 
-- [ ] 🔴 Stocks & flows ODE foundation $\dot S=\text{in}-\text{out}$, dimensional consistency
-- [ ] 🔴 Causal loop diagrams, link & loop polarity
+- [x] 🔴 Stocks & flows ODE foundation $\dot S=\text{in}-\text{out}$, dimensional consistency
+- [x] 🔴 Causal loop diagrams, link & loop polarity
 - [ ] 🔴 First-order linear systems: $\dot x=g x$ (R), $\dot x=(x^*-x)/\tau$ (B) — closed forms
-- [ ] 🔴 Numerical integration: Euler, RK4; DT selection $\Delta t\le \min(\tau)/4$
-- [ ] 🔴 Delays: pipeline, exponential 1st-order, higher-order Erlang $n$-stage; SMOOTH/DELAY operators
-- [ ] 🔴 Smoothing & forecasting: SES recursion, SMOOTH3, TREND, FORECAST
-- [ ] 🔴 Stock-management structure (anchoring + supply-line correction); supply-line neglect → bullwhip
-- [ ] 🔴 Beer Distribution Game equations + Sterman estimated decision rule
-- [ ] 🟡 Bass diffusion $\dot A=(p+qA/N)(N-A)$, peak time $\ln(q/p)/(p+q)$
-- [ ] 🟡 Logistic growth + closed form
-- [ ] 🟡 SIR / SEIR, $R_0$, herd immunity
-- [ ] 🟢 Lotka-Volterra
+- [x] 🔴 Numerical integration: Euler, RK4; DT selection $\Delta t\le \min(\tau)/4$
+- [x] 🔴 Delays: pipeline, exponential 1st-order, higher-order Erlang $n$-stage; SMOOTH/DELAY operators
+- [x] 🔴 Smoothing & forecasting: SES recursion, SMOOTH3, TREND, FORECAST
+- [x] 🔴 Stock-management structure (anchoring + supply-line correction); supply-line neglect → bullwhip
+- [x] 🔴 Beer Distribution Game equations + Sterman estimated decision rule
+- [x] 🟡 Bass diffusion $\dot A=(p+qA/N)(N-A)$, peak time $\ln(q/p)/(p+q)$
+- [x] 🟡 Logistic growth + closed form
+- [x] 🟡 SIR / SEIR, $R_0$, herd immunity
+- [x] 🟢 Lotka-Volterra
 - [ ] 🟡 Limits to growth / overshoot-and-collapse
 - [ ] 🟡 Capacity-cycle / commodity-cycle models
 - [ ] 🟡 Workforce / aging chain / coflow structures
-- [ ] 🔴 Goal-seeking with delays → 2nd-order ODE; damping ratio $\zeta$, natural frequency $\omega_n$
-- [ ] 🟡 Phase-plane analysis, nullclines, trajectories
+- [x] 🔴 Goal-seeking with delays → 2nd-order ODE; damping ratio $\zeta$, natural frequency $\omega_n$
+- [x] 🟡 Phase-plane analysis, nullclines, trajectories
 - [ ] 🔴 Linearization at equilibrium, Jacobian, eigenvalue classification (node/saddle/spiral/center)
 - [ ] 🟡 Routh-Hurwitz stability criterion
 - [ ] 🟢 Hopf bifurcation, limit cycles, period-doubling, chaos
 - [ ] 🟢 Lyapunov function intro
 - [ ] 🟡 Theil's inequality coefficient $U$ for SD validation
 - [ ] 🟡 Calibration: FIMLOF / Powell parameter search
-- [ ] 🟡 Monte Carlo / Latin Hypercube sensitivity
+- [x] 🟡 Monte Carlo / Latin Hypercube sensitivity
 - [ ] 🟢 Path dependence / lock-in (Polya urn)
 
 ## 16. Differential Equations (only one file today)
@@ -265,7 +265,7 @@ Legend: 🔴 critical · 🟡 high-value · 🟢 nice-to-have
 - [ ] 🟡 Systems of linear ODEs, matrix exponential
 - [ ] 🔴 Equilibria & stability (eigenvalue test)
 - [ ] 🟡 Phase portraits (2-D)
-- [ ] 🔴 Numerical methods: Euler, Heun, RK4
+- [x] 🔴 Numerical methods: Euler, Heun, RK4
 - [ ] 🟡 Laplace transforms
 - [ ] 🟡 Nonlinear ODEs: linearization, limit cycles
 
@@ -278,7 +278,7 @@ Legend: 🔴 critical · 🟡 high-value · 🟢 nice-to-have
 - [ ] 🔴 Law of total expectation / total variance as named theorems
 - [ ] 🔴 LLN, CLT with derivations
 - [ ] 🟡 Inequalities: Markov, Chebyshev, Jensen, Chernoff, Hoeffding
-- [ ] 🔴 Standard normal loss function $L(z)$ chapter
+- [x] 🔴 Standard normal loss function $L(z)$ chapter
 - [ ] 🟡 Conjugate priors for Bayesian updates
 - [ ] 🟡 Mixture distributions
 
@@ -297,14 +297,14 @@ Legend: 🔴 critical · 🟡 high-value · 🟢 nice-to-have
 
 ## 19. Linear Algebra
 
-- [ ] 🔴 SVD
+- [x] 🔴 SVD
 - [ ] 🔴 PCA as application
-- [ ] 🟡 QR decomposition, Cholesky decomposition
-- [ ] 🟡 Pseudoinverse (Moore-Penrose)
-- [ ] 🟡 Matrix calculus (gradient/Jacobian/Hessian of vector-valued functions)
-- [ ] 🟡 Quadratic forms explicit usage (positive/negative-(semi)definiteness)
-- [ ] 🟡 Norms: vector $p$-norms, matrix norms, spectral norm
-- [ ] 🟡 Spectral theorem, diagonalization conditions
+- [x] 🟡 QR decomposition, Cholesky decomposition
+- [x] 🟡 Pseudoinverse (Moore-Penrose)
+- [x] 🟡 Matrix calculus (gradient/Jacobian/Hessian of vector-valued functions)
+- [x] 🟡 Quadratic forms explicit usage (positive/negative-(semi)definiteness)
+- [x] 🟡 Norms: vector $p$-norms, matrix norms, spectral norm
+- [x] 🟡 Spectral theorem, diagonalization conditions
 - [ ] 🟢 Iterative solvers: Jacobi, Gauss-Seidel, conjugate gradient
 - [ ] 🟢 Power iteration
 
@@ -318,10 +318,10 @@ Legend: 🔴 critical · 🟡 high-value · 🟢 nice-to-have
 
 ## 21. Algorithms (sparse)
 
-- [ ] 🟡 Floyd-Warshall all-pairs SP
+- [x] 🟡 Floyd-Warshall all-pairs SP
 - [ ] 🟡 A\* heuristic search
 - [ ] 🟡 Topological sort
-- [ ] 🟡 MST: Prim, Kruskal
+- [x] 🟡 MST: Prim, Kruskal
 - [ ] 🟡 Bipartite matching (Hopcroft-Karp)
 - [ ] 🟢 Sorting (mergesort, quicksort, heapsort)
 - [ ] 🟡 Big-O analysis chapter
@@ -331,7 +331,7 @@ Legend: 🔴 critical · 🟡 high-value · 🟢 nice-to-have
 
 - [ ] 🔴 TVM: PV, FV, NPV, IRR, payback
 - [ ] 🔴 Cash-to-cash cycle = DIO + DSO − DPO
-- [ ] 🟡 GMROI (verify formula in existing file)
+- [x] 🟡 GMROI (verify formula in existing file)
 - [ ] 🟡 DuPont decomposition: ROA = margin × turnover
 - [ ] 🟡 Activity-based costing
 - [ ] 🟡 Real options (binomial CRR; Black-Scholes intro for capacity)
