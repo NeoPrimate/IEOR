@@ -272,15 +272,15 @@ Legend: 🔴 critical · 🟡 high-value · 🟢 nice-to-have
 ## 17. Probability
 
 - [ ] 🔴 Distributions missing: Lognormal, Gamma, Beta, Negative Binomial, Geometric, Uniform (continuous + discrete), Triangular, Weibull, Hypergeometric, Compound Poisson
-- [ ] 🔴 Joint / marginal / conditional in multivariate explicit chapters
-- [ ] 🟡 Convolutions of independent r.v.s
+- [x] 🔴 Joint / marginal / conditional in multivariate explicit chapters
+- [x] 🟡 Convolutions of independent r.v.s
 - [ ] 🟡 Order statistics
-- [ ] 🔴 Law of total expectation / total variance as named theorems
+- [x] 🔴 Law of total expectation / total variance as named theorems
 - [ ] 🔴 LLN, CLT with derivations
 - [ ] 🟡 Inequalities: Markov, Chebyshev, Jensen, Chernoff, Hoeffding
 - [x] 🔴 Standard normal loss function $L(z)$ chapter
 - [ ] 🟡 Conjugate priors for Bayesian updates
-- [ ] 🟡 Mixture distributions
+- [x] 🟡 Mixture distributions
 
 ## 18. Statistics
 

@@ -702,7 +702,7 @@ The subtraction strips off the "baseline up to $k$" porton of each tail outcome,
       cetz-plot.plot.add(
         domain: (-3, 3),
         samples: 200,
-        style: (stroke: rgb("#534AB7") + 2pt),
+        style: (stroke: blue + 2pt),
         x => _phi(x),
       )
       cetz-plot.plot.add-vline(k, style: (stroke: red + 1pt))
@@ -726,14 +726,14 @@ The subtraction strips off the "baseline up to $k$" porton of each tail outcome,
       cetz-plot.plot.add-fill-between(
         domain: (k, 3),
         samples: 100,
-        style: (fill: rgb("#EF9F2799"), stroke: none),
+        style: (fill: red.transparentize(75%), stroke: none),
         x => - u_phi(x),
         zero,
       )
       cetz-plot.plot.add(
         domain: (-3, 3),
         samples: 200,
-        style: (stroke: rgb("#534AB7") + 2pt),
+        style: (stroke: blue+ 2pt),
         x => - u_phi(x),
       )
       cetz-plot.plot.add-hline(0, style: (stroke: black + 0.5pt))
@@ -757,14 +757,14 @@ The subtraction strips off the "baseline up to $k$" porton of each tail outcome,
       cetz-plot.plot.add-fill-between(
         domain: (k, 3),
         samples: 100,
-        style: (fill: rgb("#EF9F2799"), stroke: none),
+        style: (fill: red.transparentize(75%), stroke: none),
         u_phi,
         zero,
       )
       cetz-plot.plot.add(
         domain: (-3, 3),
         samples: 200,
-        style: (stroke: rgb("#534AB7") + 2pt),
+        style: (stroke: blue + 2pt),
         u_phi,
       )
       cetz-plot.plot.add-hline(0, style: (stroke: black + 0.5pt))
@@ -1605,9 +1605,6 @@ $
 
 Phrasebook of LP/MILP modeling idioms: small algebraic constructs
 
-#set text(size: 9pt)
-#show table.cell.where(y: 0): strong
-
 #table(
   columns: (auto, 1fr),
   align: (left, left),
@@ -1707,8 +1704,248 @@ Phrasebook of LP/MILP modeling idioms: small algebraic constructs
 = Acceptance sampling: OC curve, AOQ, AOQL, single/double/sequential plans
 
 
+= Covariance
+
+$
+  "Cov"(X, Y) = EE[(X - EE[X])(Y - EE[Y])] = EE[X Y] - EE[X] EE[Y]
+$
+
+#example[
+  $
+    X = (1, 2, 3) \
+    Y = (2, 4, 6) \
+  $
+
+  $
+    EE[X] = (1 + 2 + 3) / 3 = 2 \
+    EE[Y] = (2 + 4 + 6) / 3 = 4 \
+  $
+
+  #table(
+    columns: 5,
+    align: center + horizon,
+    [$x_i$], [$y_i$], [$x_i - EE[X]$], [$y_i - EE[Y]$], [product],
+    [1], [2], [-1], [-2], [2],
+    [2], [4], [0], [0], [0],
+    [3], [6], [1], [2], [2],
+  )
+
+  $
+    "Cov"(X, Y) = (2 + 0 + 2) / 3 = 4 / 3 approx 1.33
+  $
+
+  Cross-check with the formula:
+
+  $
+    EE[X Y] - EE[X] EE[Y]
+  $
+
+  $
+    EE[X Y] = ((1)(2) + (2)(4) + (3)(6)) / 3 = (2 + 8 + 18) / 3 = 28 / 3 \
+
+    EE[X] EE[Y] = (2)(4) = 8 \
+
+    EE[X Y] - EE[X] EE[Y] = 28 / 3 - 8 = 4 / 3
+  $
+]
+
+Covariance is unbounded; correlation is the normalized version:
+
+$
+  rho_(X Y) = "Cov"(X, Y) / (sigma_X sigma_Y)
+$
+
+= Covariance and Correlation
+// #show: lq.theme.schoolbook
+
+#grid(
+  columns: 2,
+  inset: 1em,
+  [
+    #let xs = lq.linspace(-10, 10, num: 20)
+    #let ys = lq.vec.jitter(xs, seed: auto, amount: 0, distribution: "normal")
+
+    #let x-bar = xs.sum() / xs.len()
+    #let y-bar = ys.sum() / ys.len()
+
+    
+    #let x_diff = xs.map(x => x - x-bar)
+    #let y_diff = ys.map(y => y - y-bar)
+
+    #let prod = x_diff.zip(y_diff).map(xy => xy.at(0) * xy.at(1))
+    #let cov_0 = prod.sum() / prod.len()
+
+    #let std_xs = calc.sqrt(xs.map(x => calc.pow(x - x-bar, 2)).sum() / xs.len())
+    #let std_ys = calc.sqrt(ys.map(y => calc.pow(y - y-bar, 2)).sum() / ys.len())
+
+    #let corr_0 = cov_0 / (std_xs * std_ys)
+
+    #let quad-color = (x, y) => if (x - x-bar) * (y - y-bar) >= 0 { blue } else { red }
+    #let colors = xs.zip(ys).map(((x, y)) => quad-color(x, y))
+
+    #lq.diagram(
+      lq.vlines(x-bar),
+      lq.hlines(y-bar),
+      lq.scatter(
+        xs,
+        ys,
+        color: colors
+      ),
+      ..xs.zip(ys).map(((x, y)) => lq.rect(
+      x-bar, y-bar,
+      width: x - x-bar,
+      height: y - y-bar,
+      fill: quad-color(x, y).transparentize(80%),
+      stroke: none,
+      z-index: 1,
+    ))
+    )
+    $
+      "Cov" &= #calc.round(cov_0, digits: 2) \
+      "Corr" &= #corr_0\
+    $
+  ],
+  [
+    
+    #let xs = lq.linspace(-10, 10, num: 20)
+    #let ys = xs.map(x => -x)
+    #let ys = lq.vec.jitter(ys, seed: auto, amount: 0, distribution: "normal")
+
+    #let x-bar = xs.sum() / xs.len()
+    #let y-bar = ys.sum() / ys.len()
+
+    #let x_diff = xs.map(x => x - x-bar)
+    #let y_diff = ys.map(y => y - y-bar)
+
+    #let prod = x_diff.zip(y_diff).map(xy => xy.at(0) * xy.at(1))
+    #let cov_1 = prod.sum() / prod.len()
+
+    #let std_xs = calc.sqrt(xs.map(x => calc.pow(x - x-bar, 2)).sum() / xs.len())
+    #let std_ys = calc.sqrt(ys.map(y => calc.pow(y - y-bar, 2)).sum() / ys.len())
+
+    #let corr_1 = cov_1 / (std_xs * std_ys)
+
+    #let quad-color = (x, y) => if (x - x-bar) * (y - y-bar) >= 0 { blue } else { red }
+    #let colors = xs.zip(ys).map(((x, y)) => quad-color(x, y))
+
+    #lq.diagram(
+      lq.vlines(x-bar),
+      lq.hlines(y-bar),
+      lq.scatter(
+        xs,
+        ys,
+        color: colors
+      ),
+      ..xs.zip(ys).map(((x, y)) => lq.rect(
+      x-bar, y-bar,
+      width: x - x-bar,
+      height: y - y-bar,
+      fill: quad-color(x, y).transparentize(80%),
+      stroke: none,
+      z-index: 1,
+    ))
+    )
+    $
+      "Cov" &= #calc.round(cov_1, digits: 2) \
+      "Corr" &= #corr_1\
+    $
+  ],
+  [
+    #let xs = lq.linspace(-10, 10, num: 20)
+    #let ys = lq.vec.jitter(xs, seed: auto, amount: 10, distribution: "normal")
+
+    #let x-bar = xs.sum() / xs.len()
+    #let y-bar = ys.sum() / ys.len()
+
+    
+    #let x_diff = xs.map(x => x - x-bar)
+    #let y_diff = ys.map(y => y - y-bar)
+
+    #let prod = x_diff.zip(y_diff).map(xy => xy.at(0) * xy.at(1))
+    #let cov_2 = prod.sum() / prod.len()
+
+    #let std_xs = calc.sqrt(xs.map(x => calc.pow(x - x-bar, 2)).sum() / xs.len())
+    #let std_ys = calc.sqrt(ys.map(y => calc.pow(y - y-bar, 2)).sum() / ys.len())
+
+    #let corr_2 = cov_2 / (std_xs * std_ys)
+
+    #let quad-color = (x, y) => if (x - x-bar) * (y - y-bar) >= 0 { blue } else { red }
+    #let colors = xs.zip(ys).map(((x, y)) => quad-color(x, y))
+
+    #lq.diagram(
+      lq.vlines(x-bar),
+      lq.hlines(y-bar),
+      lq.scatter(
+        xs,
+        ys,
+        color: colors
+      ),
+      ..xs.zip(ys).map(((x, y)) => lq.rect(
+      x-bar, y-bar,
+      width: x - x-bar,
+      height: y - y-bar,
+      fill: quad-color(x, y).transparentize(80%),
+      stroke: none,
+      z-index: 1,
+    ))
+    )
+    $
+      "Cov" &= #calc.round(cov_2, digits: 2) \
+      "Corr" &= #calc.round(corr_2, digits: 2) \
+    $
+  ],
+  [
+    
+    #let xs = lq.linspace(-10, 10, num: 20)
+    #let ys = xs.map(x => -x)
+    #let ys = lq.vec.jitter(ys, seed: auto, amount: 10, distribution: "normal")
+
+    #let x-bar = xs.sum() / xs.len()
+    #let y-bar = ys.sum() / ys.len()
+
+    
+    #let x_diff = xs.map(x => x - x-bar)
+    #let y_diff = ys.map(y => y - y-bar)
+
+    #let prod = x_diff.zip(y_diff).map(xy => xy.at(0) * xy.at(1))
+    #let cov_3 = prod.sum() / prod.len()
+
+    #let std_xs = calc.sqrt(xs.map(x => calc.pow(x - x-bar, 2)).sum() / xs.len())
+    #let std_ys = calc.sqrt(ys.map(y => calc.pow(y - y-bar, 2)).sum() / ys.len())
+
+    #let corr_3 = cov_3 / (std_xs * std_ys)
+
+    #let quad-color = (x, y) => if (x - x-bar) * (y - y-bar) >= 0 { blue } else { red }
+    #let colors = xs.zip(ys).map(((x, y)) => quad-color(x, y))
+
+    #lq.diagram(
+      lq.vlines(x-bar),
+      lq.hlines(y-bar),
+      lq.scatter(
+        xs,
+        ys,
+        color: colors
+      ),
+      ..xs.zip(ys).map(((x, y)) => lq.rect(
+      x-bar, y-bar,
+      width: x - x-bar,
+      height: y - y-bar,
+      fill: quad-color(x, y).transparentize(80%),
+      stroke: none,
+      z-index: 1,
+    ))
+    )
+    $
+      "Cov" &= #calc.round(cov_3, digits: 2) \
+      "Corr" &= #calc.round(corr_3, digits: 2) \
+    $
+  ],
+)
+
+
 
 = PCA as application
+
 
 
 = Joint, Conditional and Marginal Probabilities
@@ -1928,7 +2165,6 @@ $
 #let w1 = 0.7
 #let w2 = 0.3
 
-// mixture: weighted sum — no simplification possible
 #let mix(x) = w1 * norm.pdf(x, mean: 0, std_dev: 1) + w2 * norm.pdf(x, mean: 5, std_dev: 1)
 
 #cetz.canvas({
@@ -1937,11 +2173,10 @@ $
     size: (8, 3),
     x-label: $$, y-label: $$,
     x-tick-step: 2,
-    y-tick-step: 0.1,            // not 1 — axis only reaches ~0.32
+    y-tick-step: 0.1,            
     x-min: -4, x-max: 9,
     y-min: 0, y-max: 0.35,
     {
-      // faint scaled components (dashed), to show the mixture is their sum
       plot.add(domain: (-4, 9), samples: 300,
         style: (stroke: (paint: gray, dash: "dashed")),
         x => w1 * norm.pdf(x, mean: 0, std_dev: 1))
@@ -1949,12 +2184,10 @@ $
         style: (stroke: (paint: gray, dash: "dashed")),
         x => w2 * norm.pdf(x, mean: 5, std_dev: 1))
 
-      // mixture (filled blue) — bimodal
       plot.add-fill-between(domain: (-4, 9), samples: 500,
         style: (fill: blue.transparentize(80%), stroke: blue + 1.5pt),
         x => mix(x), x => 0)
 
-      // convolution (red) — single Gaussian via closed form
       plot.add(domain: (-4, 9), samples: 500,
         style: (stroke: red + 1.5pt),
         x => norm.pdf(x, mean: 5, std_dev: calc.sqrt(2)))
@@ -1966,3 +2199,24 @@ $
   )
 })    
 ]
+
+= Law of Total Expectation
+
+- Tower property
+- Law of iterated expectations
+- Smoothing theorem
+- Adam's law
+
+$
+  EE[X] = EE[EE[X | Y]]
+$
+
+= Law of Total Variance
+
+- Variance decomposition formula
+- Conditional variance formula
+- Eve's law
+
+$
+  "Var"(X) = underbrace(EE["Var"(X | Y)], "within-group") + underbrace("Var"(EE[X | Y]), "between-group")
+$

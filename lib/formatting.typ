@@ -18,6 +18,8 @@
 
   set text(font: "Helvetica")
 
+  show table: it => align(center, block(breakable: false, it))
+
   // Gracefully degrade #link(<label>)[body] when the label isn't in scope —
   // e.g. when previewing a chapter in isolation, where labels created by
   // main.typ's render() recursion don't exist. The user `show link:` rule
