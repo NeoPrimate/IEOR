@@ -1,5 +1,8 @@
 #import "/lib/imports.typ": *
-#import "@local/tystats:0.1.0": norm, poisson
+#import "@local/tystats:0.1.0": norm, poisson, expon
+
+#import "@preview/tiptoe:0.4.0"
+#let obar(x) = math.accent(x, math.macron)
 
 - If you don't understand the continuous, try the discrete
 - If you don't understand the multivariate, try the univariate
@@ -1703,11 +1706,19 @@ Phrasebook of LP/MILP modeling idioms: small algebraic constructs
 
 = Acceptance sampling: OC curve, AOQ, AOQL, single/double/sequential plans
 
+= Variance
+
+$
+  EE[(X - mu)^2] \
+
+  (sum_(i=1)^n (x_i - obar(x))^2) / n
+$
 
 = Covariance
 
 $
-  "Cov"(X, Y) = EE[(X - EE[X])(Y - EE[Y])] = EE[X Y] - EE[X] EE[Y]
+  "Cov"(X, Y) = EE[(X - EE[X])(Y - EE[Y])] = EE[X Y] - EE[X] EE[Y] \
+  (sum_(i=1)^n (x_i - obar(x))(y_i - obar(y))) / n
 $
 
 #example[
@@ -1942,10 +1953,114 @@ $
   ],
 )
 
-
-
 = PCA as application
 
+
+*Covariance Matrix*
+
+Principle components are always perpendicular 
+
+Let $X_j$ denote the $j$-th feature, and $X_1, X_2, dots, X_d$ are your $d$ features:
+
+$
+  C = mat(
+    "var"(X_1), "cov"(X_1, X_2), dots, "cov"(X_1, X_d);
+    "cov"(X_2, X_1), "var"(X_2), dots, "cov"(X_2, X_d);
+    dots.v, dots.v, dots.down, dots.v;
+    "cov"(X_d, X_1), "cov"(X_d, X_2), dots, "var"(X_d);
+  )
+$
+
+
+#example[
+  $
+    X = {(0, 2), (2, 0), (4, 3), (6, 4), (8, 6)}
+  $
+
+  *Step 1* Center
+
+  $
+    overline(x) = (0 + 2 + 4 + 6 + 8) / 5 = 5 quad quad quad overline(y) = (2 + 0 + 3 + 4 + 6) / 5 = 3
+  $
+
+  Subtract (5, 4) from each point
+
+  $
+    obar(X) = {(−4,−1),(−2,−3),(0,0),(2,1),(4,3)} 
+  $
+
+  *Step 2* Covariance matrix
+
+  $
+    "var"(x) = (16 + 4 + 0 + 4 + 16) / 4 \
+    "var"(y) = (1 + 9 + 0 + 1 + 9) / 4 \
+    "cov"(x, y) = ((-4)(-1) + (-2)(-3) + 0 + (2)(1) + (4)(3)) / 4 = 6 \
+  $
+
+  $
+    C = mat(
+      10, 6;
+      6, 5;
+    )
+  $
+
+  - top-left = 10 → how much &x& spreads on its own
+  - bottom-right = 5 → how much $y$ spreads on its own ($x$ spreads twice as much)
+  - off-diagonal = 6 → how $x$ and $y$ move together (positive, so they rise together)
+
+  *Step 3 — Eigenvalues and eigenvectors*
+
+  Each principal component is an eigenvector $v$ of $C$: a direction that $C$ only
+  stretches, never rotates.
+  $ C v = lambda v quad arrow.double quad (C - lambda I) v = 0 $
+
+  *Eigenvalues* — force a non-trivial solution with $det(C - lambda I) = 0$:
+  $
+    det(C - lambda I) &= (10 - lambda)(5 - lambda) - 36 \
+                      &= lambda^2 - 15 lambda + 14 \
+                      &= (lambda - 14)(lambda - 1) = 0
+  $
+  $ arrow.double quad lambda_1 = 14 quad "or" quad lambda_2 = 1 $
+
+  *Eigenvectors* — substitute each $lambda$ back into $(C - lambda I) v = 0$.
+
+  For $lambda_1 = 14$, with $C - 14 I = mat(-4, 6; 6, -9)$:
+  $ -4 v_1 + 6 v_2 = 0 quad arrow.double quad 2 v_1 = 3 v_2 quad arrow.double quad v prop vec(3, 2) $
+
+  For $lambda_2 = 1$, with $C - 1 I = mat(9, 6; 6, 4)$:
+  $ 9 v_1 + 6 v_2 = 0 quad arrow.double quad 3 v_1 = -2 v_2 quad arrow.double quad v prop vec(2, -3) $
+
+  Normalise to unit length:
+  $ "PC"_1 = 1/sqrt(13) vec(3, 2) quad "PC"_2 = 1/sqrt(13) vec(2, -3) $
+  
+  #let x = (0, 2, 4, 6, 8)
+  #let y = (2, 0, 3, 4, 6)
+
+  #let mean = (4, 3)              // centroid: the means you subtract to center
+  #let s = 1 / calc.sqrt(13)
+  #let u1 = (3 * s, 2 * s)        // PC1 direction (unit)
+  #let u2 = (2 * s, -3 * s)       // PC2 direction (unit)
+
+  #let len1 = calc.sqrt(14) * 2   // length ∝ sqrt(eigenvalue) = std dev
+  #let len2 = calc.sqrt(1) * 2
+
+  #let axis(c, u, L) = (
+    (c.at(0) - u.at(0) * L, c.at(1) - u.at(1) * L),
+    (c.at(0) + u.at(0) * L, c.at(1) + u.at(1) * L),
+  )
+  #let (a1, b1) = axis(mean, u1, len1)
+  #let (a2, b2) = axis(mean, u2, len2)
+
+  #lq.diagram(
+    width: 7cm, height: 7cm,         // equal size  +
+    xlim: (-3, 11), ylim: (-4, 10),  // equal spans  => true right angles
+    lq.scatter(x, y, color: blue),
+    lq.line(a1, b1, stroke: (paint: red, thickness: 1.5pt),
+            tip: tiptoe.stealth, toe: tiptoe.stealth),
+    lq.line(a2, b2, stroke: (paint: purple, thickness: 1.5pt),
+            tip: tiptoe.stealth, toe: tiptoe.stealth),
+  )
+]
 
 
 = Joint, Conditional and Marginal Probabilities
@@ -2220,3 +2335,109 @@ $
 $
   "Var"(X) = underbrace(EE["Var"(X | Y)], "within-group") + underbrace("Var"(EE[X | Y]), "between-group")
 $
+
+
+= Central Limit Theorem
+
+#let M = 1500                    // sample means per panel
+#let lo = 0.0
+#let hi = 2.0
+#let bins = 30
+#let w = (hi - lo) / bins
+#let centers = range(bins).map(b => lo + (b + 0.5) * w)
+
+#let clt-hist(n) = {
+  // ONE draw of M*n values, then chunk into M sample means of size n
+  let big = expon.rvs(rate: 1, size: M * n)
+  let means = range(M).map(j => big.slice(j * n, (j + 1) * n).sum() / n)
+
+  // bin into counts, then normalize to a density (area = 1)
+  let counts = range(bins).map(b => {
+    let a = lo + b * w
+    let c = a + w
+    if b == bins - 1 { means.filter(v => v >= a and v <= c).len() }
+    else { means.filter(v => v >= a and v < c).len() }
+  })
+  let density = counts.map(cnt => cnt / (M * w))
+
+  // theoretical bell: Normal(mu = 1, var = sigma^2/n = 1/n)
+  let npts = 200
+  let xs = range(npts + 1).map(k => lo + (hi - lo) * k / npts)
+  let v = 1.0 / n
+  let ys = xs.map(x => {
+    let d = x - 1
+    calc.exp(-d * d / (2 * v)) / calc.sqrt(2 * calc.pi * v)
+  })
+
+  lq.diagram(
+    title: [n = #n],
+    xlim: (lo, hi),
+    xlabel: $overline(X)_n$,
+    ylabel: [density],
+    lq.bar(centers, density, width: w, fill: blue.lighten(60%), stroke: 0.3pt),
+    lq.plot(xs, ys, mark: none, stroke: (paint: red, thickness: 1.5pt)),
+  )
+}
+
+#figure({
+  show: lq.layout                // aligns the four diagrams' axes
+  grid(columns: 2, row-gutter: 1.5em, column-gutter: 1.5em,
+    clt-hist(1), clt-hist(2), clt-hist(5), clt-hist(30),
+  )
+})
+
+= Law of Large Numbers
+
+The sample mean $obar(X)_n$ converges to $mu$. That is, as you add more samples, the value $obar(X_n)$ gets arbitrarily close to the true mean $mu$
+#let n = ()
+#for i in range(1, 201) { n.push(i) }
+
+#let big = expon.rvs(rate: 1, size: 6000)   // 30 paths × 200 draws, ONE call
+
+#let paths = ()
+#for p in range(0, 30) {
+  let running = ()
+  let s = 0.0
+  for i in range(0, 200) {
+    s += big.at(p * 200 + i)                 // path p uses draws [p*200 .. p*200+199]
+    running.push(s / (i + 1))
+  }
+  paths.push(running)
+}
+
+#lq.diagram(
+  ylim: (0, 2),
+  xlabel: $n$, ylabel: $overline(X)_n$,
+  ..paths.map(r => lq.plot(n, r, mark: none,
+    stroke: (paint: blue.transparentize(80%)))),
+)
+
+= Vectors
+
+
+#lq.diagram(
+  width: 5cm,
+  height: 5cm,
+  xlim: (-3, 3),
+  ylim: (-3, 3),
+  yaxis: (
+    position: 0,
+    // ticks: 1,
+    tick-args: (tick-distance: 2),
+    tip: tiptoe.triangle,
+    // filter: no-zero,
+    subticks: none,
+  ),
+  xaxis: (
+    position: 0,
+    tick-args: (tick-distance: 2),
+    tip: tiptoe.triangle,
+    filter: (value, distance) => value != 0,
+    subticks: none,
+  ),
+  lq.line(
+    (0, 0), (2, 2),
+    tip: tiptoe.triangle,
+    stroke: blue + 1.5pt,
+  ),
+)

@@ -292,7 +292,7 @@ Legend: 🔴 critical · 🟡 high-value · 🟢 nice-to-have
 - [ ] 🟢 Gage R&R
 - [ ] 🟢 Survival analysis (Kaplan-Meier, Cox PH)
 - [ ] 🟡 Kalman filter
-- [ ] 🔴 PCA
+- [x] 🔴 PCA
 - [ ] 🟡 Time-series cross-validation specifics
 
 ## 19. Linear Algebra
