@@ -2,9 +2,10 @@
 # Install `just` via: brew install just
 # Then run e.g. `just build-pdf` from the repo root.
 
-# Path to the Typst CLI. Override via env: `TYPST=typst just build-pdf`.
-# Default points at the cargo-installed HEAD which has bundle/html support.
-TYPST := env_var_or_default("TYPST", "~/.cargo/bin/typst")
+# Path to the Typst CLI. Override via env: `TYPST=/path/to/typst just build-pdf`.
+# Needs Typst >= 0.15.0-rc.1 (for bundle export + MathML math); default assumes
+# it's on PATH.
+TYPST := env_var_or_default("TYPST", "typst")
 
 # Default recipe — show available commands.
 default:
@@ -39,10 +40,12 @@ PAGEFIND := env_var_or_default("PAGEFIND", "~/.local/bin/pagefind")
 #   1. Typst bundle export emits all pages + sidebar + style.css.
 #   2. PDF is copied into build/html/main.pdf so "Read as PDF" works locally.
 #   3. Pagefind crawls the output to build the search index.
+# `--pretty` keeps the local HTML readable for debugging (0.15 minifies by
+# default); CI omits it so the deployed site stays minified.
 build-html: build-pdf
     rm -rf build/html
     mkdir -p build/html
-    {{TYPST}} compile --features bundle,html --format bundle --root . book.typ build/html/
+    {{TYPST}} compile --pretty --features bundle,html --format bundle --root . book.typ build/html/
     cp build/main.pdf build/html/main.pdf
     {{PAGEFIND}} --site build/html
 

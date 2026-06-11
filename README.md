@@ -23,10 +23,12 @@ just build-html      # → build/html/  (also rebuilds build/main.pdf)
 just serve           # → http://localhost:8000
 ```
 
-Requires Typst HEAD (for `bundle` export) and Pagefind (for search). One-time setup on macOS arm64:
+Requires Typst >= 0.15.0-rc.1 (for `bundle` export + native MathML math) and
+Pagefind (for search). One-time setup on macOS arm64:
 
 ```sh
-cargo install --git https://github.com/typst/typst --locked typst-cli
+curl -sL https://github.com/typst/typst/releases/download/v0.15.0-rc.1/typst-aarch64-apple-darwin.tar.xz \
+  | tar -xJ --strip-components=1 -C ~/.local/bin/ typst-aarch64-apple-darwin/typst
 curl -sL https://github.com/Pagefind/pagefind/releases/download/v1.5.2/pagefind-v1.5.2-aarch64-apple-darwin.tar.gz \
   | tar -xz -C ~/.local/bin/
 ```

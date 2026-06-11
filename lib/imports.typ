@@ -25,7 +25,24 @@
   ribbony-diagram, sankey-diagram, chord-diagram,
   layout, ribbon-stylizer, tinter, label,
 )
-#import "@preview/modpattern:0.1.0": modpattern
+// Local replacement for @preview/modpattern:0.1.0, whose only function wraps
+// the `pattern` builtin — removed in Typst 0.15 (renamed to `tiling` in 0.13).
+// `tiling` exists in 0.13–0.15, so this is version-robust. Same signature.
+#let modpattern(size, body, dx: 0pt, dy: 0pt, background: none) = tiling(
+  size: size,
+  {
+    if background != none {
+      place(box(width: 100%, height: 100%, fill: background))
+    }
+    move(dx: -size.at(0) + dx, dy: -size.at(1) + dy, grid(
+      columns: 3 * (size.at(0),),
+      rows: 3 * (size.at(1),),
+      body, body, body,
+      body, body, body,
+      body, body, body,
+    ))
+  },
+)
 
 // === Convenience names (used inside cetz.canvas blocks etc.) ===
 #import "@preview/cetz:0.5.0": draw, tree

@@ -20,22 +20,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Build Typst from main to get the bundle export feature.
-      # Cached on first build; subsequent builds reuse the binary.
-      - name: Cache typst-cli (HEAD)
-        id: cache-typst
-        uses: actions/cache@v4
-        with:
-          path: ~/.cargo/bin/typst
-          key: typst-head-${{ runner.os }}
-
-      - name: Install Rust toolchain
-        if: steps.cache-typst.outputs.cache-hit != 'true'
-        uses: dtolnay/rust-toolchain@stable
-
-      - name: Install typst-cli (HEAD)
-        if: steps.cache-typst.outputs.cache-hit != 'true'
-        run: cargo install --git https://github.com/typst/typst --locked typst-cli
+      # Typst 0.15.0-rc.1 ships the `bundle` export and MathML math, so we use
+      # the prebuilt release binary instead of compiling HEAD from source.
+      # Bump the tag here when stable 0.15.0 lands.
+      - name: Install Typst 0.15.0-rc.1
+        run: |
+          curl -sL https://github.com/typst/typst/releases/download/v0.15.0-rc.1/typst-x86_64-unknown-linux-musl.tar.xz \
+            | sudo tar -xJ --strip-components=1 -C /usr/local/bin typst-x86_64-unknown-linux-musl/typst
+          sudo chmod +x /usr/local/bin/typst
+          typst --version
 
       - name: Install pagefind
         run: |
@@ -46,12 +39,12 @@ jobs:
       - name: Build PDF
         run: |
           mkdir -p build
-          ~/.cargo/bin/typst compile --features html --root . main.typ build/main.pdf
+          typst compile --features html --root . main.typ build/main.pdf
 
       - name: Build HTML book
         run: |
           mkdir -p build/html
-          ~/.cargo/bin/typst compile --features bundle,html --format bundle --root . book.typ build/html/
+          typst compile --features bundle,html --format bundle --root . book.typ build/html/
           pagefind --site build/html
 
       - name: Bundle PDF into Pages output

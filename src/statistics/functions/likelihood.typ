@@ -21,8 +21,8 @@ Where:
       )
     )
 
-    let mu = 0
-    let sigma = 1
+    let mu_ = 0
+    let sigma_ = 1
     
     plot.plot(
       size: (10, 3),
@@ -38,13 +38,13 @@ Where:
       legend: "inner-north-west",
       {
         plot.add(
-          x => gaussian_pdf(x, mu, sigma), 
+          x => gaussian_pdf(x, mu_, sigma_), 
           domain: (-5, 5), 
           style: (stroke: black),
         )
         
         plot.add(
-          ((1, gaussian_pdf(1, mu, sigma)),),
+          ((1, gaussian_pdf(1, mu_, sigma_)),),
           mark: "o",
           mark-size: 0.2,
           mark-style: (fill: red, stroke: 1pt),
@@ -52,7 +52,7 @@ Where:
 
         plot.add-vline(
           1, 
-          max: gaussian_pdf(1, mu, sigma),
+          max: gaussian_pdf(1, mu_, sigma_),
           style: (stroke: (paint: red, dash: "dashed")),
         )
       })
@@ -71,7 +71,7 @@ $
   columns: 4,
   inset: 1em,
   [Quantity], [Fixed], [Varies], [Integrates / sums to 1],
-  [PDF $phi.alt(x; mu, sigma)$], [$mu, sigma$], [$x$], [Yes],
+  [PDF $phi.alt (x; mu_, sigma_)$], [$mu, sigma$], [$x$], [Yes],
   [Likelihood $cal(L)(mu, sigma | x)$], [$x$], [$mu, sigma$], [No],
 )
 

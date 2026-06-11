@@ -31,27 +31,9 @@
 )
 
 #let web_setup(body) = {
-  // Inline math → wrap as inline SVG inside <span role="math">.
-  //
-  // REMOVE WHEN: typst/typst#7436 lands. Laurenz (typst/typst#8230, May 2026):
-  // "the goal is to land MathML before the next release, so it's likely not
-  // needed." Next release = 0.15 (no RC yet as of 2026-05). When that ships,
-  // math.equation in HTML mode will emit MathML natively and these two show
-  // rules can be deleted. (Caveat: it's a stated goal, not a commitment — PR
-  // could slip past 0.15.)
-  show math.equation.where(block: false): it => {
-    if target() == "html" {
-      html.elem("span", attrs: (role: "math"), html.frame(it))
-    } else { it }
-  }
-
-  // Block math → same fallback, wrapped in <figure role="math">.
-  // REMOVE WHEN: see inline-math rule above (typst/typst#7436).
-  show math.equation.where(block: true): it => {
-    if target() == "html" {
-      html.elem("figure", attrs: (role: "math"), html.frame(it))
-    } else { it }
-  }
+  // Math equations export to native MathML as of Typst 0.15 (typst/typst#7436).
+  // No show rule needed — Typst emits inline `<math>` and block
+  // `<math display="block">` directly. See web/style.css for the MathML styling.
 
   // cetz canvases (`#frame(cetz.canvas(...))`) and fletcher diagrams
   // (`#frame(fletcher.diagram(...))`) — frame the body as inline SVG in

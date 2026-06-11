@@ -240,32 +240,17 @@ article figure svg {
 }
 
 /* === Math === */
-/* Typst emits `<svg style="display: block">` for both inline and block math.
-   Inline-style has higher specificity than CSS rules, so we need !important
-   to bring inline math back to inline-block flow with text. */
+/* Typst 0.15+ emits native MathML: inline `<math>` and block
+   `<math display="block">`. MathML aligns to the text baseline natively,
+   so no SVG display/baseline hacks are needed. */
 
-/* Block math (figure role="math"): centered on its own line */
-article figure[role="math"] {
-  display: block;
+/* Block math: centered on its own line */
+article math[display="block"] {
   margin: 0.75em 0;
   text-align: center;
 }
-article figure[role="math"] svg {
-  margin: 0 auto;       /* center the block-level SVG */
-}
 
-/* Inline math (span role="math"): flow with text, override the SVG's display:block.
-   Typst SVGs sit slightly below the line center; nudge up a touch. */
-article span[role="math"] {
-  display: inline-block;
-  vertical-align: middle;
-}
-article span[role="math"] svg {
-  display: inline-block !important;
-  vertical-align: middle;
-  position: relative;
-  top: -0.15em;
-}
+/* Inline math flows with text by default (display: inline) — nothing to do. */
 
 /* Helper titles (proof, definition, code_output) */
 article .proof-title, article .definition-title, article .code-output-title {
