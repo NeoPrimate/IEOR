@@ -2184,74 +2184,52 @@ $
   f_Z (z) = integral_(-infinity)^(+infinity) f_X (x) f_Y (z - x) 
 $
 
-#let density-plot(shift) = cetz.canvas({
-  import cetz.draw: *
-  cetz-plot.plot.plot(
-    size: (8, 2),
-    x-label: $$,
-    y-label: $$,
-    x-tick-step: 2,
-    y-tick-step: 1,
-    x-min: -8, x-max: 8,
-    y-min: 0, y-max: 0.45,
-    {
-      plot.add-fill-between(
-        domain: (-8, 8),
-        samples: 500,
-        style: (fill: blue.transparentize(75%), stroke: blue),
-        x => norm.pdf(x, mean: 0, std_dev: 1),
-        x => 0,
-      )
-      plot.add-fill-between(
-        domain: (-8, 8),
-        samples: 500,
-        style: (fill: red.transparentize(75%), stroke: red),
-        x => norm.pdf(x, mean: shift, std_dev: 1),
-        x => 0,
-      )
-      plot.add-vline(
-        shift,
-        style: (stroke: purple + 1.5pt),
-      )
-    }
-  )
-})
+#let x = lq.linspace(-8, 8, num: 1000)
+
+#let density-plot(shift) = lq.diagram(
+  width: 6cm, height: 2cm,
+  xlim: (-8, 8), ylim: (0, 0.45),
+  xaxis: (tick-distance: 2),
+  yaxis: (ticks: none),
+  lq.plot(x, x => norm.pdf(x, mean: 0, std_dev: 1), mark: none, stroke: red),
+  lq.fill-between(
+    x,
+    x.map(x => norm.pdf(x, mean: 0, std_dev: 1)),
+    fill: red.transparentize(75%),
+  ),
+  lq.plot(x, x => norm.pdf(x, mean: shift, std_dev: 1), mark: none, stroke: blue),
+  lq.fill-between(
+    x,
+    x.map(x => norm.pdf(x, mean: shift, std_dev: 1)),
+    fill: blue.transparentize(75%),
+  ),
+  lq.vlines(shift, stroke: blue)
+)
 
 #let conv(z) = calc.exp(-calc.pow(z, 2) / 4) / (2 * calc.sqrt(calc.pi))
 
-#let conv-plot(shift) = cetz.canvas({
-  import cetz.draw: *
-  cetz-plot.plot.plot(
-    size: (6, 2),
-    x-tick-step: 2,
-    y-tick-step: none,            // not 1 — your axis only reaches 0.45
-    x-min: -8, x-max: 8,
-    y-min: 0, y-max: 0.45,
-    {
-      // reveal the convolution curve only up to the current shift
-      plot.add-fill-between(
-        domain: (-8, shift),
-        samples: 500,
-        style: (fill: gray.transparentize(60%), stroke: black),
-        z => conv(z),
-        z => 0,
-      )
-      // vertical marker at the current shift position
-      plot.add-vline(
-        shift,
-        style: (stroke: purple + 1.5pt),
-      )
-    }
+#let conv-plot(shift) = {
+  let xs = lq.linspace(-8, shift, num: 500)
+  lq.diagram(
+    width: 6cm, height: 2cm,
+    xlim: (-8, 8), ylim: (0, 0.45),
+    xaxis: (tick-distance: 2),
+    yaxis: (ticks: none),
+    lq.fill-between(
+      xs,
+      xs.map(conv),
+      fill: gray.transparentize(60%),
+      stroke: black,
+    ),
+    lq.vlines(shift, stroke: blue + 1.5pt),
   )
-})
+}
 
 #let shifts = range(5).map(i => -6 + i * 3)
 
-// iterate once → all of column 1
 #let col1 = shifts.map(s => density-plot(s))
 
-// iterate a second time → all of column 2
-#let col2 = shifts.map(s => conv-plot(s))   // your other plot function
+#let col2 = shifts.map(s => conv-plot(s))
 
 #grid(
   columns: 2,
@@ -2443,14 +2421,14 @@ Draw a sample of size $n$, compute its mean $obar(X)_n$ many times (say M=1500 t
   )
 }
 
-
-
 #figure({
   show: lq.layout                // aligns the four diagrams' axes
   grid(columns: 2, row-gutter: 1.5em, column-gutter: 1.5em,
     clt-hist(1), clt-hist(2), clt-hist(5), clt-hist(30),
   )
 })
+
+
 
 = Law of Large Numbers
 
