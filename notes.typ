@@ -612,41 +612,18 @@ $
 
 The subtraction strips off the "baseline up to $k$" porton of each tail outcome, leaving only the part *above* $k$. Without that subtraction, we'd be over counting by $k$ for every tail occurrence.
 
-// #import "@preview/cetz:0.4.2"
-// #import "@preview/cetz-plot:0.1.3"
-
 #let L(k) = norm.pdf(k) - k * (1.0 - norm.cdf(k))
+#let ks = lq.linspace(-3, 3, num: 200)
 
-#cetz.canvas({
-  import cetz.draw: *
-
-  cetz-plot.plot.plot(
-    size: (10, 6),
-    x-label: $k$,
-    y-label: $L(k)$,
-    x-tick-step: 1,
-    y-tick-step: 0.5,
-    x-min: -3, x-max: 3,
-    y-min: 0, y-max: 3.2,
-    {
-      cetz-plot.plot.add(
-        domain: (-3, 3),
-        samples: 200,
-        style: (stroke: rgb("#534AB7") + 2pt),
-        k => L(k),
-      )
-
-      // Mark L(0) ≈ 0.399
-      cetz-plot.plot.add(
-        ((0, L(0)),),
-        mark: "o",
-        mark-size: 0.15,
-        mark-style: (fill: rgb("#534AB7"), stroke: none),
-        style: (stroke: none),
-      )
-    }
-  )
-})
+#lq.diagram(
+  width: 6cm, height: 3cm,
+  xlabel: $k$, ylabel: $L(k)$,
+  xlim: (-3, 3), ylim: (0, 3.2),
+  xaxis: (tick-distance: 1), yaxis: (tick-distance: 0.5),
+  lq.plot(ks, L, mark: none, stroke: blue + 2pt),
+  // single marked point at (0, L(0)) ≈ (0, 0.399)
+  lq.plot((0,), (L(0),), stroke: none, mark: "o", mark-size: 5pt, mark-color: red),
+)
 
 #code([$L(k) = phi.alt(k) - k dot (1 - Phi(k))$])[
   ```py
@@ -679,103 +656,41 @@ The subtraction strips off the "baseline up to $k$" porton of each tail outcome,
   [$ u phi.alt(u) = -phi.alt'(u) $], [Negative derivative of PDF],
 )
 
-#let norm_pdf(x, mu, sigma) = {
-  let var = calc.pow(sigma, 2)
-  1.0 / calc.sqrt(2.0 * calc.pi * var) * calc.exp(-calc.pow(x - mu, 2) / (2.0 * var))
-}
+#let phi_(u) = norm.pdf(u, mean: 0, std_dev: 1)
+#let k  = -1.0
+#let x  = lq.linspace(-3, 3, num: 200)   // full curve
+#let xf = lq.linspace(k, 3, num: 100)    // shaded tail domain (k → 3)
 
-#let _phi(x) = norm_pdf(x, 0.0, 1.0)
-#let u_phi(x) = x * _phi(x)
-#let zero(x) = 0.0
+#lq.diagram(
+  width: 6cm, height: 3cm,
+  xlabel: $u$, ylabel: $phi.alt(u)$,
+  xlim: (-3, 3), ylim: (0, 0.45),
+  xaxis: (tick-distance: 5), yaxis: (tick-distance: 1),
+  lq.plot(x, phi_, mark: none, stroke: blue + 2pt),
+  lq.vlines(k, stroke: red + 1pt),
+)
 
-#let k = -1.0
+#lq.diagram(
+  width: 6cm, height: 3cm,
+  xlabel: $u$, ylabel: $-u dot phi.alt(u)$,
+  xlim: (-3, 3), ylim: (-0.3, 0.3),
+  xaxis: (tick-distance: 5), yaxis: (tick-distance: 1),
+  lq.fill-between(xf, u => -u * phi_(u), fill: red.transparentize(75%)),  // y2 omitted → fills to 0
+  lq.plot(x, u => -u * phi_(u), mark: none, stroke: blue + 2pt),
+  lq.hlines(0, stroke: black + 0.5pt),
+  lq.vlines(k, stroke: red + 1pt),
+)
 
-// Plot 1: the bell curve ϕ(u) with k marked
-#cetz.canvas({
-  import cetz.draw: *
-  cetz-plot.plot.plot(
-    size: (10, 6),
-    x-label: $u$,
-    y-label: $phi.alt(u)$,
-    x-tick-step: 5,
-    y-tick-step: 1,
-    x-min: -3, x-max: 3,
-    y-min: 0, y-max: 0.45,
-    {
-      cetz-plot.plot.add(
-        domain: (-3, 3),
-        samples: 200,
-        style: (stroke: blue + 2pt),
-        x => _phi(x),
-      )
-      cetz-plot.plot.add-vline(k, style: (stroke: red + 1pt))
-    }
-  )
-})
-
-// Plot 2: u·ϕ(u) with tail area from k to ∞ shaded
-#cetz.canvas({
-  import cetz.draw: *
-  cetz-plot.plot.plot(
-    size: (10, 6),
-    x-label: $u$,
-    y-label: $- u dot phi.alt(u)$,
-    x-tick-step: 5,
-    y-tick-step: 1,
-    x-min: -3, x-max: 3,
-    y-min: -0.3, y-max: 0.3,
-    {
-      // Shade tail area between u·ϕ(u) and the x-axis from k to 3
-      cetz-plot.plot.add-fill-between(
-        domain: (k, 3),
-        samples: 100,
-        style: (fill: red.transparentize(75%), stroke: none),
-        x => - u_phi(x),
-        zero,
-      )
-      cetz-plot.plot.add(
-        domain: (-3, 3),
-        samples: 200,
-        style: (stroke: blue+ 2pt),
-        x => - u_phi(x),
-      )
-      cetz-plot.plot.add-hline(0, style: (stroke: black + 0.5pt))
-      cetz-plot.plot.add-vline(k, style: (stroke: red + 1pt))
-    }
-  )
-})
-
-#cetz.canvas({
-  import cetz.draw: *
-  cetz-plot.plot.plot(
-    size: (10, 6),
-    x-label: $u$,
-    y-label: $u dot phi.alt(u)$,
-    x-tick-step: 5,
-    y-tick-step: 1,
-    x-min: -3, x-max: 3,
-    y-min: -0.3, y-max: 0.3,
-    {
-      // Shade tail area between u·ϕ(u) and the x-axis from k to 3
-      cetz-plot.plot.add-fill-between(
-        domain: (k, 3),
-        samples: 100,
-        style: (fill: red.transparentize(75%), stroke: none),
-        u_phi,
-        zero,
-      )
-      cetz-plot.plot.add(
-        domain: (-3, 3),
-        samples: 200,
-        style: (stroke: blue + 2pt),
-        u_phi,
-      )
-      cetz-plot.plot.add-hline(0, style: (stroke: black + 0.5pt))
-      cetz-plot.plot.add-vline(k, style: (stroke: red + 1pt))
-    }
-  )
-})
-
+#lq.diagram(
+  width: 6cm, height: 3cm,
+  xlabel: $u$, ylabel: $u dot phi.alt(u)$,
+  xlim: (-3, 3), ylim: (-0.3, 0.3),
+  xaxis: (tick-distance: 5), yaxis: (tick-distance: 1),
+  lq.fill-between(xf, u => u * phi_(u), fill: red.transparentize(75%)),
+  lq.plot(x, u => u * phi_(u), mark: none, stroke: blue + 2pt),
+  lq.hlines(0, stroke: black + 0.5pt),
+  lq.vlines(k, stroke: red + 1pt),
+)
 
 = Differentiating Normal Distribution
 
