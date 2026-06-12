@@ -2136,48 +2136,42 @@ $
 #let lam-y = 3      // red, the one we flip & slide
 #let kmax  = 14
 
-#let input-plot(z) = cetz.canvas({
-  import cetz.draw: *
-  cetz-plot.plot.plot(
-    size: (8, 2), x-tick-step: 2, y-tick-step: none,
-    x-min: -1, x-max: kmax + 1, y-min: 0, y-max: 0.30,
-    {
-      for k in range(0, kmax + 1) {
-        // blue p_X(k), nudged left
-        plot.add(((k - 0.15, 0), (k - 0.15, poisson.pmf(k, lam-x))),
-          style: (stroke: blue + 5pt))
-        // red p_Y(z - k), nudged right
-        let h = poisson.pmf(z - k, lam-y)
-        if h > 0 {
-          plot.add(((k + 0.15, 0), (k + 0.15, h)),
-            style: (stroke: red + 5pt))
-        }
-      }
-      plot.add-vline(z, style: (stroke: purple + 1pt))
-    }
-  )
-})
+#let ks = range(0, kmax + 1)
 
-#let conv-plot(z) = cetz.canvas({
-  import cetz.draw: *
-  cetz-plot.plot.plot(
-    size: (6, 2), x-tick-step: 2, y-tick-step: none,
-    x-min: -1, x-max: kmax + 1, y-min: 0, y-max: 0.20,
-    {
-      for j in range(0, z + 1) {
-        let p = conv-pmf(j, lam-x, lam-y)
-        plot.add(((j, 0), (j, p)), style: (stroke: black + 1.5pt))
-        plot.add(((j, p),), mark: "o", mark-size: 0.12,
-          mark-style: (fill: gray, stroke: black))   // dot on top; drop if it errors
-      }
-      plot.add-vline(z, style: (stroke: purple + 1pt))
-    }
+#let input-plot(z) = lq.diagram(
+  width: 6cm, height: 2cm,
+  xlim: (-1, kmax + 1), ylim: (0, 0.30),
+  xaxis: (tick-distance: 2), yaxis: (ticks: none),
+  lq.bar(
+    ks, ks.map(k => poisson.pmf(k, lam-x)),
+    offset: -0.2, width: 0.4, fill: blue.transparentize(50%),
+  ),
+  lq.bar(
+    ks, ks.map(k => poisson.pmf(z - k, lam-y)),
+    offset: 0.2, width: 0.4, fill: red.transparentize(50%),
+  ),
+  lq.vlines(z, stroke: purple + 1pt),
+)
+
+#let conv-plot(z) = {
+  let js = range(0, z + 1)
+  lq.diagram(
+    width: 6cm, height: 2cm,
+    xlim: (-1, kmax + 1), ylim: (0, 0.20),
+    xaxis: (tick-distance: 2), yaxis: (ticks: none),
+    lq.bar(
+      js,
+      js.map(j => conv-pmf(j, lam-x, lam-y)),
+      fill: purple.transparentize(50%),
+    ),
+    lq.vlines(z, stroke: purple + 1pt),
   )
-})
+}
 
 #let zs = (1, 3, 5, 7, 9)
 #grid(columns: 2, column-gutter: 1em, row-gutter: 1em,
   ..zs.map(z => input-plot(z)).zip(zs.map(z => conv-plot(z))).flatten())
+
 === Continuous
 
 $
@@ -2203,7 +2197,7 @@ $
     x.map(x => norm.pdf(x, mean: shift, std_dev: 1)),
     fill: blue.transparentize(75%),
   ),
-  lq.vlines(shift, stroke: blue)
+  lq.vlines(shift, stroke: blue + 1.5pt)
 )
 
 #let conv(z) = calc.exp(-calc.pow(z, 2) / 4) / (2 * calc.sqrt(calc.pi))
@@ -2260,37 +2254,47 @@ $
 
 #let mix(x) = w1 * norm.pdf(x, mean: 0, std_dev: 1) + w2 * norm.pdf(x, mean: 5, std_dev: 1)
 
-#cetz.canvas({
-  import cetz.draw: *
-  cetz-plot.plot.plot(
-    size: (8, 3),
-    x-label: $$, y-label: $$,
-    x-tick-step: 2,
-    y-tick-step: 0.1,            
-    x-min: -4, x-max: 9,
-    y-min: 0, y-max: 0.35,
-    {
-      plot.add(domain: (-4, 9), samples: 300,
-        style: (stroke: (paint: gray, dash: "dashed")),
-        x => w1 * norm.pdf(x, mean: 0, std_dev: 1))
-      plot.add(domain: (-4, 9), samples: 300,
-        style: (stroke: (paint: gray, dash: "dashed")),
-        x => w2 * norm.pdf(x, mean: 5, std_dev: 1))
+#let x = lq.linspace(-4, 10, num: 1000)
 
-      plot.add-fill-between(domain: (-4, 9), samples: 500,
-        style: (fill: blue.transparentize(80%), stroke: blue + 1.5pt),
-        x => mix(x), x => 0)
+#lq.diagram(
+  lq.plot(x, x => w1 * norm.pdf(x, mean: 0, std_dev: 1), mark: none, stroke: blue),  // 0.7·𝒩(0,1)
+  lq.plot(x, x => w2 * norm.pdf(x, mean: 5, std_dev: 1), mark: none, stroke: blue),  // 0.3·𝒩(5,1)
+  lq.fill-between(x, mix, fill: red.transparentize(75%)),
+  lq.plot(x, mix, mark: none, stroke: black),                                        // the mixture f
+)
 
-      plot.add(domain: (-4, 9), samples: 500,
-        style: (stroke: red + 1.5pt),
-        x => norm.pdf(x, mean: 5, std_dev: calc.sqrt(2)))
+$
+  f(x) = 0.6 dot cal(N)(0,1) + 0.4 dot cal(N) (3,1)
+$
 
-      plot.add(domain: (-4, 9), samples: 500,
-        style: (stroke: red + 1.5pt),
-        x => norm.pdf(x, mean: 0, std_dev: calc.sqrt(2)))
-    }
-  )
-})    
+#let w1 = 0.6
+#let w2 = 0.4
+#let mix(x) = w1 * norm.pdf(x, mean: 0, std_dev: 1) + w2 * norm.pdf(x, mean: 3, std_dev: 1)
+#let x = lq.linspace(-4, 7, num: 1000)
+#lq.diagram(
+  ylim: (0, auto),
+  lq.plot(x, x => w1 * norm.pdf(x, mean: 0, std_dev: 1), mark: none, stroke: blue),  // 0.6·𝒩(0,1)
+  lq.plot(x, x => w2 * norm.pdf(x, mean: 3, std_dev: 1), mark: none, stroke: blue),  // 0.4·𝒩(3,1)
+  lq.fill-between(x, mix, fill: red.transparentize(75%)),
+  lq.plot(x, mix, mark: none, stroke: black),                                        // the mixture f
+)
+
+$
+  f(x) =  0.5 dot cal(N) (2,0.6) + 0.5 dot cal(N) (2,3)
+$
+
+#let w1 = 0.5
+#let w2 = 0.5
+#let mix(x) = w1 * norm.pdf(x, mean: 2, std_dev: 0.6) + w2 * norm.pdf(x, mean: 2, std_dev: 3)
+#let x = lq.linspace(-7, 11, num: 1000)
+#lq.diagram(
+  ylim: (0, auto),
+  lq.plot(x, x => w1 * norm.pdf(x, mean: 2, std_dev: 0.6), mark: none, stroke: blue),  // 0.5·𝒩(2,0.6) — sharp spike
+  lq.plot(x, x => w2 * norm.pdf(x, mean: 2, std_dev: 3),   mark: none, stroke: blue),  // 0.5·𝒩(2,3)   — broad base
+  lq.fill-between(x, mix, fill: red.transparentize(75%)),
+  lq.plot(x, mix, mark: none, stroke: black),                                          // the mixture f
+)
+
 ]
 
 = Law of Total Expectation
