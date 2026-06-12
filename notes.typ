@@ -2418,6 +2418,7 @@ Draw a sample of size $n$, compute its mean $obar(X)_n$ many times (say M=1500 t
 = Law of Large Numbers
 
 The sample mean $obar(X)_n$ converges to $mu$. That is, as you add more samples, the value $obar(X_n)$ gets arbitrarily close to the true mean $mu$
+
 #let n = ()
 #for i in range(1, 201) { n.push(i) }
 
@@ -2440,6 +2441,266 @@ The sample mean $obar(X)_n$ converges to $mu$. That is, as you add more samples,
   ..paths.map(r => lq.plot(n, r, mark: none,
     stroke: (paint: blue.transparentize(80%)))),
 )
+
+Weak Law of Large Numbers
+
+If you take more and more independent samples from the same distribution and average them, the probability that your average is "noticeably far" from the true mean shrinks to zero.
+
+If $X_1, X_2, dots, X_n$ are i.i.d. with a true mean $mu$, and we define the same mean:
+
+$
+  obar(X)_n = 1/n sum_(i=1)^n X_i
+$
+
+then for *any* tolerance $epsilon gt 0$ you pick,
+
+$
+  lim_(n arrow infinity) P(|obar(X)_n - mu| gt.eq epsilon) = 0
+$
+
+Steps:
+
+1. *Markov's inequality* -- bound on how much probability can sit in the tail of a non-negative variable
+2. *Chebyshev's inequality* -- bound on distance from the mean (variance)
+3. *Plug in sample mean into Chebyshev* -- bound collapses to zero as $n$ grows
+
+Notation:
+
+- *Mean*: $mu = E[X] = sum_x x P(X = x)$ -- each possible value weighted by its probability
+- *Variance*: $sigma^2 = "Var"(X) = E[(X - mu)^2]$ -- average squared distance from the mean
+
+*Step 1*: Markov Inequality
+
+If $X gt.eq 0$ and $a gt 0$, then:
+
+$
+  P(X gt.eq a) lt.eq E[X] / a
+$
+
+Define a new r.v., the *indicator*:
+
+$
+  I = cases(
+    1 quad "if" X gt.eq a,
+    0 quad "if" X lt a,
+  )
+$
+
+The expression of an indicator is the probability of its event:
+
+$
+  E[I] = 1 dot P(X gt.eq a) + 0 dot P(X lt a) = P(X gt.eq a)
+$
+
+So, for *every possible outcome*:
+
+$
+  X gt.eq a dot I
+$
+
+- *Case $X gt.eq a$*: then $I = 1$, so $a dot I = a$. And we assumed $X gt.eq a$ ✅
+- *Case $X lt a$*: then $I = 0$, so $a dot I = 0$. And we assumed $X gt.eq 0$ ✅
+
+So $X gt.eq a I$ always holds.
+
+Now take the expectation of both sides (expectations preserve inequalities, if one variable is always $gt.eq$ another, its average is too):
+
+$
+  E[X] gt.eq E[a I] = a E[I] = a P(X gt.eq a)
+$
+
+Divide both sides by $a gt 0$:
+
+$
+  P(X gt.eq a) lt.eq E[X] / a
+$
+
+*Step 2*: Chebyshev Inequality
+
+For any random variable $X$ with mean $mu$ and variance $sigma^2$, and any $k gt 0$,
+
+$
+  P(|X - k| gt.eq k) lt.eq sigma^2 / k^2
+$
+
+Rewrite event:
+
+$
+  |X - mu| gt.eq k quad arrow.l.r.double.long quad (X - mu)^2 gt.eq k^2
+$
+
+Same event, so same probability:
+
+$
+  P(|X - mu| gt.eq k) = P((X - mu)^ gt.eq k^2)
+$
+
+Apply Markov with a threshold of $k$
+
+Let $Y = (X - mu)^2 gt.eq 0$
+
+$
+  P(Y gt.eq k^2) lt.eq E[Y] / k^2
+$
+
+Substitute back. The left side is the event we just rewrote, and $E[Y] = E[(X - mu)^2] = sigma^2$:
+
+$
+  P(|X - mu| gt.eq k) lt.eq sigma^2 / k^2
+$
+
+$
+  P(|X - mu| lt.eq k) lt.eq sigma^2 / k^2
+$
+
+The change of landing $k$ or more away from the mean is at most $sigma^2 / k^2$. Small variance, or a large distance $k$, both squeeze the probability down.
+
+Mean of the Sample Mean
+
+$
+  E[obar(X)_n] = E[1/n sum_(i=1)^n X_i] = 1/n sum_(i=1)^n E[X_i] = 1/n sum_(i=1)^n mu = 1/n dot n mu = mu
+$
+
+So the sample mean is centered on the true mean.
+
+- $"Var"(a X) = a^2 "Var"(X)$ <fact-1>
+
+$
+  "Var"(a X)
+  &= E[(a X - a mu)^2] \
+  &= E[a^2 (X- mu)] \
+  &= a^2 E[(X - mu)^2] \
+  &= a^2 "Var"(X)
+$
+
+- For *independent* $X$, $Y$, $"Var"(X + Y) = "Var"(X) + "Var"(Y)$ <fact-2>
+
+$
+  "Var"(X + Y)
+  &= E[((X - mu_X) + (Y - mu_Y))^2] \
+  &= "Var"(X) + "Var"(Y) + 2 underbrace(E[(X - mu_X)(Y - mu_Y)], "cross term")
+$
+
+The cross term is the covariance. For *independent* variables, the expectation of the product splits into the product of expectations:
+
+$
+  E[(X - mu_X)(Y - mu_Y)]
+  &= E[X - mu_X] dot E[Y - mu_Y] \
+  &= 0 dot 0 \
+  &= 0
+$
+
+Cross terms vanish for a sum of $n$ independent variables, leaving $"Var"(X + Y) = "Var"(X) + "Var"(Y)$. *This is the one and only place where independence is used in the Law of Large Numbers*.
+
+$
+  "Var"(obar(X)_n)
+  &= "Var"(1/n sum_(i=1)^n X_i) \
+  &= 1/n^2 "Var"(sum_(i=1)^n X_i) \
+  &= 1/n^2 sum_(i=1)^n "Var"(X_i) \
+  &= 1/n^2 dot n sigma^2 \
+  &= sigma^2 / n
+$
+
+So, for Chebyshev:
+- Mean: $mu$
+- Variance: $sigma^2 / n$
+
+Applying Chebyshev to $obar(X)_n$ with threshold $k = epsilon$:
+
+$
+  P(|obar(X)_n - mu| gt.eq epsilon) lt.eq "Var"(obar(X)_n) / epsilon^2 = sigma^2 / (n epsilon^2)
+$
+
+Hold $epsilon$ and $sigma^2$ fixed and let $n arrow infinity$. The right side goes to zero and the probability can't go below zero, so it's squeezed.
+
+$
+  0 lt.eq P(|obar(X)_n - mu| gt.eq epsilon) lt.eq sigma^2 / (n epsilon^2) arrow.long_(n arrow infinity) 0
+$
+
+Therefore, for every $epsilon gt 0$:
+
+$
+  lim_(n arrow infinity) P(|obar(X)_n - mu| gt.eq epsilon) = 0
+$
+
+
+== Weak Law
+
+$
+  forall epsilon gt 0: quad lim_(n arrow infinity) P(|obar(X)_n - mu| gt.eq epsilon) = 0
+$
+
+== Strong Law
+
+$
+  P(lim_(n arrow infinity) obar(X)_n = mu) = 1
+$
+
+
+#let n = ()
+#for i in range(1, 201) { n.push(i) }
+
+#let big = expon.rvs(rate: 1, size: 6000)   // 30 paths × 200 draws, ONE call
+
+#let paths = ()
+#for p in range(0, 30) {
+  let running = ()
+  let s = 0.0
+  for i in range(0, 200) {
+    s += big.at(p * 200 + i)                 // path p uses draws [p*200 .. p*200+199]
+    running.push(s / (i + 1))
+  }
+  paths.push(running)
+}
+
+#lq.diagram(
+  ylim: (0, 2),
+  yaxis: (
+    position: 0,
+    // ticks: 1,
+    // tick-args: none,
+    tick-args: (tick-distance: 5),
+    tip: tiptoe.triangle,
+    filter: (value, distance) => value != 0,
+    // filter: no-zero,
+    subticks: none,
+  ),
+  xaxis: (
+    position: 0,
+    tick-args: (tick-distance: 50),
+    tip: tiptoe.triangle,
+    filter: (value, distance) => value != 0,
+    subticks: none,
+  ),
+
+  xlabel: $n$, ylabel: $overline(X)_n$,
+  ..paths.map(r => lq.plot(n, r, mark: none,
+    stroke: (paint: blue.transparentize(80%)))),
+
+  lq.hlines(0.75, min: 0, max: 200, stroke: (dash: "dashed")),
+  lq.hlines(1, min: 0, max: 200),
+  lq.hlines(1.25, min: 0, max: 200, stroke: (dash: "dashed")),
+  
+  lq.vlines(150, stroke: (paint: red, dash: "dashed")),
+
+  lq.place(100%, 1.25)[$+ epsilon$],
+  lq.place(100%, 1)[$mu$],
+  lq.place(100%, 0.75)[$- epsilon$],
+)
+
+
+= Linearity of Expectations
+
+$
+  E[X + Y] = E[X] + E[Y] \
+  E[a X] = a E[X] \
+$
+
+= Markov's inequality
+
+
+= Chebyshev's inequality
+
 
 = Vectors
 
@@ -2599,4 +2860,9 @@ $
 )
 
 
+= Types of Statistics
 
+- Descriptive: summarize data you actually have
+- Inferential: generalize from a sample to a broader population
+- Predictive: cares about forecasting accuracy on new data regarless of whether the model is interpretable (inferential cares about understanding the data-generating process)
+- Exploratory hypothesis generating rather than testing
