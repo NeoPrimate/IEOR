@@ -621,8 +621,7 @@ The subtraction strips off the "baseline up to $k$" porton of each tail outcome,
   xlim: (-3, 3), ylim: (0, 3.2),
   xaxis: (tick-distance: 1), yaxis: (tick-distance: 0.5),
   lq.plot(ks, L, mark: none, stroke: blue + 2pt),
-  // single marked point at (0, L(0)) ≈ (0, 0.399)
-  lq.plot((0,), (L(0),), stroke: none, mark: "o", mark-size: 5pt, mark-color: red),
+  lq.plot((0,), (L(0),), stroke: none, mark: "o", mark-size: 5pt, color: red),
 )
 
 #code([$L(k) = phi.alt(k) - k dot (1 - Phi(k))$])[
@@ -2686,7 +2685,7 @@ Maximized likelihood
 == AIC
 
 $
-  "AIC" = underbrace(2k, "penalty term") − underbrace(2 dot ln(hat(L)), "fit term"))
+  "AIC" = underbrace(2k, "penalty term") − underbrace(2 dot ln(hat(L)), "fit term")
 $
 
 - $k$: number of parameters in the model
@@ -2694,12 +2693,12 @@ $
 
 #lq.diagram(
   width: 4cm, height: 4cm,
-  lq.contour(
-    lq.linspace(0.001, 5, num: 12),
-    lq.linspace(0.001, 5, num: 12),
+  lq.colormesh(
+    lq.linspace(0.001, 5, num: 60),
+    lq.linspace(0.001, 5, num: 60),
     (k, L) => 2 * k - 2 * calc.ln(L),
     map: color.map.icefire,
-    fill: true
+    interpolation: "smooth"
   )
 )
 
@@ -2712,7 +2711,6 @@ $
 - $k$: number of parameters in the model
 - $n$: number of data points 
 
-
 #grid(
   columns: 2,
   inset: 1em,
@@ -2720,31 +2718,30 @@ $
   [
     #lq.diagram(
       width: 4cm, height: 4cm,
-      lq.contour(
-        lq.linspace(0.001, 5, num: 12),   // k
-        lq.linspace(0.001, 5, num: 12),   // L
+      lq.colormesh(
+        lq.linspace(0.001, 5, num: 60),   // k
+        lq.linspace(0.001, 5, num: 60),   // L
         (k, L) => k * calc.ln(100) - 2 * calc.ln(L),
         map: color.map.icefire,
-        fill: true
+        interpolation: "smooth"
       )
     )
-
     Fix $n$, plot over $k$ and $hat(L)$
   ],
   [
     #lq.diagram(
       width: 4cm, height: 4cm,
-      lq.contour(
-        lq.linspace(0.001, 5, num: 12),   // k
-        lq.linspace(2, 200, num: 12),     // n
+      lq.colormesh(
+        lq.linspace(0.001, 5, num: 60),   // k
+        lq.linspace(2, 200, num: 60),     // n
         (k, n) => k * calc.ln(n),         // pure penalty, since 2*ln(1)=0
         map: color.map.icefire,
-        fill: true
+        interpolation: "smooth"
       )
     )
-
     Fix $hat(L)$, plot over $k$ and $n$
   ]
+)
 )
 
 
