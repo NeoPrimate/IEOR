@@ -2362,7 +2362,42 @@ Both theorems describe what happens to $obar(X)_n$ as $n arrow infinity$.
 - LLN says it settles down to $mu$
 - CLT describes how it wobbles around around $mu$ on the way there
 
- 
+= Moment Generating Function (MGF)
+
+For a random variable $X$, its MGF is:
+
+$
+  G(t)
+  &= sum_(i=1)^infinity (G^((k)) (0)) / k! \
+  &= sum_(i=1)^infinity E[X^k] / k! t^k \
+  &= E[sum_(i=1)^infinity (X^k t^k) / k!] \
+  &= E[sum_(i=1)^infinity ((t X)^k) / k!] \
+  &= E[e^(t X)]
+$
+
+Therefore:
+
+$
+  M_X (t) = E[e^(t X)]
+$
+
+In general $M_X^k (0) = E[X^k]$. So you turn the crank -- take $k$ derivatives, plug in $t=0$ and the $k$-th moment falls out.
+The whole sequence of moments (mean via the first, variance via the second, skewness via the third, ...) is encoded in this one function, recoverable by differentiation.
+
+#table(
+  columns: 4,
+  inset: 1em,
+  [*Moment*], [*Name*], [*$f$*], [*Definition*],
+  [1st], [Mean], [$G^1 (0) = E[X^k]$], [where the distribution sits],
+  [2nd], [Variance], [$G^2 (0) = $], [How spread out it is],
+  [3rd], [Skewness], [$G^3 (0) = $], [How lopsided it is (longer left or right tail)],
+  [4th], [Kurtosis], [$G^4 (0) = $], [How heavy the tails are, how peaked],
+  [5th ...], [No names], [$G^((k)) (0) = $], [No intuitive picture],
+)
+
+#example[
+  
+]
 
 = Central Limit Theorem
 
@@ -2407,6 +2442,8 @@ Draw a sample of size $n$, compute its mean $obar(X)_n$ many times (say M=1500 t
     lq.plot(xs, ys, mark: none, stroke: (paint: red, thickness: 1.5pt)),
   )
 }
+
+
 
 #figure({
   show: lq.layout                // aligns the four diagrams' axes
@@ -2624,18 +2661,30 @@ $
 $
 
 
+
 == Weak Law
+
+Limit it *outside*
 
 $
   forall epsilon gt 0: quad lim_(n arrow infinity) P(|obar(X)_n - mu| gt.eq epsilon) = 0
 $
 
+
+Look down a vertical slice. Pick the dashed line at some fixed large $n$.
+The weak law says: at that column, almost every path has already fallen inside the $plus.minus epsilon$ band
+
 == Strong Law
+
+Limit is *inside*
 
 $
   P(lim_(n arrow infinity) obar(X)_n = mu) = 1
 $
 
+Follow a single path left to right.
+With probability 1, a path will eventually enters the band and never leaves again.
+There's some (random) sample count $N$ after which it's locked in for good.
 
 #let n = ()
 #for i in range(1, 201) { n.push(i) }
@@ -2687,7 +2736,6 @@ $
   lq.place(100%, 1)[$mu$],
   lq.place(100%, 0.75)[$- epsilon$],
 )
-
 
 = Linearity of Expectations
 
