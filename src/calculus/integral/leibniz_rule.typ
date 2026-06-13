@@ -1,8 +1,6 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-== Leibniz's Rule
-
 *Differentiation under the integral sign.* When the integrand *and* the limits depend on a parameter $Q$, the derivative splits into three pieces: one from the integrand changing, two from the moving limits.
 
 $
@@ -17,7 +15,7 @@ Reading the three terms:
 - *Upper-limit term* — rate the top edge sweeps out new area: $h$ at $x = b(Q)$ times $b'(Q)$.
 - *Lower-limit term* — area lost at the bottom edge, subtracted.
 
-=== Special cases
+== Special cases
 
 - *Fixed limits* ($a, b$ constant) — only the integrand term survives:
 $

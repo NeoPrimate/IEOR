@@ -13,11 +13,11 @@ Two parameters:
 
 The actual order quantity *varies*: $Q_"actual" = S - "(inventory position when triggered)"$. If inventory drops exactly to $s$ before triggering, $Q_"actual" = S - s$. If demand causes a drop *below* $s$ (overshoot), $Q_"actual" > S - s$.
 
-=== Setup
+== Setup
 
 Same as (Q, r): demand rate $d$ with std $sigma_d$, lead time $L$, costs $S_"setup", h$, service level $z$.
 
-=== Difference from (Q, r)
+== Difference from (Q, r)
 
 (Q, r) commits to a *fixed* batch $Q$ every order — doesn't matter if inventory dropped to exactly $r$ or much below. (s, S) compensates: if inventory overshoots downward, the order is *larger* to make up.
 
@@ -60,13 +60,13 @@ In practice, *with continuous review and small per-period demand* (smooth deplet
   }))
 ]
 
-=== Set $s$
+== Set $s$
 
 Same logic as $r$ in (Q, r):
 
 $ s = mu_L + z sigma_L $
 
-=== Set $S$
+== Set $S$
 
 For large fixed cost (most cases), $S - s$ should approximately equal the EOQ:
 
@@ -76,7 +76,7 @@ Why: when inventory drops exactly to $s$ (no overshoot), this gives the same ord
 
 For low/zero fixed cost: $S = s$ (order one unit at a time — the "base stock" / (S-1, S) policy in the limit; see [base_stock.typ](base_stock.typ)).
 
-=== Final formulas
+== Final formulas
 
 $
   s = mu_L + z sigma_L

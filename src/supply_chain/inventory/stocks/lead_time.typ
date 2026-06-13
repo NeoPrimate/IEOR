@@ -1,15 +1,13 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-== Lead Time
-
 Order today, receive after the *lead time* $L$. What drives safety stock is the *distribution of demand over those $L$ periods*. Central question: why does its standard deviation scale with $sqrt(L)$, not $L$?
 
-=== Setup
+== Setup
 
 Daily demand $D_t$ is i.i.d. with mean $mu$ and standard deviation $sigma$. Take $mu = 100$, $sigma = 20$.
 
-=== Two days
+== Two days
 
 Demand over two days is $D_1 + D_2$ (independent draws).
 
@@ -22,7 +20,7 @@ $ "Var"(D_1 + D_2) = "Var"(D_1) + "Var"(D_2) = sigma^2 + sigma^2 = 2 sigma^2 $
 So the spread grows by only $sqrt(2)$:
 $ "Std"(D_1 + D_2) = sqrt(2 sigma^2) = sigma sqrt(2) $
 
-=== Generalize to $L$ days
+== Generalize to $L$ days
 
 $
   "Var"(sum_(t=1)^L D_t) = L sigma^2

@@ -20,6 +20,6 @@
   )
 ]
 
-=== Direct Method
+== Direct Method
 
-=== Indirect Method
+== Indirect Method

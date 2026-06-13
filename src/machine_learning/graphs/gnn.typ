@@ -286,7 +286,7 @@ Graph Data
 - Isomorphism: permutation invariance
 - Grid structure: non-euclidian
 
-=== Message Passing
+== Message Passing
 
 Allows nodes in a graph to exchange information and update their representations (embeddings) based on their local neighborhood
 
@@ -419,7 +419,7 @@ Where:
   ]
 ]
 
-=== Invariance
+== Invariance
 
 A function is invariant to node permutations if its output stays the same no matter how the nodes are reordered (i.e., relabeled)
 
@@ -431,7 +431,7 @@ If you shuffle the node labels, the graph is still the same — just redrawn
 
 If you reorder the rows of $X$ (node features) and both rows and columns of $A$ (adjacency matrix) using the same permutation matrix $P$, the output does not change
 
-=== Equivariance
+== Equivariance
 
 A function is equivariant to node permutations if permuting the input nodes results in the output being permuted in the same way
 

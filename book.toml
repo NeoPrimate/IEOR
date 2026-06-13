@@ -9,6 +9,13 @@
 #     [[sections.sections]] nested subsections (any depth)
 #
 # A section without `files` is a header-only group node (renders title only).
+#
+# Page titles: this `title` is the SINGLE source of truth. Both builds inject it
+# as the page heading (PDF: main.typ render(); HTML: book.typ emit()). Source
+# files must therefore NOT repeat their own page title — start with content, and
+# author in-file subsections at `==` (one level below the injected title), then
+# `===`, etc. The build offsets these by the page's depth so PDF and HTML get
+# identical relative nesting. (Migration helper: code/strip_title_repeats.py.)
 
 [book]
 title   = "Industrial Engineering & Operations Research"
@@ -23,6 +30,10 @@ title = "Algebra"
   [[sections.sections]]
   title = "Cheatsheet"
   files = ["algebra/cheatsheet.typ"]
+
+  [[sections.sections]]
+  title = "Logarithms"
+  files = ["algebra/logarithms.typ"]
 
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -629,6 +640,42 @@ title = "Probability Theory"
   title = "Expected Value"
   files = ["probability_theory/expected_value.typ"]
 
+  [[sections.sections]]
+  title = "Linearity of Expectations"
+  files = ["probability_theory/linearity_of_expectations.typ"]
+
+  [[sections.sections]]
+  title = "Joint, Marginal & Conditional Probability"
+  files = ["probability_theory/joint_marginal_conditional.typ"]
+
+  [[sections.sections]]
+  title = "Mixture Distributions"
+  files = ["probability_theory/mixture_distributions.typ"]
+
+  [[sections.sections]]
+  title = "Law of Total Expectation"
+  files = ["probability_theory/law_of_total_expectation.typ"]
+
+  [[sections.sections]]
+  title = "Law of Total Variance"
+  files = ["probability_theory/law_of_total_variance.typ"]
+
+  [[sections.sections]]
+  title = "I.I.D."
+  files = ["probability_theory/iid.typ"]
+
+  [[sections.sections]]
+  title = "Moment Generating Function"
+  files = ["probability_theory/mgf.typ"]
+
+  [[sections.sections]]
+  title = "Markov's Inequality"
+  files = ["probability_theory/markov_inequality.typ"]
+
+  [[sections.sections]]
+  title = "Chebyshev's Inequality"
+  files = ["probability_theory/chebyshev_inequality.typ"]
+
 # ─────────────────────────────────────────────────────────────────────────────
 
 [[sections]]
@@ -695,6 +742,10 @@ title = "Statistics"
     [[sections.sections.sections]]
     title = "Exponential"
     files = ["statistics/distributions/exponential.typ"]
+
+    [[sections.sections.sections]]
+    title = "Differentiating the Normal Distribution"
+    files = ["statistics/distributions/differentiating_normal.typ"]
 
   [[sections.sections]]
   title = "Functions"
@@ -863,6 +914,10 @@ title = "Statistics"
     title = "Spearman Rank"
     files = ["statistics/correlation/spearman_rank.typ"]
 
+    [[sections.sections.sections]]
+    title = "Covariance & Correlation"
+    files = ["statistics/covariance.typ"]
+
   [[sections.sections]]
   title = "Non-Parametric Statistics"
 
@@ -916,6 +971,22 @@ title = "Statistics"
     [[sections.sections.sections]]
     title = "Analysis of Interaction Effects"
     files = ["statistics/design_of_experiment/analysis_of_interaction_effects.typ"]
+
+  [[sections.sections]]
+  title = "Principal Component Analysis"
+  files = ["statistics/pca.typ"]
+
+  [[sections.sections]]
+  title = "AIC & BIC"
+  files = ["statistics/aic_bic.typ"]
+
+  [[sections.sections]]
+  title = "Bootstrap & Resampling"
+  files = ["statistics/bootstrap.typ"]
+
+  [[sections.sections]]
+  title = "Types of Statistics"
+  files = ["statistics/types_of_statistics.typ"]
 
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -1616,6 +1687,14 @@ title = "Operations Research"
     [[sections.sections.sections]]
     title = "Special"
     files = ["operations_research/quality_engineering/variation_causes/special.typ"]
+
+  [[sections.sections]]
+  title = "Acceptance Sampling"
+  files = ["operations_research/quality_engineering/acceptance_sampling.typ"]
+
+  [[sections.sections]]
+  title = "Critical Path Method (CPM)"
+  files = ["operations_research/project_scheduling/critical_path_method.typ"]
 
 # ─────────────────────────────────────────────────────────────────────────────
 

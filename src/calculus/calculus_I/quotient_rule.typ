@@ -41,7 +41,7 @@ $
   if calc.abs(y) > lim { float.nan } else { y }
 }
 
-=== *$tan(x)$*
+== *$tan(x)$*
 
 $
   d / (d x) [tan(x)] & = d / (d x) [sin(x) / cos(x)] \
@@ -71,7 +71,7 @@ $
   )
 ]
 
-=== *$cot(x)$*
+== *$cot(x)$*
 
 $
   d / (d x) [cot(x)] & = d / (d x) [cos(x) / sin(x)] \
@@ -101,7 +101,7 @@ $
   )
 ]
 
-=== *$sec(x)$*
+== *$sec(x)$*
 
 $
   d / (d x) [sec(x)] & = d / (d x) [1 / cos(x)] \
@@ -132,7 +132,7 @@ $
   )
 ]
 
-=== *$csc(x)$*
+== *$csc(x)$*
 
 $
   d / (d x) [csc(x)] & = d / (d x) [1 / sin(x)] \

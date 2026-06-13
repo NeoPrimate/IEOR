@@ -9,7 +9,7 @@ $ "CV" = sigma / mu $
 
 where $mu$ is mean periodic demand and $sigma$ is its standard deviation.
 
-=== The variability split
+== The variability split
 
 - *X items*: low CV — predictable demand. Forecast easily, lean inventory.
 - *Y items*: moderate CV — somewhat variable, perhaps with seasonality or trend.
@@ -29,7 +29,7 @@ Typical thresholds (industry-dependent):
   [Sporadic / lumpy. Traditional forecasting struggles; use intermittent-demand methods (Croston's, etc.) or treat as project-driven.],
 )
 
-=== Why classify by variability
+== Why classify by variability
 
 ABC tells you *which items to focus on*; XYZ tells you *how predictable each item is*. Both matter for inventory policy:
 
@@ -39,7 +39,7 @@ ABC tells you *which items to focus on*; XYZ tells you *how predictable each ite
 
 XYZ doesn't replace ABC — they're orthogonal. Use them together in the *ABC-XYZ matrix* (next file).
 
-=== Procedure
+== Procedure
 
 + Collect periodic demand history (monthly is typical; daily for fast movers; quarterly for slow movers).
 + Compute $mu$ and $sigma$ for each item.

@@ -13,9 +13,9 @@
 }
 
 
-= Financial Accounting
+== Financial Accounting
 
-== Objectives
+=== Objectives
 
 1. Recording transactions
 
@@ -25,7 +25,7 @@ Statements
   - Profit & Loss
   - Financial Position (Balance Sheet)
 
-== Types of Business Entities:
+=== Types of Business Entities:
 
 1. Sole Trader
 One person
@@ -39,7 +39,7 @@ Business separate in law from owners
 
 Owners have limited liability 
 
-== Users of accounting information
+=== Users of accounting information
 
 - Management
 - Owners / Shareholders
@@ -50,7 +50,7 @@ Owners have limited liability
 - Public
 
 
-== Accounts
+=== Accounts
 
 #align(center)[
   #table(
@@ -67,7 +67,7 @@ Owners have limited liability
   )
 ]
 
-== Statement of Financial Position (Balance Sheet)
+=== Statement of Financial Position (Balance Sheet)
 
 Every transaction has 2 effects (+ and -)
 
@@ -85,7 +85,7 @@ List of:
   - Non-current
 - Capital / Equity
 
-== Statement of Profit & Loss (P&L)
+=== Statement of Profit & Loss (P&L)
 
 #align(center)[
 
@@ -140,9 +140,9 @@ List of:
   )
 ]
 
-== Cash Flow Statement
+=== Cash Flow Statement
 
-== Assets & Liabilities
+=== Assets & Liabilities
 
 #align(center)[
   #table(
@@ -160,7 +160,7 @@ List of:
   )
 ]
 
-== Revenue & Expenses
+=== Revenue & Expenses
 
 #align(center)[
   #table(

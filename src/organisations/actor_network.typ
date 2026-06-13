@@ -3,6 +3,6 @@
 
 // #typst-root: main.typ
 
-=== Actor-Network Theory (ANT) 
+== Actor-Network Theory (ANT)
 
 // #cite(<latour2005>)

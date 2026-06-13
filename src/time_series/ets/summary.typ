@@ -60,7 +60,7 @@
 // SECTION
 // =============================================================
 
-= ETS taxonomy (state space form)
+== ETS taxonomy (state space form)
 
 #component-legend
 
@@ -98,7 +98,7 @@ That's it. The same loop works for all 30 models — only the specific formulas 
   - Multiplicative (M)
 
 
-== Trend = N (no trend)
+=== Trend = N (no trend)
 
 #grid(
   columns: 2,
@@ -145,7 +145,7 @@ That's it. The same loop works for all 30 models — only the specific formulas 
 )
 
 
-== Trend = A (additive trend)
+=== Trend = A (additive trend)
 
 #grid(
   columns: 2,
@@ -209,7 +209,7 @@ That's it. The same loop works for all 30 models — only the specific formulas 
 )
 
 
-== Trend = Ad (damped additive trend)
+=== Trend = Ad (damped additive trend)
 
 #grid(
   columns: 2,
@@ -278,7 +278,7 @@ That's it. The same loop works for all 30 models — only the specific formulas 
 )
 
 
-== Trend = M (multiplicative trend)
+=== Trend = M (multiplicative trend)
 
 #grid(
   columns: 2,
@@ -337,7 +337,7 @@ That's it. The same loop works for all 30 models — only the specific formulas 
 )
 
 
-== Trend = Md (damped multiplicative trend)
+=== Trend = Md (damped multiplicative trend)
 
 #grid(
   columns: 2,
@@ -505,11 +505,11 @@ That's it. The same loop works for all 30 models — only the specific formulas 
   ..args,
 )
 
-== ETS (Exponential Smoothing)
+=== ETS (Exponential Smoothing)
 
 ETS stands for *Error, Trend, Seasonality* — a family of forecasting models that decomposes a time series into up to three components and updates each one recursively from new observations.
 
-=== The weighting-scheme axis
+==== The weighting-scheme axis
 
 Before exponential smoothing, ask: *how much should past observations count?* Two extremes and two interpolators:
 

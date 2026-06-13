@@ -7,7 +7,7 @@ The portion of inventory that exists *because we order in batches instead of uni
 
 $ "Cycle stock (average)" = Q / 2 $
 
-=== Where it comes from
+== Where it comes from
 
 Order $Q$ units. Drain at rate $d$ until empty. Order again. Repeat.
 
@@ -15,7 +15,7 @@ Inventory profile is a sawtooth: peaks at $Q$ just after each order, drops linea
 
 If we ordered each unit immediately as needed, cycle stock would be 0 — but ordering has a fixed setup cost $S$, so we batch.
 
-=== Why $Q\/2$?
+== Why $Q\/2$?
 
 Linear drainage from $Q$ to $0$ over time $Q\/d$. The *time-average* is the area under the triangle divided by the cycle length:
 
@@ -23,7 +23,7 @@ $ "Average inventory" = (1/2) Q dot (Q/d) / (Q/d) = Q / 2 $
 
 Always exactly half the order quantity for *deterministic* demand. For stochastic demand, the expected on-hand mid-cycle is approximately $Q\/2$ plus the safety stock buffer.
 
-=== Cost of cycle stock
+== Cost of cycle stock
 
 Annual holding cost from cycle stock alone:
 
@@ -31,7 +31,7 @@ $ "HC"_"cycle" = h dot Q / 2 $
 
 This is the standard EOQ holding-cost term. The basic-EOQ optimum balances this against ordering cost $S D \/ Q$ → gives $Q^* = sqrt(2 S D \/ h)$.
 
-=== Reduce cycle stock by shrinking $Q$
+== Reduce cycle stock by shrinking $Q$
 
 Two ways to reduce cycle stock:
 1. *Shrink $Q$* directly — accept more frequent orders, more setup cost.
@@ -39,7 +39,7 @@ Two ways to reduce cycle stock:
 
 Lean inventory practice = drive $S$ toward zero so $Q$ can shrink, ideally toward 1 unit (just-in-time ordering).
 
-=== How it composes with other stock types
+== How it composes with other stock types
 
 Cycle stock is just one of *five* inventory components in a typical operation:
 

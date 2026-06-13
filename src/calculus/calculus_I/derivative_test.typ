@@ -23,7 +23,7 @@ Find critical points by solving $f'(x) = 0$
   )
 ]
 
-=== First Derivative Test
+== First Derivative Test
 
 If $f'(x)$ changes sign around a critical point $c$, we can determine if $f(c)$ is a local maximum or minimum:
 
@@ -262,7 +262,7 @@ If $f'(x)$ changes sign around a critical point $c$, we can determine if $f(c)$ 
   but rather a point of inflection
 ]
 
-=== Second Derivative Test
+== Second Derivative Test
 
 If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
 

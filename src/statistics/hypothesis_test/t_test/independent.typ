@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-=== Independent
+== Independent
 
 Compares the means of two independent samples.
 

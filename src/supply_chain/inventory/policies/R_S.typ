@@ -11,18 +11,18 @@ Two parameters:
 - $R$ = review interval (often fixed by external factors — a weekly truck, a monthly billing cycle)
 - $S$ = order-up-to level
 
-=== When to use
+== When to use
 
 Periodic review — either because continuous monitoring is expensive (manual stock-taking) or because deliveries arrive on a fixed cadence (the supplier's truck comes every Monday whether you want it to or not). (R, S) is the workhorse for this regime.
 
-=== Inventory profile
+== Inventory profile
 
 Sawtooth, with reviews as the cycle anchor:
 - At review $t$: observe position $I_t$. Order $S - I_t$. Order arrives at $t + L$.
 - Between reviews: inventory drains stochastically. *No intervention even if it runs out.*
 - *Stockout window*: from order placed until the *next* order arrives — that's $R + L$ (review interval plus lead time).
 
-=== Set $S$
+== Set $S$
 
 The protection window is $R + L$ (not just $L$ as in continuous review!). Demand during this window has:
 - Mean: $mu_(R+L) = d (R + L)$
@@ -34,7 +34,7 @@ $ S = cm(mu_(R+L)) + cm(z) cm(sigma_(R+L)) $
 
 The safety stock $z sigma_(R+L)$ is *larger* than continuous-review safety stock by factor $sqrt((R+L)\/L)$.
 
-=== No $r$ in (R, S)
+== No $r$ in (R, S)
 
 Unlike continuous review, there's no reorder point — every review triggers an order, even if inventory is still high. Order quantity varies cycle to cycle:
 
@@ -42,7 +42,7 @@ $ Q_"actual" = S - I_t $
 
 Sometimes $Q_"actual" approx 0$ (just received last order); sometimes large (after a busy period). Average: $Q_"actual" = R d$ (you replace what was consumed since last review).
 
-=== Final formulas
+== Final formulas
 
 $
   S = mu_(R+L) + z sigma_(R+L)

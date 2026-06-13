@@ -7,7 +7,7 @@ $ s_t = 1/t sum_(i=1)^t x_i $
 
 Forecast: $hat(x)_(t, t+1) = s_t$ — predict the long-run average.
 
-=== Behavior
+== Behavior
 
 The cumulative average can also be written *recursively*:
 
@@ -19,7 +19,7 @@ The second form makes the dynamics clear:
 
 So the *effective smoothing parameter* of the cumulative average is $alpha_t = 1\/t$ — *decreasing over time*. As more data arrives, the cumulative average becomes increasingly insensitive to new observations.
 
-=== Comparison to other moving averages
+== Comparison to other moving averages
 
 - *Naïve* ($M = 1$, $alpha = 1$): only most-recent matters; ignores history.
 - *SMA* (fixed $M$): finite window; weight per observation is $1\/M$.
@@ -30,7 +30,7 @@ The relationship between $M$, $alpha$, and effective memory:
 - $alpha = 1\/M$ for SMA and an "average age" perspective on SES.
 - For the cumulative average, $alpha_t -> 0$ as $t -> infinity$ — effectively *infinite* memory.
 
-=== When to use
+== When to use
 
 - *Estimating a long-run mean* of a stationary process: cumulative converges to the true mean by the law of large numbers.
 - *Slow baseline* in regime detection or anomaly detection: a rapid moving average can be compared against the cumulative average to detect drift or shifts.
@@ -38,7 +38,7 @@ The relationship between $M$, $alpha$, and effective memory:
 
 Don't use it as a *forecast* for a non-stationary series. Cumulative gives equal weight to data from years ago and yesterday — useless if the level has shifted.
 
-=== Connection to MLE
+== Connection to MLE
 
 The cumulative average is the *maximum likelihood estimator* of the population mean for an i.i.d. process. So if you genuinely believe the data are i.i.d. with constant mean, cumulative average is *optimal* — best you can do.
 

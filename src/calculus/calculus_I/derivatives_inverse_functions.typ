@@ -272,7 +272,7 @@ $
   ```,
 )
 
-=== Derivative Inverse Sin
+== Derivative Inverse Sin
 
 $
   d / (d x ) [sin^(-1)(x)] = 1 / (sqrt(1 - x^2))
@@ -282,7 +282,7 @@ $
   d / (d x ) [arcsin(x)] = 1 / (sqrt(1 - x^2))
 $
 
-=== Derivative Inverse Cos
+== Derivative Inverse Cos
 
 $
   d / (d x ) [cos^(-1)(x)] = - 1 / (sqrt(1 - x^2))
@@ -291,7 +291,7 @@ $
   d / (d x ) [arccos(x)] = - 1 / (sqrt(1 - x^2))
 $
 
-=== Derivative Inverse Tan
+== Derivative Inverse Tan
 
 $
   d / (d x ) [tan^(-1)(x)] = - 1 / (1 + x^2)

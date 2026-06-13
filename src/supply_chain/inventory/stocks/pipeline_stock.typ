@@ -9,7 +9,7 @@ $ "Pipeline stock" = bar(d) dot bar(L) $
 
 Average lead-time demand. By Little's Law applied to the inventory system.
 
-=== Where it comes from
+== Where it comes from
 
 Once you place an order, those units are *yours* (you've paid, they're in the supply chain) — even though they're not on your shelf yet. They're physically held by:
 - The supplier (after order placement, before shipment)
@@ -18,7 +18,7 @@ Once you place an order, those units are *yours* (you've paid, they're in the su
 
 The financial cost is real: working capital is tied up the entire time.
 
-=== Derivation via Little's Law
+== Derivation via Little's Law
 
 For any stable queue:
 
@@ -32,13 +32,13 @@ $ "Pipeline stock" = bar(d) dot bar(L) $
 
 Independent of the order quantity $Q$ or the policy used. *Every* unit you ever consume passes through the pipeline for $L$ time, so on average $bar(d) bar(L)$ units are always in flight.
 
-=== Cost of pipeline stock
+== Cost of pipeline stock
 
 Holding cost depends on whether you're charged carrying cost on in-transit inventory:
 - *Yes* (you've paid the supplier — common with prepay terms): annual cost $h dot bar(d) bar(L)$.
 - *No* (consignment / pay-on-receipt): pipeline stock has zero holding cost to you. Common with VMI.
 
-=== Reduce pipeline stock
+== Reduce pipeline stock
 
 The *only* way to reduce pipeline stock is to reduce lead time $L$:
 - Shorter shipping (air vs ocean)
@@ -48,7 +48,7 @@ The *only* way to reduce pipeline stock is to reduce lead time $L$:
 
 Cycle stock and safety stock can be tuned by changing $Q$ or $z$. *Pipeline stock cannot* — it's locked in by lead time and demand rate.
 
-=== How it composes with other stock types
+== How it composes with other stock types
 
 #table(
   columns: 3,

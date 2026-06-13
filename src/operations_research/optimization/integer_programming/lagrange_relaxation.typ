@@ -11,7 +11,7 @@
 - *Interior* point
 - *Boundary* point
 
-=== Single Variate
+== Single Variate
 
 For constrained single variate:
 - *Check convexity*: Verify whether the objective function is convex by inspecting the second derivative. Convexity ensures that any stationary point is a global minimum
@@ -73,7 +73,7 @@ For constrained single variate:
   So the constrained optimum is at $x = 0$ with objective value $-3$.
 ]
 
-=== Multi Variate
+== Multi Variate
 
 #example[
 
@@ -365,7 +365,7 @@ $
 
 ]
 
-=== Bounds
+== Bounds
 
 Lagrance relaxation provides bounds for the original NLP
 

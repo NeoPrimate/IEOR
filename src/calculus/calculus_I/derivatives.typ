@@ -90,7 +90,7 @@ General Pattern:
   ]
 ]
 
-=== Power Rule
+== Power Rule
 
 $
    f(x) & = x^n \
@@ -104,7 +104,7 @@ $
   $
 ]
 
-=== Product Rule
+== Product Rule
 
 $
    f(x) & = u(x) dot v(x) \
@@ -131,7 +131,7 @@ $
   $
 ]
 
-=== Quotient Rule
+== Quotient Rule
 
 $
    f(x) & = u(x) / v(x) \
@@ -162,7 +162,7 @@ $
 
 ]
 
-=== Chain Rule
+== Chain Rule
 
 $
   f(g(x)) \
@@ -198,7 +198,7 @@ $
   $
 ]
 
-=== Others
+== Others
 
 *1. Trigonometric Functions*
 

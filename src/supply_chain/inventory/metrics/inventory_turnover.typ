@@ -9,7 +9,7 @@ $ "Turnover" = "Annual COGS" / "Average inventory value" $
 
 Higher = leaner; lower = stagnant.
 
-=== Definition variants
+== Definition variants
 
 Three common formulations, depending on what data you have:
 
@@ -28,7 +28,7 @@ Three common formulations, depending on what data you have:
 
 Cost-based is the standard for financial reporting; sales-based shows up in retail KPIs; unit-based is operational.
 
-=== Why turnover matters
+== Why turnover matters
 
 Turnover combines *demand* and *inventory level* into one number that captures *capital efficiency*:
 
@@ -37,7 +37,7 @@ Turnover combines *demand* and *inventory level* into one number that captures *
 
 Compare across products, sites, or time periods to spot trends.
 
-=== Industry benchmarks
+== Industry benchmarks
 
 #table(
   columns: 3,
@@ -55,7 +55,7 @@ Compare across products, sites, or time periods to spot trends.
 
 Use the benchmark to flag outliers. *Far below benchmark* → likely overstocked. *Far above* → may be understocked (frequent stockouts).
 
-=== Connection to days of supply
+== Connection to days of supply
 
 The most natural "human-readable" interpretation of turnover is its inverse:
 
@@ -63,7 +63,7 @@ $ "Days of supply" = 365 / "Turnover" $
 
 If turnover = 12, you hold ~30 days of inventory. If turnover = 4, you hold ~91 days. See [days_of_supply.typ](days_of_supply.typ).
 
-=== What turnover doesn't tell you
+== What turnover doesn't tell you
 
 - *Why* the number is what it is — could be high turnover from good management OR understocking.
 - *Distribution across SKUs* — total turnover hides which SKUs are dead stock vs fast movers (use FSN classification).

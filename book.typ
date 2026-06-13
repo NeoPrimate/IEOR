@@ -12,6 +12,11 @@
 #show: formatting
 #show: web_setup
 
+// Each HTML page is a standalone document, so the PDF's global "1.2.1" numbering
+// would restart per page ("1 Covariance" on every page). Drop numbering in HTML;
+// the sidebar conveys structure. The PDF (main.typ) keeps numbering.
+#set heading(numbering: none)
+
 #let book = toml("/book.toml")
 #let src-prefix = "/" + book.book.src + "/"
 

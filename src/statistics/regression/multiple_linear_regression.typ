@@ -28,7 +28,7 @@ $
   - $hat(y)_i = hat(b)_0 + sum_(j=1)^k hat(b)_j x_(j, i)$: predicted value
   - $e_i = y_i - hat(y)_i$: residual
 
-=== Why "least squares"?
+== Why "least squares"?
 
 Three candidate loss functions for the residuals $e_i = y_i - hat(y)_i$:
 
@@ -64,7 +64,7 @@ $
 
 where $X$ is the $n times (k+1)$ design matrix (a column of ones for the intercept, plus one column per regressor).
 
-=== Goodness of fit ($R^2$)
+== Goodness of fit ($R^2$)
 
 Total variation in $y$ around its mean splits cleanly into the part the model explains and the part it leaves behind:
 
@@ -147,7 +147,7 @@ $
   $ hat(F)_21 = 2969.14 + 48.03 (21) + 303.51 (0) = 3977.77 $
 ]
 
-=== When to reach for OLS
+== When to reach for OLS
 
 *Strengths:*
 - Coefficients are *interpretable* — each one quantifies a specific driver

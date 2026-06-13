@@ -12,7 +12,7 @@ Three parameters:
 - $n$ = number of packs to order this cycle (a *function* of how far inventory dropped, not a free parameter)
 - $r$ = reorder point
 
-=== When does this matter?
+== When does this matter?
 
 (Q, r) assumes you can order any integer quantity $Q$. (nQ, r) handles the practical case where:
 - Supplier ships only full pallets / cases / drums.
@@ -20,7 +20,7 @@ Three parameters:
 
 If $Q$ is small relative to lead-time demand, (nQ, r) is essentially (Q, r) with rounding noise. If $Q$ is large (e.g., a pallet contains a year's worth of demand), the round-up effect inflates inventory significantly.
 
-=== Decision logic when triggered
+== Decision logic when triggered
 
 When inventory position falls to $r - delta$ (for some overshoot $delta gt.eq 0$):
 
@@ -30,7 +30,7 @@ Or simpler in practice: order the smallest $n Q$ such that the post-order positi
 
 In the *small overshoot* case (smooth demand), $n = 1$ almost always — order one pack of $Q$. (nQ, r) reduces to (Q, r).
 
-=== Set $r$
+== Set $r$
 
 Same as (Q, r):
 
@@ -38,15 +38,15 @@ $ r = mu_L + z sigma_L $
 
 The pack-size constraint affects $Q$, not $r$. The reorder trigger logic doesn't change.
 
-=== Set $Q$
+== Set $Q$
 
 If $Q$ is *given* (supplier-mandated pack size), no decision. If you can choose pack-size from a discrete set (dozen, gross, case, pallet), pick the closest to $Q_"EOQ" = sqrt(2 D S_"setup" \/ h)$.
 
-=== Average inventory
+== Average inventory
 
 Slightly higher than (Q, r): $approx Q\/2 + "SS" + cm("expected overshoot") / 2$. Overshoot is small under continuous review of smooth demand but grows with demand lumpiness.
 
-=== Final formulas
+== Final formulas
 
 $
   r = mu_L + z sigma_L

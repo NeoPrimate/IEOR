@@ -100,7 +100,7 @@ $
   $
 ]
 
-=== Adj R-squared
+== Adj R-squared
 
 Adjusts the  $R^2$  value based on the number of predictors (penalty for adding non-informative variables)
 

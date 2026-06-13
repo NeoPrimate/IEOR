@@ -1,9 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-= Supply Chains, Demand Management, and Forecasting
+== Supply Chains, Demand Management, and Forecasting
 
-== Introduction to Supply Chain
+=== Introduction to Supply Chain
 
 1. Supply Chain
 
@@ -109,7 +109,7 @@ Casuses: information distortion + delayed reactions
 - Price fluctuations (order spikes)
 - Overreaction to demand signals by upstream suppliers
 
-== Demand Analysis and Patterns
+=== Demand Analysis and Patterns
 
 1. Demand Analysis
 
@@ -170,7 +170,7 @@ Predict demand for products and services
 - Collaborative demand Planning
 - Flexible production
 
-== Demand Management
+=== Demand Management
 
 1. Demand Drivers
 
@@ -232,7 +232,7 @@ Influence demand through strategic initiatives
 
 Integrated business management process that bring together sales, marketing, supply chain, finance teams to align demand forecasts with operational plans
 
-== Forecasting
+=== Forecasting
 
 1. Importance
 

@@ -5,7 +5,7 @@
 
 Inventory built up *in advance* of a *known* future demand spike. Distinct from safety stock (which buffers *unknown* uncertainty) — anticipation stock buffers *known* but *concentrated* demand.
 
-=== When you build it
+== When you build it
 
 Three classic situations:
 
@@ -17,7 +17,7 @@ Three classic situations:
 
 In each case, future demand exceeds future production capacity, so you *can't* meet it just-in-time. Build early.
 
-=== The build-vs-capacity trade-off
+== The build-vs-capacity trade-off
 
 You face two strategies:
 
@@ -41,7 +41,7 @@ The right answer depends on the *cost ratio*:
 
 Most operations use a *blend*: a partial buffer plus some capacity flexibility.
 
-=== Sizing anticipation stock
+== Sizing anticipation stock
 
 Given:
 - Production rate $p$ (units / period, what your plant can produce)
@@ -53,7 +53,7 @@ $ "Anticipation stock"_"start" = sum_(t in "peak window") max(0, d_t - p) $
 
 Build this buffer up *before* the peak window starts, then drain during the peak.
 
-=== When forecast is wrong
+== When forecast is wrong
 
 Anticipation stock is forecast-driven. If forecast is off:
 - *Underbuilt* (forecast too low): stockout in peak. Recovery options: emergency overtime, third-party fulfillment, customer disappointment.
@@ -61,7 +61,7 @@ Anticipation stock is forecast-driven. If forecast is off:
 
 This is why fashion retailers struggle so much — anticipation stock + multiplicative demand uncertainty + short selling window. They blend anticipation (initial commitment) with reactive replenishment (postponement strategies, fast fashion).
 
-=== How it composes with other stock types
+== How it composes with other stock types
 
 Most operations have ZERO anticipation stock most of the time — it builds and drains around specific events. Different from cycle/safety/pipeline stock, which exist continuously.
 

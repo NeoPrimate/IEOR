@@ -5,7 +5,7 @@
 
 Relax one dimension from basic EOQ: *capacity is no longer unlimited*. A shared resource — warehouse space, working-capital budget, or shelf footprint — caps the total inventory you can hold at any moment. Multiple items compete for the same budget.
 
-=== Setup
+== Setup
 
 $n$ items indexed $i = 1, dots, n$:
 - $D_i$, $S_i$, $h_i$ as in basic EOQ (item-specific)
@@ -18,7 +18,7 @@ $ sum_(i=1)^n v_i Q_i lt.eq V $
 
 If individual EOQs already satisfy the constraint, the constraint is *not binding* — use them directly. The interesting case is when $sum_i v_i Q_i^"basic" > V$.
 
-=== Lagrangian formulation
+== Lagrangian formulation
 
 Minimize total cost subject to the capacity constraint:
 
@@ -28,7 +28,7 @@ Introduce Lagrange multiplier $lambda gt.eq 0$ for the constraint:
 
 $ L(Q_1, dots, Q_n, lambda) = sum_i [S_i (D_i \/ Q_i) + h_i (Q_i \/ 2)] + cm(lambda) (sum_i v_i Q_i - V) $
 
-=== KKT / FOC in $Q_i$
+== KKT / FOC in $Q_i$
 
 For each $i$, $partial L \/ partial Q_i = 0$:
 
@@ -38,7 +38,7 @@ $ Q_i^*(lambda) = sqrt((2 S_i D_i) / (h_i + cm(2 lambda v_i))) $
 
 This is *basic EOQ with an inflated holding cost* $h_i + 2 lambda v_i$. The Lagrange multiplier $lambda$ raises the effective holding cost on every item *in proportion to its capacity consumption $v_i$* — items that hog more capacity get penalized more, shrinking their $Q_i$.
 
-=== Find $lambda$ from the constraint
+== Find $lambda$ from the constraint
 
 If the constraint binds, $sum_i v_i Q_i^*(lambda) = V$. This is one equation in one unknown $lambda$ — solve numerically (or in closed form for some special cases).
 
@@ -57,14 +57,14 @@ $ lambda = 1 / 2 [((sum_i sqrt(2 S_i D_i c_i)) / V)^2 - i] $
 
 For other constraint forms, $lambda$ comes out of a 1-D root-finding pass over $sum_i v_i Q_i^*(lambda) - V = 0$ (monotone decreasing in $lambda$, so bisection works).
 
-=== Algorithm
+== Algorithm
 
 1. Compute unconstrained $Q_i^"basic" = sqrt(2 S_i D_i \/ h_i)$ for each $i$.
 2. Check $sum_i v_i Q_i^"basic" lt.eq V$. If yes, done — constraint not binding.
 3. Else, solve for $lambda$ (closed form above, or numerical).
 4. Each $Q_i^* = sqrt(2 S_i D_i \/ (h_i + 2 lambda v_i))$.
 
-=== Final formulas
+== Final formulas
 
 $
   Q_i^*(lambda) = sqrt((2 S_i D_i) / (h_i + 2 lambda v_i))

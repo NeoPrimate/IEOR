@@ -5,7 +5,7 @@
 
 Combine ABC (consumption value) and XYZ (demand variability) into a *3 × 3 grid*. Each cell suggests a distinct inventory strategy.
 
-=== The grid
+== The grid
 
 #table(
   columns: 4,
@@ -28,7 +28,7 @@ Combine ABC (consumption value) and XYZ (demand variability) into a *3 × 3 grid
   [*CZ*: candidate for elimination — low value AND unpredictable. If kept, build to order or accept high stockout rate],
 )
 
-=== Reading the cells
+== Reading the cells
 
 The *value axis (ABC)* sets *how much management attention* the item deserves. The *variability axis (XYZ)* sets *how much safety stock* (relative to mean demand) the item needs. Combine:
 
@@ -36,14 +36,14 @@ The *value axis (ABC)* sets *how much management attention* the item deserves. T
 - High value + high variability → *expensive to misjudge*. Cannot afford either over- or understock; need close monitoring and possibly contractual risk-sharing with the supplier.
 - Low value + high variability → *not worth managing carefully*. Either overstock cheaply or eliminate the SKU.
 
-=== Procedure
+== Procedure
 
 + Run [ABC analysis](abc.typ): assign each SKU an A / B / C class.
 + Run [XYZ analysis](xyz.typ): assign each SKU an X / Y / Z class.
 + Place each SKU into one of the 9 cells.
 + Pick the inventory policy from the matrix above.
 
-=== When the matrix isn't enough
+== When the matrix isn't enough
 
 The 9-cell grid is a useful starting heuristic but doesn't capture every dimension:
 - *Criticality* (a $\$$1 bolt that holds together a $\$$1M machine — see [VED](ved.typ))

@@ -108,7 +108,7 @@ $
   - *Moving from $(1, 2)$ in the direction of $(2, 4)$*, the function value will rise fastest and at a rate roughly proportional to *$4.47$ per unit distance moved*
 ]
 
-=== Algorithm
+== Algorithm
 
 Find the minimum of a function
 

@@ -10,13 +10,13 @@ Decompose a time series $y_t$ into four components that *add up* (or *multiply*)
 
 Two functional forms — additive and multiplicative — depending on whether the seasonal swing is *constant* in absolute units or *proportional* to the level.
 
-=== Additive form
+== Additive form
 
 $ y_t = L_t + T_t + S_t + N_t $
 
 Use when the *amplitude* of seasonal swings is roughly constant over time, regardless of the level. Example: temperature (summer is ~10°C above average whether the long-run average is 15°C or 25°C).
 
-=== Multiplicative form
+== Multiplicative form
 
 $ y_t = L_t dot T_t dot S_t dot N_t $
 
@@ -24,11 +24,11 @@ Use when the seasonal amplitude *scales with* the level. Example: retail sales (
 
 A multiplicative decomposition can always be converted to an additive one via $log y_t = log L_t + log T_t + log S_t + log N_t$ — useful trick if your tools support only additive.
 
-=== How to choose
+== How to choose
 
 Plot the series. If the seasonal swing *grows* with the level → multiplicative. If it stays roughly constant → additive. When unsure, try both and check which has more uniform residuals.
 
-=== Procedure (additive case, integer period $m$)
+== Procedure (additive case, integer period $m$)
 
 The classic step-by-step:
 
@@ -37,7 +37,7 @@ The classic step-by-step:
 + *Estimate seasonal indices*: average the detrended values within each seasonal slot (e.g., all Januaries, all Februaries, etc.). Adjust so the seasonal indices sum to zero (additive) or average to 1 (multiplicative). Result: $hat(S)_t$ (depends only on $t mod m$).
 + *Residual / noise*: $hat(N)_t = y_t - hat(T)_t - hat(S)_t$.
 
-=== Limitations of classical decomposition
+== Limitations of classical decomposition
 
 - *Constant seasonal pattern*: classical decomposition assumes the seasonal effect is the *same* in every cycle. Real series often have *evolving* seasonality (Christmas effect grows over decades). Use STL ([stl.typ](stl.typ)) for those.
 - *Endpoint problem*: the centered MA has gaps at the start and end (size $m\/2$ each). Modern methods (STL, X-13) handle this better.

@@ -15,7 +15,7 @@ Strategy of this whole section:
 + Take its derivative with respect to $Q$ and set to zero
 + Solve for $Q$ — call this optimum the *Economic Order Quantity* (EOQ)
 
-=== Assumptions
+== Assumptions
 
 - Demand $D$ is constant and known
 - Replenishment is instantaneous (no lead time)
@@ -23,7 +23,7 @@ Strategy of this whole section:
 - Single product, single location
 - Backorders are allowed at penalty rate $b$ (relaxed in the next subsection)
 
-=== Cost model (TC)
+== Cost model (TC)
 
 Total cost over a year is the sum of four pieces. Build them one at a time.
 
@@ -72,7 +72,7 @@ Variables:
   [$b (B^2 / (2 Q))$], [Shortage cost], [Average backorder level times penalty rate $b$],
 )
 
-=== Simplification (TRC)
+== Simplification (TRC)
 
 Two simplifications take us from $"TC"$ down to the *Total Relevant Cost* — a function of $Q$ alone.
 
@@ -122,13 +122,13 @@ $ "TRC"(Q) = S (D / Q) + h (Q / 2) $
   ),
 )
 
-=== Derive $Q^*$ (first-order condition)
+== Derive $Q^*$ (first-order condition)
 
 Find the $Q$ that minimizes $"TRC"(Q)$:
 - Set the derivative with respect to $Q$ to zero (FOC, this subsection).
 - Verify the second derivative is positive (SOC, next subsection).
 
-==== Differentiate term by term
+=== Differentiate term by term
 
 Start:
 
@@ -156,7 +156,7 @@ Use $Q^0 = 1$ and tidy:
 
 $ d / (d Q) "TRC"(Q) = -(S D) / Q^2 + h / 2 $
 
-==== Set to zero, solve for $Q$
+=== Set to zero, solve for $Q$
 
 Start (FOC):
 
@@ -190,7 +190,7 @@ $ "EOQ" = Q^* = sqrt((2 S D) / h) $
   Order ~775 units at a time.
 ]
 
-=== Verify it is a minimum (second-order condition)
+== Verify it is a minimum (second-order condition)
 
 Differentiate $d / (d Q) "TRC"(Q)$ once more.
 
@@ -208,7 +208,7 @@ $ d^2 / (d Q^2) "TRC"(Q) = (2 S D) / Q^3 $
 
 For any $Q > 0$ this is positive ⇒ $Q^*$ is a *minimum*. ✓
 
-=== Derive $"TRC"^*$ (the minimum cost)
+== Derive $"TRC"^*$ (the minimum cost)
 
 Substitute $Q^* = sqrt((2 S D) / h)$ back into $"TRC"$.
 
@@ -248,7 +248,7 @@ Result:
 
 $ "TRC"^* = sqrt(2 S D h) $
 
-=== Key insight: balance at the optimum
+== Key insight: balance at the optimum
 
 At $Q^*$, *annual order cost equals annual holding cost*. Each is exactly half of $"TRC"^*$.
 
@@ -276,11 +276,11 @@ $ "OC"^* = "HC"^* = sqrt((S D h) / 2) = "TRC"^* / 2 $
 
 Mnemonic: *EOQ is the $Q$ where the two cost curves cross.*
 
-=== How forgiving is EOQ? (sensitivity)
+== How forgiving is EOQ? (sensitivity)
 
 Small input errors produce *much smaller* cost penalties — square-root cushioning. Quantify it.
 
-==== Cost penalty function
+=== Cost penalty function
 
 Take the ratio of $"TRC"$ at any $Q$ to $"TRC"^*$.
 
@@ -332,7 +332,7 @@ Snapshots:
 - $Q = 2 Q^*$ or $Q = 0.5 Q^*$ ⇒ cost is *1.25*× optimum (+25%)
 - $Q = Q^*$ ⇒ cost is *1.00*× optimum
 
-==== Demand-forecast error
+=== Demand-forecast error
 
 Forecast $D'$, actual $D$. Define $E = D / D'$. Then $Q' \/ Q^* = sqrt(D' \/ D) = 1 / sqrt(E)$, so:
 
@@ -340,11 +340,11 @@ $ "TRC" / "TRC"^* = 1 / 2 (1 / sqrt(E) + sqrt(E)) $
 
 - $E = 0.5$ (actual demand is half the forecast) ⇒ cost penalty is just *+6%*. Tiny.
 
-==== Cost-parameter error
+=== Cost-parameter error
 
 Same square-root cushion — a 10% error in $S$ or $h$ produces *much less* than a 10% error in $Q^*$, since $Q^* prop sqrt(S)$ and $Q^* prop sqrt(1\/h)$.
 
-=== Practical: power-of-two policies
+== Practical: power-of-two policies
 
 Real warehouses cannot use an arbitrary cycle time $T^* = Q^* / D$ — they need a fixed, predictable cadence.
 

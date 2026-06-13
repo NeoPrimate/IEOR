@@ -1,19 +1,19 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-=== World-Systems Theory 
+== World-Systems Theory
 
 (Wallerstein)
 // @wallerstein1974
 
-=== Global Commodity Chains (GCC) 
+== Global Commodity Chains (GCC)
 
 // @gereffi1994
 
 - Producer-driven (autos, electronics)
 - Buyer-driven (apparel, retail)
 
-=== Global Value Chains (GVC) 
+== Global Value Chains (GVC)
 
 // @gereffi2005
 
@@ -24,6 +24,6 @@ Governance types:
 - captive
 - hierarchical
 
-=== Global Production Networks (GPN)
+== Global Production Networks (GPN)
 
 // @henderson2002

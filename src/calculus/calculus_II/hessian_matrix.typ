@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-== Hessian Matrix <hessian_matrix>
+#metadata(none) <hessian_matrix>
 
 #prerequisites(
   prereqs: (),

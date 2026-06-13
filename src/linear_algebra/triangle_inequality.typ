@@ -3,7 +3,7 @@
 
 
 
-=== Vector Triangle Inequality
+== Vector Triangle Inequality
 
 $
 ||accent(u, arrow) + accent(v, arrow)|| lt.eq ||accent(u, arrow)|| + ||accent(v, arrow)||

@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-=== Paired
+== Paired
 
 $
 t = macron(D) / (s_D / sqrt(n))

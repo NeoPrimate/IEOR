@@ -5,7 +5,7 @@
 
 Classify items by *annual consumption value* (annual demand × unit cost). The Pareto principle says a small fraction of items dominates total value — so spend management effort proportionally.
 
-=== The Pareto split
+== The Pareto split
 
 - *A items*: top ~70–80% of total value, typically ~10–20% of SKUs.
 - *B items*: next ~15–25% of total value, ~30% of SKUs.
@@ -13,7 +13,7 @@ Classify items by *annual consumption value* (annual demand × unit cost). The P
 
 Exact thresholds vary by industry — pick what makes sense for your inventory.
 
-=== Why classify
+== Why classify
 
 A items deserve tight control: precise demand forecasts, frequent reviews, low safety stock margin, supplier negotiations. Mistakes on A items have outsized financial impact.
 
@@ -21,14 +21,14 @@ C items deserve light control: simple rules (two-bin, periodic review), generous
 
 B items get medium attention.
 
-=== Procedure
+== Procedure
 
 + Compute each item's *annual consumption value* = annual demand × unit cost.
 + Sort items by consumption value, descending.
 + Compute *cumulative percentage* of total value down the list.
 + Cut at the chosen thresholds (e.g., 80% / 95% / 100%).
 
-=== Differential treatment summary
+== Differential treatment summary
 
 #table(
   columns: 4,

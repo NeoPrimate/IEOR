@@ -112,7 +112,7 @@ Difficulties of NLP
   }))
 ]
 
-==== Convexity
+=== Convexity
 
 Convex Set
 
@@ -860,7 +860,7 @@ First order condition (FOC) $f'(x) = 0$
   - If holding cost $h$ increases, order quantity $q^*$ decreases
 ]
 
-=== Multivariate Convex Analysis
+== Multivariate Convex Analysis
 
 An optimal solution either:
 - Satisfies the FOC

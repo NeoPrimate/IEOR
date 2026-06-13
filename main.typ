@@ -55,8 +55,15 @@
       // Emit heading + label together so the label attaches to the heading.
       [#heading(level: depth - 1, sec.title) #std.label(path-tag(p))]
     }
-    for f in sec.at("files", default: ()) {
-      include src-prefix + f
+    // Offset included headings by the page's nesting depth so a file's
+    // shallowest heading (`==`) always lands exactly one level below the
+    // injected title, at any depth. Scoped to this block so it never leaks to
+    // sibling/child titles. (depth 1 & 2 → offset 0; depth 3 → 1; …)
+    {
+      set heading(offset: calc.max(0, depth - 2))
+      for f in sec.at("files", default: ()) {
+        include src-prefix + f
+      }
     }
     if "sections" in sec {
       render(sec.sections, depth: depth + 1, parent: p)

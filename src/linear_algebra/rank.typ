@@ -7,7 +7,7 @@ $
   "rank"(A) = "dim"(C(A))
 $
 
-=== Matrix Representation of Systems of Equations
+== Matrix Representation of Systems of Equations
 
 $
   a_(1 1) x_1 + a_(1 2) x_2 + ... + a_(1 m) x_m = b_1 \

@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-==== EOQ
+=== EOQ
 
 *Parameters*
 
@@ -96,7 +96,7 @@ $
   )
 ]
 
-==== Portfolio Optimization
+=== Portfolio Optimization
 
 *Objective*
 
@@ -122,7 +122,7 @@ $
   &x_i gt.eq 0 quad forall i = 1, dots, n quad quad &(&"No short-selling")
 $
 
-=== Linearizing Maximum/Minimum Functions
+== Linearizing Maximum/Minimum Functions
 
 1. When the *maximum* function is on the *smaller side* of inequality
 
@@ -191,7 +191,7 @@ $
   y = max(x_1, x_2) quad "or" quad y = min(x_1, x_2)
 $
 
-=== Linearize Objective Function
+== Linearize Objective Function
 
 1. *Minimize* a *Maximum* Function
 
@@ -459,7 +459,7 @@ $
   This is the fair allocation: each person receives \$500, and the difference between the two amounts is 0.
 ]
 
-=== Linearizing Products of Decision Variables
+== Linearizing Products of Decision Variables
 
 Products of decision variables can be linearized if:
 - A binary and a continuous variable

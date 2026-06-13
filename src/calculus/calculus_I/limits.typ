@@ -6,24 +6,24 @@
 #let mark-size = 0.03
 #let mark-style-white = (fill: white)
 
-=== Properties of Limits
+== Properties of Limits
 
-==== Continuous
+=== Continuous
 
-===== Addition, Subtraction, Multiplication, Division
+==== Addition, Subtraction, Multiplication, Division
 
 $
   lim_(x arrow c) (colorMath(f(x), #red) * colorMath(g(x), #blue)) = lim_(x arrow c) colorMath(f(x), #red) * lim_(x arrow c) colorMath(g(x), #blue) \
   * in {+, -, times, div}
 $
 
-===== Constant
+==== Constant
 
 $
   lim_(x arrow c) colorMath(k, #blue) colorMath(f(x), #red) = colorMath(k, #blue) lim_(x arrow c) colorMath(f(x), #red)
 $
 
-==== Non-continuous
+=== Non-continuous
 
 Even though the limit for either function may not exist, their $*$ can exist as long as
 
@@ -159,7 +159,7 @@ $
 
 ]
 
-==== Composite Functions
+=== Composite Functions
 
 $
   lim_(x arrow c) f(g(x)) = f(lim_(x arrow c) g(x))
@@ -266,7 +266,7 @@ For this to hold true, two important conditions must be satisfied:
 
 ]
 
-==== Limits by Direct Substitution
+=== Limits by Direct Substitution
 
 #example[
 
@@ -286,15 +286,15 @@ For this to hold true, two important conditions must be satisfied:
   $
 ]
 
-===== Limits of Piecewise Functions
+==== Limits of Piecewise Functions
 
-===== Absolute Value
+==== Absolute Value
 
-==== Limits by Factoring
+=== Limits by Factoring
 
-==== Limits by Rationalizing
+=== Limits by Rationalizing
 
-==== Continuity & Differentiability at a Point
+=== Continuity & Differentiability at a Point
 
 #example[
 

@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-=== One-sample
+== One-sample
 
 Tests if the mean of a single sample differs from a known or hypothesized population mean.
 

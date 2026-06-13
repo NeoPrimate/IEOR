@@ -16,7 +16,7 @@ Three parameters:
 
 (The "S" of (R, s, S) is replaced by *implicit* $S = s + n Q$ — the resulting position depends on how many packs are needed.)
 
-=== When to use
+== When to use
 
 The pragmatic real-world combination:
 - Reviews are periodic (cycle counts done weekly or monthly).
@@ -25,7 +25,7 @@ The pragmatic real-world combination:
 
 Common in retail (Each store reorders periodically, pack sizes are case-of-N) and pharmacy (DEA-mandated periodic counts of controlled substances, fixed pack size from manufacturer).
 
-=== Inventory profile
+== Inventory profile
 
 Sawtooth, with two layers of discreteness:
 - Some reviews: skip (inventory above $s$).
@@ -103,7 +103,7 @@ Average inventory is *higher* than (R, s, S) because the integer-pack rounding i
   }))
 ]
 
-=== Set $s$
+== Set $s$
 
 Same protection-window logic as (R, s, S) and (R, S):
 
@@ -111,7 +111,7 @@ $ s = mu_(R+L) + z sigma_(R+L) $
 
 Pack-size constraint affects the *order quantity*, not the trigger.
 
-=== Choose $n$ at trigger time
+== Choose $n$ at trigger time
 
 When triggered with position $I_t lt.eq s$:
 
@@ -119,11 +119,11 @@ $ n = ceil((s - I_t + Q) / Q) quad ("smallest" n " s.t. " I_t + n Q > s) $
 
 A simpler rule: pick $n$ to make post-order position $approx s + Q\/2$ (midpoint of typical $s$-to-$s + Q$ range). For the smooth-demand case, $n = 1$ usually suffices.
 
-=== Set $Q$
+== Set $Q$
 
 $Q$ is *given* by the supplier. If you have flexibility (multiple pack sizes available), pick the one closest to $Q_"EOQ" = sqrt(2 D S_"setup" \/ h)$.
 
-=== Final formulas
+== Final formulas
 
 $
   s = mu_(R+L) + z sigma_(R+L)

@@ -11,13 +11,13 @@ Two parameters:
 - $Q$ = order quantity (a *fixed* batch every time)
 - $r$ = reorder point (the trigger level)
 
-=== Setup
+== Setup
 
 Random demand with rate $d$ per unit time and standard deviation $sigma_d$. Lead time $L$ (constant for now). Holding cost $h$, fixed order cost $S$, plus a service-level requirement $z$ (e.g., $z = 1.645$ for 95% cycle service level).
 
 *Inventory position* $= "on-hand" + "on-order" - "backorders"$. Continuous review means we always know it.
 
-=== Inventory profile
+== Inventory profile
 
 Sawtooth shape, but with random consumption rate:
 - Inventory drains stochastically.
@@ -64,7 +64,7 @@ Sawtooth shape, but with random consumption rate:
   }))
 ]
 
-=== Set $r$ — the reorder point
+== Set $r$ — the reorder point
 
 To meet cycle service level $1 - alpha$:
 
@@ -77,7 +77,7 @@ where:
 
 The term $z sigma_L$ is the *safety stock* — buffer for demand variability.
 
-=== Set $Q$ — the order quantity
+== Set $Q$ — the order quantity
 
 When fixed cost $S$ is significant, use the EOQ formula:
 
@@ -85,7 +85,7 @@ $ Q = sqrt((2 D S) / h) $
 
 (Approximate — exact joint optimization of $Q$ and $r$ exists but EOQ is within a few % of optimal.)
 
-=== Final formulas
+== Final formulas
 
 $
   Q approx sqrt((2 D S) / h)

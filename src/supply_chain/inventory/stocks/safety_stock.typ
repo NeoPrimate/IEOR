@@ -9,7 +9,7 @@ $ "SS" = z dot sigma_"LD" $
 
 where $sigma_"LD"$ is the standard deviation of *lead-time demand* and $z$ is the quantile of the standard normal at the desired service level.
 
-=== Why this form
+== Why this form
 
 The reorder point under (Q, r) is set such that the probability of running out during lead time equals the target stockout probability $alpha$:
 
@@ -23,7 +23,7 @@ Decompose:
 - $mu_L$ = expected demand during lead time. Just covers the average — no safety.
 - $z sigma_"LD"$ = the *safety stock*. Buffer above the average for the variability.
 
-=== Lead-time demand variance — the four cases
+== Lead-time demand variance — the four cases
 
 The form of $sigma_"LD"^2$ depends on which of demand and lead time are random. Combining via the law of total variance:
 
@@ -46,7 +46,7 @@ The four classical cases:
 
 The combined formula reduces to the special cases when one variance is zero. The $bar(d)^2$ factor in the lead-time term often dominates when both are random — small percentage variance in lead time can produce *huge* swings in lead-time demand.
 
-=== Safety stock = $z sigma_"LD"$
+== Safety stock = $z sigma_"LD"$
 
 Once you know $sigma_"LD"$, the safety stock formula is:
 
@@ -54,7 +54,7 @@ $ "SS" = z dot sigma_"LD" $
 
 Choose $z$ from the desired service level (see [cycle_service_level.typ](../service_levels/cycle_service_level.typ) and [fill_rate.typ](../service_levels/fill_rate.typ)).
 
-=== Risk pooling reduces safety stock
+== Risk pooling reduces safety stock
 
 When inventory is held centrally rather than distributed across $n$ independent locations:
 - *Decentralized*: each location holds $z sigma_d sqrt(L)$, total = $n times z sigma_d sqrt(L)$.

@@ -14,7 +14,7 @@ Three parameters:
 - $s$ = reorder point
 - $S$ = order-up-to level
 
-=== When to use
+== When to use
 
 Use (R, s, S) when:
 - Reviews are periodic (truck arrives weekly), but
@@ -24,7 +24,7 @@ Compared to (R, S): saves order cost in low-consumption periods. Compared to (s,
 
 (R, s, S) is widely considered the *most general* periodic policy. It generalizes both (R, S) (set $s = S$, always order) and *zero ordering* (set $s$ very low, never order).
 
-=== Inventory profile
+== Inventory profile
 
 Sawtooth, with order skipping:
 - Some reviews: $I_t > s$, no order. Inventory continues to drain.
@@ -100,7 +100,7 @@ If $R$ is short relative to mean cycle, most reviews do *not* trigger orders. If
   }))
 ]
 
-=== Set $s$ — protection-window logic
+== Set $s$ — protection-window logic
 
 Same as (R, S): the protection window is $R + L$, because an order placed at review covers demand until the *next* review's order arrives. So:
 
@@ -108,7 +108,7 @@ $ s = mu_(R+L) + z sigma_(R+L) $
 
 Identical to the $S$ in (R, S)! That's because $s$ in (R, s, S) plays the same protection role as $S$ in (R, S) — it's the level *above which we still have enough buffer*.
 
-=== Set $S$
+== Set $S$
 
 $S - s$ should be the EOQ-style batch size. Heuristic:
 
@@ -116,11 +116,11 @@ $ S = s + Q_"EOQ" = s + sqrt((2 D S_"setup") / h) $
 
 When inventory drops to exactly $s$ between reviews, the next order is for $S - s = Q_"EOQ"$. With overshoot (inventory below $s$ at review), the order is bigger — same as (s, S).
 
-=== Computing optimal $s, S$ exactly
+== Computing optimal $s, S$ exactly
 
 Closed forms exist for special cases (Wagner's lower-bound formula); in general, $(s^*, S^*)$ require dynamic programming or simulation. The heuristic above is within a few % of optimal for typical industrial parameter ranges.
 
-=== Final formulas
+== Final formulas
 
 $
   s = mu_(R+L) + z sigma_(R+L)

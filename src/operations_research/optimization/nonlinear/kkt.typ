@@ -14,7 +14,7 @@ Conditions are necessary for optimality, and sufficient if:
 - $g_i$ are convex
 - $h_j$ linear
 
-=== Setup
+== Setup
 
 $
   min_(x in RR^n) quad & f(x) \
@@ -26,7 +26,7 @@ $
 - $g_i (x)$: inequality constraints
 - $h_j (x)$: equality constraints
 
-=== KKT Multipliers
+== KKT Multipliers
 
 We introduce:
 - $lambda_i gt.eq 0$: for each inequality constraint (Lagrange multipliers)
@@ -43,7 +43,7 @@ For $n$ variables and $m$ constrains:
 - $n$ equalities for dual feasibility
 - $m$ equalities for complementary slackness
 
-=== KKT Conditions
+== KKT Conditions
 
 At local optimum $x^*$ there exists multipliers ($lambda^*, mu^*$) such that:
 
@@ -779,7 +779,7 @@ $
 
 #line(length: 100%)
 
-=== Calculating Lagrangian Multipliers
+== Calculating Lagrangian Multipliers
 
 To find the multipliers ($lambda^*, mu^*$) and the optimal point $x^*$, solve the KKT system of equations:
 
@@ -2125,11 +2125,11 @@ $
 
 ]
 
-=== Sensitivity Analysis and Shadow Prices
+== Sensitivity Analysis and Shadow Prices
 
 Lagrange multipliers measure how senitive the objective function is to changes in the constraints
 
-==== Shadow Prices
+=== Shadow Prices
 
 The shadow price of a constraint is the value of the corresponding Lagrange multiplier at the optimal solution:
 
@@ -2395,7 +2395,7 @@ $w^* = z^*$ is the primal NLP is a "regular" *convex* program
   So strong duality holds, $w^* = z^*$
 ]
 
-=== Lagrange Duality and LP Duality
+== Lagrange Duality and LP Duality
 
 LP duality is a special case of Lagrange Duality
 

@@ -76,6 +76,10 @@
 #import "/lib/utils/resources.typ": resources
 #import "/lib/utils/matvec_mult.typ": matvec_mult
 
+// Overline accent (sample means etc.): obar(x) → x̄. Used across notes-derived
+// probability/statistics pages.
+#let obar(x) = math.accent(x, math.macron)
+
 // === Document-wide formatting ===
 #import "/lib/formatting.typ": formatting
 

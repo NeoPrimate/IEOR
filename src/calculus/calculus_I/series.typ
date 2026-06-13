@@ -44,7 +44,7 @@ $
 
 ]
 
-=== Alternating
+== Alternating
 
 #example[
 
@@ -72,7 +72,7 @@ $
   ]
 ]
 
-=== Non-Convergent
+== Non-Convergent
 
 #example[
   $

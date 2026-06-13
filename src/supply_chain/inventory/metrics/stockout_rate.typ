@@ -17,7 +17,7 @@ Three common formulations:
   [*Item stockout rate*], [(SKUs out of stock at moment $t$) / (total SKUs)], [Snapshot view across the catalog],
 )
 
-=== Cycle stockout rate (target = $alpha$)
+== Cycle stockout rate (target = $alpha$)
 
 Tracks the fraction of replenishment cycles that hit stockout at least once. Measures the same quantity that *cycle service level* (CSL) targets:
 
@@ -25,7 +25,7 @@ $ "Cycle stockout rate" = "# cycles with stockout" / "total cycles" = 1 - "CSL"_
 
 Use when designing policies around the target $alpha$ and verifying you hit it in operation.
 
-=== Time stockout rate (target ≈ $1 - gamma$)
+== Time stockout rate (target ≈ $1 - gamma$)
 
 Tracks time fraction out of stock. Equivalent to $1 -$ ready rate (see [ready_rate.typ](../service_levels/ready_rate.typ)).
 
@@ -33,7 +33,7 @@ $ "Time stockout rate" = "Days out of stock" / "Total days" $
 
 Easy to compute from ERP data — just sum the duration of zero-on-hand periods.
 
-=== Item stockout rate (catalog-level)
+== Item stockout rate (catalog-level)
 
 Snapshot of *how many* SKUs are out of stock at a given moment, expressed as a fraction:
 
@@ -41,7 +41,7 @@ $ "Item stockout rate"(t) = ("# SKUs with on-hand" = 0) / ("# active SKUs") $
 
 Tracked over time as a daily / weekly time series. Common retail KPI, sometimes called *out-of-stock rate* or *fill-rate-on-shelf*.
 
-=== Why measure it
+== Why measure it
 
 The target service level (CSL = 95%, fill rate = 99%) is what you *aim for* during policy design. *Actual stockout rate* tells you whether the system is performing as designed. Common reasons for divergence:
 
@@ -52,7 +52,7 @@ The target service level (CSL = 95%, fill rate = 99%) is what you *aim for* duri
 
 If actual stockout rate >> target, the *physical* operation is breaking, not the *design*. Different remedy.
 
-=== Connection to other metrics
+== Connection to other metrics
 
 #table(
   columns: 3,
@@ -66,7 +66,7 @@ If actual stockout rate >> target, the *physical* operation is breaking, not the
 
 Different denominators measuring "how often things go wrong" — choose what your stakeholders care about.
 
-=== Diagnostic combinations
+== Diagnostic combinations
 
 - *High cycle stockout rate, low time stockout rate*: stockouts are *frequent but short*. Replenishment is reactive but fast.
 - *Low cycle stockout rate, high time stockout rate*: stockouts are *rare but long*. When they happen, they linger — usually a supply-side problem (lead time, supplier issue).

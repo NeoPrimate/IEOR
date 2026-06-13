@@ -3,7 +3,7 @@
 
 // #set page(margin: 0.5cm) — paged-only, can't apply inside bundle's document() container
 
-= Linear Programming
+== Linear Programming
 
 #table(
   columns: (auto, auto, auto),
@@ -67,7 +67,7 @@
 
 )
 
-= Integer Programming
+== Integer Programming
 
 #table(
   columns: (auto, auto, auto),
@@ -176,7 +176,7 @@
   
 )
 
-= Non-Linear Programming
+== Non-Linear Programming
 
 #table(
   columns: (auto, auto, auto, auto),
@@ -286,7 +286,7 @@
   ),
 )
 
-= Algorithms
+== Algorithms
 
 #table(
   columns: (auto, auto, auto),

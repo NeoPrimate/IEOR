@@ -28,12 +28,12 @@ A critical point of a function $f(x)$ is a point in the domain where either:
   ]
 ]
 
-=== Global vs. Local Extrema
+== Global vs. Local Extrema
 
 - $f(c)$ is a *relative maximum* if $f(c) gt.eq f(x)$ for all $x in (c - h, c + h)$ for $h gt 0$
 
 - $f(d)$ is a *relative minimum* if $f(d) lt.eq f(x)$ for all $x in (d - h, d + h)$ for $h gt 0$
 
-=== First and Second Derivative Tests
+== First and Second Derivative Tests
 
 First Derivative Test and the Second Derivative Test are used to classify critical points, and both aim to determine whether the point is a local maximum, local minimum, or neither

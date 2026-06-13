@@ -5,7 +5,7 @@
 #set math.vec(gap: 1em)
 #set math.mat(gap: 1em)
 
-== Newton's Method <newton_method>
+#metadata(none) <newton_method>
 
 #prerequisites(
   prereqs: (
@@ -43,7 +43,7 @@ $
 
 
 
-=== Newton's Method for Nonlinear Optimization
+== Newton's Method for Nonlinear Optimization
 
 Used to find the *roots of the first derivative* $f'(x) = 0$, which correspond to the *local minima/maxima of the original function* $f(x)$.
 
@@ -53,7 +53,7 @@ Finding *stationary points* of a function $f(x)$, i.e., points where the gradien
 
 It can be derived from either linear approximation of the gradient or quadratic approximation of the function
 
-==== 1D Linear Approximation
+=== 1D Linear Approximation
 
 1. Start with the first-order (linear) Taylor expansion of the derivative around $x_k$:
 
@@ -106,7 +106,7 @@ $
   )
 ]
 
-==== nD Linear Approximation
+=== nD Linear Approximation
 
 1. Start with the first-order (linear) Taylor expansion of the gradient around $x_k$:
 
@@ -128,7 +128,7 @@ $
   bold("x")_(k+1) = bold("x")_k - H_k^(-1) gradient f(bold("x")_k)
 $
 
-==== 1D Quadratic Approximation
+=== 1D Quadratic Approximation
 
 1. Start with the second-order (quadratic) Taylor expansion of the function around $x_k$:
 
@@ -181,7 +181,7 @@ $
   )
 ]
 
-==== nD Quadratic Approximation
+=== nD Quadratic Approximation
 
 1. Start with the second-order (quadratic) Taylor expansion of the function around $x_k$:
 
@@ -248,7 +248,7 @@ $
   )
 ]
 
-==== Quadratic Approximation
+=== Quadratic Approximation
 
 $
   f_Q (x) = f(x_k) + f'(x_k) (x - x_k) + 1/2 f''(x_k) (x - x_k)^2
@@ -363,7 +363,7 @@ $
 
 Hello
 
-=== Multi-Dimensional
+== Multi-Dimensional
 
 second-order iterative algorithm
 

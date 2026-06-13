@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-=== Addition or Subtraction Method
+== Addition or Subtraction Method
 
 #example[
   #linebreak()

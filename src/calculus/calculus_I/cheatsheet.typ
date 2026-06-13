@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-=== Limits
+== Limits
 
 Epsilon-Delta
 
@@ -147,7 +147,7 @@ $
 //   })
 // ]
 
-=== Derivatives
+== Derivatives
 
 $
   (d f) / (d x) (x) = f'(x) = lim_(h arrow 0) (f(x + h) - f(x)) / h
@@ -204,9 +204,9 @@ $
 
 ]
 
-=== Integrals
+== Integrals
 
-=== Differential
+== Differential
 
 If you have a function:
 
@@ -688,7 +688,7 @@ $
 
 #pagebreak()
 
-=== Product Rule $arrow.long$ Integration by Parts
+== Product Rule $arrow.long$ Integration by Parts
 
 $
   integral u dif v = u v - integral v dif u
@@ -753,10 +753,10 @@ $
 
 ]
 
-=== Chain Rule $arrow.long$ $u$-Substitution
+== Chain Rule $arrow.long$ $u$-Substitution
 
 $
   integral f(g(x)) g'(x) dif x = integral f(u) dif u
 $
 
-=== Quotient Rule $arrow.long$ Algebraic Manipulation / Substitution
+== Quotient Rule $arrow.long$ Algebraic Manipulation / Substitution

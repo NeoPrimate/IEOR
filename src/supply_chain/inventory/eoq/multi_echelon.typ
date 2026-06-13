@@ -7,7 +7,7 @@ Relax one dimension from basic EOQ: *number of echelons* is no longer one. Inven
 
 Key concept: *echelon inventory* $-$ at each stage, count not just on-hand but also all downstream inventory you've already paid to put in motion.
 
-=== Setup (two-echelon: warehouse $arrow.r$ retailer)
+== Setup (two-echelon: warehouse $arrow.r$ retailer)
 
 - $d$ = customer demand rate at the retailer
 - *Retailer*: setup $S_r$, holding $h_r$ per unit per year, cycle time $T_r$
@@ -15,7 +15,7 @@ Key concept: *echelon inventory* $-$ at each stage, count not just on-hand but a
 
 The retailer pulls from the warehouse every $T_r$. The warehouse re-orders from the upstream supplier every $T_w$. *Nesting* requirement: $T_w$ must be an integer multiple of $T_r$ (otherwise the warehouse stocks fractionally, which is wasteful).
 
-=== Cost model
+== Cost model
 
 Annual cost = sum across stages:
 
@@ -25,7 +25,7 @@ $
 
 Constraint: $T_w = k T_r$ for some integer $k gt.eq 1$.
 
-=== Unconstrained optimum (relax integer $k$)
+== Unconstrained optimum (relax integer $k$)
 
 If we *ignored* nesting, each stage would independently optimize:
 
@@ -33,7 +33,7 @@ $ T_r^"basic" = sqrt((2 S_r) / (h_r d)) quad T_w^"basic" = sqrt((2 S_w) / (h_w d
 
 This is just basic EOQ at each stage. But a non-integer ratio $T_w \/ T_r$ wastes capacity — the warehouse would carry partial cycles. *Nesting* is required for clean operation.
 
-=== Roundy's power-of-two policies
+== Roundy's power-of-two policies
 
 *Restrict cycle times to powers of two of a base period*: $T_i = 2^(k_i) T_0$ for integer $k_i gt.eq 0$, where $T_0$ is fixed (e.g., 1 day).
 
@@ -41,13 +41,13 @@ Then *any two cycles are nested*: a stage with $k_i = 3$ orders 8 base periods; 
 
 *Roundy's 98% theorem*: the best power-of-two policy achieves *at least 98%* of the unconstrained optimum (worst-case cost ratio $lt.eq sqrt(2 \/ ln(2)) \/ (1 + 1\/sqrt(2)) approx 1.06$). So a 6% penalty is the worst case for using powers of two.
 
-=== Algorithm
+== Algorithm
 
 1. Compute unconstrained $T_i^"basic"$ at each stage.
 2. Round each to the nearest power of two: $T_i^* = 2^(k_i^*) T_0$ where $k_i^* = "round"(log_2(T_i^"basic" \/ T_0))$.
 3. Compute resulting cost $"TC"^*$ and verify it's within 6% of $sum_i sqrt(2 S_i h_i d)$.
 
-=== Final formulas (two-stage, nested with $T_w = k T_r$)
+== Final formulas (two-stage, nested with $T_w = k T_r$)
 
 Substitute $T_w = k T_r$ into TC:
 

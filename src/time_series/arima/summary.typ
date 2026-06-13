@@ -61,7 +61,7 @@
 // SECTION
 // =============================================================
 
-= ARIMA family (Box-Jenkins models)
+== ARIMA family (Box-Jenkins models)
 
 #arima-legend
 
@@ -76,7 +76,7 @@ For multivariate models, $bold(x)_t in RR^K$ is a vector of $K$ time series,
 and operator coefficients become $K times K$ matrices.
 
 
-== Univariate models
+=== Univariate models
 
 #grid(
   columns: 2,
@@ -210,7 +210,7 @@ and operator coefficients become $K times K$ matrices.
 )
 
 
-== Multivariate (vector) models
+=== Multivariate (vector) models
 
 For all models below, $bold(x)_t = (x_(1,t), ..., x_(K,t))^top in RR^K$
 is a vector of $K$ jointly modeled time series. Operator coefficients

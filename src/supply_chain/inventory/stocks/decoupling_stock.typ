@@ -7,7 +7,7 @@ Inventory held *between two production stages* (or between a supplier and a buye
 
 Conceptually similar to safety stock, but for *internal* stages rather than external customer demand.
 
-=== The problem decoupling solves
+== The problem decoupling solves
 
 Consider a two-stage line: stage A feeds stage B. If they operate strictly tied (no buffer between):
 - Any *slowdown* at A immediately starves B.
@@ -23,7 +23,7 @@ Decoupling stock = a buffer between A and B. A pile up parts; B pulls from the p
 
 Each stage can handle *its own* short-term variation independently.
 
-=== When decoupling matters most
+== When decoupling matters most
 
 The cost of *not* decoupling depends on:
 - Variability at each stage (downtime, scrap, cycle-time variation).
@@ -36,7 +36,7 @@ Decoupling stock is most valuable when:
 
 It's *least* valuable in a perfectly flow-balanced, ultra-reliable, automated environment — exactly the conditions Toyota engineered for, which is why TPS deliberately *reduces* decoupling stock to expose problems.
 
-=== Toyota's view: stock hides problems
+== Toyota's view: stock hides problems
 
 Lean / TPS treats decoupling stock as *waste*. A buffer between A and B disguises A's reliability problems — the line keeps running, but you never feel pressure to fix the root cause.
 
@@ -48,7 +48,7 @@ Toyota's approach:
 
 The famous "lower the water to expose the rocks" metaphor: stock = water level, problems = rocks. Lean reduces stock to surface problems and force solutions.
 
-=== Sizing decoupling stock
+== Sizing decoupling stock
 
 Various models:
 - *Insurance buffer*: cover expected downtime per cycle. If A breaks down on average $tau$ minutes per shift, hold $tau dot d_B$ units (B's consumption rate × A's expected downtime).
@@ -57,7 +57,7 @@ Various models:
 
 Closed forms exist for some special cases (e.g., M/M/1 stages); more often simulated.
 
-=== How it composes
+== How it composes
 
 #table(
   columns: 3,

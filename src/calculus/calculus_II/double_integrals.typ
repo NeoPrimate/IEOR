@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-=== 1. Double Indefinite Integral
+== 1. Double Indefinite Integral
 
 $
   integral integral f(x, y) dif x dif y

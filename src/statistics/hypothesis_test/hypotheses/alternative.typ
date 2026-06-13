@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-=== Alternative ($H_1$ or $H_a$)
+== Alternative ($H_1$ or $H_a$)
 
 Presence of an effect or a difference
 

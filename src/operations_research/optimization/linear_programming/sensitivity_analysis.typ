@@ -7,7 +7,7 @@
 #set math.mat(gap: 1em)
 #set math.vec(gap: 1em)
 
-=== Dual Simplex Method
+== Dual Simplex Method
 
 #example[
 

@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-=== Goodness of Fit Test
+== Goodness of Fit Test
 
 Compares an *observed* categorical distribution to a *theoretical* categorical distribution.
 

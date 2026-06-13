@@ -22,7 +22,7 @@ $
   $
 ]
 
-=== Constant Rule
+== Constant Rule
 
 $
   d / (d x) [colorMath(k, #red)] = 0
@@ -34,7 +34,7 @@ $
   $
 ]
 
-=== Constant Multiple Rule
+== Constant Multiple Rule
 
 $
   d / (d x) [colorMath(k, #red) colorMath(f(x), #blue)] & = colorMath(k, #red) d / (d x) [colorMath(f(x), #blue)] \
@@ -49,7 +49,7 @@ $
   $
 ]
 
-=== Sum Rule
+== Sum Rule
 
 $
   d / (d x) [colorMath(f(x), #red) + colorMath(g(x), #blue)]
@@ -66,7 +66,7 @@ $
   $
 ]
 
-=== Difference Rule
+== Difference Rule
 
 $
   d / (d x) [colorMath(f(x), #red) - colorMath(g(x), #blue)]
@@ -82,7 +82,7 @@ $
   $
 ]
 
-=== Square Root
+== Square Root
 
 $$
 
@@ -96,7 +96,7 @@ $$
   $
 ]
 
-=== Derivative of a Polynomial
+== Derivative of a Polynomial
 
 #example[
   $
@@ -189,7 +189,7 @@ $$
   ]
 ]
 
-=== Sin
+== Sin
 
 $
   d / (d x) sin(x) = cos(x) \
@@ -209,7 +209,7 @@ $
   )
 ]
 
-=== Cos
+== Cos
 
 $
   d / (d x) cos(x) = - sin(x) \
@@ -231,7 +231,7 @@ $
   )
 ]
 
-=== $bold(e^x)$
+== $bold(e^x)$
 
 $
   d / (d x) e^x = e^x
@@ -257,7 +257,7 @@ $
   )
 ]
 
-=== $bold(ln(x))$
+== $bold(ln(x))$
 
 $
   ln(x) = 1 / x

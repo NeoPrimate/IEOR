@@ -5,7 +5,7 @@
 #set math.mat(gap: 1em)
 #set math.vec(gap: 1em)
 
-==== Linear Algebra Review
+=== Linear Algebra Review
 
 $
   colorMath(&x + y = 5, #red) \
@@ -145,7 +145,7 @@ A linear system is *singular* if there is no unique solution
 - Row view: the $n$ (hyper)planes do not intersect at exactly one point
 - Column view: the $n$ vectors do not span a complete $n$-dimensional space
 
-==== Gaussian Elimination
+=== Gaussian Elimination
 
 Given a system $A x = b$, or augmented matrix $mat(augment: #1, A, b)$, use the following 3 rules:
 
@@ -274,7 +274,7 @@ To solve the system:
   $A$ has #link(<linear-algebra-determinant>)[*determinant*] 0, so it's *not invertible*
 ]
 
-==== Inverse
+=== Inverse
 
 $
   A^(-1) A = I quad and quad A A^(-1) A = I
@@ -360,7 +360,7 @@ $
 
 ]
 
-==== Linear Dependence and Independence
+=== Linear Dependence and Independence
 
 A set of $m$ $n$-dimensional vectors $x_1, x_2, dots, x_m$ are *linearly dependent* if there exists a non-zero vector $w in RR^m$ such that:
 
@@ -475,7 +475,7 @@ $
 - ❌ The second row leads to a *contradiction*
 - ❌ The system is *inconsistent* (*no solution*)
 
-==== Extreme Points
+=== Extreme Points
 
 Given that $x$, $x_1$, and $x_2$ are points in the set $S$:
 - If you can find two different points $x_1$ and $x_2$ in $S$ such that $x$ lies somewhere strictly between them on the straight line connecting $x_1$ and $x_2$, then $x$ is not an extreme point
@@ -557,7 +557,7 @@ where:
 
 $x$ lies strictly between $x_1$ and $x_2$ on the line segment connecting them, not equal to either one
 
-==== Slack and Suplus
+=== Slack and Suplus
 
 *1. Slack*
 
@@ -3343,7 +3343,7 @@ $$
 
 #line(length: 100%)
 
-==== Standard Form
+=== Standard Form
 
 - *Equalities*: Convert inequalities (using slack, surplus, or artificial variables)
 
@@ -3379,7 +3379,7 @@ $$
   $
 ]
 
-==== Simplex Method
+=== Simplex Method
 
 #example[
   $
@@ -3730,7 +3730,7 @@ The final tableau will give the values of the variables at the optimal solution.
   )
 ]
 
-=== Matrix Notation
+== Matrix Notation
 
 $
    max quad & c^T x \

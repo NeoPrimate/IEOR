@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-=== Test of independence
+== Test of independence
 
 Compares two *observed* categorical distributions.
 

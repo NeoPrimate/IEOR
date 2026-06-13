@@ -11,7 +11,7 @@ Equivalently:
 
 $ "DOS" = 365 / "Turnover" $
 
-=== Definition variants
+== Definition variants
 
 #table(
   columns: 3,
@@ -25,7 +25,7 @@ $ "DOS" = 365 / "Turnover" $
 
 The forward-looking version is more accurate for planning; the historical version is simpler and what most reports show.
 
-=== Why DOS rather than turnover?
+== Why DOS rather than turnover?
 
 Turnover is a *ratio* (e.g., 12). DOS is a *time* (e.g., 30 days). Time is more intuitive for operational decisions:
 - "We have 45 days of supply" → vivid, actionable.
@@ -33,7 +33,7 @@ Turnover is a *ratio* (e.g., 12). DOS is a *time* (e.g., 30 days). Time is more 
 
 Both convey the same information; just pick the one your stakeholders prefer.
 
-=== Targets by inventory function
+== Targets by inventory function
 
 Different functions of inventory imply different DOS targets:
 
@@ -50,7 +50,7 @@ Different functions of inventory imply different DOS targets:
 
 Total DOS = sum across functions, comparable to total inventory ÷ daily demand.
 
-=== Reading DOS distribution
+== Reading DOS distribution
 
 A useful diagnostic: plot *DOS by SKU* (histogram).
 
@@ -60,7 +60,7 @@ A useful diagnostic: plot *DOS by SKU* (histogram).
 
 The aggregate company DOS hides this distribution — it's the average. Plot it.
 
-=== DOS vs lead time
+== DOS vs lead time
 
 Compare DOS to lead time:
 - *DOS < $L$*: high stockout risk. The next order won't arrive before current stock runs out.
