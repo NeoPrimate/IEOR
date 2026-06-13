@@ -2817,7 +2817,7 @@ $
 - Predictive: cares about forecasting accuracy on new data regarless of whether the model is interpretable (inferential cares about understanding the data-generating process)
 - Exploratory hypothesis generating rather than testing
 
-=  (CPM)
+=  Critical Path Method (CPM)
 
 What's the shortest possible time to finish the whole project, and which tasks are "tight" (any delay on them delays the whole project)
 
