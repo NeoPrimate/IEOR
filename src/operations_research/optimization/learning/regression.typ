@@ -29,39 +29,17 @@ $
 #let noisy_data = xs.zip(noisy_ys)
 
 #align(center)[
-  #frame(cetz.canvas({
-    import cetz.draw: *
-    import cetz-plot: *
-
-    plot.plot(
-      size: (8, 8),
-      axis-style: "scientific",
-      x-tick-step: 5,
-      y-tick-step: 5,
-      x-grid: true,
-      y-grid: true,
-      x-label: [$x$],
-      y-label: [$y$],
-      x-min: calc.min(..xs) - 1,
-      x-max: calc.max(..xs) + 1,
-      y-min: calc.min(..noisy_ys) - 1,
-      y-max: calc.max(..noisy_ys) + 1,
-      axes: (
-        stroke: none,
-        tick: (stroke: none),
-      ),
-      {
-        plot.add(
-          noisy_data,
-          mark: "o",
-          mark-size: 0.15,
-          mark-style: (fill: black, stroke: 2pt),
-          style: (stroke: none),
-        )
-      },
-      name: "plot",
-    )
-  }))
+  #lq.diagram(
+    width: 5cm,
+    height: 5cm,
+    xlabel: [$x$],
+    ylabel: [$y$],
+    xlim: (calc.min(..xs) - 1, calc.max(..xs) + 1),
+    ylim: (calc.min(..noisy_ys) - 1, calc.max(..noisy_ys) + 1),
+    xaxis: (tick-args: (tick-distance: 5)),
+    yaxis: (tick-args: (tick-distance: 5)),
+    lq.plot(xs, noisy_ys, mark: "o", stroke: none, mark-color: black),
+  )
 ]
 
 We assume a linear relationship between $x$ and $y$:

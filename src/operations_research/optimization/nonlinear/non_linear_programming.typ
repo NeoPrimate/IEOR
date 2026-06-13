@@ -22,41 +22,25 @@ Minimize annual total cost
   #let D = 8.0
   #let q = 5.0
 
-  #frame(cetz.canvas({
-    import cetz.draw: *
-    import cetz-plot: *
-
-    plot.plot(
-      size: (10, 5),
-      axis-style: "school-book",
-      x-tick-step: none,
-      y-tick-step: none,
-      x-ticks: range(10).map(n => {
-        let n = n + 1
-        ((n * q) / D, [$(#n q)/D$])
-      }),
-      y-ticks: ((q, [$Q$]), (q / 2, [$Q/2$])),
-      x-label: [Time],
-      y-label: [Inventory\ Level],
-      x-min: 0,
-      x-max: 2,
-      y-min: 0,
-      y-max: 5,
-      {
-        plot.add(
-          range(10)
-            .map(n => {
-              (((n * q) / D, 0), ((n * q) / D, q))
-            })
-            .join(),
-          style: (stroke: black),
-        )
-
-        plot.add-hline(style: (stroke: (dash: "dotted")), q)
-        plot.add-hline(style: (stroke: (dash: "dotted")), q / 2)
-      },
-    )
-  }))
+  #let saw = range(10).map(n => (((n * q) / D, 0), ((n * q) / D, q))).join()
+  #let saw_x = saw.map(p => p.at(0))
+  #let saw_y = saw.map(p => p.at(1))
+  #lq.diagram(
+    width: 8cm,
+    height: 4cm,
+    xlim: (0, 2),
+    ylim: (0, 5),
+    xlabel: [Time],
+    ylabel: [Inventory\ Level],
+    xaxis: (subticks: none, ticks: range(10).map(n => {
+      let n = n + 1
+      ((n * q) / D, [$(#n q)/D$])
+    })),
+    yaxis: (subticks: none, ticks: ((q, [$Q$]), (q / 2, [$Q/2$]))),
+    lq.plot(saw_x, saw_y, mark: none, stroke: black),
+    lq.hlines(q, stroke: (dash: "dotted")),
+    lq.hlines(q / 2, stroke: (dash: "dotted")),
+  )
 ]
 
 - $q/2$: average inventory level
@@ -98,34 +82,18 @@ $
 
   #let q = calc.sqrt((2 * K * D) / h)
 
-  #frame(cetz.canvas({
-    import cetz.draw: *
-    import cetz-plot: *
-
-    plot.plot(
-      size: (10, 5),
-      axis-style: "school-book",
-      x-tick-step: none,
-      y-tick-step: none,
-      x-ticks: ((q, [$q^*$]),),
-      // y-ticks: ((Q, [$Q$]), (Q/2, [$Q/2$])),
-      x-label: [Order\ Quantity],
-      y-label: [Total\ Cost],
-      x-min: 0,
-      x-max: 5,
-      y-min: 0,
-      y-max: 5,
-      {
-        plot.add(
-          eoq,
-          domain: (0.01, 5),
-          style: (stroke: black),
-        )
-
-        plot.add-vline(q)
-      },
-    )
-  }))
+  #let xs = lq.linspace(0.01, 5, num: 200)
+  #lq.diagram(
+    width: 8cm,
+    height: 4cm,
+    xlim: (0, 5),
+    ylim: (0, 5),
+    xlabel: [Order\ Quantity],
+    ylabel: [Total\ Cost],
+    xaxis: (subticks: none, ticks: ((q, [$q^*$]),)),
+    lq.plot(xs, eoq, mark: none, stroke: black),
+    lq.vlines(q, stroke: black),
+  )
 ]
 
 ==== Portfolio Optimization
@@ -323,30 +291,17 @@ $
 
   #align(center)[
 
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (3, 3),
-        axis-style: "school-book",
-        x-tick-step: none,
-        y-tick-step: none,
-        x-label: [$x$],
-        y-label: [$abs(x)$],
-        x-min: -3,
-        x-max: 3,
-        y-min: -3,
-        y-max: 3,
-        {
-          plot.add(
-            calc.abs,
-            domain: (-3, 3),
-            style: (stroke: black),
-          )
-        },
-      )
-    }))
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (-3, 3),
+      ylim: (-3, 3),
+      xlabel: [$x$],
+      ylabel: [$abs(x)$],
+      yaxis: (position: 0, tip: tiptoe.triangle, ticks: none),
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, ticks: none),
+      lq.plot(lq.linspace(-3, 3, num: 200), calc.abs, mark: none, stroke: black),
+    )
   ]
 
   *Linearizing the Problem*
@@ -376,66 +331,29 @@ $
   $
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (5, 5),
-        axis-style: "school-book",
-        x-label: [$x_1$],
-        y-label: [$w$],
-        x-tick-step: 100,
-        y-tick-step: 100,
-        x-min: 300,
-        x-max: 700,
-        y-min: 0,
-        y-max: 400,
-        name: "plot",
-        {
-          // The true absolute value curve
-          plot.add(
-            x => calc.abs(1000 - 2 * x),
-            domain: (300, 700),
-            style: (stroke: (paint: black, thickness: 1pt)),
-          )
-
-          // Feasible region: w ≥ |x2 - x1|
-          plot.add-fill-between(
-            domain: (300, 700),
-            x => calc.abs(1000 - 2 * x),
-            x => 400,
-            style: (fill: rgb(220, 220, 255, 120), stroke: none),
-          )
-
-          // A sample point: (x1 = 400, w = 250)
-          plot.add(
-            ((400, 350),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (stroke: 0.1pt, color: black, fill: black),
-          )
-          plot.annotate({
-            content((515, 350), [Feasible but\ Not Optimal])
-          })
-
-          // // Optimal point: (x1 = 400, w = 200)
-          plot.add(
-            ((400, 200),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (stroke: 0.1pt, color: black, fill: black),
-          )
-          plot.annotate({
-            content((475, 200), [Optimal])
-          })
-
-          plot.add-anchor("pt_start", (400, 330))
-          plot.add-anchor("pt_end", (400, 215))
-        },
-      )
-      line("plot.pt_end", ((), "|-", "plot.pt_start"), mark: (start: ">", fill: black))
-    }))
+    #let xs = lq.linspace(300, 700, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (300, 700),
+      ylim: (0, 400),
+      xlabel: [$x_1$],
+      ylabel: [$w$],
+      xaxis: (tick-args: (tick-distance: 100)),
+      yaxis: (tick-args: (tick-distance: 100)),
+      lq.fill-between(
+        xs,
+        xs.map(x => calc.abs(1000 - 2 * x)),
+        y2: xs.map(x => 400),
+        fill: rgb(220, 220, 255, 120),
+      ),
+      lq.plot(xs, x => calc.abs(1000 - 2 * x), mark: none, stroke: 1pt + black),
+      lq.plot((400, 400), (215, 330), mark: none, stroke: black),
+      lq.plot((400,), (350,), mark: "o", stroke: none, mark-color: black),
+      lq.plot((400,), (200,), mark: "o", stroke: none, mark-color: black),
+      lq.place(515, 350, [Feasible but\ Not Optimal]),
+      lq.place(475, 200, [Optimal]),
+    )
   ]
 
   // , style: (stroke: (paint: red, dash: "dotted", thickness: 3pt))
@@ -450,49 +368,22 @@ $
 
   #align(center)[
 
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (3, 3),
-        axis-style: "school-book",
-        x-tick-step: none,
-        y-tick-step: none,
-        x-label: [$x$],
-        y-label: [$abs(x)$],
-        x-min: -3,
-        x-max: 3,
-        y-min: -3,
-        y-max: 3,
-        {
-          plot.add(
-            x => x,
-            domain: (-3, 3),
-            style: (stroke: black),
-          )
-
-          plot.add(
-            x => -x,
-            domain: (-3, 3),
-            style: (stroke: black),
-          )
-
-          plot.add(
-            calc.abs,
-            domain: (-3, 3),
-            style: (stroke: (paint: red, dash: "dotted", thickness: 3pt)),
-          )
-
-          plot.annotate({
-            content((3.3, 3.3), [$x$])
-          })
-          plot.annotate({
-            content((3.3, -3.3), [$-x$])
-          })
-        },
-      )
-    }))
+    #let xs = lq.linspace(-3, 3, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (-3, 3),
+      ylim: (-3, 3),
+      xlabel: [$x$],
+      ylabel: [$abs(x)$],
+      yaxis: (position: 0, tip: tiptoe.triangle, ticks: none),
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, ticks: none),
+      lq.plot(xs, x => x, mark: none, stroke: black),
+      lq.plot(xs, x => -x, mark: none, stroke: black),
+      lq.plot(xs, calc.abs, mark: none, stroke: (paint: red, dash: "dotted", thickness: 3pt)),
+      lq.place(3.3, 3.3, [$x$]),
+      lq.place(3.3, -3.3, [$-x$]),
+    )
   ]
 
   Therefore:
@@ -524,50 +415,33 @@ $
 
   #align(center)[
 
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      let f(x) = {
-        if x <= 500 {
-          1000 - 2 * x
-        } else {
-          2 * x - 1000
-        }
+    #let f(x) = {
+      if x <= 500 {
+        1000 - 2 * x
+      } else {
+        2 * x - 1000
       }
-
-      plot.plot(
-        size: (5, 5),
-        axis-style: "school-book",
-        x-tick-step: none,
-        y-tick-step: none,
-        x-label: [$x_1$],
-        y-label: [$w$],
-        x-ticks: ((500, 500),),
-        x-min: -100,
-        x-max: 1000,
-        y-min: -1000,
-        y-max: 1000,
-        {
-          plot.add(
-            x => 1000 - 2 * x,
-            domain: (-1000, 1000),
-            style: (stroke: black),
-          )
-          plot.add(
-            x => 2 * x - 1000,
-            domain: (-1000, 1000),
-            style: (stroke: black),
-          )
-          plot.add-fill-between(
-            domain: (0, 1000),
-            f,
-            x => 100 * x,
-            style: (fill: rgb(200, 200, 255, 80), stroke: none),
-          )
-        },
-      )
-    }))
+    }
+    #let xs = lq.linspace(-1000, 1000, num: 200)
+    #let xs_fill = lq.linspace(0, 1000, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (-100, 1000),
+      ylim: (-1000, 1000),
+      xlabel: [$x_1$],
+      ylabel: [$w$],
+      yaxis: (position: 0, tip: tiptoe.triangle, ticks: none),
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, ticks: ((500, [500]),)),
+      lq.fill-between(
+        xs_fill,
+        xs_fill.map(f),
+        y2: xs_fill.map(x => 100 * x),
+        fill: rgb(200, 200, 255, 80),
+      ),
+      lq.plot(xs, x => 1000 - 2 * x, mark: none, stroke: black),
+      lq.plot(xs, x => 2 * x - 1000, mark: none, stroke: black),
+    )
   ]
 
   We are minimizing $w$, which represents the difference between the two allocations. The solution occurs when the two inequalities intersect — that is, when both are equal:

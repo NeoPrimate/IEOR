@@ -19,49 +19,40 @@ Where:
 #example[
 
   #align(center)[
-    #frame(cetz.canvas({
-      import draw: *
+    #let k = 25 // number of subgroups
+    #let n = 5 // sample size per subgroup
+    #let A2 = 0.577 // constant for n = 5
 
-      let k = 25 // number of subgroups
-      let n = 5 // sample size per subgroup
-      let A2 = 0.577 // constant for n = 5
+    // Generate k subgroups of size n
+    #let data = range(k).map(i => {
+      let rng = gen-rng(i)
+      let (_, ints) = integers(rng, low: 15, high: 25, size: n)
+      ints.map(x => float(x))
+    })
 
-      // Generate k subgroups of size n
-      let data = range(k).map(i => {
-        let rng = gen-rng(i)
-        let (_, ints) = integers(rng, low: 15, high: 25, size: n)
-        ints.map(x => float(x))
-      })
+    // Compute means and ranges for each subgroup
+    #let x_bars = data.map(group => group.sum() / group.len())
+    #let ranges = data.map(group => group.sorted().at(-1) - group.sorted().at(0))
 
-      // Compute means and ranges for each subgroup
-      let x_bars = data.map(group => group.sum() / group.len())
-      let ranges = data.map(group => group.sorted().at(-1) - group.sorted().at(0))
+    #let x_bar_bar = x_bars.sum() / x_bars.len()
+    #let r_bar = ranges.sum() / ranges.len()
 
-      let x_bar_bar = x_bars.sum() / x_bars.len()
-      let r_bar = ranges.sum() / ranges.len()
+    #let ucl = x_bar_bar + A2 * r_bar
+    #let lcl = x_bar_bar - A2 * r_bar
 
-      let ucl = x_bar_bar + A2 * r_bar
-      let lcl = x_bar_bar - A2 * r_bar
+    #let samples = range(1, k + 1)
 
-      let series = range(1, k).zip(x_bars)
-
-      plot.plot(
-        size: (8, 4),
-        axis-style: "school-book",
-        x-label: [Sample],
-        y-label: [Mean\ Measurement],
-        x-tick-step: 5,
-        y-tick-step: 1,
-        legend: "north-east",
-        {
-          plot.add(series, style: (stroke: blue), mark: "o")
-
-          plot.add-hline(ucl, label: $"UCL"$, style: (stroke: red))
-          plot.add-hline(x_bar_bar, label: $macron(x)$, style: (stroke: green))
-          plot.add-hline(lcl, label: $"LCL"$, style: (stroke: red))
-        },
-      )
-    }))
+    #lq.diagram(
+      width: 8cm,
+      height: 3.5cm,
+      xlabel: [Sample],
+      ylabel: [Mean\ Measurement],
+      xaxis: (tick-args: (tick-distance: 5)),
+      lq.plot(samples, x_bars, stroke: blue, mark: "o"),
+      lq.hlines(ucl, label: $"UCL"$, stroke: red),
+      lq.hlines(x_bar_bar, label: $macron(x)$, stroke: green),
+      lq.hlines(lcl, label: $"LCL"$, stroke: red),
+    )
   ]
 
 ]

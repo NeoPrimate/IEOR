@@ -7,45 +7,21 @@ $
 P(X = k) = binom(n, k) p^k (1-p)^(n-k)
 $
 
-#let binomial(n, k, p) = (
-  calc.binom(n, k) * calc.pow(p, k) * calc.pow((1 - p), n - k)
-)
-
-#let b1 = range(1, 25).map((n) => (n, binomial(n, 1, 0.3)))
-#let b2 = range(1, 25).map((n) => (n, binomial(n, 1, 0.5)))
-#let b3 = range(1, 25).map((n) => (n, binomial(n, 1, 0.9)))
+#let ns = range(1, 25)
+#let b1 = ns.map(n => tystats.binom.pmf(1, n, 0.3))
+#let b2 = ns.map(n => tystats.binom.pmf(1, n, 0.5))
+#let b3 = ns.map(n => tystats.binom.pmf(1, n, 0.9))
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-    
-    plot.plot(
-      size: (8, 8),
-      axis-style: "school-book",
-      x-tick-step: 5,
-      x-min: 0., 
-      y-tick-step: 0.1, 
-      y-min: 0., 
-      legend: "inner-north-west",
-      {
-        plot.add(
-          b1, 
-          domain: (1, 10), 
-          style: (stroke: blue),
-          mark: "o"
-        )
-        plot.add(
-          b2, 
-          domain: (1, 10), 
-          style: (stroke: red),
-          mark: "o"
-        )
-        plot.add(
-          b3, 
-          domain: (1, 10), 
-          style: (stroke: green),
-          mark: "o"
-        )
-      })
-  }))
+  #lq.diagram(
+    width: 5cm,
+    height: 5cm,
+    xlim: (0, 24),
+    ylim: (0, 0.5),
+    yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 0.1)),
+    xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 5)),
+    lq.plot(ns, b1, mark: "o", stroke: blue),
+    lq.plot(ns, b2, mark: "o", stroke: red),
+    lq.plot(ns, b3, mark: "o", stroke: green),
+  )
 ]

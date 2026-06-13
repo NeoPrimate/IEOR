@@ -47,66 +47,20 @@ This means that the instantaneous rate of change (derivative) at some point $c$ 
   #let tangent_line(x) = tangent_slope * (x - c) + f(c)
 
   #align(center)[
-    #frame(cetz.canvas({
-      import draw: *
-
-      plot.plot(
-        size: (10, 10),
-        axis-style: "school-book",
-        x-tick-step: 1,
-        x-min: -1.,
-        x-max: 4.,
-        y-tick-step: 2,
-        y-min: -5.,
-        y-max: 12.,
-        legend: "north-east",
-        {
-          plot.add(
-            f,
-            domain: (0, 4),
-            style: (stroke: black),
-            label: $f(x) = x^2$,
-          )
-          plot.add(
-            ((a, f(a)),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: blue, stroke: none),
-          )
-          plot.add(
-            ((b, f(b)),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: blue, stroke: none),
-          )
-          plot.add(
-            ((b, f(b)),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: blue, stroke: none),
-          )
-          plot.add(
-            ((c, tangent_line(c)),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: none),
-          )
-          plot.add(
-            secant_line,
-            domain: (0, 4),
-            style: (stroke: blue),
-            label: "Secant Line",
-          )
-
-          plot.add(
-            tangent_line,
-            domain: (0, 4),
-            style: (stroke: red),
-            label: "Tangent Line at c",
-          )
-        },
-      )
-    }))
+    #let xs = lq.linspace(0, 4, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (-1, 4),
+      ylim: (-5, 12),
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+      yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 2)),
+      lq.plot(xs, f, mark: none, stroke: black, label: $f(x) = x^2$),
+      lq.plot(xs, secant_line, mark: none, stroke: blue, label: [Secant Line]),
+      lq.plot(xs, tangent_line, mark: none, stroke: red, label: [Tangent Line at c]),
+      lq.plot((a, b), (f(a), f(b)), mark: "o", stroke: none, mark-color: blue),
+      lq.plot((c,), (tangent_line(c),), mark: "o", stroke: none, mark-color: red),
+    )
   ]
 
 ]

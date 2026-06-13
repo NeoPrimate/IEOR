@@ -54,63 +54,40 @@ $
 The shaded tail below is the region both integrals run over; $L(z)$ is the per-tail gap between the two.
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-    let _phi(x) = gaussian_pdf(x, 0, 1)
-    let zero(x) = 0.0
-    let z = 1.0
-    plot.plot(
-      size: (10, 5),
-      x-label: $u$,
-      y-label: $phi(u)$,
-      x-tick-step: 1,
-      y-tick-step: 0.1,
-      x-min: -3, x-max: 3,
-      y-min: 0, y-max: 0.45,
-      {
-        plot.add-fill-between(
-          domain: (z, 3),
-          samples: 100,
-          style: (fill: rgb("#EF9F2799"), stroke: none),
-          x => _phi(x),
-          zero,
-        )
-        plot.add(
-          domain: (-3, 3),
-          samples: 200,
-          style: (stroke: rgb("#534AB7") + 2pt),
-          x => _phi(x),
-        )
-        plot.add-vline(z, style: (stroke: red + 1pt))
-      },
-    )
-  }))
+  #let z = 1.0
+  #let xs = lq.linspace(-3, 3, num: 200)
+  #let xs_fill = lq.linspace(z, 3, num: 200)
+  #lq.diagram(
+    width: 6cm,
+    height: 3cm,
+    xlabel: $u$,
+    ylabel: $phi(u)$,
+    xlim: (-3, 3),
+    ylim: (0, 0.45),
+    xaxis: (tick-args: (tick-distance: 1)),
+    yaxis: (tick-args: (tick-distance: 0.1)),
+    lq.fill-between(xs_fill, xs_fill.map(x => norm.pdf(x, mean: 0, std_dev: 1)), y2: xs_fill.map(x => 0), fill: rgb("#EF9F2799"), stroke: none),
+    lq.plot(xs, x => norm.pdf(x, mean: 0, std_dev: 1), mark: none, stroke: rgb("#534AB7") + 2pt),
+    lq.vlines(z, stroke: red + 1pt),
+  )
 ]
 
 $L(z)$ itself decreases monotonically and convexly toward 0:
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-    let L(k) = gaussian_pdf(k, 0, 1) - k * (1.0 - gaussian_cdf(k, 0, 1))
-    plot.plot(
-      size: (10, 5),
-      x-label: $z$,
-      y-label: $L(z)$,
-      x-tick-step: 1,
-      y-tick-step: 0.5,
-      x-min: -3, x-max: 3,
-      y-min: 0, y-max: 3.2,
-      {
-        plot.add(
-          domain: (-3, 3),
-          samples: 200,
-          style: (stroke: rgb("#534AB7") + 2pt),
-          k => L(k),
-        )
-      },
-    )
-  }))
+  #let L(k) = norm.pdf(k, mean: 0, std_dev: 1) - k * (1.0 - norm.cdf(k, mean: 0, std_dev: 1))
+  #let xs = lq.linspace(-3, 3, num: 200)
+  #lq.diagram(
+    width: 6cm,
+    height: 3cm,
+    xlabel: $z$,
+    ylabel: $L(z)$,
+    xlim: (-3, 3),
+    ylim: (0, 3.2),
+    xaxis: (tick-args: (tick-distance: 1)),
+    yaxis: (tick-args: (tick-distance: 0.5)),
+    lq.plot(xs, k => L(k), mark: none, stroke: rgb("#534AB7") + 2pt),
+  )
 ]
 
 == Table of values

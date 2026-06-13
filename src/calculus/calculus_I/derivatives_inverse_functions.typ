@@ -215,65 +215,35 @@ $
   #let tangent_f_inv(x) = m_f_inv * (x - y0) + x0
 
   #align(center)[
-    #frame(cetz.canvas({
-      import draw: *
-
-      plot.plot(
-        size: (10, 10),
-        axis-style: "school-book",
-        x-tick-step: 1,
-        x-min: -3.,
-        x-max: 3.,
-        y-tick-step: 1,
-        y-min: -3.,
-        y-max: 3.,
-        legend: "north-east",
-        {
-          plot.add(
-            f,
-            domain: (-3, 3),
-            style: (stroke: blue),
-            label: $f(x) = x^3$,
-          )
-          plot.add(
-            f_inv,
-            domain: (-3, 3),
-            style: (stroke: red),
-            label: $f^(-1)(x) = root(3, x)$,
-          )
-          plot.add(
-            lin,
-            domain: (-3, 3),
-            style: (stroke: gray),
-            label: $x = y$,
-          )
-          plot.add(
-            tangent_f,
-            domain: (x0 - 1, x0 + 1),
-            style: (stroke: green),
-            label: none,
-          )
-          plot.add(
-            tangent_f_inv,
-            domain: (y0 - 0.75, y0 + 0.75),
-            style: (stroke: purple),
-            label: none,
-          )
-          plot.add(
-            ((x0, y0),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: green, stroke: none),
-          )
-          plot.add(
-            ((y0, x0),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: purple, stroke: none),
-          )
-        },
-      )
-    }))
+    #let xs = lq.linspace(-3, 3, num: 200)
+    #let xs_tf = lq.linspace(x0 - 1, x0 + 1, num: 200)
+    #let xs_tfi = lq.linspace(y0 - 0.75, y0 + 0.75, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (-3, 3),
+      ylim: (-3, 3),
+      xaxis: (
+        position: 0,
+        tip: tiptoe.triangle,
+        filter: (value, distance) => value != 0,
+        subticks: none,
+        tick-args: (tick-distance: 1),
+      ),
+      yaxis: (
+        position: 0,
+        tip: tiptoe.triangle,
+        subticks: none,
+        tick-args: (tick-distance: 1),
+      ),
+      lq.plot(xs, f, mark: none, stroke: blue, label: $f(x) = x^3$),
+      lq.plot(xs, f_inv, mark: none, stroke: red, label: $f^(-1)(x) = root(3, x)$),
+      lq.plot(xs, lin, mark: none, stroke: gray, label: $x = y$),
+      lq.plot(xs_tf, tangent_f, mark: none, stroke: green),
+      lq.plot(xs_tfi, tangent_f_inv, mark: none, stroke: purple),
+      lq.plot((x0,), (y0,), mark: "o", stroke: none, mark-color: green),
+      lq.plot((y0,), (x0,), mark: "o", stroke: none, mark-color: purple),
+    )
   ]
 
   The expression:

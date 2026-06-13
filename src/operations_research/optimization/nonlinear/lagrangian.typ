@@ -39,57 +39,40 @@ $
 ]
 
 #example[
-  #frame(cetz.canvas({
-    import cetz.draw: *
-    import cetz-plot: *
-
-    let y_up(x) = +calc.sqrt(1 - x * x)
-    let y_down(x) = -calc.sqrt(1 - x * x)
-    let L(x) = x * x + 3 * (x - 2)
-
-    plot.plot(
-      size: (7, 7),
-      axis-style: "school-book",
-      x-tick-step: 5,
-      y-tick-step: 5,
-      x-label: [$x$],
-      y-label: [$y$],
-      x-min: -2,
-      x-max: 2,
-      y-min: -2,
-      y-max: 2,
-      axes: (
-        stroke: black,
-        tick: (stroke: black),
-      ),
-      {
-        plot.add-anchor("o", (-1, 1))
-        plot.add(
-          domain: (-1, 1),
-          y_up,
-          style: (stroke: (thickness: 1pt, paint: black)),
-          label: none,
-        )
-
-        plot.add(
-          domain: (-1, 1),
-          y_down,
-          style: (stroke: (thickness: 1pt, paint: black)),
-          label: none,
-        )
-
-        plot.add-contour(
-          x-domain: (-2, 2),
-          y-domain: (-2, 2),
-          style: (fill: rgb("#8383c332"), stroke: (thickness: 1pt, paint: blue)),
-          fill: true,
-          op: "<",
-          z: (5, 4, 3, 2, 1.5, 0.5, 0, -0.5, -1, -1.5, -2, -3),
-          (x, y) => x * y + 1,
-        )
-      },
-      name: "plot",
-    )
-  }))
+  #let xs = lq.linspace(-1, 1, num: 200)
+  #let y_up(x) = +calc.sqrt(calc.max(1 - x * x, 0))
+  #let y_down(x) = -calc.sqrt(calc.max(1 - x * x, 0))
+  #let cgrid = lq.linspace(-2, 2, num: 80)
+  #lq.diagram(
+    width: 5cm,
+    height: 5cm,
+    xlim: (-2, 2),
+    ylim: (-2, 2),
+    xlabel: [$x$],
+    ylabel: [$y$],
+    yaxis: (
+      position: 0,
+      tip: tiptoe.triangle,
+      subticks: none,
+      tick-args: (tick-distance: 5),
+    ),
+    xaxis: (
+      position: 0,
+      tip: tiptoe.triangle,
+      filter: (value, distance) => value != 0,
+      subticks: none,
+      tick-args: (tick-distance: 5),
+    ),
+    lq.contour(
+      cgrid,
+      cgrid,
+      (x, y) => x * y + 1,
+      levels: (-3, -2, -1.5, -1, -0.5, 0, 0.5, 1.5, 2, 3, 4, 5),
+      fill: true,
+      map: (rgb("#8383c332"), rgb("#8383c332")),
+    ),
+    lq.plot(xs, y_up, mark: none, stroke: 1pt + black),
+    lq.plot(xs, y_down, mark: none, stroke: 1pt + black),
+  )
 
 ]

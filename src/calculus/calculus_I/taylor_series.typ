@@ -85,130 +85,40 @@ Where:
 
   #align(center)[
 
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (8, 8),
-        axis-style: "school-book",
-        x-tick-step: none,
-        y-tick-step: none,
-        x-label: [$x$],
-        y-label: [$f(x)$],
-        x-min: -5,
-        x-max: 5,
-        y-min: -5,
-        y-max: 5,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-        legend-style: (
-          item: (spacing: .3),
-          padding: 5pt,
-          scale: 100%,
-        ),
-        {
-          plot.add(
-            domain: (-5, 5),
-            x => x,
-            style: (stroke: (thickness: 1pt)),
-          )
-
-          plot.add(
-            domain: (-5, 5),
-            x => x - calc.pow(x, 3) / calc.fact(3),
-            style: (stroke: (thickness: 1pt, paint: yellow)),
-            label: $x - x^3 / 3!$,
-          )
-
-          plot.add(
-            domain: (-5, 5),
-            x => x - calc.pow(x, 3) / calc.fact(3) + calc.pow(x, 5) / calc.fact(5),
-            style: (stroke: (thickness: 1pt, paint: orange)),
-            label: $x - x^3 / 3! + x^5 / 5!$,
-          )
-
-          plot.add(
-            domain: (-5, 5),
-            x => x - calc.pow(x, 3) / calc.fact(3) + calc.pow(x, 5) / calc.fact(5) - calc.pow(x, 7) / calc.fact(7),
-            style: (stroke: (thickness: 1pt, paint: green)),
-            label: $x - x^3 / 3! + x^5 / 5! - x^7 / 7!$,
-          )
-
-          plot.add(
-            domain: (-5, 5),
-            x => calc.sin(x),
-            style: (stroke: (thickness: 2pt, paint: red)),
-            label: $sin(x)$,
-          )
-        },
-        name: "plot",
-      )
-    }))
+    #let xs = lq.linspace(-5, 5, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (-5, 5),
+      ylim: (-5, 5),
+      xlabel: $x$,
+      ylabel: $f(x)$,
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, ticks: none),
+      yaxis: (position: 0, tip: tiptoe.triangle, ticks: none),
+      lq.plot(xs, x => x, mark: none, stroke: black),
+      lq.plot(xs, x => x - calc.pow(x, 3) / calc.fact(3), mark: none, stroke: yellow, label: $x - x^3 / 3!$),
+      lq.plot(xs, x => x - calc.pow(x, 3) / calc.fact(3) + calc.pow(x, 5) / calc.fact(5), mark: none, stroke: orange, label: $x - x^3 / 3! + x^5 / 5!$),
+      lq.plot(xs, x => x - calc.pow(x, 3) / calc.fact(3) + calc.pow(x, 5) / calc.fact(5) - calc.pow(x, 7) / calc.fact(7), mark: none, stroke: green, label: $x - x^3 / 3! + x^5 / 5! - x^7 / 7!$),
+      lq.plot(xs, x => calc.sin(x), mark: none, stroke: 2pt + red, label: $sin(x)$),
+    )
   ]
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (8, 8),
-        axis-style: "school-book",
-        x-tick-step: none,
-        y-tick-step: none,
-        x-label: [$x$],
-        y-label: [$f(x)$],
-        x-min: -5,
-        x-max: 5,
-        y-min: -5,
-        y-max: 5,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-        legend-style: (
-          item: (spacing: .3),
-          padding: 5pt,
-          scale: 100%,
-        ),
-        {
-          // Original function
-          plot.add(
-            domain: (-5, 5),
-            x => calc.sin(x),
-            style: (stroke: (thickness: 2pt, paint: red)),
-            label: $sin(x)$,
-          )
-
-          // 0th degree: sin(a)
-          plot.add(
-            domain: (-5, 5),
-            x => 1,
-            style: (stroke: (thickness: 1pt, paint: yellow)),
-            label: $1$,
-          )
-
-          plot.add(
-            domain: (-5, 5),
-            x => 1 - calc.pow(x - calc.pi / 2, 2) / 2,
-            style: (stroke: (thickness: 1pt, paint: orange)),
-            label: $1 - ((x - pi/2)^2) / 2$,
-          )
-
-          // 4th degree: add + (x - a)^4 / 24
-          plot.add(
-            domain: (-5, 5),
-            x => 1 - calc.pow(x - calc.pi / 2, 2) / 2 + calc.pow(x - calc.pi / 2, 4) / 24,
-            style: (stroke: (thickness: 1pt, paint: green)),
-            label: $1 - ((x - pi/2)^2) / 2 + ((x - pi/2)^4 / 4!$,
-          )
-        },
-        name: "plot",
-      )
-    }))
+    #let xs = lq.linspace(-5, 5, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (-5, 5),
+      ylim: (-5, 5),
+      xlabel: $x$,
+      ylabel: $f(x)$,
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, ticks: none),
+      yaxis: (position: 0, tip: tiptoe.triangle, ticks: none),
+      lq.plot(xs, x => calc.sin(x), mark: none, stroke: 2pt + red, label: $sin(x)$),
+      lq.plot(xs, x => 1, mark: none, stroke: yellow, label: $1$),
+      lq.plot(xs, x => 1 - calc.pow(x - calc.pi / 2, 2) / 2, mark: none, stroke: orange, label: $1 - ((x - pi/2)^2) / 2$),
+      lq.plot(xs, x => 1 - calc.pow(x - calc.pi / 2, 2) / 2 + calc.pow(x - calc.pi / 2, 4) / 24, mark: none, stroke: green, label: $1 - ((x - pi/2)^2) / 2 + ((x - pi/2)^4 / 4!$),
+    )
   ]
 
 

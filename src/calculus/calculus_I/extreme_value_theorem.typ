@@ -14,34 +14,17 @@ $
   #let f(x) = -x * x + c
 
   #align(center)[
-    #frame(cetz.canvas(length: 6cm, {
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        x-tick-step: 2,
-        y-tick-step: 2,
-        y-min: -4,
-        y-max: 4,
-        x-min: -4,
-        x-max: 4,
-        mark-style: (fill: black, stroke: black),
-        {
-          plot.add(
-            f,
-            domain: (-4, 4),
-            style: (stroke: black),
-            label: none,
-          )
-          plot.add(
-            ((0, c),),
-            mark: "o",
-            mark-size: 0.04,
-            mark-style: (fill: white),
-          )
-        },
-      )
-    }))
+    #let xs = lq.linspace(-4, 4, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (-4, 4),
+      ylim: (-4, 4),
+      xaxis: (tick-args: (tick-distance: 2)),
+      yaxis: (tick-args: (tick-distance: 2)),
+      lq.plot(xs, f, mark: none, stroke: black),
+      lq.plot((0,), (c,), mark: "o", stroke: black, mark-color: white),
+    )
   ]
 ]
 
@@ -53,27 +36,15 @@ $
   #let f(x) = 1 / x
 
   #align(center)[
-    #frame(cetz.canvas(length: 6cm, {
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        x-tick-step: 1,
-        y-tick-step: 50,
-        y-min: 0,
-        y-max: 100,
-        x-min: 0,
-        x-max: 1,
-        mark-style: (fill: black, stroke: black),
-        {
-          plot.add(
-            f,
-            domain: (0.001, 1),
-            style: (stroke: black),
-            label: none,
-          )
-        },
-      )
-    }))
+    #let xs = lq.linspace(0.001, 1, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (0, 1),
+      ylim: (0, 100),
+      xaxis: (tick-args: (tick-distance: 1)),
+      yaxis: (tick-args: (tick-distance: 50)),
+      lq.plot(xs, f, mark: none, stroke: black),
+    )
   ]
 ]

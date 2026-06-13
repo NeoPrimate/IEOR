@@ -1,6 +1,15 @@
+#import "@preview/lilaq:0.6.0" as lq
+#import "@preview/elembic:1.1.1" as e
+
 #let formatting(body) = {
 
   set heading(numbering: "1.1.")
+
+  // House style: every lilaq legend sits just outside the plot's top-right
+  // corner. `top + left` anchored then shifted right by the full data-area
+  // width (100%) lands the box outside the right edge, top-aligned. This is
+  // the single source of truth — diagrams need no per-plot `legend:` key.
+  show: e.set_(lq.legend, position: top + left, dx: 100% + 0.5em)
 
   show heading.where(level: 1): it => [
     #set text(size: 24pt, weight: "semibold")

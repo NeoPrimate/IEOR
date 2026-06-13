@@ -10,53 +10,18 @@ Where:
 - $x$: observed data
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-
-    set-style(
-      axes: (
-        x: (stroke: 0pt),
-        y: (stroke: 0pt, tick: (label: (offset: 1em))),
-        shared-zero: false
-      )
-    )
-
-    let mu_ = 0
-    let sigma_ = 1
-    
-    plot.plot(
-      size: (10, 3),
-      axis-style: "school-book",
-      x-tick-step: none,
-      y-tick-step: none, 
-      x-label: [],
-      y-label: [],
-      x-min: -4., 
-      x-max: 4.,
-      y-min: 0., 
-      y-max: 0.4,
-      legend: "inner-north-west",
-      {
-        plot.add(
-          x => gaussian_pdf(x, mu_, sigma_), 
-          domain: (-5, 5), 
-          style: (stroke: black),
-        )
-        
-        plot.add(
-          ((1, gaussian_pdf(1, mu_, sigma_)),),
-          mark: "o",
-          mark-size: 0.2,
-          mark-style: (fill: red, stroke: 1pt),
-        )
-
-        plot.add-vline(
-          1, 
-          max: gaussian_pdf(1, mu_, sigma_),
-          style: (stroke: (paint: red, dash: "dashed")),
-        )
-      })
-  }))
+  #let xs = lq.linspace(-5, 5, num: 200)
+  #lq.diagram(
+    width: 6cm,
+    height: 3cm,
+    xlim: (-4, 4),
+    ylim: (0, 0.4),
+    xaxis: (position: 0, tip: tiptoe.triangle, ticks: none),
+    yaxis: (position: 0, tip: tiptoe.triangle, ticks: none),
+    lq.plot(xs, x => norm.pdf(x, mean: 0, std_dev: 1), mark: none, stroke: black),
+    lq.vlines(1, max: norm.pdf(1, mean: 0, std_dev: 1), stroke: (paint: red, dash: "dashed")),
+    lq.plot((1,), (norm.pdf(1, mean: 0, std_dev: 1),), mark: "o", stroke: none, mark-color: red),
+  )
 ]
 
 == PDF vs. Likelihood

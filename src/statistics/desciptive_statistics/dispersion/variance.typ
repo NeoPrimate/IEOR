@@ -85,43 +85,17 @@ $
   $
 
   #align(center)[
-    #frame(cetz.canvas({
-      import draw: *
-
-      plot.plot(
-        size: (5, 5),
-        axis-style: "scientific",
-        x-tick-step: none,
-        y-tick-step: 5,
-        x-label: [],
-        y-label: [],
-        x-min: 0.,
-        x-max: 7.,
-        y-min: 9.,
-        y-max: 25.,
-        legend: "north-east",
-        {
-          plot.add-hline(mean, style: (stroke: red))
-
-          plot.add(
-            data,
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: black, stroke: none),
-            style: (stroke: none),
-          )
-
-          for (x, y) in data {
-            plot.add-vline(
-              x,
-              min: mean,
-              max: y,
-              style: (stroke: (paint: red, dash: "dashed")),
-            )
-          }
-        },
-      )
-    }))
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (0, 7),
+      ylim: (9, 25),
+      xaxis: (ticks: none),
+      yaxis: (tick-args: (tick-distance: 5)),
+      ..data.map(p => lq.vlines(p.at(0), min: calc.min(mean, p.at(1)), max: calc.max(mean, p.at(1)), stroke: (paint: red, dash: "dashed"))),
+      lq.hlines(mean, stroke: red),
+      lq.plot(x, y, mark: "o", stroke: none, mark-color: black),
+    )
   ]
 
 ]

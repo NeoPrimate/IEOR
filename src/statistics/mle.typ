@@ -24,168 +24,61 @@ Where:
 #let mus = range(mu - 3*sigma, mu + 4*sigma, step: 2)
 
 #let likelihoods = mus.map(mu => {
-  data.map(x => gaussian_pdf(x, mu, sigma)).product()
+  data.map(x => norm.pdf(x, mean: mu, std_dev: sigma)).product()
 })
 
 #let likelihoods_tup = mus.zip(likelihoods)
+
+#let xs_mle = lq.linspace(mu - 3 * sigma, mu + 3 * sigma, num: 200)
+#let data_xs = data_tup.map(p => p.at(0))
+#let data_ys = data_tup.map(p => p.at(1))
 
 #align(center)[
   #grid(
     inset: 0em,
     gutter: 0.5em,
     [
-      #frame(cetz.canvas({
-        import cetz.draw: *
-        import cetz-plot: *
-        set-style(
-          axes: (
-            y: (stroke: 0pt),
-            x: (stroke: 0pt),
-            shared-zero: false,
-            tick: (stroke: 0pt),
-            padding: 0pt,
-          ),
-          
-        )
-
-        plot.plot(
-          size: (12,3),
-          x-label: [$μ$],
-          y-label: [$L(theta)$],
-          x-tick-step: none, 
-          y-tick-step: none,
-          y-min: 0,
-          y-max: calc.max(..likelihoods) + 1e-26,
-          x-min: mu - 3*sigma,
-          x-max: mu + 3*sigma,
-          x-grid: none,
-          y-grid: none,
-          axis-style: "scientific",
-          
-          axes: (
-            stroke: black,
-            tick: (stroke: black),
-          ),
-          name: "plot",
-        {
-          for mu_ in mus {
-            plot.add-vline(mu_, style: (stroke: (dash: "dashed", paint: black, thickness: 1pt)))
-          }
-          
-          plot.add(
-            domain: (mu - 3*sigma, mu + 3*sigma),
-            samples: 200,
-            mu => data.map(x => gaussian_pdf(x, mu, sigma)).product(),
-            style: (stroke: (dash: none, paint: red, thickness: 1pt)),
-          )
-          
-          plot.add(
-            likelihoods_tup,
-            mark: "o",
-            mark-size: 0.25,
-            mark-style: (fill: red, stroke: 2pt),
-            style: (stroke: none),
-          )
-        }
+      #lq.diagram(
+        width: 8cm,
+        height: 3cm,
+        xlabel: [$μ$],
+        ylabel: [$L(theta)$],
+        xlim: (mu - 3 * sigma, mu + 3 * sigma),
+        ylim: (0, calc.max(..likelihoods) + 1e-26),
+        xaxis: (ticks: none),
+        yaxis: (ticks: none),
+        ..mus.map(mu_ => lq.vlines(mu_, stroke: (paint: black, thickness: 1pt, dash: "dashed"))),
+        lq.plot(xs_mle, mu => data.map(x => norm.pdf(x, mean: mu, std_dev: sigma)).product(), mark: none, stroke: (paint: red, thickness: 1pt)),
+        lq.plot(mus, likelihoods, mark: "o", stroke: none, mark-color: red),
       )
-      }))
     ],
     [
-      #frame(cetz.canvas({
-        import cetz.draw: *
-        import cetz-plot: *
-        set-style(
-          axes: (
-            y: (stroke: 0pt),
-            x: (stroke: 0pt),
-            shared-zero: false,
-            tick: (stroke: 0pt),
-            padding: 0pt,
-          ),
-          
-        )
-
-        plot.plot(
-          size: (12,3),
-          x-label: [$$],
-          y-label: [$$],
-          x-tick-step: none, 
-          y-tick-step: none,
-          y-min: 0,
-          y-max: 0.25,
-          x-min: mu - 3*sigma,
-          x-max: mu + 3*sigma,
-          x-grid: none,
-          y-grid: none,
-          axis-style: "scientific",
-          
-          axes: (
-            stroke: black,
-            tick: (stroke: black),
-          ),
-          name: "plot",
-        {
-          for mu_ in mus {
-            plot.add(
-              domain: (mu - 3*sigma, mu + 3*sigma),
-              x => gaussian_pdf(x, mu_, sigma),
-              style: (stroke: (dash: none, paint: red, thickness: 1pt)),
-            )
-            plot.add-vline(mu_, style: (stroke: (dash: "dashed", paint: black, thickness: 1pt)))
-          }
-        }
+      #lq.diagram(
+        width: 8cm,
+        height: 3cm,
+        xlim: (mu - 3 * sigma, mu + 3 * sigma),
+        ylim: (0, 0.25),
+        xaxis: (ticks: none),
+        yaxis: (ticks: none),
+        ..mus.map(mu_ => lq.vlines(mu_, stroke: (paint: black, thickness: 1pt, dash: "dashed"))),
+        ..mus.map(mu_ => lq.plot(xs_mle, x => norm.pdf(x, mean: mu_, std_dev: sigma), mark: none, stroke: (paint: red, thickness: 1pt))),
       )
-      }))
     ],
     [
-      #frame(cetz.canvas({
-        import cetz.draw: *
-        import cetz-plot: *
-        set-style(
-          axes: (
-            y: (stroke: 0pt),
-            // x: (stroke: 0pt),
-            shared-zero: false,
-            tick: (stroke: 0pt),
-            padding: 0pt,
-          ),
-          
-        )
-
-        plot.plot(
-          size: (12,3),
-          x-label: [$$],
-          y-label: [$$],
-          x-tick-step: none, 
-          y-tick-step: none,
-          y-min: 0,
-          y-max: 0,
-          x-min: mu - 3*sigma,
-          x-max: mu + 3*sigma,
-          x-grid: none,
-          y-grid: none,
-          axis-style: "scientific",
-          
-          name: "plot",
-        {
-          plot.add-hline(0, style: (stroke: (dash: none, paint: black, thickness: 1pt)))
-          plot.add(
-            data_tup,
-            mark: "o",
-            mark-size: 0.25,
-            mark-style: (fill: red, stroke: 2pt),
-            style: (stroke: none),
-          )
-
-          for mu_ in mus {
-            plot.add-vline(mu_, style: (stroke: (dash: "dashed", paint: black, thickness: 1pt)))
-          }
-        }
+      #lq.diagram(
+        width: 8cm,
+        height: 3cm,
+        xlim: (mu - 3 * sigma, mu + 3 * sigma),
+        ylim: (-0.5, 0.5),
+        xaxis: (ticks: none),
+        yaxis: (ticks: none),
+        lq.hlines(0, stroke: (paint: black, thickness: 1pt)),
+        ..mus.map(mu_ => lq.vlines(mu_, stroke: (paint: black, thickness: 1pt, dash: "dashed"))),
+        lq.plot(data_xs, data_ys, mark: "o", stroke: none, mark-color: red),
       )
-      }))
     ]
   )
-  
+
 ]
 
 Log Likelihood

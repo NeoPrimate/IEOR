@@ -447,128 +447,48 @@ $
       ],
     ),
     [
-      #frame(cetz.canvas({
-        import cetz.draw: *
-        import cetz-plot: *
-
-        let obj(x, z) = (z - 1 * x)
-        let c1(x) = (2 - x) / 2
-        let c2(x) = (3 - 3 * x)
-
-        plot.plot(
-          size: (5, 5),
-          axis-style: "school-book",
-          x-tick-step: 0.5,
-          y-tick-step: 0.5,
-          x-label: [$x_1$],
-          y-label: [$x_2$],
-          x-min: 0,
-          x-max: 1.5,
-          y-min: 0,
-          y-max: 1.5,
-          axes: (
-            stroke: black,
-            tick: (stroke: black),
-          ),
-          {
-            plot.add(
-              domain: (0, 5),
-              x => obj(x, 1.4),
-              style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-            )
-
-            plot.add(
-              domain: (0, 5),
-              c1,
-              style: (stroke: (thickness: 1pt, paint: red)),
-            )
-            plot.add(
-              domain: (0, 5),
-              c2,
-              style: (stroke: (thickness: 1pt, paint: red)),
-            )
-
-            plot.add(
-              ((0.8, 0.6),),
-              mark: "o",
-              mark-size: 0.2,
-              style: (fill: none, stroke: none),
-              mark-style: (fill: red, stroke: black),
-            )
-
-            plot.add-fill-between(
-              domain: (0, 6),
-              x => calc.max(c1(x), c2(x)),
-              x1 => 3,
-              style: (fill: rgb(200, 200, 255, 80), stroke: none),
-              label: none,
-            )
-          },
-          name: "plot",
-        )
-      }))
+      #let obj(x, z) = (z - 1 * x)
+      #let c1(x) = (2 - x) / 2
+      #let c2(x) = (3 - 3 * x)
+      #let xs = lq.linspace(0, 5, num: 200)
+      #let xs-fill = lq.linspace(0, 6, num: 200)
+      #lq.diagram(
+        width: 5cm,
+        height: 5cm,
+        xlim: (0, 1.5),
+        ylim: (0, 1.5),
+        xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 0.5)),
+        yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 0.5)),
+        xlabel: [$x_1$],
+        ylabel: [$x_2$],
+        lq.fill-between(xs-fill, xs-fill.map(x => calc.max(c1(x), c2(x))), y2: xs-fill.map(x => 3), fill: rgb(200, 200, 255, 80), stroke: none),
+        lq.plot(xs, x => obj(x, 1.4), mark: none, stroke: (paint: black, dash: "dashed")),
+        lq.plot(xs, c1, mark: none, stroke: red),
+        lq.plot(xs, c2, mark: none, stroke: red),
+        lq.plot((0.8,), (0.6,), mark: "o", stroke: none, mark-color: red),
+      )
     ],
     [
-      #frame(cetz.canvas({
-        import cetz.draw: *
-        import cetz-plot: *
-
-        let obj(y, z) = (z - 2 * y) / 3
-        let c1(y) = (1 - y) / 3
-        let c2(y) = (1 - 2 * y)
-
-        plot.plot(
-          size: (5, 5),
-          axis-style: "school-book",
-          x-tick-step: 0.1,
-          y-tick-step: 0.1,
-          x-label: [$y_1$],
-          y-label: [$y_2$],
-          x-min: 0,
-          x-max: 0.5,
-          y-min: 0,
-          y-max: 0.5,
-          axes: (
-            stroke: black,
-            tick: (stroke: black),
-          ),
-          {
-            plot.add(
-              domain: (0, 5),
-              x => obj(x, 1.4),
-              style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-            )
-
-            plot.add(
-              domain: (0, 5),
-              c1,
-              style: (stroke: (thickness: 1pt, paint: red)),
-            )
-            plot.add(
-              domain: (0, 5),
-              c2,
-              style: (stroke: (thickness: 1pt, paint: red)),
-            )
-
-            plot.add(
-              ((0.4, 0.2),),
-              mark: "o",
-              mark-size: 0.2,
-              style: (fill: none, stroke: none),
-              mark-style: (fill: red, stroke: black),
-            )
-
-            plot.add-fill-between(
-              domain: (0, 2),
-              x => calc.min(c1(x), c2(x)),
-              x1 => 0,
-              style: (fill: rgb(200, 200, 255, 80), stroke: none),
-              label: none,
-            )
-          },
-          name: "plot",
-        )
-      }))
+      #let obj(y, z) = (z - 2 * y) / 3
+      #let c1(y) = (1 - y) / 3
+      #let c2(y) = (1 - 2 * y)
+      #let xs = lq.linspace(0, 5, num: 200)
+      #let xs-fill = lq.linspace(0, 2, num: 200)
+      #lq.diagram(
+        width: 5cm,
+        height: 5cm,
+        xlim: (0, 0.5),
+        ylim: (0, 0.5),
+        xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 0.1)),
+        yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 0.1)),
+        xlabel: [$y_1$],
+        ylabel: [$y_2$],
+        lq.fill-between(xs-fill, xs-fill.map(x => calc.min(c1(x), c2(x))), y2: xs-fill.map(x => 0), fill: rgb(200, 200, 255, 80), stroke: none),
+        lq.plot(xs, x => obj(x, 1.4), mark: none, stroke: (paint: black, dash: "dashed")),
+        lq.plot(xs, c1, mark: none, stroke: red),
+        lq.plot(xs, c2, mark: none, stroke: red),
+        lq.plot((0.4,), (0.2,), mark: "o", stroke: none, mark-color: red),
+      )
     ],
     [
       $
@@ -594,168 +514,52 @@ $
       ],
     ),
     [
-      #frame(cetz.canvas({
-        import cetz.draw: *
-        import cetz-plot: *
-
-        let obj(x, z) = (z - 1 * x)
-        let c1(x) = (2 - x) / 2
-        let c2(x) = (3 - 3 * x)
-
-        let x_opt = (1, 1)
-        let x1 = (0.8, 0.6)
-        let x2 = (1.25, 0.75)
-
-        plot.plot(
-          size: (5, 5),
-          axis-style: "school-book",
-          x-tick-step: 0.5,
-          y-tick-step: 0.5,
-          x-label: [$x_1$],
-          y-label: [$x_2$],
-          x-min: 0,
-          x-max: 1.5,
-          y-min: 0,
-          y-max: 1.5,
-          axes: (
-            stroke: black,
-            tick: (stroke: black),
-          ),
-          {
-            plot.add(
-              domain: (0, 5),
-              x => obj(x, 1.4),
-              style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-            )
-
-            plot.add(
-              domain: (0, 5),
-              c1,
-              style: (stroke: (thickness: 1pt, paint: red)),
-            )
-            plot.add(
-              domain: (0, 5),
-              c2,
-              style: (stroke: (thickness: 1pt, paint: red)),
-            )
-
-            plot.add(
-              (x_opt,),
-              mark: "o",
-              mark-size: 0.2,
-              style: (fill: none, stroke: none),
-              mark-style: (fill: blue, stroke: black),
-            )
-
-            plot.add(
-              (x1,),
-              mark: "o",
-              mark-size: 0.2,
-              style: (fill: none, stroke: none),
-              mark-style: (fill: red, stroke: black),
-            )
-
-            plot.add(
-              (x2,),
-              mark: "o",
-              mark-size: 0.2,
-              style: (fill: none, stroke: none),
-              mark-style: (fill: green, stroke: black),
-            )
-
-            plot.add-fill-between(
-              domain: (0, 6),
-              x => calc.max(c1(x), c2(x)),
-              x1 => 3,
-              style: (fill: rgb(200, 200, 255, 80), stroke: none),
-              label: none,
-            )
-          },
-          name: "plot",
-        )
-      }))
+      #let obj(x, z) = (z - 1 * x)
+      #let c1(x) = (2 - x) / 2
+      #let c2(x) = (3 - 3 * x)
+      #let xs = lq.linspace(0, 5, num: 200)
+      #let xs-fill = lq.linspace(0, 6, num: 200)
+      #lq.diagram(
+        width: 5cm,
+        height: 5cm,
+        xlim: (0, 1.5),
+        ylim: (0, 1.5),
+        xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 0.5)),
+        yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 0.5)),
+        xlabel: [$x_1$],
+        ylabel: [$x_2$],
+        lq.fill-between(xs-fill, xs-fill.map(x => calc.max(c1(x), c2(x))), y2: xs-fill.map(x => 3), fill: rgb(200, 200, 255, 80), stroke: none),
+        lq.plot(xs, x => obj(x, 1.4), mark: none, stroke: (paint: black, dash: "dashed")),
+        lq.plot(xs, c1, mark: none, stroke: red),
+        lq.plot(xs, c2, mark: none, stroke: red),
+        lq.plot((1,), (1,), mark: "o", stroke: none, mark-color: blue),
+        lq.plot((0.8,), (0.6,), mark: "o", stroke: none, mark-color: red),
+        lq.plot((1.25,), (0.75,), mark: "o", stroke: none, mark-color: green),
+      )
     ],
     [
-      #frame(cetz.canvas({
-        import cetz.draw: *
-        import cetz-plot: *
-
-        let obj(y, z) = (z - 2 * y) / 3
-        let c1(y) = (1 - y) / 3
-        let c2(y) = (1 - 2 * y)
-
-        let y_opt = (0.4, 0.2)
-        let y1 = (0.2, 0.1)
-        let y2 = (0.1, 0.2)
-
-        plot.plot(
-          size: (5, 5),
-          axis-style: "school-book",
-          x-tick-step: 0.1,
-          y-tick-step: 0.1,
-          x-label: [$y_1$],
-          y-label: [$y_2$],
-          x-min: 0,
-          x-max: 0.5,
-          y-min: 0,
-          y-max: 0.5,
-          axes: (
-            stroke: black,
-            tick: (stroke: black),
-          ),
-          {
-            plot.add(
-              domain: (0, 5),
-              x => obj(x, 1.4),
-              style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-            )
-
-            plot.add(
-              domain: (0, 5),
-              c1,
-              style: (stroke: (thickness: 1pt, paint: red)),
-            )
-            plot.add(
-              domain: (0, 5),
-              c2,
-              style: (stroke: (thickness: 1pt, paint: red)),
-            )
-
-            plot.add(
-              (y_opt,),
-              mark: "o",
-              mark-size: 0.2,
-              style: (fill: none, stroke: none),
-              mark-style: (fill: blue, stroke: black),
-            )
-
-            plot.add(
-              (y1,),
-              mark: "o",
-              mark-size: 0.2,
-              style: (fill: none, stroke: none),
-              mark-style: (fill: red, stroke: black),
-            )
-
-            plot.add(
-              (y2,),
-              mark: "o",
-              mark-size: 0.2,
-              style: (fill: none, stroke: none),
-              mark-style: (fill: green, stroke: black),
-            )
-
-            plot.add-fill-between(
-              domain: (0, 2),
-              x => calc.min(c1(x), c2(x)),
-              x1 => 0,
-              style: (fill: rgb(200, 200, 255, 80), stroke: none),
-              label: none,
-            )
-          },
-          name: "plot",
-        )
-      }))
+      #let obj(y, z) = (z - 2 * y) / 3
+      #let c1(y) = (1 - y) / 3
+      #let c2(y) = (1 - 2 * y)
+      #let xs = lq.linspace(0, 5, num: 200)
+      #let xs-fill = lq.linspace(0, 2, num: 200)
+      #lq.diagram(
+        width: 5cm,
+        height: 5cm,
+        xlim: (0, 0.5),
+        ylim: (0, 0.5),
+        xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 0.1)),
+        yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 0.1)),
+        xlabel: [$y_1$],
+        ylabel: [$y_2$],
+        lq.fill-between(xs-fill, xs-fill.map(x => calc.min(c1(x), c2(x))), y2: xs-fill.map(x => 0), fill: rgb(200, 200, 255, 80), stroke: none),
+        lq.plot(xs, x => obj(x, 1.4), mark: none, stroke: (paint: black, dash: "dashed")),
+        lq.plot(xs, c1, mark: none, stroke: red),
+        lq.plot(xs, c2, mark: none, stroke: red),
+        lq.plot((0.4,), (0.2,), mark: "o", stroke: none, mark-color: blue),
+        lq.plot((0.2,), (0.1,), mark: "o", stroke: none, mark-color: red),
+        lq.plot((0.1,), (0.2,), mark: "o", stroke: none, mark-color: green),
+      )
     ],
     grid.cell(
       colspan: 2,
@@ -810,128 +614,46 @@ $
       ],
     ),
     [
-      #frame(cetz.canvas({
-        import cetz.draw: *
-        import cetz-plot: *
-
-        let obj(x, z) = (z - x)
-        let c1(x) = 4 - 2 * x
-        let c2(x) = (5 - x) / 2
-
-        plot.plot(
-          size: (5, 5),
-          axis-style: "school-book",
-          x-tick-step: 1,
-          y-tick-step: 1,
-          x-label: [$x_1$],
-          y-label: [$x_2$],
-          x-min: 0,
-          x-max: 5,
-          y-min: 0,
-          y-max: 5,
-          axes: (
-            stroke: black,
-            tick: (stroke: black),
-          ),
-          {
-            plot.add(
-              domain: (0, 5),
-              x => obj(x, 3),
-              style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-            )
-
-            plot.add(
-              domain: (0, 5),
-              c1,
-              style: (stroke: (thickness: 1pt, paint: red)),
-            )
-            plot.add(
-              domain: (0, 5),
-              c2,
-              style: (stroke: (thickness: 1pt, paint: red)),
-            )
-
-            plot.add(
-              ((1, 2),),
-              mark: "o",
-              mark-size: 0.2,
-              style: (fill: none, stroke: none),
-              mark-style: (fill: red, stroke: black),
-            )
-
-            plot.add-fill-between(
-              domain: (0, 5),
-              x => calc.min(c1(x), c2(x)),
-              x1 => 0,
-              style: (fill: rgb(200, 200, 255, 80), stroke: none),
-              label: none,
-            )
-          },
-          name: "plot",
-        )
-      }))
+      #let obj(x, z) = (z - x)
+      #let c1(x) = 4 - 2 * x
+      #let c2(x) = (5 - x) / 2
+      #let xs = lq.linspace(0, 5, num: 200)
+      #lq.diagram(
+        width: 5cm,
+        height: 5cm,
+        xlim: (0, 5),
+        ylim: (0, 5),
+        xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+        yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+        xlabel: [$x_1$],
+        ylabel: [$x_2$],
+        lq.fill-between(xs, xs.map(x => calc.min(c1(x), c2(x))), y2: xs.map(x => 0), fill: rgb(200, 200, 255, 80), stroke: none),
+        lq.plot(xs, x => obj(x, 3), mark: none, stroke: (paint: black, dash: "dashed")),
+        lq.plot(xs, c1, mark: none, stroke: red),
+        lq.plot(xs, c2, mark: none, stroke: red),
+        lq.plot((1,), (2,), mark: "o", stroke: none, mark-color: red),
+      )
     ],
     [
-      #frame(cetz.canvas({
-        import cetz.draw: *
-        import cetz-plot: *
-
-        let obj(y, z) = (z - 4 * y) / 5
-        let c1(y) = 1 - 2 * y
-        let c2(y) = (1 - y) / 2
-
-        plot.plot(
-          size: (5, 5),
-          axis-style: "school-book",
-          x-tick-step: 0.2,
-          y-tick-step: 0.2,
-          x-label: [$y_1$],
-          y-label: [$y_2$],
-          x-min: 0,
-          x-max: 1,
-          y-min: 0,
-          y-max: 1,
-          axes: (
-            stroke: black,
-            tick: (stroke: black),
-          ),
-          {
-            plot.add(
-              domain: (0, 5),
-              x => obj(x, 3),
-              style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-            )
-
-            plot.add(
-              domain: (0, 5),
-              c1,
-              style: (stroke: (thickness: 1pt, paint: red)),
-            )
-            plot.add(
-              domain: (0, 5),
-              c2,
-              style: (stroke: (thickness: 1pt, paint: red)),
-            )
-
-            plot.add(
-              ((1 / 3, 1 / 3),),
-              mark: "o",
-              mark-size: 0.2,
-              style: (fill: none, stroke: none),
-              mark-style: (fill: red, stroke: black),
-            )
-
-            plot.add-fill-between(
-              domain: (0, 5),
-              x => calc.max(c1(x), c2(x)),
-              x1 => 5,
-              style: (fill: rgb(200, 200, 255, 80), stroke: none),
-              label: none,
-            )
-          },
-          name: "plot",
-        )
-      }))
+      #let obj(y, z) = (z - 4 * y) / 5
+      #let c1(y) = 1 - 2 * y
+      #let c2(y) = (1 - y) / 2
+      #let xs = lq.linspace(0, 5, num: 200)
+      #lq.diagram(
+        width: 5cm,
+        height: 5cm,
+        xlim: (0, 1),
+        ylim: (0, 1),
+        xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 0.2)),
+        yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 0.2)),
+        xlabel: [$y_1$],
+        ylabel: [$y_2$],
+        lq.fill-between(xs, xs.map(x => calc.max(c1(x), c2(x))), y2: xs.map(x => 5), fill: rgb(200, 200, 255, 80), stroke: none),
+        lq.plot(xs, x => obj(x, 3), mark: none, stroke: (paint: black, dash: "dashed")),
+        lq.plot(xs, c1, mark: none, stroke: red),
+        lq.plot(xs, c2, mark: none, stroke: red),
+        lq.plot((1 / 3,), (1 / 3,), mark: "o", stroke: none, mark-color: red),
+      )
     ],
     [
       $
@@ -957,160 +679,50 @@ $
       ],
     ),
     [
-      #frame(cetz.canvas({
-        import cetz.draw: *
-        import cetz-plot: *
-
-        let obj(x, z) = (z - x)
-        let c1(x) = 4 - 2 * x
-        let c2(x) = (5 - x) / 2
-
-        plot.plot(
-          size: (5, 5),
-          axis-style: "school-book",
-          x-tick-step: 1,
-          y-tick-step: 1,
-          x-label: [$x_1$],
-          y-label: [$x_2$],
-          x-min: 0,
-          x-max: 5,
-          y-min: 0,
-          y-max: 5,
-          axes: (
-            stroke: black,
-            tick: (stroke: black),
-          ),
-          {
-            plot.add(
-              domain: (0, 5),
-              x => obj(x, 3),
-              style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-            )
-
-            plot.add(
-              domain: (0, 5),
-              c1,
-              style: (stroke: (thickness: 1pt, paint: red)),
-            )
-            plot.add(
-              domain: (0, 5),
-              c2,
-              style: (stroke: (thickness: 1pt, paint: red)),
-            )
-
-            plot.add(
-              ((1, 2),),
-              mark: "o",
-              mark-size: 0.2,
-              style: (fill: none, stroke: none),
-              mark-style: (fill: red, stroke: black),
-            )
-
-            plot.add(
-              ((1, 0.5),),
-              mark: "o",
-              mark-size: 0.2,
-              style: (fill: none, stroke: none),
-              mark-style: (fill: blue, stroke: black),
-            )
-
-            plot.add(
-              ((0.5, 1),),
-              mark: "o",
-              mark-size: 0.2,
-              style: (fill: none, stroke: none),
-              mark-style: (fill: green, stroke: black),
-            )
-
-            plot.add-fill-between(
-              domain: (0, 5),
-              x => calc.min(c1(x), c2(x)),
-              x1 => 0,
-              style: (fill: rgb(200, 200, 255, 80), stroke: none),
-              label: none,
-            )
-          },
-          name: "plot",
-        )
-      }))
+      #let obj(x, z) = (z - x)
+      #let c1(x) = 4 - 2 * x
+      #let c2(x) = (5 - x) / 2
+      #let xs = lq.linspace(0, 5, num: 200)
+      #lq.diagram(
+        width: 5cm,
+        height: 5cm,
+        xlim: (0, 5),
+        ylim: (0, 5),
+        xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+        yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+        xlabel: [$x_1$],
+        ylabel: [$x_2$],
+        lq.fill-between(xs, xs.map(x => calc.min(c1(x), c2(x))), y2: xs.map(x => 0), fill: rgb(200, 200, 255, 80), stroke: none),
+        lq.plot(xs, x => obj(x, 3), mark: none, stroke: (paint: black, dash: "dashed")),
+        lq.plot(xs, c1, mark: none, stroke: red),
+        lq.plot(xs, c2, mark: none, stroke: red),
+        lq.plot((1,), (2,), mark: "o", stroke: none, mark-color: red),
+        lq.plot((1,), (0.5,), mark: "o", stroke: none, mark-color: blue),
+        lq.plot((0.5,), (1,), mark: "o", stroke: none, mark-color: green),
+      )
     ],
     [
-      #frame(cetz.canvas({
-        import cetz.draw: *
-        import cetz-plot: *
-
-        let obj(y, z) = (z - 4 * y) / 5
-        let c1(y) = 1 - 2 * y
-        let c2(y) = (1 - y) / 2
-
-        plot.plot(
-          size: (5, 5),
-          axis-style: "school-book",
-          x-tick-step: 0.2,
-          y-tick-step: 0.2,
-          x-label: [$y_1$],
-          y-label: [$y_2$],
-          x-min: 0,
-          x-max: 1,
-          y-min: 0,
-          y-max: 1,
-          axes: (
-            stroke: black,
-            tick: (stroke: black),
-          ),
-          {
-            plot.add(
-              domain: (0, 5),
-              x => obj(x, 3),
-              style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-            )
-
-            plot.add(
-              domain: (0, 5),
-              c1,
-              style: (stroke: (thickness: 1pt, paint: red)),
-            )
-            plot.add(
-              domain: (0, 5),
-              c2,
-              style: (stroke: (thickness: 1pt, paint: red)),
-            )
-
-            plot.add(
-              ((1 / 3, 1 / 3),),
-              mark: "o",
-              mark-size: 0.2,
-              style: (fill: none, stroke: none),
-              mark-style: (fill: blue, stroke: black),
-            )
-
-            plot.add(
-              ((0.8, 0.4),),
-              mark: "o",
-              mark-size: 0.2,
-              style: (fill: none, stroke: none),
-              mark-style: (fill: red, stroke: black),
-            )
-
-            plot.add(
-              ((0.4, 0.8),),
-              mark: "o",
-              mark-size: 0.2,
-              style: (fill: none, stroke: none),
-              mark-style: (fill: green, stroke: black),
-            )
-
-            plot.add-fill-between(
-              domain: (0, 5),
-              x => calc.max(c1(x), c2(x)),
-              x1 => 5,
-              style: (fill: rgb(200, 200, 255, 80), stroke: none),
-              label: none,
-            )
-          },
-          name: "plot",
-        )
-      }))
+      #let obj(y, z) = (z - 4 * y) / 5
+      #let c1(y) = 1 - 2 * y
+      #let c2(y) = (1 - y) / 2
+      #let xs = lq.linspace(0, 5, num: 200)
+      #lq.diagram(
+        width: 5cm,
+        height: 5cm,
+        xlim: (0, 1),
+        ylim: (0, 1),
+        xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 0.2)),
+        yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 0.2)),
+        xlabel: [$y_1$],
+        ylabel: [$y_2$],
+        lq.fill-between(xs, xs.map(x => calc.max(c1(x), c2(x))), y2: xs.map(x => 5), fill: rgb(200, 200, 255, 80), stroke: none),
+        lq.plot(xs, x => obj(x, 3), mark: none, stroke: (paint: black, dash: "dashed")),
+        lq.plot(xs, c1, mark: none, stroke: red),
+        lq.plot(xs, c2, mark: none, stroke: red),
+        lq.plot((1 / 3,), (1 / 3,), mark: "o", stroke: none, mark-color: blue),
+        lq.plot((0.8,), (0.4,), mark: "o", stroke: none, mark-color: red),
+        lq.plot((0.4,), (0.8,), mark: "o", stroke: none, mark-color: green),
+      )
     ],
     grid.cell(
       colspan: 2,

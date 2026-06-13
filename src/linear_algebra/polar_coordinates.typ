@@ -21,55 +21,42 @@ The coordinates are $(r, theta)$, where:
 #let points_colors = points.zip(colors)
 
 #align(center)[
-  #frame(cetz.canvas({
-    import cetz.draw: *
-    import cetz-plot: *
-
-    set-style(axes: (shared-zero: false))
-
-    plot.plot(
-      size: (5, 5),
-      axis-style: "school-book",
-      x-tick-step: 1,
-      x-min: 0,
-      x-max: n - 1,
-      y-tick-step: none,
-      y-ticks: range(n).map(n => {
-        if n >= 2 {
-          (n * calc.pi, str(n) + $pi$)
-        } else if n == 1 {
-          (n * calc.pi, $pi$)
-        } else {
-          (n * calc.pi, 0)
-        }
-      }),
-      y-min: 0,
-      y-max: 2 * calc.pi,
-      x-label: $rho$,
-      y-label: $theta$,
-      {
-        for (radius, color) in points_colors {
-          for i in range(n_points) {
-            let angle = 2 * calc.pi * i / n_points
-            let rho = radius
-            let theta = angle
-
-            plot.add(
-              ((rho, theta),),
-              mark: "o",
-              mark-size: 0.15,
-              mark-style: (stroke: none, fill: color),
-            )
-          }
-        }
-
-        for theta_val in (0, calc.pi / 2, calc.pi, 3 * calc.pi / 2, 2 * calc.pi) {
-          plot.add(
-            ((0, theta_val), (5, theta_val)),
-            style: (stroke: gray + 0.5pt),
-          )
-        }
-      },
-    )
-  }))
+  #let pts = {
+    let acc = ()
+    for (radius, color) in points_colors {
+      for i in range(n_points) {
+        let angle = 2 * calc.pi * i / n_points
+        acc.push((radius, angle, color))
+      }
+    }
+    acc
+  }
+  #let theta_lines = (0, calc.pi / 2, calc.pi, 3 * calc.pi / 2, 2 * calc.pi)
+  #lq.diagram(
+    width: 5cm,
+    height: 5cm,
+    xlim: (0, n - 1),
+    ylim: (0, 2 * calc.pi),
+    xlabel: $rho$,
+    ylabel: $theta$,
+    xaxis: (tick-args: (tick-distance: 1)),
+    yaxis: (ticks: (
+      (0, $0$),
+      (calc.pi, $pi$),
+      (2 * calc.pi, $2 pi$),
+    )),
+    ..theta_lines.map(theta_val => lq.plot(
+      (0, 5),
+      (theta_val, theta_val),
+      mark: none,
+      stroke: gray + 0.5pt,
+    )),
+    ..pts.map(p => lq.plot(
+      (p.at(0),),
+      (p.at(1),),
+      mark: "o",
+      stroke: none,
+      mark-color: p.at(2),
+    )),
+  )
 ]

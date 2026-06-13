@@ -21,38 +21,29 @@ The coordinates are $(x, y)$, where:
 #let points_colors = points.zip(colors)
 
 #align(center)[
-  #frame(cetz.canvas({
-    import cetz.draw: *
-    import cetz-plot: *
-
-    set-style(axes: (shared-zero: false))
-
-    plot.plot(
-      size: (5, 5),
-      axis-style: "school-book",
-      x-tick-step: none,
-      x-min: -n,
-      x-max: n,
-      y-tick-step: none,
-      y-min: -n,
-      y-max: n,
-      legend: "inner-south-east",
-      label: none,
-      {
-        for (radius, color) in points_colors {
-          for i in range(n_points) {
-            let angle = 2 * calc.pi * i / n_points
-            let x = radius * calc.cos(angle)
-            let y = radius * calc.sin(angle)
-            plot.add(
-              ((x, y),),
-              mark: "o",
-              mark-size: 0.15,
-              mark-style: (stroke: none, fill: color),
-            )
-          }
-        }
-      },
-    )
-  }))
+  #let pts = {
+    let acc = ()
+    for (radius, color) in points_colors {
+      for i in range(n_points) {
+        let angle = 2 * calc.pi * i / n_points
+        acc.push((radius * calc.cos(angle), radius * calc.sin(angle), color))
+      }
+    }
+    acc
+  }
+  #lq.diagram(
+    width: 5cm,
+    height: 5cm,
+    xlim: (-n, n),
+    ylim: (-n, n),
+    xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, ticks: none),
+    yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, ticks: none),
+    ..pts.map(p => lq.plot(
+      (p.at(0),),
+      (p.at(1),),
+      mark: "o",
+      stroke: none,
+      mark-color: p.at(2),
+    )),
+  )
 ]

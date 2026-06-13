@@ -6,45 +6,17 @@
 Function that describes the likelihood of a continuous random variable taking on a particular value
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-
-    set-style(
-      axes: (
-        x: (stroke: 0pt),
-        y: (stroke: 0pt, tick: (label: (offset: 1em))),
-        shared-zero: false
-      )
-    )
-
-    let mu = 0
-    let sigma = 1
-    
-    plot.plot(
-      size: (10, 3),
-      axis-style: "school-book",
-      x-tick-step: none,
-      y-tick-step: none, 
-      x-label: [],
-      y-label: [],
-      x-min: -4., 
-      x-max: 4.,
-      y-min: 0., 
-      y-max: 0.4,
-      legend: "inner-north-west",
-      {
-        plot.add(
-          x => gaussian_pdf(x, mu, sigma), 
-          domain: (-5, 5), 
-          style: (stroke: black),
-        )
-        plot.add(
-          x => gaussian_pdf(x, mu, sigma), 
-          domain: (-5, 5), 
-          style: (stroke: (thickness: 10pt, paint: red.transparentize(75%)))
-        )
-      })
-  }))
+  #let xs = lq.linspace(-5, 5, num: 200)
+  #lq.diagram(
+    width: 6cm,
+    height: 3cm,
+    xlim: (-4, 4),
+    ylim: (0, 0.4),
+    xaxis: (position: 0, tip: tiptoe.triangle, ticks: none),
+    yaxis: (position: 0, tip: tiptoe.triangle, ticks: none),
+    lq.plot(xs, x => norm.pdf(x), mark: none, stroke: (thickness: 10pt, paint: red.transparentize(75%))),
+    lq.plot(xs, x => norm.pdf(x), mark: none, stroke: black),
+  )
 ]
 
 Properties:

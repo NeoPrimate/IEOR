@@ -8,40 +8,16 @@ f(x bar mu, sigma^2) = 1 / (sqrt(2 pi sigma^2)) e^(-((x - mu)^2)/(2 sigma^2))
 $
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-
-    set-style(
-      axes: (
-        x: (stroke: 0pt), 
-        y: (stroke: 0pt),
-        shared-zero: false
-      )
-    )
-
-    let mu = 0
-    let sigma = 1
-    
-    plot.plot(
-      size: (10, 3),
-      axis-style: "school-book",
-      x-tick-step: none,
-      y-tick-step: none, 
-      x-label: [],
-      y-label: [],
-      x-min: -4., 
-      x-max: 4.,
-      y-min: 0., 
-      y-max: 0.4,
-      legend: "inner-north-west",
-      {
-        plot.add(
-          x => gaussian_pdf(x, mu, sigma), 
-          domain: (-5, 5), 
-          style: (stroke: black),
-        )
-      })
-  }))
+  #let xs = lq.linspace(-5, 5, num: 200)
+  #lq.diagram(
+    width: 6cm,
+    height: 3cm,
+    xlim: (-4, 4),
+    ylim: (0, 0.4),
+    xaxis: (position: 0, tip: tiptoe.triangle, ticks: none),
+    yaxis: (position: 0, tip: tiptoe.triangle, ticks: none),
+    lq.plot(xs, x => norm.pdf(x, mean: 0, std_dev: 1), mark: none, stroke: black),
+  )
 ]
 
 === Derivative

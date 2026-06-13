@@ -11,73 +11,21 @@ Difficulties of NLP
 - A local minimum is not always a global minimum
 
 #align(center)[
-  #frame(cetz.canvas({
-    import cetz.draw: *
-    import cetz-plot: *
-
-    let f(x) = (x + 2) * (x + 1) * (x - 1) * (x - 2) * (x - 3) * (x - 4)
-
-    plot.plot(
-      size: (8, 6),
-      axis-style: "scientific",
-      x-tick-step: none,
-      y-tick-step: none,
-      x-ticks: ((-0.75, $x_1$), (1.457, $x_2$), (3.655, $x^*$)),
-      x-label: [$$],
-      y-label: [$$],
-      x-min: -1,
-      x-max: 4,
-      y-min: -75,
-      y-max: 75,
-      axes: (
-        stroke: none,
-        tick: (stroke: none),
-      ),
-      {
-        plot.add(
-          domain: (-1, 4),
-          f,
-          style: (stroke: (paint: black)),
-        )
-
-        plot.add-vline(
-          -0.75,
-          style: (stroke: (paint: black, dash: "dashed")),
-        )
-        plot.add(
-          ((-0.75, f(-0.75)),),
-          mark: "o",
-          mark-size: 0.15,
-          mark-style: (fill: black, stroke: 2pt),
-        )
-
-        plot.add-vline(
-          1.457,
-          max: f(1.457),
-          style: (stroke: (paint: black)),
-        )
-        plot.add(
-          ((1.457, f(1.457)),),
-          mark: "o",
-          mark-size: 0.15,
-          mark-style: (fill: black, stroke: 2pt),
-        )
-
-        plot.add-vline(
-          3.655,
-          max: f(3.655),
-          style: (stroke: (paint: black)),
-        )
-        plot.add(
-          ((3.655, f(3.655)),),
-          mark: "o",
-          mark-size: 0.15,
-          mark-style: (fill: black, stroke: 2pt),
-        )
-      },
-      name: "plot",
-    )
-  }))
+  #let f(x) = (x + 2) * (x + 1) * (x - 1) * (x - 2) * (x - 3) * (x - 4)
+  #let xs = lq.linspace(-1, 4, num: 200)
+  #lq.diagram(
+    width: 6cm,
+    height: 3cm,
+    xlim: (-1, 4),
+    ylim: (-75, 75),
+    xaxis: (position: 0, tip: tiptoe.triangle, ticks: ((-0.75, $x_1$), (1.457, $x_2$), (3.655, $x^*$))),
+    yaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, ticks: none),
+    lq.plot(xs, f, mark: none, stroke: black),
+    lq.vlines(-0.75, stroke: (paint: black, dash: "dashed")),
+    lq.vlines(1.457, max: f(1.457), stroke: black),
+    lq.vlines(3.655, max: f(3.655), stroke: black),
+    lq.plot((-0.75, 1.457, 3.655), (f(-0.75), f(1.457), f(3.655)), mark: "o", stroke: none, mark-color: black),
+  )
 ]
 
 - An optimal solution may not be an extreme point optimal solution
@@ -546,116 +494,29 @@ $
 Which violates the fact that $f(dot)$ is convex. Therefore, by contradiction, the local minimum $x'$ must be a global minimum.
 
 #align(center)[
-  #frame(cetz.canvas({
-    import cetz.draw: *
-    import cetz-plot: *
-
-    let f(x) = (x + 2) * (x + 1) * (x - 1) * (x - 2) * (x - 3) * (x - 4)
-
-    let l = 0.1
-
-    let xp = 1.457
-    let xpp = 3.655
-
-    let yp = f(xp)
-    let ypp = f(xpp)
-
-    let p1 = (xp, yp)
-    let p2 = (xpp, ypp)
-
-    let m = (ypp - yp) / (xpp - xp)
-    let b = yp - m * xp
-
-    let f1(x) = m * x + b
-
-    let xbar = 1.8
-    let fxbar = f(l * xpp + (1 - l) * xp)
-
-    plot.plot(
-      size: (8, 6),
-      axis-style: "scientific",
-      x-tick-step: none,
-      y-tick-step: none,
-      x-ticks: ((1.457, $x'$), (1.8, $macron(x)$), (3.655, $x''$)),
-      x-label: [$$],
-      y-label: [$$],
-      x-min: -0,
-      x-max: 4,
-      y-min: -75,
-      y-max: 75,
-      axes: (
-        stroke: none,
-        tick: (stroke: none),
-      ),
-      {
-        plot.add-anchor("0xp", (xp, 0))
-        plot.add-anchor("0xpp", (xpp, 0))
-        plot.add-anchor("fxp", (xp, f(xp)))
-        plot.add-anchor("fxpp", (xpp, f(xpp)))
-
-        plot.add(
-          domain: (0, 4),
-          f,
-          style: (stroke: (paint: black)),
-        )
-        plot.add(
-          domain: (xp, xpp),
-          f1,
-          style: (stroke: (paint: red)),
-        )
-
-        plot.add(
-          ((xp, f(xp)),),
-          mark: "o",
-          mark-size: 0.15,
-          mark-style: (fill: black, stroke: 2pt),
-        )
-        plot.add-vline(xp, max: f(xp), style: (stroke: (paint: black, dash: "dashed")))
-
-        plot.add(
-          ((xpp, f(xpp)),),
-          mark: "o",
-          mark-size: 0.15,
-          mark-style: (fill: black, stroke: 2pt),
-        )
-        plot.add-vline(xpp, max: f(xpp), style: (stroke: (paint: black, dash: "dashed")))
-
-        plot.add(
-          ((xbar, f(xbar)),),
-          mark: "o",
-          mark-size: 0.15,
-          mark-style: (fill: black, stroke: 2pt),
-        )
-
-        // plot.add(
-        //   ((xbar ,fxbar),),
-        //   mark: "o",
-        //   mark-size: 0.15,
-        //   mark-style: (fill: black, stroke: 2pt)
-        // )
-
-        plot.add-vline(1.8, max: f(1.8), style: (stroke: (paint: black, dash: "dashed")))
-      },
-      name: "plot",
-    )
-
-    // cetz.decorations.flat-brace("plot.0xp", "plot.fxp", amplitude: -0.5, name: "f", style: (stroke: (paint: red)))
-    // cetz.decorations.flat-brace("plot.oo", "plot.fx", amplitude: 0.5, name: "l")
-
-    // cetz.draw.content(
-    //   "f",
-    //   text(size: 7pt)[$f(lambda x_1 + (1 - lambda) x_2)$],
-    //   anchor: "west",
-    //   dx: 1em,
-    //   padding: 1em,
-    // )
-    // cetz.draw.content(
-    //   "f",
-    //   text(size: 7pt)[$lambda f(x_1) + (1 - lambda) f(x_2)$],
-    //   anchor: "east",
-    //   padding: 1em,
-    // )
-  }))
+  #let f(x) = (x + 2) * (x + 1) * (x - 1) * (x - 2) * (x - 3) * (x - 4)
+  #let xp = 1.457
+  #let xpp = 3.655
+  #let m = (f(xpp) - f(xp)) / (xpp - xp)
+  #let b = f(xp) - m * xp
+  #let f1(x) = m * x + b
+  #let xbar = 1.8
+  #let xs = lq.linspace(0, 4, num: 200)
+  #let xs-sec = lq.linspace(xp, xpp, num: 200)
+  #lq.diagram(
+    width: 6cm,
+    height: 4.5cm,
+    xlim: (0, 4),
+    ylim: (-75, 75),
+    xaxis: (ticks: ((1.457, $x'$), (1.8, $macron(x)$), (3.655, $x''$))),
+    yaxis: (ticks: none),
+    lq.plot(xs, f, mark: none, stroke: black),
+    lq.plot(xs-sec, f1, mark: none, stroke: red),
+    lq.vlines(xp, max: f(xp), stroke: (paint: black, dash: "dashed")),
+    lq.vlines(xpp, max: f(xpp), stroke: (paint: black, dash: "dashed")),
+    lq.vlines(1.8, max: f(1.8), stroke: (paint: black, dash: "dashed")),
+    lq.plot((xp, xpp, xbar), (f(xp), f(xpp), f(xbar)), mark: "o", stroke: none, mark-color: black),
+  )
 ]
 
 Minimize a concave function
@@ -715,180 +576,60 @@ For any LP we have both
   columns: (auto, auto, auto),
   align: center,
   [
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      let f(x) = x * x
-
-      let l_root = (0.1 - calc.sqrt(0.1 * 0.1 + 4)) / 2
-      let r_root = (0.1 + calc.sqrt(0.1 * 0.1 + 4)) / 2
-
-      plot.plot(
-        size: (5, 5),
-        axis-style: "scientific",
-        x-tick-step: none,
-        y-tick-step: none,
-        x-label: [$$],
-        y-label: [$$],
-        x-min: -2,
-        x-max: 2,
-        y-min: -0.1,
-        y-max: 2,
-        axes: (
-          stroke: none,
-          tick: (stroke: none),
-        ),
-        {
-          plot.add(
-            domain: (-2, 2),
-            f,
-            style: (stroke: (paint: black)),
-          )
-
-          plot.add(
-            domain: (-2, 2),
-            x => 0.1 * x + 1,
-            style: (stroke: (paint: black)),
-          )
-
-          plot.add(
-            domain: (l_root, r_root),
-            x => 0.1 * x + 1,
-            style: (stroke: (paint: red, thickness: 2pt)),
-          )
-
-          plot.add(
-            ((l_root, f(l_root)),),
-            mark: "o",
-            mark-size: 0.15,
-            mark-style: (fill: black, stroke: 2pt),
-          )
-          plot.add(
-            ((r_root, f(r_root)),),
-            mark: "o",
-            mark-size: 0.15,
-            mark-style: (fill: black, stroke: 2pt),
-          )
-        },
-        name: "plot",
-      )
-    }))
+    #let f(x) = x * x
+    #let l_root = (0.1 - calc.sqrt(0.1 * 0.1 + 4)) / 2
+    #let r_root = (0.1 + calc.sqrt(0.1 * 0.1 + 4)) / 2
+    #let xs = lq.linspace(-2, 2, num: 200)
+    #let xs-seg = lq.linspace(l_root, r_root, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (-2, 2),
+      ylim: (-0.1, 2),
+      xaxis: (ticks: none),
+      yaxis: (ticks: none),
+      lq.plot(xs, f, mark: none, stroke: black),
+      lq.plot(xs, x => 0.1 * x + 1, mark: none, stroke: black),
+      lq.plot(xs-seg, x => 0.1 * x + 1, mark: none, stroke: (paint: red, thickness: 2pt)),
+      lq.plot((l_root, r_root), (f(l_root), f(r_root)), mark: "o", stroke: none, mark-color: black),
+    )
   ],
   [
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      let f(x) = -x * x
-
-      let l_root = (0.1 - calc.sqrt(0.1 * 0.1 + 4)) / 2
-      let r_root = (0.1 + calc.sqrt(0.1 * 0.1 + 4)) / 2
-
-      plot.plot(
-        size: (5, 5),
-        axis-style: "scientific",
-        x-tick-step: none,
-        y-tick-step: none,
-        x-label: [$$],
-        y-label: [$$],
-        x-min: -2,
-        x-max: 2,
-        y-min: -2,
-        y-max: 0.1,
-        axes: (
-          stroke: none,
-          tick: (stroke: none),
-        ),
-        {
-          plot.add(
-            domain: (-2, 2),
-            x => f(x),
-            style: (stroke: (paint: black)),
-          )
-          plot.add(
-            domain: (-2, 2),
-            x => -0.1 * x - 1,
-            style: (stroke: (paint: black)),
-          )
-
-          plot.add(
-            domain: (l_root, r_root),
-            x => -0.1 * x - 1,
-            style: (stroke: (paint: red, thickness: 2pt)),
-          )
-
-          plot.add(
-            ((l_root, f(l_root)),),
-            mark: "o",
-            mark-size: 0.15,
-            mark-style: (fill: black, stroke: 2pt),
-          )
-          plot.add(
-            ((r_root, f(r_root)),),
-            mark: "o",
-            mark-size: 0.15,
-            mark-style: (fill: black, stroke: 2pt),
-          )
-        },
-        name: "plot",
-      )
-    }))
+    #let f(x) = -x * x
+    #let l_root = (0.1 - calc.sqrt(0.1 * 0.1 + 4)) / 2
+    #let r_root = (0.1 + calc.sqrt(0.1 * 0.1 + 4)) / 2
+    #let xs = lq.linspace(-2, 2, num: 200)
+    #let xs-seg = lq.linspace(l_root, r_root, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (-2, 2),
+      ylim: (-2, 0.1),
+      xaxis: (ticks: none),
+      yaxis: (ticks: none),
+      lq.plot(xs, f, mark: none, stroke: black),
+      lq.plot(xs, x => -0.1 * x - 1, mark: none, stroke: black),
+      lq.plot(xs-seg, x => -0.1 * x - 1, mark: none, stroke: (paint: red, thickness: 2pt)),
+      lq.plot((l_root, r_root), (f(l_root), f(r_root)), mark: "o", stroke: none, mark-color: black),
+    )
   ],
   [
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      let f(x) = 0.1 * x - 1
-
-      let l_root = (0.1 - calc.sqrt(0.1 * 0.1 + 4)) / 2
-      let r_root = (0.1 + calc.sqrt(0.1 * 0.1 + 4)) / 2
-
-      plot.plot(
-        size: (5, 5),
-        axis-style: "scientific",
-        x-tick-step: none,
-        y-tick-step: none,
-        x-label: [$$],
-        y-label: [$$],
-        x-min: -2,
-        x-max: 2,
-        y-min: -2,
-        y-max: 0.1,
-        axes: (
-          stroke: none,
-          tick: (stroke: none),
-        ),
-        {
-          plot.add(
-            domain: (-2, 2),
-            f,
-            style: (stroke: (paint: black)),
-          )
-
-          plot.add(
-            domain: (l_root, r_root),
-            x => 0.1 * x - 1,
-            style: (stroke: (paint: red, thickness: 2pt)),
-          )
-
-          plot.add(
-            ((l_root, f(l_root)),),
-            mark: "o",
-            mark-size: 0.15,
-            mark-style: (fill: black, stroke: 2pt),
-          )
-          plot.add(
-            ((r_root, f(r_root)),),
-            mark: "o",
-            mark-size: 0.15,
-            mark-style: (fill: black, stroke: 2pt),
-          )
-        },
-        name: "plot",
-      )
-    }))
+    #let f(x) = 0.1 * x - 1
+    #let l_root = (0.1 - calc.sqrt(0.1 * 0.1 + 4)) / 2
+    #let r_root = (0.1 + calc.sqrt(0.1 * 0.1 + 4)) / 2
+    #let xs = lq.linspace(-2, 2, num: 200)
+    #let xs-seg = lq.linspace(l_root, r_root, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (-2, 2),
+      ylim: (-2, 0.1),
+      xaxis: (ticks: none),
+      yaxis: (ticks: none),
+      lq.plot(xs, f, mark: none, stroke: black),
+      lq.plot(xs-seg, x => 0.1 * x - 1, mark: none, stroke: (paint: red, thickness: 2pt)),
+      lq.plot((l_root, r_root), (f(l_root), f(r_root)), mark: "o", stroke: none, mark-color: black),
+    )
   ],
 )
 
@@ -1045,62 +786,26 @@ First order condition (FOC) $f'(x) = 0$
   $
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      let D = 1000
-      let K = 50
-      let h = 2
-
-      let TC(q) = (K * D) / q + (h * q) / 2
-      let H(q) = (h * q) / 2
-      let O(q) = (K * D) / q
-
-      plot.plot(
-        size: (12, 8),
-        axis-style: "scientific",
-        x-tick-step: 100,
-        y-tick-step: 100,
-        // x-ticks: ((-0.75, $x_1$), (1.457, $x_2$), (3.655, $x^*$),),
-        x-label: [Order Quantity],
-        y-label: [Cost],
-        x-min: 0,
-        x-max: 500,
-        y-min: 0,
-        y-max: 1000,
-        axes: (
-          stroke: none,
-          tick: (stroke: none),
-        ),
-        legend: "inner-north-east",
-        legend-style: (
-          padding: 1em,
-          offset: (x: -1em, y: -1em),
-        ),
-        {
-          plot.add(
-            domain: (1, 500),
-            TC,
-            style: (stroke: (paint: red)),
-            label: "Total Cost",
-          )
-          plot.add(
-            domain: (1, 500),
-            H,
-            style: (stroke: (paint: blue)),
-            label: "Holding Cost",
-          )
-          plot.add(
-            domain: (1, 500),
-            O,
-            style: (stroke: (paint: green)),
-            label: "Ordering Cost",
-          )
-        },
-        name: "plot",
-      )
-    }))
+    #let D = 1000
+    #let K = 50
+    #let h = 2
+    #let TC(q) = (K * D) / q + (h * q) / 2
+    #let H(q) = (h * q) / 2
+    #let O(q) = (K * D) / q
+    #let qs = lq.linspace(1, 500, num: 200)
+    #lq.diagram(
+      width: 8cm,
+      height: 4cm,
+      xlim: (0, 500),
+      ylim: (0, 1000),
+      xlabel: [Order Quantity],
+      ylabel: [Cost],
+      xaxis: (tick-args: (tick-distance: 100)),
+      yaxis: (tick-args: (tick-distance: 100)),
+      lq.plot(qs, TC, mark: none, stroke: red, label: [Total Cost]),
+      lq.plot(qs, H, mark: none, stroke: blue, label: [Holding Cost]),
+      lq.plot(qs, O, mark: none, stroke: green, label: [Ordering Cost]),
+    )
   ]
 
   For:

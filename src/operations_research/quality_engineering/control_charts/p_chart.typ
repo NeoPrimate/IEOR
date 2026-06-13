@@ -27,41 +27,33 @@ $
 - $n_i$: sample size for sample $i$
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
+  #let k = 25
+  #let rng = gen-rng(42)
 
-    let k = 25
-    let rng = gen-rng(42)
+  // Varying sample sizes per subgroup
+  #let (_, n) = integers(rng, low: 40, high: 80, size: k)
+  #let (_, d) = integers(rng, low: 0, high: 10, size: k)
 
-    // Varying sample sizes per subgroup
-    let (_, n) = integers(rng, low: 40, high: 80, size: k)
-    let (_, d) = integers(rng, low: 0, high: 10, size: k)
+  #let p = d.zip(n).map(((dn) => dn.at(0) / dn.at(1)))
+  #let total_d = d.sum()
+  #let total_n = n.sum()
+  #let p_bar = total_d / total_n
 
-    let p = d.zip(n).map(((dn) => dn.at(0) / dn.at(1)))
-    let total_d = d.sum()
-    let total_n = n.sum()
-    let p_bar = total_d / total_n
+  #let ucl = n.map(ni => p_bar + 3 * calc.sqrt(p_bar * (1 - p_bar) / ni))
+  #let lcl = n.map(ni => calc.max(0, p_bar - 3 * calc.sqrt(p_bar * (1 - p_bar) / ni)))
 
-    let ucl = n.map(ni => p_bar + 3 * calc.sqrt(p_bar * (1 - p_bar) / ni))
-    let lcl = n.map(ni => calc.max(0, p_bar - 3 * calc.sqrt(p_bar * (1 - p_bar) / ni)))
+  #let samples = range(1, k)
+  #let m = samples.len()
 
-    let series = range(1, k).zip(p)
-    let ucl_series = range(1, k).zip(ucl)
-    let lcl_series = range(1, k).zip(lcl)
-
-    plot.plot(
-      size: (8, 4),
-      axis-style: "school-book",
-      x-label: [Sample],
-      y-label: [Proportion\ Defective],
-      x-tick-step: 5,
-      y-tick-step: 0.05,
-      legend: "north-east",
-      {
-        plot.add(series, style: (stroke: blue), mark: "o")
-        plot.add(ucl_series, style: (stroke: red), label: $"UCL"$)
-        plot.add-hline(p_bar, label: $macron(p)$, style: (stroke: green))
-        plot.add(lcl_series, style: (stroke: red), label: $"LCL"$)
-      })
-  }))
+  #lq.diagram(
+    width: 8cm,
+    height: 3.5cm,
+    xlabel: [Sample],
+    ylabel: [Proportion\ Defective],
+    xaxis: (tick-args: (tick-distance: 5)),
+    lq.plot(samples, p.slice(0, m), stroke: blue, mark: "o"),
+    lq.plot(samples, ucl.slice(0, m), mark: none, stroke: red, label: $"UCL"$),
+    lq.hlines(p_bar, label: $macron(p)$, stroke: green),
+    lq.plot(samples, lcl.slice(0, m), mark: none, stroke: red, label: $"LCL"$),
+  )
 ]

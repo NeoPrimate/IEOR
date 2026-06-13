@@ -51,119 +51,22 @@ For constrained single variate:
   $
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      let f(x) = x * x + 2 * x - 3
-
-      let p1 = (-1, 0)
-      let p2 = (0, 0)
-
-      let opt_constrained = (0, -3)
-      let opt_unconstrained = (-1, -4)
-
-      plot.plot(
-        size: (7, 7),
-        axis-style: "scientific",
-        x-tick-step: 2,
-        y-tick-step: 2,
-        x-grid: true,
-        y-grid: true,
-        x-label: [$$],
-        y-label: [$$],
-        x-min: -5,
-        x-max: 4,
-        y-min: -5,
-        y-max: 4,
-        axes: (
-          stroke: none,
-          tick: (stroke: none),
-        ),
-        {
-          plot.add(
-            domain: (-4, 4),
-            f,
-            style: (stroke: red),
-          )
-
-          plot.add-hline(0, style: (stroke: (thickness: 1pt, paint: black)))
-          plot.add-vline(0, style: (stroke: (thickness: 1pt, paint: black)))
-
-          plot.add-vline(-1, style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")))
-
-          plot.add(
-            (p1,),
-            mark: "o",
-            mark-size: 0.15,
-            mark-style: (fill: black, stroke: 2pt),
-          )
-          plot.annotate({
-            content(
-              p1,
-              text(size: 10pt)[$x^*$],
-              anchor: "north-east",
-              padding: 0.25,
-            )
-          })
-
-          plot.add(
-            (p2,),
-            mark: "o",
-            mark-size: 0.15,
-            mark-style: (fill: black, stroke: 2pt),
-          )
-          plot.annotate({
-            content(
-              p2,
-              text(size: 10pt)[closest],
-              anchor: "north-west",
-              padding: 0.25,
-            )
-          })
-
-          plot.add(
-            (opt_unconstrained,),
-            mark: "o",
-            mark-size: 0.15,
-            mark-style: (fill: black, stroke: 2pt),
-          )
-
-          plot.annotate({
-            content(
-              opt_unconstrained,
-              text(size: 10pt)[unconstrained\ optimal],
-              anchor: "east",
-              padding: 0.5,
-            )
-          })
-
-          plot.add(
-            (opt_constrained,),
-            mark: "o",
-            mark-size: 0.15,
-            mark-style: (fill: black, stroke: 2pt),
-          )
-
-          plot.annotate({
-            content(
-              opt_constrained,
-              text(size: 10pt)[optimal],
-              anchor: "west",
-              padding: 0.5,
-            )
-          })
-
-          plot.add-fill-between(
-            x => 5,
-            domain: (0, 4),
-            x => -5,
-            style: (fill: rgb(0, 0, 255, 10), stroke: none),
-          )
-        },
-        name: "plot",
-      )
-    }))
+    #let f(x) = x * x + 2 * x - 3
+    #let xs = lq.linspace(0, 4, num: 200)
+    #lq.diagram(
+      width: 6cm, height: 4cm,
+      xlim: (-5, 4), ylim: (-5, 4),
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 2)),
+      yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 2)),
+      lq.fill-between(xs, xs.map(x => 5), y2: xs.map(x => -5), fill: rgb(0, 0, 255, 10)),
+      lq.plot(lq.linspace(-4, 4, num: 200), x => f(x), mark: none, stroke: red),
+      lq.vlines(-1, stroke: (paint: black, thickness: 1pt, dash: "dashed")),
+      lq.plot((-1, 0, -1, 0), (0, 0, -4, -3), mark: "o", stroke: none, mark-color: black, mark-size: 5pt),
+      lq.place(-1, 0)[#text(size: 10pt)[$x^*$]],
+      lq.place(0, 0)[#text(size: 10pt)[closest]],
+      lq.place(-1, -4)[#text(size: 10pt)[unconstrained\ optimal]],
+      lq.place(0, -3)[#text(size: 10pt)[optimal]],
+    )
 
   ]
 

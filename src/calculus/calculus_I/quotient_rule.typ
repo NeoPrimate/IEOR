@@ -20,33 +20,26 @@ $
   $
 ]
 
-#let tangent(x) = (
-  calc.sin(x) / calc.cos(x)
-)
+#let tangent(x) = calc.sin(x) / calc.cos(x)
 
-#let secant(x) = (
-  1 / calc.pow(calc.cos(x), 2)
-)
+#let cotangent(x) = calc.cos(x) / calc.sin(x)
 
-#let cosecant(x) = (
-  1 / calc.sin(x)
-)
+#let secant(x) = 1 / calc.cos(x)
 
-#let cotangent(x) = (
-  calc.cos(x) / calc.sin(x)
-)
+#let cosecant(x) = 1 / calc.sin(x)
 
-#let secant(x) = (
-  1 / calc.cos(x)
-)
+#let secant_sq(x) = 1 / calc.pow(calc.cos(x), 2)
 
-#let secant_prime(x) = (
-  tangent(x) * secant(x)
-)
+#let cosecant_sq(x) = 1 / calc.pow(calc.sin(x), 2)
 
-#let cosecant_prime(x) = (
-  cotangent(x) * cosecant(x)
-)
+#let secant_prime(x) = secant(x) * tangent(x)
+
+#let cosecant_prime(x) = -cosecant(x) * cotangent(x)
+
+#let drop-asymptotes(f, lim: 15) = x => {
+  let y = f(x)
+  if calc.abs(y) > lim { float.nan } else { y }
+}
 
 === *$tan(x)$*
 
@@ -59,41 +52,23 @@ $
 $
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-
-    plot.plot(
-      size: (8, 8),
-      axis-style: "school-book",
-      x-tick-step: 1,
-      x-min: -5.,
-      x-max: 5.,
-      y-tick-step: 1,
-      y-min: -5,
-      y-max: 5,
-      legend: "inner-south-east",
-      legend-style: (
-        padding: 5pt,
-        item: (
-          spacing: 0.25,
-        ),
-      ),
-      {
-        plot.add(
-          calc.tan,
-          domain: (-5, 5),
-          style: (stroke: blue),
-          label: $tan(x)$,
-        )
-        plot.add(
-          secant,
-          domain: (-5, 5),
-          style: (stroke: red),
-          label: $sec^2(x)$,
-        )
-      },
-    )
-  }))
+  #let xs = lq.linspace(-5, 5, num: 400)
+  #lq.diagram(
+    width: 5cm,
+    height: 5cm,
+    xlim: (-5, 5),
+    ylim: (-5, 5),
+    xaxis: (
+      position: 0,
+      tip: tiptoe.triangle,
+      filter: (value, distance) => value != 0,
+      subticks: none,
+      tick-args: (tick-distance: 1),
+    ),
+    yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+    lq.plot(xs, drop-asymptotes(tangent), mark: none, stroke: blue, label: $tan(x)$),
+    lq.plot(xs, drop-asymptotes(secant_sq), mark: none, stroke: red, label: $sec^2(x)$),
+  )
 ]
 
 === *$cot(x)$*
@@ -107,41 +82,23 @@ $
 $
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-
-    plot.plot(
-      size: (8, 8),
-      axis-style: "school-book",
-      x-tick-step: 1,
-      x-min: -5.,
-      x-max: 5.,
-      y-tick-step: 1,
-      y-min: -5,
-      y-max: 5,
-      legend: "inner-south-east",
-      legend-style: (
-        padding: 5pt,
-        item: (
-          spacing: 0.25,
-        ),
-      ),
-      {
-        plot.add(
-          cotangent,
-          domain: (-5, 5),
-          style: (stroke: blue),
-          label: $cot(x)$,
-        )
-        plot.add(
-          secant,
-          domain: (-5, 5),
-          style: (stroke: red),
-          label: $csc^2(x)$,
-        )
-      },
-    )
-  }))
+  #let xs = lq.linspace(-5, 5, num: 400)
+  #lq.diagram(
+    width: 5cm,
+    height: 5cm,
+    xlim: (-5, 5),
+    ylim: (-5, 5),
+    xaxis: (
+      position: 0,
+      tip: tiptoe.triangle,
+      filter: (value, distance) => value != 0,
+      subticks: none,
+      tick-args: (tick-distance: 1),
+    ),
+    yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+    lq.plot(xs, drop-asymptotes(cotangent), mark: none, stroke: blue, label: $cot(x)$),
+    lq.plot(xs, drop-asymptotes(x => -cosecant_sq(x)), mark: none, stroke: red, label: $-csc^2(x)$),
+  )
 ]
 
 === *$sec(x)$*
@@ -156,41 +113,23 @@ $
 $
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-
-    plot.plot(
-      size: (8, 8),
-      axis-style: "school-book",
-      x-tick-step: 1,
-      x-min: -5.,
-      x-max: 5.,
-      y-tick-step: 1,
-      y-min: -5,
-      y-max: 5,
-      legend: "inner-south-east",
-      legend-style: (
-        padding: 10pt,
-        item: (
-          spacing: 0.30,
-        ),
-      ),
-      {
-        plot.add(
-          secant,
-          domain: (-5, 5),
-          style: (stroke: blue),
-          label: $sec(x)$,
-        )
-        plot.add(
-          secant_prime,
-          domain: (-5, 5),
-          style: (stroke: red),
-          label: $sin(x) / (cos^2(x))$,
-        )
-      },
-    )
-  }))
+  #let xs = lq.linspace(-5, 5, num: 400)
+  #lq.diagram(
+    width: 5cm,
+    height: 5cm,
+    xlim: (-5, 5),
+    ylim: (-5, 5),
+    xaxis: (
+      position: 0,
+      tip: tiptoe.triangle,
+      filter: (value, distance) => value != 0,
+      subticks: none,
+      tick-args: (tick-distance: 1),
+    ),
+    yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+    lq.plot(xs, drop-asymptotes(secant), mark: none, stroke: blue, label: $sec(x)$),
+    lq.plot(xs, drop-asymptotes(secant_prime), mark: none, stroke: red, label: $sin(x) / (cos^2(x))$),
+  )
 ]
 
 === *$csc(x)$*
@@ -205,39 +144,21 @@ $
 $
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-
-    plot.plot(
-      size: (8, 8),
-      axis-style: "school-book",
-      x-tick-step: 1,
-      x-min: -5.,
-      x-max: 5.,
-      y-tick-step: 1,
-      y-min: -5,
-      y-max: 5,
-      legend: "inner-south-east",
-      legend-style: (
-        padding: 10pt,
-        item: (
-          spacing: 0.30,
-        ),
-      ),
-      {
-        plot.add(
-          cosecant,
-          domain: (-5, 5),
-          style: (stroke: blue),
-          label: $csc(x)$,
-        )
-        plot.add(
-          cosecant_prime,
-          domain: (-5, 5),
-          style: (stroke: red),
-          label: $(-cos(x)) / (sin^2(x))$,
-        )
-      },
-    )
-  }))
+  #let xs = lq.linspace(-5, 5, num: 400)
+  #lq.diagram(
+    width: 5cm,
+    height: 5cm,
+    xlim: (-5, 5),
+    ylim: (-5, 5),
+    xaxis: (
+      position: 0,
+      tip: tiptoe.triangle,
+      filter: (value, distance) => value != 0,
+      subticks: none,
+      tick-args: (tick-distance: 1),
+    ),
+    yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+    lq.plot(xs, drop-asymptotes(cosecant), mark: none, stroke: blue, label: $csc(x)$),
+    lq.plot(xs, drop-asymptotes(cosecant_prime), mark: none, stroke: red, label: $(-cos(x)) / (sin^2(x))$),
+  )
 ]

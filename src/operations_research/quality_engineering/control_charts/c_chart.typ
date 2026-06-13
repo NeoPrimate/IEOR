@@ -23,42 +23,28 @@ Where:
 #example[
 
   #align(center)[
-    #frame(cetz.canvas({
-      import draw: *
+    #let k = 25
+    #let rng = gen-rng(42)
+    #let (_, c) = integers(rng, low: 0, high: 10, size: k)
 
-      let k = 25
+    #let samples = range(1, k)
+    #let cs = c.slice(0, samples.len())
 
-      let rng = gen-rng(42)
+    #let c_bar = c.sum() / k
+    #let ucl = c_bar + 3 * calc.sqrt(c_bar)
+    #let lcl = calc.max(0, c_bar - 3 * calc.sqrt(c_bar))
 
-      let (_, c) = integers(rng, low: 0, high: 10, size: k)
-
-      let series = range(1, k).zip(c)
-
-      let c_bar = c.sum() / k
-      let ucl = c_bar + 3 * calc.sqrt(c_bar)
-      let lcl = calc.max(0, c_bar - 3 * calc.sqrt(c_bar))
-
-      plot.plot(
-        size: (8, 4),
-        axis-style: "school-book",
-        x-label: [Sample],
-        y-label: [Number of\ Defects],
-        x-tick-step: 5,
-        y-tick-step: 3,
-        legend: "north-east",
-        {
-          plot.add(
-            series,
-            style: (stroke: blue),
-            mark: "o",
-          )
-
-          plot.add-hline(ucl, label: $"UCL"$, style: (stroke: red))
-          plot.add-hline(c_bar, label: $macron(c)$, style: (stroke: green))
-          plot.add-hline(lcl, label: $"LCL"$, style: (stroke: red))
-        },
-      )
-    }))
+    #lq.diagram(
+      width: 8cm,
+      height: 3.5cm,
+      xlabel: [Sample],
+      ylabel: [Number of\ Defects],
+      xaxis: (tick-args: (tick-distance: 5)),
+      lq.plot(samples, cs, stroke: blue, mark: "o"),
+      lq.hlines(ucl, label: $"UCL"$, stroke: red),
+      lq.hlines(c_bar, label: $macron(c)$, stroke: green),
+      lq.hlines(lcl, label: $"LCL"$, stroke: red),
+    )
   ]
 
   This C-chart displays the number of defects identified in each of 25 inspected units, where each unit is of fixed size. The center line represents the average number of defects across all samples, calculated as:

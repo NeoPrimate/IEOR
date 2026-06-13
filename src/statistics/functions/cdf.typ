@@ -10,62 +10,20 @@ F(x) = P(X ≤ x)
 $
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-
-    let mu = 0
-    let sigma = 1
-
-    set-style(
-      axes: (
-        x: (stroke: 0pt), 
-        y: (stroke: 0pt),
-        shared-zero: false
-      )
-    )
-    
-    plot.plot(
-      size: (9, 3),
-      axis-style: "school-book",
-      x-tick-step: none,
-      y-tick-step: none,
-      x-label: none,
-      y-label: none, 
-      x-min: -4., 
-      x-max: 4.,
-      y-min: 0., 
-      y-max: 1,
-      legend: "inner-north-west",
-      {
-        plot.add(
-          x => gaussian_pdf(x, mu, sigma), 
-          domain: (-5, 5), 
-          style: (stroke: black),
-        )
-
-        plot.add(
-          x => gaussian_cdf(x, mu, sigma), 
-          domain: (-5, 5), 
-          style: (stroke: black),
-        )
-
-        plot.add-fill-between(
-          domain: (-4, 1),
-          x => gaussian_cdf(x, mu, sigma), 
-          x1 => 0,
-          style: (fill: red.lighten(75%), stroke: none),
-          label: none
-        )
-
-        plot.add-fill-between(
-          domain: (-4, 1),
-          x => gaussian_pdf(x, mu, sigma), 
-          x1 => 0,
-          style: (fill: red.lighten(75%), stroke: none),
-          label: none
-        )
-      })
-  }))
+  #let xs = lq.linspace(-5, 5, num: 200)
+  #let xs_fill = lq.linspace(-4, 1, num: 200)
+  #lq.diagram(
+    width: 6cm,
+    height: 3cm,
+    xlim: (-4, 4),
+    ylim: (0, 1),
+    xaxis: (position: 0, tip: tiptoe.triangle, ticks: none),
+    yaxis: (position: 0, tip: tiptoe.triangle, ticks: none),
+    lq.fill-between(xs_fill, xs_fill.map(x => norm.cdf(x, mean: 0, std_dev: 1)), y2: xs_fill.map(x => 0), fill: red.lighten(75%), stroke: none),
+    lq.fill-between(xs_fill, xs_fill.map(x => norm.pdf(x, mean: 0, std_dev: 1)), y2: xs_fill.map(x => 0), fill: red.lighten(75%), stroke: none),
+    lq.plot(xs, x => norm.pdf(x, mean: 0, std_dev: 1), mark: none, stroke: black),
+    lq.plot(xs, x => norm.cdf(x, mean: 0, std_dev: 1), mark: none, stroke: black),
+  )
 ]
 
 1. Categorical

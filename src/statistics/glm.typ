@@ -102,39 +102,17 @@ Where $g(dot)$ is called the link function
   ]
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (5, 5),
-        axis-style: "school-book",
-        x-tick-step: 1,
-        y-tick-step: 0.5,
-        x-grid: true,
-        y-grid: true,
-        x-label: [$x$],
-        y-label: [$y$],
-        x-min: 0,
-        x-max: 6.1,
-        y-min: 0,
-        y-max: 1.1,
-        axes: (
-          stroke: none,
-          tick: (stroke: none),
-        ),
-        {
-          plot.add(
-            data,
-            mark: "o",
-            mark-size: 0.15,
-            mark-style: (fill: black, stroke: 2pt),
-            style: (stroke: none),
-          )
-        },
-        name: "plot",
-      )
-    }))
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (0, 6.1),
+      ylim: (0, 1.1),
+      xlabel: [$x$],
+      ylabel: [$y$],
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+      yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 0.5)),
+      lq.plot(xs, ys, mark: "o", stroke: none, mark-color: black),
+    )
   ]
 
   Fit linear model
@@ -149,45 +127,19 @@ Where $g(dot)$ is called the link function
   $
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (5, 5),
-        axis-style: "school-book",
-        x-tick-step: 1,
-        y-tick-step: 0.5,
-        x-grid: true,
-        y-grid: true,
-        x-label: [$x$],
-        y-label: [$y$],
-        x-min: 0,
-        x-max: 6.1,
-        y-min: 0,
-        y-max: 1.1,
-        axes: (
-          stroke: none,
-          tick: (stroke: none),
-        ),
-        {
-          plot.add(
-            data,
-            mark: "o",
-            mark-size: 0.15,
-            mark-style: (fill: black, stroke: 2pt),
-            style: (stroke: none),
-          )
-
-          plot.add(
-            domain: (0, 7),
-            f,
-            style: (stroke: (dash: none, paint: red, thickness: 1pt)),
-          )
-        },
-        name: "plot",
-      )
-    }))
+    #let curve_xs = lq.linspace(0, 7, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (0, 6.1),
+      ylim: (0, 1.1),
+      xlabel: [$x$],
+      ylabel: [$y$],
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+      yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 0.5)),
+      lq.plot(curve_xs, x => f(x), mark: none, stroke: (paint: red, thickness: 1pt)),
+      lq.plot(xs, ys, mark: "o", stroke: none, mark-color: black),
+    )
   ]
 
   Logit link function:
@@ -209,45 +161,19 @@ Where $g(dot)$ is called the link function
   $
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (5, 5),
-        axis-style: "school-book",
-        x-tick-step: 1,
-        y-tick-step: 0.5,
-        x-grid: true,
-        y-grid: true,
-        x-label: [$x$],
-        y-label: [$y$],
-        x-min: 0,
-        x-max: 6.1,
-        y-min: 0,
-        y-max: 1.1,
-        axes: (
-          stroke: none,
-          tick: (stroke: none),
-        ),
-        {
-          plot.add(
-            data,
-            mark: "o",
-            mark-size: 0.15,
-            mark-style: (fill: black, stroke: 2pt),
-            style: (stroke: none),
-          )
-
-          plot.add(
-            domain: (0, 7),
-            probit,
-            style: (stroke: (dash: none, paint: red, thickness: 1pt)),
-          )
-        },
-        name: "plot",
-      )
-    }))
+    #let curve_xs = lq.linspace(0, 7, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (0, 6.1),
+      ylim: (0, 1.1),
+      xlabel: [$x$],
+      ylabel: [$y$],
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+      yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 0.5)),
+      lq.plot(curve_xs, x => probit(x), mark: none, stroke: (paint: red, thickness: 1pt)),
+      lq.plot(xs, ys, mark: "o", stroke: none, mark-color: black),
+    )
   ]
 
 ]

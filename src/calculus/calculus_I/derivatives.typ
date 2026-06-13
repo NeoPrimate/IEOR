@@ -24,237 +24,69 @@ General Pattern:
   - Fourth derivative: $f'''''(x) = 0$ (*zero*)
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
+    #let xs = lq.linspace(-1.5, 1.5, num: 200)
+    #let r3 = calc.sqrt(3) / 3
+    #lq.diagram(
+      width: 8cm,
+      height: 4cm,
+      xlim: (-1.5, 1.5),
+      ylim: (-0.5, 1.5),
+      xaxis: (tick-args: (tick-distance: 0.5)),
+      yaxis: (tick-args: (tick-distance: 1)),
+      lq.plot(xs, x => calc.pow(x, 4) - 2 * calc.pow(x, 2) + 1, mark: none, stroke: black),
+      lq.hlines(0, stroke: black),
+      lq.vlines(-1, max: 0, stroke: red),
+      lq.vlines(0, max: 1, stroke: red),
+      lq.vlines(1, max: 0, stroke: red),
+      lq.plot((-1, 1, 0), (0, 0, 1), mark: "o", stroke: none, mark-color: red),
+    )
 
-      plot.plot(
-        size: (10, 5),
-        axis-style: "scientific",
-        x-tick-step: 0.5,
-        y-tick-step: 1,
-        x-label: [],
-        y-label: [],
-        x-min: -1.5,
-        x-max: 1.5,
-        y-min: -0.5,
-        y-max: 1.5,
-        x-grid: "both",
-        y-grid: "both",
-        y-minor-tick-step: 0.5,
-        x-minor-tick-step: 0.5,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-        {
-          plot.add(
-            domain: (-2, 2),
-            x => calc.pow(x, 4) - 2 * calc.pow(x, 2) + 1,
-            style: (stroke: (thickness: 1pt, paint: black)),
-          )
-          plot.add-hline(0, style: (stroke: black))
-          plot.add(
-            ((-1, 0),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: 1pt),
-          )
-          plot.add(
-            ((1, 0),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: 1pt),
-          )
-          plot.add(
-            ((0, 1),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: 1pt),
-          )
+    #lq.diagram(
+      width: 8cm,
+      height: 4cm,
+      xlim: (-1.5, 1.5),
+      ylim: (-7.5, 7.5),
+      xaxis: (tick-args: (tick-distance: 0.5)),
+      yaxis: (tick-args: (tick-distance: 5)),
+      lq.plot(xs, x => 4 * calc.pow(x, 3) - 4 * x, mark: none, stroke: black),
+      lq.hlines(0, stroke: black),
+      lq.vlines(-1, min: 0, stroke: red),
+      lq.vlines(0, min: 0, stroke: red),
+      lq.vlines(1, min: 0, stroke: red),
+      lq.vlines(-r3, max: 8 * calc.sqrt(3) / 9, stroke: blue),
+      lq.vlines(r3, max: -8 * calc.sqrt(3) / 9, stroke: blue),
+      lq.plot((-1, 1, 0), (0, 0, 0), mark: "o", stroke: none, mark-color: red),
+      lq.plot((-r3, r3), (8 * calc.sqrt(3) / 9, -8 * calc.sqrt(3) / 9), mark: "o", stroke: none, mark-color: blue),
+    )
 
-          plot.add-vline(-1, max: 0, style: (stroke: red))
-          plot.add-vline(0, max: 1, style: (stroke: red))
-          plot.add-vline(1, max: 0, style: (stroke: red))
-        },
-        name: "plot",
-      )
-    }))
+    #lq.diagram(
+      width: 8cm,
+      height: 4cm,
+      xlim: (-1.5, 1.5),
+      ylim: (-7.5, 7.5),
+      xaxis: (tick-args: (tick-distance: 0.5)),
+      yaxis: (tick-args: (tick-distance: 5)),
+      lq.plot(xs, x => 12 * calc.pow(x, 2) - 4, mark: none, stroke: black),
+      lq.hlines(0, stroke: black),
+      lq.vlines(-r3, min: 0, stroke: blue),
+      lq.vlines(r3, min: 0, stroke: blue),
+      lq.vlines(0, max: -4, stroke: green),
+      lq.plot((0,), (-4,), mark: "o", stroke: none, mark-color: green),
+      lq.plot((-r3, r3), (0, 0), mark: "o", stroke: none, mark-color: blue),
+    )
 
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (10, 5),
-        axis-style: "scientific",
-        x-tick-step: 0.5,
-        y-tick-step: 5,
-        x-label: [],
-        y-label: [],
-        x-min: -1.5,
-        x-max: 1.5,
-        y-min: -7.5,
-        y-max: 7.5,
-        x-grid: "both",
-        y-grid: "both",
-        y-minor-tick-step: 5,
-        x-minor-tick-step: 5,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-        {
-          plot.add(
-            domain: (-2, 2),
-            x => 4 * calc.pow(x, 3) - 4 * x,
-            style: (stroke: (thickness: 1pt, paint: black)),
-          )
-          plot.add-hline(0, style: (stroke: black))
-          plot.add(
-            ((-1, 0),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: 1pt),
-          )
-          plot.add(
-            ((1, 0),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: 1pt),
-          )
-          plot.add(
-            ((0, 0),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: 1pt),
-          )
-          plot.add(
-            ((-calc.sqrt(3) / 3, 8 * calc.sqrt(3) / 9),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: blue, stroke: 1pt),
-          )
-          plot.add(
-            ((calc.sqrt(3) / 3, -8 * calc.sqrt(3) / 9),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: blue, stroke: 1pt),
-          )
-
-          plot.add-vline(-1, min: 0, style: (stroke: red))
-          plot.add-vline(0, min: 0, style: (stroke: red))
-          plot.add-vline(1, min: 0, style: (stroke: red))
-
-          plot.add-vline(-calc.sqrt(3) / 3, max: 8 * calc.sqrt(3) / 9, style: (stroke: blue))
-          plot.add-vline(calc.sqrt(3) / 3, max: -8 * calc.sqrt(3) / 9, style: (stroke: blue))
-        },
-        name: "plot",
-      )
-    }))
-
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (10, 5),
-        axis-style: "scientific",
-        x-tick-step: 0.5,
-        y-tick-step: 5,
-        x-label: [],
-        y-label: [],
-        x-min: -1.5,
-        x-max: 1.5,
-        y-min: -7.5,
-        y-max: 7.5,
-        x-grid: "both",
-        y-grid: "both",
-        y-minor-tick-step: 5,
-        x-minor-tick-step: 5,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-        {
-          plot.add(
-            domain: (-2, 2),
-            x => 12 * calc.pow(x, 2) - 4,
-            style: (stroke: (thickness: 1pt, paint: black)),
-          )
-          plot.add-hline(0, style: (stroke: black))
-
-          plot.add(
-            ((0, -4),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: green, stroke: 1pt),
-          )
-
-          plot.add(
-            ((-calc.sqrt(3) / 3, 0),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: blue, stroke: 1pt),
-          )
-          plot.add(
-            ((calc.sqrt(3) / 3, 0),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: blue, stroke: 1pt),
-          )
-
-          plot.add-vline(-calc.sqrt(3) / 3, min: 0, style: (stroke: blue))
-          plot.add-vline(calc.sqrt(3) / 3, min: 0, style: (stroke: blue))
-
-          plot.add-vline(0, max: -4, style: (stroke: green))
-        },
-        name: "plot",
-      )
-    }))
-
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (10, 5),
-        axis-style: "scientific",
-        x-tick-step: 0.5,
-        y-tick-step: 5,
-        x-label: [],
-        y-label: [],
-        x-min: -1.5,
-        x-max: 1.5,
-        y-min: -7.5,
-        y-max: 7.5,
-        x-grid: "both",
-        y-grid: "both",
-        y-minor-tick-step: 5,
-        x-minor-tick-step: 5,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-        {
-          plot.add(
-            domain: (-2, 2),
-            x => 24 * x,
-            style: (stroke: (thickness: 1pt, paint: black)),
-          )
-          plot.add-hline(0, style: (stroke: black))
-
-          plot.add(
-            ((0, 0),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: green, stroke: 1pt),
-          )
-          plot.add-vline(0, min: 0, style: (stroke: green))
-        },
-        name: "plot",
-      )
-    }))
+    #lq.diagram(
+      width: 8cm,
+      height: 4cm,
+      xlim: (-1.5, 1.5),
+      ylim: (-7.5, 7.5),
+      xaxis: (tick-args: (tick-distance: 0.5)),
+      yaxis: (tick-args: (tick-distance: 5)),
+      lq.plot(xs, x => 24 * x, mark: none, stroke: black),
+      lq.hlines(0, stroke: black),
+      lq.vlines(0, min: 0, stroke: green),
+      lq.plot((0,), (0,), mark: "o", stroke: none, mark-color: green),
+    )
   ]
 ]
 

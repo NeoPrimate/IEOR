@@ -8,6 +8,7 @@
 // #import "@preview/cetz:0.4.2"
 // #import "@preview/cetz-plot:0.1.3"
 #import "@preview/lilaq:0.6.0" as lq
+#import "@preview/tiptoe:0.4.0"
 #import "@preview/numty:0.1.0"
 #import "@preview/numty:0.1.0" as nt
 #import "@preview/oxifmt:1.0.0"
@@ -78,7 +79,19 @@
 // === Document-wide formatting ===
 #import "/lib/formatting.typ": formatting
 
-// === Distribution helpers ===
+// === Distributions ===
+// scipy.stats-style distributions (WASM/statrs-backed). Use these instead of
+// the hand-rolled helpers below — e.g. norm.pdf(x, mean:, std_dev:),
+// expon.pdf(x, rate:), poisson.pmf(k, lam).
+// NOTE: only collision-safe names are destructured here. `binom` would shadow
+// typst's math built-in binom(n, k), and `t` collides with the common local
+// time/variable name — access those as `tystats.binom.pmf(...)` /
+// `tystats.t.pdf(...)` via the namespace import.
+#import "@local/tystats:0.1.0"
+#import "@local/tystats:0.1.0": norm, expon, poisson
+
+// Legacy hand-rolled distribution helpers — being phased out in favour of
+// tystats above. Kept only for not-yet-migrated leaves.
 #import "/lib/utils/distributions/gaussian.typ": gaussian_cdf, gaussian_pdf
 #import "/lib/utils/distributions/exponential.typ": exponential_pdf
 #import "/lib/utils/distributions/poisson.typ": poisson_pmf

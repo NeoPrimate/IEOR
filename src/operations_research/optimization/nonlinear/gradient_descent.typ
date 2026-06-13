@@ -667,145 +667,42 @@ Where:
 
   #align(center)[
 
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (8, 8),
-        axis-style: "school-book",
-        x-tick-step: 1,
-        y-tick-step: 1,
-        x-label: [$x_1$],
-        y-label: [$x_2$],
-        x-min: -2.3,
-        x-max: 0.1,
-        y-min: -1.5,
-        y-max: 0.5,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-        {
-          let f_x1(x) = (2 * x + 2) / 2
-          let f_x2(x) = (2 * x) / 4
-
-          plot.add(
-            domain: (-3, 1),
-            f_x1,
-            style: (stroke: (thickness: 1pt, paint: purple)),
-          )
-          plot.annotate({
-            content((-1.3, 0.35), [$colorMath(2x_1 - 2x_2 + 2 = 0, #purple)$])
-          })
-
-          plot.add(
-            domain: (-3, 1),
-            f_x2,
-            style: (stroke: (thickness: 1pt, paint: blue)),
-          )
-
-          plot.annotate({
-            content((-0.75, -0.8), [$colorMath(-2x_1 + 4x_2 = 0, #blue)$])
-          })
-
-          plot.add(
-            ((0, 0),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: 1pt),
-          )
-          plot.annotate({
-            content((0 - 0.1, 0 + 0.1), [$x^0$])
-          })
-
-          plot.annotate({
-            line(
-              (0, 0),
-              (-1.1, 0),
-              stroke: (thickness: 4pt, paint: red, dash: "dashed"),
-              mark: (fill: red, end: ">", scale: 0.25),
-            )
-          })
-
-          plot.add(
-            ((-1, 0),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: 1pt),
-          )
-          plot.annotate({
-            content((-1 - 0.1, 0 + 0.1), [$x^1$])
-          })
-
-          plot.annotate({
-            line(
-              (-1, 0),
-              (-1, -0.6),
-              stroke: (thickness: 3pt, paint: red, dash: "dashed"),
-              mark: (fill: red, end: ">", scale: 0.25),
-            )
-          })
-
-          plot.add(
-            ((-1, -0.5),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: 1pt),
-          )
-          plot.annotate({
-            content((-1 + 0.1, -0.5 - 0.1), [$x^2$])
-          })
-
-          plot.annotate({
-            line(
-              (-1, -0.5),
-              (-1.57, -0.5),
-              stroke: (thickness: 3pt, paint: red, dash: "dashed"),
-              mark: (fill: red, end: ">", scale: 0.25),
-            )
-          })
-
-          plot.add(
-            ((-1.5, -0.5),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: 1pt),
-          )
-          plot.annotate({
-            content((-1.5 - 0.1, -0.5 + 0.1), [$x^3$])
-          })
-
-          plot.annotate({
-            line(
-              (-1.5, -0.5),
-              (-1.5, -0.85),
-              stroke: (thickness: 3pt, paint: red, dash: "dashed"),
-              mark: (fill: red, end: ">", scale: 0.25),
-            )
-          })
-
-          plot.add(
-            ((-1.5, -0.75),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: 1pt),
-          )
-          plot.annotate({
-            content((-1.5, -0.75 - 0.15), [$x^4$])
-          })
-          plot.add(
-            ((-2, -1),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: 1pt),
-          )
-          plot.annotate({
-            content((-2 - 0.1, -1 + 0.1), [$x^n$])
-          })
-        },
-        name: "plot",
-      )
-    }))
+    #let xs = lq.linspace(-3, 1, num: 200)
+    #let f_x1(x) = (2 * x + 2) / 2
+    #let f_x2(x) = (2 * x) / 4
+    #let iter_x = (0, -1, -1, -1.5, -1.5, -2)
+    #let iter_y = (0, 0, -0.5, -0.5, -0.75, -1)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (-2.3, 0.1),
+      ylim: (-1.5, 0.5),
+      xlabel: [$x_1$],
+      ylabel: [$x_2$],
+      yaxis: (
+        position: 0,
+        tip: tiptoe.triangle,
+        subticks: none,
+        tick-args: (tick-distance: 1),
+      ),
+      xaxis: (
+        position: 0,
+        tip: tiptoe.triangle,
+        filter: (value, distance) => value != 0,
+        subticks: none,
+        tick-args: (tick-distance: 1),
+      ),
+      lq.plot(xs, f_x1, mark: none, stroke: 1pt + purple),
+      lq.plot(xs, f_x2, mark: none, stroke: 1pt + blue),
+      lq.plot(iter_x, iter_y, stroke: (paint: red, dash: "dashed"), mark: "o", mark-color: red),
+      lq.place(-1.3, 0.35, [$colorMath(2x_1 - 2x_2 + 2 = 0, #purple)$]),
+      lq.place(-0.75, -0.8, [$colorMath(-2x_1 + 4x_2 = 0, #blue)$]),
+      lq.place(0.1, 0.1, [$x^0$]),
+      lq.place(-1.1, 0.1, [$x^1$]),
+      lq.place(-0.9, -0.6, [$x^2$]),
+      lq.place(-1.6, -0.4, [$x^3$]),
+      lq.place(-1.5, -0.95, [$x^4$]),
+      lq.place(-2.1, -0.9, [$x^n$]),
+    )
   ]
 ]

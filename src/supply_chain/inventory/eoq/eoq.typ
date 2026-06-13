@@ -105,24 +105,21 @@ $ "TRC"(Q) = S (D / Q) + h (Q / 2) $
 #let holding_cost(Q) = h * (Q / 2)
 #let trc(Q) = order_cost(Q) + holding_cost(Q)
 
+#let qs = lq.linspace(20, 300, num: 200)
+
 #figure(
   caption: [TRC and its two components, as functions of $Q$. The minimum is where the two component curves cross.],
-  frame(cetz.canvas({
-    import cetz-plot: *
-
-    plot.plot(
-      size: (10, 6),
-      x-label: [$Q$],
-      y-label: [Cost],
-      x-tick-step: 100,
-      y-tick-step: 500,
-      {
-        plot.add(order_cost, domain: (20, 300), style: (stroke: blue), label: "Order cost")
-        plot.add(holding_cost, domain: (20, 300), style: (stroke: red), label: "Holding cost")
-        plot.add(trc, domain: (20, 300), style: (stroke: black, dash: "dashed"), label: "TRC (total)")
-      },
-    )
-  })),
+  lq.diagram(
+    width: 6cm,
+    height: 3cm,
+    xlabel: [$Q$],
+    ylabel: [Cost],
+    xaxis: (tick-args: (tick-distance: 100)),
+    yaxis: (tick-args: (tick-distance: 500)),
+    lq.plot(qs, qs.map(order_cost), mark: none, stroke: blue, label: [Order cost]),
+    lq.plot(qs, qs.map(holding_cost), mark: none, stroke: red, label: [Holding cost]),
+    lq.plot(qs, qs.map(trc), mark: none, stroke: (paint: black, dash: "dashed"), label: [TRC (total)]),
+  ),
 )
 
 === Derive $Q^*$ (first-order condition)
@@ -315,23 +312,20 @@ $ "TRC"(Q) / "TRC"^* = 1 / 2 (Q / Q^* + Q^* / Q) $
 
 #let penalty(x) = 0.5 * (x + 1 / x)
 
+#let rs = lq.linspace(0.2, 3, num: 200)
+
 #figure(
   caption: [Cost penalty curve: how much extra you pay when $Q != Q^*$.],
-  frame(cetz.canvas({
-    import cetz-plot: *
-
-    plot.plot(
-      size: (10, 6),
-      x-label: [$Q \/ Q^*$],
-      y-label: [$"TRC"(Q) \/ "TRC"^*$],
-      x-tick-step: 0.5,
-      y-tick-step: 0.5,
-      {
-        plot.add(penalty, domain: (0.2, 3), style: (stroke: 2pt + blue))
-        plot.add-hline(1, style: (stroke: (paint: gray, dash: "dashed")))
-      },
-    )
-  })),
+  lq.diagram(
+    width: 6cm,
+    height: 3cm,
+    xlabel: [$Q \/ Q^*$],
+    ylabel: [$"TRC"(Q) \/ "TRC"^*$],
+    xaxis: (tick-args: (tick-distance: 0.5)),
+    yaxis: (tick-args: (tick-distance: 0.5)),
+    lq.plot(rs, rs.map(penalty), mark: none, stroke: 2pt + blue),
+    lq.hlines(1, stroke: (paint: gray, dash: "dashed")),
+  ),
 )
 
 Snapshots:
@@ -363,35 +357,34 @@ Variables:
 
 #let bound = 1.0606 // 6% threshold
 
+#let ts = lq.linspace(0.3, 2.5, num: 200)
+#let ts_zone = lq.linspace(0.707, 1.414, num: 200)
+
 #figure(
   caption: [Power-of-two safe zone: $T \/ T^* in [0.707, 1.414]$ guarantees ≤ 6% cost penalty.],
-  frame(cetz.canvas({
-    import cetz-plot: *
-
-    plot.plot(
-      size: (12, 7),
-      x-label: [$T \/ T^*$ ratio],
-      y-label: [Cost multiplier ($"TRC" \/ "TRC"^*$)],
-      x-tick-step: 0.5,
-      y-tick-step: 0.05,
-      x-domain: (0.2, 2.5),
-      y-domain: (0.95, 1.3),
-      {
-        plot.add(penalty, domain: (0.3, 2.5), style: (stroke: 2pt + black))
-        plot.add-hline(bound, style: (stroke: (paint: red, dash: "dashed")))
-        plot.add-vline(0.707, 1.414, style: (stroke: red + 1pt))
-        plot.add-fill-between(
-          penalty,
-          x => 0.95,
-          domain: (0.707, 1.414),
-          style: (fill: rgb(255, 0, 0, 30), stroke: none),
-        )
-        plot.add(((0.5, penalty(0.5)),), mark: "o", style: (stroke: blue))
-        plot.add(((1.0, 1.0),), mark: "o", style: (stroke: blue, fill: blue))
-        plot.add(((2.0, penalty(2.0)),), mark: "o", style: (stroke: blue))
-      },
-    )
-  })),
+  lq.diagram(
+    width: 6cm,
+    height: 3cm,
+    xlabel: [$T \/ T^*$ ratio],
+    ylabel: [Cost multiplier ($"TRC" \/ "TRC"^*$)],
+    xlim: (0.2, 2.5),
+    ylim: (0.95, 1.3),
+    xaxis: (tick-args: (tick-distance: 0.5)),
+    yaxis: (tick-args: (tick-distance: 0.05)),
+    lq.fill-between(
+      ts_zone,
+      ts_zone.map(penalty),
+      y2: ts_zone.map(x => 0.95),
+      fill: rgb(255, 0, 0, 30),
+      stroke: none,
+    ),
+    lq.plot(ts, ts.map(penalty), mark: none, stroke: 2pt + black),
+    lq.hlines(bound, stroke: (paint: red, dash: "dashed")),
+    lq.vlines(0.707, 1.414, stroke: red + 1pt),
+    lq.plot((0.5,), (penalty(0.5),), mark: "o", stroke: none, mark-color: blue),
+    lq.plot((1.0,), (1.0,), mark: "o", stroke: none, mark-color: blue),
+    lq.plot((2.0,), (penalty(2.0),), mark: "o", stroke: none, mark-color: blue),
+  ),
 )
 
 *Safe zone.* For any $T^*$, *some* power-of-two $T$ is always within a factor of $sqrt(2)$ of it. So $T \/ T^* in [0.707, 1.414]$ is always achievable, which from the cost-penalty curve gives at most a *6% cost penalty*.

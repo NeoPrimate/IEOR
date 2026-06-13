@@ -32,80 +32,34 @@ $
   * in {+, -, times, div}
 $
 
-#let f = frame(cetz.canvas(length: 6cm, {
-  import cetz.draw: *
-  import cetz-plot: *
-  plot.plot(
-    x-tick-step: 1,
-    y-tick-step: 1,
-    y-min: -4,
-    y-max: 4,
-    x-min: -4,
-    x-max: 4,
-    x-grid: true,
-    y-grid: true,
-    axis-style: "school-book",
-    mark-style: (fill: black, stroke: color),
-    plot-style: (stroke: 2pt, color: red),
-    {
-      plot.add(((-4, 4), (-2, 1)))
-      plot.add(((-2, 3), (1, 2)))
-      plot.add(((1, -1), (4, 2)))
+#let f = lq.diagram(
+  width: 5cm,
+  height: 5cm,
+  xlim: (-4, 4),
+  ylim: (-4, 4),
+  xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+  yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+  lq.plot((-4, -2), (4, 1), mark: none, stroke: 2pt + red),
+  lq.plot((-2, 1), (3, 2), mark: none, stroke: 2pt + red),
+  lq.plot((1, 4), (-1, 2), mark: none, stroke: 2pt + red),
+  lq.plot((-2,), (1,), mark: "o", stroke: none, mark-color: white),
+  lq.plot((-2,), (3,), mark: "o", stroke: none, mark-color: black),
+  lq.plot((1,), (2,), mark: "o", stroke: none, mark-color: black),
+  lq.plot((1,), (-1,), mark: "o", stroke: none, mark-color: white),
+)
 
-      plot.add(
-        ((-2, 1),),
-        mark: "o",
-        mark-size: mark-size,
-        mark-style: mark-style-white,
-      )
-      plot.add(
-        ((-2, 3),),
-        mark: "o",
-        mark-size: mark-size,
-      )
-      plot.add(
-        ((1, 2),),
-        mark: "o",
-        mark-size: mark-size,
-      )
-      plot.add(((1, -1),), mark: "o", mark-size: mark-size, mark-style: mark-style-white)
-    },
-  )
-}))
-
-#let g = frame(cetz.canvas(length: 6cm, {
-  import cetz.draw: *
-  import cetz-plot: *
-  plot.plot(
-    x-tick-step: 1,
-    y-tick-step: 1,
-    y-min: -4,
-    y-max: 4,
-    x-min: -4,
-    x-max: 4,
-    x-grid: true,
-    y-grid: true,
-    axis-style: "school-book",
-    mark-style: (fill: black, stroke: color),
-    plot-style: (stroke: 2pt, color: red),
-    {
-      plot.add(((-4, -2), (-2, 3)))
-      plot.add(((-2, 1), (0, 1), (2, -1), (4, -1)))
-
-      plot.add(
-        ((-2, 3),),
-        mark: "o",
-        mark-size: mark-size,
-      )
-      plot.add(
-        ((-2, 1),),
-        mark: "o",
-        mark-size: mark-size,
-        mark-style: mark-style-white,
-      )
-    },
-  )
-}))
+#let g = lq.diagram(
+  width: 5cm,
+  height: 5cm,
+  xlim: (-4, 4),
+  ylim: (-4, 4),
+  xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+  yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+  lq.plot((-4, -2), (-2, 3), mark: none, stroke: 2pt + red),
+  lq.plot((-2, 0, 2, 4), (1, 1, -1, -1), mark: none, stroke: 2pt + red),
+  lq.plot((-2,), (3,), mark: "o", stroke: none, mark-color: black),
+  lq.plot((-2,), (1,), mark: "o", stroke: none, mark-color: white),
+)
 
 #example[
   #figure(
@@ -217,90 +171,35 @@ For this to hold true, two important conditions must be satisfied:
 
 - *Continuity of the outer function*: The function $f$ must be continuous at the point $L$. Continuity ensures that $f$ behaves predictably near $L$, without any jumps, gaps, or undefined points
 
-#let f = frame(cetz.canvas(length: 6cm, {
-  import cetz.draw: *
-  import cetz-plot: *
-  plot.plot(
-    x-tick-step: 1,
-    y-tick-step: 1,
-    y-min: -4,
-    y-max: 4,
-    x-min: -4,
-    x-max: 4,
-    x-grid: true,
-    y-grid: true,
-    axis-style: "school-book",
-    mark-style: (fill: black, stroke: color),
-    plot-style: (stroke: 2pt, color: red),
-    {
-      plot.add(((-4, -1), (-2, 2), (0, 3), (1, 2)))
-      plot.add(((1, 1), (4, -2)))
+#let f = lq.diagram(
+  width: 5cm,
+  height: 5cm,
+  xlim: (-4, 4),
+  ylim: (-4, 4),
+  xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+  yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+  lq.plot((-4, -2, 0, 1), (-1, 2, 3, 2), mark: none, stroke: 2pt + red),
+  lq.plot((1, 4), (1, -2), mark: none, stroke: 2pt + red),
+  lq.plot((2,), (3,), mark: "o", stroke: none, mark-color: black),
+  lq.plot((1,), (2,), mark: "o", stroke: none, mark-color: white),
+  lq.plot((1,), (1,), mark: "o", stroke: none, mark-color: black),
+  lq.plot((2,), (0,), mark: "o", stroke: none, mark-color: white),
+)
 
-      plot.add(
-        ((2, 3),),
-        mark: "o",
-        mark-size: mark-size,
-      )
-      plot.add(
-        ((1, 2),),
-        mark: "o",
-        mark-size: mark-size,
-        mark-style: mark-style-white,
-      )
-      plot.add(
-        ((1, 1),),
-        mark: "o",
-        mark-size: mark-size,
-      )
-      plot.add(((2, 0),), mark: "o", mark-size: mark-size, mark-style: mark-style-white)
-    },
-  )
-}))
-
-#let g = frame(cetz.canvas(length: 6cm, {
-  import cetz.draw: *
-  import cetz-plot: *
-  plot.plot(
-    x-tick-step: 1,
-    y-tick-step: 1,
-    y-min: -4,
-    y-max: 4,
-    x-min: -4,
-    x-max: 4,
-    x-grid: true,
-    y-grid: true,
-    axis-style: "school-book",
-    mark-style: (fill: black, stroke: color),
-    plot-style: (stroke: 2pt, color: red),
-    {
-      plot.add(((-4, 3), (-2, 3), (0, 2), (2, -2)))
-      plot.add(((2, 0), (3, 1), (4, 0)))
-
-      plot.add(
-        ((-3, 3),),
-        mark: "o",
-        mark-size: mark-size,
-        mark-style: mark-style-white,
-      )
-      plot.add(
-        ((-3, -2),),
-        mark: "o",
-        mark-size: mark-size,
-      )
-      plot.add(
-        ((2, -2),),
-        mark: "o",
-        mark-size: mark-size,
-        mark-style: mark-style-white,
-      )
-      plot.add(
-        ((2, 0),),
-        mark: "o",
-        mark-size: mark-size,
-      )
-    },
-  )
-}))
+#let g = lq.diagram(
+  width: 5cm,
+  height: 5cm,
+  xlim: (-4, 4),
+  ylim: (-4, 4),
+  xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+  yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+  lq.plot((-4, -2, 0, 2), (3, 3, 2, -2), mark: none, stroke: 2pt + red),
+  lq.plot((2, 3, 4), (0, 1, 0), mark: none, stroke: 2pt + red),
+  lq.plot((-3,), (3,), mark: "o", stroke: none, mark-color: white),
+  lq.plot((-3,), (-2,), mark: "o", stroke: none, mark-color: black),
+  lq.plot((2,), (-2,), mark: "o", stroke: none, mark-color: white),
+  lq.plot((2,), (0,), mark: "o", stroke: none, mark-color: black),
+)
 
 #example[
   #figure(

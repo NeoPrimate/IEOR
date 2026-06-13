@@ -98,151 +98,61 @@ Inconsistent across different data
     row-gutter: 1em,
     [Dataset 1], [Dataset 2], [Dataset 3],
     [
-      #frame(cetz.canvas({
-        import draw: *
-
-        plot.plot(
-          size: (5, 5),
-          axis-style: "scientific",
-          x-tick-step: 1,
-          y-tick-step: 1,
-          x-label: [],
-          y-label: [],
-          x-min: -2.,
-          x-max: 2.,
-          y-min: -0.25,
-          y-max: 1.25,
-          legend: "north-east",
-          {
-            plot.add(
-              domain: (-2, 2),
-              f_true,
-              style: (stroke: black),
-              mark: "none",
-            )
-            plot.add(
-              dataset_1,
-              mark: "o",
-              mark-size: 0.2,
-              mark-style: (fill: red, stroke: none),
-              style: (stroke: none),
-            )
-            for ((x, y), (x1, y1)) in dataset_1.zip(data_true) {
-              plot.add-vline(
-                x,
-                min: y,
-                max: y1,
-                style: (stroke: (paint: red)),
-              )
-            }
-            plot.add(
-              data_true,
-              mark: "o",
-              mark-size: 0.2,
-              mark-style: (fill: black, stroke: none),
-              style: (stroke: none),
-            )
-          },
-        )
-      }))
+      #lq.diagram(
+        width: 5cm,
+        height: 5cm,
+        xlim: (-2, 2),
+        ylim: (-0.25, 1.25),
+        xaxis: (tick-args: (tick-distance: 1)),
+        yaxis: (tick-args: (tick-distance: 1)),
+        lq.plot(lq.linspace(-2, 2, num: 200), f_true, mark: none, stroke: black),
+        ..dataset_1.zip(data_true).map(((p, q)) => lq.plot(
+          (p.at(0), p.at(0)),
+          (p.at(1), q.at(1)),
+          mark: none,
+          stroke: red,
+        )),
+        lq.plot(dataset_1.map(p => p.at(0)), dataset_1.map(p => p.at(1)), mark: "o", stroke: none, mark-color: red),
+        lq.plot(data_true.map(p => p.at(0)), data_true.map(p => p.at(1)), mark: "o", stroke: none, mark-color: black),
+      )
     ],
     [
-      #frame(cetz.canvas({
-        import draw: *
-
-        plot.plot(
-          size: (5, 5),
-          axis-style: "scientific",
-          x-tick-step: 1,
-          y-tick-step: 1,
-          x-label: [],
-          y-label: [],
-          x-min: -2.,
-          x-max: 2.,
-          y-min: -0.25,
-          y-max: 1.25,
-          legend: "north-east",
-          {
-            plot.add(
-              domain: (-2, 2),
-              f_true,
-              style: (stroke: black),
-              mark: "none",
-            )
-            plot.add(
-              dataset_2,
-              mark: "o",
-              mark-size: 0.2,
-              mark-style: (fill: blue, stroke: none),
-              style: (stroke: none),
-            )
-            for ((x, y), (x1, y1)) in dataset_2.zip(data_true) {
-              plot.add-vline(
-                x,
-                min: y,
-                max: y1,
-                style: (stroke: (paint: blue)),
-              )
-            }
-            plot.add(
-              data_true,
-              mark: "o",
-              mark-size: 0.2,
-              mark-style: (fill: black, stroke: none),
-              style: (stroke: none),
-            )
-          },
-        )
-      }))
+      #lq.diagram(
+        width: 5cm,
+        height: 5cm,
+        xlim: (-2, 2),
+        ylim: (-0.25, 1.25),
+        xaxis: (tick-args: (tick-distance: 1)),
+        yaxis: (tick-args: (tick-distance: 1)),
+        lq.plot(lq.linspace(-2, 2, num: 200), f_true, mark: none, stroke: black),
+        ..dataset_2.zip(data_true).map(((p, q)) => lq.plot(
+          (p.at(0), p.at(0)),
+          (p.at(1), q.at(1)),
+          mark: none,
+          stroke: blue,
+        )),
+        lq.plot(dataset_2.map(p => p.at(0)), dataset_2.map(p => p.at(1)), mark: "o", stroke: none, mark-color: blue),
+        lq.plot(data_true.map(p => p.at(0)), data_true.map(p => p.at(1)), mark: "o", stroke: none, mark-color: black),
+      )
     ],
     [
-      #frame(cetz.canvas({
-        import draw: *
-
-        plot.plot(
-          size: (5, 5),
-          axis-style: "scientific",
-          x-tick-step: 1,
-          y-tick-step: 1,
-          x-label: [],
-          y-label: [],
-          x-min: -2.,
-          x-max: 2.,
-          y-min: -0.25,
-          y-max: 1.25,
-          legend: "north-east",
-          {
-            plot.add(
-              domain: (-2, 2),
-              f_true,
-              style: (stroke: black),
-              mark: "none",
-            )
-            plot.add(
-              dataset_3,
-              mark: "o",
-              mark-size: 0.2,
-              mark-style: (fill: green, stroke: none),
-              style: (stroke: none),
-            )
-            for ((x, y), (x1, y1)) in dataset_3.zip(data_true) {
-              plot.add-vline(
-                x,
-                min: y,
-                max: y1,
-                style: (stroke: (paint: green)),
-              )
-            }
-            plot.add(
-              data_true,
-              mark: "o",
-              mark-size: 0.2,
-              mark-style: (fill: black, stroke: none),
-              style: (stroke: none),
-            )
-          },
-        )
-      }))
+      #lq.diagram(
+        width: 5cm,
+        height: 5cm,
+        xlim: (-2, 2),
+        ylim: (-0.25, 1.25),
+        xaxis: (tick-args: (tick-distance: 1)),
+        yaxis: (tick-args: (tick-distance: 1)),
+        lq.plot(lq.linspace(-2, 2, num: 200), f_true, mark: none, stroke: black),
+        ..dataset_3.zip(data_true).map(((p, q)) => lq.plot(
+          (p.at(0), p.at(0)),
+          (p.at(1), q.at(1)),
+          mark: none,
+          stroke: green,
+        )),
+        lq.plot(dataset_3.map(p => p.at(0)), dataset_3.map(p => p.at(1)), mark: "o", stroke: none, mark-color: green),
+        lq.plot(data_true.map(p => p.at(0)), data_true.map(p => p.at(1)), mark: "o", stroke: none, mark-color: black),
+      )
     ],
 
     [
@@ -467,106 +377,40 @@ Overfitting
   row-gutter: 0em,
   align: horizon + center,
   [
-    #frame(cetz.canvas({
-      import draw: *
-
-      plot.plot(
-        size: (5, 5),
-        axis-style: "scientific",
-        x-tick-step: none,
-        y-tick-step: none,
-        x-label: [],
-        y-label: [],
-        x-min: 0.,
-        x-max: 1.,
-        y-min: -2.,
-        y-max: 2.,
-        legend: "north-east",
-        {
-          plot.add(
-            f1,
-            domain: (0, 2),
-            style: (stroke: red + 2pt),
-          )
-
-          plot.add(
-            data,
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: black, stroke: none),
-            style: (stroke: none),
-          )
-        },
-      )
-    }))
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (0, 1),
+      ylim: (-2, 2),
+      xaxis: (ticks: none),
+      yaxis: (ticks: none),
+      lq.plot(lq.linspace(0, 1, num: 200), f1, mark: none, stroke: red + 2pt),
+      lq.plot(data.map(p => p.at(0)), data.map(p => p.at(1)), mark: "o", stroke: none, mark-color: black),
+    )
   ],
   [
-    #frame(cetz.canvas({
-      import draw: *
-
-      plot.plot(
-        size: (5, 5),
-        axis-style: "scientific",
-        x-tick-step: none,
-        y-tick-step: none,
-        x-label: [],
-        y-label: [],
-        x-min: 0.,
-        x-max: 1.,
-        y-min: -2.,
-        y-max: 2.,
-        legend: "north-east",
-        {
-          plot.add(
-            f2,
-            domain: (0, 2),
-            style: (stroke: red + 2pt),
-          )
-
-          plot.add(
-            data,
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: black, stroke: none),
-            style: (stroke: none),
-          )
-        },
-      )
-    }))
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (0, 1),
+      ylim: (-2, 2),
+      xaxis: (ticks: none),
+      yaxis: (ticks: none),
+      lq.plot(lq.linspace(0, 1, num: 200), f2, mark: none, stroke: red + 2pt),
+      lq.plot(data.map(p => p.at(0)), data.map(p => p.at(1)), mark: "o", stroke: none, mark-color: black),
+    )
   ],
   [
-    #frame(cetz.canvas({
-      import draw: *
-
-      plot.plot(
-        size: (5, 5),
-        axis-style: "scientific",
-        x-tick-step: none,
-        y-tick-step: none,
-        x-label: [],
-        y-label: [],
-        x-min: 0.,
-        x-max: 1.,
-        y-min: -2.,
-        y-max: 2.,
-        legend: "north-east",
-        {
-          plot.add(
-            f3,
-            domain: (0, 2),
-            style: (stroke: red + 2pt),
-          )
-
-          plot.add(
-            data,
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: black, stroke: none),
-            style: (stroke: none),
-          )
-        },
-      )
-    }))
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (0, 1),
+      ylim: (-2, 2),
+      xaxis: (ticks: none),
+      yaxis: (ticks: none),
+      lq.plot(lq.linspace(0, 1, num: 200), f3, mark: none, stroke: red + 2pt),
+      lq.plot(data.map(p => p.at(0)), data.map(p => p.at(1)), mark: "o", stroke: none, mark-color: black),
+    )
   ],
 
   [Underfit\ High Bias\ Low Variance], [Fit\ Low Bias\ Low Variance], [Overfit\ Low Bias\ High Variance],
@@ -575,45 +419,21 @@ Overfitting
 Bias-Variance Tradoff
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-
-    let bias_squared(x) = calc.pow((10 / (x + 1)), 2)
-    let variance(x) = calc.pow((x / 3), 2)
-    let total_error(x) = bias_squared(x) + variance(x)
-
-    plot.plot(
-      size: (12, 8),
-      axis-style: "scientific",
-      x-tick-step: none,
-      y-tick-step: none,
-      x-label: [Model Complexity],
-      y-label: [Error],
-      x-min: 0.,
-      x-max: 15.,
-      y-min: 0.,
-      y-max: 25.,
-      legend: "inner-north-east",
-      {
-        plot.add(
-          bias_squared,
-          domain: (0, 20),
-          style: (stroke: blue + 2pt),
-          label: $"Bias"^2$,
-        )
-        plot.add(
-          variance,
-          domain: (0, 20),
-          style: (stroke: red + 2pt),
-          label: [Variance],
-        )
-        plot.add(
-          total_error,
-          domain: (0, 20),
-          style: (stroke: green + 2pt),
-          label: [Total Error],
-        )
-      },
-    )
-  }))
+  #let bias_squared(x) = calc.pow((10 / (x + 1)), 2)
+  #let variance(x) = calc.pow((x / 3), 2)
+  #let total_error(x) = bias_squared(x) + variance(x)
+  #let xs = lq.linspace(0, 15, num: 200)
+  #lq.diagram(
+    width: 8cm,
+    height: 5cm,
+    xlim: (0, 15),
+    ylim: (0, 25),
+    xlabel: [Model Complexity],
+    ylabel: [Error],
+    xaxis: (ticks: none),
+    yaxis: (ticks: none),
+    lq.plot(xs, bias_squared, mark: none, stroke: blue + 2pt, label: $"Bias"^2$),
+    lq.plot(xs, variance, mark: none, stroke: red + 2pt, label: [Variance]),
+    lq.plot(xs, total_error, mark: none, stroke: green + 2pt, label: [Total Error]),
+  )
 ]

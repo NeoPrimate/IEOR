@@ -33,31 +33,17 @@ $
 - Mean of lead-time demand scales with $L$: #h(0.5em) $mu_L = L mu$
 - Spread scales with $sqrt(L)$: #h(0.5em) $sigma_L = sigma sqrt(L)$
 
-#frame(cetz.canvas({
-  import draw: *
-  plot.plot(
-    size: (9, 5),
-    x-label: $L$,
-    y-label: [],
-    x-min: 0, x-max: 10,
-    y-min: 0, y-max: 10,
-    x-tick-step: 2, y-tick-step: 2,
-    legend: "inner-north-west",
-    {
-      plot.add(
-        l => l,
-        domain: (0, 10),
-        label: [mean $prop L$],
-        style: (stroke: blue),
-      )
-      plot.add(
-        l => calc.sqrt(l),
-        domain: (0, 10),
-        label: [std $prop sqrt(L)$],
-        style: (stroke: red),
-      )
-    },
-  )
-}))
+#let ls = lq.linspace(0, 10, num: 200)
+#lq.diagram(
+  width: 6cm,
+  height: 3.5cm,
+  xlabel: $L$,
+  xlim: (0, 10),
+  ylim: (0, 10),
+  xaxis: (tick-args: (tick-distance: 2)),
+  yaxis: (tick-args: (tick-distance: 2)),
+  lq.plot(ls, l => l, mark: none, stroke: blue, label: [mean $prop L$]),
+  lq.plot(ls, l => calc.sqrt(l), mark: none, stroke: red, label: [std $prop sqrt(L)$]),
+)
 
 This $sqrt(L)$ is why safety stock $"SS" = z dot sigma sqrt(L)$ grows sub-linearly in lead time — halving $L$ cuts safety stock by only $sqrt(2)$, not $2$.

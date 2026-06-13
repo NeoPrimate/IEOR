@@ -174,33 +174,18 @@ $$
   $
 
   #align(center)[
-    #frame(cetz.canvas({
-      import draw: *
-
-      plot.plot(
-        size: (8, 8),
-        axis-style: "school-book",
-        x-tick-step: 2,
-        x-min: -4.,
-        x-max: 8.,
-        y-tick-step: 10,
-        y-min: -60.,
-        y-max: 20.,
-        legend: "inner-north",
-        {
-          plot.add(
-            f,
-            domain: (-4, 8),
-            style: (stroke: blue),
-          )
-          plot.add(
-            tangent_f_1,
-            domain: (-1, 3),
-            style: (stroke: red),
-          )
-        },
-      )
-    }))
+    #let xs = lq.linspace(-4, 8, num: 200)
+    #let xst = lq.linspace(-1, 3, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (-4, 8),
+      ylim: (-60, 20),
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 2)),
+      yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 10)),
+      lq.plot(xs, f, mark: none, stroke: blue),
+      lq.plot(xst, tangent_f_1, mark: none, stroke: red),
+    )
   ]
 ]
 
@@ -211,35 +196,17 @@ $
 $
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-
-    plot.plot(
-      size: (8, 8),
-      axis-style: "school-book",
-      x-tick-step: 1,
-      x-min: -5.,
-      x-max: 5.,
-      y-tick-step: 1,
-      y-min: -1.5,
-      y-max: 1.5,
-      legend: "inner-north-east",
-      {
-        plot.add(
-          calc.cos,
-          domain: (-5, 5),
-          style: (stroke: blue),
-          label: $cos(x)$,
-        )
-        plot.add(
-          calc.sin,
-          domain: (-5, 5),
-          style: (stroke: red),
-          label: $sin(x)$,
-        )
-      },
-    )
-  }))
+  #let xs = lq.linspace(-5, 5, num: 200)
+  #lq.diagram(
+    width: 5cm,
+    height: 5cm,
+    xlim: (-5, 5),
+    ylim: (-1.5, 1.5),
+    xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+    yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+    lq.plot(xs, calc.cos, mark: none, stroke: blue, label: $cos(x)$),
+    lq.plot(xs, calc.sin, mark: none, stroke: red, label: $sin(x)$),
+  )
 ]
 
 === Cos
@@ -251,35 +218,17 @@ $
 #let ddx_cos(x) = -calc.sin(x)
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-
-    plot.plot(
-      size: (8, 8),
-      axis-style: "school-book",
-      x-tick-step: 1,
-      x-min: -5.,
-      x-max: 5.,
-      y-tick-step: 1,
-      y-min: -1.5,
-      y-max: 1.5,
-      legend: "inner-north-east",
-      {
-        plot.add(
-          calc.cos,
-          domain: (-5, 5),
-          style: (stroke: blue),
-          label: $cos(x)$,
-        )
-        plot.add(
-          ddx_cos,
-          domain: (-5, 5),
-          style: (stroke: red),
-          label: $- sin(x)$,
-        )
-      },
-    )
-  }))
+  #let xs = lq.linspace(-5, 5, num: 200)
+  #lq.diagram(
+    width: 5cm,
+    height: 5cm,
+    xlim: (-5, 5),
+    ylim: (-1.5, 1.5),
+    xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+    yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+    lq.plot(xs, calc.cos, mark: none, stroke: blue, label: $cos(x)$),
+    lq.plot(xs, ddx_cos, mark: none, stroke: red, label: $- sin(x)$),
+  )
 ]
 
 === $bold(e^x)$
@@ -295,35 +244,17 @@ $
 #let f_tangent(x) = m * x + b
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-
-    plot.plot(
-      size: (8, 8),
-      axis-style: "school-book",
-      x-tick-step: 1,
-      x-min: -5.,
-      x-max: 3.,
-      y-tick-step: 1,
-      y-min: 0,
-      y-max: 10,
-      legend: "inner-north-west",
-      {
-        plot.add(
-          calc.exp,
-          domain: (-5, 10),
-          style: (stroke: blue),
-          label: $e^x$,
-        )
-        plot.add(
-          f_tangent,
-          domain: (-5, 10),
-          style: (stroke: red),
-          label: $y = #m dot #x + #b$,
-        )
-      },
-    )
-  }))
+  #let xs = lq.linspace(-5, 10, num: 200)
+  #lq.diagram(
+    width: 5cm,
+    height: 5cm,
+    xlim: (-5, 3),
+    ylim: (0, 10),
+    xaxis: (tick-args: (tick-distance: 1)),
+    yaxis: (tick-args: (tick-distance: 1)),
+    lq.plot(xs, calc.exp, mark: none, stroke: blue, label: $e^x$),
+    lq.plot(xs, f_tangent, mark: none, stroke: red, label: $y = #m dot #x + #b$),
+  )
 ]
 
 === $bold(ln(x))$
@@ -338,33 +269,15 @@ $
 #let f_tangent(x) = m * x + b
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-
-    plot.plot(
-      size: (8, 8),
-      axis-style: "school-book",
-      x-tick-step: 1,
-      x-min: 0.,
-      x-max: 10.,
-      y-tick-step: 1,
-      y-min: -3.,
-      y-max: 4.,
-      legend: "inner-north-west",
-      {
-        plot.add(
-          calc.ln,
-          domain: (0.0001, 10),
-          style: (stroke: blue),
-          label: $ln(x)$,
-        )
-        plot.add(
-          f_tangent,
-          domain: (0.0001, 10),
-          style: (stroke: red),
-          label: $y = #m dot #x + #b$,
-        )
-      },
-    )
-  }))
+  #let xs = lq.linspace(0.0001, 10, num: 200)
+  #lq.diagram(
+    width: 5cm,
+    height: 5cm,
+    xlim: (0, 10),
+    ylim: (-3, 4),
+    xaxis: (tick-args: (tick-distance: 1)),
+    yaxis: (tick-args: (tick-distance: 1)),
+    lq.plot(xs, calc.ln, mark: none, stroke: blue, label: $ln(x)$),
+    lq.plot(xs, f_tangent, mark: none, stroke: red, label: $y = #m dot #x + #b$),
+  )
 ]

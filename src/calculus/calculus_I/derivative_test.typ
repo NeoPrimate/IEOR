@@ -69,89 +69,32 @@ If $f'(x)$ changes sign around a critical point $c$, we can determine if $f(c)$ 
     #grid(
       columns: (1fr, 1fr),
       [
-        #frame(cetz.canvas({
-          import cetz.draw: *
-          import cetz-plot: *
-
-          plot.plot(
-            size: (4, 4),
-            axis-style: "scientific",
-            x-tick-step: none,
-            y-tick-step: 1,
-            x-label: [],
-            y-label: [],
-            x-min: -1.5,
-            x-max: 1.5,
-            y-min: -0.5,
-            y-max: 1.5,
-            x-grid: "both",
-            y-grid: "both",
-            y-minor-tick-step: 0.5,
-            x-minor-tick-step: 0.5,
-            axes: (
-              stroke: black,
-              tick: (stroke: black),
-            ),
-            {
-              plot.add(
-                domain: (-2, 2),
-                x => calc.pow(x, 2),
-                style: (stroke: (thickness: 1pt, paint: black)),
-              )
-              plot.add-hline(0, style: (stroke: black))
-
-              plot.add(
-                ((0, 0),),
-                mark: "o",
-                mark-size: 0.15,
-                mark-style: (fill: black, stroke: black),
-              )
-            },
-            name: "plot",
-          )
-        }))
+        #let xs = lq.linspace(-1.5, 1.5, num: 200)
+        #lq.diagram(
+          width: 4cm,
+          height: 4cm,
+          xlim: (-1.5, 1.5),
+          ylim: (-0.5, 1.5),
+          xaxis: (ticks: none),
+          yaxis: (tick-args: (tick-distance: 1)),
+          lq.plot(xs, x => calc.pow(x, 2), mark: none, stroke: black),
+          lq.hlines(0, stroke: black),
+          lq.plot((0,), (0,), mark: "o", stroke: none, mark-color: black),
+        )
       ],
       [
-        #frame(cetz.canvas({
-          import cetz.draw: *
-          import cetz-plot: *
-
-          plot.plot(
-            size: (4, 4),
-            axis-style: "scientific",
-            x-tick-step: none,
-            y-tick-step: 5,
-            x-label: [],
-            y-label: [],
-            x-min: -1.5,
-            x-max: 1.5,
-            y-min: -7.5,
-            y-max: 7.5,
-            x-grid: "both",
-            y-grid: "both",
-            y-minor-tick-step: 5,
-            x-minor-tick-step: 5,
-            axes: (
-              stroke: black,
-              tick: (stroke: black),
-            ),
-            {
-              plot.add(
-                domain: (-2, 2),
-                x => 2 * x,
-                style: (stroke: (thickness: 1pt, paint: black)),
-              )
-              plot.add-hline(0, style: (stroke: black))
-              plot.add(
-                ((0, 0),),
-                mark: "o",
-                mark-size: 0.15,
-                mark-style: (fill: black, stroke: black),
-              )
-            },
-            name: "plot",
-          )
-        }))
+        #let xs = lq.linspace(-1.5, 1.5, num: 200)
+        #lq.diagram(
+          width: 4cm,
+          height: 4cm,
+          xlim: (-1.5, 1.5),
+          ylim: (-7.5, 7.5),
+          xaxis: (ticks: none),
+          yaxis: (tick-args: (tick-distance: 5)),
+          lq.plot(xs, x => 2 * x, mark: none, stroke: black),
+          lq.hlines(0, stroke: black),
+          lq.plot((0,), (0,), mark: "o", stroke: none, mark-color: black),
+        )
       ],
     )
   ]
@@ -202,88 +145,32 @@ If $f'(x)$ changes sign around a critical point $c$, we can determine if $f(c)$ 
     #grid(
       columns: (1fr, 1fr),
       [
-        #frame(cetz.canvas({
-          import cetz.draw: *
-          import cetz-plot: *
-
-          plot.plot(
-            size: (4, 4),
-            axis-style: "scientific",
-            x-tick-step: none,
-            y-tick-step: 1,
-            x-label: [],
-            y-label: [],
-            x-min: -1.5,
-            x-max: 1.5,
-            y-min: -1.5,
-            y-max: 0.5,
-            x-grid: "both",
-            y-grid: "both",
-            y-minor-tick-step: 0.5,
-            x-minor-tick-step: 0.5,
-            axes: (
-              stroke: black,
-              tick: (stroke: black),
-            ),
-            {
-              plot.add(
-                domain: (-2, 2),
-                x => -calc.pow(x, 2),
-                style: (stroke: (thickness: 1pt, paint: black)),
-              )
-              plot.add-hline(0, style: (stroke: black))
-              plot.add(
-                ((0, 0),),
-                mark: "o",
-                mark-size: 0.15,
-                mark-style: (fill: black, stroke: black),
-              )
-            },
-            name: "plot",
-          )
-        }))
+        #let xs = lq.linspace(-1.5, 1.5, num: 200)
+        #lq.diagram(
+          width: 4cm,
+          height: 4cm,
+          xlim: (-1.5, 1.5),
+          ylim: (-1.5, 0.5),
+          xaxis: (ticks: none),
+          yaxis: (tick-args: (tick-distance: 1)),
+          lq.plot(xs, x => -calc.pow(x, 2), mark: none, stroke: black),
+          lq.hlines(0, stroke: black),
+          lq.plot((0,), (0,), mark: "o", stroke: none, mark-color: black),
+        )
       ],
       [
-        #frame(cetz.canvas({
-          import cetz.draw: *
-          import cetz-plot: *
-
-          plot.plot(
-            size: (4, 4),
-            axis-style: "scientific",
-            x-tick-step: none,
-            y-tick-step: 5,
-            x-label: [],
-            y-label: [],
-            x-min: -1.5,
-            x-max: 1.5,
-            y-min: -7.5,
-            y-max: 7.5,
-            x-grid: "both",
-            y-grid: "both",
-            y-minor-tick-step: 5,
-            x-minor-tick-step: 5,
-            axes: (
-              stroke: black,
-              tick: (stroke: black),
-            ),
-            {
-              plot.add(
-                domain: (-2, 2),
-                x => -2 * x,
-                style: (stroke: (thickness: 1pt, paint: black)),
-              )
-              plot.add-hline(0, style: (stroke: black))
-              plot.add(
-                ((0, 0),),
-                mark: "o",
-                mark-size: 0.15,
-                mark-style: (fill: black, stroke: black),
-              )
-            },
-            name: "plot",
-          )
-        }))
+        #let xs = lq.linspace(-1.5, 1.5, num: 200)
+        #lq.diagram(
+          width: 4cm,
+          height: 4cm,
+          xlim: (-1.5, 1.5),
+          ylim: (-7.5, 7.5),
+          xaxis: (ticks: none),
+          yaxis: (tick-args: (tick-distance: 5)),
+          lq.plot(xs, x => -2 * x, mark: none, stroke: black),
+          lq.hlines(0, stroke: black),
+          lq.plot((0,), (0,), mark: "o", stroke: none, mark-color: black),
+        )
       ],
     )
   ]
@@ -334,90 +221,32 @@ If $f'(x)$ changes sign around a critical point $c$, we can determine if $f(c)$ 
     #grid(
       columns: (1fr, 1fr),
       [
-        #frame(cetz.canvas({
-          import cetz.draw: *
-          import cetz-plot: *
-
-          plot.plot(
-            size: (4, 4),
-            axis-style: "scientific",
-            x-tick-step: none,
-            y-tick-step: 1,
-            x-label: [],
-            y-label: [],
-            x-min: -1.5,
-            x-max: 1.5,
-            y-min: -1.5,
-            y-max: 1.5,
-            x-grid: "both",
-            y-grid: "both",
-            y-minor-tick-step: 0.5,
-            x-minor-tick-step: 0.5,
-            axes: (
-              stroke: black,
-              tick: (stroke: black),
-            ),
-            {
-              plot.add(
-                domain: (-2, 2),
-                x => calc.pow(x, 3),
-                style: (stroke: (thickness: 1pt, paint: black)),
-              )
-              plot.add-hline(0, style: (stroke: black))
-
-              plot.add(
-                ((0, 0),),
-                mark: "o",
-                mark-size: 0.15,
-                mark-style: (fill: black, stroke: black),
-              )
-            },
-            name: "plot",
-          )
-        }))
+        #let xs = lq.linspace(-1.5, 1.5, num: 200)
+        #lq.diagram(
+          width: 4cm,
+          height: 4cm,
+          xlim: (-1.5, 1.5),
+          ylim: (-1.5, 1.5),
+          xaxis: (ticks: none),
+          yaxis: (tick-args: (tick-distance: 1)),
+          lq.plot(xs, x => calc.pow(x, 3), mark: none, stroke: black),
+          lq.hlines(0, stroke: black),
+          lq.plot((0,), (0,), mark: "o", stroke: none, mark-color: black),
+        )
       ],
       [
-        #frame(cetz.canvas({
-          import cetz.draw: *
-          import cetz-plot: *
-
-          plot.plot(
-            size: (4, 4),
-            axis-style: "scientific",
-            x-tick-step: none,
-            y-tick-step: 5,
-            x-label: [],
-            y-label: [],
-            x-min: -1.5,
-            x-max: 1.5,
-            y-min: -7.5,
-            y-max: 7.5,
-            x-grid: "both",
-            y-grid: "both",
-            y-minor-tick-step: 5,
-            x-minor-tick-step: 5,
-            axes: (
-              stroke: black,
-              tick: (stroke: black),
-            ),
-            {
-              plot.add(
-                domain: (-2, 2),
-                x => 3 * calc.pow(x, 2),
-                style: (stroke: (thickness: 1pt, paint: black)),
-              )
-              plot.add-hline(0, style: (stroke: black))
-
-              plot.add(
-                ((0, 0),),
-                mark: "o",
-                mark-size: 0.15,
-                mark-style: (fill: black, stroke: black),
-              )
-            },
-            name: "plot",
-          )
-        }))
+        #let xs = lq.linspace(-1.5, 1.5, num: 200)
+        #lq.diagram(
+          width: 4cm,
+          height: 4cm,
+          xlim: (-1.5, 1.5),
+          ylim: (-7.5, 7.5),
+          xaxis: (ticks: none),
+          yaxis: (tick-args: (tick-distance: 5)),
+          lq.plot(xs, x => 3 * calc.pow(x, 2), mark: none, stroke: black),
+          lq.hlines(0, stroke: black),
+          lq.plot((0,), (0,), mark: "o", stroke: none, mark-color: black),
+        )
       ],
     )
   ]
@@ -473,112 +302,43 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
   #grid(
     columns: (1fr, 1fr, 1fr),
     [
-      #frame(cetz.canvas({
-        import cetz.draw: *
-        import cetz-plot: *
-
-        plot.plot(
-          size: (4, 4),
-          axis-style: "scientific",
-          x-tick-step: none,
-          y-tick-step: 1,
-          x-label: [],
-          y-label: [],
-          x-min: -1.5,
-          x-max: 1.5,
-          y-min: -0.5,
-          y-max: 1.5,
-          x-grid: "both",
-          y-grid: "both",
-          y-minor-tick-step: 0.5,
-          x-minor-tick-step: 0.5,
-          axes: (
-            stroke: black,
-            tick: (stroke: black),
-          ),
-          {
-            plot.add(
-              domain: (-2, 2),
-              x => calc.pow(x, 2),
-              style: (stroke: (thickness: 1pt, paint: black)),
-            )
-            plot.add-hline(0, style: (stroke: black))
-          },
-          name: "plot",
-        )
-      }))
+      #let xs = lq.linspace(-1.5, 1.5, num: 200)
+      #lq.diagram(
+        width: 4cm,
+        height: 4cm,
+        xlim: (-1.5, 1.5),
+        ylim: (-0.5, 1.5),
+        xaxis: (ticks: none),
+        yaxis: (tick-args: (tick-distance: 1)),
+        lq.plot(xs, x => calc.pow(x, 2), mark: none, stroke: black),
+        lq.hlines(0, stroke: black),
+      )
     ],
     [
-      #frame(cetz.canvas({
-        import cetz.draw: *
-        import cetz-plot: *
-
-        plot.plot(
-          size: (4, 4),
-          axis-style: "scientific",
-          x-tick-step: none,
-          y-tick-step: 5,
-          x-label: [],
-          y-label: [],
-          x-min: -1.5,
-          x-max: 1.5,
-          y-min: -7.5,
-          y-max: 7.5,
-          x-grid: "both",
-          y-grid: "both",
-          y-minor-tick-step: 5,
-          x-minor-tick-step: 5,
-          axes: (
-            stroke: black,
-            tick: (stroke: black),
-          ),
-          {
-            plot.add(
-              domain: (-2, 2),
-              x => 2 * x,
-              style: (stroke: (thickness: 1pt, paint: black)),
-            )
-            plot.add-hline(0, style: (stroke: black))
-          },
-          name: "plot",
-        )
-      }))
+      #let xs = lq.linspace(-1.5, 1.5, num: 200)
+      #lq.diagram(
+        width: 4cm,
+        height: 4cm,
+        xlim: (-1.5, 1.5),
+        ylim: (-7.5, 7.5),
+        xaxis: (ticks: none),
+        yaxis: (tick-args: (tick-distance: 5)),
+        lq.plot(xs, x => 2 * x, mark: none, stroke: black),
+        lq.hlines(0, stroke: black),
+      )
     ],
     [
-      #frame(cetz.canvas({
-        import cetz.draw: *
-        import cetz-plot: *
-
-        plot.plot(
-          size: (4, 4),
-          axis-style: "scientific",
-          x-tick-step: none,
-          y-tick-step: 5,
-          x-label: [],
-          y-label: [],
-          x-min: -1.5,
-          x-max: 1.5,
-          y-min: -7.5,
-          y-max: 7.5,
-          x-grid: "both",
-          y-grid: "both",
-          y-minor-tick-step: 5,
-          x-minor-tick-step: 5,
-          axes: (
-            stroke: black,
-            tick: (stroke: black),
-          ),
-          {
-            plot.add(
-              domain: (-2, 2),
-              x => 2,
-              style: (stroke: (thickness: 1pt, paint: red)),
-            )
-            plot.add-hline(0, style: (stroke: black))
-          },
-          name: "plot",
-        )
-      }))
+      #let xs = lq.linspace(-1.5, 1.5, num: 200)
+      #lq.diagram(
+        width: 4cm,
+        height: 4cm,
+        xlim: (-1.5, 1.5),
+        ylim: (-7.5, 7.5),
+        xaxis: (ticks: none),
+        yaxis: (tick-args: (tick-distance: 5)),
+        lq.plot(xs, x => 2, mark: none, stroke: red),
+        lq.hlines(0, stroke: black),
+      )
     ],
   )
 
@@ -618,112 +378,43 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
   #grid(
     columns: (1fr, 1fr, 1fr),
     [
-      #frame(cetz.canvas({
-        import cetz.draw: *
-        import cetz-plot: *
-
-        plot.plot(
-          size: (4, 4),
-          axis-style: "scientific",
-          x-tick-step: none,
-          y-tick-step: 1,
-          x-label: [],
-          y-label: [],
-          x-min: -1.5,
-          x-max: 1.5,
-          y-min: -1.5,
-          y-max: 0.5,
-          x-grid: "both",
-          y-grid: "both",
-          y-minor-tick-step: 0.5,
-          x-minor-tick-step: 0.5,
-          axes: (
-            stroke: black,
-            tick: (stroke: black),
-          ),
-          {
-            plot.add(
-              domain: (-2, 2),
-              x => -calc.pow(x, 2),
-              style: (stroke: (thickness: 1pt, paint: black)),
-            )
-            plot.add-hline(0, style: (stroke: black))
-          },
-          name: "plot",
-        )
-      }))
+      #let xs = lq.linspace(-1.5, 1.5, num: 200)
+      #lq.diagram(
+        width: 4cm,
+        height: 4cm,
+        xlim: (-1.5, 1.5),
+        ylim: (-1.5, 0.5),
+        xaxis: (ticks: none),
+        yaxis: (tick-args: (tick-distance: 1)),
+        lq.plot(xs, x => -calc.pow(x, 2), mark: none, stroke: black),
+        lq.hlines(0, stroke: black),
+      )
     ],
     [
-      #frame(cetz.canvas({
-        import cetz.draw: *
-        import cetz-plot: *
-
-        plot.plot(
-          size: (4, 4),
-          axis-style: "scientific",
-          x-tick-step: none,
-          y-tick-step: 5,
-          x-label: [],
-          y-label: [],
-          x-min: -1.5,
-          x-max: 1.5,
-          y-min: -7.5,
-          y-max: 7.5,
-          x-grid: "both",
-          y-grid: "both",
-          y-minor-tick-step: 5,
-          x-minor-tick-step: 5,
-          axes: (
-            stroke: black,
-            tick: (stroke: black),
-          ),
-          {
-            plot.add(
-              domain: (-2, 2),
-              x => -2 * x,
-              style: (stroke: (thickness: 1pt, paint: black)),
-            )
-            plot.add-hline(0, style: (stroke: black))
-          },
-          name: "plot",
-        )
-      }))
+      #let xs = lq.linspace(-1.5, 1.5, num: 200)
+      #lq.diagram(
+        width: 4cm,
+        height: 4cm,
+        xlim: (-1.5, 1.5),
+        ylim: (-7.5, 7.5),
+        xaxis: (ticks: none),
+        yaxis: (tick-args: (tick-distance: 5)),
+        lq.plot(xs, x => -2 * x, mark: none, stroke: black),
+        lq.hlines(0, stroke: black),
+      )
     ],
     [
-      #frame(cetz.canvas({
-        import cetz.draw: *
-        import cetz-plot: *
-
-        plot.plot(
-          size: (4, 4),
-          axis-style: "scientific",
-          x-tick-step: none,
-          y-tick-step: 5,
-          x-label: [],
-          y-label: [],
-          x-min: -1.5,
-          x-max: 1.5,
-          y-min: -7.5,
-          y-max: 7.5,
-          x-grid: "both",
-          y-grid: "both",
-          y-minor-tick-step: 5,
-          x-minor-tick-step: 5,
-          axes: (
-            stroke: black,
-            tick: (stroke: black),
-          ),
-          {
-            plot.add(
-              domain: (-2, 2),
-              x => -2,
-              style: (stroke: (thickness: 1pt, paint: red)),
-            )
-            plot.add-hline(0, style: (stroke: black))
-          },
-          name: "plot",
-        )
-      }))
+      #let xs = lq.linspace(-1.5, 1.5, num: 200)
+      #lq.diagram(
+        width: 4cm,
+        height: 4cm,
+        xlim: (-1.5, 1.5),
+        ylim: (-7.5, 7.5),
+        xaxis: (ticks: none),
+        yaxis: (tick-args: (tick-distance: 5)),
+        lq.plot(xs, x => -2, mark: none, stroke: red),
+        lq.hlines(0, stroke: black),
+      )
     ],
   )
 
@@ -764,112 +455,43 @@ If $f''(x)$ is continuous near a critical point $c$, and $f'(c) = 0$, then:
   #grid(
     columns: (1fr, 1fr, 1fr),
     [
-      #frame(cetz.canvas({
-        import cetz.draw: *
-        import cetz-plot: *
-
-        plot.plot(
-          size: (4, 4),
-          axis-style: "scientific",
-          x-tick-step: none,
-          y-tick-step: 1,
-          x-label: [],
-          y-label: [],
-          x-min: -1.5,
-          x-max: 1.5,
-          y-min: -1.5,
-          y-max: 1.5,
-          x-grid: "both",
-          y-grid: "both",
-          y-minor-tick-step: 0.5,
-          x-minor-tick-step: 0.5,
-          axes: (
-            stroke: black,
-            tick: (stroke: black),
-          ),
-          {
-            plot.add(
-              domain: (-2, 2),
-              x => calc.pow(x, 3),
-              style: (stroke: (thickness: 1pt, paint: black)),
-            )
-            plot.add-hline(0, style: (stroke: black))
-          },
-          name: "plot",
-        )
-      }))
+      #let xs = lq.linspace(-1.5, 1.5, num: 200)
+      #lq.diagram(
+        width: 4cm,
+        height: 4cm,
+        xlim: (-1.5, 1.5),
+        ylim: (-1.5, 1.5),
+        xaxis: (ticks: none),
+        yaxis: (tick-args: (tick-distance: 1)),
+        lq.plot(xs, x => calc.pow(x, 3), mark: none, stroke: black),
+        lq.hlines(0, stroke: black),
+      )
     ],
     [
-      #frame(cetz.canvas({
-        import cetz.draw: *
-        import cetz-plot: *
-
-        plot.plot(
-          size: (4, 4),
-          axis-style: "scientific",
-          x-tick-step: none,
-          y-tick-step: 5,
-          x-label: [],
-          y-label: [],
-          x-min: -1.5,
-          x-max: 1.5,
-          y-min: -7.5,
-          y-max: 7.5,
-          x-grid: "both",
-          y-grid: "both",
-          y-minor-tick-step: 5,
-          x-minor-tick-step: 5,
-          axes: (
-            stroke: black,
-            tick: (stroke: black),
-          ),
-          {
-            plot.add(
-              domain: (-2, 2),
-              x => 3 * calc.pow(x, 2),
-              style: (stroke: (thickness: 1pt, paint: black)),
-            )
-            plot.add-hline(0, style: (stroke: black))
-          },
-          name: "plot",
-        )
-      }))
+      #let xs = lq.linspace(-1.5, 1.5, num: 200)
+      #lq.diagram(
+        width: 4cm,
+        height: 4cm,
+        xlim: (-1.5, 1.5),
+        ylim: (-7.5, 7.5),
+        xaxis: (ticks: none),
+        yaxis: (tick-args: (tick-distance: 5)),
+        lq.plot(xs, x => 3 * calc.pow(x, 2), mark: none, stroke: black),
+        lq.hlines(0, stroke: black),
+      )
     ],
     [
-      #frame(cetz.canvas({
-        import cetz.draw: *
-        import cetz-plot: *
-
-        plot.plot(
-          size: (4, 4),
-          axis-style: "scientific",
-          x-tick-step: none,
-          y-tick-step: 5,
-          x-label: [],
-          y-label: [],
-          x-min: -1.5,
-          x-max: 1.5,
-          y-min: -7.5,
-          y-max: 7.5,
-          x-grid: "both",
-          y-grid: "both",
-          y-minor-tick-step: 5,
-          x-minor-tick-step: 5,
-          axes: (
-            stroke: black,
-            tick: (stroke: black),
-          ),
-          {
-            plot.add(
-              domain: (-2, 2),
-              x => 6 * x,
-              style: (stroke: (thickness: 1pt, paint: red)),
-            )
-            plot.add-hline(0, style: (stroke: black))
-          },
-          name: "plot",
-        )
-      }))
+      #let xs = lq.linspace(-1.5, 1.5, num: 200)
+      #lq.diagram(
+        width: 4cm,
+        height: 4cm,
+        xlim: (-1.5, 1.5),
+        ylim: (-7.5, 7.5),
+        xaxis: (ticks: none),
+        yaxis: (tick-args: (tick-distance: 5)),
+        lq.plot(xs, x => 6 * x, mark: none, stroke: red),
+        lq.hlines(0, stroke: black),
+      )
     ],
   )
 

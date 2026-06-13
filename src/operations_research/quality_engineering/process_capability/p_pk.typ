@@ -8,68 +8,42 @@ $
 $
 
 #align(center)[
-  #frame(cetz.canvas({
-    import cetz.draw: *
-    import cetz-plot: *
+  #let mu = 1
+  #let sigma = 1
+  #let lsl = -2
+  #let usl = 2
+  #let process_mean = mu
 
-    set-style(
-      axes: (
-        x: (stroke: 1pt),
-        // tick: (stroke: 1pt),
-        y: (stroke: 0pt, tick: (label: (offset: 1em))),
-        // padding: 0pt,
-        shared-zero: false,
-      ),
-    )
+  #let xs = lq.linspace(-4, 4, num: 200)
+  #let xs_hi = lq.linspace(usl, 4, num: 200)
+  #let xs_lo = lq.linspace(-4, lsl, num: 200)
 
-    let mu = 1
-    let sigma = 1
-    let lsl = -2
-    let usl = 2
-    let process_mean = mu
-
-    plot.plot(
-      size: (12, 5),
-      axis-style: "scientific",
-      x-tick-step: none,
-      y-tick-step: none,
-      x-label: [],
-      y-label: [],
-      x-ticks: ((lsl, "LSL"), (process_mean, $mu$), (usl, "USL")),
-      x-min: -4,
-      x-max: 4,
-      y-min: 0,
-      y-max: 0.5,
-      axes: (
-        stroke: black,
-        tick: (stroke: black),
-      ),
-      {
-        plot.add(
-          domain: (-4, 4),
-          x => gaussian_pdf(x, mu, sigma),
-          style: (stroke: 1pt, fill: black),
-        )
-
-        plot.add-vline(usl, style: (stroke: (thickness: 1pt, paint: red)))
-        plot.add-vline(process_mean, style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")))
-        plot.add-vline(lsl, style: (stroke: (thickness: 1pt, paint: red)))
-
-        plot.add-fill-between(
-          domain: (usl, 4),
-          x => gaussian_pdf(x, mu, sigma),
-          x => 0,
-          style: (fill: blue.lighten(80%), stroke: none),
-        )
-        plot.add-fill-between(
-          domain: (-4, lsl),
-          x => gaussian_pdf(x, mu, sigma),
-          x => 0,
-          style: (fill: blue.lighten(80%), stroke: none),
-        )
-      },
-    )
-  }))
+  #lq.diagram(
+    width: 6cm,
+    height: 3cm,
+    xlim: (-4, 4),
+    ylim: (0, 0.5),
+    yaxis: (ticks: none),
+    xaxis: (ticks: ((lsl, [LSL]), (process_mean, $mu$), (usl, [USL]))),
+    lq.fill-between(
+      xs_hi,
+      xs_hi.map(x => norm.pdf(x, mean: mu, std_dev: sigma)),
+      y2: xs_hi.map(x => 0),
+      fill: blue.lighten(80%),
+      stroke: none,
+    ),
+    lq.fill-between(
+      xs_lo,
+      xs_lo.map(x => norm.pdf(x, mean: mu, std_dev: sigma)),
+      y2: xs_lo.map(x => 0),
+      fill: blue.lighten(80%),
+      stroke: none,
+    ),
+    lq.plot(xs, x => norm.pdf(x, mean: mu, std_dev: sigma), mark: none, stroke: black),
+    lq.vlines(usl, stroke: (paint: red, thickness: 1pt)),
+    lq.vlines(process_mean, stroke: (paint: black, thickness: 1pt, dash: "dashed")),
+    lq.vlines(lsl, stroke: (paint: red, thickness: 1pt)),
+  )
 ]
 
 #example[

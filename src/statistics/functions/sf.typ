@@ -10,52 +10,18 @@ S(t) = P(T > t)
 $
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-
-    let mu = 0
-    let sigma = 1
-
-    let norm(x, mu: mu, sigma: sigma) = (
-      (1 / calc.sqrt(2 * calc.pi * calc.pow(sigma, 2))) * calc.exp(-(calc.pow(x - mu, 2)) / (2 * calc.pow(sigma, 2)))
-    )
-
-    set-style(
-      axes: (
-        x: (stroke: 0pt), 
-        y: (stroke: 0pt),
-        shared-zero: false
-      )
-    )
-    
-    plot.plot(
-      size: (9, 3),
-      axis-style: "school-book",
-      x-tick-step: none,
-      y-tick-step: none,
-      x-label: none,
-      y-label: none, 
-      x-min: -4., 
-      x-max: 4.,
-      y-min: 0., 
-      y-max: 0.4,
-      legend: "inner-north-west",
-      {
-        plot.add(
-          norm, 
-          domain: (-5, 5), 
-          style: (stroke: black),
-        )
-
-        plot.add-fill-between(
-          domain: (1, 4),
-          x => norm(x),
-          x1 => 0,
-          style: (fill: red.lighten(75%), stroke: none),
-          label: none
-        )
-      })
-  }))
+  #let xs = lq.linspace(-5, 5, num: 200)
+  #let xs_fill = lq.linspace(1, 4, num: 200)
+  #lq.diagram(
+    width: 6cm,
+    height: 3cm,
+    xlim: (-4, 4),
+    ylim: (0, 0.4),
+    xaxis: (position: 0, tip: tiptoe.triangle, ticks: none),
+    yaxis: (position: 0, tip: tiptoe.triangle, ticks: none),
+    lq.fill-between(xs_fill, xs_fill.map(x => norm.pdf(x, mean: 0, std_dev: 1)), y2: xs_fill.map(x => 0), fill: red.lighten(75%), stroke: none),
+    lq.plot(xs, x => norm.pdf(x, mean: 0, std_dev: 1), mark: none, stroke: black),
+  )
 ]
 
 Relationship to PDF:

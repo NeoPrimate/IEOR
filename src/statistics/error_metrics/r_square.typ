@@ -26,6 +26,9 @@ $
   #let mean = d.sum() / d.len()
 
   #let data = range(n).zip(d)
+  #let data_xs = data.map(p => p.at(0))
+  #let data_ys = data.map(p => p.at(1))
+  #let line_xs = lq.linspace(-1, data.len() + 1, num: 200)
 
   *Step 1*: Fit the Regression Model
 
@@ -36,54 +39,17 @@ $
   $
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      set-style(
-        axes: (
-          x: (stroke: 0pt),
-          y: (stroke: 0pt),
-          shared-zero: false,
-        ),
-      )
-
-      plot.plot(
-        size: (10, 5),
-        axis-style: "school-book",
-        x-label: none,
-        y-label: none,
-        y-tick-step: none,
-        x-tick-step: none,
-        x-min: -1,
-        x-max: data.len() + 1,
-        y-min: d.sorted().at(0) - 5,
-        y-max: d.sorted().at(-1) + 5,
-        {
-          plot.add(
-            data,
-            mark: "o",
-            mark-size: 0.1,
-            style: (fill: none, stroke: none),
-            mark-style: (fill: black, stroke: black),
-          )
-
-          for (x, y) in data {
-            plot.add-vline(
-              x,
-              min: y,
-              max: mean,
-              style: (fill: black, stroke: (dash: "dotted")),
-            )
-          }
-
-          plot.add-hline(
-            mean,
-            style: (fill: none, stroke: green),
-          )
-        },
-      )
-    }))
+    #lq.diagram(
+      width: 8cm,
+      height: 3.5cm,
+      xlim: (-1, data.len() + 1),
+      ylim: (d.sorted().at(0) - 5, d.sorted().at(-1) + 5),
+      xaxis: (ticks: none),
+      yaxis: (ticks: none),
+      ..data.map(p => lq.vlines(p.at(0), min: calc.min(p.at(1), mean), max: calc.max(p.at(1), mean), stroke: (paint: black, dash: "dotted"))),
+      lq.hlines(mean, stroke: green),
+      lq.plot(data_xs, data_ys, mark: "o", stroke: none, mark-color: black),
+    )
   ]
 
   *Step 3*: Compute *Regression Sum of Squares* (SSR)
@@ -93,57 +59,18 @@ $
   $
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      set-style(
-        axes: (
-          x: (stroke: 0pt),
-          y: (stroke: 0pt),
-          shared-zero: false,
-        ),
-      )
-
-      plot.plot(
-        size: (10, 5),
-        axis-style: "school-book",
-        x-label: none,
-        y-label: none,
-        y-tick-step: none,
-        x-tick-step: none,
-        x-min: -1,
-        x-max: data.len() + 1,
-        y-min: d.sorted().at(0) - 5,
-        y-max: d.sorted().at(-1) + 5,
-        {
-          plot.add(
-            data,
-            mark: "o",
-            mark-size: 0.1,
-            style: (fill: none, stroke: none),
-            mark-style: (fill: black, stroke: black),
-          )
-
-          plot.add(
-            domain: (-1, 50),
-            x => a * x + b,
-            style: (stroke: red),
-          )
-
-          for (x, y) in data {
-            plot.add-vline(
-              x,
-              min: mean,
-              max: a * x + b,
-              style: (fill: black, stroke: (dash: "dotted")),
-            )
-          }
-
-          plot.add-hline(mean)
-        },
-      )
-    }))
+    #lq.diagram(
+      width: 8cm,
+      height: 3.5cm,
+      xlim: (-1, data.len() + 1),
+      ylim: (d.sorted().at(0) - 5, d.sorted().at(-1) + 5),
+      xaxis: (ticks: none),
+      yaxis: (ticks: none),
+      ..data.map(p => lq.vlines(p.at(0), min: calc.min(mean, a * p.at(0) + b), max: calc.max(mean, a * p.at(0) + b), stroke: (paint: black, dash: "dotted"))),
+      lq.hlines(mean, stroke: black),
+      lq.plot(line_xs, x => a * x + b, mark: none, stroke: red),
+      lq.plot(data_xs, data_ys, mark: "o", stroke: none, mark-color: black),
+    )
   ]
 
   *Step 4*: Compute *Residual Sum of Squares* (SSE)
@@ -153,55 +80,17 @@ $
   $
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      set-style(
-        axes: (
-          x: (stroke: 0pt),
-          y: (stroke: 0pt),
-          shared-zero: false,
-        ),
-      )
-
-      plot.plot(
-        size: (10, 5),
-        axis-style: "school-book",
-        x-label: none,
-        y-label: none,
-        y-tick-step: none,
-        x-tick-step: none,
-        x-min: -1,
-        x-max: data.len() + 1,
-        y-min: d.sorted().at(0) - 5,
-        y-max: d.sorted().at(-1) + 5,
-        {
-          plot.add(
-            data,
-            mark: "o",
-            mark-size: 0.1,
-            style: (fill: none, stroke: none),
-            mark-style: (fill: black, stroke: black),
-          )
-
-          plot.add(
-            domain: (-1, 50),
-            x => a * x + b,
-            style: (stroke: red),
-          )
-
-          for (x, y) in data {
-            plot.add-vline(
-              x,
-              min: y,
-              max: a * x + b,
-              style: (fill: black, stroke: (dash: "dotted")),
-            )
-          }
-        },
-      )
-    }))
+    #lq.diagram(
+      width: 8cm,
+      height: 3.5cm,
+      xlim: (-1, data.len() + 1),
+      ylim: (d.sorted().at(0) - 5, d.sorted().at(-1) + 5),
+      xaxis: (ticks: none),
+      yaxis: (ticks: none),
+      ..data.map(p => lq.vlines(p.at(0), min: calc.min(p.at(1), a * p.at(0) + b), max: calc.max(p.at(1), a * p.at(0) + b), stroke: (paint: black, dash: "dotted"))),
+      lq.plot(line_xs, x => a * x + b, mark: none, stroke: red),
+      lq.plot(data_xs, data_ys, mark: "o", stroke: none, mark-color: black),
+    )
   ]
 
   *Step 5*: Calculate *$R^2$*

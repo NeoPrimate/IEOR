@@ -17,99 +17,22 @@ $
 Solution: Intersection of $n$ lines or (hyper)planes
 
 #align(center)[
-  #frame(cetz.canvas({
-    import cetz.draw: *
-    import cetz-plot: *
-
-    plot.plot(
-      size: (7, 7),
-      axis-style: "school-book",
-      x-tick-step: 2,
-      y-tick-step: 2,
-      x-label: [$$],
-      y-label: [$$],
-      x-min: -1,
-      x-max: 9,
-      y-min: -6,
-      y-max: 6,
-      axes: (
-        stroke: black,
-        tick: (stroke: black),
-      ),
-      {
-        plot.add(
-          domain: (-1, 10),
-          x => 5 - x,
-          style: (stroke: (thickness: 1pt, paint: green)),
-          label: none,
-        )
-        plot.add(
-          domain: (-1, 10),
-          x => 2 * x - 4,
-          style: (stroke: (thickness: 1pt, paint: red)),
-          label: none,
-        )
-
-        plot.annotate({
-          content((10, -4.5), [$colorMath(x + y = 5, #green)$])
-        })
-
-        plot.annotate({
-          content((6, 6.5), [$colorMath(2x - y = 4, #red)$])
-        })
-
-        plot.annotate({
-          content((4, 2), text(size: 7.5pt, $(3, 2)$))
-        })
-        plot.add(
-          ((3, 2),),
-          mark: "o",
-          mark-size: 0.15,
-          mark-style: (fill: black, stroke: 2pt),
-        )
-
-        plot.annotate({
-          content((1.5, 0.5), text(size: 7.5pt, $(2, 0)$))
-        })
-        plot.add(
-          ((2, 0),),
-          mark: "o",
-          mark-size: 0.15,
-          mark-style: (fill: black, stroke: 2pt),
-        )
-
-        plot.annotate({
-          content((5.5, 0.5), text(size: 7.5pt, $(5, 0)$))
-        })
-        plot.add(
-          ((5, 0),),
-          mark: "o",
-          mark-size: 0.15,
-          mark-style: (fill: black, stroke: 2pt),
-        )
-
-        plot.annotate({
-          content((1, 5.5), text(size: 7.5pt, $(0, 5)$))
-        })
-        plot.add(
-          ((0, 5),),
-          mark: "o",
-          mark-size: 0.15,
-          mark-style: (fill: black, stroke: 2pt),
-        )
-
-        plot.annotate({
-          content((1, -4), text(size: 7.5pt, $(0, -4)$))
-        })
-        plot.add(
-          ((0, -4),),
-          mark: "o",
-          mark-size: 0.15,
-          mark-style: (fill: black, stroke: 2pt),
-        )
-      },
-    )
-  }))
+  #lq.diagram(
+    width: 5cm, height: 5cm,
+    xlim: (-1, 9), ylim: (-6, 6),
+    xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 2)),
+    yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 2)),
+    lq.plot(lq.linspace(-1, 10, num: 200), x => 5 - x, mark: none, stroke: (paint: green, thickness: 1pt)),
+    lq.plot(lq.linspace(-1, 10, num: 200), x => 2 * x - 4, mark: none, stroke: (paint: red, thickness: 1pt)),
+    lq.plot((3, 2, 5, 0, 0), (2, 0, 0, 5, -4), mark: "o", stroke: none, mark-color: black, mark-size: 5pt),
+    lq.place(10, -4.5)[$colorMath(x + y = 5, #green)$],
+    lq.place(6, 6.5)[$colorMath(2x - y = 4, #red)$],
+    lq.place(4, 2)[#text(size: 7.5pt, $(3, 2)$)],
+    lq.place(1.5, 0.5)[#text(size: 7.5pt, $(2, 0)$)],
+    lq.place(5.5, 0.5)[#text(size: 7.5pt, $(5, 0)$)],
+    lq.place(1, 5.5)[#text(size: 7.5pt, $(0, 5)$)],
+    lq.place(1, -4)[#text(size: 7.5pt, $(0, -4)$)],
+  )
 ]
 
 *Column* View
@@ -578,156 +501,46 @@ A point $x$ in set $S subset.eq RR^n$ is extreme if it cannot be written as a st
   #let x_e = d
   #let x_ne = (2, 2)
 
-  #frame(cetz.canvas({
-    import cetz.draw: *
-    import cetz-plot: *
-
-    plot.plot(
-      size: (7, 7),
-      x-tick-step: 2,
-      y-tick-step: 2,
-      x-minor-tick-step: 1,
-      y-minor-tick-step: 1,
-      x-min: 0,
-      y-min: 0,
-      x-max: 6,
-      y-max: 6,
-      axis-style: "school-book",
-      x-label: $$,
-      y-label: $$,
-      plot-style: (stroke: 1pt),
-      {
-        plot.add-anchor("a", a)
-        plot.add-anchor("b", b)
-        plot.add-anchor("c", c)
-        plot.add-anchor("d", d)
-        plot.add-anchor("e", e)
-
-        plot.add-anchor("x_e", x_e)
-        plot.add-anchor("x_ne", x_ne)
-
-        let m_e = 0.5
-        let delta_e = 1
-
-        let x_e1 = (x_e.at(0) - delta_e, x_e.at(1) - delta_e * m_e)
-        let x_e2 = (x_e.at(0) + delta_e, x_e.at(1) + delta_e * m_e)
-
-        let m_ne = 3
-        let delta_ne = 0.2
-
-        let x_ne1 = (x_ne.at(0) - delta_ne, x_ne.at(1) - delta_ne * m_ne)
-        let x_ne2 = (x_ne.at(0) + delta_ne, x_ne.at(1) + delta_ne * m_ne)
-
-        plot.add((a, b, c, d, e, a))
-
-        plot.add((x_e1, x_e2))
-
-        plot.add((x_ne1, x_ne2))
-
-        plot.add(
-          (a,),
-          mark: "o",
-          mark-size: 0.1,
-          mark-style: (fill: black, stroke: 2pt),
-        )
-        plot.add(
-          (b,),
-          mark: "o",
-          mark-size: 0.1,
-          mark-style: (fill: black, stroke: 2pt),
-        )
-        plot.add(
-          (c,),
-          mark: "o",
-          mark-size: 0.1,
-          mark-style: (fill: black, stroke: 2pt),
-        )
-        plot.add(
-          (d,),
-          mark: "o",
-          mark-size: 0.1,
-          mark-style: (fill: black, stroke: 2pt),
-        )
-        plot.add(
-          (e,),
-          mark: "o",
-          mark-size: 0.1,
-          mark-style: (fill: black, stroke: 2pt),
-        )
-
-        plot.add(
-          (x_e,),
-          mark: "o",
-          mark-size: 0.25,
-          mark-style: (fill: red, stroke: 0pt),
-        )
-
-        plot.add(
-          (x_ne,),
-          mark: "o",
-          mark-size: 0.25,
-          mark-style: (fill: red, stroke: 0pt),
-        )
-
-        plot.annotate({
-          content((a.at(0) - 0.25, a.at(1) - 0.25), text(size: 7.5pt, repr(a)))
-        })
-        plot.annotate({
-          content((b.at(0) + 0.25, b.at(1) - 0.25), text(size: 7.5pt, repr(b)))
-        })
-        plot.annotate({
-          content((c.at(0) + 0.25, c.at(1) - 0.25), text(size: 7.5pt, repr(c)))
-        })
-        plot.annotate({
-          content((d.at(0) - 0.25, d.at(1) + 0.25), text(size: 7.5pt, $x_e$))
-        })
-        plot.annotate({
-          content((e.at(0) - 0.25, e.at(1) + 0.25), text(size: 7.5pt, repr(e)))
-        })
-
-        plot.add(
-          (x_e1,),
-          mark: "o",
-          mark-size: 0.15,
-          mark-style: (fill: red, stroke: 0pt),
-        )
-        plot.annotate({
-          content((x_e1.at(0) - 0.3, x_e1.at(1) + 0.25), text(size: 7.5pt, $x_(e 1)$))
-        })
-
-        plot.add(
-          (x_e2,),
-          mark: "o",
-          mark-size: 0.15,
-          mark-style: (fill: red, stroke: 0pt),
-        )
-        plot.annotate({
-          content((x_e2.at(0) + 0.3, x_e2.at(1) + 0.25), text(size: 7.5pt, $x_(e 2)$))
-        })
-
-        plot.add(
-          (x_ne1,),
-          mark: "o",
-          mark-size: 0.15,
-          mark-style: (fill: red, stroke: 0pt),
-        )
-        plot.annotate({
-          content((x_ne1.at(0) - 0.3, x_ne1.at(1) + 0.25), text(size: 7.5pt, $x_(n e 1)$))
-        })
-
-        plot.add(
-          (x_ne2,),
-          mark: "o",
-          mark-size: 0.15,
-          mark-style: (fill: red, stroke: 0pt),
-        )
-        plot.annotate({
-          content((x_ne2.at(0) + 0.3, x_ne2.at(1) + 0.25), text(size: 7.5pt, $x_(n e 2)$))
-        })
-      },
-      name: "plot",
-    )
-  }))
+  #let m_e = 0.5
+  #let delta_e = 1
+  #let x_e1 = (x_e.at(0) - delta_e, x_e.at(1) - delta_e * m_e)
+  #let x_e2 = (x_e.at(0) + delta_e, x_e.at(1) + delta_e * m_e)
+  #let m_ne = 3
+  #let delta_ne = 0.2
+  #let x_ne1 = (x_ne.at(0) - delta_ne, x_ne.at(1) - delta_ne * m_ne)
+  #let x_ne2 = (x_ne.at(0) + delta_ne, x_ne.at(1) + delta_ne * m_ne)
+  #lq.diagram(
+    width: 5cm, height: 5cm,
+    xlim: (0, 6), ylim: (0, 6),
+    xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 2)),
+    yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 2)),
+    lq.plot((a, b, c, d, e, a).map(p => p.at(0)), (a, b, c, d, e, a).map(p => p.at(1)), mark: none, stroke: 1pt),
+    lq.plot((x_e1.at(0), x_e2.at(0)), (x_e1.at(1), x_e2.at(1)), mark: none, stroke: 1pt),
+    lq.plot((x_ne1.at(0), x_ne2.at(0)), (x_ne1.at(1), x_ne2.at(1)), mark: none, stroke: 1pt),
+    lq.plot(
+      (a, b, c, d, e).map(p => p.at(0)),
+      (a, b, c, d, e).map(p => p.at(1)),
+      mark: "o", stroke: none, mark-color: black, mark-size: 4pt,
+    ),
+    lq.plot(
+      (x_e.at(0), x_ne.at(0)), (x_e.at(1), x_ne.at(1)),
+      mark: "o", stroke: none, mark-color: red, mark-size: 7pt,
+    ),
+    lq.plot(
+      (x_e1.at(0), x_e2.at(0), x_ne1.at(0), x_ne2.at(0)),
+      (x_e1.at(1), x_e2.at(1), x_ne1.at(1), x_ne2.at(1)),
+      mark: "o", stroke: none, mark-color: red, mark-size: 5pt,
+    ),
+    lq.place(a.at(0) - 0.25, a.at(1) - 0.25)[#text(size: 7.5pt, repr(a))],
+    lq.place(b.at(0) + 0.25, b.at(1) - 0.25)[#text(size: 7.5pt, repr(b))],
+    lq.place(c.at(0) + 0.25, c.at(1) - 0.25)[#text(size: 7.5pt, repr(c))],
+    lq.place(d.at(0) - 0.25, d.at(1) + 0.25)[#text(size: 7.5pt, $x_e$)],
+    lq.place(e.at(0) - 0.25, e.at(1) + 0.25)[#text(size: 7.5pt, repr(e))],
+    lq.place(x_e1.at(0) - 0.3, x_e1.at(1) + 0.25)[#text(size: 7.5pt, $x_(e 1)$)],
+    lq.place(x_e2.at(0) + 0.3, x_e2.at(1) + 0.25)[#text(size: 7.5pt, $x_(e 2)$)],
+    lq.place(x_ne1.at(0) - 0.3, x_ne1.at(1) + 0.25)[#text(size: 7.5pt, $x_(n e 1)$)],
+    lq.place(x_ne2.at(0) + 0.3, x_ne2.at(1) + 0.25)[#text(size: 7.5pt, $x_(n e 2)$)],
+  )
 ]
 
 Convex Combination
@@ -767,69 +580,19 @@ Unused capacity
   - If $x_1 + x_2 = 5$, then $s = 0$
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (5, 5),
-        axis-style: "school-book",
-        x-tick-step: 2,
-        y-tick-step: 2,
-        x-label: [$$],
-        y-label: [$$],
-        x-min: -1,
-        x-max: 6,
-        y-min: -1,
-        y-max: 6,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-        {
-          plot.add-anchor("a", (1, 2))
-          plot.add-anchor("b", (1, 4))
-
-          plot.add(
-            domain: (-1, 10),
-            x => 5 - x,
-            style: (stroke: (thickness: 1pt, paint: green)),
-            label: [$x_1 + x_2 = 5$],
-          )
-
-          plot.add(
-            domain: (-1, 10),
-            x => 3 - x,
-            style: (stroke: (thickness: 1pt, paint: red)),
-            label: [$x_1 + x_2 = 3$],
-          )
-
-          plot.add(
-            ((1, 2),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: black, stroke: none),
-          )
-
-          plot.annotate({
-            content((1.3, 2.9), text(size: 12pt, $s$))
-          })
-
-          plot.add-fill-between(
-            domain: (0, 6),
-            x => 5 - x,
-            x1 => 0,
-            style: (fill: rgb(200, 200, 255, 80), stroke: none),
-            label: none,
-          )
-        },
-        name: "plot",
-      )
-
-      cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
-
-      cetz.draw.line("plot.a", "plot.b", stroke: (dash: "dashed", paint: black), mark: (fill: black))
-    }))
+    #let xs = lq.linspace(0, 6, num: 200)
+    #lq.diagram(
+      width: 5cm, height: 5cm,
+      xlim: (-1, 6), ylim: (-1, 6),
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 2)),
+      yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 2)),
+      lq.fill-between(xs, xs.map(x => 5 - x), y2: xs.map(x => 0), fill: rgb(200, 200, 255, 80)),
+      lq.plot(lq.linspace(-1, 10, num: 200), x => 5 - x, mark: none, stroke: (paint: green, thickness: 1pt), label: [$x_1 + x_2 = 5$]),
+      lq.plot(lq.linspace(-1, 10, num: 200), x => 3 - x, mark: none, stroke: (paint: red, thickness: 1pt), label: [$x_1 + x_2 = 3$]),
+      lq.plot((1,), (2,), mark: "o", stroke: none, mark-color: black, mark-size: 5pt),
+      lq.place(1.3, 2.9)[#text(size: 12pt, $s$)],
+      lq.line((1, 2), (1, 4), stroke: (paint: black, dash: "dashed"), tip: tiptoe.stealth),
+    )
   ]
 ]
 
@@ -854,69 +617,19 @@ Excess above the required amount
   - If $x_1 + x_2 = 5$, then $e = 0$
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (5, 5),
-        axis-style: "school-book",
-        x-tick-step: 2,
-        y-tick-step: 2,
-        x-label: [$$],
-        y-label: [$$],
-        x-min: -1,
-        x-max: 8,
-        y-min: -1,
-        y-max: 8,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-        {
-          plot.add-anchor("a", (4, 3))
-          plot.add-anchor("b", (4, 1))
-
-          plot.add(
-            domain: (-1, 10),
-            x => 5 - x,
-            style: (stroke: (thickness: 1pt, paint: green)),
-            label: [$x_1 + x_2 = 5$],
-          )
-
-          plot.add(
-            domain: (-1, 10),
-            x => 7 - x,
-            style: (stroke: (thickness: 1pt, paint: red)),
-            label: [$x_1 + x_2 = 7$],
-          )
-
-          plot.add(
-            ((4, 3),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: black, stroke: none),
-          )
-
-          plot.annotate({
-            content((4.5, 2), text(size: 12pt, $e$))
-          })
-
-          plot.add-fill-between(
-            domain: (0, 6),
-            x => 5 - x,
-            x1 => 0,
-            style: (fill: rgb(200, 200, 255, 80), stroke: none),
-            label: none,
-          )
-        },
-        name: "plot",
-      )
-
-      cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
-
-      cetz.draw.line("plot.a", "plot.b", stroke: (dash: "dashed", paint: black), mark: (fill: black))
-    }))
+    #let xs = lq.linspace(0, 6, num: 200)
+    #lq.diagram(
+      width: 5cm, height: 5cm,
+      xlim: (-1, 8), ylim: (-1, 8),
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 2)),
+      yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 2)),
+      lq.fill-between(xs, xs.map(x => 5 - x), y2: xs.map(x => 0), fill: rgb(200, 200, 255, 80)),
+      lq.plot(lq.linspace(-1, 10, num: 200), x => 5 - x, mark: none, stroke: (paint: green, thickness: 1pt), label: [$x_1 + x_2 = 5$]),
+      lq.plot(lq.linspace(-1, 10, num: 200), x => 7 - x, mark: none, stroke: (paint: red, thickness: 1pt), label: [$x_1 + x_2 = 7$]),
+      lq.plot((4,), (3,), mark: "o", stroke: none, mark-color: black, mark-size: 5pt),
+      lq.place(4.5, 2)[#text(size: 12pt, $e$)],
+      lq.line((4, 3), (4, 1), stroke: (paint: black, dash: "dashed"), tip: tiptoe.stealth),
+    )
   ]
 ]
 
@@ -1069,60 +782,18 @@ Excess above the required amount
     - Objective: $z = 3x_1 + 2x_2 = 3(0) + 2(0) = 0$
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (7.5, 7.5),
-        axis-style: "school-book",
-        x-tick-step: 1,
-        y-tick-step: 1,
-        x-label: [$x_1$],
-        y-label: [$x_2$],
-        x-min: -0.5,
-        x-max: 4.5,
-        y-min: -0.5,
-        y-max: 4.5,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-        {
-          plot.add-anchor("V_1", (0, 0))
-
-          plot.add(
-            domain: (-1, 10),
-            x => 4 - x,
-            style: (stroke: (thickness: 1pt, paint: purple)),
-            label: [$x_1 + x_2 lt.eq 4$],
-          )
-
-          plot.add-vline(
-            2,
-            style: (stroke: (thickness: 1pt, paint: green)),
-            label: [$x_1 lt.eq 2$],
-          )
-          plot.add-hline(
-            3,
-            style: (stroke: (thickness: 1pt, paint: blue)),
-            label: [$x_2 lt.eq 3$],
-          )
-
-          plot.add(
-            ((0, 0),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: 1pt),
-          )
-
-          plot.annotate({
-            content((0.25, 0.25), text(size: 12pt, $V_0$))
-          })
-        },
-        name: "plot",
-      )
-    }))
+    #lq.diagram(
+      width: 5cm, height: 5cm,
+      xlim: (-0.5, 4.5), ylim: (-0.5, 4.5),
+      xlabel: [$x_1$], ylabel: [$x_2$],
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+      yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+      lq.plot(lq.linspace(-1, 10, num: 200), x => 4 - x, mark: none, stroke: (paint: purple, thickness: 1pt), label: [$x_1 + x_2 lt.eq 4$]),
+      lq.vlines(2, stroke: (paint: green, thickness: 1pt), label: [$x_1 lt.eq 2$]),
+      lq.hlines(3, stroke: (paint: blue, thickness: 1pt), label: [$x_2 lt.eq 3$]),
+      lq.plot((0,), (0,), mark: "o", stroke: none, mark-color: red, mark-size: 5pt),
+      lq.place(0.25, 0.25)[#text(size: 12pt, $V_0$)],
+    )
   ]
 
   *Step 3*: Choose entering variable
@@ -1368,76 +1039,20 @@ Excess above the required amount
   )
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (7.5, 7.5),
-        axis-style: "school-book",
-        x-tick-step: 1,
-        y-tick-step: 1,
-        x-label: [$x_1$],
-        y-label: [$x_2$],
-        x-min: -0.5,
-        x-max: 4.5,
-        y-min: -0.5,
-        y-max: 4.5,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-        {
-          plot.add-anchor("V_1", (0, 0))
-          plot.add-anchor("V_2", (2, 0))
-
-          plot.add(
-            domain: (-1, 10),
-            x => 4 - x,
-            style: (stroke: (thickness: 1pt, paint: purple)),
-            label: [$x_1 + x_2 lt.eq 4$],
-          )
-
-          plot.add-vline(
-            2,
-            style: (stroke: (thickness: 1pt, paint: green)),
-            label: [$x_1 lt.eq 2$],
-          )
-          plot.add-hline(
-            3,
-            style: (stroke: (thickness: 1pt, paint: blue)),
-            label: [$x_2 lt.eq 3$],
-          )
-
-          plot.add(
-            ((0, 0),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: 1pt),
-          )
-
-          plot.annotate({
-            content((0.35, 0.35), text(size: 12pt, $V_0$))
-          })
-
-          plot.add(
-            ((2, 0),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: 1pt),
-          )
-
-          plot.annotate({
-            content((2.35, 0.35), text(size: 12pt, $V_1$))
-          })
-        },
-        name: "plot",
-      )
-
-      cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
-
-      cetz.draw.line("plot.V_1", "plot.V_2", stroke: (dash: "dashed", paint: red, thickness: 3pt), mark: (fill: black))
-    }))
+    #lq.diagram(
+      width: 5cm, height: 5cm,
+      xlim: (-0.5, 4.5), ylim: (-0.5, 4.5),
+      xlabel: [$x_1$], ylabel: [$x_2$],
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+      yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+      lq.plot(lq.linspace(-1, 10, num: 200), x => 4 - x, mark: none, stroke: (paint: purple, thickness: 1pt), label: [$x_1 + x_2 lt.eq 4$]),
+      lq.vlines(2, stroke: (paint: green, thickness: 1pt), label: [$x_1 lt.eq 2$]),
+      lq.hlines(3, stroke: (paint: blue, thickness: 1pt), label: [$x_2 lt.eq 3$]),
+      lq.line((0, 0), (2, 0), stroke: (paint: red, dash: "dashed", thickness: 3pt), tip: tiptoe.stealth),
+      lq.plot((0, 2), (0, 0), mark: "o", stroke: none, mark-color: red, mark-size: 5pt),
+      lq.place(0.35, 0.35)[#text(size: 12pt, $V_0$)],
+      lq.place(2.35, 0.35)[#text(size: 12pt, $V_1$)],
+    )
   ]
 
   *Step 3*: Choose entering variable
@@ -1678,87 +1293,21 @@ Excess above the required amount
     - Objective: $z = 3x_1 + 2x_2 = 3(2) + 2(2) = 10$
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (7.5, 7.5),
-        axis-style: "school-book",
-        x-tick-step: 1,
-        y-tick-step: 1,
-        x-label: [$x_1$],
-        y-label: [$x_2$],
-        x-min: -0.5,
-        x-max: 4.5,
-        y-min: -0.5,
-        y-max: 4.5,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-        {
-          plot.add-anchor("V_1", (2, 0))
-          plot.add-anchor("V_2", (2, 2))
-
-          plot.add(
-            domain: (-1, 10),
-            x => 4 - x,
-            style: (stroke: (thickness: 1pt, paint: purple)),
-            label: [$x_1 + x_2 lt.eq 4$],
-          )
-
-          plot.add-vline(
-            2,
-            style: (stroke: (thickness: 1pt, paint: green)),
-            label: [$x_1 lt.eq 2$],
-          )
-          plot.add-hline(
-            3,
-            style: (stroke: (thickness: 1pt, paint: blue)),
-            label: [$x_2 lt.eq 3$],
-          )
-
-          plot.add(
-            ((0, 0),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: 1pt),
-          )
-
-          plot.annotate({
-            content((0.35, 0.35), text(size: 12pt, $V_0$))
-          })
-
-          plot.add(
-            ((2, 0),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: 1pt),
-          )
-
-          plot.annotate({
-            content((2.35, 0.35), text(size: 12pt, $V_1$))
-          })
-
-          plot.add(
-            ((2, 2),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: 1pt),
-          )
-
-          plot.annotate({
-            content((2.35, 2.35), text(size: 12pt, $V_2$))
-          })
-        },
-        name: "plot",
-      )
-
-      cetz.draw.set-style(line: (mark: (end: ">", size: .25)))
-
-      cetz.draw.line("plot.V_1", "plot.V_2", stroke: (dash: "dashed", paint: red, thickness: 3pt), mark: (fill: black))
-    }))
+    #lq.diagram(
+      width: 5cm, height: 5cm,
+      xlim: (-0.5, 4.5), ylim: (-0.5, 4.5),
+      xlabel: [$x_1$], ylabel: [$x_2$],
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+      yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+      lq.plot(lq.linspace(-1, 10, num: 200), x => 4 - x, mark: none, stroke: (paint: purple, thickness: 1pt), label: [$x_1 + x_2 lt.eq 4$]),
+      lq.vlines(2, stroke: (paint: green, thickness: 1pt), label: [$x_1 lt.eq 2$]),
+      lq.hlines(3, stroke: (paint: blue, thickness: 1pt), label: [$x_2 lt.eq 3$]),
+      lq.line((2, 0), (2, 2), stroke: (paint: red, dash: "dashed", thickness: 3pt), tip: tiptoe.stealth),
+      lq.plot((0, 2, 2), (0, 0, 2), mark: "o", stroke: none, mark-color: red, mark-size: 5pt),
+      lq.place(0.35, 0.35)[#text(size: 12pt, $V_0$)],
+      lq.place(2.35, 0.35)[#text(size: 12pt, $V_1$)],
+      lq.place(2.35, 2.35)[#text(size: 12pt, $V_2$)],
+    )
   ]
 ]
 
@@ -3119,70 +2668,20 @@ $
 )
 
 #align(center)[
-  #frame(cetz.canvas({
-    import cetz.draw: *
-    import cetz-plot: *
-
-    plot.plot(
-      size: (7.5, 7.5),
-      axis-style: "school-book",
-      x-tick-step: 1,
-      y-tick-step: 1,
-      x-label: [$x_1$],
-      y-label: [$x_2$],
-      x-min: -0.5,
-      x-max: 5,
-      y-min: -0.5,
-      y-max: 5,
-      axes: (
-        stroke: black,
-        tick: (stroke: black),
-      ),
-      {
-        plot.add-anchor("V_1", (0, 0))
-
-        plot.add(
-          domain: (-1, 10),
-          x => 2 - x,
-          style: (stroke: (thickness: 1pt, paint: red)),
-          label: [$x_1 + x_2 gt.eq 2$],
-        )
-
-        plot.add(
-          domain: (-1, 10),
-          x => 5 - x,
-          style: (stroke: (thickness: 1pt, paint: blue)),
-          label: [$x_1 + x_2 lt.eq 5$],
-        )
-
-        plot.add-vline(
-          1,
-          style: (stroke: (thickness: 1pt, paint: green)),
-          label: [$x_1 gt.eq 1$],
-        )
-
-        plot.add(
-          ((0, 0),),
-          mark: "o",
-          mark-size: 0.2,
-          mark-style: (fill: red, stroke: 1pt),
-        )
-
-        plot.add-fill-between(
-          domain: (1, 5),
-          x => calc.max(0, 2 - x),
-          x1 => 5 - x1,
-          style: (fill: rgb(200, 200, 255, 80), stroke: none),
-          label: none,
-        )
-
-        plot.annotate({
-          content((0.35, 0.35), text(size: 12pt, $V_0$))
-        })
-      },
-      name: "plot",
-    )
-  }))
+  #let xs = lq.linspace(1, 5, num: 200)
+  #lq.diagram(
+    width: 5cm, height: 5cm,
+    xlim: (-0.5, 5), ylim: (-0.5, 5),
+    xlabel: [$x_1$], ylabel: [$x_2$],
+    xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+    yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+    lq.fill-between(xs, xs.map(x => calc.max(0, 2 - x)), y2: xs.map(x => 5 - x), fill: rgb(200, 200, 255, 80)),
+    lq.plot(lq.linspace(-1, 10, num: 200), x => 2 - x, mark: none, stroke: (paint: red, thickness: 1pt), label: [$x_1 + x_2 gt.eq 2$]),
+    lq.plot(lq.linspace(-1, 10, num: 200), x => 5 - x, mark: none, stroke: (paint: blue, thickness: 1pt), label: [$x_1 + x_2 lt.eq 5$]),
+    lq.vlines(1, stroke: (paint: green, thickness: 1pt), label: [$x_1 gt.eq 1$]),
+    lq.plot((0,), (0,), mark: "o", stroke: none, mark-color: red, mark-size: 5pt),
+    lq.place(0.35, 0.35)[#text(size: 12pt, $V_0$)],
+  )
 ]
 
 $
@@ -3243,75 +2742,34 @@ Degeneracy occurs when a basic variable takes the value zero in a basic feasible
   $
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (7.5, 7.5),
-        axis-style: "school-book",
-        x-tick-step: 1,
-        y-tick-step: 1,
-        x-label: [$x_1$],
-        y-label: [$x_2$],
-        x-min: 0,
-        x-max: 3.1,
-        y-min: 0,
-        y-max: 3,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-        {
-          plot.add-anchor("V_1", (0, 0))
-
-          plot.add(
-            domain: (-1, 10),
-            x => 3 - x,
-            style: (stroke: (thickness: 1pt, paint: red)),
-            label: [$x_1 + x_2 lt.eq 3$],
-          )
-          plot.add(
-            domain: (-1, 10),
-            x => 2,
-            style: (stroke: (thickness: 1pt, paint: blue)),
-            label: [$x_2 lt.eq 2$],
-          )
-          plot.add(
-            domain: (-1, 10),
-            x => 2.5 - 1 / 2 * x,
-            style: (stroke: (thickness: 1pt, paint: green)),
-            label: [$1/2x_1 + x_2 lt.eq 2.5$],
-          )
-
-          plot.add(
-            ((0, 0),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: 1pt),
-          )
-
-          plot.annotate({
-            content((0.25, 0.25), text(size: 12pt, $V_0$))
-          })
-
-          plot.add-fill-between(
-            domain: (0, 6),
-            x => {
-              if x <= 1 {
-                2
-              } else {
-                3 - x
-              }
-            },
-            x1 => 0,
-            style: (fill: rgb(200, 200, 255, 80), stroke: none),
-            label: none,
-          )
-        },
-        name: "plot",
-      )
-    }))
+    #let xs = lq.linspace(0, 6, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (0, 3.1),
+      ylim: (0, 3),
+      xlabel: [$x_1$],
+      ylabel: [$x_2$],
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+      yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+      lq.fill-between(
+        xs,
+        xs.map(x => {
+          if x <= 1 {
+            2
+          } else {
+            3 - x
+          }
+        }),
+        y2: xs.map(x => 0),
+        fill: rgb(200, 200, 255, 80),
+      ),
+      lq.plot(lq.linspace(-1, 10, num: 200), x => 3 - x, mark: none, stroke: (thickness: 1pt, paint: red), label: [$x_1 + x_2 lt.eq 3$]),
+      lq.plot(lq.linspace(-1, 10, num: 200), x => 2, mark: none, stroke: (thickness: 1pt, paint: blue), label: [$x_2 lt.eq 2$]),
+      lq.plot(lq.linspace(-1, 10, num: 200), x => 2.5 - 1 / 2 * x, mark: none, stroke: (thickness: 1pt, paint: green), label: [$1/2x_1 + x_2 lt.eq 2.5$]),
+      lq.plot((0,), (0,), mark: "o", stroke: none, mark-color: red, mark-size: 5pt),
+      lq.place(0.25, 0.25)[#text(size: 12pt, $V_0$)],
+    )
   ]
 
   Minimum Test
@@ -3408,86 +2866,35 @@ Degeneracy occurs when a basic variable takes the value zero in a basic feasible
   $
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (7.5, 7.5),
-        axis-style: "school-book",
-        x-tick-step: 1,
-        y-tick-step: 1,
-        x-label: [$x_1$],
-        y-label: [$x_2$],
-        x-min: 0,
-        x-max: 3.1,
-        y-min: 0,
-        y-max: 3,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-        {
-          plot.add-anchor("V_1", (0, 0))
-
-          plot.add(
-            domain: (-1, 10),
-            x => 3 - x,
-            style: (stroke: (thickness: 1pt, paint: red)),
-            label: [$x_1 + x_2 lt.eq 3$],
-          )
-          plot.add(
-            domain: (-1, 10),
-            x => 2,
-            style: (stroke: (thickness: 1pt, paint: blue)),
-            label: [$x_2 lt.eq 2$],
-          )
-          plot.add(
-            domain: (-1, 10),
-            x => 2.5 - 1 / 2 * x,
-            style: (stroke: (thickness: 1pt, paint: green)),
-            label: [$1/2x_1 + x_2 lt.eq 2.5$],
-          )
-
-          plot.add(
-            ((0, 0),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: 1pt),
-          )
-
-          plot.annotate({
-            content((0.25, 0.25), text(size: 12pt, $V_0$))
-          })
-
-          plot.add(
-            ((0, 2),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: 1pt),
-          )
-
-          plot.annotate({
-            content((0.25, 1.75), text(size: 12pt, $V_1$))
-          })
-
-          plot.add-fill-between(
-            domain: (0, 6),
-            x => {
-              if x <= 1 {
-                2
-              } else {
-                3 - x
-              }
-            },
-            x1 => 0,
-            style: (fill: rgb(200, 200, 255, 80), stroke: none),
-            label: none,
-          )
-        },
-        name: "plot",
-      )
-    }))
+    #let xs = lq.linspace(0, 6, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (0, 3.1),
+      ylim: (0, 3),
+      xlabel: [$x_1$],
+      ylabel: [$x_2$],
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+      yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+      lq.fill-between(
+        xs,
+        xs.map(x => {
+          if x <= 1 {
+            2
+          } else {
+            3 - x
+          }
+        }),
+        y2: xs.map(x => 0),
+        fill: rgb(200, 200, 255, 80),
+      ),
+      lq.plot(lq.linspace(-1, 10, num: 200), x => 3 - x, mark: none, stroke: (thickness: 1pt, paint: red), label: [$x_1 + x_2 lt.eq 3$]),
+      lq.plot(lq.linspace(-1, 10, num: 200), x => 2, mark: none, stroke: (thickness: 1pt, paint: blue), label: [$x_2 lt.eq 2$]),
+      lq.plot(lq.linspace(-1, 10, num: 200), x => 2.5 - 1 / 2 * x, mark: none, stroke: (thickness: 1pt, paint: green), label: [$1/2x_1 + x_2 lt.eq 2.5$]),
+      lq.plot((0, 0), (0, 2), mark: "o", stroke: none, mark-color: red, mark-size: 5pt),
+      lq.place(0.25, 0.25)[#text(size: 12pt, $V_0$)],
+      lq.place(0.25, 1.75)[#text(size: 12pt, $V_1$)],
+    )
   ]
 
   Minimum Test
@@ -3592,97 +2999,36 @@ Degeneracy occurs when a basic variable takes the value zero in a basic feasible
   If after elimination a basic variable has a value of 0, it indicates degeneracy.
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (7.5, 7.5),
-        axis-style: "school-book",
-        x-tick-step: 1,
-        y-tick-step: 1,
-        x-label: [$x_1$],
-        y-label: [$x_2$],
-        x-min: 0,
-        x-max: 3.1,
-        y-min: 0,
-        y-max: 3,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-        {
-          plot.add-anchor("V_1", (0, 0))
-
-          plot.add(
-            domain: (-1, 10),
-            x => 3 - x,
-            style: (stroke: (thickness: 1pt, paint: red)),
-            label: [$x_1 + x_2 lt.eq 3$],
-          )
-          plot.add(
-            domain: (-1, 10),
-            x => 2,
-            style: (stroke: (thickness: 1pt, paint: blue)),
-            label: [$x_2 lt.eq 2$],
-          )
-          plot.add(
-            domain: (-1, 10),
-            x => 2.5 - 1 / 2 * x,
-            style: (stroke: (thickness: 1pt, paint: green)),
-            label: [$1/2x_1 + x_2 lt.eq 2.5$],
-          )
-
-          plot.add(
-            ((0, 0),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: 1pt),
-          )
-
-          plot.annotate({
-            content((0.25, 0.25), text(size: 12pt, $V_0$))
-          })
-
-          plot.add(
-            ((0, 2),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: 1pt),
-          )
-
-          plot.annotate({
-            content((0.25, 1.75), text(size: 12pt, $V_1$))
-          })
-
-          plot.add(
-            ((1, 2),),
-            mark: "o",
-            mark-size: 0.2,
-            mark-style: (fill: red, stroke: 1pt),
-          )
-
-          plot.annotate({
-            content((1.25, 2.25), text(size: 12pt, $V_2$))
-          })
-
-          plot.add-fill-between(
-            domain: (0, 6),
-            x => {
-              if x <= 1 {
-                2
-              } else {
-                3 - x
-              }
-            },
-            x1 => 0,
-            style: (fill: rgb(200, 200, 255, 80), stroke: none),
-            label: none,
-          )
-        },
-        name: "plot",
-      )
-    }))
+    #let xs = lq.linspace(0, 6, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (0, 3.1),
+      ylim: (0, 3),
+      xlabel: [$x_1$],
+      ylabel: [$x_2$],
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+      yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+      lq.fill-between(
+        xs,
+        xs.map(x => {
+          if x <= 1 {
+            2
+          } else {
+            3 - x
+          }
+        }),
+        y2: xs.map(x => 0),
+        fill: rgb(200, 200, 255, 80),
+      ),
+      lq.plot(lq.linspace(-1, 10, num: 200), x => 3 - x, mark: none, stroke: (thickness: 1pt, paint: red), label: [$x_1 + x_2 lt.eq 3$]),
+      lq.plot(lq.linspace(-1, 10, num: 200), x => 2, mark: none, stroke: (thickness: 1pt, paint: blue), label: [$x_2 lt.eq 2$]),
+      lq.plot(lq.linspace(-1, 10, num: 200), x => 2.5 - 1 / 2 * x, mark: none, stroke: (thickness: 1pt, paint: green), label: [$1/2x_1 + x_2 lt.eq 2.5$]),
+      lq.plot((0, 0, 1), (0, 2, 2), mark: "o", stroke: none, mark-color: red, mark-size: 5pt),
+      lq.place(0.25, 0.25)[#text(size: 12pt, $V_0$)],
+      lq.place(0.25, 1.75)[#text(size: 12pt, $V_1$)],
+      lq.place(1.25, 2.25)[#text(size: 12pt, $V_2$)],
+    )
   ]
 
   Degeneracy comes from redundant constraints
@@ -3960,83 +3306,35 @@ Can't perform ratio test $arrow.long$ no constraint limits the entering variable
   In a maximization or minimization linear programming problem, if there is a 0 in the $z$ row (objective function row) of the final (optimal) simplex tableau in a non-basic column (i.e. a variable not currently in the solution), then there are multiple optimal solutions.
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (7.5, 7.5),
-        axis-style: "school-book",
-        x-tick-step: 1,
-        y-tick-step: 1,
-        x-label: [$x_1$],
-        y-label: [$x_2$],
-        x-min: 0,
-        x-max: 3.1,
-        y-min: 0,
-        y-max: 3,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-        {
-          plot.add-anchor("V_1", (0, 0))
-
-          plot.add(
-            domain: (-1, 10),
-            x => 2.5 - 1 / 2 * x,
-            style: (stroke: (thickness: 1pt, paint: red)),
-            label: [$x_1 + x_2 lt.eq 3$],
-          )
-
-          plot.add(
-            domain: (-1, 10),
-            x => 3 - x,
-            style: (stroke: (thickness: 1pt, paint: blue)),
-            label: [$1/2 x_1 + x_2 lt.eq 2.5$],
-          )
-
-          plot.add(
-            domain: (-1, 10),
-            x => (5 - 2 * x) / 4,
-            style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-          )
-
-          plot.add(
-            domain: (-1, 10),
-            x => (8 - 2 * x) / 4,
-            style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-          )
-
-          plot.add(
-            domain: (-1, 10),
-            x => (9.5 - 2 * x) / 4,
-            style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-          )
-
-          plot.add(
-            domain: (-1, 10),
-            x => (10 - 2 * x) / 4,
-            style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-          )
-
-          plot.add-fill-between(
-            domain: (0, 6),
-            x => {
-              if x <= 1 {
-                2.5 - 1 / 2 * x
-              } else {
-                3 - x
-              }
-            },
-            x1 => 0,
-            style: (fill: rgb(200, 200, 255, 80), stroke: none),
-            label: none,
-          )
-        },
-        name: "plot",
-      )
-    }))
+    #let xs = lq.linspace(0, 6, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (0, 3.1),
+      ylim: (0, 3),
+      xlabel: [$x_1$],
+      ylabel: [$x_2$],
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+      yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+      lq.fill-between(
+        xs,
+        xs.map(x => {
+          if x <= 1 {
+            2.5 - 1 / 2 * x
+          } else {
+            3 - x
+          }
+        }),
+        y2: xs.map(x => 0),
+        fill: rgb(200, 200, 255, 80),
+      ),
+      lq.plot(lq.linspace(-1, 10, num: 200), x => 2.5 - 1 / 2 * x, mark: none, stroke: (thickness: 1pt, paint: red), label: [$x_1 + x_2 lt.eq 3$]),
+      lq.plot(lq.linspace(-1, 10, num: 200), x => 3 - x, mark: none, stroke: (thickness: 1pt, paint: blue), label: [$1/2 x_1 + x_2 lt.eq 2.5$]),
+      lq.plot(lq.linspace(-1, 10, num: 200), x => (5 - 2 * x) / 4, mark: none, stroke: (thickness: 1pt, paint: black, dash: "dashed")),
+      lq.plot(lq.linspace(-1, 10, num: 200), x => (8 - 2 * x) / 4, mark: none, stroke: (thickness: 1pt, paint: black, dash: "dashed")),
+      lq.plot(lq.linspace(-1, 10, num: 200), x => (9.5 - 2 * x) / 4, mark: none, stroke: (thickness: 1pt, paint: black, dash: "dashed")),
+      lq.plot(lq.linspace(-1, 10, num: 200), x => (10 - 2 * x) / 4, mark: none, stroke: (thickness: 1pt, paint: black, dash: "dashed")),
+    )
   ]
 
 ]
@@ -4994,71 +4292,37 @@ The Simplex Tableau is:
   $
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (7.5, 7.5),
-        axis-style: "school-book",
-        x-tick-step: 2,
-        y-tick-step: 2,
-        x-label: [$x_1$],
-        y-label: [$x_2$],
-        x-min: -1,
-        x-max: 7.5,
-        y-min: -1,
-        y-max: 7.5,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-        {
-          plot.add(
-            domain: (-1, 7.5),
-            x => 3 + x,
-            style: (stroke: (thickness: 1pt, paint: green)),
-            label: [$-x_1 + x_2 lt.eq 3$],
-          )
-          plot.add(
-            domain: (-1, 7.5),
-            x => (8 + x) / 2,
-            style: (stroke: (thickness: 1pt, paint: blue)),
-            label: [$-x_1 + 2x_2 lt.eq 8$],
-          )
-          plot.add(
-            domain: (-1, 7.5),
-            x => 18 - 3 * x,
-            style: (stroke: (thickness: 1pt, paint: red)),
-            label: [$3x_1 + x_2 lt.eq 18$],
-          )
-          plot.add(
-            domain: (-1, 7.5),
-            x => 0 - (x - 0) / 3,
-            style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-            label: [$z = x_1 + 3x_2$],
-          )
-
-          plot.add-fill-between(
-            domain: (0, 6),
-            x => {
-              if 0 <= x and x <= 2 {
-                3 + x
-              } else if 2 < x and x <= 4 {
-                (8 + x) / 2
-              } else if 4 < x and x <= 6 {
-                18 - 3 * x
-              } else {
-                0
-              }
-            },
-            x => 0,
-            style: (fill: blue.lighten(75%), opacity: 0.5, stroke: none),
-          )
-        },
-        name: "plot",
-      )
-    }))
+    #let xs = lq.linspace(0, 6, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (-1, 7.5),
+      ylim: (-1, 7.5),
+      xlabel: [$x_1$],
+      ylabel: [$x_2$],
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 2)),
+      yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 2)),
+      lq.fill-between(
+        xs,
+        xs.map(x => {
+          if 0 <= x and x <= 2 {
+            3 + x
+          } else if 2 < x and x <= 4 {
+            (8 + x) / 2
+          } else if 4 < x and x <= 6 {
+            18 - 3 * x
+          } else {
+            0
+          }
+        }),
+        y2: xs.map(x => 0),
+        fill: blue.lighten(75%),
+      ),
+      lq.plot(lq.linspace(-1, 7.5, num: 200), x => 3 + x, mark: none, stroke: (thickness: 1pt, paint: green), label: [$-x_1 + x_2 lt.eq 3$]),
+      lq.plot(lq.linspace(-1, 7.5, num: 200), x => (8 + x) / 2, mark: none, stroke: (thickness: 1pt, paint: blue), label: [$-x_1 + 2x_2 lt.eq 8$]),
+      lq.plot(lq.linspace(-1, 7.5, num: 200), x => 18 - 3 * x, mark: none, stroke: (thickness: 1pt, paint: red), label: [$3x_1 + x_2 lt.eq 18$]),
+      lq.plot(lq.linspace(-1, 7.5, num: 200), x => 0 - (x - 0) / 3, mark: none, stroke: (thickness: 1pt, paint: black, dash: "dashed"), label: [$z = x_1 + 3x_2$]),
+    )
   ]
 
   #line(length: 100%)
@@ -5148,71 +4412,37 @@ The Simplex Tableau is:
   $
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (7.5, 7.5),
-        axis-style: "school-book",
-        x-tick-step: 2,
-        y-tick-step: 2,
-        x-label: [$x_1$],
-        y-label: [$x_2$],
-        x-min: -1,
-        x-max: 7.5,
-        y-min: -1,
-        y-max: 7.5,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-        {
-          plot.add(
-            domain: (-1, 7.5),
-            x => 3 + x,
-            style: (stroke: (thickness: 1pt, paint: green)),
-            label: [$-x_1 + x_2 lt.eq 3$],
-          )
-          plot.add(
-            domain: (-1, 7.5),
-            x => (8 + x) / 2,
-            style: (stroke: (thickness: 1pt, paint: blue)),
-            label: [$-x_1 + 2x_2 lt.eq 8$],
-          )
-          plot.add(
-            domain: (-1, 7.5),
-            x => 18 - 3 * x,
-            style: (stroke: (thickness: 1pt, paint: red)),
-            label: [$3x_1 + x_2 lt.eq 18$],
-          )
-          plot.add(
-            domain: (-1, 7.5),
-            x => 0 - (x - 6) / 3,
-            style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-            label: [$z = x_1 + 3x_2$],
-          )
-
-          plot.add-fill-between(
-            domain: (0, 6),
-            x => {
-              if 0 <= x and x <= 2 {
-                3 + x
-              } else if 2 < x and x <= 4 {
-                (8 + x) / 2
-              } else if 4 < x and x <= 6 {
-                18 - 3 * x
-              } else {
-                0
-              }
-            },
-            x => 0,
-            style: (fill: blue.lighten(75%), opacity: 0.5, stroke: none),
-          )
-        },
-        name: "plot",
-      )
-    }))
+    #let xs = lq.linspace(0, 6, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (-1, 7.5),
+      ylim: (-1, 7.5),
+      xlabel: [$x_1$],
+      ylabel: [$x_2$],
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 2)),
+      yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 2)),
+      lq.fill-between(
+        xs,
+        xs.map(x => {
+          if 0 <= x and x <= 2 {
+            3 + x
+          } else if 2 < x and x <= 4 {
+            (8 + x) / 2
+          } else if 4 < x and x <= 6 {
+            18 - 3 * x
+          } else {
+            0
+          }
+        }),
+        y2: xs.map(x => 0),
+        fill: blue.lighten(75%),
+      ),
+      lq.plot(lq.linspace(-1, 7.5, num: 200), x => 3 + x, mark: none, stroke: (thickness: 1pt, paint: green), label: [$-x_1 + x_2 lt.eq 3$]),
+      lq.plot(lq.linspace(-1, 7.5, num: 200), x => (8 + x) / 2, mark: none, stroke: (thickness: 1pt, paint: blue), label: [$-x_1 + 2x_2 lt.eq 8$]),
+      lq.plot(lq.linspace(-1, 7.5, num: 200), x => 18 - 3 * x, mark: none, stroke: (thickness: 1pt, paint: red), label: [$3x_1 + x_2 lt.eq 18$]),
+      lq.plot(lq.linspace(-1, 7.5, num: 200), x => 0 - (x - 6) / 3, mark: none, stroke: (thickness: 1pt, paint: black, dash: "dashed"), label: [$z = x_1 + 3x_2$]),
+    )
   ]
 
   #line(length: 100%)
@@ -5320,71 +4550,37 @@ The Simplex Tableau is:
   $
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (7.5, 7.5),
-        axis-style: "school-book",
-        x-tick-step: 2,
-        y-tick-step: 2,
-        x-label: [$x_1$],
-        y-label: [$x_2$],
-        x-min: -1,
-        x-max: 7.5,
-        y-min: -1,
-        y-max: 7.5,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-        {
-          plot.add(
-            domain: (-1, 7.5),
-            x => 3 + x,
-            style: (stroke: (thickness: 1pt, paint: green)),
-            label: [$-x_1 + x_2 lt.eq 3$],
-          )
-          plot.add(
-            domain: (-1, 7.5),
-            x => (8 + x) / 2,
-            style: (stroke: (thickness: 1pt, paint: blue)),
-            label: [$-x_1 + 2x_2 lt.eq 8$],
-          )
-          plot.add(
-            domain: (-1, 7.5),
-            x => 18 - 3 * x,
-            style: (stroke: (thickness: 1pt, paint: red)),
-            label: [$3x_1 + x_2 lt.eq 18$],
-          )
-          plot.add(
-            domain: (-1, 7.5),
-            x => 6 - (x - 4) / 3,
-            style: (stroke: (thickness: 1pt, paint: black, dash: "dashed")),
-            label: [$z = x_1 + 3x_2$],
-          )
-
-          plot.add-fill-between(
-            domain: (0, 6),
-            x => {
-              if 0 <= x and x <= 2 {
-                3 + x
-              } else if 2 < x and x <= 4 {
-                (8 + x) / 2
-              } else if 4 < x and x <= 6 {
-                18 - 3 * x
-              } else {
-                0
-              }
-            },
-            x => 0,
-            style: (fill: blue.lighten(75%), opacity: 0.5, stroke: none),
-          )
-        },
-        name: "plot",
-      )
-    }))
+    #let xs = lq.linspace(0, 6, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (-1, 7.5),
+      ylim: (-1, 7.5),
+      xlabel: [$x_1$],
+      ylabel: [$x_2$],
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 2)),
+      yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 2)),
+      lq.fill-between(
+        xs,
+        xs.map(x => {
+          if 0 <= x and x <= 2 {
+            3 + x
+          } else if 2 < x and x <= 4 {
+            (8 + x) / 2
+          } else if 4 < x and x <= 6 {
+            18 - 3 * x
+          } else {
+            0
+          }
+        }),
+        y2: xs.map(x => 0),
+        fill: blue.lighten(75%),
+      ),
+      lq.plot(lq.linspace(-1, 7.5, num: 200), x => 3 + x, mark: none, stroke: (thickness: 1pt, paint: green), label: [$-x_1 + x_2 lt.eq 3$]),
+      lq.plot(lq.linspace(-1, 7.5, num: 200), x => (8 + x) / 2, mark: none, stroke: (thickness: 1pt, paint: blue), label: [$-x_1 + 2x_2 lt.eq 8$]),
+      lq.plot(lq.linspace(-1, 7.5, num: 200), x => 18 - 3 * x, mark: none, stroke: (thickness: 1pt, paint: red), label: [$3x_1 + x_2 lt.eq 18$]),
+      lq.plot(lq.linspace(-1, 7.5, num: 200), x => 6 - (x - 4) / 3, mark: none, stroke: (thickness: 1pt, paint: black, dash: "dashed"), label: [$z = x_1 + 3x_2$]),
+    )
   ]
 
   // No negative reduced costs $arrow.double$ optimal

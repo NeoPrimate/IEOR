@@ -26,43 +26,32 @@ $
 
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
+  #let k = 25
+  #let n = 50 // fixed sample size
 
-    let k = 25
-    let n = 50 // fixed sample size
+  #let rng = gen-rng(42)
+  #let (_, d) = integers(rng, low: 0, high: 10, size: k) // number of defective units
 
-    let rng = gen-rng(42)
-    let (_, d) = integers(rng, low: 0, high: 10, size: k) // number of defective units
+  #let samples = range(1, k)
+  #let ds = d.slice(0, samples.len())
 
-    let series = range(1, k).zip(d)
+  #let d_sum = d.sum()
+  #let p_bar = d_sum / (k * n)
+  #let np_bar = n * p_bar
+  #let sigma_np = calc.sqrt(n * p_bar * (1 - p_bar))
+  #let ucl = np_bar + 3 * sigma_np
+  #let lcl = calc.max(0, np_bar - 3 * sigma_np)
 
-    let d_sum = d.sum()
-    let p_bar = d_sum / (k * n)
-    let np_bar = n * p_bar
-    let sigma_np = calc.sqrt(n * p_bar * (1 - p_bar))
-    let ucl = np_bar + 3 * sigma_np
-    let lcl = calc.max(0, np_bar - 3 * sigma_np)
-
-    plot.plot(
-      size: (8, 4),
-      axis-style: "school-book",
-      x-label: [Sample],
-      y-label: [Number of\ Defective\ Units],
-      x-tick-step: 5,
-      y-tick-step: 1,
-      legend: "north-east",
-      {
-        plot.add(
-          series,
-          style: (stroke: blue),
-          mark: "o",
-        )
-
-        plot.add-hline(ucl, label: $"UCL"$, style: (stroke: red))
-        plot.add-hline(np_bar, label: $macron(n p)$, style: (stroke: green))
-        plot.add-hline(lcl, label: $"LCL"$, style: (stroke: red))
-      })
-  }))
+  #lq.diagram(
+    width: 8cm,
+    height: 3.5cm,
+    xlabel: [Sample],
+    ylabel: [Number of\ Defective\ Units],
+    xaxis: (tick-args: (tick-distance: 5)),
+    lq.plot(samples, ds, stroke: blue, mark: "o"),
+    lq.hlines(ucl, label: $"UCL"$, stroke: red),
+    lq.hlines(np_bar, label: $macron(n p)$, stroke: green),
+    lq.hlines(lcl, label: $"LCL"$, stroke: red),
+  )
 ]
 

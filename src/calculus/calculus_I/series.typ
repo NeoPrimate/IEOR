@@ -24,30 +24,22 @@ $
   $
 
   #let series = range(1, 51).map(n => (n, range(1, n + 1).map(n => (1 / calc.pow(n, 2))).sum()))
+  #let ns = series.map(p => p.at(0))
+  #let ss = series.map(p => p.at(1))
 
   #let convergence = calc.pow(calc.pi, 2) / 6
 
   #align(center)[
-    #frame(cetz.canvas(length: 6cm, {
-      cetz-plot.plot.plot(
-        x-tick-step: 10,
-        y-tick-step: 0.1,
-        y-min: 1,
-        y-max: 1.7,
-        x-min: 0,
-        x-max: 50,
-        mark-style: (fill: black, stroke: black),
-        {
-          cetz-plot.plot.add(
-            series,
-            mark: "o",
-            mark-size: 0.02,
-            mark-style: (fill: white),
-          )
-          cetz-plot.plot.add-hline(convergence)
-        },
-      )
-    }))
+    #lq.diagram(
+      width: 8cm,
+      height: 3.5cm,
+      xlim: (0, 50),
+      ylim: (1, 1.7),
+      xaxis: (tick-args: (tick-distance: 10)),
+      yaxis: (tick-args: (tick-distance: 0.1)),
+      lq.plot(ns, ss, mark: "o", stroke: none, mark-color: white),
+      lq.hlines(convergence, stroke: black),
+    )
   ]
 
 ]
@@ -61,30 +53,22 @@ $
   $
 
   #let series = range(1, 50).map(n => (n, range(1, n + 1).map(n => (calc.pow(-1, n + 1) / n)).sum()))
+  #let ns = series.map(p => p.at(0))
+  #let ss = series.map(p => p.at(1))
 
   #let convergence = calc.ln(2)
 
   #align(center)[
-    #frame(cetz.canvas(length: 6cm, {
-      cetz-plot.plot.plot(
-        x-tick-step: 10,
-        y-tick-step: 0.1,
-        y-min: 0.5,
-        y-max: 1,
-        x-min: 0,
-        x-max: 50,
-        mark-style: (fill: black, stroke: black),
-        {
-          cetz-plot.plot.add(
-            series,
-            mark: "o",
-            mark-size: 0.02,
-            mark-style: (fill: white),
-          )
-          cetz-plot.plot.add-hline(convergence)
-        },
-      )
-    }))
+    #lq.diagram(
+      width: 8cm,
+      height: 3.5cm,
+      xlim: (0, 50),
+      ylim: (0.5, 1),
+      xaxis: (tick-args: (tick-distance: 10)),
+      yaxis: (tick-args: (tick-distance: 0.1)),
+      lq.plot(ns, ss, mark: "o", stroke: none, mark-color: white),
+      lq.hlines(convergence, stroke: black),
+    )
   ]
 ]
 
@@ -96,26 +80,18 @@ $
   $
 
   #let series = range(1, 50).map(n => (n, range(1, n + 1).map(n => (1 / n)).sum()))
+  #let ns = series.map(p => p.at(0))
+  #let ss = series.map(p => p.at(1))
 
   #align(center)[
-    #frame(cetz.canvas(length: 6cm, {
-      cetz-plot.plot.plot(
-        x-tick-step: 10,
-        y-tick-step: 1,
-        y-min: 1,
-        y-max: 4.5,
-        x-min: 0,
-        x-max: 50,
-        mark-style: (fill: black, stroke: black),
-        {
-          cetz-plot.plot.add(
-            series,
-            mark: "o",
-            mark-size: 0.02,
-            mark-style: (fill: white),
-          )
-        },
-      )
-    }))
+    #lq.diagram(
+      width: 8cm,
+      height: 3.5cm,
+      xlim: (0, 50),
+      ylim: (1, 4.5),
+      xaxis: (tick-args: (tick-distance: 10)),
+      yaxis: (tick-args: (tick-distance: 1)),
+      lq.plot(ns, ss, mark: "o", stroke: none, mark-color: white),
+    )
   ]
 ]

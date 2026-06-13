@@ -14,43 +14,17 @@ A critical point of a function $f(x)$ is a point in the domain where either:
   #let f_prime(x) = 3 * calc.pow(x, 2) - 3
 
   #align(center)[
-    #frame(cetz.canvas(length: 6cm, {
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        x-tick-step: 1,
-        y-tick-step: 1,
-        y-min: -5,
-        y-max: 5,
-        x-min: -3,
-        x-max: 3,
-        axis-style: "school-book",
-        legend-style: (
-          // spacing: 0.3,
-          item: (
-            spacing: 0.025,
-            preview: (
-              width: 0.25,
-            ),
-          ),
-        ),
-        {
-          plot.add(
-            f,
-            domain: (-3, 3),
-            style: (stroke: blue),
-            label: $f(x)$,
-          )
-          plot.add(
-            f_prime,
-            domain: (-3, 3),
-            style: (stroke: red),
-            label: $f'(x)$,
-          )
-        },
-      )
-    }))
+    #let xs = lq.linspace(-3, 3, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (-3, 3),
+      ylim: (-5, 5),
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+      yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+      lq.plot(xs, f, mark: none, stroke: blue, label: $f(x)$),
+      lq.plot(xs, f_prime, mark: none, stroke: red, label: $f'(x)$),
+    )
   ]
 ]
 

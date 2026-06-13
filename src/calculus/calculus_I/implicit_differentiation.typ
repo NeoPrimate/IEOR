@@ -51,47 +51,26 @@ Instead of solving for $y$ explicitly in terms of $x$, implicit differentiation 
 #let tangent(x) = -(3 / 4) * x + (25 / 4)
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-
-    plot.plot(
-      size: (5, 5),
-      axis-style: "school-book",
-      x-tick-step: 2,
-      x-min: -6.,
-      x-max: 6.,
-      y-tick-step: 2,
-      y-min: -6.,
-      y-max: 6.,
-      legend: "north-east",
-      {
-        plot.add(
-          f,
-          domain: (-5, 5),
-          style: (stroke: blue),
-          label: none,
-        )
-        plot.add(
-          g,
-          domain: (-5, 5),
-          style: (stroke: blue),
-          label: $x^2 + y^2 = 5^2$,
-        )
-        plot.add(
-          tangent,
-          domain: (-5, 6),
-          style: (stroke: red),
-          label: none,
-        )
-        plot.add(
-          (point,),
-          mark: "o",
-          mark-size: 0.2,
-          mark-style: (fill: blue, stroke: none),
-        )
-      },
-    )
-  }))
+  #let xs = lq.linspace(-5, 5, num: 200)
+  #let xst = lq.linspace(-5, 6, num: 200)
+  #lq.diagram(
+    width: 5cm,
+    height: 5cm,
+    xlim: (-6, 6),
+    ylim: (-6, 6),
+    xaxis: (
+      position: 0,
+      tip: tiptoe.triangle,
+      filter: (value, distance) => value != 0,
+      subticks: none,
+      tick-args: (tick-distance: 2),
+    ),
+    yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 2)),
+    lq.plot(xs, f, mark: none, stroke: blue),
+    lq.plot(xs, g, mark: none, stroke: blue, label: $x^2 + y^2 = 5^2$),
+    lq.plot(xst, tangent, mark: none, stroke: red),
+    lq.plot((point.at(0),), (point.at(1),), mark: "o", stroke: none, mark-color: blue),
+  )
 ]
 
 $

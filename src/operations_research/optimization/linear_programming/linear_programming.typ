@@ -162,47 +162,21 @@ $
 - Infeasable solution: violates at least one constraint
 
 #align(center)[
-  #frame(cetz.canvas({
-    import cetz.draw: *
-    import cetz-plot: *
-
-    plot.plot(
-      size: (5, 5),
-      axis-style: "school-book",
-      x-tick-step: 10,
-      y-tick-step: 10,
-      x-label: [$x_1$],
-      y-label: [$x_2$],
-      x-min: 0,
-      x-max: 50,
-      y-min: 0,
-      y-max: 50,
-      axes: (
-        stroke: black,
-        tick: (stroke: black),
-      ),
-      {
-        plot.add(
-          domain: (0, 50),
-          x1 => 100 - 2 * x1,
-          style: (stroke: 1pt, fill: black),
-          label: [$2x_1 + x_2 lt.eq 100$],
-        )
-        plot.add-fill-between(
-          domain: (0, 50),
-          x1 => 100 - 2 * x1,
-          x1 => 0,
-          style: (fill: rgb(200, 200, 255, 80), stroke: black),
-        )
-        plot.annotate({
-          content((15, 40), [Feasible])
-        })
-        plot.annotate({
-          content((45, 40), [Infeasable])
-        })
-      },
-    )
-  }))
+  #let xs = lq.linspace(0, 50, num: 200)
+  #lq.diagram(
+    width: 5cm,
+    height: 5cm,
+    xlim: (0, 50),
+    ylim: (0, 50),
+    xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 10)),
+    yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 10)),
+    xlabel: [$x_1$],
+    ylabel: [$x_2$],
+    lq.fill-between(xs, xs.map(x => 100 - 2 * x), y2: xs.map(x => 0), fill: rgb(200, 200, 255, 80), stroke: black),
+    lq.plot(xs, x => 100 - 2 * x, mark: none, stroke: black, label: [$2x_1 + x_2 lt.eq 100$]),
+    lq.place(15, 40, [Feasible]),
+    lq.place(45, 40, [Infeasable]),
+  )
 ]
 
 
@@ -224,67 +198,24 @@ Let $g(dot) lt.eq b$ be an inequality constraint and $bar(x)$ be a solution. $g(
   $
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (5, 5),
-        axis-style: "school-book",
-        x-tick-step: 10,
-        y-tick-step: 10,
-        x-label: [$x_1$],
-        y-label: [$x_2$],
-        x-min: 0,
-        x-max: 50,
-        y-min: 0,
-        y-max: 50,
-        {
-          plot.add(
-            domain: (0, 50),
-            x1 => 100 - 2 * x1,
-            style: (stroke: 1pt, fill: black),
-            // label: [$2x_1 + x_2 lt.eq 100$],
-          )
-          plot.annotate({
-            content((40, 50), [$x_1 + 2x_2 lt.eq 80$])
-          })
-
-          // Constraint 1: 2x₁ + x₂ ≤ 100
-          plot.add-fill-between(
-            domain: (0, 50),
-            x1 => 100 - 2 * x1,
-            x1 => 0,
-            style: (fill: rgb(200, 200, 255, 80), stroke: black),
-            // label: [Feasible Region]
-          )
-
-          plot.add(
-            ((30.0, 40.0),),
-            mark: "o",
-            mark-size: 0.3,
-            style: (fill: none, stroke: none),
-            mark-style: (fill: rgb(255, 200, 200), stroke: rgb(255, 0, 0)),
-            // label: [Binding Constraint]
-          )
-          plot.annotate({
-            content((40, 40), [Binding])
-          })
-
-          plot.add(
-            ((20.0, 20.0),),
-            mark: "o",
-            mark-size: 0.3,
-            style: (fill: none, stroke: none),
-            mark-style: (fill: rgb(200, 200, 255), stroke: rgb(0, 0, 255)),
-            // label: [Non-Binding Constraint]
-          )
-          plot.annotate({
-            content((20, 15), [Non-Binding])
-          })
-        },
-      )
-    }))
+    #let xs = lq.linspace(0, 50, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (0, 50),
+      ylim: (0, 50),
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 10)),
+      yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 10)),
+      xlabel: [$x_1$],
+      ylabel: [$x_2$],
+      lq.fill-between(xs, xs.map(x => 100 - 2 * x), y2: xs.map(x => 0), fill: rgb(200, 200, 255, 80), stroke: black),
+      lq.plot(xs, x => 100 - 2 * x, mark: none, stroke: black),
+      lq.plot((30.0,), (40.0,), mark: "o", stroke: none, mark-color: rgb(255, 200, 200)),
+      lq.plot((20.0,), (20.0,), mark: "o", stroke: none, mark-color: rgb(200, 200, 255)),
+      lq.place(40, 50, [$x_1 + 2x_2 lt.eq 80$]),
+      lq.place(40, 40, [Binding]),
+      lq.place(20, 15, [Non-Binding]),
+    )
   ]
 ]
 
@@ -313,84 +244,28 @@ Let $g(dot) lt.eq b$ be an inequality constraint and $bar(x)$ be a solution. $g(
   }
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (5, 5),
-        axis-style: "school-book",
-        x-tick-step: none,
-        y-tick-step: none,
-        x-label: [$x_1$],
-        y-label: [$x_2$],
-        x-min: 0,
-        x-max: 50,
-        y-min: -5,
-        y-max: 50,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-        {
-          plot.add-fill-between(
-            domain: (0, 50),
-            f2,
-            x1 => 0,
-            style: (fill: rgb(200, 200, 255, 80), stroke: black),
-          )
-          plot.add(
-            domain: (0, 50),
-            x1 => 100 - 2 * x1,
-            style: (stroke: 1pt),
-            // label: [$2x_1 + x_2 lt.eq 100$]
-          )
-          plot.annotate({
-            content((65, 15), [$2x_1 + x_2 lt.eq 100$])
-          })
-          plot.add(
-            domain: (0, 50),
-            x1 => (80 - x1) / 2,
-            style: (stroke: 1pt),
-            // label: [$x_1 + 2x_2 lt.eq 80$]
-          )
-          plot.annotate({
-            content((40, 50), [$x_1 + 2x_2 lt.eq 80$])
-          })
-
-
-          plot.add(
-            domain: (0, 50),
-            x1 => (1200 - 40 * x1) / 30,
-            style: (stroke: (dash: "dotted")),
-          )
-
-          plot.annotate({
-            content((35, -7.5), [$40 x_1 + 30 x_2 = 1200$])
-          })
-
-          plot.add(
-            domain: (0, 50),
-            x1 => (2200 - 40 * x1) / 30,
-            style: (stroke: (dash: "dotted")),
-          )
-
-          plot.annotate({
-            content((68, 5), [$40 x_1 + 30 x_2 = 2200$])
-          })
-
-          plot.add(
-            domain: (0, 50),
-            x1 => (200 - 40 * x1) / 30,
-            style: (stroke: (dash: "dotted")),
-          )
-
-          plot.annotate({
-            content((-17, 8), [$40 x_1 + 30 x_2 = 200$])
-          })
-        },
-      )
-    }))
+    #let xs = lq.linspace(0, 50, num: 200)
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (0, 50),
+      ylim: (-5, 50),
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, ticks: none),
+      yaxis: (position: 0, tip: tiptoe.triangle, ticks: none),
+      xlabel: [$x_1$],
+      ylabel: [$x_2$],
+      lq.fill-between(xs, xs.map(f2), y2: xs.map(x => 0), fill: rgb(200, 200, 255, 80), stroke: black),
+      lq.plot(xs, x => 100 - 2 * x, mark: none, stroke: black),
+      lq.plot(xs, x => (80 - x) / 2, mark: none, stroke: black),
+      lq.plot(xs, x => (1200 - 40 * x) / 30, mark: none, stroke: (dash: "dotted")),
+      lq.plot(xs, x => (2200 - 40 * x) / 30, mark: none, stroke: (dash: "dotted")),
+      lq.plot(xs, x => (200 - 40 * x) / 30, mark: none, stroke: (dash: "dotted")),
+      lq.place(65, 15, [$2x_1 + x_2 lt.eq 100$]),
+      lq.place(40, 50, [$x_1 + 2x_2 lt.eq 80$]),
+      lq.place(35, -7.5, [$40 x_1 + 30 x_2 = 1200$]),
+      lq.place(68, 5, [$40 x_1 + 30 x_2 = 2200$]),
+      lq.place(-17, 8, [$40 x_1 + 30 x_2 = 200$]),
+    )
   ]
 ]
 

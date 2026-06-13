@@ -101,303 +101,129 @@ The graph of $f^(-1)$ is a reflection of the graph of $f$ access the line $x = y
 #let f_inv(x) = (x - 3) / 2
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-    
-    plot.plot(
-      size: (5, 5),
-      axis-style: "school-book",
-      x-tick-step: 1,
-      x-min: -3., 
-      x-max: 3.,
-      y-tick-step: 1, 
-      y-min: -3., 
-      y-max: 3.,
-      legend: "north-east",
-      {
-        plot.add(
-          f, 
-          domain: (-3, 3), 
-          style: (stroke: blue),
-          label: $f(x) = 2x + 3$
-        )
-        plot.add(
-          f_inv, 
-          domain: (-3, 3), 
-          style: (stroke: red),
-          label: $f^(-1)(x) = (x - 3) / 2$
-        )
-        plot.add(
-          lin, 
-          domain: (-3, 3), 
-          style: (stroke: gray),
-          label: $x = y$
-        )
-      })
-  }))
+  #let xs = lq.linspace(-3, 3, num: 200)
+  #lq.diagram(
+    width: 5cm,
+    height: 5cm,
+    xlim: (-3, 3),
+    ylim: (-3, 3),
+    xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+    yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+    lq.plot(xs, f, mark: none, stroke: blue, label: $f(x) = 2x + 3$),
+    lq.plot(xs, f_inv, mark: none, stroke: red, label: $f^(-1)(x) = (x - 3) / 2$),
+    lq.plot(xs, lin, mark: none, stroke: gray, label: $x = y$),
+  )
 ]
 
 #let f(x) = calc.pow(x, 2)
 #let f_inv(x) = calc.sqrt(x)
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-    
-    plot.plot(
-      size: (5, 5),
-      axis-style: "school-book",
-      x-tick-step: 1,
-      x-min: 0., 
-      x-max: 3.,
-      y-tick-step: 1, 
-      y-min: 0., 
-      y-max: 3.,
-      legend: "north-east",
-      {
-        plot.add(
-          f, 
-          domain: (-3, 3), 
-          style: (stroke: blue),
-          label: $f(x) = x^2$
-        )
-        plot.add(
-          f_inv, 
-          domain: (0, 3), 
-          style: (stroke: red),
-          label: $f^(-1)(x) = sqrt(x)$
-        )
-        plot.add(
-          lin, 
-          domain: (0, 3), 
-          style: (stroke: gray),
-          label: $x = y$
-        )
-      })
-  }))
+  #let xs = lq.linspace(-3, 3, num: 200)
+  #let xsp = lq.linspace(0, 3, num: 200)
+  #lq.diagram(
+    width: 5cm,
+    height: 5cm,
+    xlim: (0, 3),
+    ylim: (0, 3),
+    xaxis: (tick-args: (tick-distance: 1)),
+    yaxis: (tick-args: (tick-distance: 1)),
+    lq.plot(xs, f, mark: none, stroke: blue, label: $f(x) = x^2$),
+    lq.plot(xsp, f_inv, mark: none, stroke: red, label: $f^(-1)(x) = sqrt(x)$),
+    lq.plot(xsp, lin, mark: none, stroke: gray, label: $x = y$),
+  )
 ]
 
 #let f(x) = calc.pow(x, 3)
 #let f_inv(x) = calc.root(x, 3)
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-    
-    plot.plot(
-      size: (5, 5),
-      axis-style: "school-book",
-      x-tick-step: 1,
-      x-min: -3., 
-      x-max: 3.,
-      y-tick-step: 1, 
-      y-min: -3., 
-      y-max: 3.,
-      legend: "north-east",
-      {
-        plot.add(
-          f, 
-          domain: (-3, 3), 
-          style: (stroke: blue),
-          label: $f(x) = x^3$
-        )
-        plot.add(
-          f_inv, 
-          domain: (-3, 3), 
-          style: (stroke: red),
-          label: $f^(-1)(x) = root(3, x)$
-        )
-        plot.add(
-          lin, 
-          domain: (-3, 3), 
-          style: (stroke: gray),
-          label: $x = y$
-        )
-      })
-  }))
+  #let xs = lq.linspace(-3, 3, num: 200)
+  #lq.diagram(
+    width: 5cm,
+    height: 5cm,
+    xlim: (-3, 3),
+    ylim: (-3, 3),
+    xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+    yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+    lq.plot(xs, f, mark: none, stroke: blue, label: $f(x) = x^3$),
+    lq.plot(xs, f_inv, mark: none, stroke: red, label: $f^(-1)(x) = root(3, x)$),
+    lq.plot(xs, lin, mark: none, stroke: gray, label: $x = y$),
+  )
 ]
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-    
-    plot.plot(
-      size: (5, 5),
-      axis-style: "school-book",
-      x-tick-step: 1,
-      x-min: -1.5, 
-      x-max: 1.5,
-      y-tick-step: 1, 
-      y-min: -1.5, 
-      y-max: 1.5,
-      legend: "north-east",
-      {
-        plot.add(
-          calc.sin, 
-          domain: (-1.5, 1.5), 
-          style: (stroke: blue),
-          label: $sin(x)$
-        )
-        plot.add(
-          x => calc.asin(x).rad(), 
-          domain: (-1, 1), 
-          style: (stroke: red),
-          label: $arcsin(x)$
-        )
-        plot.add(
-          lin, 
-          domain: (-1.5, 1.5), 
-          style: (stroke: gray),
-          label: $x = y$
-        )
-      })
-  }))
+  #let xs = lq.linspace(-1.5, 1.5, num: 200)
+  #let xsi = lq.linspace(-1, 1, num: 200)
+  #lq.diagram(
+    width: 5cm,
+    height: 5cm,
+    xlim: (-1.5, 1.5),
+    ylim: (-1.5, 1.5),
+    xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+    yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+    lq.plot(xs, calc.sin, mark: none, stroke: blue, label: $sin(x)$),
+    lq.plot(xsi, x => calc.asin(x).rad(), mark: none, stroke: red, label: $arcsin(x)$),
+    lq.plot(xs, lin, mark: none, stroke: gray, label: $x = y$),
+  )
 ]
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-    
-    plot.plot(
-      size: (5, 5),
-      axis-style: "school-book",
-      x-tick-step: 1,
-      x-min: -1.5, 
-      x-max: 1.5,
-      y-tick-step: 1, 
-      y-min: -1.5, 
-      y-max: 1.5,
-      legend: "north-east",
-      {
-        plot.add(
-          calc.cos, 
-          domain: (-1.5, 1.5), 
-          style: (stroke: blue),
-          label: $cos(x)$
-        )
-        plot.add(
-          x => calc.acos(x).rad(), 
-          domain: (-1, 1), 
-          style: (stroke: red),
-          label: $arccos(x)$
-        )
-        plot.add(
-          lin, 
-          domain: (-1.5, 1.5), 
-          style: (stroke: gray),
-          label: $x = y$
-        )
-      })
-  }))
+  #let xs = lq.linspace(-1.5, 1.5, num: 200)
+  #let xsi = lq.linspace(-1, 1, num: 200)
+  #lq.diagram(
+    width: 5cm,
+    height: 5cm,
+    xlim: (-1.5, 1.5),
+    ylim: (-1.5, 1.5),
+    xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+    yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+    lq.plot(xs, calc.cos, mark: none, stroke: blue, label: $cos(x)$),
+    lq.plot(xsi, x => calc.acos(x).rad(), mark: none, stroke: red, label: $arccos(x)$),
+    lq.plot(xs, lin, mark: none, stroke: gray, label: $x = y$),
+  )
 ]
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-    
-    plot.plot(
-      size: (5, 5),
-      axis-style: "school-book",
-      x-tick-step: 1,
-      x-min: -1.5, 
-      x-max: 1.5,
-      y-tick-step: 1, 
-      y-min: -1.5, 
-      y-max: 1.5,
-      legend: "north-east",
-      {
-        plot.add(
-          calc.tan, 
-          domain: (-1.5, 1.5), 
-          style: (stroke: blue),
-          label: $tan(x)$
-        )
-        plot.add(
-          x => calc.atan(x).rad(), 
-          domain: (-1, 1), 
-          style: (stroke: red),
-          label: $arctan(x)$
-        )
-        plot.add(
-          lin, 
-          domain: (-1.5, 1.5), 
-          style: (stroke: gray),
-          label: $x = y$
-        )
-      })
-  }))
+  #let xs = lq.linspace(-1.5, 1.5, num: 200)
+  #let xsi = lq.linspace(-1, 1, num: 200)
+  #lq.diagram(
+    width: 5cm,
+    height: 5cm,
+    xlim: (-1.5, 1.5),
+    ylim: (-1.5, 1.5),
+    xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+    yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+    lq.plot(xs, calc.tan, mark: none, stroke: blue, label: $tan(x)$),
+    lq.plot(xsi, x => calc.atan(x).rad(), mark: none, stroke: red, label: $arctan(x)$),
+    lq.plot(xs, lin, mark: none, stroke: gray, label: $x = y$),
+  )
 ]
 
 2. Derivative of Inverse Functions
 
 #align(center)[
-
-  #frame(cetz.canvas(length: 1cm, {
-    import draw: *
-    
-    plot.plot(
-      size: (8, 8),
-      axis-style: "school-book",
-      x-tick-step: 1,
-      y-tick-step: 1,
-      x-min: -1,
-      x-max: 5,
-      y-min: -1,
-      y-max: 5,
-      x-label: $x$,
-      y-label: $y$,
-      {
-        let f(x) = calc.pow(x, 3) + x
-        let dfdx(x) = 3*calc.pow(x, 2) + 1
-        let f_inv(y) = calc.root(y / 2 + calc.sqrt(calc.pow(y, 2) / 4 + 1 / 27), 3) + calc.root(y / 2 - calc.sqrt(calc.pow(y, 2) / 4 + 1 / 27), 3) 
-
-        let x0 = 1
-        let y0 = f(x0)
-        let slope_inv = 1 / dfdx(x0)
-      
-        plot.add(
-          domain: (-3, 5),
-          f,
-          style: (stroke: (thickness: 1pt, paint: black)),
-        )
-
-        plot.add(
-          domain: (-3, 5),
-          f_inv,
-          style: (stroke: (thickness: 1pt, paint: blue)),
-        )
-        
-        plot.add(
-          domain: (-3, 5),
-          x => x,
-          style: (stroke: (thickness: 1pt, paint: gray)),
-        )
-
-        plot.add(
-          ((x0, y0),),
-          mark: "o",
-          mark-size: 0.2,
-          mark-style: (fill: red, stroke: 1pt),
-        )
-        plot.add(
-          ((y0, x0),),
-          mark: "o",
-          mark-size: 0.2,
-          mark-style: (fill: red, stroke: 1pt),
-        )
-        
-        plot.add(
-          domain: (-3, 5),
-          x => f(x0) + dfdx(x0) * (x - x0),
-          style: (stroke: (thickness: 1pt, paint: red)),
-        )
-        
-        plot.add(
-          domain: (-3, 5),
-          y => x0 + slope_inv * (y - y0),
-          style: (stroke: (thickness: 1pt, paint: red)),
-        )
-      }
-    )
-  }))
+  #let fc(x) = calc.pow(x, 3) + x
+  #let dfdx(x) = 3 * calc.pow(x, 2) + 1
+  #let fc_inv(y) = calc.root(y / 2 + calc.sqrt(calc.pow(y, 2) / 4 + 1 / 27), 3) + calc.root(y / 2 - calc.sqrt(calc.pow(y, 2) / 4 + 1 / 27), 3)
+  #let x0 = 1
+  #let y0 = fc(x0)
+  #let slope_inv = 1 / dfdx(x0)
+  #let xs = lq.linspace(-3, 5, num: 200)
+  #lq.diagram(
+    width: 5cm,
+    height: 5cm,
+    xlim: (-1, 5),
+    ylim: (-1, 5),
+    xlabel: $x$,
+    ylabel: $y$,
+    xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, tick-args: (tick-distance: 1)),
+    yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, tick-args: (tick-distance: 1)),
+    lq.plot(xs, fc, mark: none, stroke: black),
+    lq.plot(xs, fc_inv, mark: none, stroke: blue),
+    lq.plot(xs, x => x, mark: none, stroke: gray),
+    lq.plot(xs, x => fc(x0) + dfdx(x0) * (x - x0), mark: none, stroke: red),
+    lq.plot(xs, y => x0 + slope_inv * (y - y0), mark: none, stroke: red),
+    lq.plot((x0, y0), (y0, x0), mark: "o", stroke: none, mark-color: red),
+  )
 ]

@@ -32,40 +32,23 @@ This is why SMA is poor for *trending* series — it's structurally late. Use ET
 The SMA filters the high-frequency noise and produces a smoother curve, but with a horizontal lag relative to the data.
 
 #align(center)[
-  #frame(cetz.canvas({
-    import cetz.draw: *
-    import cetz-plot: *
+  #let rng = suiji.gen-rng(42)
+  #let data = suiji.normal(rng, loc: 0, scale: 1, size: 100).at(1)
 
-    let rng = suiji.gen-rng(42)
-    let data = suiji.normal(rng, loc: 0, scale: 1, size: 100).at(1)
+  #let k = 5
+  #let sma = data.windows(k).map(a => a.sum() / k)
 
-    let k = 5
-    let sma = data.windows(k).map(a => a.sum() / k)
+  #let data_x = range(data.len())
+  #let sma_x = range(sma.len())
 
-    let data = range(data.len()).zip(data)
-    let sma = range(sma.len()).zip(sma)
-
-    set-style(
-      axes: (
-        x: (stroke: 0pt),
-        y: (stroke: 0pt),
-        shared-zero: false,
-      ),
-    )
-
-    plot.plot(
-      size: (10, 5),
-      axis-style: "school-book",
-      x-label: none,
-      y-label: none,
-      y-tick-step: none,
-      x-tick-step: none,
-      {
-        plot.add(data, style: (stroke: 1pt + black.lighten(75%)))
-        plot.add(sma, style: (stroke: 1pt + red.lighten(25%)))
-      },
-    )
-  }))
+  #lq.diagram(
+    width: 8cm,
+    height: 3.5cm,
+    xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, ticks: none),
+    yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, ticks: none),
+    lq.plot(data_x, data, mark: none, stroke: 1pt + black.lighten(75%)),
+    lq.plot(sma_x, sma, mark: none, stroke: 1pt + red.lighten(25%)),
+  )
 ]
 
 - *Model parameters*

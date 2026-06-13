@@ -8,50 +8,16 @@ P(X = k) = (lambda^k e^(- lambda)) / k!
 $
 
 #align(center)[
-  #frame(cetz.canvas({
-    import draw: *
-
-    set-style(
-      axes: (
-        x: (stroke: 0pt), 
-        y: (stroke: 0pt),
-        shared-zero: false
-      )
-    )
-
-    let n = 13
-    let lambda = 3
-    
-    plot.plot(
-      size: (5, 5),
-      axis-style: "school-book",
-      x-tick-step: none,
-      y-tick-step: none, 
-      x-label: [],
-      y-label: [],
-      x-min: 0., 
-      x-max: n,
-      y-min: 0., 
-      y-max: 0.4,
-      legend: "inner-north-west",
-      {
-
-        for k in range(n) {
-          plot.add-vline(
-            k,
-            max: poisson_pmf(k, lambda),
-            style: (stroke: (paint: black))
-          )
-        }
-
-        plot.add(
-          range(n).map(k => (k, poisson_pmf(k, lambda))), 
-          mark: "o",
-          domain: (-5, 5), 
-          style: (stroke: none),
-          mark-style: (fill: gray, stroke: 1pt),
-        )
-
-      })
-  }))
+  #let n = 13
+  #let lambda = 3
+  #let ks = range(n)
+  #lq.diagram(
+    width: 5cm,
+    height: 5cm,
+    xlim: (0, n),
+    ylim: (0, 0.4),
+    xaxis: (position: 0, tip: tiptoe.triangle, ticks: none),
+    yaxis: (position: 0, tip: tiptoe.triangle, ticks: none),
+    lq.stem(ks, ks.map(k => poisson.pmf(k, lambda)), mark: "o", color: gray),
+  )
 ]

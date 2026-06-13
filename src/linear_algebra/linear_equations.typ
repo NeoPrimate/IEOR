@@ -77,119 +77,53 @@ Whether the equations in the system provide unique and non-redundant information
   Unique Solution (Consistent and Independent):
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (5, 5),
-        axis-style: "school-book",
-        x-tick-step: none,
-        y-tick-step: none,
-        x-label: [$x$],
-        y-label: [$y$],
-        x-min: 0,
-        x-max: 1,
-        y-min: 0,
-        y-max: 1,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-        {
-          plot.add(
-            domain: (0, 50),
-            x => 1 * x + 0,
-            style: (stroke: 1pt + red),
-          )
-
-          plot.add(
-            domain: (0, 50),
-            x => -1 * x + 1,
-            style: (stroke: 1pt + blue),
-          )
-        },
-      )
-    }))
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (0, 1),
+      ylim: (0, 1),
+      xlabel: [$x$],
+      ylabel: [$y$],
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, ticks: none),
+      yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, ticks: none),
+      lq.plot(lq.linspace(0, 50, num: 200), x => 1 * x + 0, mark: none, stroke: 1pt + red),
+      lq.plot(lq.linspace(0, 50, num: 200), x => -1 * x + 1, mark: none, stroke: 1pt + blue),
+    )
   ]
 
   No Solution (Inconsistent):
 
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (5, 5),
-        axis-style: "school-book",
-        x-tick-step: none,
-        y-tick-step: none,
-        x-label: [$x$],
-        y-label: [$y$],
-        x-min: 0,
-        x-max: 1,
-        y-min: 0,
-        y-max: 1,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-        {
-          plot.add(
-            domain: (0, 50),
-            x => 1 * x + -0.1,
-            style: (stroke: 1pt + red),
-          )
-
-          plot.add(
-            domain: (0, 50),
-            x => 1 * x + 0.1,
-            style: (stroke: 1pt + blue),
-          )
-        },
-      )
-    }))
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (0, 1),
+      ylim: (0, 1),
+      xlabel: [$x$],
+      ylabel: [$y$],
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, ticks: none),
+      yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, ticks: none),
+      lq.plot(lq.linspace(0, 50, num: 200), x => 1 * x + -0.1, mark: none, stroke: 1pt + red),
+      lq.plot(lq.linspace(0, 50, num: 200), x => 1 * x + 0.1, mark: none, stroke: 1pt + blue),
+    )
   ]
 
 
 
   Infinitely Many Solutions (Consistent and Dependent):
   #align(center)[
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
-
-      plot.plot(
-        size: (5, 5),
-        axis-style: "school-book",
-        x-tick-step: none,
-        y-tick-step: none,
-        x-label: [$x$],
-        y-label: [$y$],
-        x-min: 0,
-        x-max: 1,
-        y-min: 0,
-        y-max: 1,
-        axes: (
-          stroke: black,
-          tick: (stroke: black),
-        ),
-        {
-          plot.add(
-            domain: (0, 50),
-            x => 1 * x + 0,
-            style: (stroke: 1pt + red),
-          )
-
-          plot.add(
-            domain: (0, 50),
-            x => 1 * x + 0,
-            style: (stroke: (dash: "dashed")),
-          )
-        },
-      )
-    }))
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (0, 1),
+      ylim: (0, 1),
+      xlabel: [$x$],
+      ylabel: [$y$],
+      xaxis: (position: 0, tip: tiptoe.triangle, filter: (value, distance) => value != 0, subticks: none, ticks: none),
+      yaxis: (position: 0, tip: tiptoe.triangle, subticks: none, ticks: none),
+      lq.plot(lq.linspace(0, 50, num: 200), x => 1 * x + 0, mark: none, stroke: 1pt + red),
+      lq.plot(lq.linspace(0, 50, num: 200), x => 1 * x + 0, mark: none, stroke: (paint: black, dash: "dashed")),
+    )
   ]
 
 
