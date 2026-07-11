@@ -536,4 +536,29 @@ Four tactics, one rule of thumb: _which quantifier, and is it in the target or a
   ],
 )
 
+#table(
+  columns: 3,
+  inset: 1em,
+  stroke: none,
+  [], [Induction], [Elimination],
+  table.hline(),
+  [$A and B$], [$chevron.l a, b chevron.r$], [`a` `b`],
+  table.hline(),
+  [$A arrow B$], [$lambda a |-> ...$], [`h a`],
+  table.hline(),
+  [$A or B$], [`Or.inl` `Or.inr`], [`match` / `cases`],
+  table.hline(),
+)
 
+- *Introduction*: the GOAL. You introduce (build) a connective when it's the thing you're trying to make.
+- *Elimination*: an ASSUMPTION. You eliminate (use up) a connective when you already have it as a given.
+
+The essence: introduce the goal down to atoms; eliminate assumptions up to meet them.
+
+The steps:
+
+- Read the goal — build its shape (introduction). Write the constructor for its top connective: → → λ, ∧ → ⟨_, _⟩, ∨ → pick a side. Repeat until the goal is atomic. (Each → you introduce hands you a new assumption.)
+- Fill the holes from the assumptions (elimination). Each hole needs a specific atomic fact. Make it by consuming assumptions: apply a →, project a ∧, split a ∨.
+- Meet in the middle. Build inward from the goal, take apart outward from the assumptions, until the pieces connect.
+
+Rule of thumb: goal → constructors, assumptions → destructors.

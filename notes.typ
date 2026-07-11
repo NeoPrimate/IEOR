@@ -2916,3 +2916,113 @@ $"Critical path" = {v: "slack"(v) = 0}$
   - D depends only on B, so ES = EF(B) = 7, and EF = 7 + 5 = 12.
   - E depends only on C, so ES = EF(C) = 5, and EF = 5 + 1 = 6.
 ]
+
+
+= Lean
+
+#set page(paper: "a4", margin: (x: 1.5cm, y: 1.5cm))
+#set text(size: 10pt)
+
+#let badge(bg, fg, body) = box(
+  fill: bg,
+  inset: (x: 5pt, y: 2pt),
+  radius: 3pt,
+  text(fill: fg, size: 8.5pt, weight: "medium", body)
+)
+
+#let lm = badge(rgb("#dbeafe"), rgb("#1e40af"), [lemma])
+#let tc = badge(rgb("#dcfce7"), rgb("#166534"), [tactic])
+
+#let sec(name) = table.cell(
+  colspan: 3,
+  fill: luma(238),
+  inset: (x: 8pt, y: 5pt),
+  text(weight: "bold", size: 9pt, fill: luma(80), upper(name))
+)
+
+#table(
+  columns: (2fr, 1.6fr, 65pt),
+  align: (left + horizon, left + horizon, center + horizon),
+  stroke: 0.4pt + luma(210),
+  inset: (x: 8pt, y: 6pt),
+  fill: (_, y) => if y == 0 { luma(30) } else { white },
+
+  table.header(
+    text(fill: white, weight: "bold", [Identity]),
+    text(fill: white, weight: "bold", [Lean / Mathlib]),
+    text(fill: white, weight: "bold", [Kind]),
+  ),
+
+  // ── Commutativity ─────────────────────────────────────────
+  sec("Commutativity"),
+  $a + b = b + a$,                         [`add_comm`],         lm,
+  $a b = b a$,                             [`mul_comm`],         lm,
+
+  // ── Associativity ─────────────────────────────────────────
+  sec("Associativity"),
+  $(a + b) + c = a + (b + c)$,             [`add_assoc`],        lm,
+  $(a b) c = a (b c)$,                     [`mul_assoc`],        lm,
+
+  // ── Distributivity ────────────────────────────────────────
+  sec("Distributivity"),
+  $a(b + c) = a b + a c$,                  [`mul_add`],          lm,
+  $(a + b)c = a c + b c$,                  [`add_mul`],          lm,
+
+  // ── Identity elements ─────────────────────────────────────
+  sec("Identity elements"),
+  $a + 0 = a$,                             [`add_zero`],         lm,
+  $0 + a = a$,                             [`zero_add`],         lm,
+  $a dot 1 = a$,                           [`mul_one`],          lm,
+  $1 dot a = a$,                           [`one_mul`],          lm,
+  $a dot 0 = 0$,                           [`mul_zero`],         lm,
+  $0 dot a = 0$,                           [`zero_mul`],         lm,
+
+  // ── Inverses & subtraction ────────────────────────────────
+  sec("Inverses & subtraction"),
+  $a + (-a) = 0$,                          [`add_neg_cancel`],   lm,
+  $(-a) + a = 0$,                          [`neg_add_cancel`],   lm,
+  $a dot a^(-1) = 1$,                      [`mul_inv_cancel`],   lm,
+  $a - b = a + (-b)$,                      [`sub_eq_add_neg`],   lm,
+  $a - a = 0$,                             [`sub_self`],         lm,
+
+  // ── Exponent rules ────────────────────────────────────────
+  sec("Exponent rules"),
+  $a^m dot a^n = a^(m+n)$,                 [`pow_add`],          lm,
+  $(a^m)^n = a^(m n)$,                     [`pow_mul`],          lm,
+  $(a b)^n = a^n b^n$,                     [`mul_pow`],          lm,
+  $a^0 = 1$,                               [`pow_zero`],         lm,
+  $a^1 = a$,                               [`pow_one`],          lm,
+  $a^(-n) = (a^n)^(-1)$,                   [`zpow_neg`],         lm,
+
+  // ── Binomial identities ───────────────────────────────────
+  sec("Binomial identities"),
+  $(a + b)^2 = a^2 + 2 a b + b^2$,         [`add_sq`],           lm,
+  $(a - b)^2 = a^2 - 2 a b + b^2$,         [`sub_sq`],           lm,
+  $a^2 - b^2 = (a + b)(a - b)$,            [`sq_sub_sq`],        lm,
+  $(a + b)^3 = dots.h$,                    [`ring`],             tc,
+  $a^3 - b^3 = (a - b)(a^2 + a b + b^2)$,  [`ring`],             tc,
+  $a^3 + b^3 = (a + b)(a^2 - a b + b^2)$,  [`ring`],             tc,
+
+  // ── Fraction / division ───────────────────────────────────
+  sec("Fraction / division"),
+  $a/b dot c/d = (a c)/(b d)$,             [`div_mul_div_comm`], lm,
+  $a/b + c/b = (a + c)/b$,                 [`add_div`],          lm,
+  $a/b + c/d = (a d + b c)/(b d)$,         [`div_add_div`],      lm,
+  $(a\/b)\/(c\/d) = (a d)\/(b c)$,         [`field_simp`],       tc,
+
+  // ── Absolute value ────────────────────────────────────────
+  sec("Absolute value"),
+  $|a b| = |a| |b|$,                       [`abs_mul`],          lm,
+  $|a + b| <= |a| + |b|$,                  [`abs_add`],          lm,
+  $|a| >= 0$,                              [`abs_nonneg`],       lm,
+  $|a| = |-a|$,                            [`abs_neg`],          lm,
+
+  // ── Logarithms ────────────────────────────────────────────
+  sec("Logarithms (Real)"),
+  $log(a b) = log a + log b$,              [`Real.log_mul`],     lm,
+  $log(a\/b) = log a - log b$,             [`Real.log_div`],     lm,
+  $log(a^n) = n log a$,                    [`Real.log_pow`],     lm,
+  $log 1 = 0$,                             [`Real.log_one`],     lm,
+  $log(exp(x)) = x$,                       [`Real.log_exp`],     lm,
+)
+
