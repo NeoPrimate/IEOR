@@ -1,3 +1,18 @@
+import Mathlib
+open MvPolynomial
+
+-- Apply
+
+example
+  (p q : Prop)
+  (h : p → q)
+  (hp : p) :
+  q := by
+  apply h
+  -- goal is now: p
+  exact hp
+
+
 -- AND (∧)
 
 theorem a
@@ -193,6 +208,33 @@ theorem o
   (R S: Prop) :
   R → (S → R) ∧ (¬S → R) :=
   λ (r: R) ↦ ⟨λ _ : S ↦ r, λ _ : ¬ S ↦ r⟩
+
+example
+  (A B : Prop)
+  (h : (A ∧ B) ∨ A) :
+  A := by
+  obtain ⟨ a₁, b ⟩ | a₂ := h
+  · exact a₁
+  · exact a₂
+
+
+example
+  (A B C : Prop)
+  (h : A ∨ (B ∧ C)) :
+  (A ∨ B) ∧ (A ∨ C) := by
+    obtain a | ⟨ b, c ⟩ := h
+    constructor
+    left
+    assumption
+    left
+    assumption
+    constructor
+    right
+    assumption
+    right
+    assumption
+
+
 
 -- OR (∨)
 
@@ -913,3 +955,154 @@ example
   (h : ¬(Q ∧ P)) :
   Q → ¬P :=
   fun (q : Q) ↦ fun (p : P) ↦ h (⟨ q, p ⟩)
+
+example
+  (P : Prop)
+  (h : ¬¬¬P) :
+  ¬P :=
+  fun (p : P) ↦ h (fun (fp: P → False) ↦ fp p)
+
+example
+  (B C : Prop)
+  (h : ¬(B → C)) : -- (B → C) → False
+  ¬¬B :=
+  fun (nb : B → False) ↦ h (fun (b : B) ↦ False.elim (nb b))
+
+-- ↔
+
+example
+  (P Q : Prop)
+  (hsj : Q → P)
+  (hjs : P → Q) :
+  Q ↔ P :=
+  ⟨ hsj, hjs ⟩
+
+example
+  (P Q : Prop)
+  (h : P ↔ ¬Q) :
+  (P → ¬Q) ∧ (¬Q → P) :=
+  ⟨ h.mp, h.mpr ⟩
+
+example
+  (P Q R: Prop)
+  (h1 : Q ↔ R)
+  (h2 : P → Q) :
+  P → R :=
+  fun (p : P) ↦ h1.mp (h2 (p))
+
+example
+  (P Q R : Prop)
+  (h1 : P ↔ R)
+  (h2 : P → Q) :
+  R → Q :=
+  fun (r : R) ↦ h2 (h1.mpr r)
+
+example
+  (P Q R S : Prop)
+  (hRS : R ↔ S)
+  (h2 :
+      ¬((P → Q ∨ ¬S) ∧ (S ∨ P → ¬Q) → S → Q)
+      ↔
+      P ∧ Q ∧ ¬S) :
+  ¬((P → Q ∨ ¬R) ∧ (R ∨ P → ¬Q) → R → Q)
+    ↔
+    P ∧ Q ∧ ¬R :=
+  -- Transport the inner implication along R ↔ S — proved ONCE, both directions.
+  have hAnte :
+      ((P → Q ∨ ¬R) ∧ (R ∨ P → ¬Q) → R → Q)
+        ↔
+      ((P → Q ∨ ¬S) ∧ (S ∨ P → ¬Q) → S → Q) :=
+    ⟨fun h ⟨h1, h3⟩ s =>
+        h ⟨fun p => (h1 p).imp id (mt hRS.mp),
+           fun rp => h3 (rp.imp hRS.mp id)⟩
+          (hRS.mpr s),
+     fun h ⟨h1, h3⟩ r =>
+        h ⟨fun p => (h1 p).imp id (mt hRS.mpr),
+           fun sp => h3 (sp.imp hRS.mpr id)⟩
+          (hRS.mp r)⟩
+
+  -- Transport the conclusion along R ↔ S.
+  have hConcl : (P ∧ Q ∧ ¬R) ↔ (P ∧ Q ∧ ¬S) :=
+    ⟨fun ⟨p, q, nr⟩ => ⟨p, q, mt hRS.mpr nr⟩,
+     fun ⟨p, q, ns⟩ => ⟨p, q, mt hRS.mp ns⟩⟩
+
+  -- Negation respects ↔.
+  have hNeg :
+      ¬((P → Q ∨ ¬R) ∧ (R ∨ P → ¬Q) → R → Q)
+        ↔
+      ¬((P → Q ∨ ¬S) ∧ (S ∨ P → ¬Q) → S → Q) :=
+    ⟨mt hAnte.mpr, mt hAnte.mp⟩
+
+  -- The theorem is h2 conjugated by these equivalences.
+  hNeg.trans (h2.trans hConcl.symm)
+
+example
+  (P Q R S : Prop)
+  (h1 : R ↔ S)
+  (h2 : ¬((P → Q ∨ ¬S) ∧ (S ∨ P → ¬Q) → S → Q) ↔ P ∧ Q ∧ ¬S) :
+  ¬((P → Q ∨ ¬R) ∧ (R ∨ P → ¬Q) → R → Q) ↔ P ∧ Q ∧ ¬R := by
+  rw [h1]
+  exact h2
+
+
+example
+  {A B : Prop} :
+  (A → B) ↔ ¬ A ∨ B :=
+  Iff.intro
+    (
+      fun (ab : A → B) ↦
+        match Classical.em A with
+          | Or.inl a  => Or.inr (ab a)
+          | Or.inr na => Or.inl na
+    )
+    (
+      fun (nab : ¬ A ∨ B) ↦
+        match nab with
+          | Or.inl na => fun (a : A) ↦ False.elim (na a)
+          | Or.inr b => fun (a : A) ↦ b
+    )
+
+example
+  (a b c d : ℝ)
+  (h₁ : c = d)
+  (h₂ : a = b)
+  (h₃ : a = d) :
+  b = c :=
+  ((h₂.symm).trans (h₃.trans (h₁.symm)))
+
+example
+  (x y : ℚ) :
+  (x + y) ^ 2 = x ^ 2 + 2 * x * y + y ^ 2 :=
+  -- pow_two (x + y)
+  sorry
+
+example
+  (A B : MvPolynomial (Fin 4) ℝ)
+  (hA : A = (X 0) * (X 3) - (X 1) * (X 2))
+  (hB : B = (X 0) * (X 2) + (X 1) * (X 3)) :
+  ((X 0)^2 + (X 1)^2) * ((X 2)^2 + (X 3)^2) = A^2 + B^2 := by
+  repeat rw [
+    pow_two,
+  ]
+  rw [
+    hA,
+    hB
+  ]
+  rw [
+    add_mul,
+    mul_add,
+    mul_sub,
+    sub_mul,
+    add_comm,
+    mul_assoc
+  ]
+  -- rfl
+  -- ring
+
+X 1 * (X 1 * (X 2 * X 2 + X 3 * X 3)) +
+(X 0 * X 0 * (X 2 * X 2) + X 0 * X 0 * (X 3 * X 3))
+=
+X 0 * X 3 * (X 0 * X 3) -
+X 1 * X 2 * (X 0 * X 3) -
+(X 0 * X 3 - X 1 * X 2) * (X 1 * X 2) +
+(X 0 * X 2 + X 1 * X 3) * (X 0 * X 2 + X 1 * X 3)
