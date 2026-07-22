@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
+= Linear System Solutions <linear_algebra_linear_system_solutions>
 
 A linear system $A accent(x, arrow) = accent(b, arrow)$ has *exactly* one of three outcomes:
 
@@ -9,7 +9,7 @@ A linear system $A accent(x, arrow) = accent(b, arrow)$ has *exactly* one of thr
 2. *No solution* — the system is *inconsistent*
 3. *Infinitely many solutions* — the system is *underdetermined*
 
-The #link(<linear-algebra-row-echelon-form>)[REF] (or #link(<linear-algebra-rref>)[RREF]) of the #link(<linear-algebra-augmented-matrix>)[augmented matrix] $[A | accent(b, arrow)]$ tells you which case you're in.
+The #link(<linear_algebra_row_echelon_form>)[REF] (or #link(<linear_algebra_rref>)[RREF]) of the #link(<linear_algebra_augmented_matrix>)[augmented matrix] $[A | accent(b, arrow)]$ tells you which case you're in.
 
 == 1. Unique solution
 
@@ -59,7 +59,7 @@ $
 
 Columns 2 and 4 have no pivot → $x_2, x_4$ are free.
 
-Equivalently: $"rank"(A) = "rank"([A | accent(b, arrow)]) < n$. The solution set is an *affine subspace* of dimension $n - "rank"(A)$ — see #link(<linear-algebra-rank-nullity-theorem>)[Rank–Nullity].
+Equivalently: $"rank"(A) = "rank"([A | accent(b, arrow)]) < n$. The solution set is an *affine subspace* of dimension $n - "rank"(A)$ — see #link(<linear_algebra_rank_nullity_theorem>)[Rank–Nullity].
 
 == Rouché–Capelli summary
 
@@ -75,7 +75,7 @@ Equivalently: $"rank"(A) = "rank"([A | accent(b, arrow)]) < n$. The solution set
 
 == See also
 
-- *#link(<linear-algebra-row-echelon-form>)[Row Echelon Form]* — the algorithm
-- *#link(<linear-algebra-linear-system-special-cases>)[Linear System Special Cases]* — when zero rows appear
-- *#link(<linear-algebra-rank>)[Rank]* and *#link(<linear-algebra-rank-nullity-theorem>)[Rank–Nullity]*
-- *#link(<linear-algebra-homogeneous-system>)[Homogeneous System]* — special case $accent(b, arrow) = bold(0)$
+- *#link(<linear_algebra_row_echelon_form>)[Row Echelon Form]* — the algorithm
+- *#link(<linear_algebra_linear_system_special_cases>)[Linear System Special Cases]* — when zero rows appear
+- *#link(<linear_algebra_rank>)[Rank]* and *#link(<linear_algebra_rank_nullity_theorem>)[Rank–Nullity]*
+- *#link(<linear_algebra_homogeneous_system>)[Homogeneous System]* — special case $accent(b, arrow) = bold(0)$

@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Norm <linear_algebra_norm>
+
 A scalar that measures the *length* (or *magnitude*) of a vector.
 
 Notation: $||accent(v, arrow)||$.
@@ -31,7 +33,7 @@ $
   ||accent(v, arrow)|| = sqrt(accent(v, arrow) dot accent(v, arrow))
 $
 
-(See #link(<linear-algebra-dot-product>)[Dot Product].)
+(See #link(<linear_algebra_dot_product>)[Dot Product].)
 
 This connection makes norms central to projections, angles between vectors, and least-squares regression.
 
@@ -42,7 +44,7 @@ For any vectors $accent(u, arrow), accent(v, arrow) in RR^n$ and scalar $c in RR
 - *Non-negativity*: $||accent(v, arrow)|| >= 0$
 - *Definiteness*: $||accent(v, arrow)|| = 0 quad arrow.l.r.double quad accent(v, arrow) = bold(0)$
 - *Absolute homogeneity*: $||c #h(0.2em) accent(v, arrow)|| = |c| #h(0.2em) ||accent(v, arrow)||$
-- *Triangle inequality*: $||accent(u, arrow) + accent(v, arrow)|| <= ||accent(u, arrow)|| + ||accent(v, arrow)||$ (see #link(<linear-algebra-triangle-inequality>)[Triangle Inequality])
+- *Triangle inequality*: $||accent(u, arrow) + accent(v, arrow)|| <= ||accent(u, arrow)|| + ||accent(v, arrow)||$ (see #link(<linear_algebra_triangle_inequality>)[Triangle Inequality])
 
 Any function $RR^n -> RR$ satisfying these four axioms is a *norm*.
 
@@ -84,7 +86,7 @@ Special cases:
 
 == Normalizing a vector
 
-Dividing a vector by its norm gives a #link(<linear-algebra-unit-vector>)[unit vector] in the same direction:
+Dividing a vector by its norm gives a #link(<linear_algebra_unit_vector>)[unit vector] in the same direction:
 
 $
   hat(v) = accent(v, arrow) / ||accent(v, arrow)||, quad ||hat(v)|| = 1
@@ -92,8 +94,8 @@ $
 
 == Connections
 
-- *#link(<linear-algebra-dot-product>)[Dot Product]* — $||accent(v, arrow)||^2 = accent(v, arrow) dot accent(v, arrow)$
-- *#link(<linear-algebra-cauchy-schwarz-inequality>)[Cauchy–Schwarz Inequality]* — $|accent(u, arrow) dot accent(v, arrow)| <= ||accent(u, arrow)|| #h(0.2em) ||accent(v, arrow)||$
-- *#link(<linear-algebra-triangle-inequality>)[Triangle Inequality]* — $||accent(u, arrow) + accent(v, arrow)|| <= ||accent(u, arrow)|| + ||accent(v, arrow)||$
-- *#link(<linear-algebra-unit-vector>)[Unit Vector]* — vectors with $||accent(v, arrow)|| = 1$
-- *#link(<linear-algebra-angles-between-vectors>)[Angles Between Vectors]* — $cos(theta) = (accent(u, arrow) dot accent(v, arrow)) / (||accent(u, arrow)|| #h(0.2em) ||accent(v, arrow)||)$
+- *#link(<linear_algebra_dot_product>)[Dot Product]* — $||accent(v, arrow)||^2 = accent(v, arrow) dot accent(v, arrow)$
+- *#link(<linear_algebra_cauchy_schwarz_inequality>)[Cauchy–Schwarz Inequality]* — $|accent(u, arrow) dot accent(v, arrow)| <= ||accent(u, arrow)|| #h(0.2em) ||accent(v, arrow)||$
+- *#link(<linear_algebra_triangle_inequality>)[Triangle Inequality]* — $||accent(u, arrow) + accent(v, arrow)|| <= ||accent(u, arrow)|| + ||accent(v, arrow)||$
+- *#link(<linear_algebra_unit_vector>)[Unit Vector]* — vectors with $||accent(v, arrow)|| = 1$
+- *#link(<linear_algebra_angles_between_vectors>)[Angles Between Vectors]* — $cos(theta) = (accent(u, arrow) dot accent(v, arrow)) / (||accent(u, arrow)|| #h(0.2em) ||accent(v, arrow)||)$

@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Cheatsheet <geometry_cheatsheet>
+
 == Geometric Formulas
 
 Formulas for: 

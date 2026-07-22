@@ -1,11 +1,13 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-Reducing safety stock by *shortening or stabilizing lead times*, not by aggregating demand. Substitutes responsiveness for inventory — a different lever than #link(<supply-chain-risk-pooling-location-pooling>)[location pooling].
+= Lead-time Pooling <supply_chain_inventory_risk_pooling_lead_time_pooling>
+
+Reducing safety stock by *shortening or stabilizing lead times*, not by aggregating demand. Substitutes responsiveness for inventory — a different lever than #link(<supply_chain_inventory_risk_pooling_location_pooling>)[location pooling].
 
 == The lever
 
-#link(<supply-chain-stocks-safety-stock>)[Safety stock] scales with lead-time demand standard deviation:
+#link(<supply_chain_inventory_stocks_safety_stock>)[Safety stock] scales with lead-time demand standard deviation:
 
 $
   "SS" = z sqrt(L sigma_D^2 + mu_D^2 sigma_L^2)
@@ -75,7 +77,7 @@ Common in:
 
 == See also
 
-- *#link(<supply-chain-risk-pooling-risk-pooling>)[Risk Pooling]*
-- *#link(<supply-chain-stocks-safety-stock>)[Safety Stock]*
-- *#link(<supply-chain-stocks-pipeline-stock>)[Pipeline Stock]*
-- *#link(<supply-chain-risk-pooling-location-pooling>)[Location Pooling]*
+- *#link(<supply_chain_inventory_risk_pooling_risk_pooling>)[Risk Pooling]*
+- *#link(<supply_chain_inventory_stocks_safety_stock>)[Safety Stock]*
+- *#link(<supply_chain_inventory_stocks_pipeline_stock>)[Pipeline Stock]*
+- *#link(<supply_chain_inventory_risk_pooling_location_pooling>)[Location Pooling]*

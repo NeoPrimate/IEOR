@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-A relaxation of #link(<supply-chain-multi-echelon-graves-willems>)[Graves-Willems guaranteed-service] that allows *random wait times* upstream when stockouts occur. Originated with Lee & Billington (1993) and Ettl et al. (2000).
+= Stochastic-service <supply_chain_inventory_multi_echelon_stochastic_service>
+
+A relaxation of #link(<supply_chain_inventory_multi_echelon_graves_willems>)[Graves-Willems guaranteed-service] that allows *random wait times* upstream when stockouts occur. Originated with Lee & Billington (1993) and Ettl et al. (2000).
 
 == Why relax guaranteed service?
 
@@ -44,7 +46,7 @@ where $W_i$ is random. Compute $E[W_i]$ and $"Var"(W_i)$ via queueing approximat
 
 == METRIC as a special case
 
-For Poisson demand on repairable items, the *#link(<supply-chain-multi-echelon-metric>)[METRIC]* model gives closed-form expressions for expected backorders at each echelon — see that page for the details. METRIC is the canonical example of a stochastic-service multi-echelon model.
+For Poisson demand on repairable items, the *#link(<supply_chain_inventory_multi_echelon_metric>)[METRIC]* model gives closed-form expressions for expected backorders at each echelon — see that page for the details. METRIC is the canonical example of a stochastic-service multi-echelon model.
 
 == When to use
 
@@ -60,6 +62,6 @@ For Poisson demand on repairable items, the *#link(<supply-chain-multi-echelon-m
 
 == See also
 
-- *#link(<supply-chain-multi-echelon-graves-willems>)[Graves-Willems]* — guaranteed-service
-- *#link(<supply-chain-multi-echelon-metric>)[METRIC]* / *#link(<supply-chain-multi-echelon-vari-metric>)[VARI-METRIC]* — Poisson demand repairables
-- *#link(<supply-chain-multi-echelon-multi-echelon>)[Multi-Echelon overview]*
+- *#link(<supply_chain_inventory_multi_echelon_graves_willems>)[Graves-Willems]* — guaranteed-service
+- *#link(<supply_chain_inventory_multi_echelon_metric>)[METRIC]* / *#link(<supply_chain_inventory_multi_echelon_vari_metric>)[VARI-METRIC]* — Poisson demand repairables
+- *#link(<supply_chain_inventory_multi_echelon_multi_echelon>)[Multi-Echelon overview]*

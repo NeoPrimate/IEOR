@@ -1,9 +1,11 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Erlang C <operations_research_queuing_theory_erlang_c>
+
 The *Erlang C formula*: probability that an arriving customer has to *wait* in an M/M/c queue (Poisson arrivals, exponential service, $c$ servers, infinite buffer).
 
-The exact analog of #link(<operations-research-queuing-theory-m-m-c>)[M/M/c] queue's "no-empty-server probability" at steady state.
+The exact analog of #link(<operations_research_queuing_theory_mmc>)[M/M/c] queue's "no-empty-server probability" at steady state.
 
 == Formula
 
@@ -58,7 +60,7 @@ To keep wait probability under 10%, need $c = 6$ agents. Wait time at $c = 6$: $
 The industry standard formula. Variants:
 
 - *Square-root staffing rule* (Halfin-Whitt regime): $c approx rho + beta sqrt(rho)$ for some quality-of-service constant $beta$
-- *Erlang A*: add abandonment — customers leave after waiting too long; see #link(<operations-research-queuing-theory-mmc-abandonment>)[Erlang A]
+- *Erlang A*: add abandonment — customers leave after waiting too long; see #link(<operations_research_queuing_theory_mmc_abandonment>)[Erlang A]
 - *Skill-based routing*: agents are heterogeneous; needs simulation
 
 == Limitations
@@ -71,7 +73,7 @@ For most call-center sizing, Erlang C is good enough. For accuracy use simulatio
 
 == See also
 
-- *#link(<operations-research-queuing-theory-erlang-b>)[Erlang B]* — without queue (blocking)
-- *#link(<operations-research-queuing-theory-m-m-c>)[M/M/c]* — the queue model itself
-- *#link(<operations-research-queuing-theory-mmc-abandonment>)[Erlang A]* — with abandonment
-- *#link(<operations-research-queuing-theory-square-root-staffing>)[Square-Root Staffing]*
+- *#link(<operations_research_queuing_theory_erlang_b>)[Erlang B]* — without queue (blocking)
+- *#link(<operations_research_queuing_theory_mmc>)[M/M/c]* — the queue model itself
+- *#link(<operations_research_queuing_theory_mmc_abandonment>)[Erlang A]* — with abandonment
+- *#link(<operations_research_queuing_theory_square_root_staffing>)[Square-Root Staffing]*

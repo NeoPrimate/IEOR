@@ -1,6 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= SVD <linear_algebra_svd>
 
 Every real matrix $A$ — square or rectangular, full-rank or rank-deficient — has a *Singular Value Decomposition*:
 
@@ -10,8 +11,8 @@ $
 
 where, for an $m times n$ matrix $A$:
 
-- $U$ is $m times m$ #link(<linear-algebra-orthogonal-matrix>)[orthogonal] — columns are the *left singular vectors*
-- $Sigma$ is $m times n$ #link(<linear-algebra-diagonal-matrix>)[diagonal] with non-negative entries $sigma_1 >= sigma_2 >= dots >= 0$ — the *singular values*
+- $U$ is $m times m$ #link(<linear_algebra_orthogonal_matrix>)[orthogonal] — columns are the *left singular vectors*
+- $Sigma$ is $m times n$ #link(<linear_algebra_diagonal_matrix>)[diagonal] with non-negative entries $sigma_1 >= sigma_2 >= dots >= 0$ — the *singular values*
 - $V$ is $n times n$ orthogonal — columns are the *right singular vectors*
 
 == Singular values
@@ -22,7 +23,7 @@ $
   sigma_i = sqrt(lambda_i (A^T A))
 $
 
-Number of non-zero singular values = #link(<linear-algebra-rank>)[rank] of $A$.
+Number of non-zero singular values = #link(<linear_algebra_rank>)[rank] of $A$.
 
 == Geometric interpretation
 
@@ -70,7 +71,7 @@ This is the engine behind:
 
 == Connection to symmetric matrices
 
-If $A$ is symmetric positive semi-definite, the SVD coincides with the eigendecomposition (#link(<linear-algebra-spectral-theorem>)[Spectral Theorem]): $U = V$ and $Sigma$ = eigenvalues.
+If $A$ is symmetric positive semi-definite, the SVD coincides with the eigendecomposition (#link(<linear_algebra_spectral_theorem>)[Spectral Theorem]): $U = V$ and $Sigma$ = eigenvalues.
 
 For general $A$, $A^T A$ and $A A^T$ are both symmetric:
 - *Right singular vectors* of $A$ = eigenvectors of $A^T A$ (with eigenvalues $sigma_i^2$)
@@ -78,7 +79,7 @@ For general $A$, $A^T A$ and $A A^T$ are both symmetric:
 
 == Connection to pseudoinverse
 
-When $A$ is not square or not invertible, the *Moore–Penrose* #link(<linear-algebra-pseudoinverse>)[pseudoinverse] uses the SVD:
+When $A$ is not square or not invertible, the *Moore–Penrose* #link(<linear_algebra_pseudoinverse>)[pseudoinverse] uses the SVD:
 
 $
   A^+ = V Sigma^+ U^T
@@ -88,7 +89,7 @@ where $Sigma^+$ inverts the non-zero singular values and transposes the shape.
 
 == See also
 
-- *#link(<linear-algebra-spectral-theorem>)[Spectral Theorem]* — symmetric special case
-- *#link(<linear-algebra-pseudoinverse>)[Pseudoinverse]*
-- *#link(<linear-algebra-qr-decomposition>)[QR]* / *#link(<linear-algebra-cholesky-decomposition>)[Cholesky]* / *#link(<linear-algebra-lu-decomposition>)[LU]* — other matrix factorizations
-- *#link(<linear-algebra-orthogonal-matrix>)[Orthogonal Matrix]*
+- *#link(<linear_algebra_spectral_theorem>)[Spectral Theorem]* — symmetric special case
+- *#link(<linear_algebra_pseudoinverse>)[Pseudoinverse]*
+- *#link(<linear_algebra_qr_decomposition>)[QR]* / *#link(<linear_algebra_cholesky_decomposition>)[Cholesky]* / *#link(<linear_algebra_lu_decomposition>)[LU]* — other matrix factorizations
+- *#link(<linear_algebra_orthogonal_matrix>)[Orthogonal Matrix]*

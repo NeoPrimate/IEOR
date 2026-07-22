@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Cheatsheet <probability_theory_cheatsheet>
+
 #show math.equation: set text(5pt)
 #set text(size: 7pt)
 

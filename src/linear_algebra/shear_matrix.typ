@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
+= Shear Matrix <linear_algebra_shear_matrix>
 
 A *shear matrix* shifts each point in one direction by an amount proportional to its coordinate in another. The result: parallelograms slide into other parallelograms, preserving area.
 
@@ -39,14 +39,14 @@ $
 
 == Properties
 
-- *#link(<linear-algebra-determinant>)[Determinant]*: $det(S) = 1$ — *area / volume preserving*
-- *#link(<linear-algebra-matrix-inverse>)[Inverse]*: shear by $-k$ in the same direction:
+- *#link(<linear_algebra_determinant>)[Determinant]*: $det(S) = 1$ — *area / volume preserving*
+- *#link(<linear_algebra_matrix_inverse>)[Inverse]*: shear by $-k$ in the same direction:
 $
   S_x (k)^(-1) = S_x (-k) = mat(1, -k; 0, 1)
 $
-- *Eigenvalues*: $1$ (repeated) — both with the same eigenvector $vec(1, 0)$ for the horizontal shear; not #link(<linear-algebra-diagonalization>)[diagonalizable] when $k eq.not 0$
+- *Eigenvalues*: $1$ (repeated) — both with the same eigenvector $vec(1, 0)$ for the horizontal shear; not #link(<linear_algebra_diagonalization>)[diagonalizable] when $k eq.not 0$
 - *Fixed line*: the axis being sheared along (e.g., the $x$-axis stays put for horizontal shear)
-- *Triangular*: shear matrices are #link(<linear-algebra-triangular-matrix>)[upper / lower triangular]
+- *Triangular*: shear matrices are #link(<linear_algebra_triangular_matrix>)[upper / lower triangular]
 
 == Why $det = 1$
 
@@ -66,7 +66,7 @@ Two shears in *different* directions can produce non-shear results (composition 
 
 - *Italic typography*: italic letters are upright letters with a horizontal shear applied
 - *Graphics transforms*: any 2D affine transformation can be decomposed into translate, rotate, scale, *shear*
-- *Solving #link(<linear-algebra-linear-equations>)[linear systems]*: row operations are shears applied to the matrix — that's why row reduction preserves the row-space dimensions but reshapes the picture
+- *Solving #link(<linear_algebra_linear_equations>)[linear systems]*: row operations are shears applied to the matrix — that's why row reduction preserves the row-space dimensions but reshapes the picture
 
 == Shears in higher dimensions
 
@@ -78,8 +78,8 @@ $
 
 == See also
 
-- *#link(<linear-algebra-rotation-matrix>)[Rotation Matrix]*
-- *#link(<linear-algebra-reflection-matrix>)[Reflection Matrix]*
-- *#link(<linear-algebra-scaling-matrix>)[Scaling Matrix]*
-- *#link(<linear-algebra-triangular-matrix>)[Triangular Matrix]*
-- *#link(<linear-algebra-linear-transformation>)[Linear Transformation]*
+- *#link(<linear_algebra_rotation_matrix>)[Rotation Matrix]*
+- *#link(<linear_algebra_reflection_matrix>)[Reflection Matrix]*
+- *#link(<linear_algebra_scaling_matrix>)[Scaling Matrix]*
+- *#link(<linear_algebra_triangular_matrix>)[Triangular Matrix]*
+- *#link(<linear_algebra_linear_transformation>)[Linear Transformation]*

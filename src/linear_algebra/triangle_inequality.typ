@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
+= Triangle Inequality <linear_algebra_triangle_inequality>
 
 == Vector Triangle Inequality
 

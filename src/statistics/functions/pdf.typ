@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= PDF <statistics_functions_pdf>
+
 == PDF (Probability Density Function)
 
 Function that describes the likelihood of a continuous random variable taking on a particular value

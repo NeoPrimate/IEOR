@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Capacity-Constrained <supply_chain_inventory_eoq_capacity_constrained>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 Relax one dimension from basic EOQ: *capacity is no longer unlimited*. A shared resource — warehouse space, working-capital budget, or shelf footprint — caps the total inventory you can hold at any moment. Multiple items compete for the same budget.

@@ -1,9 +1,11 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= EVSI <operations_research_decision_analysis_evsi>
+
 *Expected Value of Sample Information* (EVSI) — value of *imperfect* information, like a market survey that updates (but doesn't fully reveal) the state of nature.
 
-The realistic counterpart of #link(<operations-research-decision-analysis-evpi>)[EVPI]; what most real-world decisions face.
+The realistic counterpart of #link(<operations_research_decision_analysis_evpi>)[EVPI]; what most real-world decisions face.
 
 == Setup
 
@@ -86,7 +88,7 @@ EVSI is fundamentally *Bayesian*: it requires prior probabilities, likelihood fu
 
 == See also
 
-- *#link(<operations-research-decision-analysis-evpi>)[EVPI]* — upper bound
-- *#link(<operations-research-decision-analysis-emv>)[EMV]*
-- *#link(<probability-theory-bayes-rule>)[Bayes' Rule]* — the updating
-- *#link(<operations-research-decision-analysis-decision-trees>)[Decision Trees]*
+- *#link(<operations_research_decision_analysis_evpi>)[EVPI]* — upper bound
+- *#link(<operations_research_decision_analysis_emv>)[EMV]*
+- *#link(<probability_theory_bayes_rule>)[Bayes' Rule]* — the updating
+- *#link(<operations_research_decision_analysis_decision_trees>)[Decision Trees]*

@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Standard Form <operations_research_optimization_linear_programming_standard_form>
+
 $
    min quad & c^T x \
   s.t. quad & A x = b \

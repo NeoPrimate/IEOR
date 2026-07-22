@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
+= Vector Operations <linear_algebra_vector_operations>
 
 == Vector Addition
 

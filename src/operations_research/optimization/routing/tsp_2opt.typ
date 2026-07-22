@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-A simple but effective *local search* heuristic for the #link(<operations-research-optimization-tsp>)[TSP]. Iteratively replaces pairs of edges with a *cheaper* pair until no improvement is possible.
+= TSP 2opt <operations_research_optimization_routing_tsp_2opt>
+
+A simple but effective *local search* heuristic for the #link(<operations_research_optimization_routing_tsp>)[TSP]. Iteratively replaces pairs of edges with a *cheaper* pair until no improvement is possible.
 
 == The 2-opt move
 
@@ -61,7 +63,7 @@ Lin-Kernighan dynamically tries 2-opt, 3-opt, …, $k$-opt moves with backtracki
 
 == See also
 
-- *#link(<operations-research-optimization-tsp>)[TSP]* — problem
-- *#link(<operations-research-optimization-christofides>)[Christofides]* — approximation with worst-case guarantee
-- *#link(<operations-research-optimization-clarke-wright>)[Clarke-Wright]* — good initial tour for TSP / VRP
-- *#link(<operations-research-optimization-heuristic-algorithms>)[Heuristics]* — broader local-search family
+- *#link(<operations_research_optimization_routing_tsp>)[TSP]* — problem
+- *#link(<operations_research_optimization_routing_christofides>)[Christofides]* — approximation with worst-case guarantee
+- *#link(<operations_research_optimization_routing_clarke_wright>)[Clarke-Wright]* — good initial tour for TSP / VRP
+- *#link(<operations_research_optimization_heuristic_algorithms>)[Heuristics]* — broader local-search family

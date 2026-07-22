@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Logistic Growth <system_dynamics_logistic_growth>
+
 The simplest *limits-to-growth* model. A population (or any quantity) grows exponentially when small, then saturates as it approaches a *carrying capacity* $K$.
 
 == Model
@@ -50,7 +52,7 @@ Reinforcing growth ($dot N = r N$) plus balancing limit ($1 - N/K$). The R+B = S
 
 - *Symmetric*: growth and saturation phases are mirror images — real systems often asymmetric
 - *Static $K$*: real carrying capacities change (technology, environment)
-- *No overshoot*: real systems often overshoot $K$ then collapse — see #link(<system-dynamics-feedback-loops>)[oscillation / collapse archetypes]
+- *No overshoot*: real systems often overshoot $K$ then collapse — see #link(<system_dynamics_feedback_loops>)[oscillation / collapse archetypes]
 
 == Compared to Bass diffusion
 
@@ -58,7 +60,7 @@ Reinforcing growth ($dot N = r N$) plus balancing limit ($1 - N/K$). The R+B = S
   columns: 3,
   align: (left, left, left),
   stroke: none,
-  table.header([], [*Logistic*], [*#link(<system-dynamics-bass-diffusion>)[Bass]*]),
+  table.header([], [*Logistic*], [*#link(<system_dynamics_bass_diffusion>)[Bass]*]),
   [Initial growth], [Exponential ($r N$)], [Innovation rate ($p N$, constant)],
   [Driver], [Word-of-mouth only ($r$ effectively combines)], [Innovation + imitation separately],
   [Use case], [Pure peer-driven growth], [New product with external + internal drivers],
@@ -78,6 +80,6 @@ Or just nonlinear-least-squares fit the closed form.
 
 == See also
 
-- *#link(<system-dynamics-bass-diffusion>)[Bass Diffusion]* — refinement
-- *#link(<system-dynamics-feedback-loops>)[Feedback Loops]* — the R+B archetype
-- *#link(<calculus-differential-equations>)[Differential Equations]* — the parent topic
+- *#link(<system_dynamics_bass_diffusion>)[Bass Diffusion]* — refinement
+- *#link(<system_dynamics_feedback_loops>)[Feedback Loops]* — the R+B archetype
+- *#link(<calculus_differential_equations_differential_equations>)[Differential Equations]* — the parent topic

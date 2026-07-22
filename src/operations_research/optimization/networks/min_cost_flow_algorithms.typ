@@ -1,9 +1,11 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Min-Cost Flow Algorithms <operations_research_optimization_networks_min_cost_flow_algorithms>
+
 Algorithms that solve the *minimum-cost flow* problem more efficiently than the generic LP. Given a network with arc capacities $u_(i j)$ and costs $c_(i j)$, find feasible flow satisfying supply / demand at minimum total cost.
 
-For the problem formulation see #link(<operations-research-optimization-multi-commodity-network-flow>)[Min-cost flow LP].
+For the problem formulation see #link(<operations_research_optimization_networks_multi_commodity_network_flow>)[Min-cost flow LP].
 
 == Negative-cycle canceling
 
@@ -54,7 +56,7 @@ While there is unsatisfied supply:
 
 == Other methods
 
-- *#link(<operations-research-optimization-network-simplex>)[Network simplex]* — specialization of simplex; very fast in practice
+- *#link(<operations_research_optimization_networks_network_simplex>)[Network simplex]* — specialization of simplex; very fast in practice
 - *Out-of-kilter algorithm* — historical, more complex
 - *Push-relabel* — efficient for max flow / min-cost extensions
 - *Cost-scaling* — strongly polynomial, $O(V E log(V C))$
@@ -65,7 +67,7 @@ For most instances, use *network simplex* (in commercial solvers like CPLEX, Gur
 
 == See also
 
-- *#link(<operations-research-optimization-multi-commodity-network-flow>)[Min-Cost Flow]* — problem formulation
-- *#link(<operations-research-optimization-network-simplex>)[Network Simplex]*
-- *#link(<operations-research-optimization-network-flow>)[Network Flow]* — max-flow variant
-- *#link(<algorithms-dijkstra>)[Dijkstra]* — shortest-path subroutine
+- *#link(<operations_research_optimization_networks_multi_commodity_network_flow>)[Min-Cost Flow]* — problem formulation
+- *#link(<operations_research_optimization_networks_network_simplex>)[Network Simplex]*
+- *#link(<operations_research_optimization_networks_maximum_flow_network_flow>)[Network Flow]* — max-flow variant
+- *#link(<algorithms_shortest_path_dijkstra>)[Dijkstra]* — shortest-path subroutine

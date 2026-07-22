@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Best Worst PWC <supply_chain_manufacturing_best_worst_pwc>
+
 For any production line with bottleneck rate $r_b$, raw processing time $T_0$, and WIP level $w$, throughput is bounded by three curves (Hopp & Spearman). Real lines fall between these curves.
 
 == Three curves
@@ -39,7 +41,7 @@ The WIP at which best-case throughput reaches $r_b$ and best-case cycle time equ
 
 - If your real line's throughput is well below the PWC curve, you have *more* variability than even PWC assumes — improve setups, breakdowns, batching
 - If real cycle time is well above PWC, same — variability is the culprit
-- Critical WIP $W_0$ is the sweet spot for #link(<supply-chain-manufacturing-conwip>)[CONWIP] (constant WIP) control
+- Critical WIP $W_0$ is the sweet spot for #link(<supply_chain_manufacturing_conwip>)[CONWIP] (constant WIP) control
 
 == Plot intuition
 
@@ -58,7 +60,7 @@ Throughput
 
 == See also
 
-- *#link(<supply-chain-manufacturing-critical-wip>)[Critical WIP]*
-- *#link(<supply-chain-manufacturing-factory-physics>)[Factory Physics overview]*
-- *#link(<operations-research-queuing-theory-kingman-vut>)[VUT]* — the underlying variability driver
-- *#link(<supply-chain-manufacturing-conwip>)[CONWIP]*
+- *#link(<supply_chain_manufacturing_critical_wip>)[Critical WIP]*
+- *#link(<supply_chain_manufacturing_factory_physics>)[Factory Physics overview]*
+- *#link(<operations_research_queuing_theory_kingman_vut>)[VUT]* — the underlying variability driver
+- *#link(<supply_chain_manufacturing_conwip>)[CONWIP]*

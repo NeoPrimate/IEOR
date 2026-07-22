@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= M/M/1 <operations_research_queuing_theory_mm1>
+
 - Arrival rate ($lambda$): Average number of customers arriving per unit of time
 
 - Service rate ($mu$): Average number of customers served per unit of time

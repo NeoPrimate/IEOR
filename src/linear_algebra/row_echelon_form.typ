@@ -1,6 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Row Echelon Form <linear_algebra_row_echelon_form>
 
 A matrix is in *Row Echelon Form (REF)* if it satisfies all of:
 
@@ -27,7 +28,7 @@ The three operations that don't change the solution set of a system, used to dri
 2. *Row scale*: multiply a row by a non-zero scalar
 3. *Row replacement*: add a multiple of one row to another
 
-These are applied via #link(<linear-algebra-gaussian-elimination>)[Gaussian elimination].
+These are applied via #link(<linear_algebra_gaussian_elimination>)[Gaussian elimination].
 
 #example[
   System:
@@ -113,11 +114,11 @@ These are applied via #link(<linear-algebra-gaussian-elimination>)[Gaussian elim
 
 == REF vs RREF
 
-REF is not unique. The stronger #link(<linear-algebra-rref>)[RREF] (Reduced Row Echelon Form) — pivots equal $1$ and zeros above as well as below — *is* unique.
+REF is not unique. The stronger #link(<linear_algebra_rref>)[RREF] (Reduced Row Echelon Form) — pivots equal $1$ and zeros above as well as below — *is* unique.
 
 == See also
 
-- *#link(<linear-algebra-rref>)[RREF]* — canonical reduced form
-- *#link(<linear-algebra-linear-system-solutions>)[Linear System Solutions]* — unique / none / infinite
-- *#link(<linear-algebra-linear-system-special-cases>)[Linear System Special Cases]* — when zero rows appear
-- *#link(<linear-algebra-gaussian-elimination>)[Gaussian Elimination]* — the algorithm
+- *#link(<linear_algebra_rref>)[RREF]* — canonical reduced form
+- *#link(<linear_algebra_linear_system_solutions>)[Linear System Solutions]* — unique / none / infinite
+- *#link(<linear_algebra_linear_system_special_cases>)[Linear System Special Cases]* — when zero rows appear
+- *#link(<linear_algebra_gaussian_elimination>)[Gaussian Elimination]* — the algorithm

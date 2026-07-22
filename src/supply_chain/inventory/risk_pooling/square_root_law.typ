@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-For $N$ independent demand sources with identical mean $mu$ and standard deviation $sigma$, the standard deviation of total demand grows with $sqrt(N)$ (not $N$). This is the *square-root law* — the central result of #link(<supply-chain-risk-pooling-risk-pooling>)[risk pooling].
+= Square-Root Law <supply_chain_inventory_risk_pooling_square_root_law>
+
+For $N$ independent demand sources with identical mean $mu$ and standard deviation $sigma$, the standard deviation of total demand grows with $sqrt(N)$ (not $N$). This is the *square-root law* — the central result of #link(<supply_chain_inventory_risk_pooling_risk_pooling>)[risk pooling].
 
 == Statement
 
@@ -35,7 +37,7 @@ $
 
 Taking square root: $sigma_S = sigma sqrt(N)$. ∎
 
-(The non-i.i.d. case with general covariances is the *#link(<supply-chain-risk-pooling-correlated-pooling>)[correlated pooling]* formula.)
+(The non-i.i.d. case with general covariances is the *#link(<supply_chain_inventory_risk_pooling_correlated_pooling>)[correlated pooling]* formula.)
 
 == Safety-stock implication
 
@@ -99,7 +101,7 @@ $
   sigma_("pool")^2 = sum_i sigma_i^2 + 2 sum_(i < j) rho_(i j) sigma_i sigma_j
 $
 
-See #link(<supply-chain-risk-pooling-correlated-pooling>)[Correlated Pooling].
+See #link(<supply_chain_inventory_risk_pooling_correlated_pooling>)[Correlated Pooling].
 
 == Why this is "square-root"
 
@@ -114,11 +116,11 @@ This is the *same* phenomenon as the standard error of a sample mean shrinking a
 - *Service level unchanged* — but pooling might allow higher service for same cost
 - *Ignores transport cost* — central stock is farther from some customers
 
-See #link(<supply-chain-risk-pooling-risk-pooling>)[Risk Pooling] for trade-offs.
+See #link(<supply_chain_inventory_risk_pooling_risk_pooling>)[Risk Pooling] for trade-offs.
 
 == See also
 
-- *#link(<supply-chain-risk-pooling-risk-pooling>)[Risk Pooling]* — overview
-- *#link(<supply-chain-risk-pooling-correlated-pooling>)[Correlated Pooling]* — non-independent case
-- *#link(<supply-chain-risk-pooling-location-pooling>)[Location Pooling]* — application
-- *#link(<supply-chain-stocks-safety-stock>)[Safety Stock]*
+- *#link(<supply_chain_inventory_risk_pooling_risk_pooling>)[Risk Pooling]* — overview
+- *#link(<supply_chain_inventory_risk_pooling_correlated_pooling>)[Correlated Pooling]* — non-independent case
+- *#link(<supply_chain_inventory_risk_pooling_location_pooling>)[Location Pooling]* — application
+- *#link(<supply_chain_inventory_stocks_safety_stock>)[Safety Stock]*

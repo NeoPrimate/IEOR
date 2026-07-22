@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Gaussian <statistics_distributions_gaussian>
+
 == Gaussian (Normal) distribution
 
 $

@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-A specialization of the #link(<operations-research-optimization-simplex-method>)[simplex method] for network flow problems (transportation, transshipment, min-cost flow). Exploits the *tree structure* of basic feasible solutions for $50-100times$ speed-up over generic simplex.
+= Network Simplex <operations_research_optimization_networks_network_simplex>
+
+A specialization of the #link(<operations_research_optimization_linear_programming_simplex_method>)[simplex method] for network flow problems (transportation, transshipment, min-cost flow). Exploits the *tree structure* of basic feasible solutions for $50-100times$ speed-up over generic simplex.
 
 == Key insight: basis = spanning tree
 
@@ -42,7 +44,7 @@ Return optimal flow
 
 == See also
 
-- *#link(<operations-research-optimization-simplex-method>)[Simplex Method]* — the general parent
-- *#link(<operations-research-optimization-multi-commodity-network-flow>)[Min-Cost Flow]* — problem solved
-- *#link(<operations-research-optimization-transportation-problem>)[Transportation Problem]* — special case
-- *#link(<operations-research-optimization-min-cost-flow-algorithms>)[Min-Cost Flow Algorithms]* — alternative methods
+- *#link(<operations_research_optimization_linear_programming_simplex_method>)[Simplex Method]* — the general parent
+- *#link(<operations_research_optimization_networks_multi_commodity_network_flow>)[Min-Cost Flow]* — problem solved
+- *#link(<operations_research_optimization_networks_transportation_problem>)[Transportation Problem]* — special case
+- *#link(<operations_research_optimization_networks_min_cost_flow_algorithms>)[Min-Cost Flow Algorithms]* — alternative methods

@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Countability <probability_theory_countability>
+
 == Countable and Uncoutable Sets
 
 1. Countable (Discrete)

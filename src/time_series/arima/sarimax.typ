@@ -4,6 +4,8 @@
 #import "./summary.typ": cAR, cDiff, cMA
 #import "../_data.typ" as data
 
+= SARIMAX <time_series_arima_sarimax>
+
 Seasonal ARIMA with exogenous regressors
 
 $"SARIMAX"(p,d,q)(P,D,Q)_m$

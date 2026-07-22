@@ -1,9 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Composition of Linear Transformations <linear_algebra_composition_of_linear_transformations>
 
-
-For two #link(<linear-algebra-linear-transformation>)[linear transformations] $S: X -> Y$ and $T: Y -> Z$, the *composition* $T compose S: X -> Z$ applies $S$ first, then $T$:
+For two #link(<linear_algebra_linear_transformation>)[linear transformations] $S: X -> Y$ and $T: Y -> Z$, the *composition* $T compose S: X -> Z$ applies $S$ first, then $T$:
 
 $
   (T compose S)(accent(x, arrow)) = T(S(accent(x, arrow)))
@@ -52,7 +52,7 @@ $
   (T compose S)(accent(x, arrow)) = T(A accent(x, arrow)) = B (A accent(x, arrow)) = (B A) accent(x, arrow)
 $
 
-So composition corresponds to *#link(<linear-algebra-matrix-multiplication>)[matrix multiplication]* — with the matrices in *reverse* order (the transformation applied first sits on the right):
+So composition corresponds to *#link(<linear_algebra_matrix_multiplication>)[matrix multiplication]* — with the matrices in *reverse* order (the transformation applied first sits on the right):
 
 $
   T compose S #h(0.5em) arrow.l.r #h(0.5em) B A
@@ -64,12 +64,12 @@ This single observation is the entire reason matrix multiplication is defined th
 
 - *Associative*: $(R compose T) compose S = R compose (T compose S)$ — follows from matrix multiplication being associative
 - *Not commutative*: in general $T compose S eq.not S compose T$ — different transformations don't commute (and matrices generally don't either)
-- *Identity*: composing with $I$ (the #link(<linear-algebra-identity-matrix>)[identity transformation]) leaves any transformation unchanged
+- *Identity*: composing with $I$ (the #link(<linear_algebra_identity_matrix>)[identity transformation]) leaves any transformation unchanged
 - *Inverse*: $(T compose S)^(-1) = S^(-1) compose T^(-1)$ (when defined) — peel off in reverse order
 
 == See also
 
-- *#link(<linear-algebra-linear-transformation>)[Linear Transformation]*
-- *#link(<linear-algebra-matrix-multiplication>)[Matrix Multiplication]*
-- *#link(<linear-algebra-matrix-representation>)[Matrix Representation]* — how transformations become matrices
-- *#link(<linear-algebra-matrix-inverse>)[Matrix Inverse]*
+- *#link(<linear_algebra_linear_transformation>)[Linear Transformation]*
+- *#link(<linear_algebra_matrix_multiplication>)[Matrix Multiplication]*
+- *#link(<linear_algebra_matrix_representation>)[Matrix Representation]* — how transformations become matrices
+- *#link(<linear_algebra_matrix_inverse>)[Matrix Inverse]*

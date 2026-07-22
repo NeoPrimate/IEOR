@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-An extension of #link(<supply-chain-multi-echelon-metric>)[METRIC] (Graves 1985) that captures the *variance* of pipeline orders, not just the mean. The pipeline is modeled as *Negative Binomial* instead of Poisson — same mean, larger variance, more realistic for low-stock scenarios.
+= VARI-METRIC <supply_chain_inventory_multi_echelon_vari_metric>
+
+An extension of #link(<supply_chain_inventory_multi_echelon_metric>)[METRIC] (Graves 1985) that captures the *variance* of pipeline orders, not just the mean. The pipeline is modeled as *Negative Binomial* instead of Poisson — same mean, larger variance, more realistic for low-stock scenarios.
 
 == Why METRIC under-estimates backorders
 
@@ -66,6 +68,6 @@ The optimization (marginal analysis on the budget vs total backorders) is the sa
 
 == See also
 
-- *#link(<supply-chain-multi-echelon-metric>)[METRIC]* — Poisson-pipeline original
-- *#link(<supply-chain-multi-echelon-multi-echelon>)[Multi-Echelon overview]*
-- *#link(<supply-chain-multi-echelon-stochastic-service>)[Stochastic-service models]*
+- *#link(<supply_chain_inventory_multi_echelon_metric>)[METRIC]* — Poisson-pipeline original
+- *#link(<supply_chain_inventory_multi_echelon_multi_echelon>)[Multi-Echelon overview]*
+- *#link(<supply_chain_inventory_multi_echelon_stochastic_service>)[Stochastic-service models]*

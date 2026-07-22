@@ -1,6 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Triangular Matrix <linear_algebra_triangular_matrix>
 
 A square matrix in which all entries on one side of the main diagonal are zero.
 
@@ -22,14 +23,14 @@ $
 
 == Properties (apply to both upper and lower)
 
-- *#link(<linear-algebra-determinant>)[Determinant]*: product of diagonal entries
+- *#link(<linear_algebra_determinant>)[Determinant]*: product of diagonal entries
 $
   det(L) = product_(i=1)^n l_(i i)
 $
-- *#link(<linear-algebra-trace>)[Trace]*: sum of diagonal entries
+- *#link(<linear_algebra_trace>)[Trace]*: sum of diagonal entries
 - *Eigenvalues*: the diagonal entries themselves
 - *Sum / product / inverse* of triangular matrices is triangular (same orientation)
-- *#link(<linear-algebra-transpose>)[Transpose]* flips orientation: $L^T$ is upper triangular
+- *#link(<linear_algebra_transpose>)[Transpose]* flips orientation: $L^T$ is upper triangular
 
 == Why they matter
 
@@ -44,7 +45,7 @@ Solve from the bottom row up — each row has one new unknown.
 
 == Where they show up
 
-- *#link(<linear-algebra-row-echelon-form>)[Row Echelon Form]*: upper triangular (after Gaussian elimination)
-- *#link(<linear-algebra-lu-decomposition>)[LU Decomposition]*: $A = L U$ — lower × upper triangular
-- *#link(<linear-algebra-cholesky-decomposition>)[Cholesky Decomposition]*: $A = L L^T$ for symmetric positive-definite $A$
-- *#link(<linear-algebra-qr-decomposition>)[QR Decomposition]*: $A = Q R$ where $R$ is upper triangular
+- *#link(<linear_algebra_row_echelon_form>)[Row Echelon Form]*: upper triangular (after Gaussian elimination)
+- *#link(<linear_algebra_lu_decomposition>)[LU Decomposition]*: $A = L U$ — lower × upper triangular
+- *#link(<linear_algebra_cholesky_decomposition>)[Cholesky Decomposition]*: $A = L L^T$ for symmetric positive-definite $A$
+- *#link(<linear_algebra_qr_decomposition>)[QR Decomposition]*: $A = Q R$ where $R$ is upper triangular

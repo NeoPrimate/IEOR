@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Kingman VUT <operations_research_queuing_theory_kingman_vut>
+
 A foundational approximation for the *G/G/1* queue (general arrival distribution, general service distribution, single server). The VUT equation:
 
 $
@@ -53,7 +55,7 @@ $
   W_q^("G/G/c") approx (c_a^2 + c_s^2)/2 dot rho^(sqrt(2(c+1)) - 1) / (c (1 - rho)) dot 1/mu
 $
 
-See #link(<operations-research-queuing-theory-sakasegawa>)[Sakasegawa].
+See #link(<operations_research_queuing_theory_sakasegawa>)[Sakasegawa].
 
 == Variability-Utilization-Time intuition
 
@@ -72,8 +74,8 @@ This is the *single most important formula* in factory physics. It says:
 
 == See also
 
-- *#link(<operations-research-queuing-theory-sakasegawa>)[Sakasegawa]* — multi-server extension
-- *#link(<operations-research-queuing-theory-linking-equation>)[Linking Equation]* — variance propagation
-- *#link(<operations-research-queuing-theory-m-m-1>)[M/M/1]* — exact case
-- *#link(<operations-research-queuing-theory-littles-law>)[Little's Law]* — $L = lambda W$
-- *#link(<supply-chain-manufacturing-factory-physics>)[Factory Physics]*
+- *#link(<operations_research_queuing_theory_sakasegawa>)[Sakasegawa]* — multi-server extension
+- *#link(<operations_research_queuing_theory_linking_equation>)[Linking Equation]* — variance propagation
+- *#link(<operations_research_queuing_theory_mm1>)[M/M/1]* — exact case
+- *#link(<operations_research_queuing_theory_littles_law>)[Little's Law]* — $L = lambda W$
+- *#link(<supply_chain_manufacturing_factory_physics>)[Factory Physics]*

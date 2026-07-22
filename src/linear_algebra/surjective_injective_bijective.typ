@@ -1,8 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Surjective, Injective, Bijective <linear_algebra_surjective_injective_bijective>
 
-Three properties a function $T: V -> W$ might (or might not) have, with clean characterizations for #link(<linear-algebra-linear-transformation>)[linear transformations].
+Three properties a function $T: V -> W$ might (or might not) have, with clean characterizations for #link(<linear_algebra_linear_transformation>)[linear transformations].
 
 == Injective (one-to-one)
 
@@ -17,7 +18,7 @@ $
   ker(T) = {bold(0)}
 $
 
-(See #link(<linear-algebra-kernel>)[Kernel] — only the zero vector maps to zero.)
+(See #link(<linear_algebra_kernel>)[Kernel] — only the zero vector maps to zero.)
 
 == Surjective (onto)
 
@@ -32,13 +33,13 @@ $
   im(T) = RR^m, #h(1em) "i.e." #h(0.5em) "rank"(A) = m
 $
 
-(See #link(<linear-algebra-image>)[Image] / #link(<linear-algebra-rank>)[Rank].)
+(See #link(<linear_algebra_image>)[Image] / #link(<linear_algebra_rank>)[Rank].)
 
 == Bijective (one-to-one *and* onto)
 
 Both injective and surjective. Each output has *exactly one* preimage. Bijective linear transformations are *invertible*.
 
-For a linear $T: RR^n -> RR^m$, bijective requires $m = n$ (square matrix) *and* $A$ is #link(<linear-algebra-matrix-inverse>)[invertible].
+For a linear $T: RR^n -> RR^m$, bijective requires $m = n$ (square matrix) *and* $A$ is #link(<linear_algebra_matrix_inverse>)[invertible].
 
 == Summary table for linear $T: RR^n -> RR^m$ given by matrix $A$
 
@@ -64,10 +65,10 @@ For a linear $T: RR^n -> RR^m$, bijective requires $m = n$ (square matrix) *and*
 
 A linear $T$ has an inverse iff it's bijective iff $A$ is square and invertible.
 
-When invertible, $T^(-1)$ corresponds to $A^(-1)$ (see #link(<linear-algebra-matrix-inverse>)[Matrix Inverse]).
+When invertible, $T^(-1)$ corresponds to $A^(-1)$ (see #link(<linear_algebra_matrix_inverse>)[Matrix Inverse]).
 
 == See also
 
-- *#link(<linear-algebra-kernel>)[Kernel]* / *#link(<linear-algebra-image>)[Image]*
-- *#link(<linear-algebra-rank>)[Rank]* / *#link(<linear-algebra-rank-nullity-theorem>)[Rank–Nullity Theorem]*
-- *#link(<linear-algebra-matrix-inverse>)[Matrix Inverse]*
+- *#link(<linear_algebra_kernel>)[Kernel]* / *#link(<linear_algebra_image>)[Image]*
+- *#link(<linear_algebra_rank>)[Rank]* / *#link(<linear_algebra_rank_nullity_theorem>)[Rank–Nullity Theorem]*
+- *#link(<linear_algebra_matrix_inverse>)[Matrix Inverse]*

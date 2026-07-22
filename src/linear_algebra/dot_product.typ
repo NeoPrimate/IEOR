@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
+= Dot Product <linear_algebra_dot_product>
 
 The *dot product* (or *scalar product*) of two vectors of the same dimension returns a scalar — the sum of componentwise products.
 
@@ -23,7 +23,7 @@ $
   accent(a, arrow) dot accent(b, arrow) = ||accent(a, arrow)|| #h(0.2em) ||accent(b, arrow)|| #h(0.2em) cos theta
 $
 
-where $theta$ is the angle between $accent(a, arrow)$ and $accent(b, arrow)$ — and $||dot||$ is the #link(<linear-algebra-norm>)[norm].
+where $theta$ is the angle between $accent(a, arrow)$ and $accent(b, arrow)$ — and $||dot||$ is the #link(<linear_algebra_norm>)[norm].
 
 This links the algebraic dot product to geometric intuition: the dot product measures how much the vectors point in the same direction.
 
@@ -35,7 +35,7 @@ $
   ||accent(a, arrow)||^2 = accent(a, arrow) dot accent(a, arrow)
 $
 
-See #link(<linear-algebra-norm>)[Norm] for the full story.
+See #link(<linear_algebra_norm>)[Norm] for the full story.
 
 == Properties
 
@@ -64,14 +64,14 @@ $
   accent(a, arrow) dot accent(b, arrow) = accent(a, arrow)^T accent(b, arrow)
 $
 
-(See #link(<linear-algebra-transpose>)[Transpose].)
+(See #link(<linear_algebra_transpose>)[Transpose].)
 
 == See also
 
-- *#link(<linear-algebra-norm>)[Norm]* — $||accent(v, arrow)|| = sqrt(accent(v, arrow) dot accent(v, arrow))$
-- *#link(<linear-algebra-angles-between-vectors>)[Angles Between Vectors]* — $cos theta = (accent(a, arrow) dot accent(b, arrow)) / (||accent(a, arrow)|| ||accent(b, arrow)||)$
-- *#link(<linear-algebra-cauchy-schwarz-inequality>)[Cauchy–Schwarz Inequality]*
-- *#link(<linear-algebra-triangle-inequality>)[Triangle Inequality]*
-- *#link(<linear-algebra-orthogonality>)[Orthogonality]* — $accent(a, arrow) perp accent(b, arrow) arrow.l.r.double accent(a, arrow) dot accent(b, arrow) = 0$
-- *#link(<linear-algebra-cross-product>)[Cross Product]* + *#link(<linear-algebra-dot-vs-cross-product>)[Dot vs Cross]*
-- *#link(<linear-algebra-inner-product>)[Inner Product]* — generalization
+- *#link(<linear_algebra_norm>)[Norm]* — $||accent(v, arrow)|| = sqrt(accent(v, arrow) dot accent(v, arrow))$
+- *#link(<linear_algebra_angles_between_vectors>)[Angles Between Vectors]* — $cos theta = (accent(a, arrow) dot accent(b, arrow)) / (||accent(a, arrow)|| ||accent(b, arrow)||)$
+- *#link(<linear_algebra_cauchy_schwarz_inequality>)[Cauchy–Schwarz Inequality]*
+- *#link(<linear_algebra_triangle_inequality>)[Triangle Inequality]*
+- *#link(<linear_algebra_orthogonality>)[Orthogonality]* — $accent(a, arrow) perp accent(b, arrow) arrow.l.r.double accent(a, arrow) dot accent(b, arrow) = 0$
+- *#link(<linear_algebra_cross_product>)[Cross Product]* + *#link(<linear_algebra_dot_vs_cross_product>)[Dot vs Cross]*
+- *#link(<linear_algebra_inner_product>)[Inner Product]* — generalization

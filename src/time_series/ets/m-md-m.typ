@@ -4,6 +4,8 @@
 #import "./summary.typ": cL, cS, cT
 #import "../_data.typ" as data
 
+= M-Md-M <time_series_ets_m-md-m>
+
 Fully multiplicative with damped trend
 
 $ "ETS"(M, "Md", M) $

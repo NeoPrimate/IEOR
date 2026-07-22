@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Risk Pooling <supply_chain_inventory_risk_pooling_risk_pooling>
+
 The fundamental supply-chain insight that *combining demand streams reduces variability* — so total safety stock to cover combined demand is less than the sum of safety stocks for each stream alone.
 
 Formally: if you pool $N$ independent demand sources, the standard deviation of total demand scales as $sqrt(N)$, not $N$. Safety stock (proportional to standard deviation) therefore *scales as $sqrt(N)$* — a substantial saving when $N$ is large.
@@ -43,19 +45,19 @@ $
 
 *Saving*: factor of $sqrt(N) / N = 1/sqrt(N)$ in safety stock. With $N = 100$ locations, only $10$%(!) of the total separate safety stock is needed when fully pooled.
 
-See #link(<supply-chain-risk-pooling-square-root-law>)[Square-Root Law] for derivation.
+See #link(<supply_chain_inventory_risk_pooling_square_root_law>)[Square-Root Law] for derivation.
 
 == Five flavors of pooling
 
-1. *#link(<supply-chain-risk-pooling-location-pooling>)[Location pooling]* — centralize inventory across geographies
-2. *#link(<supply-chain-risk-pooling-product-pooling>)[Product pooling]* — share common components / postponement
-3. *#link(<supply-chain-risk-pooling-lead-time-pooling>)[Lead-time pooling]* — substitute inventory for variability when lead times shrink
+1. *#link(<supply_chain_inventory_risk_pooling_location_pooling>)[Location pooling]* — centralize inventory across geographies
+2. *#link(<supply_chain_inventory_risk_pooling_product_pooling>)[Product pooling]* — share common components / postponement
+3. *#link(<supply_chain_inventory_risk_pooling_lead_time_pooling>)[Lead-time pooling]* — substitute inventory for variability when lead times shrink
 4. *Capacity pooling* — pool flexible production capacity across products
 5. *Virtual pooling / transshipments* — keep separate locations but allow inter-location transfers
 
 == With correlated demands
 
-If demands are *positively correlated*, pooling gains shrink. If they're *negatively correlated*, pooling gains expand. See #link(<supply-chain-risk-pooling-correlated-pooling>)[Correlated Pooling] for the general formula.
+If demands are *positively correlated*, pooling gains shrink. If they're *negatively correlated*, pooling gains expand. See #link(<supply_chain_inventory_risk_pooling_correlated_pooling>)[Correlated Pooling] for the general formula.
 
 == Pooling costs
 
@@ -77,9 +79,9 @@ Optimal pooling is a trade-off — see Daganzo's continuous approximation for fa
 
 == See also
 
-- *#link(<supply-chain-risk-pooling-square-root-law>)[Square-Root Law]*
-- *#link(<supply-chain-risk-pooling-correlated-pooling>)[Correlated Pooling]*
-- *#link(<supply-chain-risk-pooling-location-pooling>)[Location Pooling]*
-- *#link(<supply-chain-risk-pooling-product-pooling>)[Product Pooling]*
-- *#link(<supply-chain-risk-pooling-lead-time-pooling>)[Lead-time Pooling]*
-- *#link(<supply-chain-stocks-safety-stock>)[Safety Stock]*
+- *#link(<supply_chain_inventory_risk_pooling_square_root_law>)[Square-Root Law]*
+- *#link(<supply_chain_inventory_risk_pooling_correlated_pooling>)[Correlated Pooling]*
+- *#link(<supply_chain_inventory_risk_pooling_location_pooling>)[Location Pooling]*
+- *#link(<supply_chain_inventory_risk_pooling_product_pooling>)[Product Pooling]*
+- *#link(<supply_chain_inventory_risk_pooling_lead_time_pooling>)[Lead-time Pooling]*
+- *#link(<supply_chain_inventory_stocks_safety_stock>)[Safety Stock]*

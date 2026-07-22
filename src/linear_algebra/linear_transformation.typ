@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
+= Linear Transformation <linear_algebra_linear_transformation>
 
 A function $T: RR^n -> RR^m$ between vector spaces is a *linear transformation* if it preserves vector addition and scalar multiplication.
 
@@ -53,7 +53,7 @@ Linearity forces $T$ to be very rigid. From the two axioms:
 
 == Equivalent definition: matrix–vector product
 
-Every linear transformation can be written as $T(accent(x, arrow)) = A accent(x, arrow)$ for some matrix $A$ — see #link(<linear-algebra-matrix-representation>)[Matrix Representation]. This means *linear transformation $RR^n -> RR^m$ ⇔ $m times n$ matrix*.
+Every linear transformation can be written as $T(accent(x, arrow)) = A accent(x, arrow)$ for some matrix $A$ — see #link(<linear_algebra_matrix_representation>)[Matrix Representation]. This means *linear transformation $RR^n -> RR^m$ ⇔ $m times n$ matrix*.
 
 == Non-examples
 
@@ -63,8 +63,8 @@ Every linear transformation can be written as $T(accent(x, arrow)) = A accent(x,
 
 == See also
 
-- *#link(<linear-algebra-matrix-vector-product>)[Matrix–Vector Product]* — every matrix is a linear transformation
-- *#link(<linear-algebra-matrix-representation>)[Matrix Representation]* — every linear transformation is a matrix
-- *#link(<linear-algebra-image>)[Image]* / *#link(<linear-algebra-kernel>)[Kernel]* — output range / null space
-- *#link(<linear-algebra-composition-of-linear-transformations>)[Composition]* — composing linear transformations
-- *#link(<linear-algebra-rotation-matrix>)[Rotation]*, *#link(<linear-algebra-reflection-matrix>)[Reflection]*, *#link(<linear-algebra-scaling-matrix>)[Scaling]*, *#link(<linear-algebra-shear-matrix>)[Shear]*
+- *#link(<linear_algebra_matrix_vector_product>)[Matrix–Vector Product]* — every matrix is a linear transformation
+- *#link(<linear_algebra_matrix_representation>)[Matrix Representation]* — every linear transformation is a matrix
+- *#link(<linear_algebra_image>)[Image]* / *#link(<linear_algebra_kernel>)[Kernel]* — output range / null space
+- *#link(<linear_algebra_composition_of_linear_transformations>)[Composition]* — composing linear transformations
+- *#link(<linear_algebra_rotation_matrix>)[Rotation]*, *#link(<linear_algebra_reflection_matrix>)[Reflection]*, *#link(<linear_algebra_scaling_matrix>)[Scaling]*, *#link(<linear_algebra_shear_matrix>)[Shear]*

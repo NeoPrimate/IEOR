@@ -4,6 +4,8 @@
 #import "./summary.typ": cAR, cDiff, cMA
 #import "../_data.typ" as data
 
+= ARIMA <time_series_arima_arima>
+
 Autoregressive integrated moving average
 
 $

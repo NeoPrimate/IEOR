@@ -1,9 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Hyperplane <linear_algebra_hyperplane>
 
-
-A *hyperplane* in $RR^n$ is an $(n-1)$-dimensional affine subspace — the natural generalization of a line in $RR^2$ or a #link(<linear-algebra-planes>)[plane] in $RR^3$.
+A *hyperplane* in $RR^n$ is an $(n-1)$-dimensional affine subspace — the natural generalization of a line in $RR^2$ or a #link(<linear_algebra_planes>)[plane] in $RR^3$.
 
 Defined by a single linear equation:
 
@@ -23,7 +23,7 @@ In $RR^n$, the equation $accent(a, arrow) dot accent(x, arrow) = b$ imposes one 
 
 == Through the origin
 
-If $b = 0$, the hyperplane passes through the origin and is a #link(<linear-algebra-subspace>)[linear subspace] (closed under addition and scalar multiplication). Otherwise it's an *affine* subspace — a translated subspace.
+If $b = 0$, the hyperplane passes through the origin and is a #link(<linear_algebra_subspace>)[linear subspace] (closed under addition and scalar multiplication). Otherwise it's an *affine* subspace — a translated subspace.
 
 == Distance from a point to a hyperplane
 
@@ -33,7 +33,7 @@ $
   "dist"(accent(p, arrow), H) = (|accent(a, arrow) dot accent(p, arrow) - b|) / ||accent(a, arrow)||
 $
 
-(See #link(<linear-algebra-norm>)[Norm] for $||accent(a, arrow)||$.)
+(See #link(<linear_algebra_norm>)[Norm] for $||accent(a, arrow)||$.)
 
 == Half-spaces
 
@@ -50,5 +50,5 @@ These are the building blocks of *polyhedra* (intersections of finitely many hal
 
 - *Linear programming*: feasible regions are intersections of half-spaces (polyhedra)
 - *Support vector machines*: the decision boundary is a hyperplane $accent(w, arrow) dot accent(x, arrow) + b = 0$
-- *#link(<linear-algebra-planes>)[Planes]* in $RR^3$ — the $n=3$ case
+- *#link(<linear_algebra_planes>)[Planes]* in $RR^3$ — the $n=3$ case
 - *Linear constraints* in optimization: each $accent(a, arrow)_i^T accent(x, arrow) <= b_i$ defines a half-space

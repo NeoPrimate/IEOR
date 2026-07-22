@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Bonferroni Inequality <probability_theory_bonferroni_inequality>
+
 1. Two Sets
 
 $

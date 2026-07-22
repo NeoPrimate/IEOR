@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Lotka-Volterra <system_dynamics_lotka_volterra>
+
 The classical *predator-prey* model. Two species:
 
 $
@@ -84,6 +86,6 @@ The model is structurally fundamental — appears wherever two stocks interact w
 
 == See also
 
-- *#link(<system-dynamics-feedback-loops>)[Feedback Loops]* — oscillation from coupled feedback
-- *#link(<system-dynamics-phase-plane>)[Phase Plane]* — visualization of trajectories
-- *#link(<system-dynamics-sir-seir>)[SIR/SEIR]* — related compartmental dynamics
+- *#link(<system_dynamics_feedback_loops>)[Feedback Loops]* — oscillation from coupled feedback
+- *#link(<system_dynamics_phase_plane>)[Phase Plane]* — visualization of trajectories
+- *#link(<system_dynamics_sir_seir>)[SIR/SEIR]* — related compartmental dynamics

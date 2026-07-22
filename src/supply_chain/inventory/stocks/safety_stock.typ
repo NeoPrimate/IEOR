@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Safety Stock <supply_chain_inventory_stocks_safety_stock>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 The portion of inventory held *as a buffer against uncertainty* — in demand, in lead time, or both. Distinguished from cycle stock (which exists due to *batching*, not uncertainty).

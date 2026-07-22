@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Causal Loop Diagrams <system_dynamics_causal_loop_diagrams>
+
 A *qualitative* diagram showing causal relationships between variables in a system. Used for understanding feedback structure without building a quantitative model.
 
 == Anatomy
@@ -50,7 +52,7 @@ Behavior depends on which loop dominates. With more births than deaths: exponent
 
 == From CLD to quantitative model
 
-A CLD shows *structure*, not *magnitudes*. To predict behavior quantitatively, convert each link into an equation (a #link(<system-dynamics-stocks-flows>)[stock-flow] system):
+A CLD shows *structure*, not *magnitudes*. To predict behavior quantitatively, convert each link into an equation (a #link(<system_dynamics_stocks_flows>)[stock-flow] system):
 
 - *Variables* become stocks or auxiliaries
 - *Positive links* with cause = $x$, effect = $f(x)$ where $f$ is increasing
@@ -67,6 +69,6 @@ A CLD shows *structure*, not *magnitudes*. To predict behavior quantitatively, c
 
 == See also
 
-- *#link(<system-dynamics-stocks-flows>)[Stocks and Flows]* — quantitative version
-- *#link(<system-dynamics-feedback-loops>)[Feedback Loops]*
-- *#link(<system-dynamics-system-dynamics>)[System Dynamics]* — overview
+- *#link(<system_dynamics_stocks_flows>)[Stocks and Flows]* — quantitative version
+- *#link(<system_dynamics_feedback_loops>)[Feedback Loops]*
+- *#link(<system_dynamics_system_dynamics>)[System Dynamics]* — overview

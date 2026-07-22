@@ -1,9 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Gram–Schmidt <linear_algebra_gram_schmidt>
 
-
-Given a #link(<linear-algebra-linear-independence>)[linearly independent] set $\{accent(v, arrow)_1, accent(v, arrow)_2, dots, accent(v, arrow)_k\}$, the *Gram–Schmidt process* produces an #link(<linear-algebra-orthogonality>)[orthonormal] set $\{accent(q, arrow)_1, accent(q, arrow)_2, dots, accent(q, arrow)_k\}$ that spans the same subspace.
+Given a #link(<linear_algebra_linear_independence>)[linearly independent] set $\{accent(v, arrow)_1, accent(v, arrow)_2, dots, accent(v, arrow)_k\}$, the *Gram–Schmidt process* produces an #link(<linear_algebra_orthogonality>)[orthonormal] set $\{accent(q, arrow)_1, accent(q, arrow)_2, dots, accent(q, arrow)_k\}$ that spans the same subspace.
 
 It "straightens out" the basis: removes the parallel components between successive vectors so they become mutually orthogonal, then normalizes each.
 
@@ -57,19 +57,19 @@ Classical Gram–Schmidt (the version above) is *unstable in floating point* —
 
 Better alternatives:
 - *Modified Gram–Schmidt* — subtract projections one at a time as you go, instead of all at once; much more stable
-- *Householder reflections* — used to compute #link(<linear-algebra-qr-decomposition>)[QR] in practice
+- *Householder reflections* — used to compute #link(<linear_algebra_qr_decomposition>)[QR] in practice
 - *Givens rotations* — for sparse / structured input
 
 For pencil-and-paper or symbolic use, classical Gram–Schmidt is fine. For numerical libraries, Householder is standard.
 
 == Connection to QR
 
-The Gram–Schmidt process is *exactly* the construction behind the #link(<linear-algebra-qr-decomposition>)[QR decomposition]: the orthonormal vectors form $Q$, and the projection coefficients form $R$.
+The Gram–Schmidt process is *exactly* the construction behind the #link(<linear_algebra_qr_decomposition>)[QR decomposition]: the orthonormal vectors form $Q$, and the projection coefficients form $R$.
 
 == See also
 
-- *#link(<linear-algebra-orthogonality>)[Orthogonality]*
-- *#link(<linear-algebra-projection>)[Projection]*
-- *#link(<linear-algebra-qr-decomposition>)[QR Decomposition]*
-- *#link(<linear-algebra-orthogonal-matrix>)[Orthogonal Matrix]*
-- *#link(<linear-algebra-basis>)[Basis]*
+- *#link(<linear_algebra_orthogonality>)[Orthogonality]*
+- *#link(<linear_algebra_projection>)[Projection]*
+- *#link(<linear_algebra_qr_decomposition>)[QR Decomposition]*
+- *#link(<linear_algebra_orthogonal_matrix>)[Orthogonal Matrix]*
+- *#link(<linear_algebra_basis>)[Basis]*

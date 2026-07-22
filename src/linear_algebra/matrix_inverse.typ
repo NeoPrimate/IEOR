@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
+= Matrix Inverse <linear_algebra_matrix_inverse>
 
 #set math.mat(gap: 1em)
 

@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Logarithms <algebra_logarithms>
+
 == Log
 
 #let x = lq.linspace(0.001, 10, num: 1000)

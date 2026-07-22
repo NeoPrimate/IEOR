@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Logistic Regression <statistics_regression_logistic_regression>
+
 Binary classification (1 or 0, true or false, yes or no) based on one or more predictor variables
 
 Sigmoid function:

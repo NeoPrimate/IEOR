@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Base Stock <supply_chain_inventory_policies_base_stock>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 == (S−1, S) Policy — base stock / one-for-one

@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-#title_page("White Paper")
+#title_page("White Paper") <white_paper_white_paper>
 
 (Project Cybersyn/Synco, Project Red Book, OGAS Project)
 

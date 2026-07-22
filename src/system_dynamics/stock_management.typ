@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-The generic structure for inventory / stock control in #link(<system-dynamics-system-dynamics>)[system dynamics]: order based on *expected loss* + *inventory gap* + *supply-line gap*.
+= Stock Management <system_dynamics_stock_management>
+
+The generic structure for inventory / stock control in #link(<system_dynamics_system_dynamics>)[system dynamics]: order based on *expected loss* + *inventory gap* + *supply-line gap*.
 
 == The classical formula
 
@@ -52,7 +54,7 @@ The chain of reasoning that produces bullwhip:
 4. Wholesaler sees retailer's amplified orders → repeats the pattern
 5. Manufacturer sees wholesaler's even more amplified orders → repeats
 
-Each echelon amplifies the variance. The math: see #link(<system-dynamics-bullwhip-sd>)[Bullwhip in SD].
+Each echelon amplifies the variance. The math: see #link(<system_dynamics_bullwhip_sd>)[Bullwhip in SD].
 
 == Real-world example
 
@@ -66,8 +68,8 @@ Settings: $tau_S = tau_(S L) = 4$ periods, $alpha = 0.3$, $S L^* = 100$ (an orde
 
 == See also
 
-- *#link(<system-dynamics-feedback-loops>)[Feedback Loops]*
-- *#link(<system-dynamics-smoothing>)[Smoothing]* — for expected demand
-- *#link(<system-dynamics-bullwhip-sd>)[Bullwhip in SD]*
-- *#link(<system-dynamics-beer-game>)[Beer Game]*
-- *#link(<supply-chain-bullwhip-effect>)[Bullwhip Effect (Supply Chain)]*
+- *#link(<system_dynamics_feedback_loops>)[Feedback Loops]*
+- *#link(<system_dynamics_smoothing>)[Smoothing]* — for expected demand
+- *#link(<system_dynamics_bullwhip_sd>)[Bullwhip in SD]*
+- *#link(<system_dynamics_beer_game>)[Beer Game]*
+- *#link(<supply_chain_inventory_bullwhip_effect>)[Bullwhip Effect (Supply Chain)]*

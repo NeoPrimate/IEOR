@@ -4,6 +4,8 @@
 #import "./summary.typ": cL, cS, cT
 #import "../_data.typ" as data
 
+= A-Ad-M <time_series_ets_a-ad-m>
+
 Damped Holt-Winters, multiplicative seasonality
 
 $ "ETS"(A, "Ad", M) $

@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Lead Time <supply_chain_inventory_stocks_lead_time>
+
 Order today, receive after the *lead time* $L$. What drives safety stock is the *distribution of demand over those $L$ periods*. Central question: why does its standard deviation scale with $sqrt(L)$, not $L$?
 
 == Setup

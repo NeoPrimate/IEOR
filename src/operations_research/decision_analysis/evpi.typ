@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= EVPI <operations_research_decision_analysis_evpi>
+
 *Expected Value of Perfect Information* (EVPI) — how much more you'd earn by *knowing the state of nature in advance*. The upper bound on what information is worth.
 
 == Definition
@@ -21,7 +23,7 @@ $
 
 == Example
 
-From #link(<operations-research-decision-analysis-emv>)[EMV example]:
+From #link(<operations_research_decision_analysis_emv>)[EMV example]:
 
 #table(
   columns: 4,
@@ -44,7 +46,7 @@ So perfectly knowing the market state in advance is worth $12$M to this decision
 
 == Why it's an upper bound
 
-Real information sources (market research, pilot tests, expert forecasts) are *imperfect* — they update probabilities but don't reveal the state directly. The value of imperfect information (#link(<operations-research-decision-analysis-evsi>)[EVSI]) is *always* less than EVPI:
+Real information sources (market research, pilot tests, expert forecasts) are *imperfect* — they update probabilities but don't reveal the state directly. The value of imperfect information (#link(<operations_research_decision_analysis_evsi>)[EVSI]) is *always* less than EVPI:
 
 $
   "EVSI" <= "EVPI"
@@ -64,6 +66,6 @@ If there are multiple sources of uncertainty (demand *and* exchange rate), you c
 
 == See also
 
-- *#link(<operations-research-decision-analysis-evsi>)[EVSI]* — value of imperfect information
-- *#link(<operations-research-decision-analysis-emv>)[EMV]*
-- *#link(<operations-research-decision-analysis-decision-trees>)[Decision Trees]*
+- *#link(<operations_research_decision_analysis_evsi>)[EVSI]* — value of imperfect information
+- *#link(<operations_research_decision_analysis_emv>)[EMV]*
+- *#link(<operations_research_decision_analysis_decision_trees>)[Decision Trees]*

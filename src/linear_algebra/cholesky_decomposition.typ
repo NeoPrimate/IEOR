@@ -1,6 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Cholesky Decomposition <linear_algebra_cholesky_decomposition>
 
 Every *symmetric positive-definite* matrix $A$ has a unique factorization:
 
@@ -8,14 +9,14 @@ $
   A = L L^T
 $
 
-where $L$ is *lower #link(<linear-algebra-triangular-matrix>)[triangular]* with positive diagonal entries.
+where $L$ is *lower #link(<linear_algebra_triangular_matrix>)[triangular]* with positive diagonal entries.
 
 The Cholesky decomposition is the *symmetric square root* of a positive-definite matrix — like writing a positive number $a$ as $sqrt(a) dot sqrt(a)$.
 
 == Existence and uniqueness
 
 Cholesky exists iff $A$ is:
-1. *#link(<linear-algebra-symmetric-matrix>)[Symmetric]*: $A^T = A$
+1. *#link(<linear_algebra_symmetric_matrix>)[Symmetric]*: $A^T = A$
 2. *Positive definite*: $accent(x, arrow)^T A accent(x, arrow) > 0$ for all $accent(x, arrow) eq.not bold(0)$
 
 If either fails, Cholesky fails. For positive *semi-definite* $A$ a related decomposition exists but is non-unique.
@@ -56,21 +57,21 @@ Cost: about $n^3 / 3$ — *half* of LU decomposition (we exploit symmetry).
 
 3. *Sampling from multivariate Gaussian*: if $Sigma = L L^T$ is the covariance matrix and $accent(z, arrow) ~ cal(N)(bold(0), I)$ (standard normal), then $accent(x, arrow) = L accent(z, arrow)$ is $cal(N)(bold(0), Sigma)$.
 
-4. *Linear least squares* (alternative to #link(<linear-algebra-qr-decomposition>)[QR]): the normal equations $A^T A accent(x, arrow) = A^T accent(b, arrow)$ have a symmetric positive-definite system matrix $A^T A$; Cholesky solves it.
+4. *Linear least squares* (alternative to #link(<linear_algebra_qr_decomposition>)[QR]): the normal equations $A^T A accent(x, arrow) = A^T accent(b, arrow)$ have a symmetric positive-definite system matrix $A^T A$; Cholesky solves it.
 
 5. *Determinant*: $det(A) = product L_(i i)^2$ — much cheaper than expanding directly.
 
 == Relation to LU and SVD
 
-- #link(<linear-algebra-lu-decomposition>)[LU]: $A = L U$ — general matrices, $L$ lower-triangular, $U$ upper-triangular
+- #link(<linear_algebra_lu_decomposition>)[LU]: $A = L U$ — general matrices, $L$ lower-triangular, $U$ upper-triangular
 - Cholesky: $A = L L^T$ — symmetric positive-definite case, $U = L^T$
-- #link(<linear-algebra-svd>)[SVD]: $A = U Sigma V^T$ — completely general, gives singular values, more expensive
+- #link(<linear_algebra_svd>)[SVD]: $A = U Sigma V^T$ — completely general, gives singular values, more expensive
 
 For symmetric positive-definite $A$, Cholesky is the fastest and most stable choice.
 
 == See also
 
-- *#link(<linear-algebra-symmetric-matrix>)[Symmetric Matrix]*
-- *#link(<linear-algebra-quadratic-form>)[Quadratic Form]* — positive-definite condition
-- *#link(<linear-algebra-triangular-matrix>)[Triangular Matrix]*
-- *#link(<linear-algebra-lu-decomposition>)[LU]* / *#link(<linear-algebra-qr-decomposition>)[QR]* / *#link(<linear-algebra-svd>)[SVD]*
+- *#link(<linear_algebra_symmetric_matrix>)[Symmetric Matrix]*
+- *#link(<linear_algebra_quadratic_form>)[Quadratic Form]* — positive-definite condition
+- *#link(<linear_algebra_triangular_matrix>)[Triangular Matrix]*
+- *#link(<linear_algebra_lu_decomposition>)[LU]* / *#link(<linear_algebra_qr_decomposition>)[QR]* / *#link(<linear_algebra_svd>)[SVD]*

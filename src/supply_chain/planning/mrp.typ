@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-*Material Requirements Planning* (MRP): explodes the #link(<supply-chain-planning-mps>)[MPS] into time-phased requirements for *every part / component / material* needed to make the planned products.
+= MRP <supply_chain_planning_mrp>
+
+*Material Requirements Planning* (MRP): explodes the #link(<supply_chain_planning_mps>)[MPS] into time-phased requirements for *every part / component / material* needed to make the planned products.
 
 Foundation of every ERP system (SAP, Oracle, NetSuite, etc.).
 
@@ -51,8 +53,8 @@ Plan orders in batches, not unit-by-unit:
 - *Lot-for-lot (LFL)*: order exactly the net requirement each period — minimal inventory, max setups
 - *Fixed quantity*: always order $Q$ units (e.g., EOQ)
 - *Periods of supply (POS)*: cover $k$ periods of demand
-- *#link(<supply-chain-planning-silver-meal>)[Silver-Meal]* / *#link(<supply-chain-planning-least-unit-cost>)[Least Unit Cost]* / *#link(<supply-chain-planning-part-period-balancing>)[Part-Period Balancing]* — heuristics
-- *#link(<supply-chain-eoq-wagner-whitin>)[Wagner-Whitin]* — DP-optimal lot-sizing
+- *#link(<supply_chain_planning_silver_meal>)[Silver-Meal]* / *#link(<supply_chain_planning_least_unit_cost>)[Least Unit Cost]* / *#link(<supply_chain_planning_part_period_balancing>)[Part-Period Balancing]* — heuristics
+- *#link(<supply_chain_inventory_eoq_wagner_whitin>)[Wagner-Whitin]* — DP-optimal lot-sizing
 
 == Time-phased record example
 
@@ -88,7 +90,7 @@ Part: Wheel. Lead time: 2 weeks. On-hand: 50. Lot size: 100.
 
 == See also
 
-- *#link(<supply-chain-planning-mps>)[MPS]* — input
-- *#link(<supply-chain-planning-drp>)[DRP]* — same logic, distribution side
-- *#link(<supply-chain-planning-rccp>)[RCCP]* — capacity check
-- *#link(<supply-chain-eoq-wagner-whitin>)[Wagner-Whitin]* — lot-sizing
+- *#link(<supply_chain_planning_mps>)[MPS]* — input
+- *#link(<supply_chain_planning_drp>)[DRP]* — same logic, distribution side
+- *#link(<supply_chain_planning_rccp>)[RCCP]* — capacity check
+- *#link(<supply_chain_inventory_eoq_wagner_whitin>)[Wagner-Whitin]* — lot-sizing

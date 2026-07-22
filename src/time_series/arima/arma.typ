@@ -4,6 +4,8 @@
 #import "./summary.typ": cAR, cMA
 #import "../_data.typ" as data
 
+= ARMA <time_series_arima_arma>
+
 Autoregressive moving average
 
 $ "ARMA"(p, q) $

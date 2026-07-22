@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-The simplest #link(<operations-research-optimization-stochastic-programming>)[stochastic program]: decide $x$ now, observe random $xi$, then adapt with second-stage decision $y$.
+= Two-stage Recourse <operations_research_optimization_stochastic_two_stage_recourse>
+
+The simplest #link(<operations_research_optimization_stochastic_stochastic_programming>)[stochastic program]: decide $x$ now, observe random $xi$, then adapt with second-stage decision $y$.
 
 == Formulation
 
@@ -58,11 +60,11 @@ Optimal $x^*$ balances the cost of capacity now against expected shortage/surplu
 
 Optimizing the expected (deterministic) problem misses the *cost asymmetry* between scenarios. Shortage at $0.20$ per unit might be much more expensive than surplus at $0.10$ per unit savings. SP captures this directly; deterministic doesn't.
 
-This gap is the *Value of Stochastic Solution* (VSS) — see #link(<operations-research-optimization-evpi-vs-vss>)[EVPI vs VSS].
+This gap is the *Value of Stochastic Solution* (VSS) — see #link(<operations_research_optimization_stochastic_evpi_vs_vss>)[EVPI vs VSS].
 
 == See also
 
-- *#link(<operations-research-optimization-stochastic-programming>)[Stochastic Programming]*
-- *#link(<operations-research-optimization-scenario-trees>)[Scenario Trees]*
-- *#link(<operations-research-optimization-evpi-vs-vss>)[EVPI vs VSS]*
-- *#link(<operations-research-decision-analysis-decision-trees>)[Decision Trees]* — discrete-decision analog
+- *#link(<operations_research_optimization_stochastic_stochastic_programming>)[Stochastic Programming]*
+- *#link(<operations_research_optimization_stochastic_scenario_trees>)[Scenario Trees]*
+- *#link(<operations_research_optimization_stochastic_evpi_vs_vss>)[EVPI vs VSS]*
+- *#link(<operations_research_decision_analysis_decision_trees>)[Decision Trees]* — discrete-decision analog

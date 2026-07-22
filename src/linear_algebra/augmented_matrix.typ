@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
+= Augmented Matrix <linear_algebra_augmented_matrix>
 
 When solving the linear system $A accent(x, arrow) = accent(b, arrow)$, the *augmented matrix* $[A | accent(b, arrow)]$ stacks the coefficient matrix and the right-hand side into one $m times (n+1)$ matrix:
 
@@ -32,7 +32,7 @@ The vertical bar separates the coefficients from the constants — purely visual
 
 == Why use it
 
-Row-reducing $[A | accent(b, arrow)]$ to #link(<linear-algebra-row-echelon-form>)[REF] (via #link(<linear-algebra-gaussian-elimination>)[Gaussian elimination]) or #link(<linear-algebra-rref>)[RREF] (via Gauss–Jordan) reads off the solution directly — no need to substitute back manually if you go all the way to RREF.
+Row-reducing $[A | accent(b, arrow)]$ to #link(<linear_algebra_row_echelon_form>)[REF] (via #link(<linear_algebra_gaussian_elimination>)[Gaussian elimination]) or #link(<linear_algebra_rref>)[RREF] (via Gauss–Jordan) reads off the solution directly — no need to substitute back manually if you go all the way to RREF.
 
 == Reading solutions
 
@@ -45,7 +45,7 @@ This is the *Rouché–Capelli theorem* expressed in terms of augmented-matrix r
 
 == Connections
 
-- #link(<linear-algebra-gaussian-elimination>)[Gaussian Elimination] — the algorithm that operates on $[A | b]$
-- #link(<linear-algebra-rref>)[RREF] — the canonical row-reduced form
-- #link(<linear-algebra-homogeneous-system>)[Homogeneous System] — when $accent(b, arrow) = bold(0)$
-- #link(<linear-algebra-linear-system-solutions>)[Linear System Solutions]
+- #link(<linear_algebra_gaussian_elimination>)[Gaussian Elimination] — the algorithm that operates on $[A | b]$
+- #link(<linear_algebra_rref>)[RREF] — the canonical row-reduced form
+- #link(<linear_algebra_homogeneous_system>)[Homogeneous System] — when $accent(b, arrow) = bold(0)$
+- #link(<linear_algebra_linear_system_solutions>)[Linear System Solutions]

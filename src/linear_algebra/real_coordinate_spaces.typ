@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Real Coordinate Spaces <linear_algebra_real_coordinate_spaces>
+
 N-dimensional Real Coordinate Space
 
 $

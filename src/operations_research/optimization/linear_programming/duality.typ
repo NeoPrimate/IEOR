@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Duality <operations_research_optimization_linear_programming_duality>
+
 == Linear Programming Duality
 
 Every linear program (primal) has a *unique* and *symmetric* dual problem. For any primal LP, there is a unique dual, whose dual is the primal.

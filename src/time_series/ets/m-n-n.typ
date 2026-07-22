@@ -4,6 +4,8 @@
 #import "./summary.typ": cL, cS, cT
 #import "../_data.typ" as data
 
+= M-N-N <time_series_ets_m-n-n>
+
 SES, multiplicative errors
 
 $ "ETS"(M, N, N) $

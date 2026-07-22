@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Sets <probability_theory_sets>
+
 A *set* is a collection of distinct elements
 
 - ${a, b, c, d}$: a finite set

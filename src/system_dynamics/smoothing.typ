@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-Operators that compute smoothed (averaged) versions of input signals. Implemented as #link(<system-dynamics-delays>)[exponential delays] but used to model *perception* rather than physical transit.
+= Smoothing <system_dynamics_smoothing>
+
+Operators that compute smoothed (averaged) versions of input signals. Implemented as #link(<system_dynamics_delays>)[exponential delays] but used to model *perception* rather than physical transit.
 
 == First-order smoothing (exponential smoothing)
 
@@ -65,6 +67,6 @@ Phase lag = part of why supply-chain bullwhip happens: each echelon's reaction i
 
 == See also
 
-- *#link(<system-dynamics-delays>)[Delays]* — same mechanism, different framing
-- *#link(<system-dynamics-stock-management>)[Stock Management]* — uses smoothing for expected demand
-- *#link(<time-series-exponential-smoothing-ets-summary>)[Exponential Smoothing (ETS)]* — discrete-time analog
+- *#link(<system_dynamics_delays>)[Delays]* — same mechanism, different framing
+- *#link(<system_dynamics_stock_management>)[Stock Management]* — uses smoothing for expected demand
+- *#link(<time_series_ets_summary>)[Exponential Smoothing (ETS)]* — discrete-time analog

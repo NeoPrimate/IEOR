@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= FSN <supply_chain_inventory_classification_fsn>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 == FSN Analysis (Fast / Slow / Non-moving)

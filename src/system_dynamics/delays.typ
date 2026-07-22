@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-Time lags between cause and effect. Critical for explaining oscillation and instability in #link(<system-dynamics-feedback-loops>)[feedback systems].
+= Delays <system_dynamics_delays>
+
+Time lags between cause and effect. Critical for explaining oscillation and instability in #link(<system_dynamics_feedback_loops>)[feedback systems].
 
 == Three kinds
 
@@ -75,7 +77,7 @@ When $tau >>$ delay, smooth approach. When $tau approx$ delay, oscillation. When
 
 == See also
 
-- *#link(<system-dynamics-feedback-loops>)[Feedback Loops]*
-- *#link(<system-dynamics-smoothing>)[Smoothing Operators]*
-- *#link(<system-dynamics-second-order>)[Second-Order Systems]* — formal oscillation analysis
-- *#link(<system-dynamics-beer-game>)[Beer Game]*
+- *#link(<system_dynamics_feedback_loops>)[Feedback Loops]*
+- *#link(<system_dynamics_smoothing>)[Smoothing Operators]*
+- *#link(<system_dynamics_second_order>)[Second-Order Systems]* — formal oscillation analysis
+- *#link(<system_dynamics_beer_game>)[Beer Game]*

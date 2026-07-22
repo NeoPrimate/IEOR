@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Pipeline Stock <supply_chain_inventory_stocks_pipeline_stock>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 Inventory that is *in transit* — already ordered and paid for, but not yet received. Sometimes called "in-transit inventory" or "work-in-progress" (WIP) when between production stages.

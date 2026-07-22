@@ -1,10 +1,11 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= RREF <linear_algebra_rref>
 
 A matrix is in *Reduced Row Echelon Form* (RREF) if it satisfies all of the following:
 
-1. *Echelon form* — see #link(<linear-algebra-row-echelon-form>)[REF]:
+1. *Echelon form* — see #link(<linear_algebra_row_echelon_form>)[REF]:
    - Any all-zero rows are at the bottom
    - Leading entries (*pivots*) move strictly right as you go down
 2. *Each pivot is $1$* (the leading entry of every non-zero row)
@@ -26,23 +27,23 @@ A matrix is in *Reduced Row Echelon Form* (RREF) if it satisfies all of the foll
 
 | Form | Pivots | Above pivots |
 |---|---|---|
-| #link(<linear-algebra-row-echelon-form>)[REF] | non-zero | unrestricted |
+| #link(<linear_algebra_row_echelon_form>)[REF] | non-zero | unrestricted |
 | RREF | exactly $1$ | all $0$ |
 
-REF comes from #link(<linear-algebra-gaussian-elimination>)[Gaussian elimination]; RREF is what #link(<linear-algebra-gauss-jordan-elimination>)[Gauss–Jordan elimination] produces.
+REF comes from #link(<linear_algebra_gaussian_elimination>)[Gaussian elimination]; RREF is what #link(<linear_algebra_gauss_jordan_elimination>)[Gauss–Jordan elimination] produces.
 
 == Uniqueness
 
 Given a matrix $A$, its REF is *not* unique (depends on row operations chosen), but its *RREF is unique*. So RREF is a canonical form — useful for:
 
-- Reading off the #link(<linear-algebra-rank>)[rank]: number of non-zero rows
+- Reading off the #link(<linear_algebra_rank>)[rank]: number of non-zero rows
 - Reading off the solution to $A x = b$ directly from $[A | b]$ in RREF
-- Identifying #link(<linear-algebra-linear-independence>)[linearly independent] columns: the *pivot columns*
-- Computing the #link(<linear-algebra-null-space>)[null space] basis from free variables
+- Identifying #link(<linear_algebra_linear_independence>)[linearly independent] columns: the *pivot columns*
+- Computing the #link(<linear_algebra_null_space>)[null space] basis from free variables
 
 == Reading the solution
 
-After reducing #link(<linear-algebra-augmented-matrix>)[augmented matrix] $[A | accent(b, arrow)]$ to RREF:
+After reducing #link(<linear_algebra_augmented_matrix>)[augmented matrix] $[A | accent(b, arrow)]$ to RREF:
 
 #example[
   $

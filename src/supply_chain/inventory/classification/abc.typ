@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= ABC <supply_chain_inventory_classification_abc>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 Classify items by *annual consumption value* (annual demand × unit cost). The Pareto principle says a small fraction of items dominates total value — so spend management effort proportionally.

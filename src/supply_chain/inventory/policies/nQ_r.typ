@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= (nQ, r) <supply_chain_inventory_policies_nQ_r>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 Continuous review, *fixed pack size*. Like (Q, r), but the supplier requires orders in multiples of a fixed batch $Q$ (cases, dozens, pallet quantities).

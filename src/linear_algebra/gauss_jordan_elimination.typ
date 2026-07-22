@@ -1,8 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Gauss–Jordan Elimination <linear_algebra_gauss_jordan_elimination>
 
-An extension of #link(<linear-algebra-gaussian-elimination>)[Gaussian elimination] that takes the matrix all the way to *Reduced Row Echelon Form* (#link(<linear-algebra-rref>)[RREF]) — not just to upper-triangular #link(<linear-algebra-row-echelon-form>)[REF].
+An extension of #link(<linear_algebra_gaussian_elimination>)[Gaussian elimination] that takes the matrix all the way to *Reduced Row Echelon Form* (#link(<linear_algebra_rref>)[RREF]) — not just to upper-triangular #link(<linear_algebra_row_echelon_form>)[REF].
 
 == Two phases
 
@@ -13,12 +14,12 @@ Result: each pivot is $1$, with all-zero columns above and below it — the cano
 
 == Why bother going past REF?
 
-After full Gauss–Jordan, the solution to $A accent(x, arrow) = accent(b, arrow)$ can be *read directly* off the right-hand side of the #link(<linear-algebra-augmented-matrix>)[augmented matrix] $[A | accent(b, arrow)]$ — no back substitution needed.
+After full Gauss–Jordan, the solution to $A accent(x, arrow) = accent(b, arrow)$ can be *read directly* off the right-hand side of the #link(<linear_algebra_augmented_matrix>)[augmented matrix] $[A | accent(b, arrow)]$ — no back substitution needed.
 
 Also useful for:
 - Computing the inverse: row-reduce $[A | I]$ to $[I | A^(-1)]$
-- Finding a basis for the #link(<linear-algebra-null-space>)[null space]
-- Reading off #link(<linear-algebra-rank>)[rank] (number of pivots) and #link(<linear-algebra-linear-independence>)[linearly independent] columns (the pivot columns)
+- Finding a basis for the #link(<linear_algebra_null_space>)[null space]
+- Reading off #link(<linear_algebra_rank>)[rank] (number of pivots) and #link(<linear_algebra_linear_independence>)[linearly independent] columns (the pivot columns)
 
 #example[
   Apply Gauss–Jordan to:
@@ -91,6 +92,6 @@ Gauss–Jordan is $O(n^3)$ — same asymptotic complexity as Gaussian eliminatio
 
 == See also
 
-- *#link(<linear-algebra-gaussian-elimination>)[Gaussian Elimination]* — the forward phase only
-- *#link(<linear-algebra-row-echelon-form>)[REF]* / *#link(<linear-algebra-rref>)[RREF]*
-- *#link(<linear-algebra-matrix-inverse>)[Matrix Inverse]*
+- *#link(<linear_algebra_gaussian_elimination>)[Gaussian Elimination]* — the forward phase only
+- *#link(<linear_algebra_row_echelon_form>)[REF]* / *#link(<linear_algebra_rref>)[RREF]*
+- *#link(<linear_algebra_matrix_inverse>)[Matrix Inverse]*

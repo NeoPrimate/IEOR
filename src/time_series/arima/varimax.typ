@@ -4,6 +4,8 @@
 #import "./summary.typ": cAR, cDiff, cMA
 #import "../_data.typ" as data
 
+= VARIMAX <time_series_arima_varimax>
+
 Vector ARIMA with exogenous regressors
 
 $ "VARIMAX"(p,d,q) $

@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= GMROI <supply_chain_inventory_metrics_gmroi>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 == GMROI (Gross Margin Return On Inventory Investment)

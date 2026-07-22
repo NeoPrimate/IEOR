@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= TSP <operations_research_optimization_routing_tsp>
+
 The *Traveling Salesman Problem*: visit $n$ cities exactly once and return to start, minimizing total distance.
 
 Famous for being *easy to state, hard to solve*: NP-hard, no known polynomial-time exact algorithm. But also one of the most-studied problems in combinatorial optimization.
@@ -51,7 +53,7 @@ Forces a single tour without exponentially many cuts. LP relaxation is *weaker* 
 
 == Lower bounds (for branch-and-bound)
 
-- *MST lower bound*: total tour length $>= $ MST weight (twice the MST = upper bound, see #link(<operations-research-optimization-christofides>)[Christofides])
+- *MST lower bound*: total tour length $>= $ MST weight (twice the MST = upper bound, see #link(<operations_research_optimization_routing_christofides>)[Christofides])
 - *1-tree bound* (Held-Karp): drop one node, MST on the rest, plus the two cheapest edges from the dropped node
 - *LP relaxation* of DFJ
 
@@ -60,9 +62,9 @@ Forces a single tour without exponentially many cuts. LP relaxation is *weaker* 
 - *Nearest neighbor*: start anywhere, go to the closest unvisited city. Bad — often 25% above optimal
 - *Greedy edge*: keep adding cheapest edge that doesn't create a cycle (until tour complete). Bad — similar quality
 - *Insertion heuristics*: build tour by inserting one city at a time (cheapest, nearest, farthest)
-- *2-opt, 3-opt*: local search swapping pairs / triples of edges — see #link(<operations-research-optimization-tsp-2opt>)[TSP 2-opt]
+- *2-opt, 3-opt*: local search swapping pairs / triples of edges — see #link(<operations_research_optimization_routing_tsp_2opt>)[TSP 2-opt]
 - *Lin-Kernighan*: variable-depth swap; the gold standard for *heuristic* TSP
-- *#link(<operations-research-optimization-christofides>)[Christofides]*: 1.5-approximation for *metric* TSP (triangle inequality)
+- *#link(<operations_research_optimization_routing_christofides>)[Christofides]*: 1.5-approximation for *metric* TSP (triangle inequality)
 
 == Variants
 
@@ -70,12 +72,12 @@ Forces a single tour without exponentially many cuts. LP relaxation is *weaker* 
 - *Asymmetric TSP* (ATSP): different costs each direction
 - *Euclidean TSP*: cities are points in the plane; admits PTAS (Arora 1998)
 - *Metric TSP*: triangle inequality; 1.5-approx by Christofides
-- *Vehicle Routing Problem (VRP)*: multiple vehicles, capacities — see #link(<operations-research-optimization-vrp>)[VRP]
+- *Vehicle Routing Problem (VRP)*: multiple vehicles, capacities — see #link(<operations_research_optimization_routing_vrp>)[VRP]
 
 == See also
 
-- *#link(<operations-research-optimization-tsp-2opt>)[TSP 2-opt]* — local search heuristic
-- *#link(<operations-research-optimization-christofides>)[Christofides]* — 1.5-approximation
-- *#link(<operations-research-optimization-vrp>)[VRP]* — multi-vehicle generalization
-- *#link(<operations-research-optimization-clarke-wright>)[Clarke-Wright Savings]* — heuristic
-- *#link(<operations-research-optimization-min-spanning-tree>)[MST]* — used in lower bounds
+- *#link(<operations_research_optimization_routing_tsp_2opt>)[TSP 2-opt]* — local search heuristic
+- *#link(<operations_research_optimization_routing_christofides>)[Christofides]* — 1.5-approximation
+- *#link(<operations_research_optimization_routing_vrp>)[VRP]* — multi-vehicle generalization
+- *#link(<operations_research_optimization_routing_clarke_wright>)[Clarke-Wright Savings]* — heuristic
+- *#link(<operations_research_optimization_networks_min_spanning_tree>)[MST]* — used in lower bounds

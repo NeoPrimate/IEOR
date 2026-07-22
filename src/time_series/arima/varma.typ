@@ -4,6 +4,8 @@
 #import "./summary.typ": cAR, cMA
 #import "../_data.typ" as data
 
+= VARMA <time_series_arima_varma>
+
 Vector autoregressive moving average
 
 $"VARMA"(p,q)$

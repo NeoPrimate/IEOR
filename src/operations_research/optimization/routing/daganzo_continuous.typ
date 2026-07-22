@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Daganzo Continuous <operations_research_optimization_routing_daganzo_continuous>
+
 A *continuous-approximation* approach to large-scale routing and logistics design (Daganzo, 1984+). Replaces discrete combinatorial optimization with closed-form formulas — sacrifices exactness for *insight* and *fast strategic design*.
 
 == The key formula: route length
@@ -70,6 +72,6 @@ These give *order-of-magnitude correct* answers in seconds, useful when:
 
 == See also
 
-- *#link(<operations-research-optimization-vrp>)[VRP]* — operational counterpart
-- *#link(<operations-research-optimization-clarke-wright>)[Clarke-Wright]* — operational heuristic
-- *#link(<supply-chain-risk-pooling-location-pooling>)[Location Pooling]* — strategic trade-off Daganzo formalizes
+- *#link(<operations_research_optimization_routing_vrp>)[VRP]* — operational counterpart
+- *#link(<operations_research_optimization_routing_clarke_wright>)[Clarke-Wright]* — operational heuristic
+- *#link(<supply_chain_inventory_risk_pooling_location_pooling>)[Location Pooling]* — strategic trade-off Daganzo formalizes

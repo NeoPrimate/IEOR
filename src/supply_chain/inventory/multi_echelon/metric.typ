@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= METRIC <supply_chain_inventory_multi_echelon_metric>
+
 *Multi-Echelon Technique for Recoverable Item Control* (Sherbrooke 1968). A closed-form model for spare-parts networks with *Poisson demand* and *one-for-one (S - 1, S) base-stock policy*.
 
 The original was developed for US Air Force repairable items — engines, avionics, hydraulics. The model is now standard for any service-parts network: defense, aerospace, semiconductors, medical devices.
@@ -63,7 +65,7 @@ Solved by *marginal analysis*: at each step, add one unit of inventory at whiche
 
 == VARI-METRIC
 
-Sherbrooke's original METRIC approximates depot resupply time as deterministic. *VARI-METRIC* (Graves 1985) fixes this by modeling the depot pipeline as *Negative Binomial* — preserving both the mean *and the variance* of pipeline orders. Sometimes large efficiency gains. See #link(<supply-chain-multi-echelon-vari-metric>)[VARI-METRIC].
+Sherbrooke's original METRIC approximates depot resupply time as deterministic. *VARI-METRIC* (Graves 1985) fixes this by modeling the depot pipeline as *Negative Binomial* — preserving both the mean *and the variance* of pipeline orders. Sometimes large efficiency gains. See #link(<supply_chain_inventory_multi_echelon_vari_metric>)[VARI-METRIC].
 
 == Where it shows up
 
@@ -80,7 +82,7 @@ Sherbrooke's original METRIC approximates depot resupply time as deterministic. 
 
 == See also
 
-- *#link(<supply-chain-multi-echelon-vari-metric>)[VARI-METRIC]* — variance-correction extension
-- *#link(<supply-chain-multi-echelon-stochastic-service>)[Stochastic-service]* — generalization
-- *#link(<statistics-probability-distributions-poisson>)[Poisson Distribution]*
-- *#link(<supply-chain-policies-base-stock>)[Base Stock Policy]*
+- *#link(<supply_chain_inventory_multi_echelon_vari_metric>)[VARI-METRIC]* — variance-correction extension
+- *#link(<supply_chain_inventory_multi_echelon_stochastic_service>)[Stochastic-service]* — generalization
+- *#link(<statistics_distributions_poisson>)[Poisson Distribution]*
+- *#link(<supply_chain_inventory_policies_base_stock>)[Base Stock Policy]*

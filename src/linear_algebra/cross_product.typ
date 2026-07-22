@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
+= Cross Product <linear_algebra_cross_product>
 
 Only defined in $RR^3$. Returns a vector orthogonal to the two inputs.
 
@@ -33,7 +33,7 @@ $
 
 == Proof: $accent(c, arrow)$ is orthogonal to both $accent(a, arrow)$ and $accent(b, arrow)$
 
-Two vectors are #link(<linear-algebra-orthogonality>)[orthogonal] when their #link(<linear-algebra-dot-product>)[dot product] is zero.
+Two vectors are #link(<linear_algebra_orthogonality>)[orthogonal] when their #link(<linear_algebra_dot_product>)[dot product] is zero.
 
 *Orthogonal to $accent(a, arrow)$*:
 
@@ -65,5 +65,5 @@ $
 
 == See also
 
-- *#link(<linear-algebra-cross-product-magnitude>)[Cross Product Magnitude]* — $||accent(a, arrow) times accent(b, arrow)|| = ||accent(a, arrow)|| ||accent(b, arrow)|| sin theta$
-- *#link(<linear-algebra-dot-vs-cross-product>)[Dot vs Cross]* — side-by-side comparison
+- *#link(<linear_algebra_cross_product_magnitude>)[Cross Product Magnitude]* — $||accent(a, arrow) times accent(b, arrow)|| = ||accent(a, arrow)|| ||accent(b, arrow)|| sin theta$
+- *#link(<linear_algebra_dot_vs_cross_product>)[Dot vs Cross]* — side-by-side comparison

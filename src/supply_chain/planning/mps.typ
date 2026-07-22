@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-*Master Production Schedule* (MPS): the *disaggregated* version of #link(<supply-chain-planning-aggregate-planning>)[aggregate planning]. Specifies how many of *each individual product* to make in each *week* (or shorter bucket).
+= MPS <supply_chain_planning_mps>
+
+*Master Production Schedule* (MPS): the *disaggregated* version of #link(<supply_chain_planning_aggregate_planning>)[aggregate planning]. Specifies how many of *each individual product* to make in each *week* (or shorter bucket).
 
 == What it specifies
 
@@ -50,11 +52,11 @@ Frozen-zone duration matches *production lead time* — once you've started maki
 
 == MPS feasibility: Rough-Cut Capacity Planning (RCCP)
 
-Before committing to an MPS, check that capacity (workforce, machines, materials) is sufficient. See #link(<supply-chain-planning-rccp>)[RCCP].
+Before committing to an MPS, check that capacity (workforce, machines, materials) is sufficient. See #link(<supply_chain_planning_rccp>)[RCCP].
 
 == Feeding MRP
 
-The MPS is the *input* to #link(<supply-chain-planning-mrp>)[MRP], which explodes each MPS quantity into component requirements via the bill of materials.
+The MPS is the *input* to #link(<supply_chain_planning_mrp>)[MRP], which explodes each MPS quantity into component requirements via the bill of materials.
 
 == Common pitfalls
 
@@ -64,7 +66,7 @@ The MPS is the *input* to #link(<supply-chain-planning-mrp>)[MRP], which explode
 
 == See also
 
-- *#link(<supply-chain-planning-aggregate-planning>)[Aggregate Planning]* — feeds MPS
-- *#link(<supply-chain-planning-mrp>)[MRP]* — fed by MPS
-- *#link(<supply-chain-planning-rccp>)[RCCP]* — feasibility check
-- *#link(<supply-chain-planning-drp>)[DRP]* — distribution-side counterpart
+- *#link(<supply_chain_planning_aggregate_planning>)[Aggregate Planning]* — feeds MPS
+- *#link(<supply_chain_planning_mrp>)[MRP]* — fed by MPS
+- *#link(<supply_chain_planning_rccp>)[RCCP]* — feasibility check
+- *#link(<supply_chain_planning_drp>)[DRP]* — distribution-side counterpart

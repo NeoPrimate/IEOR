@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-A lot-sizing heuristic similar to #link(<supply-chain-planning-silver-meal>)[Silver-Meal], but minimizing *cost per unit produced* instead of *cost per period covered*.
+= Least Unit Cost <supply_chain_planning_least_unit_cost>
+
+A lot-sizing heuristic similar to #link(<supply_chain_planning_silver_meal>)[Silver-Meal], but minimizing *cost per unit produced* instead of *cost per period covered*.
 
 == Algorithm
 
@@ -26,7 +28,7 @@ When demand is uniform, the two give similar / identical answers. When demand va
 - *Spiky demand peaks*: LUC tends to order bigger batches (drives down per-unit cost via fixed-cost amortization)
 - *Smoother demand*: Silver-Meal tends to order more frequently
 
-Neither is strictly better. Both are heuristics, both within ~5% of #link(<supply-chain-eoq-wagner-whitin>)[Wagner-Whitin] optimum on typical instances.
+Neither is strictly better. Both are heuristics, both within ~5% of #link(<supply_chain_inventory_eoq_wagner_whitin>)[Wagner-Whitin] optimum on typical instances.
 
 == Worked example
 
@@ -47,7 +49,7 @@ So LUC tends to *bundle* into larger orders when downstream demand is high.
 
 == See also
 
-- *#link(<supply-chain-planning-silver-meal>)[Silver-Meal]* — sister heuristic
-- *#link(<supply-chain-planning-part-period-balancing>)[Part-Period Balancing]*
-- *#link(<supply-chain-eoq-wagner-whitin>)[Wagner-Whitin]* — optimal
-- *#link(<supply-chain-eoq-eoq>)[EOQ]* — stationary-demand analog
+- *#link(<supply_chain_planning_silver_meal>)[Silver-Meal]* — sister heuristic
+- *#link(<supply_chain_planning_part_period_balancing>)[Part-Period Balancing]*
+- *#link(<supply_chain_inventory_eoq_wagner_whitin>)[Wagner-Whitin]* — optimal
+- *#link(<supply_chain_inventory_eoq_eoq>)[EOQ]* — stationary-demand analog

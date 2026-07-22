@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Summary <time_series_ets_summary>
+
 #set list(marker: [·])
 
 // =============================================================

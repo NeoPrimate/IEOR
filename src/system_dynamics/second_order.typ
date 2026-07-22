@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-A two-stock system with delay between input and output. The classic *oscillator* structure in #link(<system-dynamics-system-dynamics>)[system dynamics].
+= Second-Order <system_dynamics_second_order>
+
+A two-stock system with delay between input and output. The classic *oscillator* structure in #link(<system_dynamics_system_dynamics>)[system dynamics].
 
 == Generic equation
 
@@ -65,7 +67,7 @@ Linearization around a fixed point gives this form locally; eigenvalues of the J
 
 == See also
 
-- *#link(<system-dynamics-feedback-loops>)[Feedback Loops]* — 1st-order foundations
-- *#link(<system-dynamics-delays>)[Delays]* — what creates oscillation
-- *#link(<system-dynamics-phase-plane>)[Phase Plane]* — visualization
-- *#link(<system-dynamics-beer-game>)[Beer Game]* — application
+- *#link(<system_dynamics_feedback_loops>)[Feedback Loops]* — 1st-order foundations
+- *#link(<system_dynamics_delays>)[Delays]* — what creates oscillation
+- *#link(<system_dynamics_phase_plane>)[Phase Plane]* — visualization
+- *#link(<system_dynamics_beer_game>)[Beer Game]* — application

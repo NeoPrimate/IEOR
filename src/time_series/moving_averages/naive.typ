@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Naive <time_series_moving_averages_naive>
+
 == Naïve Forecast
 
 The simplest possible forecast: *next value equals last value*.

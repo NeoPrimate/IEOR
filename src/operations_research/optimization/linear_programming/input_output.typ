@@ -1,6 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Input / Output <operations_research_optimization_linear_programming_input_output>
 
 #set math.vec(gap: 0.5em)
 // #set math.mat(gap: 1em)

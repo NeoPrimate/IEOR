@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= C-Chart <operations_research_quality_engineering_control_charts_c_chart>
+
 Count of defects (fixed unit size)
 
 Number of defects observed in each sample or inspection unit

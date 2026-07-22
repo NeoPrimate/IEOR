@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= (Q, r) <supply_chain_inventory_policies_q_r>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 Continuous review, fixed order quantity. The most common stochastic-demand policy in textbooks and practice.

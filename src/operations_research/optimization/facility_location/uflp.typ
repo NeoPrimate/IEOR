@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= UFLP <operations_research_optimization_facility_location_uflp>
+
 *Uncapacitated Facility Location Problem*: open a subset of candidate facilities and assign each customer to one open facility, minimizing fixed + transport costs. No capacity limits.
 
 == Formulation
@@ -118,7 +120,7 @@ For metric UFLP (costs satisfy triangle inequality), $1.46$ is the lower bound o
 
 == See also
 
-- *#link(<operations-research-optimization-cflp>)[CFLP]* — with capacities
-- *#link(<operations-research-optimization-facility-location>)[Facility Location overview]*
-- *#link(<operations-research-optimization-p-median>)[$p$-median]* — fixed number of facilities, no fixed cost
-- *#link(<operations-research-optimization-lagrange-relaxation>)[Lagrange relaxation]* — bounds for branch-and-bound
+- *#link(<operations_research_optimization_facility_location_cflp>)[CFLP]* — with capacities
+- *#link(<operations_research_optimization_facility_location_facility_location>)[Facility Location overview]*
+- *#link(<operations_research_optimization_facility_location_p_median>)[$p$-median]* — fixed number of facilities, no fixed cost
+- *#link(<operations_research_optimization_integer_programming_lagrange_relaxation>)[Lagrange relaxation]* — bounds for branch-and-bound

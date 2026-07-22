@@ -4,6 +4,8 @@
 #import "./summary.typ": cL, cS, cT
 #import "../_data.typ" as data
 
+= A-N-N <time_series_ets_a-n-n>
+
 Simple exponential smoothing
 
 $ "ETS"(A, N, N) $

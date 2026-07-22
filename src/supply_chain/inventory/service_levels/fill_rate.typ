@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Fill Rate <supply_chain_inventory_service_levels_fill_rate>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 == Fill Rate (Type II, $beta$)

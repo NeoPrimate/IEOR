@@ -4,6 +4,8 @@
 #import "./summary.typ": cL, cS, cT
 #import "../_data.typ" as data
 
+= A-M-N <time_series_ets_a-m-n>
+
 Multiplicative trend
 
 $ "ETS"(A, M, N) $

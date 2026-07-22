@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= LU Decomposition <linear_algebra_lu_decomposition>
+
 Given a matrix $A$, LU decomposition aims to express $A$ as:
 
 $

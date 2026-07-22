@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Kanban Sizing <supply_chain_manufacturing_kanban_sizing>
+
 The classical Toyota Production System formula for sizing kanban (replenishment-authorization cards) between two production stages:
 
 $
@@ -50,7 +52,7 @@ P-kanban + W-kanban coordinate the pull. Modern simplified versions use just one
   columns: 3,
   align: (left, left, left),
   stroke: none,
-  table.header([], [*Kanban*], [*#link(<supply-chain-manufacturing-conwip>)[CONWIP]*]),
+  table.header([], [*Kanban*], [*#link(<supply_chain_manufacturing_conwip>)[CONWIP]*]),
   [Granularity], [Per-part-type, per-stage], [Global cap on all WIP],
   [Setup], [More cards to manage], [Simpler],
   [Mix flexibility], [Lower (each card is specific)], [Higher (any part can fill cap)],
@@ -78,7 +80,7 @@ Each improvement reduces inventory while maintaining service.
 
 == See also
 
-- *#link(<supply-chain-manufacturing-conwip>)[CONWIP]* — alternative discipline
-- *#link(<supply-chain-manufacturing-takt-time>)[Takt Time]*
-- *#link(<supply-chain-manufacturing-heijunka>)[Heijunka]*
-- *#link(<supply-chain-manufacturing-factory-physics>)[Factory Physics]*
+- *#link(<supply_chain_manufacturing_conwip>)[CONWIP]* — alternative discipline
+- *#link(<supply_chain_manufacturing_takt_time>)[Takt Time]*
+- *#link(<supply_chain_manufacturing_heijunka>)[Heijunka]*
+- *#link(<supply_chain_manufacturing_factory_physics>)[Factory Physics]*

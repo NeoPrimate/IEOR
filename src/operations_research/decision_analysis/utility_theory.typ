@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-A framework for decisions under *risk aversion*. Instead of maximizing expected payoff (#link(<operations-research-decision-analysis-emv>)[EMV]), maximize *expected utility* — where the utility function $u(x)$ encodes the decision-maker's preferences over wealth.
+= Utility Theory <operations_research_decision_analysis_utility_theory>
+
+A framework for decisions under *risk aversion*. Instead of maximizing expected payoff (#link(<operations_research_decision_analysis_emv>)[EMV]), maximize *expected utility* — where the utility function $u(x)$ encodes the decision-maker's preferences over wealth.
 
 == Why EMV is incomplete
 
@@ -86,7 +88,7 @@ Subjective and biased — but operationally usable.
 
 == See also
 
-- *#link(<operations-research-decision-analysis-emv>)[EMV]* — risk-neutral baseline
-- *#link(<operations-research-decision-analysis-decision-trees>)[Decision Trees]* — apply utility to payoffs at leaves
-- *#link(<economics-utility>)[Economics: Utility]* — classical economic foundation
-- *#link(<operations-research-decision-analysis-decision-criteria>)[Decision Criteria]* — non-probabilistic alternative
+- *#link(<operations_research_decision_analysis_emv>)[EMV]* — risk-neutral baseline
+- *#link(<operations_research_decision_analysis_decision_trees>)[Decision Trees]* — apply utility to payoffs at leaves
+- *#link(<economics_utility>)[Economics: Utility]* — classical economic foundation
+- *#link(<operations_research_decision_analysis_decision_criteria>)[Decision Criteria]* — non-probabilistic alternative

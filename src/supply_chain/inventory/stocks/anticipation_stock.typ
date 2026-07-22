@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Anticipation Stock <supply_chain_inventory_stocks_anticipation_stock>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 Inventory built up *in advance* of a *known* future demand spike. Distinct from safety stock (which buffers *unknown* uncertainty) — anticipation stock buffers *known* but *concentrated* demand.

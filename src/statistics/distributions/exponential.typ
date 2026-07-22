@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Exponential <statistics_distributions_exponential>
+
 $
 f(x bar lambda) = lambda e^(- lambda x)
 $

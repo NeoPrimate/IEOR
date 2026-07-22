@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Wagner–Whitin <supply_chain_inventory_eoq_wagner_whitin>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 == Wagner-Whitin (finite horizon, time-varying demand)

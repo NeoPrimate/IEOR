@@ -1,11 +1,11 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
+= Unimodularity <linear_algebra_unimodularity>
 
 == Unimodular Matrix
 
-Integer square matrix whose #link(<linear-algebra-determinant>)[determinant] is +1 or -1:
+Integer square matrix whose #link(<linear_algebra_determinant>)[determinant] is +1 or -1:
 
 $
   det(A) = plus.minus 1
@@ -16,7 +16,7 @@ $
 
 == Totally Unimodular Matrix
 
-A totally unimodular (TU) matrix is a (not necessarily square) matrix in which every square submatrix (#link(<linear-algebra-determinant>)[determinant] of any square submatrix of any size) has #link(<linear-algebra-determinant>)[determinant] in:
+A totally unimodular (TU) matrix is a (not necessarily square) matrix in which every square submatrix (#link(<linear_algebra_determinant>)[determinant] of any square submatrix of any size) has #link(<linear_algebra_determinant>)[determinant] in:
 
 $
   {-1, 0, +1}

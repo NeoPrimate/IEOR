@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Transaction Costs <organisations_transaction_costs>
+
 // @coase1937 @williamson1975 @williamson1985
 
 Why do firms / organizations exist? Why not many atomized individuals (market)?

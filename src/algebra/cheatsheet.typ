@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Cheatsheet <algebra_cheatsheet>
+
 == Arithmetic Operations
 
 #grid(

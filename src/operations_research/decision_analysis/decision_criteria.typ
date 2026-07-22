@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-Five classical criteria for decisions under uncertainty when *probabilities are unknown* or *deeply uncertain* (probability estimates aren't trustworthy). Used when #link(<operations-research-decision-analysis-emv>)[EMV] doesn't apply.
+= Decision Criteria <operations_research_decision_analysis_decision_criteria>
+
+Five classical criteria for decisions under uncertainty when *probabilities are unknown* or *deeply uncertain* (probability estimates aren't trustworthy). Used when #link(<operations_research_decision_analysis_emv>)[EMV] doesn't apply.
 
 == Setup
 
@@ -111,6 +113,6 @@ No single right answer — depends on:
 
 == See also
 
-- *#link(<operations-research-decision-analysis-emv>)[EMV]* — when probabilities are known
-- *#link(<operations-research-decision-analysis-utility-theory>)[Utility Theory]* — handles risk aversion under known probabilities
-- *#link(<operations-research-decision-analysis-decision-analysis>)[Decision Analysis overview]*
+- *#link(<operations_research_decision_analysis_emv>)[EMV]* — when probabilities are known
+- *#link(<operations_research_decision_analysis_utility_theory>)[Utility Theory]* — handles risk aversion under known probabilities
+- *#link(<operations_research_decision_analysis_decision_analysis>)[Decision Analysis overview]*

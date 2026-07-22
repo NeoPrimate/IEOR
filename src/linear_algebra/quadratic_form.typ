@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
+= Quadratic Form <linear_algebra_quadratic_form>
 
 A *quadratic form* is a polynomial expression in $n$ variables where every term has total degree exactly $2$:
 
@@ -9,7 +9,7 @@ $
   Q(accent(x, arrow)) = sum_(i, j) a_(i j) x_i x_j
 $
 
-It can always be written compactly using a #link(<linear-algebra-symmetric-matrix>)[symmetric matrix] $A$:
+It can always be written compactly using a #link(<linear_algebra_symmetric_matrix>)[symmetric matrix] $A$:
 
 $
   Q(accent(x, arrow)) = accent(x, arrow)^T A accent(x, arrow)
@@ -45,7 +45,7 @@ Quadratic forms are classified by the sign of $Q(accent(x, arrow))$ over all non
   [Indefinite], [takes both signs], [mixed],
 )
 
-The eigenvalue characterization comes from the #link(<linear-algebra-spectral-theorem>)[Spectral Theorem]: diagonalizing $A = Q D Q^T$ and changing variables $accent(y, arrow) = Q^T accent(x, arrow)$ gives
+The eigenvalue characterization comes from the #link(<linear_algebra_spectral_theorem>)[Spectral Theorem]: diagonalizing $A = Q D Q^T$ and changing variables $accent(y, arrow) = Q^T accent(x, arrow)$ gives
 
 $
   Q(accent(x, arrow)) = sum_(i=1)^n lambda_i y_i^2
@@ -58,8 +58,8 @@ $
 For a symmetric $A$, equivalent conditions:
 
 1. All eigenvalues $> 0$
-2. All #link(<linear-algebra-leading-principal-minor>)[leading principal minors] $> 0$ (*Sylvester's criterion*)
-3. $A = L L^T$ admits a #link(<linear-algebra-cholesky-decomposition>)[Cholesky decomposition]
+2. All #link(<linear_algebra_leading_principal_minor>)[leading principal minors] $> 0$ (*Sylvester's criterion*)
+3. $A = L L^T$ admits a #link(<linear_algebra_cholesky_decomposition>)[Cholesky decomposition]
 4. $accent(x, arrow)^T A accent(x, arrow) > 0$ for all $accent(x, arrow) eq.not bold(0)$
 
 == Geometric pictures (2D)
@@ -73,8 +73,8 @@ For $Q(x, y) = accent(x, arrow)^T A accent(x, arrow)$, the level sets $Q(accent(
 
 == Where they show up
 
-- *#link(<calculus-calculus-ii-semi-definiteness>)[Semi-definiteness] / Hessian*: the second-order Taylor approximation of a function near a critical point is a quadratic form. Definiteness classifies the critical point as min / max / saddle.
-- *#link(<linear-algebra-norm>)[Norms]*: $||accent(x, arrow)||_2^2 = accent(x, arrow)^T accent(x, arrow) = accent(x, arrow)^T I accent(x, arrow)$ — a quadratic form with $A = I$
+- *#link(<calculus_calculus_ii_semi_definiteness>)[Semi-definiteness] / Hessian*: the second-order Taylor approximation of a function near a critical point is a quadratic form. Definiteness classifies the critical point as min / max / saddle.
+- *#link(<linear_algebra_norm>)[Norms]*: $||accent(x, arrow)||_2^2 = accent(x, arrow)^T accent(x, arrow) = accent(x, arrow)^T I accent(x, arrow)$ — a quadratic form with $A = I$
 - *Mahalanobis distance*: $(accent(x, arrow) - accent(mu, arrow))^T Sigma^(-1) (accent(x, arrow) - accent(mu, arrow))$ — a quadratic form using the inverse covariance
 - *Multivariate Gaussian density*: $exp(-1/2 #h(0.2em) accent(x, arrow)^T Sigma^(-1) accent(x, arrow))$
 - *Quadratic programming*: optimize $1/2 accent(x, arrow)^T Q accent(x, arrow) + c^T accent(x, arrow)$ subject to linear constraints
@@ -93,8 +93,8 @@ This is the "principal axes" of the conic / quadric.
 
 == See also
 
-- *#link(<linear-algebra-symmetric-matrix>)[Symmetric Matrix]*
-- *#link(<linear-algebra-spectral-theorem>)[Spectral Theorem]*
-- *#link(<linear-algebra-leading-principal-minor>)[Leading Principal Minor]* — Sylvester's criterion
-- *#link(<linear-algebra-cholesky-decomposition>)[Cholesky Decomposition]*
-- *#link(<calculus-calculus-ii-semi-definiteness>)[Semi-Definiteness]* in Calculus II
+- *#link(<linear_algebra_symmetric_matrix>)[Symmetric Matrix]*
+- *#link(<linear_algebra_spectral_theorem>)[Spectral Theorem]*
+- *#link(<linear_algebra_leading_principal_minor>)[Leading Principal Minor]* — Sylvester's criterion
+- *#link(<linear_algebra_cholesky_decomposition>)[Cholesky Decomposition]*
+- *#link(<calculus_calculus_ii_semi_definiteness>)[Semi-Definiteness]* in Calculus II

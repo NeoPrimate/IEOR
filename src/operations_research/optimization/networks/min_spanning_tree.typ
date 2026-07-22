@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Min Spanning Tree <operations_research_optimization_networks_min_spanning_tree>
+
 Given a connected, undirected, weighted graph, find a *spanning tree* (acyclic connected subgraph touching every vertex) of minimum total edge weight.
 
 == Two classic algorithms
@@ -42,7 +44,7 @@ The *cycle property*: for any cycle, the maximum-weight edge does *not* belong t
 
 - *Network design*: minimum-cost wiring / connection (telephone, power, road)
 - *Clustering*: single-linkage clustering = MST then prune longest edges
-- *Approximation algorithms*: 2-factor approx for metric #link(<operations-research-optimization-tsp>)[TSP] uses MST traversal; #link(<operations-research-optimization-christofides>)[Christofides] is more refined
+- *Approximation algorithms*: 2-factor approx for metric #link(<operations_research_optimization_routing_tsp>)[TSP] uses MST traversal; #link(<operations_research_optimization_routing_christofides>)[Christofides] is more refined
 - *Image segmentation*: graph cuts based on MST
 
 == Comparison
@@ -60,6 +62,6 @@ The *cycle property*: for any cycle, the maximum-weight edge does *not* belong t
 
 == See also
 
-- *#link(<operations-research-optimization-tsp>)[TSP]* — uses MST in lower bounds & approximations
-- *#link(<operations-research-optimization-floyd-warshall>)[Floyd-Warshall]* — all-pairs shortest path (related)
-- *#link(<algorithms-dijkstra>)[Dijkstra]* — single-source shortest path (related, different structure)
+- *#link(<operations_research_optimization_routing_tsp>)[TSP]* — uses MST in lower bounds & approximations
+- *#link(<operations_research_optimization_networks_floyd_warshall>)[Floyd-Warshall]* — all-pairs shortest path (related)
+- *#link(<algorithms_shortest_path_dijkstra>)[Dijkstra]* — single-source shortest path (related, different structure)

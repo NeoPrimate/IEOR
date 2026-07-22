@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Learning Curves <supply_chain_manufacturing_learning_curves>
+
 The empirical observation that *cost or time per unit decreases by a constant percentage* every time cumulative production doubles. Discovered by T. P. Wright (1936) studying aircraft production at Curtiss-Wright.
 
 == Wright's formula
@@ -98,5 +100,5 @@ where $M in [0, 1]$ is the incompressibility floor.
 
 == See also
 
-- *#link(<supply-chain-manufacturing-factory-physics>)[Factory Physics]*
-- *#link(<supply-chain-manufacturing-takt-time>)[Takt Time]* — performance target as learning advances
+- *#link(<supply_chain_manufacturing_factory_physics>)[Factory Physics]*
+- *#link(<supply_chain_manufacturing_takt_time>)[Takt Time]* — performance target as learning advances

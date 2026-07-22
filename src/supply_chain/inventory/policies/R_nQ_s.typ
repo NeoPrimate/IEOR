@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= (R, nQ, s) <supply_chain_inventory_policies_R_nQ_s>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 Periodic review, *fixed pack size, with reorder point*. Combines the periodic-review structure of (R, s, S) with the fixed-pack constraint of (nQ, r).

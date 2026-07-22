@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Backorders <supply_chain_inventory_eoq_backorders>
+
 #let cm(x) = text(fill: red, [$#x$])
 #let rm(x) = text(fill: red, $cancel(#x)$)
 

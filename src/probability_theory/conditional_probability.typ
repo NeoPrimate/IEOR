@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Conditional Probability <probability_theory_conditional_probability>
+
 Probability of $A$ given that $B$ has occurred
 
 $

@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-*Capacitated Facility Location Problem*: like #link(<operations-research-optimization-uflp>)[UFLP], but each facility has a maximum capacity it can serve.
+= CFLP <operations_research_optimization_facility_location_cflp>
+
+*Capacitated Facility Location Problem*: like #link(<operations_research_optimization_facility_location_uflp>)[UFLP], but each facility has a maximum capacity it can serve.
 
 == Formulation
 
@@ -129,6 +131,6 @@ Practical solvers (MIP, Lagrangian) usually beat the worst-case approximation by
 
 == See also
 
-- *#link(<operations-research-optimization-uflp>)[UFLP]* — uncapacitated case
-- *#link(<operations-research-optimization-facility-location>)[Facility Location overview]*
-- *#link(<operations-research-optimization-lagrange-relaxation>)[Lagrange Relaxation]* — standard solution method
+- *#link(<operations_research_optimization_facility_location_uflp>)[UFLP]* — uncapacitated case
+- *#link(<operations_research_optimization_facility_location_facility_location>)[Facility Location overview]*
+- *#link(<operations_research_optimization_integer_programming_lagrange_relaxation>)[Lagrange Relaxation]* — standard solution method

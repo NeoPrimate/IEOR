@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Aggregate Planning <supply_chain_planning_aggregate_planning>
+
 A mid-term (3–18 month) production / staffing plan that matches *aggregated* output to *aggregated* demand, deciding levels of:
 
 - Regular-time production
@@ -94,18 +96,18 @@ Aggregate planning sets the *envelope* — workforce, total monthly output. The 
 - *MPS* (Master Production Schedule) — disaggregates aggregate plan into product-week
 - *MRP* (Material Requirements Planning) — explodes MPS into parts / materials
 
-See #link(<supply-chain-planning-mps>)[MPS] and #link(<supply-chain-planning-mrp>)[MRP].
+See #link(<supply_chain_planning_mps>)[MPS] and #link(<supply_chain_planning_mrp>)[MRP].
 
 == Limitations
 
 - *Linear costs* assumed — real overtime / hiring may have step functions
 - *Aggregate units* — assumes products are interchangeable, ignores changeover times
 - *Single facility* — multi-plant versions exist but more complex
-- *Deterministic demand* — stochastic versions = stochastic programming (see #link(<operations-research-optimization-stochastic-programming>)[here])
+- *Deterministic demand* — stochastic versions = stochastic programming (see #link(<operations_research_optimization_stochastic_stochastic_programming>)[here])
 
 == See also
 
-- *#link(<supply-chain-planning-mps>)[MPS]* — disaggregation
-- *#link(<supply-chain-planning-mrp>)[MRP]* — material planning
-- *#link(<supply-chain-planning-rccp>)[Rough-Cut Capacity Planning]* — feasibility check
-- *#link(<operations-research-optimization-linear-programming>)[Linear Programming]*
+- *#link(<supply_chain_planning_mps>)[MPS]* — disaggregation
+- *#link(<supply_chain_planning_mrp>)[MRP]* — material planning
+- *#link(<supply_chain_planning_rccp>)[Rough-Cut Capacity Planning]* — feasibility check
+- *#link(<operations_research_optimization_linear_programming_linear_programming>)[Linear Programming]*

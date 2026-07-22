@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Markov Chains <statistics_markov_chains_markov_chains>
+
 == Checkout Counter Model
 
 - Discrete time ($n = 0, 1, dots$)

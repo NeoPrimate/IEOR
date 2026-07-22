@@ -4,6 +4,8 @@
 #import "./summary.typ": cMA
 #import "../_data.typ" as data
 
+= MA <time_series_arima_ma>
+
 Moving average
 
 $ "MA"(q) $

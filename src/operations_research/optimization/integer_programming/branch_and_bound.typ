@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
+= Branch and Bound <operations_research_optimization_integer_programming_branch_and_bound>
 
 Integer Program
 

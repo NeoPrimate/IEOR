@@ -1,6 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Trace <linear_algebra_trace>
 
 The *trace* of a square matrix $A$ is the sum of its main diagonal entries:
 
@@ -17,13 +18,13 @@ $
 == Properties
 
 - *Linearity*: $"tr"(A + B) = "tr"(A) + "tr"(B)$ and $"tr"(c #h(0.2em) A) = c #h(0.2em) "tr"(A)$
-- *#link(<linear-algebra-transpose>)[Transpose]*: $"tr"(A^T) = "tr"(A)$
+- *#link(<linear_algebra_transpose>)[Transpose]*: $"tr"(A^T) = "tr"(A)$
 - *Cyclic property*: $"tr"(A B) = "tr"(B A)$
   - More generally: $"tr"(A B C) = "tr"(B C A) = "tr"(C A B)$
 - *Similarity invariance*: $"tr"(P^(-1) A P) = "tr"(A)$
-  - The trace doesn't change under #link(<linear-algebra-change-of-basis>)[change of basis]
+  - The trace doesn't change under #link(<linear_algebra_change_of_basis>)[change of basis]
 - *Sum of eigenvalues*: $"tr"(A) = sum_(i=1)^n lambda_i$ (counted with multiplicity, including complex)
-- *#link(<linear-algebra-identity-matrix>)[Identity]*: $"tr"(I_n) = n$
+- *#link(<linear_algebra_identity_matrix>)[Identity]*: $"tr"(I_n) = n$
 
 == Trace as inner product
 
@@ -41,4 +42,4 @@ It induces the *Frobenius norm* $||A||_F = sqrt("tr"(A^T A))$.
 - *Variance / covariance*: $"tr"("Cov")$ = total variance across all dimensions
 - *Loss functions* in machine learning — $||y - X beta||^2 = "tr"((y - X beta)(y - X beta)^T)$
 - *Quantum mechanics* — expectation values: $⟨ hat(O) ⟩ = "tr"(rho hat(O))$
-- *#link(<linear-algebra-eigenvectors-eigenvalues>)[Characteristic polynomial]*: trace appears as a coefficient
+- *#link(<linear_algebra_eigenvectors_eigenvalues>)[Characteristic polynomial]*: trace appears as a coefficient

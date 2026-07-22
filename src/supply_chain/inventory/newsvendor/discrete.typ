@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Discrete <supply_chain_inventory_newsvendor_discrete>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 == Newsvendor with discrete demand

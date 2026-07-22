@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Cheatsheet <operations_research_optimization_cheatsheet>
+
 // #set page(margin: 0.5cm) — paged-only, can't apply inside bundle's document() container
 
 == Linear Programming

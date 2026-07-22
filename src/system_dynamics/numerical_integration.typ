@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-Methods for *numerically integrating* the ODEs of a #link(<system-dynamics-system-dynamics>)[system-dynamics] model. Critical for simulation accuracy.
+= Numerical Integration <system_dynamics_numerical_integration>
+
+Methods for *numerically integrating* the ODEs of a #link(<system_dynamics_system_dynamics>)[system-dynamics] model. Critical for simulation accuracy.
 
 == Euler method (default for SD)
 
@@ -95,6 +97,6 @@ This isolates the *dynamic* response from initial-condition transients.
 
 == See also
 
-- *#link(<system-dynamics-stocks-flows>)[Stocks and Flows]* — the equations being integrated
-- *#link(<system-dynamics-system-dynamics>)[System Dynamics overview]*
-- *#link(<calculus-differential-equations>)[Differential Equations]*
+- *#link(<system_dynamics_stocks_flows>)[Stocks and Flows]* — the equations being integrated
+- *#link(<system_dynamics_system_dynamics>)[System Dynamics overview]*
+- *#link(<calculus_differential_equations_differential_equations>)[Differential Equations]*

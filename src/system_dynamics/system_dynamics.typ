@@ -1,14 +1,16 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= System Dynamics <system_dynamics_system_dynamics>
+
 A discipline for modeling and simulating *complex dynamic systems* with *feedback*. Developed by Jay Forrester (MIT, 1956) to understand industrial dynamics, urban dynamics, and social systems. Codified by John Sterman (*Business Dynamics*, 2000).
 
 == Core concepts
 
-- *#link(<system-dynamics-stocks-flows>)[Stocks and flows]*: state variables (stocks) change via rates (flows); foundation in ODEs
-- *#link(<system-dynamics-causal-loop-diagrams>)[Causal loop diagrams]*: graphical representation of feedback structures
-- *#link(<system-dynamics-feedback-loops>)[Feedback loops]*: reinforcing (R) vs balancing (B); positive vs negative feedback
-- *#link(<system-dynamics-delays>)[Delays]*: material, information, perception
+- *#link(<system_dynamics_stocks_flows>)[Stocks and flows]*: state variables (stocks) change via rates (flows); foundation in ODEs
+- *#link(<system_dynamics_causal_loop_diagrams>)[Causal loop diagrams]*: graphical representation of feedback structures
+- *#link(<system_dynamics_feedback_loops>)[Feedback loops]*: reinforcing (R) vs balancing (B); positive vs negative feedback
+- *#link(<system_dynamics_delays>)[Delays]*: material, information, perception
 - *Nonlinearity*: table functions, saturation effects
 
 == When to use
@@ -41,12 +43,12 @@ A discipline for modeling and simulating *complex dynamic systems* with *feedbac
 
 == Classic SD applications
 
-- *#link(<system-dynamics-beer-game>)[Beer Distribution Game]* — supply-chain bullwhip
+- *#link(<system_dynamics_beer_game>)[Beer Distribution Game]* — supply-chain bullwhip
 - *Industrial dynamics* — order-inventory-capacity cycles
-- *#link(<system-dynamics-bass-diffusion>)[Bass diffusion]* — new product adoption
-- *#link(<system-dynamics-sir-seir>)[SIR / SEIR]* — epidemic spread
+- *#link(<system_dynamics_bass_diffusion>)[Bass diffusion]* — new product adoption
+- *#link(<system_dynamics_sir_seir>)[SIR / SEIR]* — epidemic spread
 - *Population* — predator-prey, demographic transitions
-- *#link(<system-dynamics-logistic-growth>)[Logistic growth]* — capacity-limited expansion
+- *#link(<system_dynamics_logistic_growth>)[Logistic growth]* — capacity-limited expansion
 - *Public policy* — urban planning, climate scenarios, healthcare
 
 == Software
@@ -58,10 +60,10 @@ A discipline for modeling and simulating *complex dynamic systems* with *feedbac
 
 == See also
 
-- *#link(<system-dynamics-stocks-flows>)[Stocks and Flows]*
-- *#link(<system-dynamics-causal-loop-diagrams>)[Causal Loop Diagrams]*
-- *#link(<system-dynamics-feedback-loops>)[Feedback Loops]*
-- *#link(<system-dynamics-delays>)[Delays]*
-- *#link(<system-dynamics-numerical-integration>)[Numerical Integration]*
-- *#link(<system-dynamics-bullwhip-sd>)[Bullwhip in SD]*
-- *#link(<system-dynamics-beer-game>)[Beer Game]*
+- *#link(<system_dynamics_stocks_flows>)[Stocks and Flows]*
+- *#link(<system_dynamics_causal_loop_diagrams>)[Causal Loop Diagrams]*
+- *#link(<system_dynamics_feedback_loops>)[Feedback Loops]*
+- *#link(<system_dynamics_delays>)[Delays]*
+- *#link(<system_dynamics_numerical_integration>)[Numerical Integration]*
+- *#link(<system_dynamics_bullwhip_sd>)[Bullwhip in SD]*
+- *#link(<system_dynamics_beer_game>)[Beer Game]*

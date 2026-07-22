@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-The standard algorithm for solving finite-horizon #link(<operations-research-optimization-dynamic-programming>)[dynamic programming] problems. Computes the optimal cost-to-go $J_t (s)$ from the back ($t = T$) toward the start ($t = 0$).
+= Backward Induction <operations_research_optimization_dynamic_programming_backward_induction>
+
+The standard algorithm for solving finite-horizon #link(<operations_research_optimization_dynamic_programming_dynamic_programming>)[dynamic programming] problems. Computes the optimal cost-to-go $J_t (s)$ from the back ($t = T$) toward the start ($t = 0$).
 
 == Algorithm
 
@@ -19,7 +21,7 @@ Return J[0][s₀] and policy {π[t][s]}
 
 == Why backward
 
-At stage $t$ you need to know $J_(t+1)$ to evaluate the #link(<operations-research-optimization-bellman-equation>)[Bellman equation]:
+At stage $t$ you need to know $J_(t+1)$ to evaluate the #link(<operations_research_optimization_dynamic_programming_bellman_equation>)[Bellman equation]:
 
 $
   J_t (s) = min_a { c_t (s, a) + J_(t+1) (f_t (s, a)) }
@@ -54,7 +56,7 @@ State: $s_t in {0, 1, dots, T}$ = the period of the *last* order (so demand from
 
 The zero-inventory property says it's optimal to order in period $j$ iff $j$ is a previous "last-order" period: $J_T (T)$ = min total cost given the last order was in period $T$.
 
-Backward induction over $T$ states × $T$ periods → $O(T^2)$. This is the classic *Wagner-Whitin algorithm* — see #link(<supply-chain-eoq-wagner-whitin>)[Wagner-Whitin].
+Backward induction over $T$ states × $T$ periods → $O(T^2)$. This is the classic *Wagner-Whitin algorithm* — see #link(<supply_chain_inventory_eoq_wagner_whitin>)[Wagner-Whitin].
 
 == Tabulation vs memoization
 
@@ -74,6 +76,6 @@ Both compute the same $J_t (s)$.
 
 == See also
 
-- *#link(<operations-research-optimization-bellman-equation>)[Bellman Equation]*
-- *#link(<operations-research-optimization-forward-induction>)[Forward Induction]* — the dual approach
-- *#link(<operations-research-optimization-dynamic-programming>)[Dynamic Programming]*
+- *#link(<operations_research_optimization_dynamic_programming_bellman_equation>)[Bellman Equation]*
+- *#link(<operations_research_optimization_dynamic_programming_forward_induction>)[Forward Induction]* — the dual approach
+- *#link(<operations_research_optimization_dynamic_programming_dynamic_programming>)[Dynamic Programming]*

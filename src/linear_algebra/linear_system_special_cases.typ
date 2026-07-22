@@ -1,8 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Linear System Special Cases <linear_algebra_linear_system_special_cases>
 
-When you reduce an #link(<linear-algebra-augmented-matrix>)[augmented matrix] $[A | accent(b, arrow)]$ to #link(<linear-algebra-row-echelon-form>)[REF], rows of all zeros (or zero coefficients with non-zero RHS) signal one of three structural situations.
+When you reduce an #link(<linear_algebra_augmented_matrix>)[augmented matrix] $[A | accent(b, arrow)]$ to #link(<linear_algebra_row_echelon_form>)[REF], rows of all zeros (or zero coefficients with non-zero RHS) signal one of three structural situations.
 
 == 1. Dependent equations
 
@@ -69,6 +70,6 @@ The second row reads $0 = 1$. *No solution*.
 
 == See also
 
-- *#link(<linear-algebra-row-echelon-form>)[Row Echelon Form]*
-- *#link(<linear-algebra-linear-system-solutions>)[Linear System Solutions]* — Rouché–Capelli summary
-- *#link(<linear-algebra-rank>)[Rank]* — diagnoses dependence
+- *#link(<linear_algebra_row_echelon_form>)[Row Echelon Form]*
+- *#link(<linear_algebra_linear_system_solutions>)[Linear System Solutions]* — Rouché–Capelli summary
+- *#link(<linear_algebra_rank>)[Rank]* — diagnoses dependence

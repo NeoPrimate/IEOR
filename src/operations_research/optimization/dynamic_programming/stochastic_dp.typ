@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-Extends #link(<operations-research-optimization-dynamic-programming>)[deterministic DP] to problems with random transitions. The framework underlying *Markov Decision Processes* (MDPs), reinforcement learning, and most multi-period stochastic optimization in operations.
+= Stochastic DP <operations_research_optimization_dynamic_programming_stochastic_dp>
+
+Extends #link(<operations_research_optimization_dynamic_programming_dynamic_programming>)[deterministic DP] to problems with random transitions. The framework underlying *Markov Decision Processes* (MDPs), reinforcement learning, and most multi-period stochastic optimization in operations.
 
 == Setup
 
@@ -75,7 +77,7 @@ If action "left" gives $4.5$, optimal action at $(t=1, B)$ = left.
 == Finite vs infinite horizon
 
 - *Finite horizon*: just solve backward in time as in deterministic case
-- *Infinite horizon*: leads to #link(<operations-research-optimization-value-iteration>)[value iteration] / #link(<operations-research-optimization-policy-iteration>)[policy iteration]
+- *Infinite horizon*: leads to #link(<operations_research_optimization_dynamic_programming_value_iteration>)[value iteration] / #link(<operations_research_optimization_dynamic_programming_policy_iteration>)[policy iteration]
 
 == Curse of dimensionality + curse of randomness
 
@@ -87,7 +89,7 @@ Stochastic DP inherits the dimensionality curse from deterministic DP, plus the 
 
 == See also
 
-- *#link(<operations-research-optimization-bellman-equation>)[Bellman Equation]* — deterministic version
-- *#link(<operations-research-optimization-value-iteration>)[Value Iteration]*
-- *#link(<operations-research-optimization-policy-iteration>)[Policy Iteration]*
-- *#link(<statistics-markov-chains>)[Markov Chains]* — underlying state-transition model
+- *#link(<operations_research_optimization_dynamic_programming_bellman_equation>)[Bellman Equation]* — deterministic version
+- *#link(<operations_research_optimization_dynamic_programming_value_iteration>)[Value Iteration]*
+- *#link(<operations_research_optimization_dynamic_programming_policy_iteration>)[Policy Iteration]*
+- *#link(<statistics_markov_chains_markov_chains>)[Markov Chains]* — underlying state-transition model

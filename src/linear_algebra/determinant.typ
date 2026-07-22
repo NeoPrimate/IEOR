@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Determinant <linear_algebra_determinant>
+
 A scalar attached to every *square* matrix that measures the *signed scale factor* the matrix applies to areas / volumes when used as a linear map.
 
 Notation: $det(A)$, or $|A|$.
@@ -66,7 +68,7 @@ $
   det(A) = sum_(j=1)^n (-1)^(i+j) a_(i j) #h(0.3em) M_(i j)
 $
 
-where $M_(i j)$ is the *minor* — the determinant of the $(n-1) times (n-1)$ submatrix obtained by deleting row $i$ and column $j$ of $A$ (see #link(<linear-algebra-minor>)[Minor]).
+where $M_(i j)$ is the *minor* — the determinant of the $(n-1) times (n-1)$ submatrix obtained by deleting row $i$ and column $j$ of $A$ (see #link(<linear_algebra_minor>)[Minor]).
 
 The factor $(-1)^(i+j)$ produces the *checkerboard sign pattern*:
 
@@ -100,7 +102,7 @@ The recursion bottoms out at the $1 times 1$ case: $det([a]) = a$.
   align: (left, left),
   stroke: none,
   table.header([*$det(A)$*], [*Implication*]),
-  $eq.not 0$, [$A$ is invertible (see #link(<linear-algebra-matrix-inverse>)[Matrix Inverse]); columns are linearly independent (see #link(<linear-algebra-linear-independence>)[Linear Independence]); columns span $RR^n$; $A$ has full rank (see #link(<linear-algebra-rank>)[Rank]); $A x = b$ has a unique solution for every $b$.],
+  $eq.not 0$, [$A$ is invertible (see #link(<linear_algebra_matrix_inverse>)[Matrix Inverse]); columns are linearly independent (see #link(<linear_algebra_linear_independence>)[Linear Independence]); columns span $RR^n$; $A$ has full rank (see #link(<linear_algebra_rank>)[Rank]); $A x = b$ has a unique solution for every $b$.],
   $= 0$, [$A$ is *singular* — non-invertible; columns are linearly dependent; image is a strict subspace; $A x = 0$ has non-trivial solutions; the linear map collapses dimension.],
   [], [],
 )
@@ -126,12 +128,12 @@ For a linear map $T: RR^n -> RR^n$ given by matrix $A$:
 
 - *$2 times 2$ / $3 times 3$*: direct formula above.
 - *Larger matrices*: cofactor expansion is $O(n!)$ — impractical past $n approx 10$.
-- *Standard method*: row-reduce to triangular form, multiply diagonal entries, track row-operation effects on $det$ (see #link(<linear-algebra-gaussian-elimination>)[Gaussian Elimination]). This is $O(n^3)$.
-- *LU decomposition* (see #link(<linear-algebra-lu-decomposition>)[LU Decomposition]): $det(A) = det(L) #h(0.2em) det(U) = product$ of $U$'s diagonal entries (since $L$ has unit diagonal).
+- *Standard method*: row-reduce to triangular form, multiply diagonal entries, track row-operation effects on $det$ (see #link(<linear_algebra_gaussian_elimination>)[Gaussian Elimination]). This is $O(n^3)$.
+- *LU decomposition* (see #link(<linear_algebra_lu_decomposition>)[LU Decomposition]): $det(A) = det(L) #h(0.2em) det(U) = product$ of $U$'s diagonal entries (since $L$ has unit diagonal).
 
 == Connection to other concepts
 
-- *#link(<linear-algebra-minor>)[Minor]* — building block for cofactor expansion
-- *#link(<linear-algebra-adjugate>)[Adjugate]* — matrix of cofactors, used in $A^(-1) = "adj"(A) / det(A)$
-- *#link(<linear-algebra-eigenvectors-eigenvalues>)[Eigenvectors & Eigenvalues]* — eigenvalues are roots of $det(A - lambda I) = 0$
-- *#link(<linear-algebra-unimodularity>)[Unimodularity]* — matrices with $det = plus.minus 1$
+- *#link(<linear_algebra_minor>)[Minor]* — building block for cofactor expansion
+- *#link(<linear_algebra_adjugate>)[Adjugate]* — matrix of cofactors, used in $A^(-1) = "adj"(A) / det(A)$
+- *#link(<linear_algebra_eigenvectors_eigenvalues>)[Eigenvectors & Eigenvalues]* — eigenvalues are roots of $det(A - lambda I) = 0$
+- *#link(<linear_algebra_unimodularity>)[Unimodularity]* — matrices with $det = plus.minus 1$

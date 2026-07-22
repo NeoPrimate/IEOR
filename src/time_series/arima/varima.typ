@@ -4,6 +4,8 @@
 #import "./summary.typ": cAR, cDiff, cMA
 #import "../_data.typ" as data
 
+= VARIMA <time_series_arima_varima>
+
 Vector ARIMA
 
 $ "VARIMA"(p,d,q) $

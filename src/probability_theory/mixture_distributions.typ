@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Mixture Distributions <probability_theory_mixture_distributions>
+
 A mixture is what you get when you randomly pick one of several distributions and then draw from it. You're not combining the random variables — you're choosing between them.
 
 $

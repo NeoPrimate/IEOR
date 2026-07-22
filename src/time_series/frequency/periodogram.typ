@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Periodogram <time_series_frequency_periodogram>
+
 Estimate the *power spectral density* (PSD) of a time series — i.e., how much variance is at each frequency. The simplest spectrum estimator; built directly from the Fourier transform.
 
 == Definition

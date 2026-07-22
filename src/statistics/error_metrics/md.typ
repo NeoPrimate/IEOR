@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= MD <statistics_error_metrics_md>
+
 == MD (Mean Deviation / Bias)
 
 Average of the signed forecast errors $e_t = x_t - hat(x)_t$. Captures *bias* — whether the forecast systematically over- or under-shoots.

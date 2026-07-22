@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= SF <statistics_functions_sf>
+
 == SF (Survival Function)
 
 Probability that a certain event has not occurred by a certain time

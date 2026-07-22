@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Cycle Stock <supply_chain_inventory_stocks_cycle_stock>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 The portion of inventory that exists *because we order in batches instead of unit-by-unit*. Pure consequence of fixed ordering costs and the EOQ trade-off.

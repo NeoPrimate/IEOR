@@ -1,6 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Transpose <linear_algebra_transpose>
 
 The *transpose* $A^T$ of a matrix $A$ flips it across its main diagonal — rows become columns:
 
@@ -23,14 +24,14 @@ If $A$ is $m times n$, then $A^T$ is $n times m$.
 - *Scalar*: $(c #h(0.2em) A)^T = c #h(0.2em) A^T$
 - *Product* (order reversed): $(A B)^T = B^T A^T$
 - *Inverse*: $(A^T)^(-1) = (A^(-1))^T$ (when $A$ is invertible)
-- *#link(<linear-algebra-determinant>)[Determinant]*: $det(A^T) = det(A)$
-- *#link(<linear-algebra-rank>)[Rank]*: $"rank"(A^T) = "rank"(A)$
+- *#link(<linear_algebra_determinant>)[Determinant]*: $det(A^T) = det(A)$
+- *#link(<linear_algebra_rank>)[Rank]*: $"rank"(A^T) = "rank"(A)$
 
 == Special cases
 
-- *#link(<linear-algebra-symmetric-matrix>)[Symmetric]*: $A^T = A$
+- *#link(<linear_algebra_symmetric_matrix>)[Symmetric]*: $A^T = A$
 - *Skew-symmetric*: $A^T = -A$
-- *#link(<linear-algebra-orthogonal-matrix>)[Orthogonal]*: $A^T = A^(-1)$, i.e. $A^T A = I$
+- *#link(<linear_algebra_orthogonal_matrix>)[Orthogonal]*: $A^T = A^(-1)$, i.e. $A^T A = I$
 - *Vector transpose*: a column vector becomes a row vector and vice-versa
 
 == Connection to dot product
@@ -41,4 +42,4 @@ $
   accent(u, arrow) dot accent(v, arrow) = accent(u, arrow)^T accent(v, arrow)
 $
 
-(see #link(<linear-algebra-dot-product>)[Dot Product])
+(see #link(<linear_algebra_dot_product>)[Dot Product])

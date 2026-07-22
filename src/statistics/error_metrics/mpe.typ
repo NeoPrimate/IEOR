@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= MPE <statistics_error_metrics_mpe>
+
 == MPE (Mean Percent Error)
 
 Signed-percentage version of MD. Captures *relative bias* — whether the forecast over- or under-shoots in percentage terms.

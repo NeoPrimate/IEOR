@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Cheatsheet <operations_research_quality_engineering_process_capability_cheatsheet>
+
 #table(
   columns: range(5).map(_ => auto),
   inset: 10pt,

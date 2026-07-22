@@ -4,6 +4,8 @@
 #import "./summary.typ": cL, cS, cT
 #import "../_data.typ" as data
 
+= M-Ad-N <time_series_ets_m-ad-n>
+
 Damped linear, mult. errors
 
 $ "ETS"(M, "Ad", N) $

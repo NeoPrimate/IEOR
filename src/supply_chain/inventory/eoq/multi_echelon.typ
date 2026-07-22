@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Multi-Echelon <supply_chain_inventory_eoq_multi_echelon>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 Relax one dimension from basic EOQ: *number of echelons* is no longer one. Inventory is held at multiple stages of a supply chain (warehouse → retailer, supplier → factory → distributor, etc.). Orders cascade up the chain, and each stage has its own setup and holding costs.

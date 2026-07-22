@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Multiple Linear Regression <statistics_regression_multiple_linear_regression>
+
 #align(center)[
   #block(
     stroke: 0.5pt + luma(60%),

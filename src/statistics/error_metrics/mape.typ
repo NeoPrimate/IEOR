@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= MAPE <statistics_error_metrics_mape>
+
 == MAPE (Mean Absolute Percentage Error)
 
 Average percentage difference between predicted ($hat(y)_i$) and actual ($y_i$) values

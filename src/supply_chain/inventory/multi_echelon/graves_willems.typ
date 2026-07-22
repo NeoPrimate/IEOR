@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Graves-Willems <supply_chain_inventory_multi_echelon_graves_willems>
+
 The *guaranteed-service* multi-echelon inventory model (Graves & Willems 2000). Each stage promises a *service time* (max lead time it'll deliver in) to its downstream customer. Safety stocks are placed to make those service times achievable given bounded demand.
 
 Used by Procter & Gamble, Hewlett-Packard, Intel, and most modern supply-chain network design software.
@@ -37,7 +39,7 @@ $
 
 — the standard square-root-of-lead-time form, but with $tau_i$ (net replenishment time) instead of pure lead time. The $sqrt$ comes from the variance of demand over a time interval scaling linearly.
 
-Total #link(<supply-chain-stocks-safety-stock>)[safety-stock] cost across the network:
+Total #link(<supply_chain_inventory_stocks_safety_stock>)[safety-stock] cost across the network:
 
 $
   C = sum_i h_i #h(0.2em) z #h(0.2em) sigma_i #h(0.2em) sqrt(tau_i)
@@ -69,7 +71,7 @@ Optimal placement: tradeoff $sqrt(tau_i)$ costs across all stages — concentrat
 
 == Risk pooling appears naturally
 
-If two downstream stages share an upstream stage, the upstream stage's safety stock covers their combined variability — naturally captures #link(<supply-chain-risk-pooling-risk-pooling>)[risk pooling].
+If two downstream stages share an upstream stage, the upstream stage's safety stock covers their combined variability — naturally captures #link(<supply_chain_inventory_risk_pooling_risk_pooling>)[risk pooling].
 
 == When to use
 
@@ -82,12 +84,12 @@ If two downstream stages share an upstream stage, the upstream stage's safety st
 
 - *Bounded (not stochastic) demand*: the cost of $z$-quantile coverage rather than full distributional optimality
 - *Service-time commitment assumed*: real supply chains have stochastic delays even within commitments
-- See #link(<supply-chain-multi-echelon-stochastic-service>)[Stochastic-service] for the relaxation
+- See #link(<supply_chain_inventory_multi_echelon_stochastic_service>)[Stochastic-service] for the relaxation
 
 == See also
 
-- *#link(<supply-chain-multi-echelon-multi-echelon>)[Multi-Echelon]* — overview
-- *#link(<supply-chain-multi-echelon-clark-scarf>)[Clark-Scarf]* — stochastic-demand alternative
-- *#link(<supply-chain-multi-echelon-stochastic-service>)[Stochastic-service]*
-- *#link(<supply-chain-stocks-safety-stock>)[Safety Stock]*
-- *#link(<supply-chain-risk-pooling-risk-pooling>)[Risk Pooling]*
+- *#link(<supply_chain_inventory_multi_echelon_multi_echelon>)[Multi-Echelon]* — overview
+- *#link(<supply_chain_inventory_multi_echelon_clark_scarf>)[Clark-Scarf]* — stochastic-demand alternative
+- *#link(<supply_chain_inventory_multi_echelon_stochastic_service>)[Stochastic-service]*
+- *#link(<supply_chain_inventory_stocks_safety_stock>)[Safety Stock]*
+- *#link(<supply_chain_inventory_risk_pooling_risk_pooling>)[Risk Pooling]*

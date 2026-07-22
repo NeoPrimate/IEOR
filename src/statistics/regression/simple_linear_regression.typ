@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Simple Linear Regression <statistics_regression_simple_linear_regression>
+
 $
   y = beta_0 + beta_1 x_1 + epsilon
 $

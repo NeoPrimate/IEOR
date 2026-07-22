@@ -1,8 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Jordan Canonical Form <linear_algebra_jordan_canonical_form>
 
-When a matrix is *not* #link(<linear-algebra-diagonalization>)[diagonalizable] (geometric multiplicity $<$ algebraic multiplicity for some eigenvalue), the Jordan canonical form is the next-best thing — *almost* diagonal, with $1$'s just above the diagonal in certain blocks.
+When a matrix is *not* #link(<linear_algebra_diagonalization>)[diagonalizable] (geometric multiplicity $<$ algebraic multiplicity for some eigenvalue), the Jordan canonical form is the next-best thing — *almost* diagonal, with $1$'s just above the diagonal in certain blocks.
 
 Every square matrix $A$ over $bb(C)$ (or over $RR$ if all eigenvalues are real) is *similar* to its Jordan form $J$:
 
@@ -75,11 +76,11 @@ If $A$ is diagonalizable, every Jordan block is $1 times 1$ — i.e., $J = D$ is
 
 == Computation note
 
-Computing the Jordan form numerically is *unstable* — small perturbations can turn a non-trivial Jordan block into a tight cluster of distinct eigenvalues. For numerical work, prefer the #link(<linear-algebra-svd>)[SVD] or the Schur form (always available, real or complex, and stable).
+Computing the Jordan form numerically is *unstable* — small perturbations can turn a non-trivial Jordan block into a tight cluster of distinct eigenvalues. For numerical work, prefer the #link(<linear_algebra_svd>)[SVD] or the Schur form (always available, real or complex, and stable).
 
 == See also
 
-- *#link(<linear-algebra-diagonalization>)[Diagonalization]*
-- *#link(<linear-algebra-eigenvectors-eigenvalues>)[Eigenvectors & Eigenvalues]*
-- *#link(<linear-algebra-characteristic-polynomial>)[Characteristic Polynomial]* — algebraic multiplicity
-- *#link(<linear-algebra-spectral-theorem>)[Spectral Theorem]* — when Jordan blocks are all $1 times 1$ (symmetric / Hermitian case)
+- *#link(<linear_algebra_diagonalization>)[Diagonalization]*
+- *#link(<linear_algebra_eigenvectors_eigenvalues>)[Eigenvectors & Eigenvalues]*
+- *#link(<linear_algebra_characteristic_polynomial>)[Characteristic Polynomial]* — algebraic multiplicity
+- *#link(<linear_algebra_spectral_theorem>)[Spectral Theorem]* — when Jordan blocks are all $1 times 1$ (symmetric / Hermitian case)

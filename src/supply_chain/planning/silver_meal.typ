@@ -1,9 +1,11 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Silver-Meal <supply_chain_planning_silver_meal>
+
 A lot-sizing heuristic for time-varying demand (Silver & Meal, 1973). Chooses order intervals to minimize *average cost per period* covered.
 
-Easier than #link(<supply-chain-eoq-wagner-whitin>)[Wagner-Whitin] (which is DP-optimal) and often close in quality.
+Easier than #link(<supply_chain_inventory_eoq_wagner_whitin>)[Wagner-Whitin] (which is DP-optimal) and often close in quality.
 
 == Setup
 
@@ -51,10 +53,10 @@ Three orders: period 1 (160), period 3 (130), period 5 (110). Total cost computa
   table.header([Heuristic], [Quality vs WW optimum], [Computational cost]),
   [Lot-for-lot], [worst; high setup cost], [trivial],
   [POQ / fixed-quantity (EOQ)], [moderate; ignores demand variation], [trivial],
-  [#link(<supply-chain-planning-least-unit-cost>)[Least Unit Cost]], [usually within 5-10%], [$O(T^2)$],
+  [#link(<supply_chain_planning_least_unit_cost>)[Least Unit Cost]], [usually within 5-10%], [$O(T^2)$],
   [*Silver-Meal*], [usually within 3-5%], [$O(T^2)$],
-  [#link(<supply-chain-planning-part-period-balancing>)[Part-Period Balancing]], [usually within 5%], [$O(T^2)$],
-  [#link(<supply-chain-eoq-wagner-whitin>)[Wagner-Whitin]], [optimal], [$O(T^2)$ DP],
+  [#link(<supply_chain_planning_part_period_balancing>)[Part-Period Balancing]], [usually within 5%], [$O(T^2)$],
+  [#link(<supply_chain_inventory_eoq_wagner_whitin>)[Wagner-Whitin]], [optimal], [$O(T^2)$ DP],
 )
 
 Silver-Meal is fast and good. Wagner-Whitin is exact and not much slower; usually preferred when implementable.
@@ -67,7 +69,7 @@ Silver-Meal is fast and good. Wagner-Whitin is exact and not much slower; usuall
 
 == See also
 
-- *#link(<supply-chain-planning-least-unit-cost>)[Least Unit Cost]*
-- *#link(<supply-chain-planning-part-period-balancing>)[Part-Period Balancing]*
-- *#link(<supply-chain-eoq-wagner-whitin>)[Wagner-Whitin]* — DP-optimal
-- *#link(<supply-chain-planning-mrp>)[MRP]* — where lot-sizing fits
+- *#link(<supply_chain_planning_least_unit_cost>)[Least Unit Cost]*
+- *#link(<supply_chain_planning_part_period_balancing>)[Part-Period Balancing]*
+- *#link(<supply_chain_inventory_eoq_wagner_whitin>)[Wagner-Whitin]* — DP-optimal
+- *#link(<supply_chain_planning_mrp>)[MRP]* — where lot-sizing fits

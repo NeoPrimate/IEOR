@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
+= Gradient Descent <operations_research_optimization_nonlinear_gradient_descent>
 
 #let fuchsia = fuchsia.lighten(40%)
 

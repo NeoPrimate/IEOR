@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-*Expected Monetary Value* (EMV) — the standard decision criterion under #link(<operations-research-decision-analysis-decision-analysis>)[decision analysis]: pick the act with the highest expected payoff.
+= EMV <operations_research_decision_analysis_emv>
+
+*Expected Monetary Value* (EMV) — the standard decision criterion under #link(<operations_research_decision_analysis_decision_analysis>)[decision analysis]: pick the act with the highest expected payoff.
 
 For act $a_i$ with payoff $V_(i j)$ in state $s_j$ (probability $p_j$):
 
@@ -35,8 +37,8 @@ Optimal act: $a^* = arg max_i "EMV"(a_i)$.
 == When EMV is *not* the right criterion
 
 - *One-shot decision* with large downside: someone facing potential ruin will rationally avoid the high-EMV gamble (insurance, hedging)
-- *Risk-averse decision-maker*: use *utility theory* — payoffs run through a *concave* utility function before averaging — see #link(<operations-research-decision-analysis-utility-theory>)[Utility Theory]
-- *Deep uncertainty*: probabilities not just unknown but unknowable — use #link(<operations-research-decision-analysis-decision-criteria>)[non-probabilistic criteria]
+- *Risk-averse decision-maker*: use *utility theory* — payoffs run through a *concave* utility function before averaging — see #link(<operations_research_decision_analysis_utility_theory>)[Utility Theory]
+- *Deep uncertainty*: probabilities not just unknown but unknowable — use #link(<operations_research_decision_analysis_decision_criteria>)[non-probabilistic criteria]
 - *Multiple objectives*: not just money — see multi-criteria decision analysis
 
 == The St. Petersburg paradox
@@ -47,7 +49,7 @@ But no rational person pays infinite money to play. Resolves: *utility* is conca
 
 == See also
 
-- *#link(<operations-research-decision-analysis-decision-trees>)[Decision Trees]*
-- *#link(<operations-research-decision-analysis-decision-analysis>)[Decision Analysis]*
-- *#link(<operations-research-decision-analysis-evpi>)[EVPI]* / *#link(<operations-research-decision-analysis-evsi>)[EVSI]*
-- *#link(<operations-research-decision-analysis-utility-theory>)[Utility Theory]* — when EMV isn't enough
+- *#link(<operations_research_decision_analysis_decision_trees>)[Decision Trees]*
+- *#link(<operations_research_decision_analysis_decision_analysis>)[Decision Analysis]*
+- *#link(<operations_research_decision_analysis_evpi>)[EVPI]* / *#link(<operations_research_decision_analysis_evsi>)[EVSI]*
+- *#link(<operations_research_decision_analysis_utility_theory>)[Utility Theory]* — when EMV isn't enough

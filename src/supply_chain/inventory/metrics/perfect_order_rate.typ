@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Perfect Order Rate <supply_chain_inventory_metrics_perfect_order_rate>
+
 Measures the percentage of orders delivered to customers in full, on time, and without any damage
 
 $

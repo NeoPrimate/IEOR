@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-The generalization of the #link(<supply-chain-risk-pooling-square-root-law>)[square-root law] to demand sources with non-zero pairwise correlation. The crucial formula:
+= Correlated Pooling <supply_chain_inventory_risk_pooling_correlated_pooling>
+
+The generalization of the #link(<supply_chain_inventory_risk_pooling_square_root_law>)[square-root law] to demand sources with non-zero pairwise correlation. The crucial formula:
 
 $
   sigma_("pool")^2 = sum_(i=1)^N sigma_i^2 + 2 sum_(i < j) rho_(i j) sigma_i sigma_j
@@ -99,6 +101,6 @@ When demands move *opposite* (negative correlation):
 
 == See also
 
-- *#link(<supply-chain-risk-pooling-risk-pooling>)[Risk Pooling]* — overview
-- *#link(<supply-chain-risk-pooling-square-root-law>)[Square-Root Law]* — independent case
-- *#link(<statistics-correlation-pearson>)[Pearson Correlation]*
+- *#link(<supply_chain_inventory_risk_pooling_risk_pooling>)[Risk Pooling]* — overview
+- *#link(<supply_chain_inventory_risk_pooling_square_root_law>)[Square-Root Law]* — independent case
+- *#link(<statistics_correlation_pearson>)[Pearson Correlation]*

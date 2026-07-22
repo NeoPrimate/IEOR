@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Linking Equation <operations_research_queuing_theory_linking_equation>
+
 A simple but powerful approximation for *how variability propagates through tandem queues*. The departure-process variability from one station is the arrival variability for the next.
 
 == Formula
@@ -43,7 +45,7 @@ So variance *propagates* downstream. Stations near the bottleneck (high $rho$) p
 
 In a *balanced* line (all stations have similar $rho$ and $c_s$), variability builds up but stays bounded. In an *unbalanced* line, one bad station injects variance that downstream stations can't fully absorb — leading to queue blowups far from the original problem.
 
-This is part of why *line balancing* (#link(<supply-chain-manufacturing-line-balancing>)[here]) and *variance reduction* (eliminating setups, breakdowns) are foundational manufacturing improvements.
+This is part of why *line balancing* (#link(<supply_chain_manufacturing_line_balancing>)[here]) and *variance reduction* (eliminating setups, breakdowns) are foundational manufacturing improvements.
 
 == Bottleneck analysis
 
@@ -51,7 +53,7 @@ The linking equation lets you predict where queues will build *before* operation
 
 1. Compute $rho$ at each station
 2. Apply the linking equation from upstream to downstream
-3. Combine with #link(<operations-research-queuing-theory-kingman-vut>)[VUT] / #link(<operations-research-queuing-theory-sakasegawa>)[Sakasegawa] to estimate queue lengths
+3. Combine with #link(<operations_research_queuing_theory_kingman_vut>)[VUT] / #link(<operations_research_queuing_theory_sakasegawa>)[Sakasegawa] to estimate queue lengths
 
 Identifies bottleneck location and severity quantitatively.
 
@@ -65,7 +67,7 @@ For finite buffers: see two-machine finite-buffer models (Buzacott-Shanthikumar)
 
 == See also
 
-- *#link(<operations-research-queuing-theory-kingman-vut>)[Kingman VUT]*
-- *#link(<operations-research-queuing-theory-sakasegawa>)[Sakasegawa]*
-- *#link(<supply-chain-manufacturing-best-worst-pwc>)[Best/Worst/PWC]* — Hopp-Spearman line performance
-- *#link(<supply-chain-manufacturing-line-balancing>)[Line Balancing]*
+- *#link(<operations_research_queuing_theory_kingman_vut>)[Kingman VUT]*
+- *#link(<operations_research_queuing_theory_sakasegawa>)[Sakasegawa]*
+- *#link(<supply_chain_manufacturing_best_worst_pwc>)[Best/Worst/PWC]* — Hopp-Spearman line performance
+- *#link(<supply_chain_manufacturing_line_balancing>)[Line Balancing]*

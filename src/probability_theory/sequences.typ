@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Sequences <probability_theory_sequences>
+
 $
   a_1, a_2, a_3, dots
 $

@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-The recursion at the heart of #link(<operations-research-optimization-dynamic-programming>)[dynamic programming]. Defines the optimal cost-to-go $J_t (s)$ — minimum cost to complete the problem from stage $t$ in state $s$ — as a function of cost-to-go from the next stage.
+= Bellman Equation <operations_research_optimization_dynamic_programming_bellman_equation>
+
+The recursion at the heart of #link(<operations_research_optimization_dynamic_programming_dynamic_programming>)[dynamic programming]. Defines the optimal cost-to-go $J_t (s)$ — minimum cost to complete the problem from stage $t$ in state $s$ — as a function of cost-to-go from the next stage.
 
 == Principle of optimality (Bellman, 1957)
 
@@ -78,8 +80,8 @@ Optimal path: $S → B → C → G$, cost $5$.
 
 == Two variants
 
-- *#link(<operations-research-optimization-backward-induction>)[Backward induction]*: solve $J_T → J_(T-1) → dots → J_0$.
-- *#link(<operations-research-optimization-forward-induction>)[Forward induction]*: dual recursion on cost-to-arrive $V_t (s)$.
+- *#link(<operations_research_optimization_dynamic_programming_backward_induction>)[Backward induction]*: solve $J_T → J_(T-1) → dots → J_0$.
+- *#link(<operations_research_optimization_dynamic_programming_forward_induction>)[Forward induction]*: dual recursion on cost-to-arrive $V_t (s)$.
 
 Both compute the same optimum — choose whichever fits the data flow.
 
@@ -91,10 +93,10 @@ $
   J_t (s) = min_a { c_t (s, a) + sum_(s') P_t (s' | s, a) #h(0.2em) J_(t+1) (s') }
 $
 
-— expectation over the next state replaces the deterministic transition. See #link(<operations-research-optimization-stochastic-dp>)[Stochastic DP].
+— expectation over the next state replaces the deterministic transition. See #link(<operations_research_optimization_dynamic_programming_stochastic_dp>)[Stochastic DP].
 
 == See also
 
-- *#link(<operations-research-optimization-dynamic-programming>)[Dynamic Programming]* — the broader framework
-- *#link(<operations-research-optimization-backward-induction>)[Backward Induction]* — algorithm
-- *#link(<operations-research-optimization-stochastic-dp>)[Stochastic DP]* — random case
+- *#link(<operations_research_optimization_dynamic_programming_dynamic_programming>)[Dynamic Programming]* — the broader framework
+- *#link(<operations_research_optimization_dynamic_programming_backward_induction>)[Backward Induction]* — algorithm
+- *#link(<operations_research_optimization_dynamic_programming_stochastic_dp>)[Stochastic DP]* — random case

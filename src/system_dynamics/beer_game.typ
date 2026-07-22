@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-The *Beer Distribution Game* (MIT Sloan, 1960s) — a tabletop / simulation exercise demonstrating the #link(<supply-chain-bullwhip-effect>)[bullwhip effect]. The most-played management game ever.
+= Beer Game <system_dynamics_beer_game>
+
+The *Beer Distribution Game* (MIT Sloan, 1960s) — a tabletop / simulation exercise demonstrating the #link(<supply_chain_inventory_bullwhip_effect>)[bullwhip effect]. The most-played management game ever.
 
 == Setup
 
@@ -54,7 +56,7 @@ After playing several rounds, players learn:
 
 == Mathematical structure
 
-Each echelon is a 2nd-order delayed feedback system (#link(<system-dynamics-second-order>)[here]). Four cascaded → high-order oscillator. With shock input + supply-line neglect → sustained large oscillation.
+Each echelon is a 2nd-order delayed feedback system (#link(<system_dynamics_second_order>)[here]). Four cascaded → high-order oscillator. With shock input + supply-line neglect → sustained large oscillation.
 
 == Variations
 
@@ -73,7 +75,7 @@ The beer game is the *empirical* answer to "do real people exhibit bullwhip?" An
 
 == See also
 
-- *#link(<system-dynamics-bullwhip-sd>)[Bullwhip in SD]* — closed-form analysis
-- *#link(<system-dynamics-stock-management>)[Stock Management]* — the decision rule
-- *#link(<supply-chain-bullwhip-effect>)[Bullwhip Effect]*
-- *#link(<system-dynamics-delays>)[Delays]*
+- *#link(<system_dynamics_bullwhip_sd>)[Bullwhip in SD]* — closed-form analysis
+- *#link(<system_dynamics_stock_management>)[Stock Management]* — the decision rule
+- *#link(<supply_chain_inventory_bullwhip_effect>)[Bullwhip Effect]*
+- *#link(<system_dynamics_delays>)[Delays]*

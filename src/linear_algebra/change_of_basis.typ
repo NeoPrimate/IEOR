@@ -1,9 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Change of Basis <linear_algebra_change_of_basis>
 
-
-The same vector or transformation gets different #link(<linear-algebra-coordinate-vector>)[coordinate representations] depending on which #link(<linear-algebra-basis>)[basis] you use. *Change of basis* converts between two such representations.
+The same vector or transformation gets different #link(<linear_algebra_coordinate_vector>)[coordinate representations] depending on which #link(<linear_algebra_basis>)[basis] you use. *Change of basis* converts between two such representations.
 
 == Change of basis matrix
 
@@ -55,7 +55,7 @@ Then $[accent(x, arrow)]_E = P #h(0.2em) [accent(x, arrow)]_B$ (standard ↔ $B$
 
 == Change of basis for a linear transformation
 
-If a #link(<linear-algebra-linear-transformation>)[linear transformation] has matrix $A$ in basis $B$ and matrix $A'$ in basis $B'$, with change-of-basis matrix $P$ (mapping $B'$ coords to $B$ coords):
+If a #link(<linear_algebra_linear_transformation>)[linear transformation] has matrix $A$ in basis $B$ and matrix $A'$ in basis $B'$, with change-of-basis matrix $P$ (mapping $B'$ coords to $B$ coords):
 
 $
   A' = P^(-1) A P
@@ -64,20 +64,20 @@ $
 This is *similarity*. Two matrices related by $A' = P^(-1) A P$ for some invertible $P$ are *similar* — they represent the same linear transformation in different bases.
 
 Similar matrices share:
-- *#link(<linear-algebra-determinant>)[Determinant]*: $det(A') = det(A)$
-- *#link(<linear-algebra-trace>)[Trace]*: $"tr"(A') = "tr"(A)$
+- *#link(<linear_algebra_determinant>)[Determinant]*: $det(A') = det(A)$
+- *#link(<linear_algebra_trace>)[Trace]*: $"tr"(A') = "tr"(A)$
 - *Eigenvalues* (with the same multiplicities)
-- *#link(<linear-algebra-rank>)[Rank]*
+- *#link(<linear_algebra_rank>)[Rank]*
 
 == Why it matters
 
-- *#link(<linear-algebra-diagonalization>)[Diagonalization]* is exactly the search for a basis $P$ in which $A' = P^(-1) A P$ is #link(<linear-algebra-diagonal-matrix>)[diagonal] — making computation trivial.
+- *#link(<linear_algebra_diagonalization>)[Diagonalization]* is exactly the search for a basis $P$ in which $A' = P^(-1) A P$ is #link(<linear_algebra_diagonal_matrix>)[diagonal] — making computation trivial.
 - Many problems become easier in an *eigenbasis*, *orthonormal basis*, or specially-chosen adapted basis.
 
 
 == See also
 
-- *#link(<linear-algebra-coordinate-vector>)[Coordinate Vector]*
-- *#link(<linear-algebra-basis>)[Basis]*
-- *#link(<linear-algebra-diagonalization>)[Diagonalization]*
-- *#link(<linear-algebra-eigenvectors-eigenvalues>)[Eigenvectors & Eigenvalues]*
+- *#link(<linear_algebra_coordinate_vector>)[Coordinate Vector]*
+- *#link(<linear_algebra_basis>)[Basis]*
+- *#link(<linear_algebra_diagonalization>)[Diagonalization]*
+- *#link(<linear_algebra_eigenvectors_eigenvalues>)[Eigenvectors & Eigenvalues]*

@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= p-value <statistics_hypothesis_test_model_diagnostics_p_value>
+
 Probability of obtaining results at least as extreme as the observed results
 
 1. One-Tailed

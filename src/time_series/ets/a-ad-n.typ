@@ -4,6 +4,8 @@
 #import "./summary.typ": cL, cS, cT
 #import "../_data.typ" as data
 
+= A-Ad-N <time_series_ets_a-ad-n>
+
 Damped linear trend
 
 $ "ETS"(A, "Ad", N) $

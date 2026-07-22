@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Polar Coordinates <linear_algebra_polar_coordinates>
+
 Describe a point's position using a distance from the origin and an angle from a reference direction.
 
 The coordinates are $(r, theta)$, where:

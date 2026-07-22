@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Cumulative <time_series_moving_averages_cumulative>
+
 Average of *every* observation since the start of the series. The expanding-window endpoint of the moving-averages axis.
 
 $ s_t = 1/t sum_(i=1)^t x_i $

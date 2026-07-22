@@ -1,9 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Matrix–Vector Product <linear_algebra_matrix_vector_product>
 
-
-A special case of #link(<linear-algebra-matrix-multiplication>)[matrix multiplication]: a matrix times a single column vector.
+A special case of #link(<linear_algebra_matrix_multiplication>)[matrix multiplication]: a matrix times a single column vector.
 
 For an $m times n$ matrix $A$ and a vector $accent(x, arrow) in RR^n$, the product $A accent(x, arrow) in RR^m$ has entries:
 
@@ -26,9 +26,9 @@ $
 
 == Two equivalent views
 
-*1. Row view (dot products)*: each entry is a #link(<linear-algebra-dot-product>)[dot product] of a row of $A$ with $accent(x, arrow)$.
+*1. Row view (dot products)*: each entry is a #link(<linear_algebra_dot_product>)[dot product] of a row of $A$ with $accent(x, arrow)$.
 
-*2. Column view (linear combination)*: $A accent(x, arrow)$ is a #link(<linear-algebra-linear-combination>)[linear combination] of $A$'s columns, weighted by the entries of $accent(x, arrow)$:
+*2. Column view (linear combination)*: $A accent(x, arrow)$ is a #link(<linear_algebra_linear_combination>)[linear combination] of $A$'s columns, weighted by the entries of $accent(x, arrow)$:
 
 $
   A accent(x, arrow) = x_1 accent(a, arrow)_1 + x_2 accent(a, arrow)_2 + dots + x_n accent(a, arrow)_n
@@ -36,11 +36,11 @@ $
 
 where $accent(a, arrow)_j$ is the $j$-th column of $A$.
 
-This view explains why $A accent(x, arrow) = accent(b, arrow)$ has a solution iff $accent(b, arrow)$ lies in the #link(<linear-algebra-column-space>)[column space] of $A$.
+This view explains why $A accent(x, arrow) = accent(b, arrow)$ has a solution iff $accent(b, arrow)$ lies in the #link(<linear_algebra_column_space>)[column space] of $A$.
 
 == Linear transformation view
 
-Every matrix defines a #link(<linear-algebra-linear-transformation>)[linear transformation] $T_A: RR^n -> RR^m$:
+Every matrix defines a #link(<linear_algebra_linear_transformation>)[linear transformation] $T_A: RR^n -> RR^m$:
 
 $
   T_A (accent(x, arrow)) = A accent(x, arrow)

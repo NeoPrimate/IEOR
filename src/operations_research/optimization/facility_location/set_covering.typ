@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Set Covering <operations_research_optimization_facility_location_set_covering>
+
 *Set Covering Location Problem (LSCP)*: minimize the *number* of facilities needed to cover every customer at least once. "Cover" = customer is within an acceptable distance $d_("max")$ of some facility.
 
 == Formulation
@@ -101,7 +103,7 @@ Drop $y_j in {0, 1}$ to $y_j in [0, 1]$. Solve the LP:
 == Variants
 
 - *Weighted set cover*: each facility $j$ has cost $w_j$. Minimize $sum_j w_j y_j$
-- *Maximum coverage* (#link(<operations-research-optimization-max-covering>)[here]): inverted — fix facility count $p$, *maximize* coverage
+- *Maximum coverage* (#link(<operations_research_optimization_facility_location_max_covering>)[here]): inverted — fix facility count $p$, *maximize* coverage
 - *Partial cover*: cover at least $k$ of $n$ customers
 
 == Where it shows up
@@ -114,6 +116,6 @@ Drop $y_j in {0, 1}$ to $y_j in [0, 1]$. Solve the LP:
 
 == See also
 
-- *#link(<operations-research-optimization-max-covering>)[Max Covering]* — inverted variant
-- *#link(<operations-research-optimization-p-center>)[$p$-center]* — uses set covering as feasibility subroutine
-- *#link(<operations-research-optimization-facility-location>)[Facility Location overview]*
+- *#link(<operations_research_optimization_facility_location_max_covering>)[Max Covering]* — inverted variant
+- *#link(<operations_research_optimization_facility_location_p_center>)[$p$-center]* — uses set covering as feasibility subroutine
+- *#link(<operations_research_optimization_facility_location_facility_location>)[Facility Location overview]*

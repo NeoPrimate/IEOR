@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Expected Value <probability_theory_expected_value>
+
 The *expected value* $EE[X]$ is the probability-weighted average of a random variable — its long-run mean over many draws.
 
 == Discrete

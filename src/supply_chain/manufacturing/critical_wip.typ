@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Critical WIP <supply_chain_manufacturing_critical_wip>
+
 $
   W_0 = r_b T_0
 $
@@ -17,7 +19,7 @@ For *deterministic* lines, $W_0$ is the *minimum WIP* that achieves maximum thro
 
 == Real lines need more WIP
 
-Variability makes the curves wider — to achieve close-to-$r_b$ throughput on a *real* (variable) line, you need WIP somewhat above $W_0$. How much above depends on variability — see #link(<supply-chain-manufacturing-best-worst-pwc>)[best/worst/PWC] curves.
+Variability makes the curves wider — to achieve close-to-$r_b$ throughput on a *real* (variable) line, you need WIP somewhat above $W_0$. How much above depends on variability — see #link(<supply_chain_manufacturing_best_worst_pwc>)[best/worst/PWC] curves.
 
 PWC throughput at $w$ WIP:
 
@@ -47,7 +49,7 @@ For a real (variable) line, set CONWIP cap at $w^* = 400-500$ units to hit close
 
 == See also
 
-- *#link(<supply-chain-manufacturing-best-worst-pwc>)[Best/Worst/PWC]*
-- *#link(<supply-chain-manufacturing-conwip>)[CONWIP]*
-- *#link(<supply-chain-manufacturing-factory-physics>)[Factory Physics]*
-- *#link(<operations-research-queuing-theory-littles-law>)[Little's Law]*
+- *#link(<supply_chain_manufacturing_best_worst_pwc>)[Best/Worst/PWC]*
+- *#link(<supply_chain_manufacturing_conwip>)[CONWIP]*
+- *#link(<supply_chain_manufacturing_factory_physics>)[Factory Physics]*
+- *#link(<operations_research_queuing_theory_littles_law>)[Little's Law]*

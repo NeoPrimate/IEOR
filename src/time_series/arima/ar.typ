@@ -4,6 +4,8 @@
 #import "./summary.typ": cAR
 #import "../_data.typ" as data
 
+= AR <time_series_arima_ar>
+
 Autoregressive
 
 $

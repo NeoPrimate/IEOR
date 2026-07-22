@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Integer Programming <operations_research_optimization_integer_programming_integer_programming>
+
 == IP (Integer Programming)
 
 == Selection and Logical Relations on Binary Variables $x_i in {0, 1}$

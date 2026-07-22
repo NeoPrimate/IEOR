@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= MILP Idioms <operations_research_optimization_milp_idioms>
+
 == MILP Modeling Idioms
 
 Phrasebook of LP/MILP modeling idioms — small algebraic constructs that encode logic, products, piecewise terms, and other structure as linear constraints.

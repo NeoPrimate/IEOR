@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Critical Path Method (CPM) <operations_research_project_scheduling_critical_path_method>
+
 What's the shortest possible time to finish the whole project, and which tasks are "tight" (any delay on them delays the whole project)
 
 Let $G = (V, E)$ be a DAG with a duration of $d(v) gt.eq 0$ on each node. And edge $(u, v)$ means $u$ must finish before $v$ starts. $"pred"(v)$ and $"succ"(v)$ for in- and out-neighbors.

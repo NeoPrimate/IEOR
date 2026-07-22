@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Bullwhip SD <system_dynamics_bullwhip_sd>
+
 The *quantitative* analysis of supply-chain order amplification, from the system-dynamics perspective. Closed-form result by Chen, Drezner, Ryan, Simchi-Levi (2000) for the *order-up-to* (OUT) policy with AR(1) demand.
 
 == Chen-Drezner-Ryan-Simchi-Levi formula
@@ -52,7 +54,7 @@ What reduces bullwhip:
 
 == See also
 
-- *#link(<system-dynamics-stock-management>)[Stock Management]* — the decision rule
-- *#link(<system-dynamics-beer-game>)[Beer Game]* — simulation
-- *#link(<supply-chain-bullwhip-effect>)[Bullwhip Effect (Supply Chain)]* — broader view
-- *#link(<system-dynamics-delays>)[Delays]* — what enables amplification
+- *#link(<system_dynamics_stock_management>)[Stock Management]* — the decision rule
+- *#link(<system_dynamics_beer_game>)[Beer Game]* — simulation
+- *#link(<supply_chain_inventory_bullwhip_effect>)[Bullwhip Effect (Supply Chain)]* — broader view
+- *#link(<system_dynamics_delays>)[Delays]* — what enables amplification

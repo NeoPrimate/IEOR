@@ -1,6 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Diagonalization <linear_algebra_diagonalization>
 
 A square matrix $A$ is *diagonalizable* if it can be written as
 
@@ -8,9 +9,9 @@ $
   A = P D P^(-1)
 $
 
-where $D$ is a #link(<linear-algebra-diagonal-matrix>)[diagonal matrix] and $P$ is an invertible matrix.
+where $D$ is a #link(<linear_algebra_diagonal_matrix>)[diagonal matrix] and $P$ is an invertible matrix.
 
-The diagonal entries of $D$ are the #link(<linear-algebra-eigenvectors-eigenvalues>)[eigenvalues] of $A$, and the columns of $P$ are the corresponding eigenvectors.
+The diagonal entries of $D$ are the #link(<linear_algebra_eigenvectors_eigenvalues>)[eigenvalues] of $A$, and the columns of $P$ are the corresponding eigenvectors.
 
 == When is $A$ diagonalizable?
 
@@ -18,10 +19,10 @@ An $n times n$ matrix is diagonalizable iff it has $n$ linearly independent eige
 
 Equivalent conditions:
 - $A$ has $n$ distinct eigenvalues → automatically diagonalizable
-- Every eigenvalue's *geometric multiplicity* equals its *algebraic multiplicity* (see #link(<linear-algebra-characteristic-polynomial>)[Characteristic Polynomial])
+- Every eigenvalue's *geometric multiplicity* equals its *algebraic multiplicity* (see #link(<linear_algebra_characteristic_polynomial>)[Characteristic Polynomial])
 - $RR^n$ has a basis consisting of eigenvectors of $A$ (an *eigenbasis*)
 
-Some matrices are *not* diagonalizable — e.g., $mat(1, 1; 0, 1)$ has only one eigenvalue ($1$) of algebraic multiplicity $2$ but geometric multiplicity $1$. For non-diagonalizable matrices, see #link(<linear-algebra-jordan-canonical-form>)[Jordan Canonical Form].
+Some matrices are *not* diagonalizable — e.g., $mat(1, 1; 0, 1)$ has only one eigenvalue ($1$) of algebraic multiplicity $2$ but geometric multiplicity $1$. For non-diagonalizable matrices, see #link(<linear_algebra_jordan_canonical_form>)[Jordan Canonical Form].
 
 == How to diagonalize
 
@@ -59,13 +60,13 @@ with $D^k$ just powering each diagonal entry. This makes:
 
 == Spectral decomposition (real symmetric case)
 
-If $A$ is real and #link(<linear-algebra-symmetric-matrix>)[symmetric], then it's *always* diagonalizable and can be done with an #link(<linear-algebra-orthogonal-matrix>)[orthogonal] $P$:
+If $A$ is real and #link(<linear_algebra_symmetric_matrix>)[symmetric], then it's *always* diagonalizable and can be done with an #link(<linear_algebra_orthogonal_matrix>)[orthogonal] $P$:
 
 $
   A = Q D Q^T, #h(0.5em) "where" #h(0.5em) Q^T Q = I
 $
 
-This is the #link(<linear-algebra-spectral-theorem>)[Spectral Theorem] — the gold standard of diagonalization.
+This is the #link(<linear_algebra_spectral_theorem>)[Spectral Theorem] — the gold standard of diagonalization.
 
 == Failure: non-diagonalizable matrices
 
@@ -77,8 +78,8 @@ has only the eigenvalue $1$ (with algebraic multiplicity $2$) and only one indep
 
 == See also
 
-- *#link(<linear-algebra-eigenvectors-eigenvalues>)[Eigenvectors & Eigenvalues]*
-- *#link(<linear-algebra-characteristic-polynomial>)[Characteristic Polynomial]*
-- *#link(<linear-algebra-spectral-theorem>)[Spectral Theorem]* — symmetric case
-- *#link(<linear-algebra-jordan-canonical-form>)[Jordan Canonical Form]* — non-diagonalizable case
-- *#link(<linear-algebra-change-of-basis>)[Change of Basis]* — what $P$ does geometrically
+- *#link(<linear_algebra_eigenvectors_eigenvalues>)[Eigenvectors & Eigenvalues]*
+- *#link(<linear_algebra_characteristic_polynomial>)[Characteristic Polynomial]*
+- *#link(<linear_algebra_spectral_theorem>)[Spectral Theorem]* — symmetric case
+- *#link(<linear_algebra_jordan_canonical_form>)[Jordan Canonical Form]* — non-diagonalizable case
+- *#link(<linear_algebra_change_of_basis>)[Change of Basis]* — what $P$ does geometrically

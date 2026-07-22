@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Total Probability Theorem <probability_theory_total_probability_theorem>
+
 Let $B_1, B_2, dots, B_n$ be a partition of the sample space $Omega$, meaning:
 
 1.	$B_i inter B_j = emptyset forall i eq.not j$ (disjoint)

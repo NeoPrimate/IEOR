@@ -1,9 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Transformation Sum <linear_algebra_transformation_sum>
 
-
-For #link(<linear-algebra-linear-transformation>)[linear transformations] $T, S: RR^n -> RR^m$, define the sum $T + S: RR^n -> RR^m$ pointwise:
+For #link(<linear_algebra_linear_transformation>)[linear transformations] $T, S: RR^n -> RR^m$, define the sum $T + S: RR^n -> RR^m$ pointwise:
 
 $
   (T + S)(accent(x, arrow)) = T(accent(x, arrow)) + S(accent(x, arrow))
@@ -30,6 +30,6 @@ So in matrix terms: *transformation addition = matrix addition*, performed entry
 
 == Connections
 
-- *#link(<linear-algebra-transformation-scalar-multiplication>)[Scalar multiplication of transformations]* — companion operation
-- *#link(<linear-algebra-linear-transformation>)[Linear Transformation]* — the underlying object
-- *#link(<linear-algebra-matrix-multiplication>)[Matrix Multiplication]* — composition is the multiplicative analog (composition ↔ product, sum ↔ sum)
+- *#link(<linear_algebra_transformation_scalar_multiplication>)[Scalar multiplication of transformations]* — companion operation
+- *#link(<linear_algebra_linear_transformation>)[Linear Transformation]* — the underlying object
+- *#link(<linear_algebra_matrix_multiplication>)[Matrix Multiplication]* — composition is the multiplicative analog (composition ↔ product, sum ↔ sum)

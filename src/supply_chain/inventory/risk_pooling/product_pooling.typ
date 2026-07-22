@@ -1,12 +1,14 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Product Pooling <supply_chain_inventory_risk_pooling_product_pooling>
+
 Reducing inventory by *sharing parts / components across product variants* rather than holding stock for each finished SKU separately. Two main mechanisms:
 
 1. *Component commonality* — products share common parts
 2. *Postponement (delayed differentiation)* — defer customization until late in the supply chain
 
-Both convert several high-variance finished-good demands into one lower-variance component demand — a textbook application of #link(<supply-chain-risk-pooling-square-root-law>)[risk pooling].
+Both convert several high-variance finished-good demands into one lower-variance component demand — a textbook application of #link(<supply_chain_inventory_risk_pooling_square_root_law>)[risk pooling].
 
 == Postponement: the HP DeskJet case
 
@@ -79,7 +81,7 @@ So sharing strictly reduces required safety stock for the shared component.
 
 == See also
 
-- *#link(<supply-chain-risk-pooling-risk-pooling>)[Risk Pooling]*
-- *#link(<supply-chain-risk-pooling-square-root-law>)[Square-Root Law]*
-- *#link(<supply-chain-risk-pooling-location-pooling>)[Location Pooling]*
-- *#link(<supply-chain-stocks-safety-stock>)[Safety Stock]*
+- *#link(<supply_chain_inventory_risk_pooling_risk_pooling>)[Risk Pooling]*
+- *#link(<supply_chain_inventory_risk_pooling_square_root_law>)[Square-Root Law]*
+- *#link(<supply_chain_inventory_risk_pooling_location_pooling>)[Location Pooling]*
+- *#link(<supply_chain_inventory_stocks_safety_stock>)[Safety Stock]*

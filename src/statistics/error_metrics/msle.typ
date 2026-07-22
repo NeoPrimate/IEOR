@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= MSLE <statistics_error_metrics_msle>
+
 == MSLE (Mean Squared Logarithmic Error)
 
 When predictions and actual values span several orders of magnitude

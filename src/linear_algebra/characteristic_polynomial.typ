@@ -1,6 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Characteristic Polynomial <linear_algebra_characteristic_polynomial>
 
 For an $n times n$ matrix $A$, the *characteristic polynomial* is:
 
@@ -8,9 +9,9 @@ $
   p_A(lambda) = det(A - lambda I)
 $
 
-where $I$ is the $n times n$ #link(<linear-algebra-identity-matrix>)[identity matrix].
+where $I$ is the $n times n$ #link(<linear_algebra_identity_matrix>)[identity matrix].
 
-$p_A(lambda)$ is a polynomial in $lambda$ of degree $n$. Its *roots* are the #link(<linear-algebra-eigenvectors-eigenvalues>)[eigenvalues] of $A$.
+$p_A(lambda)$ is a polynomial in $lambda$ of degree $n$. Its *roots* are the #link(<linear_algebra_eigenvectors_eigenvalues>)[eigenvalues] of $A$.
 
 == Why the roots are the eigenvalues
 
@@ -39,7 +40,7 @@ By definition, $lambda$ is an eigenvalue of $A$ iff there exists a non-zero $acc
 For $A$ an $n times n$ matrix, $p_A(lambda) = (-1)^n lambda^n + dots$ with:
 
 - *Leading coefficient*: $(-1)^n$ (the sign depends on $n$; some conventions use $lambda^n - "tr"(A) lambda^(n-1) + dots$)
-- *Coefficient of $lambda^(n-1)$*: $(-1)^(n-1) "tr"(A)$ — gives the #link(<linear-algebra-trace>)[trace]
+- *Coefficient of $lambda^(n-1)$*: $(-1)^(n-1) "tr"(A)$ — gives the #link(<linear_algebra_trace>)[trace]
 - *Constant term*: $det(A)$ (set $lambda = 0$)
 
 For $2 times 2$ matrices:
@@ -53,7 +54,7 @@ $
 - *Algebraic multiplicity* of $lambda_i$: its multiplicity as a root of $p_A$.
 - *Geometric multiplicity* of $lambda_i$: $dim(ker(A - lambda_i I))$ — the number of linearly independent eigenvectors for $lambda_i$.
 
-Always: geometric multiplicity $<=$ algebraic multiplicity. Equality everywhere is required for the matrix to be #link(<linear-algebra-diagonalization>)[diagonalizable].
+Always: geometric multiplicity $<=$ algebraic multiplicity. Equality everywhere is required for the matrix to be #link(<linear_algebra_diagonalization>)[diagonalizable].
 
 == Cayley–Hamilton
 
@@ -67,7 +68,7 @@ $
 
 == See also
 
-- *#link(<linear-algebra-eigenvectors-eigenvalues>)[Eigenvectors & Eigenvalues]*
-- *#link(<linear-algebra-determinant>)[Determinant]*
-- *#link(<linear-algebra-diagonalization>)[Diagonalization]*
-- *#link(<linear-algebra-trace>)[Trace]*
+- *#link(<linear_algebra_eigenvectors_eigenvalues>)[Eigenvectors & Eigenvalues]*
+- *#link(<linear_algebra_determinant>)[Determinant]*
+- *#link(<linear_algebra_diagonalization>)[Diagonalization]*
+- *#link(<linear_algebra_trace>)[Trace]*

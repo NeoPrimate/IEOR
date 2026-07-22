@@ -1,9 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Scaling Matrix <linear_algebra_scaling_matrix>
 
-
-A *scaling matrix* stretches (or compresses) each coordinate independently. It's a #link(<linear-algebra-diagonal-matrix>)[diagonal matrix]:
+A *scaling matrix* stretches (or compresses) each coordinate independently. It's a #link(<linear_algebra_diagonal_matrix>)[diagonal matrix]:
 
 $
   S = mat(s_1, 0, dots, 0; 0, s_2, dots, 0; dots.v, dots.v, dots.down, dots.v; 0, 0, dots, s_n)
@@ -28,8 +28,8 @@ $
 
 == Properties
 
-- *#link(<linear-algebra-determinant>)[Determinant]*: $det(S) = s_1 s_2 dots s_n$ — total volume change factor
-- *#link(<linear-algebra-matrix-inverse>)[Inverse]*: $S^(-1) = "diag"(1/s_1, 1/s_2, dots, 1/s_n)$ (when all $s_i eq.not 0$)
+- *#link(<linear_algebra_determinant>)[Determinant]*: $det(S) = s_1 s_2 dots s_n$ — total volume change factor
+- *#link(<linear_algebra_matrix_inverse>)[Inverse]*: $S^(-1) = "diag"(1/s_1, 1/s_2, dots, 1/s_n)$ (when all $s_i eq.not 0$)
 - *Singular when any $s_i = 0$*: the corresponding direction is collapsed
 - *Eigenvalues*: the $s_i$'s themselves
 - *Eigenvectors*: the standard basis $e_1, e_2, dots, e_n$
@@ -39,7 +39,7 @@ $
 
 Scaling by $s_i < 0$ flips the $i$-th coordinate:
 
-- One negative entry: orientation reverses ($det < 0$) — combination of a scaling and a #link(<linear-algebra-reflection-matrix>)[reflection]
+- One negative entry: orientation reverses ($det < 0$) — combination of a scaling and a #link(<linear_algebra_reflection_matrix>)[reflection]
 - Two negative entries: orientation preserved ($det > 0$) — same as a 180° rotation by a scaling
 
 == Scaling in a general direction
@@ -57,12 +57,12 @@ Or, more directly: $S_(hat(v), c) = I + (c - 1) hat(v) hat(v)^T$ — adds $c - 1
 - $S = "diag"(s, s)$ — zoom in/out uniformly
 - $S = "diag"(2, 1)$ — stretch horizontally
 - $S = "diag"(1, -1)$ — flip vertically (= reflection)
-- Singular value decomposition (#link(<linear-algebra-svd>)[SVD]) writes every linear map as rotate–*scale*–rotate, so non-uniform scaling is the "shape-distorting" core of any matrix
+- Singular value decomposition (#link(<linear_algebra_svd>)[SVD]) writes every linear map as rotate–*scale*–rotate, so non-uniform scaling is the "shape-distorting" core of any matrix
 
 == See also
 
-- *#link(<linear-algebra-diagonal-matrix>)[Diagonal Matrix]*
-- *#link(<linear-algebra-rotation-matrix>)[Rotation Matrix]*
-- *#link(<linear-algebra-reflection-matrix>)[Reflection Matrix]*
-- *#link(<linear-algebra-shear-matrix>)[Shear Matrix]*
-- *#link(<linear-algebra-svd>)[SVD]* — every matrix is rotate–scale–rotate
+- *#link(<linear_algebra_diagonal_matrix>)[Diagonal Matrix]*
+- *#link(<linear_algebra_rotation_matrix>)[Rotation Matrix]*
+- *#link(<linear_algebra_reflection_matrix>)[Reflection Matrix]*
+- *#link(<linear_algebra_shear_matrix>)[Shear Matrix]*
+- *#link(<linear_algebra_svd>)[SVD]* — every matrix is rotate–scale–rotate

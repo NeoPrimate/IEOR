@@ -1,9 +1,11 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Heijunka <supply_chain_manufacturing_heijunka>
+
 *Heijunka* (平準化, "leveling"): a Toyota Production System technique for *smoothing* production by mixing products in a level cadence rather than running batches.
 
-Heijunka makes #link(<supply-chain-manufacturing-takt-time>)[takt time] sustainable by absorbing demand fluctuations *inside* the production system.
+Heijunka makes #link(<supply_chain_manufacturing_takt_time>)[takt time] sustainable by absorbing demand fluctuations *inside* the production system.
 
 == Volume leveling vs mix leveling
 
@@ -83,6 +85,6 @@ In those cases, partial heijunka (level the *high-volume* products, run rest in 
 
 == See also
 
-- *#link(<supply-chain-manufacturing-takt-time>)[Takt Time]*
-- *#link(<supply-chain-manufacturing-kanban-sizing>)[Kanban Sizing]*
-- *#link(<supply-chain-manufacturing-factory-physics>)[Factory Physics]*
+- *#link(<supply_chain_manufacturing_takt_time>)[Takt Time]*
+- *#link(<supply_chain_manufacturing_kanban_sizing>)[Kanban Sizing]*
+- *#link(<supply_chain_manufacturing_factory_physics>)[Factory Physics]*

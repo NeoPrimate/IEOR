@@ -4,6 +4,8 @@
 #import "./summary.typ": cL, cS, cT
 #import "../_data.typ" as data
 
+= M-A-M <time_series_ets_m-a-m>
+
 Multiplicative Holt-Winters
 
 $ "ETS"(M, A, M) $

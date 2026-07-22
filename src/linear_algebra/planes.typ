@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
+= Planes <linear_algebra_planes>
 
 A plane in $RR^3$ is the set of points $(x, y, z)$ satisfying a single linear equation:
 
@@ -90,7 +90,7 @@ $
 
 == See also
 
-- *#link(<linear-algebra-point-plane-distance>)[Point–Plane Distance]* — formula and example
-- *#link(<linear-algebra-plane-plane-distance>)[Distance Between Planes]* — parallel and non-parallel cases
-- *#link(<linear-algebra-hyperplane>)[Hyperplane]* — $n$-dimensional generalization
-- *#link(<linear-algebra-cross-product>)[Cross Product]* — building a normal from two in-plane vectors
+- *#link(<linear_algebra_point_plane_distance>)[Point–Plane Distance]* — formula and example
+- *#link(<linear_algebra_plane_plane_distance>)[Distance Between Planes]* — parallel and non-parallel cases
+- *#link(<linear_algebra_hyperplane>)[Hyperplane]* — $n$-dimensional generalization
+- *#link(<linear_algebra_cross_product>)[Cross Product]* — building a normal from two in-plane vectors

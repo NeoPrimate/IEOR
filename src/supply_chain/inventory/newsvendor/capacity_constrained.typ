@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Capacity-Constrained <supply_chain_inventory_newsvendor_capacity_constrained>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 == Capacity-constrained multi-product newsvendor

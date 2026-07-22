@@ -1,8 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Symmetric Matrix <linear_algebra_symmetric_matrix>
 
-A square matrix that equals its own #link(<linear-algebra-transpose>)[transpose]:
+A square matrix that equals its own #link(<linear_algebra_transpose>)[transpose]:
 
 $
   A^T = A #h(2em) "i.e." #h(0.5em) A_(i j) = A_(j i) "for all" i, j
@@ -28,14 +29,14 @@ $
 
 == Why symmetric matrices are special
 
-- *Real eigenvalues*: every #link(<linear-algebra-eigenvectors-eigenvalues>)[eigenvalue] of a real symmetric matrix is real
+- *Real eigenvalues*: every #link(<linear_algebra_eigenvectors_eigenvalues>)[eigenvalue] of a real symmetric matrix is real
 - *Orthogonal eigenvectors*: eigenvectors corresponding to *distinct* eigenvalues are orthogonal
-- *#link(<linear-algebra-spectral-theorem>)[Spectral theorem]*: every real symmetric matrix is *orthogonally diagonalizable*:
+- *#link(<linear_algebra_spectral_theorem>)[Spectral theorem]*: every real symmetric matrix is *orthogonally diagonalizable*:
   $
     A = Q D Q^T
   $
   where $Q$ is orthogonal and $D$ is diagonal of eigenvalues
-- Defines a *#link(<linear-algebra-quadratic-form>)[quadratic form]* $accent(x, arrow)^T A accent(x, arrow)$
+- Defines a *#link(<linear_algebra_quadratic_form>)[quadratic form]* $accent(x, arrow)^T A accent(x, arrow)$
 
 == Decomposing any matrix
 
@@ -48,7 +49,7 @@ $
 == Where they show up
 
 - *Covariance matrices* — always symmetric (and positive semi-definite)
-- *#link(<linear-algebra-quadratic-form>)[Quadratic forms]* — only the symmetric part matters
+- *#link(<linear_algebra_quadratic_form>)[Quadratic forms]* — only the symmetric part matters
 - *Hessian matrices* — symmetric for $C^2$ functions (Schwarz's theorem)
 - *Gram matrices* $X^T X$ — always symmetric and positive semi-definite
 - *Adjacency matrices* of undirected graphs — symmetric

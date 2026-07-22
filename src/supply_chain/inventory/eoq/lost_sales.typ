@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Lost Sales <supply_chain_inventory_eoq_lost_sales>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 == EOQ with lost sales

@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-Holding inventory at *one central location* (or fewer central locations) instead of at every demand point. The simplest and most direct application of #link(<supply-chain-risk-pooling-square-root-law>)[risk pooling].
+= Location Pooling <supply_chain_inventory_risk_pooling_location_pooling>
+
+Holding inventory at *one central location* (or fewer central locations) instead of at every demand point. The simplest and most direct application of #link(<supply_chain_inventory_risk_pooling_square_root_law>)[risk pooling].
 
 == Setup
 
@@ -10,7 +12,7 @@ You serve $N$ markets / regions / stores. Demand at each is random with mean $mu
 - *Decentralized*: each region holds its own safety stock — independent inventories totalling $sum z sigma_i$
 - *Centralized*: one warehouse holds aggregate safety stock $z sqrt(sum sigma_i^2)$ (for independent demands), then ships on demand
 
-Centralized cuts safety stock by $sqrt(N) / N = 1/sqrt(N)$ (the #link(<supply-chain-risk-pooling-square-root-law>)[square-root law]).
+Centralized cuts safety stock by $sqrt(N) / N = 1/sqrt(N)$ (the #link(<supply_chain_inventory_risk_pooling_square_root_law>)[square-root law]).
 
 == Numerical illustration
 
@@ -45,14 +47,14 @@ The trade-off is a *facility-location problem*:
 - More facilities → less safety stock pooling savings, but lower transport costs
 - Fewer facilities → more safety stock pooling savings, but higher transport costs
 
-The classical *square-root facility-location model* (Daganzo continuous approximation; covered in #link(<operations-research-optimization-facility-location>)[facility location]) computes the optimal number of facilities for a given demand density and cost structure.
+The classical *square-root facility-location model* (Daganzo continuous approximation; covered in #link(<operations_research_optimization_facility_location_facility_location>)[facility location]) computes the optimal number of facilities for a given demand density and cost structure.
 
 == Other forms
 
 - *Inventory pooling*: physical centralization (one warehouse)
 - *Virtual pooling*: separate physical inventories that share via inter-location transfers (transshipments)
 - *Substitution-based pooling*: customer accepts a different but similar product
-- *Lead-time pooling*: covered separately at #link(<supply-chain-risk-pooling-lead-time-pooling>)[lead-time pooling]
+- *Lead-time pooling*: covered separately at #link(<supply_chain_inventory_risk_pooling_lead_time_pooling>)[lead-time pooling]
 
 == Real-world examples
 
@@ -63,7 +65,7 @@ The classical *square-root facility-location model* (Daganzo continuous approxim
 
 == See also
 
-- *#link(<supply-chain-risk-pooling-risk-pooling>)[Risk Pooling]* — overview
-- *#link(<supply-chain-risk-pooling-square-root-law>)[Square-Root Law]*
-- *#link(<supply-chain-risk-pooling-correlated-pooling>)[Correlated Pooling]*
-- *#link(<operations-research-optimization-facility-location>)[Facility Location]*
+- *#link(<supply_chain_inventory_risk_pooling_risk_pooling>)[Risk Pooling]* — overview
+- *#link(<supply_chain_inventory_risk_pooling_square_root_law>)[Square-Root Law]*
+- *#link(<supply_chain_inventory_risk_pooling_correlated_pooling>)[Correlated Pooling]*
+- *#link(<operations_research_optimization_facility_location_facility_location>)[Facility Location]*

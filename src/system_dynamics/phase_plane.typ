@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Phase Plane <system_dynamics_phase_plane>
+
 A graphical method for analyzing 2-state dynamical systems. Plot the two state variables on axes; the system's trajectory traces a curve in this plane.
 
 == For a 2-state system
@@ -77,7 +79,7 @@ $
   )
 $
 
-Trace $= 0$, $det > 0$. Pure imaginary eigenvalues → *center* → closed orbits. (Confirms #link(<system-dynamics-lotka-volterra>)[Lotka-Volterra]'s well-known oscillation.)
+Trace $= 0$, $det > 0$. Pure imaginary eigenvalues → *center* → closed orbits. (Confirms #link(<system_dynamics_lotka_volterra>)[Lotka-Volterra]'s well-known oscillation.)
 
 == Limit cycles and chaos
 
@@ -95,8 +97,8 @@ For 3+ states, eigenvalue computation generalizes. The *Routh-Hurwitz criterion*
 
 == See also
 
-- *#link(<system-dynamics-feedback-loops>)[Feedback Loops]*
-- *#link(<system-dynamics-second-order>)[Second-Order Systems]*
-- *#link(<system-dynamics-lotka-volterra>)[Lotka-Volterra]* — phase plane example
-- *#link(<calculus-differential-equations>)[Differential Equations]*
-- *#link(<linear-algebra-eigenvectors-eigenvalues>)[Eigenvectors / Eigenvalues]* — for the Jacobian
+- *#link(<system_dynamics_feedback_loops>)[Feedback Loops]*
+- *#link(<system_dynamics_second_order>)[Second-Order Systems]*
+- *#link(<system_dynamics_lotka_volterra>)[Lotka-Volterra]* — phase plane example
+- *#link(<calculus_differential_equations_differential_equations>)[Differential Equations]*
+- *#link(<linear_algebra_eigenvectors_eigenvalues>)[Eigenvectors / Eigenvalues]* — for the Jacobian

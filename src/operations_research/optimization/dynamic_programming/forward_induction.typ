@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-The dual of #link(<operations-research-optimization-backward-induction>)[backward induction]. Instead of computing the optimal cost-*from* each state, compute the optimal cost *to arrive at* each state from $s_0$.
+= Forward Induction <operations_research_optimization_dynamic_programming_forward_induction>
+
+The dual of #link(<operations_research_optimization_dynamic_programming_backward_induction>)[backward induction]. Instead of computing the optimal cost-*from* each state, compute the optimal cost *to arrive at* each state from $s_0$.
 
 == Setup
 
@@ -59,7 +61,7 @@ Both compute the same optimum.
 
 The classic forward DP. Topologically sort the DAG; visit each node in order, computing $V[s']$ as the minimum of $V[s] + c(s, s')$ over all predecessors $s$.
 
-This is exactly what Bellman-Ford / Dijkstra-on-DAGs does — see #link(<algorithms-dijkstra>)[Dijkstra] (which is a forward DP with priority-queue ordering).
+This is exactly what Bellman-Ford / Dijkstra-on-DAGs does — see #link(<algorithms_shortest_path_dijkstra>)[Dijkstra] (which is a forward DP with priority-queue ordering).
 
 == When forward is the right choice
 
@@ -69,7 +71,7 @@ This is exactly what Bellman-Ford / Dijkstra-on-DAGs does — see #link(<algorit
 
 == See also
 
-- *#link(<operations-research-optimization-backward-induction>)[Backward Induction]* — dual
-- *#link(<operations-research-optimization-bellman-equation>)[Bellman Equation]*
-- *#link(<algorithms-dijkstra>)[Dijkstra]* — forward DP with priority queue
-- *#link(<algorithms-dijkstra>)[Bellman-Ford]* — forward DP, handles negative edges
+- *#link(<operations_research_optimization_dynamic_programming_backward_induction>)[Backward Induction]* — dual
+- *#link(<operations_research_optimization_dynamic_programming_bellman_equation>)[Bellman Equation]*
+- *#link(<algorithms_shortest_path_dijkstra>)[Dijkstra]* — forward DP with priority queue
+- *#link(<algorithms_shortest_path_dijkstra>)[Bellman-Ford]* — forward DP, handles negative edges

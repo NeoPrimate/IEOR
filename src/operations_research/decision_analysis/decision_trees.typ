@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-A *decision tree* is the standard graphical model for #link(<operations-research-decision-analysis-decision-analysis>)[decision analysis]. Branches represent decisions or random outcomes; leaves carry payoffs; the tree's root is "now".
+= Decision Trees <operations_research_decision_analysis_decision_trees>
+
+A *decision tree* is the standard graphical model for #link(<operations_research_decision_analysis_decision_analysis>)[decision analysis]. Branches represent decisions or random outcomes; leaves carry payoffs; the tree's root is "now".
 
 == Node types
 
@@ -33,7 +35,7 @@ At each decision node: pick the branch with the best expected payoff
 At the root: read off the optimal first decision and its expected value
 ```
 
-This is just #link(<operations-research-optimization-backward-induction>)[backward induction] applied to a decision tree.
+This is just #link(<operations_research_optimization_dynamic_programming_backward_induction>)[backward induction] applied to a decision tree.
 
 == Solving the example
 
@@ -65,7 +67,7 @@ After solving, vary inputs (probabilities, payoffs) and re-solve. Identify which
 
 == See also
 
-- *#link(<operations-research-decision-analysis-emv>)[EMV]* — the standard criterion
-- *#link(<operations-research-decision-analysis-evpi>)[EVPI]* — value of resolving uncertainty
-- *#link(<operations-research-decision-analysis-evsi>)[EVSI]* — value of imperfect info
-- *#link(<operations-research-optimization-backward-induction>)[Backward Induction]* — same algorithm
+- *#link(<operations_research_decision_analysis_emv>)[EMV]* — the standard criterion
+- *#link(<operations_research_decision_analysis_evpi>)[EVPI]* — value of resolving uncertainty
+- *#link(<operations_research_decision_analysis_evsi>)[EVSI]* — value of imperfect info
+- *#link(<operations_research_optimization_dynamic_programming_backward_induction>)[Backward Induction]* — same algorithm

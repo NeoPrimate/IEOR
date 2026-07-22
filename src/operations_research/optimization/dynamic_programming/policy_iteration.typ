@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-An alternative to #link(<operations-research-optimization-value-iteration>)[value iteration] for infinite-horizon MDPs. Alternates between *evaluating* the current policy and *improving* it.
+= Policy Iteration <operations_research_optimization_dynamic_programming_policy_iteration>
+
+An alternative to #link(<operations_research_optimization_dynamic_programming_value_iteration>)[value iteration] for infinite-horizon MDPs. Alternates between *evaluating* the current policy and *improving* it.
 
 == Algorithm
 
@@ -84,7 +86,7 @@ This LP has $|cal(S)|$ variables and $|cal(S)| dot |cal(A)|$ constraints. Solvin
 
 == See also
 
-- *#link(<operations-research-optimization-value-iteration>)[Value Iteration]* — the alternative
-- *#link(<operations-research-optimization-bellman-equation>)[Bellman Equation]*
-- *#link(<operations-research-optimization-stochastic-dp>)[Stochastic DP]*
-- *#link(<operations-research-optimization-linear-programming>)[Linear Programming]* — LP reformulation
+- *#link(<operations_research_optimization_dynamic_programming_value_iteration>)[Value Iteration]* — the alternative
+- *#link(<operations_research_optimization_dynamic_programming_bellman_equation>)[Bellman Equation]*
+- *#link(<operations_research_optimization_dynamic_programming_stochastic_dp>)[Stochastic DP]*
+- *#link(<operations_research_optimization_linear_programming_linear_programming>)[Linear Programming]* — LP reformulation

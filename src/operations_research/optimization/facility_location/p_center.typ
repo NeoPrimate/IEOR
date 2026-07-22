@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= p-Center <operations_research_optimization_facility_location_p_center>
+
 *$p$-Center Problem*: place $p$ facilities to *minimize the maximum* distance any customer must travel to its nearest facility. A *minimax* objective — focuses on the worst-served customer, not average.
 
 == Formulation
@@ -31,11 +33,11 @@ Variable $z$ is the maximum cost; minimizing $z$ subject to constraints is *mini
 - *Equity*: avoid concentrating service in dense areas at the expense of remote customers
 - *Service-level agreements*: "no customer more than $X$ miles away" is a hard constraint
 
-vs *$p$-median* (#link(<operations-research-optimization-p-median>)[$p$-median]) which minimizes *total* (= average × N) distance.
+vs *$p$-median* (#link(<operations_research_optimization_facility_location_p_median>)[$p$-median]) which minimizes *total* (= average × N) distance.
 
 == Solution methods
 
-*Decision-version* of $p$-center: "is there a placement with max distance $<= r$?" This is a *#link(<operations-research-optimization-set-covering>)[set covering] problem*: each facility covers all customers within $r$, and you need $p$ facilities whose covers union to the full customer set.
+*Decision-version* of $p$-center: "is there a placement with max distance $<= r$?" This is a *#link(<operations_research_optimization_facility_location_set_covering>)[set covering] problem*: each facility covers all customers within $r$, and you need $p$ facilities whose covers union to the full customer set.
 
 *Algorithm*: binary search on $r$.
 
@@ -66,6 +68,6 @@ This achieves max distance $<= 2 dot $ OPT. Tight — no better than 2 is possib
 
 == See also
 
-- *#link(<operations-research-optimization-p-median>)[$p$-median]* — total-distance variant
-- *#link(<operations-research-optimization-set-covering>)[Set Covering]* — the feasibility subproblem
-- *#link(<operations-research-optimization-facility-location>)[Facility Location overview]*
+- *#link(<operations_research_optimization_facility_location_p_median>)[$p$-median]* — total-distance variant
+- *#link(<operations_research_optimization_facility_location_set_covering>)[Set Covering]* — the feasibility subproblem
+- *#link(<operations_research_optimization_facility_location_facility_location>)[Facility Location overview]*

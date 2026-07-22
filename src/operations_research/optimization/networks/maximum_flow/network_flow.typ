@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Network Flow <operations_research_optimization_networks_maximum_flow_network_flow>
+
 Types of Problems:
 
 - Maximum Flow

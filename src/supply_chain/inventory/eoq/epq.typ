@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= EPQ <supply_chain_inventory_eoq_epq>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 == EPQ (Economic Production Quantity)

@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= CDF <statistics_functions_cdf>
+
 == CDF (Cumulative Distribution Function)
 
 Gives the probability that $X$ will take a value less than or equal to $x$

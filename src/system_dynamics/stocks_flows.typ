@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-The foundation of #link(<system-dynamics-system-dynamics>)[system dynamics] modeling. Two element types:
+= Stocks Flows <system_dynamics_stocks_flows>
+
+The foundation of #link(<system_dynamics_system_dynamics>)[system dynamics] modeling. Two element types:
 
 - *Stocks* (or *levels*) — accumulations: inventory, population, money
 - *Flows* (or *rates*) — rates of change: orders, births, spending
@@ -83,7 +85,7 @@ Stocks and flows = the language of *ordinary differential equations* (ODEs). SD 
 
 == See also
 
-- *#link(<system-dynamics-causal-loop-diagrams>)[Causal Loop Diagrams]* — qualitative version
-- *#link(<system-dynamics-feedback-loops>)[Feedback Loops]*
-- *#link(<system-dynamics-numerical-integration>)[Numerical Integration]* — for simulation
-- *#link(<calculus-differential-equations>)[Differential Equations]*
+- *#link(<system_dynamics_causal_loop_diagrams>)[Causal Loop Diagrams]* — qualitative version
+- *#link(<system_dynamics_feedback_loops>)[Feedback Loops]*
+- *#link(<system_dynamics_numerical_integration>)[Numerical Integration]* — for simulation
+- *#link(<calculus_differential_equations_differential_equations>)[Differential Equations]*

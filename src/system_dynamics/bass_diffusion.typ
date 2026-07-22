@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-A simple #link(<system-dynamics-system-dynamics>)[SD] model of new-product adoption. Frank Bass (1969). Predicts the characteristic *S-shaped* adoption curve from two parameters.
+= Bass Diffusion <system_dynamics_bass_diffusion>
+
+A simple #link(<system_dynamics_system_dynamics>)[SD] model of new-product adoption. Frank Bass (1969). Predicts the characteristic *S-shaped* adoption curve from two parameters.
 
 == Model
 
@@ -71,6 +73,6 @@ Most consumer-electronics product launches use Bass as the baseline forecast.
 
 == See also
 
-- *#link(<system-dynamics-logistic-growth>)[Logistic Growth]* — similar S-curve, simpler model
-- *#link(<system-dynamics-feedback-loops>)[Feedback Loops]* — R + B = S-curve archetype
-- *#link(<system-dynamics-system-dynamics>)[System Dynamics overview]*
+- *#link(<system_dynamics_logistic_growth>)[Logistic Growth]* — similar S-curve, simpler model
+- *#link(<system_dynamics_feedback_loops>)[Feedback Loops]* — R + B = S-curve archetype
+- *#link(<system_dynamics_system_dynamics>)[System Dynamics overview]*

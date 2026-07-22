@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= (R, S) <supply_chain_inventory_policies_R_S>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 Periodic review, *order-up-to* $S$. The simplest periodic-review policy.

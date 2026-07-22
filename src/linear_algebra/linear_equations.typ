@@ -1,8 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
-
+= Linear Equations <linear_algebra_linear_equations>
 
 == Solving Systems of Linear Equations
 

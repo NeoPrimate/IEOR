@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Inventory Turnover <supply_chain_inventory_metrics_inventory_turnover>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 How many times the inventory "turns over" (is sold and replaced) per year. The single most-cited inventory metric.

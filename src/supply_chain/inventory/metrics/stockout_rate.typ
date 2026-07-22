@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Stockout Rate <supply_chain_inventory_metrics_stockout_rate>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 The *measured* frequency of stockouts. A KPI for assessing how well an inventory system is actually performing — distinct from the *target* service level used to design the policy.

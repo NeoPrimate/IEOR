@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Theory of Constraints <supply_chain_manufacturing_theory_of_constraints>
+
 *Theory of Constraints* (TOC, Goldratt 1984): a management philosophy that says system performance is determined by the *bottleneck* (the constraint). Identify the bottleneck, exploit it, subordinate everything else.
 
 == The five focusing steps
@@ -45,7 +47,7 @@ A scheduling discipline derived from TOC:
 - *Buffer*: small protective inventory in front of the bottleneck — never let it starve
 - *Rope*: communicates bottleneck demand backward to release new work into the system (a "rope" tying the entry point to the bottleneck)
 
-DBR is essentially #link(<supply-chain-manufacturing-conwip>)[CONWIP] but with the WIP cap chosen to keep just the *right amount* of buffer in front of the bottleneck.
+DBR is essentially #link(<supply_chain_manufacturing_conwip>)[CONWIP] but with the WIP cap chosen to keep just the *right amount* of buffer in front of the bottleneck.
 
 == Compared to Lean
 
@@ -64,7 +66,7 @@ Many production systems benefit from *both* — Lean to reduce variability and w
 
 == See also
 
-- *#link(<supply-chain-manufacturing-factory-physics>)[Factory Physics]* — quantitative bottleneck analysis
-- *#link(<supply-chain-manufacturing-conwip>)[CONWIP]* — DBR's modern equivalent
-- *#link(<supply-chain-manufacturing-line-balancing>)[Line Balancing]*
-- *#link(<supply-chain-manufacturing-best-worst-pwc>)[Best/Worst/PWC]*
+- *#link(<supply_chain_manufacturing_factory_physics>)[Factory Physics]* — quantitative bottleneck analysis
+- *#link(<supply_chain_manufacturing_conwip>)[CONWIP]* — DBR's modern equivalent
+- *#link(<supply_chain_manufacturing_line_balancing>)[Line Balancing]*
+- *#link(<supply_chain_manufacturing_best_worst_pwc>)[Best/Worst/PWC]*

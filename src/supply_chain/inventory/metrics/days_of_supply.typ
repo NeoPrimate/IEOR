@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Days of Supply <supply_chain_inventory_metrics_days_of_supply>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 How many days the current inventory will last at the current consumption rate. The "human-readable" cousin of turnover.

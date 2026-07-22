@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= EOQ <supply_chain_inventory_eoq_eoq>
+
 // `cm` highlights the token that *changed* between the previous derivation line and this one.
 // `rm` highlights a token that *vanishes* (zeroed out, dropped, or cancelled).
 #let cm(x) = text(fill: red, [$#x$])

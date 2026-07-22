@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Likelihood <statistics_functions_likelihood>
+
 $
   #math.cal("L") (theta | x) = f(x | theta)
 $

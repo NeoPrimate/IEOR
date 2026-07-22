@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Differential Equations <calculus_differential_equations_differential_equations>
+
 A differential equation specifies a relationship between an unknown function and its derivatives
 
 Solving for (an) unknown function(s) that satisfy this relationship

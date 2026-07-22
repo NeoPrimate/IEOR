@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Ready Rate <supply_chain_inventory_service_levels_ready_rate>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 == Ready Rate (Time-based service level)

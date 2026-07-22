@@ -1,9 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Coordinate Vector <linear_algebra_coordinate_vector>
 
-
-Given a #link(<linear-algebra-basis>)[basis] $B = {accent(v, arrow)_1, accent(v, arrow)_2, dots, accent(v, arrow)_n}$ of a vector space $V$, every $accent(x, arrow) in V$ has a *unique* representation as a #link(<linear-algebra-linear-combination>)[linear combination] of the basis vectors:
+Given a #link(<linear_algebra_basis>)[basis] $B = {accent(v, arrow)_1, accent(v, arrow)_2, dots, accent(v, arrow)_n}$ of a vector space $V$, every $accent(x, arrow) in V$ has a *unique* representation as a #link(<linear_algebra_linear_combination>)[linear combination] of the basis vectors:
 
 $
   accent(x, arrow) = c_1 accent(v, arrow)_1 + c_2 accent(v, arrow)_2 + dots + c_n accent(v, arrow)_n
@@ -50,17 +50,17 @@ Coordinates make abstract vectors *computable*: once we fix a basis, every vecto
 
 Different bases reveal different aspects:
 - *Standard basis*: most natural for $RR^n$
-- *Eigenbasis*: makes the matrix of a linear transformation #link(<linear-algebra-diagonal-matrix>)[diagonal] (when one exists — see #link(<linear-algebra-diagonalization>)[Diagonalization])
+- *Eigenbasis*: makes the matrix of a linear transformation #link(<linear_algebra_diagonal_matrix>)[diagonal] (when one exists — see #link(<linear_algebra_diagonalization>)[Diagonalization])
 - *Orthonormal basis*: distances and angles match the standard formulas
 - *Adapted basis*: chosen to simplify a specific subspace structure
 
 == Connection to change of basis
 
-When you switch between two bases $B$ and $B'$, the coordinate vectors are related by an invertible matrix — see #link(<linear-algebra-change-of-basis>)[Change of Basis].
+When you switch between two bases $B$ and $B'$, the coordinate vectors are related by an invertible matrix — see #link(<linear_algebra_change_of_basis>)[Change of Basis].
 
 == See also
 
-- *#link(<linear-algebra-basis>)[Basis]*
-- *#link(<linear-algebra-change-of-basis>)[Change of Basis]*
-- *#link(<linear-algebra-vector-space>)[Vector Space]*
-- *#link(<linear-algebra-matrix-representation>)[Matrix Representation]* — coordinates of $T(accent(x, arrow))$ in terms of coordinates of $accent(x, arrow)$
+- *#link(<linear_algebra_basis>)[Basis]*
+- *#link(<linear_algebra_change_of_basis>)[Change of Basis]*
+- *#link(<linear_algebra_vector_space>)[Vector Space]*
+- *#link(<linear_algebra_matrix_representation>)[Matrix Representation]* — coordinates of $T(accent(x, arrow))$ in terms of coordinates of $accent(x, arrow)$

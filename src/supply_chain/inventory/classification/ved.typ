@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= VED <supply_chain_inventory_classification_ved>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 == VED Analysis (Vital / Essential / Desirable)

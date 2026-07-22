@@ -4,6 +4,8 @@
 #import "./summary.typ": cL, cS, cT
 #import "../_data.typ" as data
 
+= M-Ad-M <time_series_ets_m-ad-m>
+
 Damped multiplicative Holt-Winters
 
 $ "ETS"(M, "Ad", M) $

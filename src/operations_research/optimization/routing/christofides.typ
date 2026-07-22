@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-A $3/2$-approximation algorithm for the *metric* #link(<operations-research-optimization-tsp>)[TSP] — produces tours guaranteed within $1.5 times$ optimal.
+= Christofides <operations_research_optimization_routing_christofides>
+
+A $3/2$-approximation algorithm for the *metric* #link(<operations_research_optimization_routing_tsp>)[TSP] — produces tours guaranteed within $1.5 times$ optimal.
 
 For 40 years, this was the best-known approximation ratio. In 2020, Karlin-Klein-Gharan improved it slightly (to $1.5 - 10^(-36)$). Christofides' algorithm remains the standard reference point.
 
@@ -27,12 +29,12 @@ The output is a Hamiltonian tour with total length $<= 1.5 dot $ OPT.
 
 == Complexity
 
-- MST: $O(E log V)$ — see #link(<operations-research-optimization-min-spanning-tree>)[MST]
+- MST: $O(E log V)$ — see #link(<operations_research_optimization_networks_min_spanning_tree>)[MST]
 - Min-weight matching: $O(|O|^3)$ — most expensive step in practice
 - Eulerian circuit: $O(E)$
 - *Total*: $O(V^3)$, dominated by matching
 
-The matching step makes Christofides slower than simpler heuristics like #link(<operations-research-optimization-tsp-2opt>)[2-opt] on large instances.
+The matching step makes Christofides slower than simpler heuristics like #link(<operations_research_optimization_routing_tsp_2opt>)[2-opt] on large instances.
 
 == When triangle inequality fails
 
@@ -46,12 +48,12 @@ For *Euclidean TSP* in the plane:
 
 == Worth knowing in 2026
 
-- *#link(<operations-research-optimization-tsp-2opt>)[2-opt / LK]* heuristics give better solutions in practice (no guarantee but tighter results)
+- *#link(<operations_research_optimization_routing_tsp_2opt>)[2-opt / LK]* heuristics give better solutions in practice (no guarantee but tighter results)
 - Christofides is the *theoretical benchmark* — used in proofs, complexity arguments
 - *Metric TSP*: still the only easy worst-case bound to cite
 
 == See also
 
-- *#link(<operations-research-optimization-tsp>)[TSP]* — problem
-- *#link(<operations-research-optimization-tsp-2opt>)[TSP 2-opt]* — heuristic alternative
-- *#link(<operations-research-optimization-min-spanning-tree>)[MST]* — used in step 1
+- *#link(<operations_research_optimization_routing_tsp>)[TSP]* — problem
+- *#link(<operations_research_optimization_routing_tsp_2opt>)[TSP 2-opt]* — heuristic alternative
+- *#link(<operations_research_optimization_networks_min_spanning_tree>)[MST]* — used in step 1

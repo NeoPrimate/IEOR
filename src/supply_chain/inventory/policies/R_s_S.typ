@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= (R, s, S) <supply_chain_inventory_policies_R_s_S>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 Periodic review with a reorder point. Generalizes (R, S) by adding a "do nothing" option when inventory is high.

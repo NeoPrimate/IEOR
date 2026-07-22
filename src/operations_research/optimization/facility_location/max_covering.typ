@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-*Max Covering Location Problem (MCLP)*: place exactly $p$ facilities to *maximize the demand covered*. Inversion of #link(<operations-research-optimization-set-covering>)[set covering]: fix count, maximize coverage.
+= Max Covering <operations_research_optimization_facility_location_max_covering>
+
+*Max Covering Location Problem (MCLP)*: place exactly $p$ facilities to *maximize the demand covered*. Inversion of #link(<operations_research_optimization_facility_location_set_covering>)[set covering]: fix count, maximize coverage.
 
 == Formulation
 
@@ -86,8 +88,8 @@ With $p = 2$ facilities and a fixed coverage radius, a low-demand outlier (red) 
   align: (left, left, left),
   stroke: none,
   table.header([Problem], [Objective], [Fixed]),
-  [#link(<operations-research-optimization-set-covering>)[Set covering]], [minimize number of facilities], [cover all demand within $d_("max")$],
-  [#link(<operations-research-optimization-p-center>)[$p$-center]], [min $d_("max")$], [$p$ facilities, cover all],
+  [#link(<operations_research_optimization_facility_location_set_covering>)[Set covering]], [minimize number of facilities], [cover all demand within $d_("max")$],
+  [#link(<operations_research_optimization_facility_location_p_center>)[$p$-center]], [min $d_("max")$], [$p$ facilities, cover all],
   [Max covering], [max demand covered], [$p$ facilities and $d_("max")$ fixed],
 )
 
@@ -125,6 +127,6 @@ The $1 - 1/e$ bound is the classical Nemhauser bound for monotone submodular max
 
 == See also
 
-- *#link(<operations-research-optimization-set-covering>)[Set Covering]* — dual variant
-- *#link(<operations-research-optimization-p-center>)[$p$-center]*
-- *#link(<operations-research-optimization-facility-location>)[Facility Location overview]*
+- *#link(<operations_research_optimization_facility_location_set_covering>)[Set Covering]* — dual variant
+- *#link(<operations_research_optimization_facility_location_p_center>)[$p$-center]*
+- *#link(<operations_research_optimization_facility_location_facility_location>)[Facility Location overview]*

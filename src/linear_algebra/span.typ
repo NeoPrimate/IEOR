@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Span <linear_algebra_span>
+
 Represents the subspace of the vector space that is "covered" by these vectors through their linear combinations
 
 If you have a set of vectors $v_1, v_2, dots, v_n$, the span of these vectors is the set of all vectors that can be written as:

@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Sets <real_analysis_sets>
+
 #set math.equation(numbering: "(1)")
 #show math.equation: it => {
   if it.block and not it.has("label") and it.numbering != none [

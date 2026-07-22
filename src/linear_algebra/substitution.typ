@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Substitution <linear_algebra_substitution>
+
 #example[
 
   #linebreak()

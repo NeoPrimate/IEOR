@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Cartesian Coordinates <linear_algebra_cartesian_coordinates>
+
 Describe a point's position using perpendicular axes.
 
 The coordinates are $(x, y)$, where:

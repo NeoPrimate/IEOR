@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-*Rough-Cut Capacity Planning* (RCCP): a *feasibility check* on the #link(<supply-chain-planning-mps>)[MPS]. Estimates whether key resources (workforce, machines, materials) can support the planned production *before* committing to MRP.
+= RCCP <supply_chain_planning_rccp>
+
+*Rough-Cut Capacity Planning* (RCCP): a *feasibility check* on the #link(<supply_chain_planning_mps>)[MPS]. Estimates whether key resources (workforce, machines, materials) can support the planned production *before* committing to MRP.
 
 == Why RCCP
 
@@ -73,6 +75,6 @@ RCCP is *sufficient* for strategic planning; *insufficient* for shop-floor execu
 
 == See also
 
-- *#link(<supply-chain-planning-mps>)[MPS]* — what RCCP checks
-- *#link(<supply-chain-planning-mrp>)[MRP]* — downstream of RCCP
-- *#link(<supply-chain-planning-aggregate-planning>)[Aggregate Planning]* — upstream of RCCP
+- *#link(<supply_chain_planning_mps>)[MPS]* — what RCCP checks
+- *#link(<supply_chain_planning_mrp>)[MRP]* — downstream of RCCP
+- *#link(<supply_chain_planning_aggregate_planning>)[Aggregate Planning]* — upstream of RCCP

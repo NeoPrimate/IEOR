@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Classical <time_series_decomposition_classical>
+
 Decompose a time series $y_t$ into four components that *add up* (or *multiply*) back to the original:
 
 - *Level* $L_t$: baseline value around which the series fluctuates

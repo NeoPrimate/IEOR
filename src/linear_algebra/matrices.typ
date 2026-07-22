@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
+= Matrices <linear_algebra_matrices>
 
 $m times n$ matrix $bold(A)$
 - $m$: rows

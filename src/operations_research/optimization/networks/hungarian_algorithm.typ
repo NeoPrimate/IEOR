@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-The classical $O(n^3)$ algorithm for the #link(<operations-research-optimization-assignment-problem>)[assignment problem]. Kuhn (1955), based on work by Hungarian mathematicians Egerváry & König.
+= Hungarian Algorithm <operations_research_optimization_networks_hungarian_algorithm>
+
+The classical $O(n^3)$ algorithm for the #link(<operations_research_optimization_networks_assignment_problem>)[assignment problem]. Kuhn (1955), based on work by Hungarian mathematicians Egerváry & König.
 
 == Algorithm (intuition)
 
@@ -69,5 +71,5 @@ Modern variants:
 
 == See also
 
-- *#link(<operations-research-optimization-assignment-problem>)[Assignment Problem]* — the problem being solved
-- *#link(<operations-research-optimization-transportation-problem>)[Transportation Problem]* — generalization
+- *#link(<operations_research_optimization_networks_assignment_problem>)[Assignment Problem]* — the problem being solved
+- *#link(<operations_research_optimization_networks_transportation_problem>)[Transportation Problem]* — generalization

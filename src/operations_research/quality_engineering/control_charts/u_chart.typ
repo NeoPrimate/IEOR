@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= U-Chart <operations_research_quality_engineering_control_charts_u_chart>
+
 Defects per unit (variable unit size)
 
 $

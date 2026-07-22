@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Confidence Intervals <statistics_hypothesis_test_model_diagnostics_confidence_intervals>
+
 Range within which we can be confident that the true value (population parameter) lies, based on the sample data
 
 $
@@ -61,10 +63,10 @@ $
   xaxis: (
     mirror: false,
     ticks: (
-      (-b,   text(size: 7pt)[$mu - b$]),
-      (b,    text(size: 7pt)[$mu + b$]),
-      (xbar, text(size: 7pt)[$overline(X)$]),
-      (mu_,  text(size: 7pt)[$mu$]),
+      (-b,   text(size: 7pt, math.equation(block: true, $mu - b$))),
+      (b,    text(size: 7pt, math.equation(block: true, $mu + b$))),
+      (xbar, text(size: 7pt, math.equation(block: true, $overline(X)$))),
+      (mu_,  text(size: 7pt, math.equation(block: true, $mu$))),
     ),
   ),
   lq.fill-between(xf, yf, fill: blue.transparentize(75%)),
@@ -73,7 +75,7 @@ $
   lq.vlines(-b,  stroke: black.transparentize(90%)),
   lq.vlines(b,   stroke: black.transparentize(90%)),
   lq.vlines(xbar, stroke: black.transparentize(90%)),
-  lq.place(0, 0.3, $p$),
+  lq.place(0, 0.3, text(size: 7pt, math.equation(block: true, $p$))),
 )
 
 #lq.diagram(
@@ -82,10 +84,9 @@ $
   xaxis: (
     mirror: false,
     ticks: (
-      (-b,   $-z$),
-      (b,    $z$),
-      // (xbar, $overline(X)$),
-      (mu_, $0$),
+      (-b,   text(size: 7pt, math.equation(block: true, $-z$))),
+      (b,   text(size: 7pt, math.equation(block: true, $z$))),
+      (mu_, text(size: 7pt, math.equation(block: true, $0$))),
     ),
   ),
   lq.fill-between(xf, yf, fill: blue.transparentize(75%)),
@@ -192,20 +193,25 @@ $
   xbar = 10
   s = 5
   n = 1000
-
   conf = 0.90
 
-  p = 1 - ((1 - conf) / 2)
-  crit = t.ppf(p, df=n-1)
-  se = s / (np.sqrt(n))
+  df = n - 1
+  alpha = 1 - conf
+  p = 1 - alpha / 2
+  crit = t.ppf(p, df=df)
+  se = s / np.sqrt(n)
+  moe = crit * se
 
-  print(f"Cumulative Probability: {p:.2f}")
-  print(f"Critical Value: {crit:.2f}")
-  print(f"Standard Error: {se:.2f}")
+  print(f"Degrees of Freedom:     {df}")
+  print(f"Alpha:                  {alpha:.2f}")
+  print(f"Cumulative Probability: {p:.3f}")
+  print(f"Critical Value (t):     {crit:.4f}")
+  print(f"Critical Value (z):     {norm.ppf(p):.4f}")
+  print(f"Standard Error:         {se:.4f}")
+  print(f"Margin of Error:        {moe:.4f}")
 
-  lower = xbar - crit * se
-  upper = xbar + crit * se
-
-  print(f"Confidence Interval: [{lower:.2f}, {upper:.2f}]")
+  lower, upper = xbar - moe, xbar + moe
+  print(f"Confidence Interval:    [{lower:.2f}, {upper:.2f}]")
+  print(f"Check:                  {t.interval(conf, df, loc=xbar, scale=se)}")
   ```
 ]

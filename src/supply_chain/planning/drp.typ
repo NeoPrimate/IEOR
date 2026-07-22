@@ -1,9 +1,11 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= DRP <supply_chain_planning_drp>
+
 *Distribution Requirements Planning* (DRP): MRP applied to the *distribution side* of the supply chain. Plans replenishment of regional warehouses / DCs / retail stores from upstream sources.
 
-Whereas #link(<supply-chain-planning-mrp>)[MRP] explodes finished-good demand into component requirements, DRP *aggregates* downstream demand into upstream-warehouse requirements.
+Whereas #link(<supply_chain_planning_mrp>)[MRP] explodes finished-good demand into component requirements, DRP *aggregates* downstream demand into upstream-warehouse requirements.
 
 == Setup
 
@@ -70,7 +72,7 @@ Both use the same record structure (gross requirements, on-hand, planned orders)
 
 == Bullwhip implications
 
-DRP can *amplify* the #link(<supply-chain-bullwhip-effect>)[bullwhip effect]: lot-sized replenishment + safety stock at each echelon → upstream sees orders far more variable than actual end-customer demand.
+DRP can *amplify* the #link(<supply_chain_inventory_bullwhip_effect>)[bullwhip effect]: lot-sized replenishment + safety stock at each echelon → upstream sees orders far more variable than actual end-customer demand.
 
 Mitigations:
 - *Smaller lot sizes* (more frequent, smaller orders)
@@ -83,7 +85,7 @@ DRP feeds into *Sales & Operations Planning*: balancing distribution-network req
 
 == See also
 
-- *#link(<supply-chain-planning-mrp>)[MRP]* — the production-side counterpart
-- *#link(<supply-chain-planning-mps>)[MPS]* — central production plan
-- *#link(<supply-chain-bullwhip-effect>)[Bullwhip Effect]* — DRP can amplify it
-- *#link(<supply-chain-multi-echelon-multi-echelon>)[Multi-Echelon Inventory]*
+- *#link(<supply_chain_planning_mrp>)[MRP]* — the production-side counterpart
+- *#link(<supply_chain_planning_mps>)[MPS]* — central production plan
+- *#link(<supply_chain_inventory_bullwhip_effect>)[Bullwhip Effect]* — DRP can amplify it
+- *#link(<supply_chain_inventory_multi_echelon_multi_echelon>)[Multi-Echelon Inventory]*

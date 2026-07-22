@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Dijkstra <algorithms_shortest_path_dijkstra>
+
 *Step 1*: Initialize
 
 - Mark all nodes as unvisited

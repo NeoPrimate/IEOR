@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= X-Chart <operations_research_quality_engineering_control_charts_x_chart>
+
 == $macron(X)$-chart
 
 Used to monitor the average of a continuous quality characteristic (e.g., weight, length, temperature), assuming constant sample size per subgroup.

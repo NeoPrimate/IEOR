@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-The data structure that represents multi-stage uncertainty in #link(<operations-research-optimization-stochastic-programming>)[stochastic programming]. A *branching tree* where each node represents a state of information at a point in time.
+= Scenario Trees <operations_research_optimization_stochastic_scenario_trees>
+
+The data structure that represents multi-stage uncertainty in #link(<operations_research_optimization_stochastic_stochastic_programming>)[stochastic programming]. A *branching tree* where each node represents a state of information at a point in time.
 
 == Structure
 
@@ -48,7 +50,7 @@ Number of leaves = $product$ of branching factors. A 5-stage tree with 5 outcome
 Mitigations:
 
 - *Scenario reduction* — cluster similar scenarios, pick representative ones (Heitsch-Römisch)
-- *Sampling* — Monte Carlo-style — see #link(<operations-research-optimization-sample-average-approximation>)[SAA]
+- *Sampling* — Monte Carlo-style — see #link(<operations_research_optimization_stochastic_sample_average_approximation>)[SAA]
 - *Decomposition* — solve subproblems per scenario, coordinate via Lagrangian (PH, SDDP)
 - *Approximate dynamic programming*
 
@@ -62,7 +64,7 @@ Mitigations:
 
 == See also
 
-- *#link(<operations-research-optimization-stochastic-programming>)[Stochastic Programming]* — broader framework
-- *#link(<operations-research-optimization-two-stage-recourse>)[Two-stage Recourse]* — simplest case
-- *#link(<operations-research-optimization-sample-average-approximation>)[SAA]* — Monte Carlo approximation
-- *#link(<operations-research-optimization-dynamic-programming>)[Dynamic Programming]* — alternative view
+- *#link(<operations_research_optimization_stochastic_stochastic_programming>)[Stochastic Programming]* — broader framework
+- *#link(<operations_research_optimization_stochastic_two_stage_recourse>)[Two-stage Recourse]* — simplest case
+- *#link(<operations_research_optimization_stochastic_sample_average_approximation>)[SAA]* — Monte Carlo approximation
+- *#link(<operations_research_optimization_dynamic_programming_dynamic_programming>)[Dynamic Programming]* — alternative view

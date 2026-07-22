@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Cheatsheet <statistics_cheatsheet>
+
 #table(
   columns: (auto, auto, auto, auto, auto, auto),
   gutter: 0em,

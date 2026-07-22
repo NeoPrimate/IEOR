@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Rank <linear_algebra_rank>
+
 *Dimension* of the column *space*
 
 $

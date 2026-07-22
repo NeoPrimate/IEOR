@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= PPF <statistics_functions_ppf>
+
 == PPF (Percent-Point Function)
 
 Gives the value $x$ such that the probability of a random variable being less than or equal to $x$ is equal to a given probability $p$

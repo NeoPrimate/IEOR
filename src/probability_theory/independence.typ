@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Independence <probability_theory_independence>
+
 Two events are said to be independent if the occurrence of one event does not change our beliefs about the other
 
 Events A and B are independent from each other if:

@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Cycle Service Level <supply_chain_inventory_service_levels_cycle_service_level>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 == Cycle Service Level (Type I, $alpha$)

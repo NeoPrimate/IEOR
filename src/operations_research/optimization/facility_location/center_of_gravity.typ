@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Center of Gravity <operations_research_optimization_facility_location_center_of_gravity>
+
 The *single-facility continuous-space* location problem: place *one* facility anywhere in the plane to minimize total weighted distance to customers.
 
 The optimal location is the *Weber point* (also called the geometric median).
@@ -153,6 +155,6 @@ In practice, center of gravity gives a continuous-space starting point that's th
 
 == See also
 
-- *#link(<operations-research-optimization-p-median>)[$p$-median]* — discrete, multi-facility
-- *#link(<operations-research-optimization-facility-location>)[Facility Location overview]*
-- *#link(<operations-research-optimization-daganzo-continuous>)[Daganzo Continuous Approximation]* — strategic-level
+- *#link(<operations_research_optimization_facility_location_p_median>)[$p$-median]* — discrete, multi-facility
+- *#link(<operations_research_optimization_facility_location_facility_location>)[Facility Location overview]*
+- *#link(<operations_research_optimization_routing_daganzo_continuous>)[Daganzo Continuous Approximation]* — strategic-level

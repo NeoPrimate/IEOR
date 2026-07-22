@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= R² <statistics_error_metrics_r_square>
+
 Proportion of variance explained by the model
 
 $

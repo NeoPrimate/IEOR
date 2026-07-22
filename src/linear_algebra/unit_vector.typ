@@ -1,9 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Unit Vector <linear_algebra_unit_vector>
 
-
-A vector that has a #link(<linear-algebra-norm>)[norm] (length) of exactly 1.
+A vector that has a #link(<linear_algebra_norm>)[norm] (length) of exactly 1.
 
 For a vector $accent(v, arrow)$ in $n$-dimensional space, the unit vector $hat(v)$ in the same direction is:
 

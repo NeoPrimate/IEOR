@@ -1,15 +1,15 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Pseudoinverse <linear_algebra_pseudoinverse>
 
-
-The *Moore–Penrose pseudoinverse* $A^+$ generalizes the matrix #link(<linear-algebra-matrix-inverse>)[inverse] to *every* matrix — square, rectangular, full-rank, or rank-deficient.
+The *Moore–Penrose pseudoinverse* $A^+$ generalizes the matrix #link(<linear_algebra_matrix_inverse>)[inverse] to *every* matrix — square, rectangular, full-rank, or rank-deficient.
 
 For invertible square $A$, $A^+ = A^(-1)$. For other matrices, $A^+$ provides the "best possible inverse" in a precise least-squares sense.
 
 == Definition via SVD
 
-If $A = U Sigma V^T$ is the #link(<linear-algebra-svd>)[SVD] of $A$, then:
+If $A = U Sigma V^T$ is the #link(<linear_algebra_svd>)[SVD] of $A$, then:
 
 $
   A^+ = V Sigma^+ U^T
@@ -53,7 +53,7 @@ $
 $
 
 Properties:
-- If a solution to $A accent(x, arrow) = accent(b, arrow)$ exists, $hat(accent(x, arrow))$ is one (the one with smallest #link(<linear-algebra-norm>)[norm])
+- If a solution to $A accent(x, arrow) = accent(b, arrow)$ exists, $hat(accent(x, arrow))$ is one (the one with smallest #link(<linear_algebra_norm>)[norm])
 - If no exact solution exists, $hat(accent(x, arrow))$ minimizes $||A accent(x, arrow) - accent(b, arrow)||$
 
 This is the foundation of linear regression and least-squares fitting.
@@ -83,7 +83,7 @@ This is the foundation of linear regression and least-squares fitting.
 
 == See also
 
-- *#link(<linear-algebra-svd>)[SVD]* — the construction
-- *#link(<linear-algebra-matrix-inverse>)[Matrix Inverse]* — special case
-- *#link(<linear-algebra-qr-decomposition>)[QR]* — used to compute the pseudoinverse in the full-rank case
-- *#link(<statistics-regression-analysis-simple-linear-regression>)[Linear Regression]* — pseudoinverse gives OLS coefficients $hat(beta) = (X^T X)^(-1) X^T y = X^+ y$
+- *#link(<linear_algebra_svd>)[SVD]* — the construction
+- *#link(<linear_algebra_matrix_inverse>)[Matrix Inverse]* — special case
+- *#link(<linear_algebra_qr_decomposition>)[QR]* — used to compute the pseudoinverse in the full-rank case
+- *#link(<statistics_regression_simple_linear_regression>)[Linear Regression]* — pseudoinverse gives OLS coefficients $hat(beta) = (X^T X)^(-1) X^T y = X^+ y$

@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Decoupling Stock <supply_chain_inventory_stocks_decoupling_stock>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 Inventory held *between two production stages* (or between a supplier and a buyer) so each stage can operate independently — without being immediately blocked by problems in the upstream stage.

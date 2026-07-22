@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Axioms <probability_theory_axioms>
+
 #show sym.emptyset: set text(font: "Fira Sans")
 
 == Probability Axioms

@@ -1,6 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Convexity <operations_research_optimization_nonlinear_convexity>
 
 #set math.mat(gap: 1em)
 #set math.vec(gap: 1em)

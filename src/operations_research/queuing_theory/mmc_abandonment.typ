@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= MMc Abandonment <operations_research_queuing_theory_mmc_abandonment>
+
 *Erlang A* (also written M/M/c+M): M/M/c queue with *abandonment* — customers leave after waiting too long. More realistic for call centers, where impatient callers hang up.
 
 == Setup
@@ -12,7 +14,7 @@
 
 == Why it matters
 
-#link(<operations-research-queuing-theory-erlang-c>)[Erlang C] assumes infinite patience — every customer eventually gets served. Erlang A models the *real* situation where customers hang up at some rate.
+#link(<operations_research_queuing_theory_erlang_c>)[Erlang C] assumes infinite patience — every customer eventually gets served. Erlang A models the *real* situation where customers hang up at some rate.
 
 Without abandonment: a slightly-overloaded system has *unbounded* waits.
 With abandonment: a slightly-overloaded system has bounded waits *and* some abandonment rate.
@@ -84,6 +86,6 @@ These need simulation. Erlang A with exponential patience is the analytical star
 
 == See also
 
-- *#link(<operations-research-queuing-theory-erlang-c>)[Erlang C]* — without abandonment
-- *#link(<operations-research-queuing-theory-erlang-b>)[Erlang B]* — no queue at all
-- *#link(<operations-research-queuing-theory-square-root-staffing>)[Square-Root Staffing]*
+- *#link(<operations_research_queuing_theory_erlang_c>)[Erlang C]* — without abandonment
+- *#link(<operations_research_queuing_theory_erlang_b>)[Erlang B]* — no queue at all
+- *#link(<operations_research_queuing_theory_square_root_staffing>)[Square-Root Staffing]*

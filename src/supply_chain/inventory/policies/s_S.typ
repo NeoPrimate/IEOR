@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= (s, S) <supply_chain_inventory_policies_s_S>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 Continuous review, *order-up-to* $S$. Generalizes (Q, r): instead of always ordering the same Q, top up to a target level.

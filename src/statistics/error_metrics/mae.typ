@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= MAE <statistics_error_metrics_mae>
+
 == MAE (Mean Absolute Error)
 
 Average of squared differences between predicted ($hat(y)_i$) and actual values ($y_i$)

@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Network Effect <economics_network_effect>
+
 Value of a good or service increases with the number of users
 
 - Positive: Increases value

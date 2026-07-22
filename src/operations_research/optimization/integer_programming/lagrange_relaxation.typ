@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Lagrange Relaxation <operations_research_optimization_integer_programming_lagrange_relaxation>
+
 #set math.cases(gap: 1em)
 #show math.equation.where(block: false): set text(12pt)
 

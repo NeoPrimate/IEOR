@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Regression <operations_research_optimization_learning_regression>
+
 == Linear Regression
 
 === Simple Linear Regression
@@ -96,7 +98,7 @@ $
 
 ==== Convexity
 
-The Hessian is constant (does not depend on $alpha$, $beta$) and symmetric. We check positive semidefiniteness via the #link(<linear-algebra-determinant>)[determinant]:
+The Hessian is constant (does not depend on $alpha$, $beta$) and symmetric. We check positive semidefiniteness via the #link(<linear_algebra_determinant>)[determinant]:
 
 $
   det(gradient^2 f)

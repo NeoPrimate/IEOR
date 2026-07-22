@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
+= Cheatsheet <linear_algebra_cheatsheet>
 
 // #set page(margin: 0.5cm) — paged-only, can't apply inside bundle's document() container
 

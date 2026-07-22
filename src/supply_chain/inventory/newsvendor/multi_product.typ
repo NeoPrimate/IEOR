@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Multi-Product <supply_chain_inventory_newsvendor_multi_product>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 == Multi-product newsvendor (risk pooling)

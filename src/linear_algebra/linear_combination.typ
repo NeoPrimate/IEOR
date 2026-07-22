@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
+= Linear Combination <linear_algebra_linear_combination>
 
 Set of vector
 

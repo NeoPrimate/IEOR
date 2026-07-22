@@ -1,13 +1,15 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= CONWIP <supply_chain_manufacturing_conwip>
+
 *Constant Work-In-Process*: a production-control discipline that caps WIP at a constant level $w$. New work enters only when finished work exits — a *pull* system but with one global cap instead of per-station kanbans.
 
-Developed at Northwestern (Spearman, Woodruff, Hopp 1990) as a generalization of #link(<supply-chain-manufacturing-kanban-sizing>)[kanban].
+Developed at Northwestern (Spearman, Woodruff, Hopp 1990) as a generalization of #link(<supply_chain_manufacturing_kanban_sizing>)[kanban].
 
 == Mechanic
 
-1. Set WIP cap $w^*$ (typically $w^* > W_0$, the #link(<supply-chain-manufacturing-critical-wip>)[critical WIP])
+1. Set WIP cap $w^*$ (typically $w^* > W_0$, the #link(<supply_chain_manufacturing_critical_wip>)[critical WIP])
 2. Whenever a unit finishes and exits the line, *authorize* a new unit to enter
 3. Total WIP stays constant at $w^*$ always
 
@@ -18,7 +20,7 @@ Compare:
 
 == Why CONWIP works
 
-The #link(<supply-chain-manufacturing-best-worst-pwc>)[PWC] formula:
+The #link(<supply_chain_manufacturing_best_worst_pwc>)[PWC] formula:
 
 $
   text("TH") = (w / (W_0 + w - 1)) r_b
@@ -40,10 +42,10 @@ Rule of thumb: $w^* = W_0 + $ buffer. Buffer sized to cover typical variability 
 == Implementation
 
 - *Cards / tokens*: physical or digital "authorizations" that flow with units
-- *Heijunka box*: time-sliced authorization (with #link(<supply-chain-manufacturing-heijunka>)[level scheduling])
+- *Heijunka box*: time-sliced authorization (with #link(<supply_chain_manufacturing_heijunka>)[level scheduling])
 - *MES system*: software cap enforced on releases
 
-== Comparison with #link(<supply-chain-manufacturing-kanban-sizing>)[Kanban]
+== Comparison with #link(<supply_chain_manufacturing_kanban_sizing>)[Kanban]
 
 #table(
   columns: 3,
@@ -61,7 +63,7 @@ CONWIP is simpler and adapts better to product mix; kanban gives tighter per-pro
 
 == See also
 
-- *#link(<supply-chain-manufacturing-kanban-sizing>)[Kanban Sizing]*
-- *#link(<supply-chain-manufacturing-critical-wip>)[Critical WIP]*
-- *#link(<supply-chain-manufacturing-best-worst-pwc>)[Best/Worst/PWC]*
-- *#link(<supply-chain-manufacturing-factory-physics>)[Factory Physics]*
+- *#link(<supply_chain_manufacturing_kanban_sizing>)[Kanban Sizing]*
+- *#link(<supply_chain_manufacturing_critical_wip>)[Critical WIP]*
+- *#link(<supply_chain_manufacturing_best_worst_pwc>)[Best/Worst/PWC]*
+- *#link(<supply_chain_manufacturing_factory_physics>)[Factory Physics]*

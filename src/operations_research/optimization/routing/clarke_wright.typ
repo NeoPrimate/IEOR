@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-The *savings algorithm* (Clarke & Wright, 1964) — the classical constructive heuristic for #link(<operations-research-optimization-vrp>)[VRP]. Simple, fast, surprisingly good for capacitated VRP.
+= Clarke-Wright <operations_research_optimization_routing_clarke_wright>
+
+The *savings algorithm* (Clarke & Wright, 1964) — the classical constructive heuristic for #link(<operations_research_optimization_routing_vrp>)[VRP]. Simple, fast, surprisingly good for capacitated VRP.
 
 == The savings concept
 
@@ -53,15 +55,15 @@ For 60 years (1964–today), Clarke-Wright + 2-opt has been the standard *quick-
 - Within 5-10% of optimum for capacitated VRP
 - Easy to adapt for time windows, heterogeneous fleets, etc.
 
-Modern heuristics (#link(<operations-research-optimization-vrp>)[ALNS, HGS]) do better but at significantly more complexity.
+Modern heuristics (#link(<operations_research_optimization_routing_vrp>)[ALNS, HGS]) do better but at significantly more complexity.
 
 == Daganzo continuous-approximation alternative
 
-For very large fleets, instead of optimizing each route, use Daganzo's continuous-approximation formulas to design route structure. See #link(<operations-research-optimization-daganzo-continuous>)[Daganzo].
+For very large fleets, instead of optimizing each route, use Daganzo's continuous-approximation formulas to design route structure. See #link(<operations_research_optimization_routing_daganzo_continuous>)[Daganzo].
 
 == See also
 
-- *#link(<operations-research-optimization-vrp>)[VRP]* — problem solved
-- *#link(<operations-research-optimization-tsp>)[TSP]* — single-vehicle ancestor
-- *#link(<operations-research-optimization-vrp-time-windows>)[VRPTW]* — extension to time windows
-- *#link(<operations-research-optimization-daganzo-continuous>)[Daganzo]* — large-scale alternative
+- *#link(<operations_research_optimization_routing_vrp>)[VRP]* — problem solved
+- *#link(<operations_research_optimization_routing_tsp>)[TSP]* — single-vehicle ancestor
+- *#link(<operations_research_optimization_routing_vrp_time_windows>)[VRPTW]* — extension to time windows
+- *#link(<operations_research_optimization_routing_daganzo_continuous>)[Daganzo]* — large-scale alternative

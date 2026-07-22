@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-The special case of the #link(<operations-research-optimization-transportation-problem>)[transportation problem] where $n$ agents are assigned to $n$ tasks one-to-one.
+= Assignment Problem <operations_research_optimization_networks_assignment_problem>
+
+The special case of the #link(<operations_research_optimization_networks_transportation_problem>)[transportation problem] where $n$ agents are assigned to $n$ tasks one-to-one.
 
 == Formulation
 
@@ -48,7 +50,7 @@ $
 
 == LP relaxation gives integer solution
 
-Constraint matrix is totally unimodular → LP relaxation has integer optimum. Can drop the binary constraint and solve as an LP; equivalently use the #link(<operations-research-optimization-hungarian-algorithm>)[Hungarian algorithm] in $O(n^3)$.
+Constraint matrix is totally unimodular → LP relaxation has integer optimum. Can drop the binary constraint and solve as an LP; equivalently use the #link(<operations_research_optimization_networks_hungarian_algorithm>)[Hungarian algorithm] in $O(n^3)$.
 
 == Applications
 
@@ -66,6 +68,6 @@ Constraint matrix is totally unimodular → LP relaxation has integer optimum. C
 
 == See also
 
-- *#link(<operations-research-optimization-hungarian-algorithm>)[Hungarian Algorithm]* — the standard solver
-- *#link(<operations-research-optimization-transportation-problem>)[Transportation Problem]* — the generalization
-- *#link(<linear-algebra-unimodularity>)[Unimodularity]* — why LP relaxation works
+- *#link(<operations_research_optimization_networks_hungarian_algorithm>)[Hungarian Algorithm]* — the standard solver
+- *#link(<operations_research_optimization_networks_transportation_problem>)[Transportation Problem]* — the generalization
+- *#link(<linear_algebra_unimodularity>)[Unimodularity]* — why LP relaxation works

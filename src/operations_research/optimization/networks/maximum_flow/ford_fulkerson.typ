@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Ford–Fulkerson <operations_research_optimization_networks_maximum_flow_ford_fulkerson>
+
 Find augmenting paths in the network and increase the flow until no more augmenting paths can be found
 
 #example[

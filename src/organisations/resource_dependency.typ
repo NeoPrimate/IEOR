@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Resource Dependency <organisations_resource_dependency>
+
 == Resource Dependency Theory (RDT)
 
 // @pfeffer1978

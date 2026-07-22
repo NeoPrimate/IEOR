@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Order Cycle Time <supply_chain_inventory_metrics_order_cycle_time>
+
 == (OCT) Order Cycle Time
 
 Measures the total time taken from when a customer places an order to when the order is delivered

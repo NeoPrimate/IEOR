@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
+= Eigenvectors & Eigenvalues <linear_algebra_eigenvectors_eigenvalues>
 
 == Eigen
 

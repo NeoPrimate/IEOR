@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
+= Point–Plane Distance <linear_algebra_point_plane_distance>
 
 For a plane in $RR^3$ defined by $A x + B y + C z = D$ and a point $(x_0, y_0, z_0)$, the perpendicular distance from the point to the plane is:
 
@@ -9,7 +9,7 @@ $
   d = (|A x_0 + B y_0 + C z_0 - D|) / sqrt(A^2 + B^2 + C^2)
 $
 
-The denominator is the #link(<linear-algebra-norm>)[norm] of the plane's normal vector $accent(n, arrow) = (A, B, C)$.
+The denominator is the #link(<linear_algebra_norm>)[norm] of the plane's normal vector $accent(n, arrow) = (A, B, C)$.
 
 The signed distance (drop the absolute value) tells you which side of the plane the point is on:
 
@@ -31,7 +31,7 @@ $
 
 == Generalization
 
-The same formula generalizes to a #link(<linear-algebra-hyperplane>)[hyperplane] in $RR^n$ defined by $accent(a, arrow) dot accent(x, arrow) = b$:
+The same formula generalizes to a #link(<linear_algebra_hyperplane>)[hyperplane] in $RR^n$ defined by $accent(a, arrow) dot accent(x, arrow) = b$:
 
 $
   d = (|accent(a, arrow) dot accent(p, arrow) - b|) / ||accent(a, arrow)||
@@ -39,6 +39,6 @@ $
 
 == Connections
 
-- *#link(<linear-algebra-planes>)[Planes]* — definition and normal vector
-- *#link(<linear-algebra-projection>)[Projection]* — same idea: project the displacement vector onto the unit normal
-- *#link(<linear-algebra-hyperplane>)[Hyperplane]* — $n$-dimensional generalization
+- *#link(<linear_algebra_planes>)[Planes]* — definition and normal vector
+- *#link(<linear_algebra_projection>)[Projection]* — same idea: project the displacement vector onto the unit normal
+- *#link(<linear_algebra_hyperplane>)[Hyperplane]* — $n$-dimensional generalization

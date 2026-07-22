@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Mixed Integer Programming <operations_research_optimization_integer_programming_mixed_integer_programming>
+
 == MIP (Mixed Integer Programming)
 
 Optimizing (maximizing or minimizing) a linear *objective function* subject to linear equality or inequality *constraints*. *Decision variables* can take any continuous real or integer values

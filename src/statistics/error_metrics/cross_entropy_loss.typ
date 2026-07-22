@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Cross-Entropy Loss <statistics_error_metrics_cross_entropy_loss>
+
 == Cross-Entropy Loss (Log Loss)
 
 Binary and multi-class classification

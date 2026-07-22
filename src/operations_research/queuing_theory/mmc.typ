@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= M/M/c <operations_research_queuing_theory_mmc>
+
 - M: Memoryliss interarrival times
 - M: Memoryless service times
 - c: number of servers

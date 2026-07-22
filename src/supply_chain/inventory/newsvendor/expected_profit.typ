@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Expected Profit <supply_chain_inventory_newsvendor_expected_profit>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 == Expected profit and lost sales (newsvendor)

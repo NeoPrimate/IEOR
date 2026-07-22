@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Summary <time_series_arima_summary>
+
 // =============================================================
 // ARIMA family — 11 models in operator (backshift) notation
 // Color scheme: AR / MA / differencing

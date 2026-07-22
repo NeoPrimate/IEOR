@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Non-Linear Programming <operations_research_optimization_nonlinear_non_linear_programming>
+
 === EOQ
 
 *Parameters*

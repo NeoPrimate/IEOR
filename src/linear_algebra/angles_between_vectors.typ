@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
+= Angles Between Vectors <linear_algebra_angles_between_vectors>
 
 The scalar $||accent(u, arrow)||$ is the length of the vector $accent(u, arrow)$
 

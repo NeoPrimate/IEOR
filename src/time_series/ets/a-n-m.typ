@@ -4,6 +4,8 @@
 #import "./summary.typ": cL, cS, cT
 #import "../_data.typ" as data
 
+= A-N-M <time_series_ets_a-n-m>
+
 SES + multiplicative seasonality
 
 $ "ETS"(A, N, M) $

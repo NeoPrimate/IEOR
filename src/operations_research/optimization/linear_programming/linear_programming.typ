@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
+= Linear Programming <operations_research_optimization_linear_programming_linear_programming>
 
 == Mathematical Programs
 

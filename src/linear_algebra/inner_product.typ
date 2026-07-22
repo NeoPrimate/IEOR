@@ -1,9 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Inner Product <linear_algebra_inner_product>
 
-
-An *inner product* is a function $⟨ dot, dot ⟩: V times V -> RR$ that generalizes the #link(<linear-algebra-dot-product>)[dot product] to arbitrary vector spaces.
+An *inner product* is a function $⟨ dot, dot ⟩: V times V -> RR$ that generalizes the #link(<linear_algebra_dot_product>)[dot product] to arbitrary vector spaces.
 
 == Axioms
 
@@ -37,7 +37,7 @@ $
 
 == Induced norm
 
-Every inner product induces a #link(<linear-algebra-norm>)[norm]:
+Every inner product induces a #link(<linear_algebra_norm>)[norm]:
 
 $
   ||accent(v, arrow)|| = sqrt(⟨ accent(v, arrow), accent(v, arrow) ⟩)
@@ -47,7 +47,7 @@ This norm satisfies the parallelogram law $||accent(u, arrow) + accent(v, arrow)
 
 == Cauchy–Schwarz (general form)
 
-The #link(<linear-algebra-cauchy-schwarz-inequality>)[Cauchy–Schwarz inequality] holds in every inner product space:
+The #link(<linear_algebra_cauchy_schwarz_inequality>)[Cauchy–Schwarz inequality] holds in every inner product space:
 
 $
   |⟨ accent(u, arrow), accent(v, arrow) ⟩| <= ||accent(u, arrow)|| #h(0.2em) ||accent(v, arrow)||
@@ -61,7 +61,7 @@ $
   accent(u, arrow) perp accent(v, arrow) #h(0.5em) arrow.l.r.double #h(0.5em) ⟨ accent(u, arrow), accent(v, arrow) ⟩ = 0
 $
 
-This generalizes perpendicularity in $RR^n$. See #link(<linear-algebra-orthogonality>)[Orthogonality].
+This generalizes perpendicularity in $RR^n$. See #link(<linear_algebra_orthogonality>)[Orthogonality].
 
 == Angle between vectors
 
@@ -81,8 +81,8 @@ In abstract spaces this *defines* the angle (between non-zero vectors).
 
 == See also
 
-- *#link(<linear-algebra-dot-product>)[Dot Product]* — special case in $RR^n$
-- *#link(<linear-algebra-norm>)[Norm]* — derived from the inner product
-- *#link(<linear-algebra-orthogonality>)[Orthogonality]*
-- *#link(<linear-algebra-gram-schmidt>)[Gram–Schmidt Process]* — orthogonalization via inner products
-- *#link(<linear-algebra-cauchy-schwarz-inequality>)[Cauchy–Schwarz Inequality]*
+- *#link(<linear_algebra_dot_product>)[Dot Product]* — special case in $RR^n$
+- *#link(<linear_algebra_norm>)[Norm]* — derived from the inner product
+- *#link(<linear_algebra_orthogonality>)[Orthogonality]*
+- *#link(<linear_algebra_gram_schmidt>)[Gram–Schmidt Process]* — orthogonalization via inner products
+- *#link(<linear_algebra_cauchy_schwarz_inequality>)[Cauchy–Schwarz Inequality]*

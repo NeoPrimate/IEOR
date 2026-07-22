@@ -3,19 +3,38 @@
 # Schema:
 #   [book]                  metadata
 #   [[sections]]            top-level sections (recursive)
-#     title = "..."         display title
+#     title = "..."         sidebar / TOC / prev-next-arrow label
 #     files = ["a.typ", …]  optional, single page composed from one or more files
 #                           paths are relative to book.src
 #     [[sections.sections]] nested subsections (any depth)
 #
-# A section without `files` is a header-only group node (renders title only).
+# A section without `files` is a header-only group node: it has no page of its
+# own, so its `title` here is also its only title — the build still injects it
+# (PDF: main.typ render() title_page/heading; HTML: sidebar only, book.typ
+# never gives group nodes their own page).
 #
-# Page titles: this `title` is the SINGLE source of truth. Both builds inject it
-# as the page heading (PDF: main.typ render(); HTML: book.typ emit()). Source
-# files must therefore NOT repeat their own page title — start with content, and
-# author in-file subsections at `==` (one level below the injected title), then
-# `===`, etc. The build offsets these by the page's depth so PDF and HTML get
-# identical relative nesting. (Migration helper: code/strip_title_repeats.py.)
+# A section WITH `files` is a leaf page. Both its title and its cross-page
+# label live in the file itself — NOT here, and NOT injected by the build:
+#   = Title <some_label>
+# (or, for the rare leaf nested at depth 1, `#title_page("Title") <label>` to
+# get the same divider-page look a depth-1 group gets). `title` above is then
+# only the sidebar/TOC/nav-arrow label (like mdBook's SUMMARY.md) — it is NOT
+# used to derive the label or the HTML URL, so renaming it can't break a
+# `#link(<label>)` anywhere else or move the page. The file's own path is that
+# stable identity instead: the HTML URL is the leaf's `files` path (minus
+# `.typ`), and the convention is `<label>` = that same path with `/` → `_`
+# (e.g. `linear_algebra/determinant.typ` → `<linear_algebra_determinant>`).
+#
+# Because of this, a leaf's file/folder name should match its title (mod
+# ASCII-safe transliteration) — `title` and `files` drift apart otherwise.
+# Exceptions: don't force a rename where the short form IS the correct
+# notation (e.g. `mm1.typ` for "M/M/1", `s_S.typ` for "(s, S)" where case
+# is meaningful, or the hyphenated ETS/ARIMA model-code files like `a-n-n.typ`
+# that already faithfully mirror a hyphenated title).
+#
+# The build offsets a leaf's in-file headings by its nesting depth so PDF
+# numbering/outline nest identically regardless of how deep the page sits;
+# HTML pages need no offset (standalone documents, one page each).
 
 [book]
 title   = "Industrial Engineering & Operations Research"
@@ -74,7 +93,7 @@ title = "Linear Algebra"
 
   [[sections.sections]]
   title = "Cauchy–Schwarz Inequality"
-  files = ["linear_algebra/cauchy_shwarz_inequality.typ"]
+  files = ["linear_algebra/cauchy_schwarz_inequality.typ"]
 
   [[sections.sections]]
   title = "Triangle Inequality"
@@ -126,7 +145,7 @@ title = "Linear Algebra"
 
   [[sections.sections]]
   title = "Dot vs Cross Product"
-  files = ["linear_algebra/dot_cross_comparison.typ"]
+  files = ["linear_algebra/dot_vs_cross_product.typ"]
 
   [[sections.sections]]
   title = "Vector Space"
@@ -282,7 +301,7 @@ title = "Linear Algebra"
 
   [[sections.sections]]
   title = "Image of Subset"
-  files = ["linear_algebra/image_subset.typ"]
+  files = ["linear_algebra/image_of_subset.typ"]
 
   [[sections.sections]]
   title = "Preimage"
@@ -322,7 +341,7 @@ title = "Linear Algebra"
 
   [[sections.sections]]
   title = "Transformation Scalar Multiplication"
-  files = ["linear_algebra/transformation_scalar_mult.typ"]
+  files = ["linear_algebra/transformation_scalar_multiplication.typ"]
 
   [[sections.sections]]
   title = "Rotation Matrix"
@@ -358,7 +377,7 @@ title = "Linear Algebra"
 
   [[sections.sections]]
   title = "Cramer's Rule"
-  files = ["linear_algebra/cramer_rule.typ"]
+  files = ["linear_algebra/cramers_rule.typ"]
 
   [[sections.sections]]
   title = "Adjugate"
@@ -435,117 +454,117 @@ title = "Calculus"
 
     [[sections.sections.sections]]
     title = "Cheatsheet"
-    files = ["calculus/calculus_I/cheatsheet.typ"]
+    files = ["calculus/calculus_i/cheatsheet.typ"]
 
     [[sections.sections.sections]]
     title = "Limits"
-    files = ["calculus/calculus_I/limits.typ"]
+    files = ["calculus/calculus_i/limits.typ"]
 
     [[sections.sections.sections]]
     title = "Derivatives"
-    files = ["calculus/calculus_I/derivatives.typ"]
+    files = ["calculus/calculus_i/derivatives.typ"]
 
     [[sections.sections.sections]]
     title = "Higher-Order Derivatives"
-    files = ["calculus/calculus_I/higher_order_derivatives.typ"]
+    files = ["calculus/calculus_i/higher_order_derivatives.typ"]
 
     [[sections.sections.sections]]
     title = "Power Rule"
-    files = ["calculus/calculus_I/power_rule.typ"]
+    files = ["calculus/calculus_i/power_rule.typ"]
 
     [[sections.sections.sections]]
     title = "Product Rule"
-    files = ["calculus/calculus_I/product_rule.typ"]
+    files = ["calculus/calculus_i/product_rule.typ"]
 
     [[sections.sections.sections]]
     title = "Quotient Rule"
-    files = ["calculus/calculus_I/quotient_rule.typ"]
+    files = ["calculus/calculus_i/quotient_rule.typ"]
 
     [[sections.sections.sections]]
     title = "Chain Rule"
-    files = ["calculus/calculus_I/chain_rule.typ"]
+    files = ["calculus/calculus_i/chain_rule.typ"]
 
     [[sections.sections.sections]]
     title = "Implicit Differentiation"
-    files = ["calculus/calculus_I/implicit_differentiation.typ"]
+    files = ["calculus/calculus_i/implicit_differentiation.typ"]
 
     [[sections.sections.sections]]
     title = "Derivatives of Inverse Functions"
-    files = ["calculus/calculus_I/derivatives_inverse_functions.typ"]
+    files = ["calculus/calculus_i/derivatives_of_inverse_functions.typ"]
 
     [[sections.sections.sections]]
     title = "Inverse Functions"
-    files = ["calculus/calculus_I/inverse_functions.typ"]
+    files = ["calculus/calculus_i/inverse_functions.typ"]
 
     [[sections.sections.sections]]
     title = "L'Hôpital's Rule"
-    files = ["calculus/calculus_I/hospital_rule.typ"]
+    files = ["calculus/calculus_i/lhopitals_rule.typ"]
 
     [[sections.sections.sections]]
     title = "Mean Value Theorem"
-    files = ["calculus/calculus_I/mean_value_theorem.typ"]
+    files = ["calculus/calculus_i/mean_value_theorem.typ"]
 
     [[sections.sections.sections]]
     title = "Extreme Value Theorem"
-    files = ["calculus/calculus_I/extreme_value_theorem.typ"]
+    files = ["calculus/calculus_i/extreme_value_theorem.typ"]
 
     [[sections.sections.sections]]
     title = "Critical Points"
-    files = ["calculus/calculus_I/critical_points.typ"]
+    files = ["calculus/calculus_i/critical_points.typ"]
 
     [[sections.sections.sections]]
     title = "Derivative Test"
-    files = ["calculus/calculus_I/derivative_test.typ"]
+    files = ["calculus/calculus_i/derivative_test.typ"]
 
     [[sections.sections.sections]]
     title = "Arc Length"
-    files = ["calculus/calculus_I/arc_length.typ"]
+    files = ["calculus/calculus_i/arc_length.typ"]
 
     [[sections.sections.sections]]
     title = "Series"
-    files = ["calculus/calculus_I/series.typ"]
+    files = ["calculus/calculus_i/series.typ"]
 
     [[sections.sections.sections]]
     title = "Taylor Series"
-    files = ["calculus/calculus_I/taylor_series.typ"]
+    files = ["calculus/calculus_i/taylor_series.typ"]
 
   [[sections.sections]]
   title = "Calculus II"
 
     [[sections.sections.sections]]
     title = "Cheatsheet"
-    files = ["calculus/calculus_II/cheatsheet.typ"]
+    files = ["calculus/calculus_ii/cheatsheet.typ"]
 
     [[sections.sections.sections]]
     title = "Chain Rule"
-    files = ["calculus/calculus_II/chain_rule.typ"]
+    files = ["calculus/calculus_ii/chain_rule.typ"]
 
     [[sections.sections.sections]]
     title = "Double Integrals"
-    files = ["calculus/calculus_II/double_integrals.typ"]
+    files = ["calculus/calculus_ii/double_integrals.typ"]
 
     [[sections.sections.sections]]
     title = "Gradient"
-    files = ["calculus/calculus_II/gradient.typ"]
+    files = ["calculus/calculus_ii/gradient.typ"]
 
     [[sections.sections.sections]]
     title = "Hessian Matrix"
-    files = ["calculus/calculus_II/hessian_matrix.typ"]
+    files = ["calculus/calculus_ii/hessian_matrix.typ"]
 
     [[sections.sections.sections]]
     title = "Jacobian"
-    files = ["calculus/calculus_II/jacobian.typ"]
+    files = ["calculus/calculus_ii/jacobian.typ"]
 
     [[sections.sections.sections]]
     title = "Semi-Definiteness"
-    files = ["calculus/calculus_II/semi_definiteness.typ"]
+    files = ["calculus/calculus_ii/semi_definiteness.typ"]
 
   [[sections.sections]]
   title = "Calculus III"
 
     [[sections.sections.sections]]
     title = "Vector-Valued Functions"
-    files = ["calculus/calculus_III/vector_values_function.typ"]
+    files = ["calculus/calculus_iii/vector_valued_functions.typ"]
 
   [[sections.sections]]
   title = "Integration"
@@ -556,7 +575,7 @@ title = "Calculus"
 
     [[sections.sections.sections]]
     title = "Leibniz's Rule"
-    files = ["calculus/integral/leibniz_rule.typ"]
+    files = ["calculus/integral/leibnizs_rule.typ"]
 
   [[sections.sections]]
   title = "Differential Equations"
@@ -594,7 +613,7 @@ title = "Probability Theory"
 
   [[sections.sections]]
   title = "De Morgan's Laws"
-  files = ["probability_theory/de_morgan_law.typ"]
+  files = ["probability_theory/de_morgans_laws.typ"]
 
   [[sections.sections]]
   title = "Sequences"
@@ -626,7 +645,7 @@ title = "Probability Theory"
 
   [[sections.sections]]
   title = "Bayes' Rule"
-  files = ["probability_theory/beyes_rule.typ"]
+  files = ["probability_theory/bayes_rule.typ"]
 
   [[sections.sections]]
   title = "Independence"
@@ -634,7 +653,7 @@ title = "Probability Theory"
 
   [[sections.sections]]
   title = "Counting Principle"
-  files = ["probability_theory/counting_prinicple.typ"]
+  files = ["probability_theory/counting_principle.typ"]
 
   [[sections.sections]]
   title = "Expected Value"
@@ -646,7 +665,7 @@ title = "Probability Theory"
 
   [[sections.sections]]
   title = "Joint, Marginal & Conditional Probability"
-  files = ["probability_theory/joint_marginal_conditional.typ"]
+  files = ["probability_theory/joint_marginal_conditional_probability.typ"]
 
   [[sections.sections]]
   title = "Mixture Distributions"
@@ -666,15 +685,15 @@ title = "Probability Theory"
 
   [[sections.sections]]
   title = "Moment Generating Function"
-  files = ["probability_theory/mgf.typ"]
+  files = ["probability_theory/moment_generating_function.typ"]
 
   [[sections.sections]]
   title = "Markov's Inequality"
-  files = ["probability_theory/markov_inequality.typ"]
+  files = ["probability_theory/markovs_inequality.typ"]
 
   [[sections.sections]]
   title = "Chebyshev's Inequality"
-  files = ["probability_theory/chebyshev_inequality.typ"]
+  files = ["probability_theory/chebyshevs_inequality.typ"]
 
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -690,31 +709,31 @@ title = "Statistics"
 
     [[sections.sections.sections]]
     title = "Mean"
-    files = ["statistics/desciptive_statistics/central_tendency/mean.typ"]
+    files = ["statistics/descriptive_statistics/central_tendency/mean.typ"]
 
     [[sections.sections.sections]]
     title = "Median"
-    files = ["statistics/desciptive_statistics/central_tendency/median.typ"]
+    files = ["statistics/descriptive_statistics/central_tendency/median.typ"]
 
     [[sections.sections.sections]]
     title = "Mode"
-    files = ["statistics/desciptive_statistics/central_tendency/mode.typ"]
+    files = ["statistics/descriptive_statistics/central_tendency/mode.typ"]
 
     [[sections.sections.sections]]
     title = "Range"
-    files = ["statistics/desciptive_statistics/dispersion/range.typ"]
+    files = ["statistics/descriptive_statistics/dispersion/range.typ"]
 
     [[sections.sections.sections]]
     title = "Variance"
-    files = ["statistics/desciptive_statistics/dispersion/variance.typ"]
+    files = ["statistics/descriptive_statistics/dispersion/variance.typ"]
 
     [[sections.sections.sections]]
     title = "Standard Deviation"
-    files = ["statistics/desciptive_statistics/dispersion/standard_deviation.typ"]
+    files = ["statistics/descriptive_statistics/dispersion/standard_deviation.typ"]
 
     [[sections.sections.sections]]
     title = "Interquartile Range"
-    files = ["statistics/desciptive_statistics/dispersion/interquartile_range.typ"]
+    files = ["statistics/descriptive_statistics/dispersion/interquartile_range.typ"]
 
   [[sections.sections]]
   title = "Probability Distributions"
@@ -729,7 +748,7 @@ title = "Statistics"
 
     [[sections.sections.sections]]
     title = "Student's t"
-    files = ["statistics/distributions/t.typ"]
+    files = ["statistics/distributions/students_t.typ"]
 
     [[sections.sections.sections]]
     title = "Binomial"
@@ -745,7 +764,7 @@ title = "Statistics"
 
     [[sections.sections.sections]]
     title = "Differentiating the Normal Distribution"
-    files = ["statistics/distributions/differentiating_normal.typ"]
+    files = ["statistics/distributions/differentiating_the_normal_distribution.typ"]
 
   [[sections.sections]]
   title = "Functions"
@@ -772,7 +791,7 @@ title = "Statistics"
 
     [[sections.sections.sections]]
     title = "Standard Normal Loss Function"
-    files = ["statistics/functions/standard_normal_loss.typ"]
+    files = ["statistics/functions/standard_normal_loss_function.typ"]
 
     [[sections.sections.sections]]
     title = "Likelihood"
@@ -822,51 +841,51 @@ title = "Statistics"
 
     [[sections.sections.sections]]
     title = "Null Hypothesis"
-    files = ["statistics/hypothesis_test/hypotheses/null.typ"]
+    files = ["statistics/hypothesis_test/hypotheses/null_hypothesis.typ"]
 
     [[sections.sections.sections]]
     title = "Alternative Hypothesis"
-    files = ["statistics/hypothesis_test/hypotheses/alternative.typ"]
+    files = ["statistics/hypothesis_test/hypotheses/alternative_hypothesis.typ"]
 
     [[sections.sections.sections]]
     title = "Type I Error"
-    files = ["statistics/hypothesis_test/error_types/type_1.typ"]
+    files = ["statistics/hypothesis_test/error_types/type_i_error.typ"]
 
     [[sections.sections.sections]]
     title = "Type II Error"
-    files = ["statistics/hypothesis_test/error_types/type_2.typ"]
+    files = ["statistics/hypothesis_test/error_types/type_ii_error.typ"]
 
     [[sections.sections.sections]]
     title = "One-Sample t-Test"
-    files = ["statistics/hypothesis_test/t_test/one_sample.typ"]
+    files = ["statistics/hypothesis_test/t_test/one_sample_t_test.typ"]
 
     [[sections.sections.sections]]
     title = "Independent t-Test"
-    files = ["statistics/hypothesis_test/t_test/independent.typ"]
+    files = ["statistics/hypothesis_test/t_test/independent_t_test.typ"]
 
     [[sections.sections.sections]]
     title = "Paired t-Test"
-    files = ["statistics/hypothesis_test/t_test/paired.typ"]
+    files = ["statistics/hypothesis_test/t_test/paired_t_test.typ"]
 
     [[sections.sections.sections]]
     title = "Chi-Square Goodness of Fit"
-    files = ["statistics/hypothesis_test/chi_square/goodness_of_fit.typ"]
+    files = ["statistics/hypothesis_test/chi_square/chi_square_goodness_of_fit.typ"]
 
     [[sections.sections.sections]]
     title = "Chi-Square Independence"
-    files = ["statistics/hypothesis_test/chi_square/independence.typ"]
+    files = ["statistics/hypothesis_test/chi_square/chi_square_independence.typ"]
 
     [[sections.sections.sections]]
     title = "One-Way ANOVA"
-    files = ["statistics/hypothesis_test/anova/one_way.typ"]
+    files = ["statistics/hypothesis_test/anova/one_way_anova.typ"]
 
     [[sections.sections.sections]]
     title = "Two-Way ANOVA"
-    files = ["statistics/hypothesis_test/anova/two_way.typ"]
+    files = ["statistics/hypothesis_test/anova/two_way_anova.typ"]
 
     [[sections.sections.sections]]
     title = "A/B Testing"
-    files = ["statistics/hypothesis_test/ab_test/ab_test.typ"]
+    files = ["statistics/hypothesis_test/ab_test/a_b_testing.typ"]
 
   [[sections.sections]]
   title = "Regression Analysis"
@@ -916,7 +935,7 @@ title = "Statistics"
 
     [[sections.sections.sections]]
     title = "Covariance & Correlation"
-    files = ["statistics/covariance.typ"]
+    files = ["statistics/covariance_correlation.typ"]
 
   [[sections.sections]]
   title = "Non-Parametric Statistics"
@@ -931,7 +950,7 @@ title = "Statistics"
 
     [[sections.sections.sections]]
     title = "Kolmogorov–Smirnov"
-    files = ["statistics/non_parametric/komogorov_smirnov.typ"]
+    files = ["statistics/non_parametric/kolmogorov_smirnov.typ"]
 
     [[sections.sections.sections]]
     title = "Kruskal–Wallis"
@@ -939,11 +958,11 @@ title = "Statistics"
 
   [[sections.sections]]
   title = "Maximum Likelihood Estimation"
-  files = ["statistics/mle.typ"]
+  files = ["statistics/maximum_likelihood_estimation.typ"]
 
   [[sections.sections]]
   title = "Generalized Linear Models"
-  files = ["statistics/glm.typ"]
+  files = ["statistics/generalized_linear_models.typ"]
 
   [[sections.sections]]
   title = "Cross Validation"
@@ -974,7 +993,7 @@ title = "Statistics"
 
   [[sections.sections]]
   title = "Principal Component Analysis"
-  files = ["statistics/pca.typ"]
+  files = ["statistics/principal_component_analysis.typ"]
 
   [[sections.sections]]
   title = "AIC & BIC"
@@ -982,7 +1001,7 @@ title = "Statistics"
 
   [[sections.sections]]
   title = "Bootstrap & Resampling"
-  files = ["statistics/bootstrap.typ"]
+  files = ["statistics/bootstrap_resampling.typ"]
 
   [[sections.sections]]
   title = "Types of Statistics"
@@ -998,7 +1017,7 @@ title = "Time Series"
 
     [[sections.sections.sections]]
     title = "Overview"
-    files = ["time_series/moving_averages/moving_averages.typ"]
+    files = ["time_series/moving_averages/overview.typ"]
 
     [[sections.sections.sections]]
     title = "Naive"
@@ -1010,11 +1029,11 @@ title = "Time Series"
 
     [[sections.sections.sections]]
     title = "Simple Moving Average"
-    files = ["time_series/moving_averages/sma.typ"]
+    files = ["time_series/moving_averages/simple_moving_average.typ"]
 
     [[sections.sections.sections]]
     title = "Weighted Moving Average"
-    files = ["time_series/moving_averages/wma.typ"]
+    files = ["time_series/moving_averages/weighted_moving_average.typ"]
 
   [[sections.sections]]
   title = "Decomposition"
@@ -1355,11 +1374,11 @@ title = "Operations Research"
 
     [[sections.sections.sections]]
     title = "Newton's Method"
-    files = ["operations_research/optimization/nonlinear/newton_method.typ"]
+    files = ["operations_research/optimization/nonlinear/newtons_method.typ"]
 
     [[sections.sections.sections]]
     title = "Heuristic Algorithms"
-    files = ["operations_research/optimization/heuritic_algorithms.typ"]
+    files = ["operations_research/optimization/heuristic_algorithms.typ"]
 
     [[sections.sections.sections]]
     title = "Duality"
@@ -1367,7 +1386,7 @@ title = "Operations Research"
 
     [[sections.sections.sections]]
     title = "Multi-Commodity Network Flow"
-    files = ["operations_research/optimization/networks/mcnf.typ"]
+    files = ["operations_research/optimization/networks/multi_commodity_network_flow.typ"]
 
     [[sections.sections.sections]]
     title = "Sensitivity Analysis"
@@ -1399,7 +1418,7 @@ title = "Operations Research"
 
     [[sections.sections.sections]]
     title = "Transshipment Problem"
-    files = ["operations_research/optimization/networks/transhipment_problem.typ"]
+    files = ["operations_research/optimization/networks/transshipment_problem.typ"]
 
     [[sections.sections.sections]]
     title = "Min-Cost Flow Algorithms"
@@ -1499,7 +1518,7 @@ title = "Operations Research"
 
     [[sections.sections.sections]]
     title = "EVPI vs VSS"
-    files = ["operations_research/optimization/stochastic/evpi_vss.typ"]
+    files = ["operations_research/optimization/stochastic/evpi_vs_vss.typ"]
 
     [[sections.sections.sections]]
     title = "Lagrange Relaxation"
@@ -1511,7 +1530,7 @@ title = "Operations Research"
 
     [[sections.sections.sections]]
     title = "KKT Conditions"
-    files = ["operations_research/optimization/nonlinear/kkt.typ"]
+    files = ["operations_research/optimization/nonlinear/kkt_conditions.typ"]
 
     [[sections.sections.sections]]
     title = "Dynamic Programming"
@@ -1562,7 +1581,7 @@ title = "Operations Research"
 
     [[sections.sections.sections]]
     title = "Little's Law"
-    files = ["operations_research/queuing_theory/little_law.typ"]
+    files = ["operations_research/queuing_theory/littles_law.typ"]
 
     [[sections.sections.sections]]
     title = "Kingman VUT"
@@ -1659,23 +1678,23 @@ title = "Operations Research"
 
     [[sections.sections.sections]]
     title = "Cp"
-    files = ["operations_research/quality_engineering/process_capability/c_p.typ"]
+    files = ["operations_research/quality_engineering/process_capability/cp.typ"]
 
     [[sections.sections.sections]]
     title = "Cpk"
-    files = ["operations_research/quality_engineering/process_capability/c_pk.typ"]
+    files = ["operations_research/quality_engineering/process_capability/cpk.typ"]
 
     [[sections.sections.sections]]
     title = "Cpm"
-    files = ["operations_research/quality_engineering/process_capability/c_pm.typ"]
+    files = ["operations_research/quality_engineering/process_capability/cpm.typ"]
 
     [[sections.sections.sections]]
     title = "Pp"
-    files = ["operations_research/quality_engineering/process_capability/p_p.typ"]
+    files = ["operations_research/quality_engineering/process_capability/pp.typ"]
 
     [[sections.sections.sections]]
     title = "Ppk"
-    files = ["operations_research/quality_engineering/process_capability/p_pk.typ"]
+    files = ["operations_research/quality_engineering/process_capability/ppk.typ"]
 
   [[sections.sections]]
   title = "Causes of Variation"
@@ -1781,7 +1800,7 @@ title = "Supply Chain"
 
   [[sections.sections]]
   title = "Bullwhip Effect"
-  files = ["supply_chain/inventory/bullwhip.typ"]
+  files = ["supply_chain/inventory/bullwhip_effect.typ"]
 
   [[sections.sections]]
   title = "Classification"
@@ -1880,7 +1899,7 @@ title = "Supply Chain"
 
     [[sections.sections.sections]]
     title = "Overview"
-    files = ["supply_chain/inventory/newsvendor/newsvendor.typ"]
+    files = ["supply_chain/inventory/newsvendor/overview.typ"]
 
     [[sections.sections.sections]]
     title = "Discrete"
@@ -2008,7 +2027,7 @@ title = "Supply Chain"
 
     [[sections.sections.sections]]
     title = "Overview"
-    files = ["supply_chain/inventory/policies/policies.typ"]
+    files = ["supply_chain/inventory/policies/overview.typ"]
 
     [[sections.sections.sections]]
     title = "Base Stock"
@@ -2045,7 +2064,7 @@ title = "Graph Theory"
 
   [[sections.sections]]
   title = "Overview"
-  files = ["graph_theory/graph_theory.typ"]
+  files = ["graph_theory/overview.typ"]
 
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -2054,7 +2073,7 @@ title = "Machine Learning"
 
   [[sections.sections]]
   title = "Bias–Variance Tradeoff"
-  files = ["machine_learning/bias_variance.typ"]
+  files = ["machine_learning/bias_variance_tradeoff.typ"]
 
   [[sections.sections]]
   title = "Classification"
@@ -2072,7 +2091,7 @@ title = "Machine Learning"
 
     [[sections.sections.sections]]
     title = "Graph Neural Network"
-    files = ["machine_learning/graphs/gnn.typ"]
+    files = ["machine_learning/graphs/graph_neural_network.typ"]
 
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -2135,7 +2154,7 @@ title = "Organisations"
 
   [[sections.sections]]
   title = "Functional Theory of Stratification"
-  files = ["organisations/functional_theory_stratification.typ"]
+  files = ["organisations/functional_theory_of_stratification.typ"]
 
   [[sections.sections]]
   title = "Institutional Theory"
@@ -2168,38 +2187,38 @@ title = "Certifications"
 
   [[sections.sections]]
   title = "CSCP"
-  files = ["certifications/CSCP/cheatsheet.typ"]
+  files = ["certifications/cscp/cscp.typ"]
 
   [[sections.sections]]
   title = "Supply Chain Analytics"
-  files = ["certifications/Supply Chain Analytics/Supply Chain Analytics/inventory_turns.typ"]
+  files = ["certifications/supply_chain_analytics/supply_chain_analytics.typ"]
 
   [[sections.sections]]
   title = "ACCA F3 — Financial Accounting"
 
     [[sections.sections.sections]]
     title = "Cheatsheet"
-    files = ["certifications/accounting/f3-fa/cheatsheet.typ"]
+    files = ["certifications/accounting/f3_fa/cheatsheet.typ"]
 
     [[sections.sections.sections]]
     title = "Overview"
-    files = ["certifications/accounting/f3-fa/fa.typ"]
+    files = ["certifications/accounting/f3_fa/overview.typ"]
 
     [[sections.sections.sections]]
     title = "Stakeholders"
-    files = ["certifications/accounting/f3-fa/stakeholders.typ"]
+    files = ["certifications/accounting/f3_fa/stakeholders.typ"]
 
     [[sections.sections.sections]]
     title = "Balance Sheet"
-    files = ["certifications/accounting/f3-fa/statements/balance.typ"]
+    files = ["certifications/accounting/f3_fa/statements/balance_sheet.typ"]
 
     [[sections.sections.sections]]
     title = "Income Statement"
-    files = ["certifications/accounting/f3-fa/statements/income.typ"]
+    files = ["certifications/accounting/f3_fa/statements/income_statement.typ"]
 
     [[sections.sections.sections]]
     title = "Cash Flow Statement"
-    files = ["certifications/accounting/f3-fa/statements/cash_flow.typ"]
+    files = ["certifications/accounting/f3_fa/statements/cash_flow_statement.typ"]
 
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -2208,7 +2227,7 @@ title = "Appendix"
 
   [[sections.sections]]
   title = "Scheduling Code"
-  files = ["appendix/code/scheduling.typ"]
+  files = ["appendix/code/scheduling_code.typ"]
 
 # ─────────────────────────────────────────────────────────────────────────────
 

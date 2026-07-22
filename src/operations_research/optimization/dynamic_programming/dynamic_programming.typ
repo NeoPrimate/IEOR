@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Dynamic Programming <operations_research_optimization_dynamic_programming_dynamic_programming>
+
 A method for solving multi-stage decision problems by breaking them into overlapping sub-problems, each solved once and reused.
 
 == When DP applies
@@ -34,15 +36,15 @@ Goal: $pi^* = arg min_pi J^pi (s_0)$.
 
 == Why naive enumeration fails
 
-$K$ actions per stage, $T$ stages → $K^T$ plans. $K=5, T=20 → 5^(20) approx 10^(14)$. DP shrinks this to $O(T |cal(S)| |cal(A)|)$ via the #link(<operations-research-optimization-bellman-equation>)[Bellman recursion].
+$K$ actions per stage, $T$ stages → $K^T$ plans. $K=5, T=20 → 5^(20) approx 10^(14)$. DP shrinks this to $O(T |cal(S)| |cal(A)|)$ via the #link(<operations_research_optimization_dynamic_programming_bellman_equation>)[Bellman recursion].
 
 == Core ideas
 
-- *#link(<operations-research-optimization-bellman-equation>)[Bellman equation]* — the recursion that breaks the problem into sub-problems
-- *#link(<operations-research-optimization-backward-induction>)[Backward induction]* — solve from the end back
-- *#link(<operations-research-optimization-forward-induction>)[Forward induction]* — dual direction (cost-to-arrive)
-- *#link(<operations-research-optimization-stochastic-dp>)[Stochastic DP]* — random transitions, expected cost
-- *#link(<operations-research-optimization-value-iteration>)[Value iteration]* / *#link(<operations-research-optimization-policy-iteration>)[Policy iteration]* — infinite-horizon MDPs
+- *#link(<operations_research_optimization_dynamic_programming_bellman_equation>)[Bellman equation]* — the recursion that breaks the problem into sub-problems
+- *#link(<operations_research_optimization_dynamic_programming_backward_induction>)[Backward induction]* — solve from the end back
+- *#link(<operations_research_optimization_dynamic_programming_forward_induction>)[Forward induction]* — dual direction (cost-to-arrive)
+- *#link(<operations_research_optimization_dynamic_programming_stochastic_dp>)[Stochastic DP]* — random transitions, expected cost
+- *#link(<operations_research_optimization_dynamic_programming_value_iteration>)[Value iteration]* / *#link(<operations_research_optimization_dynamic_programming_policy_iteration>)[Policy iteration]* — infinite-horizon MDPs
 
 == Curse of dimensionality
 
@@ -55,16 +57,16 @@ Mitigations: state aggregation, approximate DP, reinforcement learning, function
 - *Shortest path on DAG* — $O(V + E)$
 - *0-1 Knapsack* — pseudo-polynomial $O(n W)$
 - *Equipment replacement*
-- *Inventory*: #link(<supply-chain-eoq-wagner-whitin>)[Wagner-Whitin] lot-sizing
+- *Inventory*: #link(<supply_chain_inventory_eoq_wagner_whitin>)[Wagner-Whitin] lot-sizing
 - *Resource allocation* across activities
 - *Optimal stopping* — secretary problem, asset selling
-- *Revenue management* — see #link(<operations-research-optimization-bellman-equation>)[Bellman] applied to capacity-time
+- *Revenue management* — see #link(<operations_research_optimization_dynamic_programming_bellman_equation>)[Bellman] applied to capacity-time
 - *Reinforcement learning* — MDP foundation
 
 == See also
 
-- *#link(<operations-research-optimization-bellman-equation>)[Bellman Equation]*
-- *#link(<operations-research-optimization-backward-induction>)[Backward Induction]*
-- *#link(<operations-research-optimization-stochastic-dp>)[Stochastic DP]*
-- *#link(<operations-research-optimization-value-iteration>)[Value Iteration]*
-- *#link(<operations-research-optimization-policy-iteration>)[Policy Iteration]*
+- *#link(<operations_research_optimization_dynamic_programming_bellman_equation>)[Bellman Equation]*
+- *#link(<operations_research_optimization_dynamic_programming_backward_induction>)[Backward Induction]*
+- *#link(<operations_research_optimization_dynamic_programming_stochastic_dp>)[Stochastic DP]*
+- *#link(<operations_research_optimization_dynamic_programming_value_iteration>)[Value Iteration]*
+- *#link(<operations_research_optimization_dynamic_programming_policy_iteration>)[Policy Iteration]*

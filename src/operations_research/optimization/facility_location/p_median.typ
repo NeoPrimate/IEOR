@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= p-Median <operations_research_optimization_facility_location_p_median>
+
 *$p$-Median Problem*: place exactly $p$ facilities among candidates to minimize the *total* assigned distance / cost. No fixed facility cost — the constraint is "exactly $p$".
 
 == Formulation
@@ -88,7 +90,7 @@ Customer disc size $prop$ demand weight $d_i$ — $p = 2$ facilities chosen to m
 
 == Difference from UFLP
 
-- *#link(<operations-research-optimization-uflp>)[UFLP]*: facility costs are *variable* — pay $f_j$ to open. Optimizer picks the right number.
+- *#link(<operations_research_optimization_facility_location_uflp>)[UFLP]*: facility costs are *variable* — pay $f_j$ to open. Optimizer picks the right number.
 - *$p$-Median*: exactly $p$ facilities — number is fixed by the problem. No per-facility fixed cost.
 
 In practice, the two are related: solving $p$-median for varying $p$ traces out the *cost-vs-number-of-facilities* trade-off curve that UFLP would balance via the fixed costs.
@@ -112,14 +114,14 @@ NP-hard. Methods:
 
 == Variants
 
-- *Continuous $p$-median* (1-median = #link(<operations-research-optimization-center-of-gravity>)[center of gravity]; multi-facility versions: Weiszfeld iteration generalized)
-- *$p$-center* (#link(<operations-research-optimization-p-center>)[$p$-center]) — minimize *max* distance instead of total
+- *Continuous $p$-median* (1-median = #link(<operations_research_optimization_facility_location_center_of_gravity>)[center of gravity]; multi-facility versions: Weiszfeld iteration generalized)
+- *$p$-center* (#link(<operations_research_optimization_facility_location_p_center>)[$p$-center]) — minimize *max* distance instead of total
 - *Capacitated $p$-median* — facilities have capacity limits
 - *Multi-objective* — trade off coverage / equity / total cost
 
 == See also
 
-- *#link(<operations-research-optimization-uflp>)[UFLP]* — variable count, fixed costs
-- *#link(<operations-research-optimization-p-center>)[$p$-center]* — minimax variant
-- *#link(<operations-research-optimization-center-of-gravity>)[Center of Gravity]* — $p = 1$ continuous case
-- *#link(<operations-research-optimization-facility-location>)[Facility Location overview]*
+- *#link(<operations_research_optimization_facility_location_uflp>)[UFLP]* — variable count, fixed costs
+- *#link(<operations_research_optimization_facility_location_p_center>)[$p$-center]* — minimax variant
+- *#link(<operations_research_optimization_facility_location_center_of_gravity>)[Center of Gravity]* — $p = 1$ continuous case
+- *#link(<operations_research_optimization_facility_location_facility_location>)[Facility Location overview]*

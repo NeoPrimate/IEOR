@@ -1,6 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Simplex Method <operations_research_optimization_linear_programming_simplex_method>
 
 #set math.mat(gap: 1em)
 #set math.vec(gap: 1em)
@@ -271,7 +272,7 @@ To solve the system:
     )
   $
 
-  $A$ has #link(<linear-algebra-determinant>)[*determinant*] 0, so it's *not invertible*
+  $A$ has #link(<linear_algebra_determinant>)[*determinant*] 0, so it's *not invertible*
 ]
 
 === Inverse

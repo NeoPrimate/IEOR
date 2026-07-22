@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Spearman Rank <statistics_correlation_spearman_rank>
+
 == Spearman's Rank
 
 Non-linear relationships

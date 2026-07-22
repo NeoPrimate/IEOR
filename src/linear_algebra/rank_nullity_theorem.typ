@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-For a #link(<linear-algebra-linear-transformation>)[linear transformation] $T: V -> W$ between finite-dimensional vector spaces:
+= Rank–Nullity Theorem <linear_algebra_rank_nullity_theorem>
+
+For a #link(<linear_algebra_linear_transformation>)[linear transformation] $T: V -> W$ between finite-dimensional vector spaces:
 
 $
   underbrace(dim(V), n) = underbrace(dim(ker(T)), "nullity") + underbrace(dim(im(T)), "rank")
@@ -10,10 +12,10 @@ $
 In matrix form, for an $m times n$ matrix $A$:
 
 $
-  n = dim(#link(<linear-algebra-null-space>)[null(A)]) + #link(<linear-algebra-rank>)[rank(A)]
+  n = dim(#link(<linear_algebra_null_space>)[null(A)]) + #link(<linear_algebra_rank>)[rank(A)]
 $
 
-(See #link(<linear-algebra-dimension>)[Dimension], #link(<linear-algebra-null-space>)[Null Space], and #link(<linear-algebra-rank>)[Rank].)
+(See #link(<linear_algebra_dimension>)[Dimension], #link(<linear_algebra_null_space>)[Null Space], and #link(<linear_algebra_rank>)[Rank].)
 
 The dimension of the input space splits *exactly* into the part that gets sent to zero (the kernel) and the part that survives as the image.
 
@@ -31,8 +33,8 @@ It's the bookkeeping identity for linear maps. Lots of immediate consequences:
 
 - *Injectivity from dimensions*: if $T: RR^n -> RR^m$ has $n > m$, then $dim(ker(T)) >= n - m > 0$ — *not injective*.
 - *Surjectivity from dimensions*: if $T: RR^n -> RR^m$ with $n < m$, then $dim(im(T)) <= n < m$ — *not surjective*.
-- *Square invertibility*: a square matrix $A$ is #link(<linear-algebra-matrix-inverse>)[invertible] iff $ker(A) = {bold(0)}$ iff $im(A) = RR^n$ — by rank–nullity these are equivalent for square $A$.
-- *Solution space dimension*: the solution set of $A accent(x, arrow) = accent(b, arrow)$ (when consistent) has dimension $n - "rank"(A)$ — see #link(<linear-algebra-linear-system-solutions>)[Linear System Solutions].
+- *Square invertibility*: a square matrix $A$ is #link(<linear_algebra_matrix_inverse>)[invertible] iff $ker(A) = {bold(0)}$ iff $im(A) = RR^n$ — by rank–nullity these are equivalent for square $A$.
+- *Solution space dimension*: the solution set of $A accent(x, arrow) = accent(b, arrow)$ (when consistent) has dimension $n - "rank"(A)$ — see #link(<linear_algebra_linear_system_solutions>)[Linear System Solutions].
 
 #example[
   $A = mat(1, 2, 3; 2, 4, 6)$. The two rows are dependent → $"rank"(A) = 1$.
@@ -52,7 +54,7 @@ For an $m times n$ matrix $A$:
 
 == See also
 
-- *#link(<linear-algebra-rank>)[Rank]*
-- *#link(<linear-algebra-null-space>)[Null Space]* / *#link(<linear-algebra-kernel>)[Kernel]*
-- *#link(<linear-algebra-image>)[Image]* / *#link(<linear-algebra-column-space>)[Column Space]*
-- *#link(<linear-algebra-surjective-injective-bijective>)[Surjective / Injective / Bijective]*
+- *#link(<linear_algebra_rank>)[Rank]*
+- *#link(<linear_algebra_null_space>)[Null Space]* / *#link(<linear_algebra_kernel>)[Kernel]*
+- *#link(<linear_algebra_image>)[Image]* / *#link(<linear_algebra_column_space>)[Column Space]*
+- *#link(<linear_algebra_surjective_injective_bijective>)[Surjective / Injective / Bijective]*

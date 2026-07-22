@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= P-Chart <operations_research_quality_engineering_control_charts_p_chart>
+
 The p-chart monitors the proportion of defectives in each sample, accounting for variable sample sizes.
 
 $

@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= STL <time_series_decomposition_stl>
+
 == STL Decomposition (Seasonal-Trend using Loess)
 
 Modern alternative to classical decomposition. *Robust*, handles *changing* seasonal patterns, and produces *complete* trend/seasonal estimates with no endpoint gaps.

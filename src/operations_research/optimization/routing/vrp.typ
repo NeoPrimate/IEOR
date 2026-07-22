@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-The *Vehicle Routing Problem*: given a fleet of vehicles based at a depot, serve a set of customers with minimum total cost (distance / time). Generalization of #link(<operations-research-optimization-tsp>)[TSP] to multiple vehicles.
+= VRP <operations_research_optimization_routing_vrp>
+
+The *Vehicle Routing Problem*: given a fleet of vehicles based at a depot, serve a set of customers with minimum total cost (distance / time). Generalization of #link(<operations_research_optimization_routing_tsp>)[TSP] to multiple vehicles.
 
 Core supply-chain problem: last-mile delivery, beverage distribution, waste collection, school bus routing, mobile maintenance.
 
@@ -30,7 +32,7 @@ s.t.:
 
 == Variants
 
-- *VRP-TW (with time windows)* — each customer has a delivery window $[a_i, b_i]$; see #link(<operations-research-optimization-vrp-time-windows>)[VRPTW]
+- *VRP-TW (with time windows)* — each customer has a delivery window $[a_i, b_i]$; see #link(<operations_research_optimization_routing_vrp_time_windows>)[VRPTW]
 - *Pickup-and-delivery VRP* (PDVRP) — pickups must precede deliveries on the same route
 - *Heterogeneous fleet VRP* — vehicles with different capacities / costs
 - *Stochastic VRP* — random demand or travel times
@@ -46,7 +48,7 @@ s.t.:
 - *Dynamic programming* for very small fleets
 
 *Heuristics*:
-- *Constructive*: #link(<operations-research-optimization-clarke-wright>)[Clarke-Wright savings] (the classic), Sweep, Fisher-Jaikumar
+- *Constructive*: #link(<operations_research_optimization_routing_clarke_wright>)[Clarke-Wright savings] (the classic), Sweep, Fisher-Jaikumar
 - *Improvement*: 2-opt, Or-opt, 3-opt within routes; inter-route swaps
 - *Metaheuristics*: tabu search, simulated annealing, genetic algorithms, large-neighborhood search
 - *Modern*: Adaptive Large Neighborhood Search (ALNS), HGS (Hybrid Genetic Search)
@@ -58,12 +60,12 @@ s.t.:
 
 == Continuous approximation
 
-For large-scale VRP design (how many vehicles? how big are routes?), *Daganzo's continuous approximation* gives clean formulas. See #link(<operations-research-optimization-daganzo-continuous>)[Daganzo].
+For large-scale VRP design (how many vehicles? how big are routes?), *Daganzo's continuous approximation* gives clean formulas. See #link(<operations_research_optimization_routing_daganzo_continuous>)[Daganzo].
 
 == See also
 
-- *#link(<operations-research-optimization-tsp>)[TSP]* — single-vehicle case
-- *#link(<operations-research-optimization-vrp-time-windows>)[VRPTW]* — with time windows
-- *#link(<operations-research-optimization-clarke-wright>)[Clarke-Wright]* — standard heuristic
-- *#link(<operations-research-optimization-daganzo-continuous>)[Daganzo Continuous Approximation]*
-- *#link(<operations-research-optimization-assignment-problem>)[Assignment Problem]* — sub-problem in some methods
+- *#link(<operations_research_optimization_routing_tsp>)[TSP]* — single-vehicle case
+- *#link(<operations_research_optimization_routing_vrp_time_windows>)[VRPTW]* — with time windows
+- *#link(<operations_research_optimization_routing_clarke_wright>)[Clarke-Wright]* — standard heuristic
+- *#link(<operations_research_optimization_routing_daganzo_continuous>)[Daganzo Continuous Approximation]*
+- *#link(<operations_research_optimization_networks_assignment_problem>)[Assignment Problem]* — sub-problem in some methods

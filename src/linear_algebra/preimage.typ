@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
+= Preimage <linear_algebra_preimage>
 
 For a transformation $T: RR^n -> RR^m$ and a subset $S subset.eq RR^m$, the *preimage of $S$ under $T$* is the set of inputs that map into $S$:
 
@@ -42,11 +42,11 @@ For a single point $accent(y, arrow) in RR^m$, the preimage $T^(-1)(accent(y, ar
 - $T^(-1)(RR^m) = RR^n$
 - $T^(-1)(S_1 union S_2) = T^(-1)(S_1) union T^(-1)(S_2)$
 - $T^(-1)(S_1 inter S_2) = T^(-1)(S_1) inter T^(-1)(S_2)$
-- For a linear $T$: $T^(-1)(bold(0))$ is exactly the #link(<linear-algebra-kernel>)[kernel] of $T$
+- For a linear $T$: $T^(-1)(bold(0))$ is exactly the #link(<linear_algebra_kernel>)[kernel] of $T$
 - For linear $T$ and any $accent(y, arrow) in im(T)$: $T^(-1)(accent(y, arrow)) = accent(x, arrow)_p + ker(T)$ for any particular solution $accent(x, arrow)_p$ — an *affine subspace* parallel to the kernel
 
 == Connections
 
-- *#link(<linear-algebra-image>)[Image]* — the forward direction
-- *#link(<linear-algebra-image-of-subset>)[Image of a subset]* — applying $T$ to a set rather than $T^(-1)$
-- *#link(<linear-algebra-kernel>)[Kernel]* — preimage of the zero vector under a linear map
+- *#link(<linear_algebra_image>)[Image]* — the forward direction
+- *#link(<linear_algebra_image_of_subset>)[Image of a subset]* — applying $T$ to a set rather than $T^(-1)$
+- *#link(<linear_algebra_kernel>)[Kernel]* — preimage of the zero vector under a linear map

@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Transportation Problem <operations_research_optimization_networks_transportation_problem>
+
 A classical LP: ship supply from $m$ sources to $n$ destinations at minimum cost.
 
 == Formulation
@@ -40,17 +42,17 @@ $
 3. *MODI / stepping stone* — improvement iterations on a BFS to optimality
 4. *Transportation simplex* — specialized simplex exploiting structure; $O((m+n)^2)$ per pivot vs $O((m n)^2)$ for general
 
-For large instances: just use #link(<operations-research-optimization-network-simplex>)[network simplex].
+For large instances: just use #link(<operations_research_optimization_networks_network_simplex>)[network simplex].
 
 == Special cases
 
-- *#link(<operations-research-optimization-assignment-problem>)[Assignment problem]* — $m = n$, all $s_i = d_j = 1$, $x in {0, 1}$
-- *#link(<operations-research-optimization-transshipment-problem>)[Transshipment]* — allow intermediate nodes
-- *MCNF* — generalization with arc capacities (#link(<operations-research-optimization-multi-commodity-network-flow>)[here])
+- *#link(<operations_research_optimization_networks_assignment_problem>)[Assignment problem]* — $m = n$, all $s_i = d_j = 1$, $x in {0, 1}$
+- *#link(<operations_research_optimization_networks_transshipment_problem>)[Transshipment]* — allow intermediate nodes
+- *MCNF* — generalization with arc capacities (#link(<operations_research_optimization_networks_multi_commodity_network_flow>)[here])
 
 == See also
 
-- *#link(<operations-research-optimization-assignment-problem>)[Assignment Problem]*
-- *#link(<operations-research-optimization-transshipment-problem>)[Transshipment]*
-- *#link(<operations-research-optimization-network-simplex>)[Network Simplex]*
-- *#link(<operations-research-optimization-linear-programming>)[Linear Programming]*
+- *#link(<operations_research_optimization_networks_assignment_problem>)[Assignment Problem]*
+- *#link(<operations_research_optimization_networks_transshipment_problem>)[Transshipment]*
+- *#link(<operations_research_optimization_networks_network_simplex>)[Network Simplex]*
+- *#link(<operations_research_optimization_linear_programming_linear_programming>)[Linear Programming]*

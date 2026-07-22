@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-The foundational result for *stochastic* multi-echelon inventory in serial systems (Clark & Scarf 1960). Shows that the multi-echelon problem decomposes into *independent single-echelon problems* — one per stage, each solved as a #link(<supply-chain-newsvendor-overview>)[newsvendor]-like base-stock problem with an *induced penalty cost*.
+= Clark-Scarf <supply_chain_inventory_multi_echelon_clark_scarf>
+
+The foundational result for *stochastic* multi-echelon inventory in serial systems (Clark & Scarf 1960). Shows that the multi-echelon problem decomposes into *independent single-echelon problems* — one per stage, each solved as a #link(<supply_chain_inventory_newsvendor_overview>)[newsvendor]-like base-stock problem with an *induced penalty cost*.
 
 == Setup: serial system
 
@@ -254,11 +256,11 @@ If stage $i$'s order pulls from infinite supply (or upstream is always available
 - *Stationary demand*: i.i.d. demand each period
 - *Costly to compute* for many stages and long horizons
 
-For general networks, see #link(<supply-chain-multi-echelon-graves-willems>)[Graves-Willems guaranteed-service].
+For general networks, see #link(<supply_chain_inventory_multi_echelon_graves_willems>)[Graves-Willems guaranteed-service].
 
 == See also
 
-- *#link(<supply-chain-multi-echelon-multi-echelon>)[Multi-Echelon]* — overview
-- *#link(<supply-chain-multi-echelon-graves-willems>)[Graves-Willems]* — alternative for general networks
-- *#link(<supply-chain-policies-base-stock>)[Base Stock Policy]*
-- *#link(<supply-chain-newsvendor-overview>)[Newsvendor]*
+- *#link(<supply_chain_inventory_multi_echelon_multi_echelon>)[Multi-Echelon]* — overview
+- *#link(<supply_chain_inventory_multi_echelon_graves_willems>)[Graves-Willems]* — alternative for general networks
+- *#link(<supply_chain_inventory_policies_base_stock>)[Base Stock Policy]*
+- *#link(<supply_chain_inventory_newsvendor_overview>)[Newsvendor]*

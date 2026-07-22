@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Bernoulli <statistics_distributions_bernoulli>
+
 == Bernoulli Trial (Binomial trial)
 
 A Bernoulli trial is a random experiment with exactly two possible outcomes: "success" and "failure," where the probability of success ($p$) remains constant across trials.

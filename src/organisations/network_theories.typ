@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Network Theories <organisations_network_theories>
+
 == World-Systems Theory
 
 (Wallerstein)

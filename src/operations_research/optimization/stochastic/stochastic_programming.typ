@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Stochastic Programming <operations_research_optimization_stochastic_stochastic_programming>
+
 Optimization with *uncertain parameters* whose probability distribution is known. Distinguishes:
 
 - *Here-and-now* decisions made *before* the random data is revealed
@@ -27,11 +29,11 @@ The expectation $E_xi$ aggregates over the distribution of $xi$.
 
 == Subtopics
 
-- *#link(<operations-research-optimization-two-stage-recourse>)[Two-stage recourse]* — the core model
-- *#link(<operations-research-optimization-scenario-trees>)[Scenario trees]* — multi-stage extension
-- *#link(<operations-research-optimization-chance-constraints>)[Chance constraints]* — probabilistic feasibility
-- *#link(<operations-research-optimization-sample-average-approximation>)[Sample average approximation]* — solve via Monte Carlo
-- *#link(<operations-research-optimization-evpi-vs-vss>)[EVPI vs VSS]* — value of information / value of stochastic modeling
+- *#link(<operations_research_optimization_stochastic_two_stage_recourse>)[Two-stage recourse]* — the core model
+- *#link(<operations_research_optimization_stochastic_scenario_trees>)[Scenario trees]* — multi-stage extension
+- *#link(<operations_research_optimization_stochastic_chance_constraints>)[Chance constraints]* — probabilistic feasibility
+- *#link(<operations_research_optimization_stochastic_sample_average_approximation>)[Sample average approximation]* — solve via Monte Carlo
+- *#link(<operations_research_optimization_stochastic_evpi_vs_vss>)[EVPI vs VSS]* — value of information / value of stochastic modeling
 
 == When to use
 
@@ -41,15 +43,15 @@ The expectation $E_xi$ aggregates over the distribution of $xi$.
 
 == Alternatives
 
-- *#link(<operations-research-optimization-dynamic-programming>)[Dynamic programming]*: same as stochastic programming for sequential decisions, but explodes with state-space dimension. SP scales better in continuous variables.
+- *#link(<operations_research_optimization_dynamic_programming_dynamic_programming>)[Dynamic programming]*: same as stochastic programming for sequential decisions, but explodes with state-space dimension. SP scales better in continuous variables.
 - *Robust optimization*: hedges against worst-case uncertainty instead of expected case. Less data-hungry; more conservative.
 - *Scenario analysis*: pick a few representative scenarios; solve each deterministically. Crude but easy.
 
 == See also
 
-- *#link(<operations-research-optimization-two-stage-recourse>)[Two-stage Recourse]*
-- *#link(<operations-research-optimization-scenario-trees>)[Scenario Trees]*
-- *#link(<operations-research-optimization-chance-constraints>)[Chance Constraints]*
-- *#link(<operations-research-optimization-sample-average-approximation>)[Sample Average Approximation]*
-- *#link(<operations-research-optimization-evpi-vs-vss>)[EVPI vs VSS]*
-- *#link(<operations-research-optimization-dynamic-programming>)[Dynamic Programming]*
+- *#link(<operations_research_optimization_stochastic_two_stage_recourse>)[Two-stage Recourse]*
+- *#link(<operations_research_optimization_stochastic_scenario_trees>)[Scenario Trees]*
+- *#link(<operations_research_optimization_stochastic_chance_constraints>)[Chance Constraints]*
+- *#link(<operations_research_optimization_stochastic_sample_average_approximation>)[Sample Average Approximation]*
+- *#link(<operations_research_optimization_stochastic_evpi_vs_vss>)[EVPI vs VSS]*
+- *#link(<operations_research_optimization_dynamic_programming_dynamic_programming>)[Dynamic Programming]*

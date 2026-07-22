@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Pearson <statistics_correlation_pearson>
+
 Linear relationships
 
 $

@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-Closed causal chains where an effect comes back to influence its cause. The engine of dynamic behavior in #link(<system-dynamics-system-dynamics>)[system dynamics].
+= Feedback Loops <system_dynamics_feedback_loops>
+
+Closed causal chains where an effect comes back to influence its cause. The engine of dynamic behavior in #link(<system_dynamics_system_dynamics>)[system dynamics].
 
 == Two types
 
@@ -50,7 +52,7 @@ $
 
 Initially R dominates → exponential growth. As $x → K$, the balancing factor $(1 - x/K)$ shrinks $dot x$. Asymptote: $x → K$. S-curve.
 
-See #link(<system-dynamics-logistic-growth>)[Logistic Growth].
+See #link(<system_dynamics_logistic_growth>)[Logistic Growth].
 
 == Second-order: oscillation
 
@@ -89,7 +91,7 @@ The same model can have R-dominant phase (early growth) and B-dominant phase (sa
 
 == See also
 
-- *#link(<system-dynamics-causal-loop-diagrams>)[Causal Loop Diagrams]*
-- *#link(<system-dynamics-stocks-flows>)[Stocks and Flows]*
-- *#link(<system-dynamics-logistic-growth>)[Logistic Growth]*
-- *#link(<system-dynamics-system-dynamics>)[System Dynamics]*
+- *#link(<system_dynamics_causal_loop_diagrams>)[Causal Loop Diagrams]*
+- *#link(<system_dynamics_stocks_flows>)[Stocks and Flows]*
+- *#link(<system_dynamics_logistic_growth>)[Logistic Growth]*
+- *#link(<system_dynamics_system_dynamics>)[System Dynamics]*

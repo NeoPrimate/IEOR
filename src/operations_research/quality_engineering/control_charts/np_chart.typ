@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= NP-Chart <operations_research_quality_engineering_control_charts_np_chart>
+
 == NP-charts (Number Proportion)
 
 Number of defective items (constant sample size)

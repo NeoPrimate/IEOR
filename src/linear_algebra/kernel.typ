@@ -1,13 +1,15 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-For a #link(<linear-algebra-linear-transformation>)[linear transformation] $T: RR^n -> RR^m$, the *kernel* (or *null space* of $T$) is the set of vectors that map to the zero vector:
+= Kernel <linear_algebra_kernel>
+
+For a #link(<linear_algebra_linear_transformation>)[linear transformation] $T: RR^n -> RR^m$, the *kernel* (or *null space* of $T$) is the set of vectors that map to the zero vector:
 
 $
   ker(T) = { accent(x, arrow) in RR^n | T(accent(x, arrow)) = bold(0) }
 $
 
-The kernel is the #link(<linear-algebra-preimage>)[preimage] of $bold(0)$.
+The kernel is the #link(<linear_algebra_preimage>)[preimage] of $bold(0)$.
 
 == Why the kernel is a subspace
 
@@ -17,11 +19,11 @@ For any $accent(x, arrow), accent(y, arrow) in ker(T)$ and scalar $c$:
 - $T(c #h(0.2em) accent(x, arrow)) = c #h(0.2em) T(accent(x, arrow)) = c #h(0.2em) bold(0) = bold(0)$ → closed under scalar multiplication
 - $bold(0) in ker(T)$ since $T(bold(0)) = bold(0)$
 
-Hence $ker(T)$ is a #link(<linear-algebra-subspace>)[subspace] of $RR^n$.
+Hence $ker(T)$ is a #link(<linear_algebra_subspace>)[subspace] of $RR^n$.
 
 == Matrix form: kernel ↔ null space
 
-If $T$ is represented by a matrix $A$ (so $T(accent(x, arrow)) = A accent(x, arrow)$), the kernel of $T$ equals the #link(<linear-algebra-null-space>)[null space] of $A$:
+If $T$ is represented by a matrix $A$ (so $T(accent(x, arrow)) = A accent(x, arrow)$), the kernel of $T$ equals the #link(<linear_algebra_null_space>)[null space] of $A$:
 
 $
   ker(T) = "null"(A) = { accent(x, arrow) | A accent(x, arrow) = bold(0) }
@@ -46,8 +48,8 @@ Proof sketch: if $T(accent(x, arrow)_1) = T(accent(x, arrow)_2)$, then $T(accent
 
 == Connections
 
-- *#link(<linear-algebra-null-space>)[Null Space]* — kernel of the matrix representation
-- *#link(<linear-algebra-rank-nullity-theorem>)[Rank–Nullity]*: $dim(ker(T)) + dim(im(T)) = n$
-- *#link(<linear-algebra-image>)[Image]* — the "output side" counterpart
-- *#link(<linear-algebra-preimage>)[Preimage]* — generalization to non-zero target sets
-- *#link(<linear-algebra-zero-matrix>)[Zero Vector]* — what kernel elements map to
+- *#link(<linear_algebra_null_space>)[Null Space]* — kernel of the matrix representation
+- *#link(<linear_algebra_rank_nullity_theorem>)[Rank–Nullity]*: $dim(ker(T)) + dim(im(T)) = n$
+- *#link(<linear_algebra_image>)[Image]* — the "output side" counterpart
+- *#link(<linear_algebra_preimage>)[Preimage]* — generalization to non-zero target sets
+- *#link(<linear_algebra_zero_matrix>)[Zero Vector]* — what kernel elements map to

@@ -1,13 +1,15 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= VRP Time Windows <operations_research_optimization_routing_vrp_time_windows>
+
 *VRP with Time Windows* (VRPTW): each customer $i$ specifies a *time window* $[a_i, b_i]$ during which service must begin.
 
 The most common real-world VRP variant. Models meal delivery, parcel logistics, home services, dialysis transport, etc.
 
 == Formulation additions
 
-On top of #link(<operations-research-optimization-vrp>)[CVRP]:
+On top of #link(<operations_research_optimization_routing_vrp>)[CVRP]:
 
 Let $t_i$ = service start time at customer $i$, $s_i$ = service duration, $t_(i j)$ = travel time from $i$ to $j$.
 
@@ -71,6 +73,6 @@ Soft windows are easier to solve (relaxes infeasibility); hard windows model rea
 
 == See also
 
-- *#link(<operations-research-optimization-vrp>)[VRP]* — without time windows
-- *#link(<operations-research-optimization-tsp>)[TSP]* — single-vehicle ancestor
-- *#link(<operations-research-optimization-clarke-wright>)[Clarke-Wright]* — initial routes
+- *#link(<operations_research_optimization_routing_vrp>)[VRP]* — without time windows
+- *#link(<operations_research_optimization_routing_tsp>)[TSP]* — single-vehicle ancestor
+- *#link(<operations_research_optimization_routing_clarke_wright>)[Clarke-Wright]* — initial routes

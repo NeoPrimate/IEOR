@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Lagrangian <operations_research_optimization_nonlinear_lagrangian>
+
 $
   gradient f = lambda gradient g \
   g = 0

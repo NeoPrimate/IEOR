@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Addition / Subtraction <linear_algebra_addition_subtraction>
+
 == Addition or Subtraction Method
 
 #example[

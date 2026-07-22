@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-Tests for confirming that a #link(<system-dynamics-system-dynamics>)[system-dynamics] model represents reality usefully. Sterman (2000, Ch. 21) gives a canonical 12-test battery, divided into *structure-oriented* and *behavior-oriented* tests.
+= Validation <system_dynamics_validation>
+
+Tests for confirming that a #link(<system_dynamics_system_dynamics>)[system-dynamics] model represents reality usefully. Sterman (2000, Ch. 21) gives a canonical 12-test battery, divided into *structure-oriented* and *behavior-oriented* tests.
 
 == Structure-oriented tests (does the model capture what it should?)
 
@@ -68,6 +70,6 @@ For *decision-rule parameters* (e.g., beer-game $alpha_S, alpha_(S L)$): typical
 
 == See also
 
-- *#link(<system-dynamics-system-dynamics>)[System Dynamics overview]*
-- *#link(<system-dynamics-numerical-integration>)[Numerical Integration]* — integration-error test
-- *#link(<statistics-monte-carlo-simulation>)[Monte Carlo Simulation]* — for sensitivity
+- *#link(<system_dynamics_system_dynamics>)[System Dynamics overview]*
+- *#link(<system_dynamics_numerical_integration>)[Numerical Integration]* — integration-error test
+- *#link(<statistics_monte_carlo_simulation_monte_carlo_simulation>)[Monte Carlo Simulation]* — for sensitivity

@@ -1,8 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Principal Minor <linear_algebra_principal_minor>
 
-A *principal minor* of an $n times n$ matrix $A$ is the #link(<linear-algebra-determinant>)[determinant] of a square submatrix whose diagonal is a subset of $A$'s diagonal.
+A *principal minor* of an $n times n$ matrix $A$ is the #link(<linear_algebra_determinant>)[determinant] of a square submatrix whose diagonal is a subset of $A$'s diagonal.
 
 To form a principal minor: pick a subset of indices $I subset.eq {1, 2, dots, n}$, then delete every row and column *not* in $I$. The resulting submatrix is square; its determinant is the principal minor.
 
@@ -44,12 +45,12 @@ For an $n times n$ matrix:
 
 == Where they show up
 
-- *#link(<linear-algebra-determinant>)[Sylvester's criterion]* (positive-definiteness test): a symmetric matrix is positive definite iff every #link(<linear-algebra-leading-principal-minor>)[leading principal minor] is positive
+- *#link(<linear_algebra_determinant>)[Sylvester's criterion]* (positive-definiteness test): a symmetric matrix is positive definite iff every #link(<linear_algebra_leading_principal_minor>)[leading principal minor] is positive
 - *Positive semi-definiteness*: requires *every* principal minor (not just leading) to be non-negative
-- *#link(<operations-research-optimization-convex-analysis>)[Convex analysis]* — checking definiteness of the Hessian via principal minors
+- *#link(<operations_research_optimization_nonlinear_convex_analysis>)[Convex analysis]* — checking definiteness of the Hessian via principal minors
 
 == See also
 
-- *#link(<linear-algebra-leading-principal-minor>)[Leading Principal Minor]* — minors from the top-left corner
-- *#link(<linear-algebra-minor>)[Minor]* — general minors (rows and columns can differ)
-- *#link(<linear-algebra-determinant>)[Determinant]*
+- *#link(<linear_algebra_leading_principal_minor>)[Leading Principal Minor]* — minors from the top-left corner
+- *#link(<linear_algebra_minor>)[Minor]* — general minors (rows and columns can differ)
+- *#link(<linear_algebra_determinant>)[Determinant]*

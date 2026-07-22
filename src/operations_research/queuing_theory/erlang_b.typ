@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Erlang B <operations_research_queuing_theory_erlang_b>
+
 The *Erlang B formula*: probability that all servers in an M/M/c/c queue (Poisson arrivals, exponential service, $c$ servers, $c$ capacity = no queue) are busy. Arriving customers facing all-busy are *blocked / lost*.
 
 == Formula
@@ -76,7 +78,7 @@ Surprisingly: Erlang B is *insensitive* to the service-time distribution — onl
 
 == See also
 
-- *#link(<operations-research-queuing-theory-erlang-c>)[Erlang C]* — with queue
-- *#link(<operations-research-queuing-theory-m-m-1>)[M/M/1]* — single-server with queue
-- *#link(<operations-research-queuing-theory-m-m-c>)[M/M/c]* — multi-server with queue
-- *#link(<operations-research-queuing-theory-mmc-abandonment>)[Erlang A]* — with abandonment
+- *#link(<operations_research_queuing_theory_erlang_c>)[Erlang C]* — with queue
+- *#link(<operations_research_queuing_theory_mm1>)[M/M/1]* — single-server with queue
+- *#link(<operations_research_queuing_theory_mmc>)[M/M/c]* — multi-server with queue
+- *#link(<operations_research_queuing_theory_mmc_abandonment>)[Erlang A]* — with abandonment

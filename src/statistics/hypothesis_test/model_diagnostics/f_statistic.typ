@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= F-statistic <statistics_hypothesis_test_model_diagnostics_f_statistic>
+
 $
 F = "MSR" / "MSE"
 $

@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Sensitivity Analysis <operations_research_optimization_linear_programming_sensitivity_analysis>
+
 #set math.cases(gap: 1em)
 #show math.equation.where(block: false): set text(12pt)
 

@@ -4,6 +4,8 @@
 #import "./summary.typ": cL, cS, cT
 #import "../_data.typ" as data
 
+= M-M-M <time_series_ets_m-m-m>
+
 Fully multiplicative
 
 $ "ETS"(M, M, M) $

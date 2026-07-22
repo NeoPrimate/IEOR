@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= RMSE <statistics_error_metrics_rmse>
+
 == RMSE (Root Mean Squared Error)
 
 square root of the average squared differences between predicted ($hat(y)_i$) and actual ($y_i$) values

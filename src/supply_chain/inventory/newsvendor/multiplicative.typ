@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Multiplicative <supply_chain_inventory_newsvendor_multiplicative>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 == Newsvendor with multiplicative demand

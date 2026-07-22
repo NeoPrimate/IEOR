@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Rules <calculus_integral_rules>
+
 == Integral
 
 Measures the accumulation of quantities

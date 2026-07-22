@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Chance Constraints <operations_research_optimization_stochastic_chance_constraints>
+
 Constraints required to hold *with high probability* rather than always. Useful when:
 
 - Always-feasibility is too expensive
@@ -78,7 +80,7 @@ In practice, CVaR-based reformulations of chance constraints are more numericall
 
 == See also
 
-- *#link(<operations-research-optimization-stochastic-programming>)[Stochastic Programming]*
-- *#link(<operations-research-optimization-two-stage-recourse>)[Two-stage Recourse]*
-- *#link(<operations-research-optimization-sample-average-approximation>)[SAA]*
-- *#link(<supply-chain-service-levels-cycle-service-level>)[Cycle Service Level]* — inventory application
+- *#link(<operations_research_optimization_stochastic_stochastic_programming>)[Stochastic Programming]*
+- *#link(<operations_research_optimization_stochastic_two_stage_recourse>)[Two-stage Recourse]*
+- *#link(<operations_research_optimization_stochastic_sample_average_approximation>)[SAA]*
+- *#link(<supply_chain_inventory_service_levels_cycle_service_level>)[Cycle Service Level]* — inventory application

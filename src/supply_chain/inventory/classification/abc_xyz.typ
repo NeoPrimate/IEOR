@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= ABC × XYZ <supply_chain_inventory_classification_abc_xyz>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 Combine ABC (consumption value) and XYZ (demand variability) into a *3 × 3 grid*. Each cell suggests a distinct inventory strategy.

@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= SIR SEIR <system_dynamics_sir_seir>
+
 Compartmental models of *epidemic spread*. The mathematical foundation of mainstream epidemiology.
 
 == SIR model
@@ -104,6 +106,6 @@ Epidemic curve typically S-shaped (in cumulative cases) and bell-shaped (in new 
 
 == See also
 
-- *#link(<system-dynamics-logistic-growth>)[Logistic Growth]* — similar S-curve dynamics
-- *#link(<system-dynamics-stocks-flows>)[Stocks and Flows]* — modeling language
-- *#link(<system-dynamics-feedback-loops>)[Feedback Loops]* — the underlying R+B structure
+- *#link(<system_dynamics_logistic_growth>)[Logistic Growth]* — similar S-curve dynamics
+- *#link(<system_dynamics_stocks_flows>)[Stocks and Flows]* — modeling language
+- *#link(<system_dynamics_feedback_loops>)[Feedback Loops]* — the underlying R+B structure

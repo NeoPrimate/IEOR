@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-*Sample Average Approximation* (SAA) — replace an intractable expectation in a #link(<operations-research-optimization-stochastic-programming>)[stochastic program] with a Monte Carlo average over scenarios.
+= Sample Average Approximation <operations_research_optimization_stochastic_sample_average_approximation>
+
+*Sample Average Approximation* (SAA) — replace an intractable expectation in a #link(<operations_research_optimization_stochastic_stochastic_programming>)[stochastic program] with a Monte Carlo average over scenarios.
 
 == Problem
 
@@ -82,7 +84,7 @@ Plain Monte Carlo has variance $sigma^2 / N$. Tricks to do better:
 
 == See also
 
-- *#link(<operations-research-optimization-stochastic-programming>)[Stochastic Programming]*
-- *#link(<operations-research-optimization-scenario-trees>)[Scenario Trees]*
-- *#link(<statistics-monte-carlo-simulation>)[Monte Carlo Simulation]*
-- *#link(<operations-research-optimization-two-stage-recourse>)[Two-stage Recourse]*
+- *#link(<operations_research_optimization_stochastic_stochastic_programming>)[Stochastic Programming]*
+- *#link(<operations_research_optimization_stochastic_scenario_trees>)[Scenario Trees]*
+- *#link(<statistics_monte_carlo_simulation_monte_carlo_simulation>)[Monte Carlo Simulation]*
+- *#link(<operations_research_optimization_stochastic_two_stage_recourse>)[Two-stage Recourse]*

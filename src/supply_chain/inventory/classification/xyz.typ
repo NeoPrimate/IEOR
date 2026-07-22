@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= XYZ <supply_chain_inventory_classification_xyz>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 Classify items by *demand variability*, measured via the *coefficient of variation* (CV) of demand over time:

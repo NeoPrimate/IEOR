@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Gaussian Elimination <linear_algebra_gaussian_elimination>
+
 Convert a matrix into its row echelon form (REF) or reduced row echelon form (RREF)
 
 $

@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-Two #link(<linear-algebra-planes>)[planes] in $RR^3$ are either:
+= Plane–Plane Distance <linear_algebra_plane_plane_distance>
+
+Two #link(<linear_algebra_planes>)[planes] in $RR^3$ are either:
 - *Identical* — distance $0$
 - *Parallel* — separated by a constant perpendicular distance
 - *Intersecting* — they cross along a line, distance $0$ at the intersection
@@ -45,16 +47,16 @@ $
 
 == Strategy: pick a point on $P_1$, measure to $P_2$
 
-Equivalent computation: any point $accent(x, arrow)_0$ on $P_1$ has #link(<linear-algebra-point-plane-distance>)[point–plane distance] to $P_2$ equal to the inter-plane distance.
+Equivalent computation: any point $accent(x, arrow)_0$ on $P_1$ has #link(<linear_algebra_point_plane_distance>)[point–plane distance] to $P_2$ equal to the inter-plane distance.
 
 == Non-parallel planes
 
 If the normal vectors are not parallel, the planes intersect along a *line* in $RR^3$ — distance $0$. Any pair of non-parallel planes intersects (in 3-D).
 
-The intersection line's direction is $accent(n, arrow)_1 times accent(n, arrow)_2$ (a vector orthogonal to both normals — see #link(<linear-algebra-cross-product>)[Cross Product]).
+The intersection line's direction is $accent(n, arrow)_1 times accent(n, arrow)_2$ (a vector orthogonal to both normals — see #link(<linear_algebra_cross_product>)[Cross Product]).
 
 == Connections
 
-- *#link(<linear-algebra-planes>)[Planes]*
-- *#link(<linear-algebra-point-plane-distance>)[Point–Plane Distance]*
-- *#link(<linear-algebra-cross-product>)[Cross Product]* — direction of intersection line
+- *#link(<linear_algebra_planes>)[Planes]*
+- *#link(<linear_algebra_point_plane_distance>)[Point–Plane Distance]*
+- *#link(<linear_algebra_cross_product>)[Cross Product]* — direction of intersection line

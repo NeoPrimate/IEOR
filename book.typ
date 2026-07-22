@@ -21,39 +21,25 @@
 #let src-prefix = "/" + book.book.src + "/"
 
 // === Path helpers ===
+// A leaf's URL is derived directly from its own file path (not from
+// `title`, which is sidebar-label-only and can change freely without
+// moving the page). Group nodes never get a page, so they carry no path at
+// all — sidebar nesting is resolved structurally, not via string prefixes.
 
-#let slug(s) = {
-  let r = lower(s)
-  for replacement in (
-    ("& ", ""), (" & ", " "), ("&", ""),
-    ("–", "-"), ("—", "-"),
-    (" ", "-"), ("/", "-"), ("(", ""), (")", ""),
-    (",", ""), (".", ""), ("?", ""), ("'", ""),
-  ) {
-    r = r.replace(replacement.at(0), replacement.at(1))
-  }
-  r
+#let leaf-url(sec) = {
+  let f = sec.files.at(0)
+  f.slice(0, f.len() - 4) // strip ".typ"
 }
-
-#let section-path(title, parent: "") = {
-  if parent == "" { slug(title) } else { parent + "/" + slug(title) }
-}
-
-// Cross-page link tag: section path with "/" → "-" (e.g.
-// calculus/calculus-i/quotient-rule → calculus-calculus-i-quotient-rule).
-// Source files reference it via #link(<calculus-calculus-i-quotient-rule>)[…].
-#let path-tag(p) = p.replace("/", "-")
 
 // Collect leaves in book.toml order — used for prev/next navigation.
-#let collect-leaves(secs, parent: "") = {
+#let collect-leaves(secs) = {
   let r = ()
   for sec in secs {
-    let p = section-path(sec.title, parent: parent)
     if "files" in sec {
-      r.push((path: p, title: sec.title))
+      r.push((path: leaf-url(sec), title: sec.title))
     }
     if "sections" in sec {
-      r += collect-leaves(sec.sections, parent: p)
+      r += collect-leaves(sec.sections)
     }
   }
   r
@@ -68,29 +54,34 @@
 
 // === Render sidebar (nested <ul>, with <details> for collapsible groups) ===
 
-// True if `current-path` is inside the subtree rooted at `path` (ancestor or self).
-#let is-ancestor-of(path, current) = {
-  current == path or current.starts-with(path + "/")
+// True if `target` (a leaf URL) is anywhere in this subtree — structural
+// containment, not a string-prefix check, since leaf URLs no longer share
+// any assembled-from-title path with their ancestor groups.
+#let subtree-contains(secs, target) = {
+  secs.any(sec => {
+    if "files" in sec { leaf-url(sec) == target }
+    else if "sections" in sec { subtree-contains(sec.sections, target) }
+    else { false }
+  })
 }
 
-#let render-sidebar(secs, current-path, rel, parent: "") = {
+#let render-sidebar(secs, current-path, rel) = {
   html.elem("ul", attrs: (class: "nav-list"), {
     for sec in secs {
-      let p = section-path(sec.title, parent: parent)
       let is-leaf = "files" in sec
-      let is-current = is-leaf and p == current-path
+      let is-current = is-leaf and leaf-url(sec) == current-path
       let cls = "nav-item " + (if is-leaf { "nav-leaf" } else { "nav-group" }) + (if is-current { " current" } else { "" })
 
       html.elem("li", attrs: (class: cls), {
         if is-leaf {
-          html.elem("a", attrs: (href: rel + p + "/index.html"), sec.title)
+          html.elem("a", attrs: (href: rel + leaf-url(sec) + "/index.html"), sec.title)
         } else if "sections" in sec {
           // Collapsible group via <details>. Open by default if the current
           // page is inside this subtree, otherwise collapsed.
-          let open-attrs = if is-ancestor-of(p, current-path) { (open: "") } else { (:) }
+          let open-attrs = if subtree-contains(sec.sections, current-path) { (open: "") } else { (:) }
           html.elem("details", attrs: open-attrs, {
             html.elem("summary", sec.title)
-            render-sidebar(sec.sections, current-path, rel, parent: p)
+            render-sidebar(sec.sections, current-path, rel)
           })
         } else {
           html.elem("span", attrs: (class: "nav-group-title"), sec.title)
@@ -262,15 +253,16 @@
 
 // === Emit a leaf page ===
 
-#let emit(sec, parent: "") = {
-  let p = section-path(sec.title, parent: parent)
+#let emit(sec) = {
   if "files" in sec {
+    let p = leaf-url(sec)
     let i = leaves.position(l => l.path == p)
     let rel = rel-to-root(p)
     document(p + "/index.html", title: sec.title)[
       #page-shell(p, {
         html.elem("article", attrs: ("data-pagefind-body": ""), {
-          [#heading(level: 1, sec.title) #std.label(path-tag(p))]
+          // Title and cross-page label both live in the file itself
+          // (`= Title <label>`) — nothing to inject here.
           for f in sec.files {
             include src-prefix + f
           }
@@ -280,7 +272,7 @@
     ]
   }
   if "sections" in sec {
-    for child in sec.sections { emit(child, parent: p) }
+    for child in sec.sections { emit(child) }
   }
 }
 

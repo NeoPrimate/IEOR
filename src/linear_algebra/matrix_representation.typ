@@ -1,9 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Matrix Representation <linear_algebra_matrix_representation>
 
-
-Every #link(<linear-algebra-linear-transformation>)[linear transformation] $T: RR^n -> RR^m$ can be uniquely represented by an $m times n$ matrix $A$ such that:
+Every #link(<linear_algebra_linear_transformation>)[linear transformation] $T: RR^n -> RR^m$ can be uniquely represented by an $m times n$ matrix $A$ such that:
 
 $
   T(accent(x, arrow)) = A accent(x, arrow)
@@ -13,7 +13,7 @@ Conversely, every $m times n$ matrix gives a linear transformation. So *linear t
 
 == How to find the matrix
 
-Apply $T$ to each #link(<linear-algebra-vector-space>)[standard basis vector] $accent(e, arrow)_1, dots, accent(e, arrow)_n$. The results become the columns of $A$:
+Apply $T$ to each #link(<linear_algebra_vector_space>)[standard basis vector] $accent(e, arrow)_1, dots, accent(e, arrow)_n$. The results become the columns of $A$:
 
 $
   A = mat(T(accent(e, arrow)_1), T(accent(e, arrow)_2), dots, T(accent(e, arrow)_n))
@@ -21,7 +21,7 @@ $
 
 == Why this works (sketch)
 
-Any input $accent(x, arrow) in RR^n$ is a #link(<linear-algebra-linear-combination>)[linear combination] of standard basis vectors:
+Any input $accent(x, arrow) in RR^n$ is a #link(<linear_algebra_linear_combination>)[linear combination] of standard basis vectors:
 
 $
   accent(x, arrow) = x_1 accent(e, arrow)_1 + x_2 accent(e, arrow)_2 + dots + x_n accent(e, arrow)_n
@@ -52,11 +52,11 @@ The columns of $A$ are *exactly* the images of the standard basis under $T$.
 
 == Identity transformation
 
-The identity $I: RR^n -> RR^n$, $I(accent(x, arrow)) = accent(x, arrow)$, has matrix #link(<linear-algebra-identity-matrix>)[$I_n$] (the identity matrix), since $I(accent(e, arrow)_i) = accent(e, arrow)_i$ for each standard basis vector.
+The identity $I: RR^n -> RR^n$, $I(accent(x, arrow)) = accent(x, arrow)$, has matrix #link(<linear_algebra_identity_matrix>)[$I_n$] (the identity matrix), since $I(accent(e, arrow)_i) = accent(e, arrow)_i$ for each standard basis vector.
 
 == See also
 
-- *#link(<linear-algebra-linear-transformation>)[Linear Transformation]* — definition
-- *#link(<linear-algebra-matrix-vector-product>)[Matrix–Vector Product]* — the operation that makes a matrix into a transformation
-- *#link(<linear-algebra-change-of-basis>)[Change of Basis]* — what happens to the matrix when you switch bases
-- *#link(<linear-algebra-rotation-matrix>)[Rotation Matrix]*, *#link(<linear-algebra-reflection-matrix>)[Reflection Matrix]*, *#link(<linear-algebra-scaling-matrix>)[Scaling Matrix]*, *#link(<linear-algebra-shear-matrix>)[Shear Matrix]* — common examples
+- *#link(<linear_algebra_linear_transformation>)[Linear Transformation]* — definition
+- *#link(<linear_algebra_matrix_vector_product>)[Matrix–Vector Product]* — the operation that makes a matrix into a transformation
+- *#link(<linear_algebra_change_of_basis>)[Change of Basis]* — what happens to the matrix when you switch bases
+- *#link(<linear_algebra_rotation_matrix>)[Rotation Matrix]*, *#link(<linear_algebra_reflection_matrix>)[Reflection Matrix]*, *#link(<linear_algebra_scaling_matrix>)[Scaling Matrix]*, *#link(<linear_algebra_shear_matrix>)[Shear Matrix]* — common examples

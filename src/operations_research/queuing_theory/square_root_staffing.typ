@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Square-Root Staffing <operations_research_queuing_theory_square_root_staffing>
+
 A simple rule of thumb for sizing call-center / service-system capacity. *Halfin-Whitt* asymptotic regime (1981).
 
 == The rule
@@ -61,7 +63,7 @@ This is the *economies of scale* of pooling: big call centers need *proportional
 
 == See also
 
-- *#link(<operations-research-queuing-theory-erlang-c>)[Erlang C]* — exact wait probability
-- *#link(<operations-research-queuing-theory-erlang-b>)[Erlang B]* — no queue / blocking
-- *#link(<operations-research-queuing-theory-mmc-abandonment>)[Erlang A]* — with abandonment
-- *#link(<operations-research-queuing-theory-sakasegawa>)[Sakasegawa]* — G/G/c approximation
+- *#link(<operations_research_queuing_theory_erlang_c>)[Erlang C]* — exact wait probability
+- *#link(<operations_research_queuing_theory_erlang_b>)[Erlang B]* — no queue / blocking
+- *#link(<operations_research_queuing_theory_mmc_abandonment>)[Erlang A]* — with abandonment
+- *#link(<operations_research_queuing_theory_sakasegawa>)[Sakasegawa]* — G/G/c approximation

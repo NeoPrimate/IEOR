@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Joint Replenishment <supply_chain_inventory_eoq_joint_replenishment>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 == Joint replenishment (multi-item EOQ with shared setup)

@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Column Space <linear_algebra_column_space>
+
 The *columns space* (or range) of matrix $A$ is span of its columns vectors
 
 If the matrix $A$ has columns $accent(a, arrow)_1, accent(a, arrow)_2, ..., accent(a, arrow)_n$, then the column space of $A$ is defined as:

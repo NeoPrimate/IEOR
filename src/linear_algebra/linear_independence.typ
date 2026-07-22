@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Linear Independence <linear_algebra_linear_independence>
+
 1. Definition of Linear Independence
 
 The set of vectors

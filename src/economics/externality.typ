@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Externality <economics_externality>
+
 Cost or benefit that affects a third party who is not involved in the economic transaction
 
 - Negative: Cost

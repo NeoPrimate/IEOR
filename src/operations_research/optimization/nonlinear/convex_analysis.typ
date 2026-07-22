@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Convex Analysis <operations_research_optimization_nonlinear_convex_analysis>
+
 #show math.equation.where(block: false): set text(12pt)
 
 #set math.mat(gap: 1em)
@@ -984,7 +986,7 @@ For a symmetric matrix $A$, the following statements are equivalent:
 - All *eigenvalues* of $A$ are non-negative
 - All *principal minors* of $A$ are non-negative
 
-$A$'s level-$k$ principal minors is the #link(<linear-algebra-determinant>)[determinant] of a $k times k$ submatrix whose diagonal is a subset of $A$'s diagonal.
+$A$'s level-$k$ principal minors is the #link(<linear_algebra_determinant>)[determinant] of a $k times k$ submatrix whose diagonal is a subset of $A$'s diagonal.
 
 A sufficient condition is for $A$'s *leading* principl minors to all *positive*
 

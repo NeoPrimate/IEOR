@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Takt Time <supply_chain_manufacturing_takt_time>
+
 The *pace of production* needed to match customer demand. From German *Takt* (beat, rhythm).
 
 $
@@ -66,7 +68,7 @@ Inverses. Both convey same information.
 
 == Heijunka — level loading
 
-Demand is rarely flat — peaks Monday, valleys Friday, etc. *Heijunka* (#link(<supply-chain-manufacturing-heijunka>)[here]) smooths production by aggregating demand and producing in a level cadence. Takt is then calculated from *average* demand, not peak.
+Demand is rarely flat — peaks Monday, valleys Friday, etc. *Heijunka* (#link(<supply_chain_manufacturing_heijunka>)[here]) smooths production by aggregating demand and producing in a level cadence. Takt is then calculated from *average* demand, not peak.
 
 == Limitations
 
@@ -76,7 +78,7 @@ Demand is rarely flat — peaks Monday, valleys Friday, etc. *Heijunka* (#link(<
 
 == See also
 
-- *#link(<supply-chain-manufacturing-line-balancing>)[Line Balancing]* — designing stations to meet takt
-- *#link(<supply-chain-manufacturing-heijunka>)[Heijunka]* — level loading
-- *#link(<supply-chain-manufacturing-kanban-sizing>)[Kanban Sizing]* — pull control matching takt
-- *#link(<operations-research-queuing-theory-littles-law>)[Little's Law]*
+- *#link(<supply_chain_manufacturing_line_balancing>)[Line Balancing]* — designing stations to meet takt
+- *#link(<supply_chain_manufacturing_heijunka>)[Heijunka]* — level loading
+- *#link(<supply_chain_manufacturing_kanban_sizing>)[Kanban Sizing]* — pull control matching takt
+- *#link(<operations_research_queuing_theory_littles_law>)[Little's Law]*

@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Multiplication Rule <probability_theory_multiplication_rule>
+
 For $n$ events:
 
 $

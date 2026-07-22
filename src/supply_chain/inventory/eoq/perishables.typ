@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Perishables <supply_chain_inventory_eoq_perishables>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 == EOQ for perishable items

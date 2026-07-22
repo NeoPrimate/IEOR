@@ -1,9 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Cross Product Magnitude <linear_algebra_cross_product_magnitude>
 
-
-The #link(<linear-algebra-norm>)[norm] of the #link(<linear-algebra-cross-product>)[cross product] is related to the angle between the two vectors:
+The #link(<linear_algebra_norm>)[norm] of the #link(<linear_algebra_cross_product>)[cross product] is related to the angle between the two vectors:
 
 $
   ||accent(a, arrow) times accent(b, arrow)|| = ||accent(a, arrow)|| #h(0.2em) ||accent(b, arrow)|| #h(0.2em) sin(theta)
@@ -24,13 +24,13 @@ $
 
 == Connection to the determinant
 
-The magnitude is the absolute value of the $3 times 3$ #link(<linear-algebra-determinant>)[determinant] with $accent(a, arrow), accent(b, arrow)$ as two columns and any orthonormal third column — equivalently the area of the projection of the parallelogram into the plane perpendicular to that third axis.
+The magnitude is the absolute value of the $3 times 3$ #link(<linear_algebra_determinant>)[determinant] with $accent(a, arrow), accent(b, arrow)$ as two columns and any orthonormal third column — equivalently the area of the projection of the parallelogram into the plane perpendicular to that third axis.
 
 For a triple of vectors, the *triple product* $accent(a, arrow) dot (accent(b, arrow) times accent(c, arrow))$ gives the signed volume of the parallelepiped — the $3 times 3$ determinant with those vectors as columns.
 
 == Connections
 
-- *#link(<linear-algebra-cross-product>)[Cross Product]* — the operation itself
-- *#link(<linear-algebra-dot-vs-cross-product>)[Dot vs Cross]* — $cos$ side-by-side
-- *#link(<linear-algebra-determinant>)[Determinant]* — signed parallelogram / parallelepiped volume
-- *#link(<linear-algebra-angles-between-vectors>)[Angles Between Vectors]* — recovering $theta$ from the formula
+- *#link(<linear_algebra_cross_product>)[Cross Product]* — the operation itself
+- *#link(<linear_algebra_dot_vs_cross_product>)[Dot vs Cross]* — $cos$ side-by-side
+- *#link(<linear_algebra_determinant>)[Determinant]* — signed parallelogram / parallelepiped volume
+- *#link(<linear_algebra_angles_between_vectors>)[Angles Between Vectors]* — recovering $theta$ from the formula

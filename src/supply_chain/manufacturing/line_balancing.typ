@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-The task of allocating work to stations on a production line so each station's work time is below the #link(<supply-chain-manufacturing-takt-time>)[takt time], minimizing idle time and station count.
+= Line Balancing <supply_chain_manufacturing_line_balancing>
+
+The task of allocating work to stations on a production line so each station's work time is below the #link(<supply_chain_manufacturing_takt_time>)[takt time], minimizing idle time and station count.
 
 == Setup
 
@@ -76,11 +78,11 @@ Real lines produce *multiple products* with different task sets. *Mixed-model* b
   [Cell], [flexible, small batches], [coordinating multiple cells],
 )
 
-U-shaped (cellular) layout is the lean ideal — natural for #link(<supply-chain-manufacturing-conwip>)[CONWIP] / kanban control.
+U-shaped (cellular) layout is the lean ideal — natural for #link(<supply_chain_manufacturing_conwip>)[CONWIP] / kanban control.
 
 == Variability and balance
 
-Even a perfectly balanced *deterministic* line behaves much worse than the formula suggests when *variability* is added (per #link(<operations-research-queuing-theory-kingman-vut>)[VUT]). Real balancing requires both:
+Even a perfectly balanced *deterministic* line behaves much worse than the formula suggests when *variability* is added (per #link(<operations_research_queuing_theory_kingman_vut>)[VUT]). Real balancing requires both:
 
 - *Mean balance*: station load averages match
 - *Variance balance*: station variability matches
@@ -89,7 +91,7 @@ Otherwise the high-variance station becomes a "virtual bottleneck" that drives q
 
 == See also
 
-- *#link(<supply-chain-manufacturing-takt-time>)[Takt Time]* — the constraint
-- *#link(<supply-chain-manufacturing-best-worst-pwc>)[Best/Worst/PWC]*
-- *#link(<supply-chain-manufacturing-factory-physics>)[Factory Physics]*
-- *#link(<supply-chain-manufacturing-conwip>)[CONWIP]*
+- *#link(<supply_chain_manufacturing_takt_time>)[Takt Time]* — the constraint
+- *#link(<supply_chain_manufacturing_best_worst_pwc>)[Best/Worst/PWC]*
+- *#link(<supply_chain_manufacturing_factory_physics>)[Factory Physics]*
+- *#link(<supply_chain_manufacturing_conwip>)[CONWIP]*

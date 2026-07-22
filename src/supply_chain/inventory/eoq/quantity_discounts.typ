@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Quantity Discounts <supply_chain_inventory_eoq_quantity_discounts>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 == EOQ with quantity discounts

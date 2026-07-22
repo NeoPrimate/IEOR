@@ -1,7 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-The standard algorithm for solving *infinite-horizon* Markov Decision Processes. Iteratively applies the #link(<operations-research-optimization-bellman-equation>)[Bellman equation] until the value function converges.
+= Value Iteration <operations_research_optimization_dynamic_programming_value_iteration>
+
+The standard algorithm for solving *infinite-horizon* Markov Decision Processes. Iteratively applies the #link(<operations_research_optimization_dynamic_programming_bellman_equation>)[Bellman equation] until the value function converges.
 
 == Infinite-horizon discounted MDP
 
@@ -84,7 +86,7 @@ $O(|cal(S)|^2 dot |cal(A)|)$ — for each state ($|cal(S)|$), for each action ($
   [Anytime?], [Yes — returns a usable $J$ at any point], [Only at policy-iteration end],
 )
 
-See #link(<operations-research-optimization-policy-iteration>)[Policy Iteration] for the alternative.
+See #link(<operations_research_optimization_dynamic_programming_policy_iteration>)[Policy Iteration] for the alternative.
 
 == Example application
 
@@ -92,7 +94,7 @@ See #link(<operations-research-optimization-policy-iteration>)[Policy Iteration]
 
 == See also
 
-- *#link(<operations-research-optimization-bellman-equation>)[Bellman Equation]*
-- *#link(<operations-research-optimization-stochastic-dp>)[Stochastic DP]*
-- *#link(<operations-research-optimization-policy-iteration>)[Policy Iteration]*
-- *#link(<statistics-markov-chains>)[Markov Chains]*
+- *#link(<operations_research_optimization_dynamic_programming_bellman_equation>)[Bellman Equation]*
+- *#link(<operations_research_optimization_dynamic_programming_stochastic_dp>)[Stochastic DP]*
+- *#link(<operations_research_optimization_dynamic_programming_policy_iteration>)[Policy Iteration]*
+- *#link(<statistics_markov_chains_markov_chains>)[Markov Chains]*

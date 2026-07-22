@@ -4,6 +4,8 @@
 #import "./summary.typ": cMA
 #import "../_data.typ" as data
 
+= VMA <time_series_arima_vma>
+
 Vector moving average
 
 $ "VMA"(q) $

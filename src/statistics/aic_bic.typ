@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= AIC & BIC <statistics_aic_bic>
+
 Picking between competing models
 
 Maximized likelihood

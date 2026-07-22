@@ -1,8 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Minor <linear_algebra_minor>
 
-A *minor* of a matrix $A$ is the #link(<linear-algebra-determinant>)[determinant] of a smaller square matrix obtained by deleting some rows and some columns of $A$. The deleted rows and columns *do not need to share indices* — that distinguishes a minor from a #link(<linear-algebra-principal-minor>)[principal minor].
+A *minor* of a matrix $A$ is the #link(<linear_algebra_determinant>)[determinant] of a smaller square matrix obtained by deleting some rows and some columns of $A$. The deleted rows and columns *do not need to share indices* — that distinguishes a minor from a #link(<linear_algebra_principal_minor>)[principal minor].
 
 $
   #colorMat(
@@ -33,7 +34,7 @@ $
 
 == $(i, j)$-minor (cofactor expansion)
 
-The most-used minor is the $(i, j)$-minor $M_(i j)$: delete row $i$ and column $j$ from $A$ and take the determinant of what's left. Used in #link(<linear-algebra-determinant>)[cofactor expansion]:
+The most-used minor is the $(i, j)$-minor $M_(i j)$: delete row $i$ and column $j$ from $A$ and take the determinant of what's left. Used in #link(<linear_algebra_determinant>)[cofactor expansion]:
 
 $
   det(A) = sum_(j=1)^n (-1)^(i+j) a_(i j) #h(0.2em) M_(i j)
@@ -41,13 +42,13 @@ $
 
 == Variants
 
-- *#link(<linear-algebra-principal-minor>)[Principal minor]* — same row and column indices deleted
-- *#link(<linear-algebra-leading-principal-minor>)[Leading principal minor]* — keep only the top-left $k times k$ block
-- *Cofactor* $C_(i j) = (-1)^(i+j) M_(i j)$ — signed minor used in #link(<linear-algebra-adjugate>)[adjugate] and inverse formulas
+- *#link(<linear_algebra_principal_minor>)[Principal minor]* — same row and column indices deleted
+- *#link(<linear_algebra_leading_principal_minor>)[Leading principal minor]* — keep only the top-left $k times k$ block
+- *Cofactor* $C_(i j) = (-1)^(i+j) M_(i j)$ — signed minor used in #link(<linear_algebra_adjugate>)[adjugate] and inverse formulas
 
 == Where minors show up
 
-- *#link(<linear-algebra-determinant>)[Determinant]* via cofactor expansion
-- *#link(<linear-algebra-adjugate>)[Adjugate]* matrix and the inverse formula $A^(-1) = "adj"(A) / det(A)$
-- *#link(<linear-algebra-rank>)[Rank]* — equals the size of the largest non-zero minor
-- *Cramer's Rule* — see #link(<linear-algebra-cramers-rule>)[Cramer's Rule]
+- *#link(<linear_algebra_determinant>)[Determinant]* via cofactor expansion
+- *#link(<linear_algebra_adjugate>)[Adjugate]* matrix and the inverse formula $A^(-1) = "adj"(A) / det(A)$
+- *#link(<linear_algebra_rank>)[Rank]* — equals the size of the largest non-zero minor
+- *Cramer's Rule* — see #link(<linear_algebra_cramers_rule>)[Cramer's Rule]

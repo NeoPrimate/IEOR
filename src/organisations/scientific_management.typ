@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Scientific Management <organisations_scientific_management>
+
 // @taylor1911
 
 - Work Study (Time and Motion Analysis) "One best way"

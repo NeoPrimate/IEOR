@@ -1,17 +1,19 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Basis <linear_algebra_basis>
+
 Non-redundant set of vectors that span $RR^n$
 
 A basis of a vector space is a set of vectors that satisfies two conditions:
 
-1. *#link(<linear-algebra-linear-independence>)[Linear Independence]*: no vector in the set can be written as a linear combination of the others — equivalently, the only solution to
+1. *#link(<linear_algebra_linear_independence>)[Linear Independence]*: no vector in the set can be written as a linear combination of the others — equivalently, the only solution to
   $
     c_1 accent(v, arrow)_1 + c_2 accent(v, arrow)_2 + dots + c_n accent(v, arrow)_n = bold(0)
   $
   is $c_1 = c_2 = dots = c_n = 0$.
 
-2. *#link(<linear-algebra-span>)[Spanning]*: every vector $accent(v, arrow) in V$ can be expressed as a #link(<linear-algebra-linear-combination>)[linear combination] of the basis vectors:
+2. *#link(<linear_algebra_span>)[Spanning]*: every vector $accent(v, arrow) in V$ can be expressed as a #link(<linear_algebra_linear_combination>)[linear combination] of the basis vectors:
   $
     accent(v, arrow) = c_1 accent(v, arrow)_1 + c_2 accent(v, arrow)_2 + dots + c_n accent(v, arrow)_n
   $

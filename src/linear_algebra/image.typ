@@ -1,15 +1,15 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Image <linear_algebra_image>
 
-
-The *image* (or *range*) of a #link(<linear-algebra-linear-transformation>)[linear transformation] $T: RR^n -> RR^m$ is the set of all possible outputs:
+The *image* (or *range*) of a #link(<linear_algebra_linear_transformation>)[linear transformation] $T: RR^n -> RR^m$ is the set of all possible outputs:
 
 $
   im(T) = T(RR^n) = { T(accent(x, arrow)) | accent(x, arrow) in RR^n }
 $
 
-This is a generalization of the #link(<linear-algebra-image-of-subset>)[image of a subset] applied to the entire domain.
+This is a generalization of the #link(<linear_algebra_image_of_subset>)[image of a subset] applied to the entire domain.
 
 == Matrix representation
 
@@ -19,11 +19,11 @@ $
   T(accent(x, arrow)) = A accent(x, arrow) = x_1 accent(a, arrow)_1 + x_2 accent(a, arrow)_2 + dots + x_n accent(a, arrow)_n
 $
 
-— a #link(<linear-algebra-linear-combination>)[linear combination] of $A$'s columns.
+— a #link(<linear_algebra_linear_combination>)[linear combination] of $A$'s columns.
 
 == Image = Column space
 
-The image of $T$ equals the #link(<linear-algebra-column-space>)[column space] of $A$:
+The image of $T$ equals the #link(<linear_algebra_column_space>)[column space] of $A$:
 
 $
   im(T) = "Col"(A) = "span"(accent(a, arrow)_1, accent(a, arrow)_2, dots, accent(a, arrow)_n)
@@ -67,13 +67,13 @@ $
 
 == Properties
 
-- $im(T)$ is a #link(<linear-algebra-subspace>)[subspace] of the codomain $RR^m$
-- $dim(im(T)) = "rank"(A) = $ #link(<linear-algebra-rank>)[rank] of the matrix
-- *#link(<linear-algebra-rank-nullity-theorem>)[Rank–Nullity]*: $dim(im(T)) + dim(ker(T)) = n$
+- $im(T)$ is a #link(<linear_algebra_subspace>)[subspace] of the codomain $RR^m$
+- $dim(im(T)) = "rank"(A) = $ #link(<linear_algebra_rank>)[rank] of the matrix
+- *#link(<linear_algebra_rank_nullity_theorem>)[Rank–Nullity]*: $dim(im(T)) + dim(ker(T)) = n$
 - $T$ is *surjective* iff $im(T) = RR^m$ iff $A$ has full row rank
 
 == Three names for the same thing
 
 - *Image* of $T$ — emphasis on the linear-map perspective
 - *Range* of $T$ — same, common in analysis
-- *#link(<linear-algebra-column-space>)[Column space]* of $A$ — same, matrix-algebra perspective
+- *#link(<linear_algebra_column_space>)[Column space]* of $A$ — same, matrix-algebra perspective

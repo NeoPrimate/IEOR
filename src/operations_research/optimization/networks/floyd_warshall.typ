@@ -1,9 +1,11 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Floyd-Warshall <operations_research_optimization_networks_floyd_warshall>
+
 *All-pairs shortest path* algorithm — finds the shortest distance from every node to every other node in $O(V^3)$.
 
-Useful when you need the distance matrix for *many* queries, vs running #link(<algorithms-dijkstra>)[Dijkstra] from each source ($O(V (V+E) log V)$).
+Useful when you need the distance matrix for *many* queries, vs running #link(<algorithms_shortest_path_dijkstra>)[Dijkstra] from each source ($O(V (V+E) log V)$).
 
 == Algorithm
 
@@ -68,6 +70,6 @@ Then trace back from $j$ to $i$ via $pi$.
 
 == See also
 
-- *#link(<algorithms-dijkstra>)[Dijkstra]* — single-source, non-negative edges
-- *#link(<operations-research-optimization-dynamic-programming>)[Dynamic Programming]* — the framework
-- *#link(<operations-research-optimization-min-spanning-tree>)[Min Spanning Tree]* — different problem, related techniques
+- *#link(<algorithms_shortest_path_dijkstra>)[Dijkstra]* — single-source, non-negative edges
+- *#link(<operations_research_optimization_dynamic_programming_dynamic_programming>)[Dynamic Programming]* — the framework
+- *#link(<operations_research_optimization_networks_min_spanning_tree>)[Min Spanning Tree]* — different problem, related techniques

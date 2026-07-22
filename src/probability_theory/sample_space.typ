@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Sample Space <probability_theory_sample_space>
+
 A probability model begins with two tasks:
 
 1.	Specify the set of all possible *outcomes*

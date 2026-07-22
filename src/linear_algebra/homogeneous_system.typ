@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
+= Homogeneous System <linear_algebra_homogeneous_system>
 
 A linear system is *homogeneous* if its right-hand side is the zero vector:
 
@@ -13,13 +13,13 @@ Every homogeneous system is *consistent* — it always has at least the *trivial
 
 == When are there non-trivial solutions?
 
-The non-trivial solutions form the #link(<linear-algebra-null-space>)[null space] of $A$ (equivalently, the #link(<linear-algebra-kernel>)[kernel] of the linear map $T(x) = A x$):
+The non-trivial solutions form the #link(<linear_algebra_null_space>)[null space] of $A$ (equivalently, the #link(<linear_algebra_kernel>)[kernel] of the linear map $T(x) = A x$):
 
 $
   "Sol"(A x = bold(0)) = "null"(A) = ker(T)
 $
 
-By the #link(<linear-algebra-rank-nullity-theorem>)[Rank–Nullity Theorem], for an $m times n$ matrix $A$:
+By the #link(<linear_algebra_rank_nullity_theorem>)[Rank–Nullity Theorem], for an $m times n$ matrix $A$:
 
 $
   dim("null"(A)) = n - "rank"(A)
@@ -64,7 +64,7 @@ $
 
 == See also
 
-- *#link(<linear-algebra-null-space>)[Null Space]* / *#link(<linear-algebra-kernel>)[Kernel]*
-- *#link(<linear-algebra-linear-system-solutions>)[Linear System Solutions]*
-- *#link(<linear-algebra-rank-nullity-theorem>)[Rank–Nullity Theorem]*
-- *#link(<linear-algebra-zero-matrix>)[Zero Vector]*
+- *#link(<linear_algebra_null_space>)[Null Space]* / *#link(<linear_algebra_kernel>)[Kernel]*
+- *#link(<linear_algebra_linear_system_solutions>)[Linear System Solutions]*
+- *#link(<linear_algebra_rank_nullity_theorem>)[Rank–Nullity Theorem]*
+- *#link(<linear_algebra_zero_matrix>)[Zero Vector]*

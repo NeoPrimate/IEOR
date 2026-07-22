@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Shortage Penalty <supply_chain_inventory_newsvendor_shortage_penalty>
+
 #let cm(x) = text(fill: red, [$#x$])
 
 == Newsvendor with explicit shortage penalty

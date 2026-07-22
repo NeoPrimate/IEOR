@@ -1,7 +1,7 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
-
+= Rotation Matrix <linear_algebra_rotation_matrix>
 
 A rotation matrix rotates vectors about the origin by an angle $theta$ without changing their lengths.
 
@@ -35,8 +35,8 @@ $
 
 == Properties
 
-- *Orthogonal*: $R(theta)^T R(theta) = I$, so $R^(-1) = R^T$ — see #link(<linear-algebra-orthogonal-matrix>)[Orthogonal Matrix]
-- *#link(<linear-algebra-determinant>)[Determinant]*: $det(R(theta)) = cos^2 theta + sin^2 theta = 1$ — orientation-preserving
+- *Orthogonal*: $R(theta)^T R(theta) = I$, so $R^(-1) = R^T$ — see #link(<linear_algebra_orthogonal_matrix>)[Orthogonal Matrix]
+- *#link(<linear_algebra_determinant>)[Determinant]*: $det(R(theta)) = cos^2 theta + sin^2 theta = 1$ — orientation-preserving
 - *Composition*: $R(alpha) R(beta) = R(alpha + beta)$ — rotations add
 - *Inverse*: $R(theta)^(-1) = R(-theta)$
 - *Preserves lengths and angles*
@@ -87,12 +87,12 @@ $
   S O(n) = { Q in RR^(n times n) : Q^T Q = I, det(Q) = 1 }
 $
 
-Excluding the $-1$ determinant case removes reflections — see #link(<linear-algebra-reflection-matrix>)[Reflection Matrix].
+Excluding the $-1$ determinant case removes reflections — see #link(<linear_algebra_reflection_matrix>)[Reflection Matrix].
 
 == See also
 
-- *#link(<linear-algebra-orthogonal-matrix>)[Orthogonal Matrix]*
-- *#link(<linear-algebra-reflection-matrix>)[Reflection Matrix]*
-- *#link(<linear-algebra-scaling-matrix>)[Scaling Matrix]*
-- *#link(<linear-algebra-shear-matrix>)[Shear Matrix]*
-- *#link(<linear-algebra-linear-transformation>)[Linear Transformation]*
+- *#link(<linear_algebra_orthogonal_matrix>)[Orthogonal Matrix]*
+- *#link(<linear_algebra_reflection_matrix>)[Reflection Matrix]*
+- *#link(<linear_algebra_scaling_matrix>)[Scaling Matrix]*
+- *#link(<linear_algebra_shear_matrix>)[Shear Matrix]*
+- *#link(<linear_algebra_linear_transformation>)[Linear Transformation]*

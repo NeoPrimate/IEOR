@@ -4,6 +4,8 @@
 #import "./summary.typ": cAR, cDiff, cMA
 #import "../_data.typ" as data
 
+= SARIMA <time_series_arima_sarima>
+
 Seasonal ARIMA
 
 $"SARIMA"(p,d,q)(P,D,Q)_m$

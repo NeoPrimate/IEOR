@@ -1,8 +1,9 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Leading Principal Minor <linear_algebra_leading_principal_minor>
 
-A *leading principal minor* of order $k$ is the #link(<linear-algebra-determinant>)[determinant] of the *top-left* $k times k$ submatrix of $A$.
+A *leading principal minor* of order $k$ is the #link(<linear_algebra_determinant>)[determinant] of the *top-left* $k times k$ submatrix of $A$.
 
 That is, take rows and columns indexed $1, 2, dots, k$ — no other choices.
 
@@ -81,6 +82,6 @@ For *negative definite*: signs alternate — $Delta_1 < 0, Delta_2 > 0, Delta_3 
 
 == See also
 
-- *#link(<linear-algebra-principal-minor>)[Principal Minor]* — general principal minors (any subset of indices)
-- *#link(<linear-algebra-minor>)[Minor]* — general (cofactor) minors
-- *#link(<linear-algebra-determinant>)[Determinant]*
+- *#link(<linear_algebra_principal_minor>)[Principal Minor]* — general principal minors (any subset of indices)
+- *#link(<linear_algebra_minor>)[Minor]* — general (cofactor) minors
+- *#link(<linear_algebra_determinant>)[Determinant]*

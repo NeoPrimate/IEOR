@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Cheatsheet <operations_research_quality_engineering_control_charts_cheatsheet>
+
 #table(
   columns: (auto, auto, auto, auto, auto, auto),
   inset: 10pt,

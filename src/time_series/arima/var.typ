@@ -4,6 +4,8 @@
 #import "./summary.typ": cAR
 #import "../_data.typ" as data
 
+= VAR <time_series_arima_var>
+
 Vector autoregression
 
 $ "VAR"(p) $

@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= Part-Period Balancing <supply_chain_planning_part_period_balancing>
+
 A lot-sizing heuristic (DeMatteis, 1968) based on the *EOQ balance condition*: at the EOQ optimum, ordering cost equals holding cost. Replicate this for time-varying demand.
 
 == EOQ balance recap
@@ -69,7 +71,7 @@ When demand patterns are *close to stationary*, PPB hugs the EOQ-like balance mo
 
 == See also
 
-- *#link(<supply-chain-planning-silver-meal>)[Silver-Meal]* — period-based
-- *#link(<supply-chain-planning-least-unit-cost>)[Least Unit Cost]* — unit-based
-- *#link(<supply-chain-eoq-wagner-whitin>)[Wagner-Whitin]* — optimal
-- *#link(<supply-chain-eoq-eoq>)[EOQ]* — the balance principle PPB emulates
+- *#link(<supply_chain_planning_silver_meal>)[Silver-Meal]* — period-based
+- *#link(<supply_chain_planning_least_unit_cost>)[Least Unit Cost]* — unit-based
+- *#link(<supply_chain_inventory_eoq_wagner_whitin>)[Wagner-Whitin]* — optimal
+- *#link(<supply_chain_inventory_eoq_eoq>)[EOQ]* — the balance principle PPB emulates

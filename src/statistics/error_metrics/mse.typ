@@ -1,6 +1,8 @@
 #import "/lib/imports.typ": *
 #show: formatting
 
+= MSE <statistics_error_metrics_mse>
+
 == MSE (Mean Squared Error)
 
 Average of squared differences between predicted ($hat(y)_i$) and actual ($y_i$) values
