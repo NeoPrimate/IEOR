@@ -7,6 +7,7 @@
 #import "@preview/cetz-plot:0.1.3"
 // #import "@preview/cetz:0.4.2"
 // #import "@preview/cetz-plot:0.1.3"
+#import "@preview/pyrunner:0.3.0" as py
 #import "@preview/lilaq:0.6.0" as lq
 #import "@preview/tiptoe:0.4.0"
 #import "@preview/numty:0.1.0"

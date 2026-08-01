@@ -14,7 +14,7 @@
 #let panel  = rgb("#f6f7f9")
 #let edge   = rgb("#c7ccd4")
 #let ok     = rgb("#2e7d32")
-#let arr    = text(size: 1.25em)[#sym.arrow.r.long]
+#let arr    = text(size: 1.25em)[arrow.r.long]
 
 // ── badges ───────────────────────────────────────────────────────────────
 #let badge(label, fg, bg) = box(
@@ -32,7 +32,7 @@
   #text(size: 0.66em, fill: muted)[#smallcaps(label)]
   #v(3pt)
   #if goal == none [
-    #text(fill: ok)[#sym.checkmark No goals — proof complete]
+    #text(fill: ok)[checkmark No goals — proof complete]
   ] else [
     #if hyps.len() > 0 {
       for h in hyps [ #raw(h) \ ]
@@ -104,10 +104,10 @@
     ],
     [
       #grid(columns: (auto, auto), column-gutter: 12pt, row-gutter: 5pt, align: (left + horizon, left + horizon),
-        raw("n : ℕ"),       text(size: 0.72em, fill: muted)[#sym.arrow.l.long the *local context*],
+        raw("n : ℕ"),       text(size: 0.72em, fill: muted)[arrow.l.long the *local context*],
         raw("h : x = 2"),   text(size: 0.72em, fill: muted)[(its *hypotheses*)],
         grid.cell(colspan: 2)[#line(length: 78%, stroke: 0.4pt + line_c)],
-        raw("⊢ x + 1 = 3"), text(size: 0.72em, fill: muted)[#sym.arrow.l.long the *target*],
+        raw("⊢ x + 1 = 3"), text(size: 0.72em, fill: muted)[arrow.l.long the *target*],
       )
       #v(4pt)
       #text(size: 0.72em, fill: muted)[context + target = one *goal*. Tactics act on the current goal.]

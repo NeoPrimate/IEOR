@@ -16,106 +16,82 @@ $
     *Known* population standard deviation ($sigma$):
 
     $
-      C I = macron(x) plus.minus z sigma / sqrt(n)
-    $    
+      "CI" = macron(x) plus.minus z_(alpha\/2) sigma / sqrt(n)
+    $
   ],
   [
     *Unknown* population standard deviation ($sigma$):
 
     $
-      C I = macron(x) plus.minus t s / sqrt(n)
+      "CI" = macron(x) plus.minus t_(alpha\/2, n-1) s / sqrt(n)
     $
   ],
   [
     - $macron(x)$: sample mean
-    - $z$: z-score of corresponding confidence level
-    - $sigma$: population standard deviation
+    - $z_(alpha\/2)$: upper $alpha\/2$ quantile of $N(0, 1)$
+    - $sigma$: population standard deviation (known)
     - $n$: sample size
+    - $1 - alpha$: confidence level
   ],
   [
     - $macron(x)$: sample mean
-    - $t$: critical value from t-distribution
-    - $s$: sample standard deviation
-    - $n$: sample size
+    - $t_(alpha\/2, n-1)$: upper $alpha\/2$ quantile of $t_(n-1)$
+    - $s$: sample standard deviation, $"ddof" = 1$
+    - $n - 1$: degrees of freedom
+    - $1 - alpha$: confidence level
   ]
 )
 
+#v(1em)
+
+Both assume an i.i.d. sample from a normal population; the first is
+also valid for large $n$ by the CLT, and the second is approximately
+so. Note $t_(alpha\/2, n-1) -> z_(alpha\/2)$ as $n -> infinity$.
+
+== Where the confidence interval comes from
+
+*What we know.* If $X_1, ..., X_n$ are i.i.d. draws from a population with
+mean $mu$ and standard deviation $sigma$, then the sample mean $obar(X)$ has
+
 $
-  p &= P(mu - b lt.eq obar(X) lt.eq mu + b) = 0.90 \
-  &= P(-b lt.eq obar(X) - mu lt.eq b) \
-  &= P(-b / (sigma \/ sqrt(n)) lt.eq (obar(X) - mu) / (sigma \/ sqrt(n)) lt.eq b / (sigma \/ sqrt(n))) \
-  &= P(-b / (sigma \/ sqrt(n)) lt.eq Z lt.eq b / (sigma \/ sqrt(n))) \
+  E[obar(X)] = mu quad quad "SE" := sigma_(obar(X)) = sigma / sqrt(n)
 $
 
-#let mu_   = 0.0
-#let sigma_ = 1.0
-#let b     = 1.3
-#let xbar  = 0.65
+and its shape is normal — exactly if the population is normal, approximately
+by the CLT otherwise. We write $"SE"$ (the _standard error_) for $sigma \/ sqrt(n)$
+from here on.
 
-#let x = lq.linspace(-3, 3, num: 300)
-#let y = x.map(x => tystats.norm.pdf(x, mean: mu_, std_dev: sigma_))
-#let xf = lq.linspace(-b, b, num: 200)
-#let yf = xf.map(x => tystats.norm.pdf(x, mean: mu_, std_dev: sigma_))
+*The question.* How far can $obar(X)$ stray from $mu$? Pick a distance $b$ and
+ask for the $b$ that makes the sample mean land within $b$ of the truth 90% of
+the time:
 
-#lq.diagram(
-  ylim: (0, auto),
-  yaxis: (ticks: none, stroke: none),
-  xaxis: (
-    mirror: false,
-    ticks: (
-      (-b,   text(size: 7pt, math.equation(block: true, $mu - b$))),
-      (b,    text(size: 7pt, math.equation(block: true, $mu + b$))),
-      (xbar, text(size: 7pt, math.equation(block: true, $overline(X)$))),
-      (mu_,  text(size: 7pt, math.equation(block: true, $mu$))),
-    ),
-  ),
-  lq.fill-between(xf, yf, fill: blue.transparentize(75%)),
-  lq.plot(x, y, mark: none, stroke: black),
-  lq.vlines(mu_, stroke: black.transparentize(90%)),
-  lq.vlines(-b,  stroke: black.transparentize(90%)),
-  lq.vlines(b,   stroke: black.transparentize(90%)),
-  lq.vlines(xbar, stroke: black.transparentize(90%)),
-  lq.place(0, 0.3, text(size: 7pt, math.equation(block: true, $p$))),
+$
+  P(mu - b lt.eq obar(X) lt.eq mu + b) = 0.90
+$
+
+Note what is random here: $mu$ is a fixed (unknown) number and $obar(X)$ is the
+quantity that varies from sample to sample.
+
+=== Step 1 — Standardise
+
+We cannot look up probabilities for $obar(X)$ directly, but we can for the
+standard normal $Z$. So rewrite the event until the middle term _is_ a $Z$:
+
+#grid(
+  columns: 3,
+  inset: (x: 0.5em, y: 1em),
+  [$P(mu - b lt.eq obar(X) lt.eq mu + b)$], [$= P(-b lt.eq obar(X) - mu lt.eq b)$], [subtract the mean from all three parts],
+  [], [$= P(-b/(sigma \/ sqrt(n)) lt.eq (obar(X) - mu)/(sigma \/ sqrt(n)) lt.eq b/(sigma \/ sqrt(n)))$], [divide all three parts by SE (positive, so the inequalities keep their direction)],
+  [], [$= P(-z lt.eq Z lt.eq z)$], [the middle term is now (value - its mean) / (its sd), i.e. standard normal, so $z = b\/(sigma \/ sqrt(n))$],
+  [], [$= P(- (z sigma) / sqrt(n) lt.eq obar(X) - mu lt.eq (z sigma) / sqrt(n))$], [substitute $b = z sigma\/sqrt(n)$ into line 2],
+  [], [$= P(- (z sigma) / sqrt(n) - obar(X) lt.eq -mu lt.eq (z sigma) / sqrt(n) - obar(X))$], [subtract $obar(X)$ from all three parts],
+  [], [$= P((z sigma) / sqrt(n) + obar(X) gt.eq mu gt.eq - (z sigma) / sqrt(n) + obar(X))$], [multiply by $-1$, so the inequalities flip],
+  [], [$= P(obar(X) - (z sigma) / sqrt(n) lt.eq mu lt.eq obar(X) + (z sigma) / sqrt(n))$], [rewrite reading right-to-left],
 )
-
-#lq.diagram(
-  ylim: (0, auto),
-  yaxis: (ticks: none, stroke: none),
-  xaxis: (
-    mirror: false,
-    ticks: (
-      (-b,   text(size: 7pt, math.equation(block: true, $-z$))),
-      (b,   text(size: 7pt, math.equation(block: true, $z$))),
-      (mu_, text(size: 7pt, math.equation(block: true, $0$))),
-    ),
-  ),
-  lq.fill-between(xf, yf, fill: blue.transparentize(75%)),
-  // lq.fill-between(xf, yf, fill: blue.transparentize(75%)),
-  // lq.fill-between(xf, yf, fill: blue.transparentize(75%)),
-  lq.plot(x, y, mark: none, stroke: black),
-  lq.vlines(mu_, stroke: black.transparentize(90%)),
-  lq.vlines(-b, stroke: black.transparentize(90%)),
-  lq.vlines(b, stroke: black.transparentize(90%)),
-  lq.place(-0, 0.3, $90%$),
-  lq.place(- (b + 0.3), 0.05, $5%$),
-  lq.place(b + 0.3, 0.05, $5%$),
-)
-
-The $z$ for $P(-z lt.eq Z lt.eq z) = 0.90$ is the same $z$ value such that $P(Z lt.eq z) = 0.90$, which is $z = 1.64$. So, if $z = 1.64 = b / (sigma / sqrt(n))$ then $b = 1.64 sigma / sqrt(n)$.
-
-Substituting for $b$ in our original probability equation:
-
-$
-  p = P(mu - (1.64 sigma) / sqrt(n) lt.eq obar(X) lt.eq mu + (1.64 sigma) / sqrt(n)) = 0.90
-$
-
-$
-  p = P(obar(X) - (1.64 sigma) / sqrt(n) lt.eq mu lt.eq obar(X) + (1.64 sigma) / sqrt(n)) = 0.90
-$
 
 #result[
   $
-    obar(x) - (1.64 s) / sqrt(n) quad quad obar(x) + (1.64 s) / sqrt(n)
+    [obar(x) - z s / sqrt(n), quad obar(x) + z s / sqrt(n)]
   $
 ]
 
@@ -215,3 +191,149 @@ $
   print(f"Check:                  {t.interval(conf, df, loc=xbar, scale=se)}")
   ```
 ]
+
+#code[
+  ```py
+  import numpy as np
+  from scipy import stats
+
+  x = np.array([12.1, 11.8, 13.4, 12.9, 12.2, 13.0, 11.5, 12.7])
+
+  stats.t.interval(0.95, len(x) - 1, loc=x.mean(), scale=stats.sem(x))
+  # (np.float64(12.005...), np.float64(13.019...))
+  ```
+]
+
+// ────────────────────────────────────────────────────────────
+// shared parameters
+// ────────────────────────────────────────────────────────────
+
+#let mu    = 10.0
+#let sigma = 5.0
+#let n     = 20
+#let se    = sigma / calc.sqrt(n)   // standard error, sigma / sqrt(n)
+#let zc    = 1.645                  // two-sided 90%
+#let b     = zc * se                // half-width on the xbar scale
+
+#let accent = rgb("#1D9E75")
+#let W      = 8cm
+#let H      = 2.1cm
+
+// ────────────────────────────────────────────────────────────
+// one panel: a normal curve with a shaded region and custom ticks
+//   center / sd  : location and scale of the plotted distribution
+//   lo / hi      : shaded region (none = extend to the axis limit)
+//   ticks        : array of (value, label) pairs
+// ────────────────────────────────────────────────────────────
+
+#let step-plot(
+  center: 0.0,
+  sd: 1.0,
+  lo: none,
+  hi: none,
+  ticks: (),
+  fill: accent,
+  width: W,
+  height: H,
+) = {
+  let xlim = (center - 4 * sd, center + 4 * sd)
+  let lo = if lo == none { xlim.at(0) } else { lo }
+  let hi = if hi == none { xlim.at(1) } else { hi }
+  let pdf = v => tystats.norm.pdf(v, mean: center, std_dev: sd)
+
+  let gx = lq.linspace(..xlim, num: 300)
+  let sx = lq.linspace(lo, hi, num: 200)
+
+  lq.diagram(
+    width: width, height: height,
+    xlim: xlim, margin: 0%, grid: none,
+    yaxis: (ticks: none, stroke: none),
+    xaxis: (ticks: ticks, tip: none),
+    // if your lq version takes fill-between(x, y1) only, drop the third argument
+    lq.fill-between(sx, sx.map(pdf),
+      fill: fill.transparentize(80%), stroke: none),
+    lq.plot(gx, gx.map(pdf), mark: none, stroke: black + 0.8pt),
+    lq.line((center, 0), (center, pdf(center)),
+      stroke: (paint: black, dash: "dashed")),
+  )
+}
+
+// ────────────────────────────────────────────────────────────
+// layout helper: caption on the left, plot on the right
+// ────────────────────────────────────────────────────────────
+
+#let step(title, note, plot) = block(breakable: false, inset: (y: 0.4em), grid(
+  columns: (1fr, auto),
+  column-gutter: 1.2em,
+  align: (left + horizon, center + horizon),
+  [*#title* \ #text(size: 0.85em, note)],
+  plot,
+))
+
+// ────────────────────────────────────────────────────────────
+// the six steps
+// ────────────────────────────────────────────────────────────
+
+#step(
+  [1. Sampling distribution],
+  $ obar(X) tilde N(mu, sigma^2 / n) $,
+  step-plot(
+    center: mu, sd: se, lo: mu - b, hi: mu + b,
+    ticks: ((mu - b, $mu - b$), (mu, $mu$), (mu + b, $mu + b$)),
+  ),
+)
+
+#step(
+  [2. Subtract $mu$],
+  $ P(-b lt.eq obar(X) - mu lt.eq b) $,
+  step-plot(
+    center: 0, sd: se, lo: -b, hi: b,
+    ticks: ((-b, $-b$), (0, $0$), (b, $b$)),
+  ),
+)
+
+#step(
+  [3. Divide by $sigma \/ sqrt(n)$],
+  $ Z = (obar(X) - mu) / (sigma \/ sqrt(n)) $,
+  step-plot(
+    center: 0, sd: 1, lo: -zc, hi: zc,
+    ticks: ((-zc, $-z$), (0, $0$), (zc, $z$)),
+  ),
+)
+
+#step(
+  [4. Look up the critical value],
+  $ P(Z lt.eq z) = 1 - alpha / 2 = 0.95 $,
+  step-plot(
+    center: 0, sd: 1, hi: zc,
+    fill: rgb("#7F77DD"),
+    ticks: ((zc, $z = 1.645$),),
+  ),
+)
+
+#step(
+  [5. Back-substitute],
+  $ b = 1.645 sigma / sqrt(n) $,
+  step-plot(
+    center: mu, sd: se, lo: mu - b, hi: mu + b,
+    ticks: ((mu - b, $mu - b$), (mu + b, $mu + b$)),
+  ),
+)
+
+// step 6 is not a density — it is the interval itself
+#let flip-plot(xbar: 11.2, width: W, height: 1.4cm) = lq.diagram(
+  width: width, height: height,
+  xlim: (mu - 4 * se, mu + 4 * se), ylim: (0, 2),
+  margin: 0%, grid: none,
+  yaxis: (ticks: none, stroke: none),
+  xaxis: (ticks: ((mu, $mu$), (xbar, $macron(x)$)), tip: none),
+  lq.line((mu, 0%), (mu, 100%), stroke: (paint: black, dash: "dashed")),
+  lq.plot((xbar,), (1,), xerr: (b,),
+    stroke: accent + 1.4pt, color: accent, mark: "d", mark-size: 6pt),
+)
+
+#step(
+  [6. Rearrange for $mu$],
+  $ macron(x) plus.minus 1.645 s / sqrt(n) $,
+  flip-plot(),
+)
