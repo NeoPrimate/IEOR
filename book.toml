@@ -856,16 +856,40 @@ title = "Statistics"
     files = ["statistics/hypothesis_test/error_types/type_ii_error.typ"]
 
     [[sections.sections.sections]]
+    title = "One-Sample Z-Test for Mean"
+    files = ["statistics/hypothesis_test/z_test/1_sample_mean.typ"]
+
+    [[sections.sections.sections]]
+    title = "One-Sample Two-Tail Z-Test for Mean"
+    files = ["statistics/hypothesis_test/z_test/two_tail_mean.typ"]
+
+    [[sections.sections.sections]]
+    title = "One-Sample Z-Test for Proportion"
+    files = ["statistics/hypothesis_test/z_test/1_sample_proportion.typ"]
+
+    [[sections.sections.sections]]
+    title = "Two-Sample Z-Test for Mean"
+    files = ["statistics/hypothesis_test/z_test/2_sample_mean.typ"]
+
+    [[sections.sections.sections]]
+    title = "Two-Sample Z-Test for Proportion"
+    files = ["statistics/hypothesis_test/z_test/2_sample_proportion.typ"]
+
+    [[sections.sections.sections]]
     title = "One-Sample t-Test"
-    files = ["statistics/hypothesis_test/t_test/one_sample_t_test.typ"]
+    files = ["statistics/hypothesis_test/t_test/1_sample_mean.typ"]
+
+    [[sections.sections.sections]]
+    title = "One-Sample Two-Tail t-Test for Mean"
+    files = ["statistics/hypothesis_test/t_test/two_tail_mean.typ"]
 
     [[sections.sections.sections]]
     title = "Independent t-Test"
-    files = ["statistics/hypothesis_test/t_test/independent_t_test.typ"]
+    files = ["statistics/hypothesis_test/t_test/2_sample_mean_independent.typ"]
 
     [[sections.sections.sections]]
     title = "Paired t-Test"
-    files = ["statistics/hypothesis_test/t_test/paired_t_test.typ"]
+    files = ["statistics/hypothesis_test/t_test/2_sample_mean_paired.typ"]
 
     [[sections.sections.sections]]
     title = "Chi-Square Goodness of Fit"
