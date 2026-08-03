@@ -36,6 +36,20 @@ jobs:
             | sudo tar -xz -C /usr/local/bin/
           sudo chmod +x /usr/local/bin/pagefind
 
+      # tystats is an @local-only package (never published to @preview), so
+      # it isn't auto-fetched like cetz/lilaq/etc. Vendor it into a package
+      # dir on TYPST_PACKAGE_PATH, pinned to a commit for reproducibility.
+      # Bump TYSTATS_REF when NeoPrimate/tystats gets a commit the book needs.
+      - name: Install tystats local package
+        env:
+          TYSTATS_REF: a216fd5bd85fd6f9baad4745138dfa226166e9c0
+        run: |
+          PKG_DIR="$RUNNER_TEMP/typst-packages/local/tystats/0.1.0"
+          mkdir -p "$PKG_DIR"
+          git clone https://github.com/NeoPrimate/tystats "$PKG_DIR"
+          git -C "$PKG_DIR" checkout "$TYSTATS_REF"
+          echo "TYPST_PACKAGE_PATH=$RUNNER_TEMP/typst-packages" >> "$GITHUB_ENV"
+
       - name: Build PDF
         run: |
           mkdir -p build
