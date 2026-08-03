@@ -3,8 +3,6 @@
 
 = Chi-Square Independence <statistics_hypothesis_test_chi_square_chi_square_independence>
 
-== Test of independence
-
 Compares two *observed* categorical distributions.
 
 $
