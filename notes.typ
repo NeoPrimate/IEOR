@@ -3029,7 +3029,9 @@ $"Critical path" = {v: "slack"(v) = 0}$
 
 = Classical Optimization
 
-== Profit Function
+== Unconstrained
+
+=== Profit Function
 
 - Cost function
 
@@ -3049,15 +3051,15 @@ $
   P(p)
   &= p D(p) - C(D(p)) \
   &= p (d_0 - s p) - (c_f + c_u (d_0 - s p))
-     && #text(size: 0.8em)[substitute $D$ and $C$] \
+     &quad quad& #text(size: 0.8em)[substitute $D$ and $C$] \
   &= (d_0 p - s p^2) - (c_f + c_u d_0 - c_u s p)
-     && #text(size: 0.8em)[expand both brackets] \
+     &quad quad& #text(size: 0.8em)[expand both brackets] \
   &= d_0 p - s p^2 - c_f - c_u d_0 + c_u s p
-     && #text(size: 0.8em)[distribute the minus sign] \
+     &quad quad& #text(size: 0.8em)[distribute the minus sign] \
   &= -s p^2 + d_0 p + c_u s p - c_f - c_u d_0
-     && #text(size: 0.8em)[order by power of $p$] \
+     &quad quad& #text(size: 0.8em)[order by power of $p$] \
   &= -s p^2 + (d_0 + c_u s) p - (c_f + c_u d_0)
-     && #text(size: 0.8em)[factor out $p$, group constants]
+     &quad quad& #text(size: 0.8em)[factor out $p$, group constants]
 $
 
 Where: 
@@ -3146,3 +3148,10 @@ Where:
   ylabel: [$P'(p)$],
   lq.plot(prices, prices.map(dP), mark: none, label: [$dif P slash dif p$]),
 )
+
+#example[
+
+]
+
+== Constrained
+
