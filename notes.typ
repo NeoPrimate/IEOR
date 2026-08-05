@@ -3026,3 +3026,123 @@ $"Critical path" = {v: "slack"(v) = 0}$
   $log(exp(x)) = x$,                       [`Real.log_exp`],     lm,
 )
 
+
+= Classical Optimization
+
+== Profit Function
+
+- Cost function
+
+$ 
+  C(q) = c_f + c_u q 
+$
+
+- Demand function
+
+$ 
+  D(p) = d_0 - s p 
+$
+
+- Profit function
+
+$
+  P(p)
+  &= p D(p) - C(D(p)) \
+  &= p (d_0 - s p) - (c_f + c_u (d_0 - s p))
+     && #text(size: 0.8em)[substitute $D$ and $C$] \
+  &= (d_0 p - s p^2) - (c_f + c_u d_0 - c_u s p)
+     && #text(size: 0.8em)[expand both brackets] \
+  &= d_0 p - s p^2 - c_f - c_u d_0 + c_u s p
+     && #text(size: 0.8em)[distribute the minus sign] \
+  &= -s p^2 + d_0 p + c_u s p - c_f - c_u d_0
+     && #text(size: 0.8em)[order by power of $p$] \
+  &= -s p^2 + (d_0 + c_u s) p - (c_f + c_u d_0)
+     && #text(size: 0.8em)[factor out $p$, group constants]
+$
+
+Where: 
+- $c_f$: fixed cost
+- $c_u$: unit cost
+- $d_0$: max demand
+- $s$: price sensitivity
+
+#let fixed-cost        = 500000
+#let unit-cost         = 75
+#let max-demand        = 20000
+#let price-sensitivity = 80
+
+#let C(q)  = fixed-cost + unit-cost * q
+#let D(p)  = max-demand - price-sensitivity * p
+#let P(p)  = p * D(p) - C(D(p))
+#let dP(p) = -2 * price-sensitivity * p + (max-demand + unit-cost * price-sensitivity)
+
+#let p-star = (max-demand + unit-cost * price-sensitivity) / (2 * price-sensitivity)
+
+#let xmin = 0
+#let xmax = p-star + p-star
+
+#let ymin = 0 - P(p-star) * 1.1
+#let ymax = 0 + P(p-star) * 1.1
+
+#let prices = lq.linspace(xmin, xmax, num: 1000)
+
+#let quantities = lq.linspace(0, max-demand, num: 1000)
+
+// Demand: downward in price
+#lq.diagram(
+  width: 10cm, 
+  height: 5cm,
+  xlim: (xmin, xmax),
+  xaxis: (subticks: none, ticks: none),
+  yaxis: (subticks: none, ticks: none),
+  xlabel: [Price $p$], 
+  ylabel: [Quantity (units)],
+  lq.plot(prices, prices.map(D), mark: none, label: [$D(p)$]),
+)
+
+// Cost: upward in quantity
+#lq.diagram(
+  width: 10cm, 
+  height: 5cm,
+  xlim: (0, max-demand),
+  xaxis: (subticks: none, ticks: none),
+  yaxis: (subticks: none, ticks: none),
+  xlabel: [Quantity $q$], 
+  ylabel: [Cost],
+  lq.plot(quantities, quantities.map(C), mark: none, label: [$C(q)$]),
+)
+
+#lq.diagram(
+  width: 10cm,
+  height: 5cm,
+  xlim: (xmin, xmax),
+  ylim: (ymin, ymax),
+  yaxis: (
+    subticks: none,
+    ticks: ((0, box(inset: (top: 0em), text(size: 0.7em)[$0$])),),
+  ),
+  xaxis: (
+    subticks: none,
+    ticks: ((p-star, box(inset: (top: 0em), text(size: 0.7em)[$p^*$])),),
+  ),
+  xlabel: [Price $p$], 
+  ylabel: [Profit],
+  lq.plot(prices, prices.map(P), mark: none, label: [$P(p)$]),
+)
+
+#lq.diagram(
+  width: 10cm,
+  height: 5cm,
+  xlim: (xmin, xmax),
+  xaxis: (
+    subticks: none,
+    ticks: ((p-star, box(inset: (top: 0em), text(size: 0.7em)[$p^*$])),),
+  ),
+  yaxis: (
+    subticks: none,
+    ticks: ((0, box(inset: (top: 0em), text(size: 0.7em)[$0$])),),
+  ),
+  xlabel: [Price $p$], 
+  ylabel: [$P'(p)$],
+  lq.plot(prices, prices.map(dP), mark: none, label: [$dif P slash dif p$]),
+)
