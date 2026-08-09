@@ -3155,3 +3155,133 @@ Where:
 
 == Constrained
 
+
+
+
+
+#example("LP")[
+
+  Three feedstocks blend into two grades.
+
+  #align(center)[
+    #table(
+      columns: 5,
+      inset: 1em,
+      [Feed], [Octane], [Sulfur (wt%)], [Avail (bbl/d)], [Cost (\$/bbl)], 
+      [A], [92], [0.50], [4000], [78], 
+      [B], [87], [0.30], [6000], [72], 
+      [C], [98], [0.90], [1500], [95], 
+    )
+  ]
+
+  Regular sells at \$95, needs octane ≥ 89, sulfur ≤ 0.50, demand ≤ 8000 bbl/d. Premium sells at \$110, needs octane ≥ 95, sulfur ≤ 0.40, demand ≤ 3000 bbl/d. Both properties blend linearly by volume. Maximize profit. Then: give the dual and state the economic meaning of the octane-constraint dual for Premium.
+
+  $
+    i &in {A, B, C} \
+    j &in {R, P}
+  $
+
+  1. Objective function
+
+  $
+    sum_i p_i x_(i j) - sum_i 
+  $
+
+  $
+    "max" 
+    \
+    95 x_(A R) +
+    95 x_(B R) +
+    95 x_(C R) +
+    \
+    110 x_(A P) +
+    110 x_(B P) +
+    110 x_(C P) -
+    \
+    78 x_(A R) -
+    78 x_(A P) -
+    \
+    72 x_(B R) -
+    72 x_(B P) -
+    \
+    95 x_(C R) -
+    95 x_(C P)
+  $
+
+  2. Capacity constraints
+
+  $
+    sum_i quad quad forall 
+  $
+
+  $
+    x_(A R) + x_(A P) lt.eq 4000 \
+    x_(B R) + x_(B P) lt.eq 6000 \
+    x_(C R) + x_(C P) lt.eq 1500 \
+  $
+
+  3. Demand constraints
+
+  $
+    x_(A R) +
+    x_(B R) +
+    x_(C R) lt.eq 8000
+    \
+    x_(A P) +
+    x_(B P) +
+    x_(C P) lt.eq 3000
+  $
+
+  4. Ratio constraints
+
+  $
+    sum_i (q_i - L_j) x_(i j) gt.eq 0 quad quad ("minimum spec") \
+    sum_i (q_i - L_j) x_(i j) lt.eq 0 quad quad ("maximum spec")
+  $
+
+  Take Regular's octane. You pour in $x_(A R)$ barrels at 92, $x_(B R)$ at 87, $x_(C R)$ at 98. Total octane content is $92 x_(A R) + 87 x_(B R) + 98 x_(C R)$, and the total volume is $x_(A R) + x_(B R) + x_(C R)$. The blend's octane is the first divided by the second, and it must clear 89:
+
+  $
+    (92 x_(A R) + 87 x_(B R) + 98 x_C R) / (x_(A R) + x_(B R) + x_(C R)) gt.eq 89 
+  $
+
+  That denominator contains decision variables. A ratio of variables is not linear, and you've left LP territory. Multiply both sides by it:
+
+  $
+    (92 x_(A R) + 87 x_(B R) + 98 x_C R) gt.eq 89 (x_(A R) + x_(B R) + x_(C R))
+  $
+
+  Move everything left and collect per variable:
+
+  $
+    (92 - 89) x_(A R) + (87 - 89) x_(B R) + (98 - 89) x_(C R) gt.eq 0 quad arrow.long.double quad 3 x_(A R) - 2 x_(B R) + 9 x_(C R) gt.eq 0
+  $
+
+  Therefore:
+
+  $ 
+    3 x_(A R) - 2 x_(B R) + 9 x_(C R) gt.eq 0 quad quad &("regular octane") \
+    
+    lt.eq 0 quad quad &("regular sulfur") \
+    
+    gt.eq 0 quad quad &("premium octane") \
+  
+    0.10 x_(A P) - 0.10 x_(B P) + 0 x_(C P) lt.eq 0 quad quad &("premium sulfur") \
+  $
+
+  5. Non-negativity constraints
+
+  $
+    x_(i j) gt.eq 0
+  $
+
+  $
+    x_(A R) gt.eq 0 \
+    x_(B R) gt.eq 0 \
+    x_(C R) gt.eq 0 \
+    x_(A P) gt.eq 0 \
+    x_(B P) gt.eq 0 \
+    x_(C P) gt.eq 0 \
+  $
+
+]
