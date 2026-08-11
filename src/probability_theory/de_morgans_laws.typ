@@ -3,169 +3,141 @@
 
 = De Morgan's Laws <probability_theory_de_morgans_laws>
 
-#show sym.emptyset: set text(font: "Fira Sans")
-
 Allows going back and forth between unions and intersections
 
-#align(center)[
-  #table(
-    columns: 2,
-    inset: 2em,
-    [
-      $
-        (inter.big_n S_n)^c = union.big_n S_n^c
-      $
-    ],
-    [
-      $
-        (union.big_n S_n)^c = inter.big_n S_n^c
-      $
-    ]
-  )
-]
+#let c-out = rgb("#f1efe8")
+#let c-in = rgb("#7f77dd")
+#let c-edge = rgb("#3c3489")
+#let c-text = rgb("#26215c")
 
-1. 
+#let inside(s, x, y) = {
+  let dx = x - s.at(0)
+  let dy = y - s.at(1)
+  dx * dx + dy * dy < s.at(2) * s.at(2)
+}
 
-$
-  (S inter T)^c = S^c union T^c
-$
+#let family(n) = {
+  let (r, d, a0) = if n == 2 { (1.25, 0.62, 180deg) } else if n == 3 {
+    (1.25, 0.68, 90deg)
+  } else { (1.32, 0.74, 45deg) }
+  range(n).map(i => {
+    let a = a0 + i * 360deg / n
+    (d * calc.cos(a), d * calc.sin(a), r)
+  })
+}
 
-#let hatched(color) = modpattern(
-  (10pt, 10pt),
-  std.line(
-    start: (0%, 100%), 
-    end: (100%, 0%), 
-    stroke: color + 0.5pt
+#let lhs-union(f, x, y) = not f.any(s => inside(s, x, y))
+#let rhs-union(f, x, y) = f.all(s => not inside(s, x, y))
+#let lhs-inter(f, x, y) = not f.all(s => inside(s, x, y))
+#let rhs-inter(f, x, y) = f.any(s => not inside(s, x, y))
+
+#let differ(p, q) = (f, x, y) => p(f, x, y) != q(f, x, y)
+
+#let res = 150
+#let xr = (-2.6, 2.6)
+#let yr = (-2.0, 2.0)
+
+#let panel(f, pred, w: 4.4cm, labels: true) = lq.diagram(
+  width: w,
+  height: w * 2.0 / 2.6,
+  xaxis: none,
+  yaxis: none,
+  xlim: xr,
+  ylim: yr,
+  margin: 0%,
+
+  lq.colormesh(
+    lq.linspace(..xr, num: res),
+    lq.linspace(..yr, num: res),
+    (x, y) => if pred(f, x, y) { 1.0 } else { 0.0 },
+    map: (c-out, c-in),
+    min: 0,
+    max: 1,
   ),
+
+  ..f.map(s => lq.ellipse(
+    s.at(0),
+    s.at(1),
+    width: 2 * s.at(2),
+    height: 2 * s.at(2),
+    align: center + horizon,
+    fill: none,
+    stroke: 0.5pt + c-edge,
+  )),
+
+  ..if labels {
+    f.enumerate().map(((i, s)) => {
+      let m = calc.max(calc.sqrt(s.at(0) * s.at(0) + s.at(1) * s.at(1)), 1e-9)
+      let k = (s.at(2) - 0.38) / m
+      lq.place(
+        s.at(0) * (1 + k),
+        s.at(1) * (1 + k),
+        text(8pt, fill: c-text)[$S_#(i + 1)$],
+      )
+    })
+  } else { () },
 )
 
-#align(center)[
-    #frame(cetz.canvas({
-    import cetz.draw: * 
-    
-    rect(
-      (0, 0), (5, 5), 
-      name: "sample_space", 
-    )
+#let cell(caption, body) = align(center, stack(
+  spacing: 4pt,
+  text(9pt, caption),
+  body,
+))
 
-    content((5-0.25, 5+0.25), $ Omega $)
-    
-    rect(
-      (0, 0), (5, 2), 
-      name: "S", 
-      radius: 15pt, 
-      fill: blue.lighten(80%), 
-      stroke: color.blue + 2pt
-    )
-    content("S", $ S $, anchor: "west", padding: (x: 0.75, y: 0))
+== Complement of a union
 
-    rect(
-      (0, 0), (2, 5), 
-      name: "T", 
-      radius: 15pt, 
-      fill: red.lighten(80%), 
-      stroke: color.red + 2pt
-    )
-    content("T", $ T $, anchor: "south", padding: (x: 0, y: 0.75))
+#v(2pt)
+#grid(
+  columns: (1fr, auto, 1fr),
+  align: horizon + center,
+  column-gutter: 6pt,
+  cell($(S_1 union S_2)^c$, panel(family(2), lhs-union)),
+  text(11pt)[$=$],
+  cell($S_1^c inter S_2^c$, panel(family(2), rhs-union)),
+)
 
-    rect(
-      (0, 0), (2, 2), 
-      name: "C", 
-      radius: (south-west: 15pt), 
-      fill: purple.lighten(80%), 
-      stroke: color.purple + 2pt
-    )
-    content("C", $ S inter T $, anchor: "center", padding: (x: 0, y: 0.75))
+== Complement of an intersection
 
-    rect(
-      (0, 2), (5, 5), 
-      name: "D",
-      fill: modpattern(
-        (30pt, 30pt),
-        std.line(
-          start: (0%, 100%), 
-          end: (100%, 0%), 
-          stroke: blue + 0.5pt
-        ),
-      ),
-      stroke: none
-    )
+#v(2pt)
+#grid(
+  columns: (1fr, auto, 1fr),
+  align: horizon + center,
+  column-gutter: 6pt,
+  cell($(S_1 inter S_2)^c$, panel(family(2), lhs-inter)),
+  text(11pt)[$=$],
+  cell($S_1^c union S_2^c$, panel(family(2), rhs-inter)),
+)
 
-    content("D", $ S^c $, anchor: "center", padding: (x: 0, y: 0), fill: white)
-    
-    rect(
-      (2, 0), (5, 5), 
-      name: "E",
-      fill: modpattern(
-        (30pt, 30pt),
-        std.line(
-          start: (0%, 0%), 
-          end: (100%, 100%), 
-          stroke: red + 0.5pt
-        ),
-      ),
-      stroke: none
-    )
+== Scaling
 
-    content("E", $ T^c $, anchor: "center", padding: (x: 0, y: 0), fill: white)
-  }))
-]
+The general statement quantifies over an arbitrary index set:
 
-$
-  x in (S inter T)^c 
-  quad arrow.l.r.double quad 
-  x in.not S inter T 
-  quad arrow.l.r.double quad 
-  cases(
-    x in.not S,
-    or,
-    x in.not T,
-  )
-  quad arrow.l.r.double quad 
-  cases(
-    x in S^c,
-    or,
-    x in T^c,
-  )
-  quad arrow.l.r.double quad 
-  x in S^c union T^c
+$ 
+  (union.big_(n in I) S_n)^c = inter.big_(n in I) S_n^c
+  #h(5em)
+  (inter.big_(n in I) S_n)^c = union.big_(n in I) S_n^c 
 $
 
-2.
+Two circles cannot show why $I$ may be infinite, but two, three and four can
+show the *direction of travel*. Only the family changes below; the predicates
+are untouched.
 
-$
-  S^c inter T^c = (S union T)^C
-$
+#v(4pt)
 
-We start with the first De Morgan's Law:
+#grid(
+  columns: (auto, 1fr, 1fr),
+  rows: 3,
+  align: horizon + center,
+  column-gutter: 8pt,
+  row-gutter: 7pt,
 
-$
-  (S inter T)^c = S^c union T^c
-$
+  [], cell($(union.big_n S_n)^c = inter.big_n S_n^c$, []), cell($(inter.big_n S_n)^c = union.big_n S_n^c$, []),
 
-and substitute:
-
-$
-  S &arrow S^c \
-  S^c &arrow S \
-  T &arrow T^c \
-  T^c &arrow T \
-$
-
-to obtain:
-
-$
-  (S^c inter T^c)^c = S union T
-$
-
-take the compliment of both sides:
-
-$
-  ((S^c inter T^c)^c)^c = (S union T)^c
-$
-
-since the compliment of a compliment is the set itself:
-
-$
-  S^c inter T^c = (S union T)^C
-$
+  ..(2, 3, 4)
+    .map(n => (
+      text(9pt)[$n = #n$],
+      panel(family(n), lhs-union, w: 4.7cm),
+      panel(family(n), lhs-inter, w: 4.7cm),
+    ))
+    .flatten(),
+)

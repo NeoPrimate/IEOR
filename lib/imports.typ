@@ -89,9 +89,10 @@
 // the hand-rolled helpers below — e.g. norm.pdf(x, mean:, std_dev:),
 // expon.pdf(x, rate:), poisson.pmf(k, lam).
 // NOTE: only collision-safe names are destructured here. `binom` would shadow
-// typst's math built-in binom(n, k), and `t` collides with the common local
-// time/variable name — access those as `tystats.binom.pmf(...)` /
-// `tystats.t.pdf(...)` via the namespace import.
+// typst's math built-in binom(n, k), and `t`/`f` collide with common local
+// variable/function names (time; generic f(x)) — access those as
+// `tystats.binom.pmf(...)` / `tystats.t.pdf(...)` / `tystats.f.pdf(...)` via
+// the namespace import.
 #import "@local/tystats:0.1.0"
 #import "@local/tystats:0.1.0": norm, expon, poisson
 
