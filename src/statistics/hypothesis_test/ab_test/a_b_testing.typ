@@ -23,7 +23,7 @@
 - Determine Sample Size
 
 $
-n = (16 sigma^2) / delta^2
+  n = (16 sigma^2) / delta^2
 $
 
 Where:
