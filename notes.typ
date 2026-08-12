@@ -3285,3 +3285,429 @@ Where:
   $
 
 ]
+
+#line(length: 100%)
+
+// ---- Helpers -------------------------------------------------
+
+// Standard three-column reference table
+#let reftable(..rows) = table(
+  columns: (auto, 1fr, auto),
+  align: left + horizon,
+  stroke: 0.5pt + luma(180),
+  inset: 7pt,
+  fill: (_, y) => if y == 0 { luma(235) },
+  ..rows
+)
+
+// Full-width subheading row inside a reftable
+#let group(name) = table.cell(colspan: 3, fill: luma(248))[#strong(name)]
+
+// Condition attached to a formula
+#let cond(c) = box(inset: (left: 0.6em))[#text(8.5pt, luma(90))[(#c)]]
+
+// Trap callout
+#let watch(body) = block(
+  width: 100%,
+  inset: 8pt,
+  radius: 2pt,
+  fill: rgb("#fff6e8"),
+  stroke: (left: 2.5pt + rgb("#d98324")),
+  text(9.5pt, body),
+)
+
+// =============================================================
+
+#align(center)[
+  #text(20pt, weight: "bold")[Algebra Review]
+  #v(2pt)
+  #text(9.5pt, luma(110))[Operations · Rules · Manipulation · Solving]
+]
+
+// =============================================================
+= Operations
+// =============================================================
+
+#reftable(
+  table.header([*Operation*], [*Formula*], [*Example*]),
+
+  group[The four basics],
+  [Addition],       [$a + b$],     [$3 + 5 = 8$],
+  [Subtraction],    [$a - b$],     [$8 - 5 = 3$],
+  [Multiplication], [$a times b$], [$3 times 5 = 15$],
+  [Division],       [$a div b$ #cond[$b != 0$]], [$15 div 5 = 3$],
+
+  group[Powers and their inverses],
+  [Exponentiation],  [$a^b$],                        [$2^3 = 8$],
+  [Root extraction], [$root(n, a) = a^(1 slash n)$], [$root(3, 8) = 2$],
+  [Logarithm],       [$log_b a$ #cond[$a > 0$, $b > 0$, $b != 1$]],
+                     [$log_2 8 = 3$],
+
+  group[Integer and discrete],
+  [Floor division], [$floor(a \/ b)$],                 [$floor(7 \/ 2) = 3$],
+  [Modulo],         [$a mod b$],                       [$7 mod 2 = 1$],
+  [Factorial],      [$n! = n (n - 1) dots.c 2 dot 1$], [$4! = 24$],
+  [GCD],            [$gcd(a, b)$],                     [$gcd(12, 18) = 6$],
+  [LCM],            [$lcm(a, b) = (a b) / gcd(a, b)$], [$lcm(4, 6) = 12$],
+
+  group[Unary],
+  [Negation],       [$-a$],             [$-(3) = -3$],
+  [Absolute value], [$abs(a)$],         [$abs(-5) = 5$],
+  [Reciprocal],     [$1 / a = a^(-1)$ #cond[$a != 0$]], [$1 / 4 = 0.25$],
+  [Floor],          [$floor(a)$],       [$floor(3.7) = 3$],
+  [Ceiling],        [$ceil(a)$],        [$ceil(3.2) = 4$],
+  [Rounding],       [$round(a)$],       [$round(3.5) = 4$],
+  [Truncation],     [$"trunc"(a)$],     [$"trunc"(-3.7) = -3$],
+)
+
+Subtraction and division are not fundamental — both are shorthand built
+from inverses, which is why they fail the rules in Part II:
+
+$ a - b := a + (-b) #h(2em) a div b := a times b^(-1) $
+
+== Order of operations
+
+Parentheses, then exponents, then multiplication and division
+(left to right), then addition and subtraction (left to right).
+
+#watch[
+  *This is a convention, not a law.* It tells you how to *read* an
+  expression, not what you are allowed to *do* to it. The rules that
+  govern what you may do are in Part II.
+]
+
+// =============================================================
+= Rules
+// =============================================================
+
+== What always holds
+
+#reftable(
+  table.header([*Property*], [*Formula*], [*Example*]),
+
+  [Commutativity],           [$a + b = b + a$ \ $a times b = b times a$],
+                             [$3 + 5 = 5 + 3$],
+  [Associativity],           [$(a + b) + c = a + (b + c)$ \
+                              $(a b) c = a (b c)$],
+                             [$(1 + 2) + 3 = 1 + (2 + 3)$],
+  [Distributivity],          [$a (b + c) = a b + a c$],
+                             [$2 (3 + 4) = 6 + 8$],
+  [Additive identity],       [$a + 0 = a$],     [$7 + 0 = 7$],
+  [Multiplicative identity], [$a times 1 = a$], [$7 times 1 = 7$],
+  [Additive inverse],        [$a + (-a) = 0$],  [$5 + (-5) = 0$],
+  [Multiplicative inverse],  [$a times 1/a = 1$ #cond[$a != 0$]],
+                             [$5 times 1/5 = 1$],
+  [Zero property],           [$a times 0 = 0$], [$7 times 0 = 0$],
+  [Sign rules],              [$(-a)(-b) = a b$ #h(1em) $(-a) b = -(a b)$],
+                             [$(-2)(-3) = 6$],
+)
+
+== Where it breaks
+
+#table(
+  columns: (auto, auto, auto, auto, auto),
+  align: (left + horizon, center + horizon, center + horizon,
+          center + horizon, center + horizon),
+  stroke: 0.5pt + luma(180),
+  inset: 7pt,
+  fill: (_, y) => if y == 0 { luma(235) },
+
+  table.header([], [$+$], [$-$], [$times$], [$div$]),
+  [Commutative],  [yes], [*no*], [yes], [*no*],
+  [Associative],  [yes], [*no*], [yes], [*no*],
+  [$ZZ$ closed],  [yes], [yes],  [yes], [*no*],
+)
+
+#watch[
+  *The three that cost marks.*
+  #h(0.5em) $5 - 3 != 3 - 5$
+  #h(1.2em) $(8 - 3) - 2 != 8 - (3 - 2)$
+  #h(1.2em) $3 div 2 = 1.5 in.not ZZ$
+]
+
+== Number sets
+
+$ NN subset.eq ZZ subset.eq QQ subset.eq RR subset.eq CC $
+
+#reftable(
+  table.header([*Set*], [*Contains*], [*Closed under*]),
+
+  [$NN$], [$0, 1, 2, 3, dots$],              [$+$, $times$],
+  [$ZZ$], [$dots, -2, -1, 0, 1, 2, dots$],   [$+$, $-$, $times$],
+  [$QQ$], [fractions $p \/ q$, $q != 0$],    [$+$, $-$, $times$, $div$],
+  [$RR$], [all points on the number line],   [$+$, $-$, $times$, $div$],
+  [$CC$], [$a + b i$, #h(0.3em) $i^2 = -1$], [$+$, $-$, $times$, $div$, roots],
+)
+
+// =============================================================
+= Manipulation
+// =============================================================
+
+== Fractions
+
+#reftable(
+  table.header([*Rule*], [*Formula*], [*Example*]),
+
+  [Multiply],        [$a / b times c / d = (a c) / (b d)$],
+                     [$2/3 times 3/4 = 1/2$],
+  [Divide],          [$(a / b) / (c / d) = a / b times d / c = (a d) / (b c)$],
+                     [$(1/2) / (3/4) = 2/3$],
+  [Add],             [$a / b + c / d = (a d + b c) / (b d)$],
+                     [$1/2 + 1/3 = 5/6$],
+  [Subtract],        [$a / b - c / d = (a d - b c) / (b d)$],
+                     [$1/2 - 1/3 = 1/6$],
+  [Cancel],          [$(a c) / (b c) = a / b$ #cond[$c != 0$]],
+                     [$6/9 = 2/3$],
+  [Split numerator], [$(a + c) / b = a / b + c / b$],
+                     [$(6 + 4) / 2 = 3 + 2$],
+  [Rationalize],     [$a / sqrt(b) = (a sqrt(b)) / b$],
+                     [$1/sqrt(2) = sqrt(2)/2$],
+  [Rationalize \ (conjugate)],
+                     [$1 / (sqrt(a) + sqrt(b)) = (sqrt(a) - sqrt(b)) / (a - b)$],
+                     [$1/(sqrt(3) + 1) = (sqrt(3) - 1)/2$],
+)
+
+#watch[
+  *Numerators split, denominators do not.*
+  $(a + c) / b = a/b + c/b$ #h(0.6em) but #h(0.6em) $a / (b + c) != a/b + a/c$.
+]
+
+== Exponents
+
+#reftable(
+  table.header([*Rule*], [*Formula*], [*Example*]),
+
+  [Product],            [$x^m x^n = x^(m + n)$],       [$2^2 dot 2^3 = 2^5$],
+  [Quotient],           [$x^m / x^n = x^(m - n)$ #cond[$x != 0$]],
+                        [$2^5 / 2^3 = 2^2$],
+  [Power of a power],   [$(x^m)^n = x^(m n)$],         [$(2^2)^3 = 2^6$],
+  [Power of a product], [$(x y)^n = x^n y^n$],         [$(2 dot 3)^2 = 4 dot 9$],
+  [Power of a quotient],[$(x / y)^n = x^n / y^n$],     [$(2/3)^2 = 4/9$],
+  [Zero exponent],      [$x^0 = 1$ #cond[$x != 0$]],   [$7^0 = 1$],
+  [Negative exponent],  [$x^(-n) = 1 / x^n$],          [$2^(-3) = 1/8$],
+  [Flip a fraction],    [$(x / y)^(-n) = (y / x)^n$],  [$(2/3)^(-2) = 9/4$],
+)
+
+== Radicals
+
+#reftable(
+  table.header([*Rule*], [*Formula*], [*Example*]),
+
+  [Root as exponent],    [$x^(1 slash n) = root(n, x)$],
+                         [$8^(1 slash 3) = 2$],
+  [Fractional exponent], [$x^(m slash n) = root(n, x^m) = (root(n, x))^m$],
+                         [$8^(2 slash 3) = 4$],
+  [Root of a product],   [$root(n, x y) = root(n, x) root(n, y)$],
+                         [$root(3, 8 dot 27) = 6$],
+  [Root of a quotient],  [$root(n, x / y) = root(n, x) / root(n, y)$],
+                         [$root(3, 8/27) = 2/3$],
+  [Simplify],            [$sqrt(a^2 b) = abs(a) sqrt(b)$],
+                         [$sqrt(50) = 5 sqrt(2)$],
+  [Cancel a root],       [$root(n, x^n) = cases(
+                            x #h(0.4em) "if" n "is odd",
+                            abs(x) #h(0.4em) "if" n "is even")$],
+                         [$sqrt((-4)^2) = 4$],
+)
+
+#watch[
+  *$sqrt(x^2) = abs(x)$, not $x$.* Dropping the absolute value loses the
+  negative branch — this is the single most common radical error.
+]
+
+== Logarithms
+
+#reftable(
+  table.header([*Rule*], [*Formula*], [*Example*]),
+
+  [Product],        [$log_b (x y) = log_b x + log_b y$],
+                    [$log_2 8 = log_2 2 + log_2 4$],
+  [Quotient],       [$log_b (x / y) = log_b x - log_b y$],
+                    [$log_2 (8/2) = 3 - 1$],
+  [Power],          [$log_b (x^n) = n log_b x$],
+                    [$log_2 (8^2) = 2 dot 3$],
+  [Root],           [$log_b root(n, x) = (log_b x) / n$],
+                    [$log_2 root(3, 8) = 3/3$],
+  [Log of the base],[$log_b b = 1$],  [$log_2 2 = 1$],
+  [Log of one],     [$log_b 1 = 0$],  [$log_2 1 = 0$],
+  [Change of base], [$log_b x = (log_c x) / (log_c b) = (ln x) / (ln b)$],
+                    [$log_2 8 = (ln 8) / (ln 2)$],
+  [Inverse pair],   [$b^(log_b x) = x$ #h(1em) $log_b (b^x) = x$],
+                    [$2^(log_2 5) = 5$],
+)
+
+Logs turn multiplication into addition and exponents into coefficients —
+that is the whole reason to reach for them when solving.
+
+== Expanding
+
+#reftable(
+  table.header([*Expansion*], [*Formula*], [*Example*]),
+
+  [Binomial theorem],
+    table.cell(colspan: 2)[
+      $(x + y)^n = sum_(k=0)^n binom(n, k) x^(n - k) y^k$
+      #h(1.5em) where #h(0.3em) $binom(n, k) = n! / (k! (n - k)!)$
+    ],
+
+  [Square of a sum],        [$(x + y)^2 = x^2 + 2 x y + y^2$],
+                            [$(x + 1)^2 = x^2 + 2x + 1$],
+  [Square of a difference], [$(x - y)^2 = x^2 - 2 x y + y^2$],
+                            [$(x - 1)^2 = x^2 - 2x + 1$],
+  [Cube of a sum],          [$(x + y)^3 = x^3 + 3 x^2 y + 3 x y^2 + y^3$],
+                            [$(x + 1)^3 = x^3 + 3x^2 + 3x + 1$],
+  [Cube of a difference],   [$(x - y)^3 = x^3 - 3 x^2 y + 3 x y^2 - y^3$],
+                            [$(x - 1)^3 = x^3 - 3x^2 + 3x - 1$],
+  [Product of binomials],   [$(x + p)(x + q) = x^2 + (p + q) x + p q$],
+                            [$(x+2)(x+3) = x^2 + 5x + 6$],
+)
+
+== Factoring
+
+Read these right-to-left and they are the expansions above. Try them in
+this order.
+
+#reftable(
+  table.header([*Pattern*], [*Formula*], [*Example*]),
+
+  [Common factor],         [$a b + a c = a (b + c)$],
+                           [$6x + 9 = 3(2x + 3)$],
+  [Difference of squares], [$x^2 - y^2 = (x + y)(x - y)$],
+                           [$x^2 - 9 = (x + 3)(x - 3)$],
+  [Perfect square],        [$x^2 plus.minus 2 x y + y^2 = (x plus.minus y)^2$],
+                           [$x^2 + 6x + 9 = (x + 3)^2$],
+  [Trinomial],             [$x^2 + (p + q) x + p q = (x + p)(x + q)$],
+                           [$x^2 + 5x + 6 = (x+2)(x+3)$],
+  [Grouping],              [$a x + a y + b x + b y = (a + b)(x + y)$],
+                           [$x^2 + 3x + 2 = (x+1)(x+2)$],
+  [Sum of cubes],          [$x^3 + y^3 = (x + y)(x^2 - x y + y^2)$],
+                           [$x^3 + 8 = (x + 2)(x^2 - 2x + 4)$],
+  [Difference of cubes],   [$x^3 - y^3 = (x - y)(x^2 + x y + y^2)$],
+                           [$x^3 - 8 = (x - 2)(x^2 + 2x + 4)$],
+)
+
+#watch[
+  *There is no "sum of squares".* $x^2 + y^2$ does not factor over $RR$.
+]
+
+== Things that are never true
+
+Every one of these is the same mistake: assuming an operation distributes
+over addition when it does not. Only multiplication does.
+
+#reftable(
+  table.header([*Wrong*], [*Right*], [*Check with $a = b = 1$*]),
+
+  [$(a + b)^2 = a^2 + b^2$],           [$a^2 + 2 a b + b^2$],
+                                       [$4 != 2$],
+  [$sqrt(a + b) = sqrt(a) + sqrt(b)$], [no simplification],
+                                       [$sqrt(2) != 2$],
+  [$log(a + b) = log a + log b$],      [$log(a b) = log a + log b$],
+                                       [$log 2 != 0$],
+  [$1/(a + b) = 1/a + 1/b$],           [no simplification],
+                                       [$1/2 != 2$],
+  [$(a b)^n = a b^n$],                 [$a^n b^n$],
+                                       [—],
+)
+
+// =============================================================
+= Solving
+// =============================================================
+
+== Completing the square
+
+#reftable(
+  table.header([*Rule*], [*Formula*], [*Example*]),
+
+  [Monic form],  [$x^2 + b x = (x + b/2)^2 - b^2/4$],
+                 [$x^2 + 6x = (x+3)^2 - 9$],
+  [Vertex form], [$a x^2 + b x + c = a (x + b/(2a))^2 + c - b^2/(4a)$],
+                 [$x^2 + 6x + 5 = (x+3)^2 - 4$],
+)
+
+Take half the coefficient of $x$, square it, add and subtract it. Applying
+this to the general quadratic is exactly how the formula below is derived.
+
+== Quadratic equations
+
+For $a x^2 + b x + c = 0$ with $a != 0$:
+
+$ x = (-b plus.minus sqrt(b^2 - 4 a c)) / (2 a) $
+
+#reftable(
+  table.header([*Tool*], [*Formula*], [*Example*]),
+
+  [Discriminant],
+    [$Delta = b^2 - 4 a c$ \
+     $Delta > 0$: two real roots \
+     $Delta = 0$: one repeated root \
+     $Delta < 0$: no real roots],
+    [$x^2 - 5x + 6$: \ $Delta = 25 - 24 = 1 > 0$],
+
+  [Sum of roots],     [$x_1 + x_2 = -b / a$],  [$2 + 3 = 5$],
+  [Product of roots], [$x_1 x_2 = c / a$],     [$2 times 3 = 6$],
+  [Factored form],    [$a(x - x_1)(x - x_2)$], [$(x - 2)(x - 3)$],
+)
+
+The sum and product relations (Vieta's) let you guess integer roots
+without the formula: find two numbers adding to $-b\/a$ and multiplying
+to $c\/a$.
+
+== Inequalities
+
+#reftable(
+  table.header([*Rule*], [*Formula*], [*Example*]),
+
+  [Transitivity],    [If $a < b$ and $b < c$, then $a < c$],
+                     [$1 < 2 < 3 ==> 1 < 3$],
+  [Add a constant],  [If $a < b$, then $a + c < b + c$],
+                     [$2 < 3 ==> 5 < 6$],
+  [Add inequalities],[If $a < b$ and $c < d$, then $a + c < b + d$],
+                     [$1 < 2$, $3 < 4 ==> 4 < 6$],
+  [Multiply by $+$], [If $a < b$ and $c > 0$, then $c a < c b$],
+                     [$2 < 3 ==> 4 < 6$],
+  [Multiply by $-$], [If $a < b$ and $c < 0$, then $c a > c b$],
+                     [$2 < 3 ==> -4 > -6$],
+  [Reciprocal],      [If $0 < a < b$, then $1/a > 1/b$],
+                     [$2 < 3 ==> 1/2 > 1/3$],
+)
+
+#watch[
+  *Sign flip.* Multiplying or dividing an inequality by a negative
+  reverses it: $2 < 3$ but $-2 > -3$. Taking reciprocals of
+  same-signed quantities reverses it too. If you multiply by a
+  *variable*, you must split into cases — you do not know its sign.
+]
+
+== Absolute value
+
+$ abs(x) = cases(
+  x #h(0.4em) "if" x >= 0,
+  -x #h(0.4em) "if" x < 0
+) $
+
+#reftable(
+  table.header([*Form*], [*Means*], [*Example ($a = 3$)*]),
+
+  group[Equations and inequalities, for $a > 0$],
+  [$abs(x) = a$], [$x = a$ #h(0.4em) or #h(0.4em) $x = -a$], [$x = 3$ or $x = -3$],
+  [$abs(x) < a$], [$-a < x < a$],                            [$-3 < x < 3$],
+  [$abs(x) > a$], [$x > a$ #h(0.4em) or #h(0.4em) $x < -a$], [$x > 3$ or $x < -3$],
+
+  group[Identities],
+  [Product],   [$abs(x y) = abs(x) abs(y)$],           [$abs(-2 dot 3) = 6$],
+  [Quotient],  [$abs(x / y) = abs(x) / abs(y)$],       [$abs(-6/3) = 2$],
+  [Square],    [$sqrt(x^2) = abs(x)$],                 [$sqrt((-4)^2) = 4$],
+  [Triangle],  [$abs(x + y) <= abs(x) + abs(y)$],      [$abs(2 - 3) <= 5$],
+  [Distance],  [$abs(x - y)$ is the distance from $x$ to $y$],
+               [$abs(7 - 2) = 5$],
+)
+
+== Checking your answers
+
+#watch[
+  *Extraneous roots.* Squaring both sides, or multiplying by an
+  expression containing the variable, can create solutions that do not
+  satisfy the original equation. Substitute every answer back in.
+  Squaring $x = -2$ gives $x^2 = 4$, whose solutions include $x = 2$ —
+  which was never a solution of the original.
+]
