@@ -3711,3 +3711,34 @@ $ abs(x) = cases(
   Squaring $x = -2$ gives $x^2 = 4$, whose solutions include $x = 2$ —
   which was never a solution of the original.
 ]
+
+
+= Neuron
+
+#let bwd = (stroke: (paint: red, dash: "dashed", thickness: 0.6pt), bend: 35deg)
+
+#fletcher.diagram(
+  node-corner-radius: 4pt,
+  node-inset: 8pt,
+  spacing: (5em, 2em),
+
+  node((0,0), $x_1$, name: <x1>, radius: 12pt),
+  node((0,1), $x_2$, name: <x2>, radius: 12pt),
+  node((0,2), $x_3$, name: <x3>, radius: 12pt),
+
+  node((1,1), $y = bold(w)^top bold(x) + b$, name: <linear>),
+  node((2,1), $z = 1/(1 + e^(-y))$, name: <sigmoid>),
+  node((3,1), $L(z, t)$, name: <loss>),
+
+  // forward
+  edge(<x1>, <linear>, "->", $w_1$),
+  edge(<x2>, <linear>, "->", $w_2$),
+  edge(<x3>, <linear>, "->", $w_3$),
+  edge(<linear>, <sigmoid>, "->"),
+  edge(<sigmoid>, <loss>, "->"),
+
+  // backward
+  edge(<loss>, <sigmoid>, "->", $partial L slash partial z$, ..bwd),
+  edge(<sigmoid>, <linear>, "->", $z(1-z)$, ..bwd),
+  edge(<linear>, <x3>, "->", $x_3$, ..bwd),
+)
