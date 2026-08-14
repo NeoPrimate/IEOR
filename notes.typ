@@ -2,6 +2,8 @@
 #import "@local/tystats:0.1.0": norm, poisson, expon
 
 #import "@preview/tiptoe:0.4.0"
+#import "@preview/komet:0.2.0"
+
 #let obar(x) = math.accent(x, math.macron)
 
 - If you don't understand the continuous, try the discrete
@@ -3741,4 +3743,128 @@ $ abs(x) = cases(
   edge(<loss>, <sigmoid>, "->", $partial L slash partial z$, ..bwd),
   edge(<sigmoid>, <linear>, "->", $z(1-z)$, ..bwd),
   edge(<linear>, <x3>, "->", $x_3$, ..bwd),
+)
+
+= 
+
+How many standard errors your observed effect sits from the null. 
+
+It answers "could noise have made this?"
+
+$
+  Z = f dot sqrt(n / (b sigma k))
+$
+
+#table(
+  columns: 2,
+  inset: 1em,
+  [Signal fraction $f$], [$Z prop f$],
+  [Sample size $n$], [$Z prop sqrt(n)$],
+  [Resolution $sigma$], [$Z prop sigma^(-1/2)$],
+  [Background density $b$], [$Z prop b^(-1/2)$],
+  [Clustering $k$], [$Z prop k^(-1/2)$],
+)
+
+#let bkg = expon.rvs(rate: 0.5, size: 1000, seed: 42)
+#let sig = norm.rvs(mean: 4.0, std_dev: 0.35, size: 100, seed: 7)
+#let rv = (bkg + sig)
+
+#let n = rv.len()
+#let rate = n / rv.sum()
+
+#let h = komet.histogram(rv, bins: 50)
+#let e = h.edges
+#let w = e.at(1) - e.at(0)
+#let c = range(e.len() - 1).map(i => (e.at(i) + e.at(i + 1)) / 2)
+
+#let expected = range(e.len() - 1).map(i =>
+  n * (expon.cdf(e.at(i + 1), rate: rate) - expon.cdf(e.at(i), rate: rate))
+)
+
+#let z = range(expected.len()).map(i =>
+  (h.counts.at(i) - expected.at(i)) / calc.sqrt(calc.max(expected.at(i), 1.0))
+)
+
+#lq.diagram(width: 10cm, height: 5cm, grid: none,
+  lq.bar(c, h.counts, width: w),
+  lq.plot(c, expected, mark: none, color: red, stroke: 1.5pt),
+)
+
+#lq.diagram(width: 10cm, height: 3cm,
+  lq.bar(c, z, width: w),
+  lq.hlines(-2, stroke: red + 1.5pt),
+  lq.hlines(2, stroke: red + 1.5pt),
+)
+
+
+#code[
+  ```py
+  from scipy.stats import expon
+
+  expon.rvs(scale=3, size=10)
+  ```
+]
+
+= Six Sigma
+
+The goal is to make the *process* *capable* enough that the *coverage* — the proportion of measurements falling inside the *specification interval* [LSL, USL] — reaches ~99.99966%, leaving a *defect rate* of ~3.4 *DPMO* (defects per million opportunities) outside it.
+
+Stated with the terms defined:
+
+- *Specification interval* [LSL, USL] — the range of values downstream will accept. Fixed by requirements; not something the process gets to move.
+- *Coverage* ($1 - alpha$) — the probability a measurement lands inside that interval. Target: 0.9999966.
+- *Defect rate* ($alpha$) — the complementary tail mass falling outside. Target: $3.4 times 10^(-6)$.
+- *DPMO* — that same defect rate expressed per million opportunities, where an opportunity is one chance to produce a defect (here, one measured widget). $3.4 times 10^(-6) → 3.4 "DPMO"$.
+
+And the mechanism, generally: 
+- Reduce process variation ($sigma$)
+- Correct process centering ($mu$) 
+Until both specification limits lie at least $6 sigma$ from the mean, allowing for a $1.5 sigma$ long-term mean shift.
+
+#let (lsl, usl) = (-6, 6)
+
+#let pdf(x) = tystats.norm.pdf(x, mean: 0, std_dev: 1)
+#let x = lq.linspace(-6, 6, num: 1000)
+#let y = x.map(pdf)
+
+#let cu = tystats.norm.ppf(0.96, mean: 0, std_dev: 1)
+#let cl = -cu
+
+#let x_ = lq.linspace(cl, cu, num: 1000)
+#let y_ = x_.map(pdf)
+
+#lq.diagram(
+  width: 10cm,
+  height: 5cm,
+  xlim: (-6.5, 6.5),
+  grid: none,
+  lq.plot(x, y, mark: none, color: blue, stroke: 1.5pt),
+  lq.fill-between(x_, y_, fill: red.transparentize(75%)),
+  lq.place(0, 0.2, $0.95$)
+)
+
+#lq.diagram(
+  width: 10cm,
+  height: 5cm,
+  xlim: (-6.5, 6.5),
+  grid: none,
+  lq.plot(x, y, mark: none, color: blue, stroke: 1.5pt),
+  lq.vlines(lsl, stroke: (paint: red, thickness: 1.5pt, dash: "dashed")),
+  lq.vlines(usl, stroke: (paint: red, thickness: 1.5pt, dash: "dashed")),
+  lq.vlines(0, stroke: (paint: black, thickness: 1.5pt, dash: "dashed")),
+)
+
+#let pdf(x) = tystats.norm.pdf(x, mean: 2, std_dev: 1)
+#let x = lq.linspace(-6, 6, num: 1000)
+#let y = x.map(pdf)
+
+#lq.diagram(
+  width: 10cm,
+  height: 5cm,
+  xlim: (-6.5, 6.5),
+  grid: none,
+  lq.plot(x, y, mark: none, color: blue, stroke: 1.5pt),
+  lq.vlines(lsl, stroke: (paint: red, thickness: 1.5pt, dash: "dashed")),
+  lq.vlines(usl, stroke: (paint: red, thickness: 1.5pt, dash: "dashed")),
+  lq.vlines(0, stroke: (paint: black, thickness: 1.5pt, dash: "dashed")),
 )
