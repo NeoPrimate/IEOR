@@ -3821,50 +3821,85 @@ And the mechanism, generally:
 - Correct process centering ($mu$) 
 Until both specification limits lie at least $6 sigma$ from the mean, allowing for a $1.5 sigma$ long-term mean shift.
 
-#let (lsl, usl) = (-6, 6)
+#let coverage = 0.96
+#let mean_centered = 0.0
+#let mean_off_center = 2.0
 
-#let pdf(x) = tystats.norm.pdf(x, mean: 0, std_dev: 1)
-#let x = lq.linspace(-6, 6, num: 1000)
+#let std_dev_narrow = 1.0
+#let std_dev_large = 3.0
+
+#let sl = 3.0
+#let (lsl, usl) = (-sl, sl)
+
+#let (xmin, xmax) = (-6.5, 6.5)
+#let ymin = 0
+
+#let pdf(x) = tystats.norm.pdf(x, mean: mean_centered, std_dev: std_dev_narrow)
+#let x = lq.linspace(xmin, xmax, num: 1000)
 #let y = x.map(pdf)
 
-#let cu = tystats.norm.ppf(0.96, mean: 0, std_dev: 1)
-#let cl = -cu
+#let c = tystats.norm.ppf(coverage, mean: mean_centered, std_dev: std_dev_narrow)
 
-#let x_ = lq.linspace(cl, cu, num: 1000)
+#let x_ = lq.linspace(mean_centered - c, mean_centered + c, num: 1000)
 #let y_ = x_.map(pdf)
 
 #lq.diagram(
   width: 10cm,
   height: 5cm,
-  xlim: (-6.5, 6.5),
+  xlim: (xmin, xmax),
+  ylim: (ymin, pdf(mean_centered) * 1.05),
   grid: none,
   lq.plot(x, y, mark: none, color: blue, stroke: 1.5pt),
   lq.fill-between(x_, y_, fill: red.transparentize(75%)),
-  lq.place(0, 0.2, $0.95$)
-)
-
-#lq.diagram(
-  width: 10cm,
-  height: 5cm,
-  xlim: (-6.5, 6.5),
-  grid: none,
-  lq.plot(x, y, mark: none, color: blue, stroke: 1.5pt),
   lq.vlines(lsl, stroke: (paint: red, thickness: 1.5pt, dash: "dashed")),
   lq.vlines(usl, stroke: (paint: red, thickness: 1.5pt, dash: "dashed")),
   lq.vlines(0, stroke: (paint: black, thickness: 1.5pt, dash: "dashed")),
+  lq.place(mean_centered, pdf(mean_centered) / 2, $#coverage$),
 )
 
-#let pdf(x) = tystats.norm.pdf(x, mean: 2, std_dev: 1)
-#let x = lq.linspace(-6, 6, num: 1000)
+#let pdf(x) = tystats.norm.pdf(x, mean: mean_centered, std_dev: std_dev_large)
+#let x = lq.linspace(xmin, xmax, num: 1000)
 #let y = x.map(pdf)
 
+#let c = tystats.norm.ppf(coverage, mean: mean_centered, std_dev: std_dev_large)
+
+#let x_ = lq.linspace(mean_centered - c, mean_centered + c, num: 1000)
+#let y_ = x_.map(pdf)
+
 #lq.diagram(
   width: 10cm,
   height: 5cm,
-  xlim: (-6.5, 6.5),
+  xlim: (xmin, xmax),
+  ylim: (ymin, pdf(mean_centered) * 1.05),
+  grid: none,
+  lq.plot(x, y, mark: none, color: blue, stroke: 1.5pt),
+  lq.fill-between(x_, y_, fill: red.transparentize(75%)),
+  lq.vlines(lsl, stroke: (paint: red, thickness: 1.5pt, dash: "dashed")),
+  lq.vlines(usl, stroke: (paint: red, thickness: 1.5pt, dash: "dashed")),
+  lq.vlines(0, stroke: (paint: black, thickness: 1.5pt, dash: "dashed")),
+  lq.place(mean_centered, pdf(mean_centered) / 2, $#coverage$),
+)
+
+#let pdf(x) = tystats.norm.pdf(x, mean: mean_off_center, std_dev: std_dev_narrow)
+#let x = lq.linspace(xmin, xmax, num: 1000)
+#let y = x.map(pdf)
+
+#let c = tystats.norm.ppf(coverage, mean: mean_centered, std_dev: std_dev_narrow)
+
+#let x_ = lq.linspace(mean_off_center - c, mean_off_center + c, num: 1000)
+#let y_ = x_.map(pdf)
+
+#lq.diagram(
+  width: 10cm,
+  height: 5cm,
+  xlim: (xmin, xmax),
+  ylim: (ymin, pdf(mean_off_center) * 1.05),
   grid: none,
   lq.plot(x, y, mark: none, color: blue, stroke: 1.5pt),
   lq.vlines(lsl, stroke: (paint: red, thickness: 1.5pt, dash: "dashed")),
   lq.vlines(usl, stroke: (paint: red, thickness: 1.5pt, dash: "dashed")),
   lq.vlines(0, stroke: (paint: black, thickness: 1.5pt, dash: "dashed")),
+
+  lq.place(mean_off_center, pdf(mean_off_center) / 2, $#coverage$),
+  lq.fill-between(x_, y_, fill: red.transparentize(75%))
 )
