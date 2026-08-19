@@ -4,6 +4,8 @@
 #import "@preview/tiptoe:0.4.0"
 #import "@preview/komet:0.2.0"
 
+#show table: it => align(center, it)
+
 #let obar(x) = math.accent(x, math.macron)
 
 - If you don't understand the continuous, try the discrete
@@ -3807,50 +3809,106 @@ $
 
 = Six Sigma
 
-A *process* is *capable* when its natural spread sits comfortably inside the *specification interval* $["LSL", "USL"]$ — the *voice of the customer*, fixed by the *CTQ* (critical-to-quality) requirement and not something the process gets to move. The *voice of the process*, $mu plus.minus 3 sigma$, is what you actually control.
-
-The name is the target: both specification limits at least $6 sigma$ from $mu$. Allowing the conventional $1.5 sigma$ long-term *mean shift*, the near limit sits at $4.5 sigma$, giving a *defect rate* of $3.4 times 10^(-6)$ — *3.4 DPMO* — and a *yield* of 99.99966%.
+- *Capable process*: natural spread sits inside the specification interval
+- *Voice of the customer*: $["LSL", "USL"]$ — fixed by the *CTQ* requirement, not movable by the process
+- *Voice of the process*: $mu plus.minus 3 sigma$ — what you actually control
+- *The name*: both limits $gt.eq 6 sigma$ from $mu$; with the conventional $1.5 sigma$ long-term mean shift the near limit sits at $4.5 sigma$ → *3.4 DPMO*, yield 99.99966%
 
 == Terms
 
-- *Unit* — one item produced
+- *Unit*: one item produced
+- *Opportunity*: one chance on a unit to produce a *defect*
+- *Defective*: unit with $gt.eq 1$ defect — counted separately from defects
+- *DPU*: defects per unit
 
-- *Opportunity* — one chance on that unit to produce a *defect*. A unit with $gt.eq 1$ defect is *defective*; defects and defectives are counted differently.
+$
+  "DPU" = "defects" / "units"
+$
 
-- *DPU* $= "defects" / "units"$
+- *DPO*: defects per opportunity
 
-- *DPO* $= "defects" / ("units" times "opportunities per unit")$
+$
+  "DPO" = "defects" / ("units" times "opportunities per unit")
+$
 
-- *DPMO* $= "DPO" times 10^6$
+- *DPMO*: defects per million opportunities
 
-- *Yield* ($1 - alpha$) — probability a unit lands inside the interval. *First pass yield* (FPY) is per step; *rolled throughput yield* $"RTY" = product_i "FPY"_i$ is the whole chain, and it decays fast.
+$
+  "DPMO" = "DPO" times 10^6
+$
 
-- *Sigma level* — $Z_"st" = min("USL" - mu, mu - "LSL") \/ sigma$ (the *Z-bench*), reported *short-term*. *Long-term*: $Z_"lt" = Z_"st" - 1.5$.
+- *Yield*: probability a unit lands inside the interval
+
+- *FPY*: first pass yield, per step ($alpha$ = step defect rate)
+
+$
+  "FPY" = 1 - alpha
+$
+
+- *RTY*: rolled throughput yield, whole chain — decays fast
+
+$
+  "RTY" = product_i "FPY"_i
+$
+
+- *Sigma level* (*Z-bench*), short-term
+
+$
+  Z_"st" = min("USL" - mu, mu - "LSL") / sigma
+$
+
+- *Sigma level*, long-term
+
+$
+  Z_"lt" = Z_"st" - 1.5
+$
+
+== Capability indices
+
+- $C_p$: spread only, blind to centering; Six Sigma wants $C_p = 2.0$
+
+$
+  C_p = ("USL" - "LSL") / (6 sigma)
+$
+
+- $C_"pk"$: spread *and* centering; equals $C_p$ only when centered, and the $1.5 sigma$ shift leaves $C_"pk" = 1.5$
+
+$
+  C_"pk" = min("USL" - mu, mu - "LSL") / (3 sigma)
+$
+
+- $C_"pm"$: penalises distance from *target* $T$, not just from the nearer limit
+
+$
+  C_"pm" = ("USL" - "LSL") / (6 sqrt(sigma^2 + (mu - T)^2))
+$
+
+- $P_p$, $P_"pk"$: same formulas on overall (long-term) $sigma$ — *performance*, not *capability*
+
+$
+  P_p = ("USL" - "LSL") / (6 sigma_"lt") wide
+  P_"pk" = min("USL" - mu, mu - "LSL") / (3 sigma_"lt")
+$
+
+- *Entitlement*: the $C_p - P_p$ gap — recoverable by removing *special-cause* variation
+
+== Mechanism
+
+- *Goal*: shrink *common-cause variation* ($sigma$), then correct *centering* ($mu$), until $C_"pk" gt.eq 1.5$ holds long-term
+- *Vehicle*: *DMAIC* (define, measure, analyse, improve, control); *DMADV* / *DFSS* for new designs
+- *First*: *MSA* / *Gage R&R* — measurement error inflates the $sigma$ you are trying to shrink
+- *Last*: *SPC* charts to hold the gain
+- *Control limits* $eq.not$ *specification limits*: the former are computed from the process and describe what it does, the latter come from the customer and describe what is acceptable — a chart in control can still produce scrap
 
 #table(
   columns: 3,
+  inset: 1em,
   table.header[Sigma level][DPMO (shifted)][Yield],
   [3$sigma$], [66 807], [93.32%],
   [4$sigma$], [6 210],  [99.379%],
   [5$sigma$], [233],    [99.977%],
   [6$sigma$], [3.4],    [99.99966%],
 )
-
-== Capability indices
-
-- $C_p = ("USL" - "LSL") \/ (6 sigma)$ — spread only, blind to centering. Six Sigma wants $C_p = 2.0$.
-
-- $C_"pk" = min(("USL" - mu, mu - "LSL")) \/ (3 sigma)$ — spread *and* centering. $C_"pk" = C_p$ only when centered; the $1.5 sigma$ shift leaves $C_"pk" = 1.5$.
-
-- $C_"pm"$ — penalises distance from *target* $T$, not just from the nearer limit.
-
-- $P_p$, $P_"pk"$ — the same formulas on overall (long-term) $sigma$: *performance* rather than *capability*. The gap between them is the *entitlement* you could recover by removing *special-cause* variation.
-
-== Mechanism
-
-Reduce *common-cause variation* ($sigma$), then correct *centering* ($mu$), until $C_"pk" gt.eq 1.5$ holds long-term. Run it through *DMAIC* (define, measure, analyse, improve, control) — or *DMADV* / *DFSS* for a new design — with *MSA* / *Gage R&R* first, since measurement error inflates the $sigma$ you are trying to shrink, and *SPC* charts at the end to hold the gain.
-
-Note: *control limits* are computed from the process and describe what it does; *specification limits* come from the customer and describe what is acceptable. They are not the same line and a chart in control can still be producing scrap.
 
 #let coverage = 0.96
 #let target = 0.0
@@ -3867,12 +3925,8 @@ Note: *control limits* are computed from the process and describe what it does; 
 #let ymin = 0
 
 // mean: 0.0 -> a true half-width, independent of where the process sits
-#let half_width_narrow = tystats.norm.ppf(
-  (1 + coverage) / 2, mean: 0.0, std_dev: std_dev_narrow,
-)
-#let half_width_large = tystats.norm.ppf(
-  (1 + coverage) / 2, mean: 0.0, std_dev: std_dev_large,
-)
+#let half_width_narrow = tystats.norm.ppf((1 + coverage) / 2, mean: 0.0, std_dev: std_dev_narrow)
+#let half_width_large = tystats.norm.ppf((1 + coverage) / 2, mean: 0.0, std_dev: std_dev_large)
 
 #let x = lq.linspace(xmin, xmax, num: 1000)
 
@@ -3887,9 +3941,7 @@ Note: *control limits* are computed from the process and describe what it does; 
 #let pdf(x) = tystats.norm.pdf(x, mean: mean_centered, std_dev: std_dev_narrow)
 #let y = x.map(pdf)
 
-#let x_cover = lq.linspace(
-  mean_centered - half_width_narrow, mean_centered + half_width_narrow, num: 1000,
-)
+#let x_cover = lq.linspace(mean_centered - half_width_narrow, mean_centered + half_width_narrow, num: 1000)
 #let y_cover = x_cover.map(pdf)
 
 Centered with low variation: 96 % of output falls inside the specification limits.
@@ -3945,9 +3997,7 @@ Solution: reduce variation ($sigma$).
 #let pdf(x) = tystats.norm.pdf(x, mean: mean_off_center, std_dev: std_dev_narrow)
 #let y = x.map(pdf)
 
-#let x_cover = lq.linspace(
-  mean_off_center - half_width_narrow, mean_off_center + half_width_narrow, num: 1000,
-)
+#let x_cover = lq.linspace(mean_off_center - half_width_narrow, mean_off_center + half_width_narrow, num: 1000)
 #let y_cover = x_cover.map(pdf)
 
 Low variation but off-center: part of the 96 % band falls above the upper limit.
@@ -3968,4 +4018,163 @@ Solution: recenter the process.
   lq.vlines(usl, stroke: (paint: red, thickness: 1.5pt, dash: "dashed")),
   lq.vlines(target, stroke: (paint: black, thickness: 1.5pt, dash: "dashed")),
   lq.place(mean_off_center, pdf(mean_off_center) / 2, $#coverage$),
+)
+
+= Loss Function
+
+A loss function is a scalar-valued function $cal(L) (y, hat(y))$ that measures how bad a single prediction is. 
+
+It means: choosing a loss is choosing what "wrong" means.
+
+Regression
+
+- MSE / L2
+
+$
+  
+$
+
+- MAE / L1
+
+$
+  
+$
+
+- Huber
+
+$
+  L_delta (r) = cases(
+    1/2 r^2 quad quad &abs(r) lt.eq delta,
+    delta (abs(r) - 1/2 delta) quad quad &abs(r) gt.eq delta
+  ) 
+$
+
+Where:
+- $r = hat(y) - y$
+
+#let d = 1.0
+#let x = lq.linspace(-3, 3, num: 200)
+#let huber(r, d) = if calc.abs(r) <= d {
+  0.5 * calc.pow(r, 2)
+} else {
+  d * (calc.abs(r) - 0.5 * d)
+}
+#let y = x.map(x => huber(x, d))
+
+#lq.diagram(
+  width: 10cm,
+  height: 5cm,
+  xlim: (-3, 3),
+  grid: none,
+  xlabel: $r$,
+  ylabel: $L_delta (r)$,
+  ..((0.5, blue), (1.0, orange), (2.0, red)).map(((d, c)) => lq.plot(
+    x, x.map(r => huber(r, d)),
+    mark: none, color: c, stroke: 1.5pt, label: [$delta = #d$],
+  )),
+)
+
+- Pinball
+- Log-cosh
+
+Classification
+
+- Binary cross-entropy / log loss
+
+Binary lebel $y in {0, 1}$ and predicted probability $p = hat(P)(y = 1)$
+
+$
+  L(y, p) = -[y log p + (1 - y) log(1 -p)]
+$
+
+The bracket is a switch, not a sum — one term is always multiplied by zero. When $y = 1$ you're paying $- log p$; when $y = 0$ you're paying $- log(1 - p)$. Both reduce to the negative log of the probability you assigned to what actually happened.
+
+#let bce(p, y) = -(y * calc.ln(p) + (1 - y) * calc.ln(1 - p))
+#let p = lq.linspace(0.005, 0.995, num: 200)
+
+#lq.diagram(
+  width: 10cm,
+  height: 5cm,
+  xlim: (0, 1),
+  ylim: (0, 5),
+  grid: none,
+  xlabel: $p$,
+  ylabel: $L(y, p)$,
+  ..((1, red), (0.5, orange), (0, blue)).map(((y, c)) => lq.plot(
+    p, p.map(v => bce(v, y)),
+    mark: none, color: c, stroke: 1.5pt, label: [$y = #y$],
+  )),
+)
+
+- Categorical cross-entropy
+
+$
+  L = - sum^K_(k=1) y_k log p_k
+$
+
+#let ce(p) = -calc.ln(p)
+#let p = lq.linspace(0.005, 1.0, num: 200)
+
+#lq.diagram(
+  width: 10cm,
+  height: 5cm,
+  xlim: (0, 1),
+  ylim: (0, 5),
+  grid: none,
+  xlabel: $p_"true"$,
+  ylabel: $L = -ln p_"true"$,
+  lq.hlines(calc.ln(2), calc.ln(10), calc.ln(100),
+    stroke: (paint: gray, thickness: 0.8pt, dash: "dashed")),
+  lq.plot(p, p.map(ce), mark: none, color: orange, stroke: 1.5pt),
+)
+
+- Hinge loss
+
+$
+  L(m) = max(1, 1 - m)
+$
+
+#let hinge(m) = calc.max(0.0, 1.0 - m)
+#let sq-hinge(m) = calc.pow(calc.max(0.0, 1.0 - m), 2)
+#let logistic(m) = calc.ln(1 + calc.exp(-m)) / calc.ln(2)
+#let m = lq.linspace(-2, 3, num: 200)
+
+#lq.diagram(
+  width: 10cm,
+  height: 5cm,
+  xlim: (-2, 3),
+  ylim: (0, 4),
+  grid: none,
+  xlabel: $m = y z$,
+  ylabel: $L(m)$,
+  lq.vlines(1.0, stroke: (paint: gray, thickness: 0.8pt, dash: "dashed")),
+  lq.plot(m, m.map(hinge), mark: none, color: orange, stroke: 1.5pt, label: [hinge]),
+  lq.plot(m, m.map(sq-hinge), mark: none, color: red, stroke: 1.5pt, label: [squared hinge]),
+  lq.plot(m, m.map(logistic), mark: none, color: blue, stroke: 1.5pt, label: [logistic]),
+)
+
+- Focal loss
+- KL divergence
+
+$
+  D_(K L) (P || Q) = sum_k p_k log p_k / q_k
+$
+
+#let kl-bern(p, q) = (
+  p * calc.ln(p / q) + (1 - p) * calc.ln((1 - p) / (1 - q))
+)
+#let q = lq.linspace(0.005, 0.995, num: 200)
+
+#lq.diagram(
+  width: 10cm,
+  height: 5cm,
+  xlim: (0, 1),
+  ylim: (0, 3),
+  grid: none,
+  xlabel: $q$,
+  ylabel: $D_"KL" (P || Q)$,
+  ..((0.3, blue), (0.5, orange), (0.8, red)).map(((pv, c)) => lq.plot(
+    q, q.map(qv => kl-bern(pv, qv)),
+    mark: none, color: c, stroke: 1.5pt, label: [$p = #pv$],
+  )),
 )

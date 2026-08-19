@@ -3,9 +3,92 @@
 
 = Determinant <linear_algebra_determinant>
 
-A scalar attached to every *square* matrix that measures the *signed scale factor* the matrix applies to areas / volumes when used as a linear map.
+The determinant of a *square* matrix is the *signed scale factor* by which it scales area (or volume).
 
-Notation: $det(A)$, or $|A|$.
+$
+  det(A)
+$
+
+#grid(
+  align: center + horizon,
+  inset: 1em,
+  columns: (1fr, 0.5fr, 1fr),
+  [
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (-0.5, 3.5),
+      ylim: (-0.5, 3.5),
+      grid: none,
+      yaxis: (
+        position: 0,
+        ticks: none,
+        subticks: none,
+      ),
+      xaxis: (
+        ticks: none,
+        position: 0,
+        subticks: none,
+      ),
+      lq.line(
+        (0, 0), (0, 1),
+        tip: tiptoe.triangle,
+        stroke: blue + 1.5pt,
+      ),
+      lq.line(
+        (0, 0), (1, 0),
+        tip: tiptoe.triangle,
+        stroke: blue + 1.5pt,
+      ),
+        lq.rect(0, 0, width: 1, height: 1, fill: blue.transparentize(75%)),
+    )
+  ],
+  [
+    #fletcher.diagram(
+      node-corner-radius: 4pt,
+      node((0,0), []),
+      edge("->", text(1em, $A$), ),
+      node((2,0), []),
+    )
+  ],
+  [
+    #lq.diagram(
+      width: 5cm,
+      height: 5cm,
+      xlim: (-0.5, 3.5),
+      ylim: (-0.5, 3.5),
+      grid: none,
+      yaxis: (
+        ticks: none,
+        position: 0,
+        subticks: none,
+      ),
+      xaxis: (
+        position: 0,
+        ticks: none,
+        subticks: none,
+      ),
+      lq.line(
+        (0, 0), (2, 0),
+        tip: tiptoe.triangle,
+        stroke: blue + 2pt,
+      ),
+      lq.line(
+        (0, 0), (1, 1.5),
+        tip: tiptoe.triangle,
+        stroke: blue + 2pt,
+      ),
+      lq.path(
+        (0, 0), (2, 0), (3, 1.5), (1, 1.5),
+        closed: true,
+        fill: blue.transparentize(75%),
+        stroke: none,
+        z-index: 1,
+      ),
+    )
+  ],
+  [$"Area" = 1$], [], [$"Area" = 3$]
+)
 
 == From first principles: the $2 times 2$ case
 

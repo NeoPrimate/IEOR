@@ -10,7 +10,7 @@ Maximized likelihood
 == AIC
 
 $
-  "AIC" = underbrace(2k, "penalty term") − underbrace(2 dot ln(hat(L)), "fit term")
+  "AIC" = underbrace(2k, "penalty term") - underbrace(2 dot ln(hat(L)), "fit term")
 $
 
 - $k$: number of parameters in the model
@@ -32,7 +32,7 @@ $
 == BIC
 
 $
-  "BIC" = underbrace(k dot ln(n), "penalty term") − underbrace(2 dot ln(hat(L)), "fit term")
+  "BIC" = underbrace(k dot ln(n), "penalty term") - underbrace(2 dot ln(hat(L)), "fit term")
 $
 
 - $k$: number of parameters in the model
@@ -75,11 +75,9 @@ $
     Fix $hat(L)$, plot over $k$ and $n$
   ]
 )
-)
-
 
 Explanation: 
-- The fit term, $−2 dot ln(L)$, is identical in both (Better fit $arrow$ bigger L̂ $arrow$ bigger ln(L̂) $arrow$ this term goes down $arrow$ criterion goes down
+- The fit term, $-2 dot ln(L)$, is identical in both (Better fit $arrow$ bigger L̂ $arrow$ bigger ln(L̂) $arrow$ this term goes down $arrow$ criterion goes down
 - The penalty term is the only difference:
   - AIC charges 2 per parameter
   - BIC charges ln(n) per parameter
@@ -87,22 +85,22 @@ Explanation:
 #example[
   You have n = 100 data points and two candidate models for them:
 
-  - Model A (simpler): k = 3 parameters, maximized log-likelihood ln(L̂) = −120
-  - Model B (fancier): k = 6 parameters, maximized log-likelihood ln(L̂) = −116
+  - Model A (simpler): k = 3 parameters, maximized log-likelihood ln(L̂) = -120
+  - Model B (fancier): k = 6 parameters, maximized log-likelihood ln(L̂) = -116
 
-  Model B fits better — its log-likelihood is higher (−116 > −120), which it should be, since it has more parameters to play with. The whole question is whether those 3 extra parameters are worth it.
+  Model B fits better — its log-likelihood is higher (-116 > -120), which it should be, since it has more parameters to play with. The whole question is whether those 3 extra parameters are worth it.
 
-  *AIC* $2k − 2·ln(hat(L))$
+  *AIC* $2k - 2·ln(hat(L))$
 
-  - Model A:  2·3  − 2·(−120) =  6 + 240 = 246
-  - Model B:  2·6  − 2·(−116) = 12 + 232 = 244
+  - Model A:  2·3  - 2·(-120) =  6 + 240 = 246
+  - Model B:  2·6  - 2·(-116) = 12 + 232 = 244
 
   AIC picks Model B (244 < 246)
 
-  *BIC* $k dot ln(n) − 2·ln(hat(L))$
+  *BIC* $k dot ln(n) - 2·ln(hat(L))$
 
-  - Model A:  3·4.6 − 2·(−120) = 13.8 + 240 = 253.8
-  - Model B:  6·4.6 − 2·(−116) = 27.6 + 232 = 259.6
+  - Model A:  3·4.6 - 2·(-120) = 13.8 + 240 = 253.8
+  - Model B:  6·4.6 - 2·(-116) = 27.6 + 232 = 259.6
 
   BIC picks Model A (253.8 < 259.6)
 
