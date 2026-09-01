@@ -47,3 +47,56 @@ $
 )
 
 This $sqrt(L)$ is why safety stock $"SS" = z dot sigma sqrt(L)$ grows sub-linearly in lead time — halving $L$ cuts safety stock by only $sqrt(2)$, not $2$.
+
+
+#line(length: 100%)
+
+= Lead Time
+
+Why $sqrt(L)$?
+
+Setup
+
+Daily demand has mean $mu$ and standard deviation $sigma$
+
+Say:
+- $mu=100$
+- $sigma=20$
+
+One day:
+- Mean is $mu = 100$
+- Spread is $sigma = 20$
+
+Two days:
+- Demand: $D_1 + D_2$ (each day is independent)
+
+Mean add:
+
+$
+  EE[D_1 + D_2] = mu_1 + mu_2 = 2mu = 200
+$
+
+But standard deviations do *NOT* add, Variances add:
+
+$
+  "Var"(D_1 + D_2) = "Var"(D_1) + "Var"(D_2) = sigma_1^2 + sigma_2^2 = 2 sigma^2
+$
+
+So:
+
+$
+  "Std"(D_1 + D_2) = sqrt(2 sigma^2) = sigma sqrt(2)
+$
+
+Generalize to $L$ days:
+
+$
+  "Var"(sum_(t=1)^L D_t) = L dot sigma^2
+$
+
+$
+  "Std"(sum_(t=1)^L D_t) = sigma sqrt(L)
+$
+
+- Mean scales with $L$
+- Std scales with $sqrt(L)$

@@ -130,112 +130,68 @@ for all $lambda in [0, 1]$ and $x_1, x_2 in F$
 
 #grid(
   columns: (auto, auto),
+  inset: 1em,
   align: horizon + center,
   [
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
+    #{
+      let g(x) = 2 * calc.exp(-0.9 * x * x)
+      let r = calc.sqrt(1.1)
+      let half(x) = 0.7 * calc.sqrt(calc.max(1.1 - x * x, 0))
+
+      let xs = lq.linspace(-r, r, num: 300)
+      let bx = xs + xs.rev()
+      let by = xs.map(x => g(x) + half(x)) + xs.rev().map(x => g(x) - half(x))
 
       let p1 = (-0.75, 1)
       let p2 = (0.8, 0.9)
 
-      plot.plot(
-        size: (7, 7),
-        axis-style: "scientific",
-        x-tick-step: none,
-        y-tick-step: none,
-        x-label: [$$],
-        y-label: [$$],
-        x-min: -1.5,
-        x-max: 1.5,
-        y-min: 0,
-        y-max: 3,
-        axes: (
-          stroke: none,
-          tick: (stroke: none),
+      lq.diagram(
+        width: 5cm,
+        height: 5cm,
+        xlim: (-1.5, 1.5),
+        ylim: (0, 3),
+        xaxis: (ticks: none, subticks: none),
+        yaxis: (ticks: none, subticks: none),
+
+        lq.plot(bx, by, mark: none, stroke: (thickness: 1pt, paint: red)),
+        // chord leaves the set
+        lq.plot((p1.at(0), p2.at(0)), (p1.at(1), p2.at(1)), mark: none, stroke: black),
+        lq.plot(
+          (p1.at(0), p2.at(0)), (p1.at(1), p2.at(1)),
+          stroke: none, mark: "o", mark-color: black, mark-size: 5pt,
         ),
-        {
-          plot.add-anchor("a", p1)
-          plot.add-anchor("b", p2)
-
-          let z(x, y) = x * x + calc.pow(((y - 2 * calc.exp(-0.9 * x * x)) / 0.7), 2) - 1
-
-          plot.add-contour(
-            x-domain: (-1.6, 1.5),
-            y-domain: (-0.1, 3),
-            z,
-            z: .1,
-            fill: false,
-            style: (stroke: red),
-          )
-
-          plot.add(
-            (p1,),
-            mark: "o",
-            mark-size: 0.15,
-            mark-style: (fill: black, stroke: 2pt),
-          )
-
-          plot.add(
-            (p2,),
-            mark: "o",
-            mark-size: 0.15,
-            mark-style: (fill: black, stroke: 2pt),
-          )
-        },
-        name: "plot",
       )
-      cetz.draw.line("plot.a", "plot.b", stroke: black, mark: (fill: blue), name: "a")
-    }))
+    }
   ],
   [
-    #frame(cetz.canvas({
-      import cetz.draw: *
-      import cetz-plot: *
+    #{
+      let a = 2.5 / 3.5
+      let b = 1.5 / 3.5
+
+      let ts = lq.linspace(0, 2 * calc.pi, num: 300)
+      let ex = ts.map(t => a * calc.cos(t))
+      let ey = ts.map(t => b * calc.sin(t))
 
       let p1 = (-0.5, 0.1)
       let p2 = (0.5, -0.1)
 
-      plot.plot(
-        size: (7, 7),
-        axis-style: "scientific",
-        x-tick-step: none,
-        y-tick-step: none,
-        x-label: [$$],
-        y-label: [$$],
-        x-min: -1,
-        x-max: 1,
-        y-min: -1,
-        y-max: 1,
-        axes: (
-          stroke: none,
-          tick: (stroke: none),
+      lq.diagram(
+        width: 5cm,
+        height: 5cm,
+        xlim: (-1, 1),
+        ylim: (-1, 1),
+        xaxis: (ticks: none, subticks: none),
+        yaxis: (ticks: none, subticks: none),
+
+        lq.plot(ex, ey, mark: none, stroke: (thickness: 1pt, paint: red)),
+        // chord stays inside
+        lq.plot((p1.at(0), p2.at(0)), (p1.at(1), p2.at(1)), mark: none, stroke: black),
+        lq.plot(
+          (p1.at(0), p2.at(0)), (p1.at(1), p2.at(1)),
+          stroke: none, mark: "o", mark-color: black, mark-size: 5pt,
         ),
-        {
-          plot.add-anchor("o", (0, 0))
-          plot.add-anchor("a", p1)
-          plot.add-anchor("b", p2)
-
-          plot.add(
-            (p1,),
-            mark: "o",
-            mark-size: 0.15,
-            mark-style: (fill: black, stroke: 2pt),
-          )
-
-          plot.add(
-            (p2,),
-            mark: "o",
-            mark-size: 0.15,
-            mark-style: (fill: black, stroke: 2pt),
-          )
-        },
-        name: "plot",
       )
-      cetz.draw.line("plot.a", "plot.b", stroke: black, mark: (fill: blue), name: "a")
-
-      circle("plot.o", radius: (2.5, 1.5), stroke: red)
-    }))
+    }
   ],
 )
 
@@ -355,7 +311,7 @@ for all $lambda in [0, 1]$ and $x_1, x_2 in F$
       )
       cetz.draw.content(
         "l",
-        text(size: 7pt)[$lambda f(x_1) + (1 - lambda) f(x_2)$],
+        box(text(size: 2pt)[$lambda f(x_1) + (1 - lambda) f(x_2)$]),
         anchor: "east",
         padding: 1em,
       )

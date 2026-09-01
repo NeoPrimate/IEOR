@@ -40,3 +40,5 @@ plt.ylim(0, max(demand_distribution) * 1.1)
 plt.show()
 
 Q_star
+
+

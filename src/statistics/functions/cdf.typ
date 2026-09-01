@@ -52,3 +52,9 @@ $
   norm.cdf(x, loc=mu, scale=sigma)
   ```
 )
+
+#line(length: 100%)
+
+$
+  F(x) = integral_(-infinity)^x f(t) dif t
+$

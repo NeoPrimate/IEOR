@@ -34,3 +34,10 @@ $
   f(x) = dif / (dif x) F(x) quad <==> quad F(x) = integral_(-infinity)^x f(t) dif t
 $
 
+#line(length: 100%)
+
+$
+  f(x) = dif / (dif x) F(x)
+$
+
+

@@ -149,3 +149,139 @@ $
 - *#link(<supply_chain_inventory_service_levels_fill_rate>)[Fill Rate]*
 - *#link(<supply_chain_inventory_stocks_safety_stock>)[Safety Stock]*
 - *#link(<supply_chain_inventory_newsvendor_overview>)[Newsvendor]*
+
+#line(length: 100%)
+
+= Standard Normal Loss Function
+
+$
+  L(k) = EE[(Z - k)^+]
+$
+
+$L(k)$ is the expected amount by which $Z$ exceeds the threshold $k$:
+- $Z < k$: excess is 0
+- $Z > k$: excess is $Z - k$. Average this across all the ways $Z$ could come in above $k$, weighted by probability 
+
+
+
+#result[
+  $
+    L(k) = integral_k^infinity (z - k) phi.alt (z) dif z
+  $
+]
+#result[
+  $
+    L(k) = phi.alt(k) - k dot (1 - Phi(k))
+  $
+]
+
+We want $EE[max(X - k, 0)]$ - the average excess of $X$ above the threshold $k$, where the excess is *zero* when $X lt.eq k$.
+
+Imaging 2 related quantities:
+
+*Quantity A*: Tail Contribution
+
+Sum up the value of $X$ at each tail outcome, weighted by probability:
+
+$
+  A = integral_k^infinity u dot phi.alt(u) dif u = phi.alt(k)
+$
+
+This is "if $X$ is in the tail, what value does it take, on average - weighted by likelihood?" Note that this counts the *full* value of $u$, not the excess $u - k$.
+
+*Quantity B*: Threshold Contribution
+
+$
+  B = integral_k^infinity k dot phi.alt(u) dif u = k dot [1 - Phi(k)] = k dot "sf"(k)
+$
+
+This is "for every tail outcome, count $k$ once, weighted by probability of being there"
+
+*Subtraction*
+
+Each tail outcome at value $u$ contributes $u$ to A and $k$ to B. So the difference A - B contributes (u - k) per tail outcome - *exactly the excess we want*
+
+$
+  L(k) = A - B = underbrace(integral_k^infinity u phi.alt(u) dif u, "total tail values") - underbrace(integral_k^infinity k phi.alt(u) dif u, "treshold counted across tail")
+$
+
+The subtraction strips off the "baseline up to $k$" porton of each tail outcome, leaving only the part *above* $k$. Without that subtraction, we'd be over counting by $k$ for every tail occurrence.
+
+#let L(k) = norm.pdf(k) - k * (1.0 - norm.cdf(k))
+#let ks = lq.linspace(-3, 3, num: 200)
+
+#lq.diagram(
+  width: 6cm, height: 3cm,
+  xlabel: $k$, ylabel: $L(k)$,
+  xlim: (-3, 3), ylim: (0, 3.2),
+  xaxis: (tick-distance: 1), yaxis: (tick-distance: 0.5),
+  lq.plot(ks, L, mark: none, stroke: blue + 2pt),
+  lq.plot((0,), (L(0),), stroke: none, mark: "o", mark-size: 5pt, color: red),
+)
+
+#code([$L(k) = phi.alt(k) - k dot (1 - Phi(k))$])[
+  ```py
+  from scipy.stats import norm
+  import numpy as np
+
+  mu, sigma = 50, 12
+  c_u, c_o = 5, 3
+
+  # Optimal Q from critical ratio
+  cr = c_u / (c_u + c_o)
+  k_star = norm.ppf(cr)
+  Q_star = mu + sigma * k_star
+
+  # Standard normal loss function
+  def L(k):
+      return norm.pdf(k) - k * (1 - norm.cdf(k))
+
+  expected_lost_sales = sigma * L(k_star)
+  expected_sales = mu - expected_lost_sales
+  expected_leftover = Q_star - mu + sigma * L(k_star)
+  ```
+]
+
+#table(
+  columns: 2,
+  inset: 1em,
+  [$ phi.alt(u) $], [PDF],
+  [$ phi.alt'(u) = - u phi.alt(u) $], [Derivative of PDF],
+  [$ u phi.alt(u) = -phi.alt'(u) $], [Negative derivative of PDF],
+)
+
+#let phi_(u) = norm.pdf(u, mean: 0, std_dev: 1)
+#let k  = -1.0
+#let x  = lq.linspace(-3, 3, num: 200)   // full curve
+#let xf = lq.linspace(k, 3, num: 100)    // shaded tail domain (k → 3)
+
+#lq.diagram(
+  width: 6cm, height: 3cm,
+  xlabel: $u$, ylabel: $phi.alt(u)$,
+  xlim: (-3, 3), ylim: (0, 0.45),
+  xaxis: (tick-distance: 5), yaxis: (tick-distance: 1),
+  lq.plot(x, phi_, mark: none, stroke: blue + 2pt),
+  lq.vlines(k, stroke: red + 1pt),
+)
+
+#lq.diagram(
+  width: 6cm, height: 3cm,
+  xlabel: $u$, ylabel: $-u dot phi.alt(u)$,
+  xlim: (-3, 3), ylim: (-0.3, 0.3),
+  xaxis: (tick-distance: 5), yaxis: (tick-distance: 1),
+  lq.fill-between(xf, u => -u * phi_(u), fill: red.transparentize(75%)),  // y2 omitted → fills to 0
+  lq.plot(x, u => -u * phi_(u), mark: none, stroke: blue + 2pt),
+  lq.hlines(0, stroke: black + 0.5pt),
+  lq.vlines(k, stroke: red + 1pt),
+)
+
+#lq.diagram(
+  width: 6cm, height: 3cm,
+  xlabel: $u$, ylabel: $u dot phi.alt(u)$,
+  xlim: (-3, 3), ylim: (-0.3, 0.3),
+  xaxis: (tick-distance: 5), yaxis: (tick-distance: 1),
+  lq.fill-between(xf, u => u * phi_(u), fill: red.transparentize(75%)),
+  lq.plot(x, u => u * phi_(u), mark: none, stroke: blue + 2pt),
+  lq.hlines(0, stroke: black + 0.5pt),
+  lq.vlines(k, stroke: red + 1pt),
+)

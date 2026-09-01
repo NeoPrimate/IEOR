@@ -1,0 +1,3 @@
+- If you don't understand the continuous, try the discrete
+- If you don't understand the multivariate, try the univariate
+- If you don't understand the calculus / linear algebra / etc., try the geometric interpretation

@@ -37,3 +37,11 @@ $
   $
   The boundary term vanishes because the integrand is zero at $x = Q$.
 ]
+
+#line(length: 100%)
+
+= Leibniz's Rule
+
+$
+  dif / (dif Q) integral_a(Q)^b(Q) h(x, Q) dif x = underbrace(integral_a(Q)^b(Q) (partial h) / (partial Q) dif x, "swap") + underbrace(h(b, Q) dot b'(Q) - h(a, Q) dot a'(Q), "boundary term")
+$

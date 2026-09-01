@@ -50,3 +50,43 @@ $
 $
   EE[g(X)] = integral_(-infinity)^infinity g(x) dot f(x) dif x
 $
+
+#line(length: 100%)
+
+= Expected Value
+
+== Discrete
+
+$
+  EE[X] = sum_(i=1)^n x_i dot p_i
+$
+
+== Continuous
+
+$
+  EE[X] = integral_(-infinity)^infinity x dot f(x) dif x
+$
+
+=== Partial
+
+Truncated or restricted expectation. Specifically:
+
+$
+  integral_(-infinity)^(infinity) x dot f(x) dif x = EE[X dot 1_{n lt.eq X lt.eq m}]
+$
+
+Where $1_{⋅}$​ is the indicator function — it's 1 when the condition is true, 0 otherwise.
+
+=== Conditional
+
+$
+  EE[X | n lt.eq X lt.eq m] = (integral_(-infinity)^(infinity) x dot f(x) dif x) / P(n lt.eq X lt.eq m)
+$
+
+=== LOTUS
+
+Law of the Unconscious Statistician
+
+$
+  integral_(-infinity)^infinity g(x) dot f(x) dif x
+$
