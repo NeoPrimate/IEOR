@@ -480,3 +480,348 @@ $
   integral f(x(u)) dot x'(u) dif u
 $
 
+= Probability
+
+== Random (Uncertain) Events
+
+- *Experiment*: process of generating observations
+- *Sample space* ($S$): all possible observations, or outcomes, of an experiment 
+
+$
+  S = {H, T} \
+  S = {1, 2, 3, 4, 5, 6}
+$
+
+- *Event*: set of outcomes contained in the sample space $S$
+
+$
+  A = {1, 3, 5} \
+  B = {2, 4, 5} \
+$
+
+Probability: the proportion of times that the outcome would occur if we observed the random process an infinite number of times (*asynmptotically*)
+
+Let $S$ be a s sample space and $A$ an event in $S$. The probability of $A$, $P(A)$, satifies the following properties:
+- $0 lt.eq P(A) lt.eq 1$
+- $P(S) = 1$
+- If $A$ and $B$ are mutually exclusive:
+
+$
+  P(A union B) = P(A) + P(B)
+$
+
+If an expirement has $n$ equally likely outcomes, and $s$ of these outcomes are labeled success, then the probability of a siccessful outcomes is $s / n$
+
+$
+  A union B = {x | x in A or x in B}
+$
+
+$
+  A inter B = {x | x in A and x in B}
+$
+
+$
+  P(A union B) = P(A) + P(B) - P(A inter B)
+$
+
+If $A$ and $B$ are independent:
+
+$
+  P(A inter B) = P(A) dot P(B)
+$
+
+Independent v. Mutually Exclusive
+- Independent: 
+- Mutually exclusive: 
+
+== Conditional Probability
+
+Probability that event $A$ occurs given that event $B$ has occurred
+
+$
+  P(A | B)
+$
+
+If $A$ and $B$ are independent:
+
+$
+  P(A | B) = P(A)
+$
+
+For independent OR non-independent:
+
+$
+  P(A | B) = P(A inter B) / P(B)
+$
+
+If $A$ and $B$ are independent events:
+
+$
+  P(A) = P(A inter B) / P(B) \
+  P(A inter B) = P(A) dot P(B) \
+$
+
+Discrete v. Continuous
+
+== Probability Distribution
+
+A fuction that provides the probabilities of occurrence of different possible outcomes in an experiment 
+
+$
+  f(x) = P(X = x)
+$
+
+PMF
+
+$
+  P(X = x) \
+$
+
+CDF
+
+$
+  P(X lt.eq x) \
+$
+
+PDF
+
+
+
+=== Discrete Distributions
+
+==== Uniform
+
+==== Binomial
+
+$
+  P(X = k) = binom(n, k) p^k (1 - p)^(n - k)
+$
+
+#example[
+  A retail knows that 10% of all orders placed get returned each week. The retail store usually sends 50 orders a week. If $X = "number of returned orders a week"$, $P(X gt 5)$.
+
+  $
+    X ~ "Binom"(50, 0.1)
+  $
+
+  $
+    P(X gt 5) \
+  $
+
+  $x$ can take the values $X = {0, 1, 2, dots, 50}$
+
+  $
+    P(X gt 5) = P(X = 5) + P(X = 7) + dots + P(X = 50)
+  $
+
+  - $n = 50$
+  - $p = 0.1$
+
+  $
+    binom(50, 6) 0.1^6 (1 - 0.1)^(50 - 6) + binom(50, 7) 0.1^7 (1 - 0.1)^(50 - 7) + dots + binom(50, 50) 0.1^50 (1 - 0.1)^(50 - 50)
+  $
+
+  $
+    1 - P(X lt.eq 5) = 1 [P(X = 0) + P(X = 1) + dots + P(X = 5)]
+  $
+]
+
+==== Bernoulli
+
+Binomial with $n = 1$
+
+==== Negative Binomial 
+
+- Trial with two possible outcomes
+- Success or failure
+- We know the probability of success- We repeat the experiment until a known number of successes happedn (indpendent trials) ($k$)
+- What is the probability of needing exactly a given number of trials ($n$)?
+
+$
+  P(X = n) = binom(n - 1, k - 1) p^k (1 - p)^(n-k), quad n gt.eq k
+$
+
+#example[
+  Rolling a die until a score of 6 is obtained $k = 3$ times
+
+  $
+    X ~ "NBin"(k = 3, p = 1\/6)
+  $
+
+  $
+    P(X = n) = binom(n-1, 2) p^3 (1 - p)^(n-3), quad n gt.eq 3
+  $
+]
+
+==== Poisson
+
+- Suppose events distributed in a contunuum
+- On average the rate of such an event is $lambda$
+- We observe a portion of length $t$ in such continuum
+- What is the probability of counting exactly a given number ($k$)?
+
+$
+  P(X = k) = ((lambda t)^k e^(-lambda t)) / k!
+$
+
+#example[
+  An electronic company that the number of components that fail before 100 hours is a Poisson random variable. If the average rate of failure is 0.08 per hour.
+
+  a. What is the probability that a component fails in 25 hours? 
+
+  $
+    P(X = 1) = ((0.08 times 25)^1 e^(-0.08 times 25)) / 1!
+  $
+
+  ```py
+  from scipy.stats import poisson
+
+  k = 1
+  mu = 0.08
+  t = 25
+
+  poisson.pmf(k, mu * t, loc=0)
+  ```
+
+  b. What is the probability that no more than 2 components fail in 50 hours?
+
+  $
+    P(X < 2) 
+    &= ((lambda t)^k e^(-lambda t)) / k! \
+    &= ((0.08 times 50)^0 e^(-0.08 times 50)) / 0! + ((0.08 times 50)^1 e^(-0.08 times 50)) / 1! + ((0.08 times 50)^2 e^(-0.08 times 50)) / 2!
+  $
+
+  ```py
+  from scipy.stats import poisson
+
+  k = 2
+  mu = 0.08
+  t = 50
+
+  poisson.cdf(k, mu * t, loc=0)
+  ```
+
+  c. What is the probability that at least 10 components fail in 125 hours?
+
+  $
+    P(X gt.eq 10) = ((lambda t)^k e^(-lambda t)) / k!
+  $
+
+  ```py
+  from scipy.stats import poisson
+
+  k = 10
+  mu = 0.08
+  t = 125
+
+  1 - poisson.cdf(k - 1, mu * t, loc=0)
+  ```
+]
+
+=== Continuous Distributions
+
+PDF properties
+
+1.
+
+$
+  P(a lt.eq X lt.eq b) = integral_a^b f(x) dif x quad quad "for" a lt.eq b
+$
+
+2.
+
+$
+  f(x) gt.eq 0 forall x
+$
+
+3.
+
+$
+  integral_(-infinity)^infinity f(x) dif x = 1
+$
+
+==== Uniform
+
+$
+  X ~ cal(U)(a, b)
+$
+
+$
+  f(x) = cases(
+    1 / (b-a) quad quad &"if" x in [a, b],
+    0 quad quad &"otherwise"
+  )
+$
+
+==== Exponential
+
+$
+  X ~ "Exp"()
+$
+
+$
+  f(x) = lambda e^(-lambda x)
+$
+
+CDF
+
+==== Normal
+
+PDF
+
+
+
+CDF
+
+Z-Score
+
+$
+  Z = (X - mu) / sigma ~ cal(N)(0, 1)
+$
+
+
+== Beyes Rule
+
+If $A_1, A_2, dots, A_n$ are mutually exclusive and exhaustive events and $B$ is an event, then:
+
+$
+  P(B) 
+  &= P(B inter A_1) + P(B inter A_2) + dots + P(B inter A_n) \
+  &= P(A_1) dot P(B | A_1) + P(A_2) dot P(B | A_2) + dots + P(A_n) dot P(B | A_n) \
+  &= sum_(k=1)^n P(A_k) dot P(B | A_k)
+$
+
+$
+  P(A_i | B) = (P(B | A_i) dot P(A_i)) / (sum_(k=1)^n P(A_k) dot P(B | A_k))
+$
+
+=== Expected value
+
+Discrete
+
+$
+  E[X] 
+  &= sum_(i=1)^n X_ dot P(X = X_i)i \
+  &= p_1 dot X_1 + p_2 dot X_2 + dots + p_n X_n \
+$
+
+Continuous
+
+$
+  E[X] = integral_(-infinity)^infinity x dot f(x) dif x \
+$
+
+=== Variance
+
+$
+  "Var"[X] = E[X^2] - (E[X])^2
+$
+
+Known Variances:
+
+- Binomial
+
+$
+  "Var"[X] = n p (1 - p)
+$
+
