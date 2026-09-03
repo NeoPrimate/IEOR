@@ -57,5 +57,28 @@
   set math.mat(gap: 1em)
   set math.vec(gap: 1em)
 
+  show raw.where(block: true): it => block(
+    fill: luma(245),
+    stroke: 0.5pt + gray,
+    radius: 4pt,
+    inset: 10pt,
+    width: 100%,
+  )[#grid(
+    columns: (1.5em, 1fr),
+    align: (right, left),
+    column-gutter: 0.75em,
+    row-gutter: 0.55em,
+    ..it.lines
+      .enumerate()
+      .map(((i, line)) => (
+        text(fill: gray, size: 0.8em)[#(i + 1)],
+        line,
+      ))
+      .flatten()
+  )]
+
+
+
   body
 }
+
