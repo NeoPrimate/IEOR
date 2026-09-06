@@ -27,7 +27,7 @@
 
   set text(font: "Helvetica")
 
-  show table: it => align(center, block(breakable: false, it))
+  show table: it => align(center, block(breakable: true, it))
 
   // Gracefully degrade #link(<label>)[body] when the label isn't in scope —
   // e.g. when previewing a chapter in isolation, where labels created by
@@ -52,6 +52,8 @@
   show strong: set text(blue.darken(25%))
   set math.cases(gap: 1em)
   show math.equation.where(block: false): set text(12pt)
+  // show math.equation: it => context text(size: 1.1 * text.size, it)
+
   set math.vec(delim: "[")
   set math.mat(delim: "[")
   set math.mat(gap: 1em)

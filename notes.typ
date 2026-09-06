@@ -4,6 +4,9 @@
 #import "@preview/tiptoe:0.4.0"
 #import "@preview/komet:0.2.0"
 
+#import "/lib/formatting.typ": *
+#show: formatting
+
 #show table: it => align(center, it)
 
 #let obar(x) = math.accent(x, math.macron)
