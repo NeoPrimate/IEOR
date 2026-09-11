@@ -78,6 +78,7 @@
 #import "/lib/utils/prerequisites.typ": prerequisites
 #import "/lib/utils/resources.typ": resources
 #import "/lib/utils/matvec_mult.typ": matvec_mult
+#import "/lib/utils/finance.typ": balance-sheet, balance-sheet-summary, t-account, statement-cash-flow, income-statement
 
 // Overline accent (sample means etc.): obar(x) → x̄. Used across notes-derived
 // probability/statistics pages.
