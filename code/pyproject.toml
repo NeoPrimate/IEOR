@@ -8,7 +8,9 @@ dependencies = [
     "iminuit>=2.32.0",
     "jax>=0.10.0",
     "matplotlib>=3.10.9",
+    "networkx>=3.6.1",
     "polars>=1.40.1",
+    "pydot>=4.0.1",
     "seaborn>=0.13.2",
     "sympy>=1.14.0",
 ]

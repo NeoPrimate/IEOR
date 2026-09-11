@@ -246,6 +246,24 @@ Raising $Q$ by one more unit costs you $c_o$ with probability $F(Q)$ (the extra 
   lq.place(label_pos_inv_F, f(label_pos_inv_F)/2, box(inset:(top:0em),text(size:0.7em)[$1-F(Q^*)$ =\ #inv_F_Qstar])),
 )
 
+#let mini-density-icon(which: "left") = box(baseline: 2pt)[
+  #lq.diagram(
+    width: 14pt, height: 8pt,
+    margin: 0%,
+    xaxis: none,
+    yaxis: none,
+    lq.fill-between(
+      if which == "left" { x_F_Q } else { x_inv_F_Q },
+      if which == "left" { y_F_Q } else { y_inv_F_Q },
+      fill: if which == "left" { red.transparentize(75%) } else { blue.transparentize(75%) },
+      stroke: none,
+    ),
+  )
+]
+
+$ #mini-density-icon(which: "left") + #mini-density-icon(which: "right") = 1 $
+$ F(Q^*) = #mini-density-icon(which: "left") = 0.2 $
+
 #v(1em)
 
 // ---- 3. the integrand ----
