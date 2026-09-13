@@ -1,4 +1,5 @@
 #import "@preview/lilaq:0.6.0" as lq
+#import "@preview/tiptoe:0.4.0"
 
 #set heading(numbering: "1.a.")
 #set text(font: "Helvetica")
@@ -23,8 +24,8 @@ of setup period to warm up the facility, and €1,000 is incurred daily for this
 #let D = 1200
  
 #let months-per-year = 12
-#let monthly-production-rate = 150
-#let P = monthly-production-rate * months-per-year
+#let P_month = 150
+#let P = P_month * months-per-year
  
 #let S-days = 3
 #let S-daily-cost = 1000
@@ -63,6 +64,12 @@ of setup period to warm up the facility, and €1,000 is incurred daily for this
 
 #let Ibar = Imax / 2
 #let Ibar = calc.round(Ibar, digits: 2)
+
+#let Td = (Imax / D) * days-per-year
+#let Td = calc.round(Td, digits: 2)
+
+#let Tp = (q-star / P) * days-per-year
+#let Tp = calc.round(Tp, digits: 2)
  
 #let avg-inventory = q-star * (1 - D / P) / 2
  
@@ -70,7 +77,7 @@ of setup period to warm up the facility, and €1,000 is incurred daily for this
 - Sell Price (p) = $#p$ \$ / unit
 - Cost (c) = $#c$ \$ / unit
 - Setup Cost (S) = $#S$ \$ / setup
-- Production rate ($P_"month"$) = $#monthly-production-rate$ units / month
+- Production rate ($P_"month"$) = $#P_month$ units / month
 - Production rate ($P_"year"$) = $#P$ units / year
 - Holding cost rate (h) = $#(h * 100)$ % / unit / year
 - Holding cost (H) = $#H$ \$ / unit / year
@@ -289,7 +296,49 @@ $
 #v(2em)
  
 *(c)* _How many days per year shall the facility be idle for (b) above? (5 points)_
- 
+
+#let T = q-star / D
+
+$
+  T_p 
+  &= Q / P \
+  &= #q-star / #P \
+  &= #Tp
+$
+
+$
+  T 
+  &= Q / D \
+  &= #q-star / #D \
+  &= #T
+$
+
+$
+  T_d 
+  &= T - T_p \
+  &= #T - Tp \
+  &= #Td
+$
+
+$
+  T_d = I_max / D = #Imax / #D = #Td
+$
+
+Number of cycles
+
+#let n-cycles = D / q-star
+#let n-cycles = calc.round(n-cycles, digits: 2)
+
+$
+  "Cycles" = D / Q^* = #D / #q-star = #n-cycles
+$
+
+#let idle = Td * n-cycles
+
+$
+  #idle
+$
+
 $
   "Down time/year"
   &= D/Q dot Q(1/D - 1/P) \
@@ -305,9 +354,9 @@ $
   &= #calc.round(idle-days, digits: 2) " days"
 $
  
-At the optimal batch size $Q^* = #q-star$, this corresponds to $D \/ Q^* approx #calc.round(D / q-star, digits: 2)$
-production runs per year, each with a production time of $Q^* \/ P approx #calc.round(q-star / P * days-per-year, digits: 2)$
-days and a cycle length of $Q^* \/ D approx #calc.round(q-star / D * days-per-year, digits: 2)$ days.
+At the optimal batch size $Q^* = #q-star$, this corresponds to $D \/ Q^* approx #calc.round(D / q-star, digits: 2)$ production runs per year:
+- Production time of $Q^* \/ P approx #calc.round(q-star / P * days-per-year, digits: 2)$ days
+- Cycle length of $Q^* \/ D approx #calc.round(q-star / D * days-per-year, digits: 2)$ days
  
 *(d)* _What is the average inventory level for (b) above in the long run? (5 points)_
  
@@ -326,6 +375,47 @@ $
 $
   macron(I) &= I_max / 2 = #Imax / 2 = #Ibar
 $
+
+#let epq(D, S, H, P) = calc.sqrt((2 * D * S) / (H * (1 - D / P)))
+#let Q = epq(D, S, H, P)
+
+// #let Tp = Q / P
+// #let Imax = (P - D) * Tp
+// #let Td = Imax / D
+#let T = Tp + Td
+
+#align(center)[
+
+  #lq.diagram(
+    width: 25em,
+    height: 14em,
+    xlim: (0, T),
+    ylim: (0, Imax * 1.1),
+    xaxis: (ticks: ((Tp, []),), subticks: none),
+    yaxis: (
+      ticks: (
+        (Imax, $I_"max" = #Imax$),
+        (Ibar, $macron(I) = #Ibar$),
+      ), 
+      subticks: none
+    ),
+    ylabel: [Inventory Level],
+
+    lq.plot((0, Tp, T), (0, Imax, 0), mark: none, stroke: 1.5pt),
+
+    lq.line((0, 0), (Tp, 0), tip: tiptoe.triangle, toe: tiptoe.triangle,
+      stroke: (paint: black, thickness: 1pt), clip: false),
+    lq.place(Tp / 2, 0 - 0.5, align: top, $T_p = #Tp$),
+
+    lq.line((Tp, 0), (T, 0), tip: tiptoe.triangle, toe: tiptoe.triangle,
+      stroke: (paint: black, thickness: 1pt), clip: false),
+    lq.place((Tp + T) / 2, 0 - 0.5, align: top, $T_d = Td$),
+
+    lq.line((0, -0.15 * Imax), (T, -0.15 * Imax), tip: tiptoe.triangle, toe: tiptoe.triangle,
+      stroke: (paint: black, thickness: 1pt), clip: false),
+    lq.place(T / 2, -0.15 * Imax - 0.5, align: top, $T = #T$),
+  )
+]
  
 *(e)* _How much is the average total profit per year in the long run? (5 points)_
  

@@ -348,7 +348,15 @@ Assumptions
 - No stockouts or backorders allowed
 
 $
+  T = Q / D
+$
+
+$
   T_p = Q / P
+$
+
+$
+  T_d = T - T_p = Q / D - Q / P
 $
 
 $
@@ -357,6 +365,10 @@ $
 
 $
   T_d = I_max / D = Q / D (1 - D / P)
+$
+
+$
+  1 - D / P = T_d D / Q quad ("cycles / year")
 $
 
 $
