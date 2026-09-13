@@ -2,61 +2,63 @@
 
 
 #let balance-sheet-summary(
-  cash,
-  ar,
-  inventory,
-  ppe,
-  ap,
-  debt,
-  equity,
-) = table(
-  columns: 2,
-  inset: (x: 1em, y: 0.5em),
-  align: center + horizon,
-  table.cell(colspan: 2, fill: black.transparentize(75%), [Statement of Balance]),
-  table.cell(
-    [Assets],
-    fill: black.transparentize(75%),
-  ),
-  table.cell(
-    [Liabilities],
-    fill: black.transparentize(75%),
-  ),
-  [
-    Cash\
-    *#cash*
-  ], 
-  [
-    A/P\ 
-    *#ap*
-  ],
-  [
-    A/R\ 
-    *#ar*
-  ], [
-    Debt\ 
-    *#debt*
-  ],
-  [
-    Inventory\ 
-    *#inventory*
-  ], 
-  table.cell(rowspan: 2, [
-    Equity\ *#equity*
-  ]),
-  [
-    PP&E\ 
-    *#ppe*
-  ],
-)
+  cash: float,
+  ar: float,
+  inventory: float,
+  ppe: float,
+  ap: float,
+  debt: float,
+  equity: float,
+) = text(size: 8pt)[
+  #table(
+    columns: 2,
+    inset: (x: 1em, y: 0.5em),
+    align: center + horizon,
+    table.cell(colspan: 2, fill: black.transparentize(75%), [Statement of Balance]),
+    table.cell(
+      [Assets],
+      fill: black.transparentize(75%),
+    ),
+    table.cell(
+      [Liabilities],
+      fill: black.transparentize(75%),
+    ),
+    [
+      Cash\
+      *#cash*
+    ], 
+    [
+      A/P\ 
+      *#ap*
+    ],
+    [
+      A/R\ 
+      *#ar*
+    ], [
+      Debt\ 
+      *#debt*
+    ],
+    [
+      Inventory\ 
+      *#inventory*
+    ], 
+    table.cell(rowspan: 2, [
+      Equity\ *#equity*
+    ]),
+    [
+      PP&E\ 
+      *#ppe*
+    ],
+  )
+]
 
 #let income-statement(
-  revenue,
-  cogs,
-  sga,
-  da,
-  interest,
-  tax,
+  revenue: float,
+  cogs: float,
+  sga: float,
+  da: float,
+  interest: float,
+  tax: float,
 ) = [
   #let gross-profit = revenue - cogs
   #let ebitda = gross-profit - sga
@@ -64,64 +66,88 @@
   #let ebt = ebit - interest
   #let np = ebt - tax
 
+  #text(size: 8pt)[
+    #table(
+      columns: 2,
+      inset: (x: 1em, y: 0.5em),
+      align: left,
+      stroke: (x, y) => (
+        bottom: if y in (0, 2, 4, 6, 8, 10, 11) {black + 1pt},
+        right: if x in (1,) {black + 1pt},
+        left: if x in (0,) {black + 1pt},
+      ),
+      table.cell(
+        colspan: 2,
+        fill: black.transparentize(75%),
+        stroke: black,
+        [Income Statement]
+      ),
+      [Revenue], 
+      [#revenue],
+      [GoGS], 
+      [#text(fill: red, weight: "semibold")[#cogs]],
+      [Gross Profit], 
+      [#gross-profit],
+      [SGA], 
+      [#text(fill: red, weight: "semibold")[#sga]],
+      [EBITDA], 
+      [#ebitda],
+      [D&A], 
+      [#text(fill: red, weight: "semibold")[#da]],
+      [EBIT], 
+      [#ebit],
+      [Interest], 
+      [#text(fill: red, weight: "semibold")[#interest]],
+      [EBT], 
+      [#ebt],
+      [Tax],
+      [#text(fill: red, weight: "semibold")[#tax]], 
+      [NP],
+      [#np]
+
+    )
+  ]
+]
+
+#let t-account(title, ..content) = text(size: 8pt)[
   #table(
-    columns: 2,
+    columns: (1fr, 1fr),
     inset: (x: 1em, y: 0.5em),
-    align: left,
     stroke: (x, y) => (
-      bottom: if y in (0, 2, 4, 6, 8, 10, 11) {black + 1pt},
-      right: if x in (1,) {black + 1pt},
-      left: if x in (0,) {black + 1pt},
+      bottom: if y == 0 {black + 1pt},
+      right: if y > 0 and x == 0 {black + 1pt},
     ),
     table.cell(
       colspan: 2,
-      fill: black.transparentize(75%),
-      stroke: black,
-      [Income Statement]
+      [#title]
     ),
-    [Revenue], 
-    [#revenue],
-    [GoGS], 
-    [#text(fill: red, weight: "semibold")[#cogs]],
-    [Gross Profit], 
-    [#gross-profit],
-    [SGA], 
-    [#text(fill: red, weight: "semibold")[#sga]],
-    [EBITBA], 
-    [#ebitda],
-    [D&A], 
-    [#text(fill: red, weight: "semibold")[#da]],
-    [EBIT], 
-    [#ebit],
-    [Interest], 
-    [#text(fill: red, weight: "semibold")[#interest]],
-    [EBT], 
-    [#ebt],
-    [Tax],
-    [#text(fill: red, weight: "semibold")[#tax]], 
-    [NP],
-    [#np]
-
+    ..content
   )
 ]
 
-#let t-account(title, ..content) = table(
-  columns: (1fr, 1fr),
-  inset: 1em,
-  stroke: (x, y) => (
-    bottom: if y == 0 {black + 1pt},
-    right: if y > 0 and x == 0 {black + 1pt},
-  ),
-  table.cell(
-    colspan: 2,
-    [#title]
-  ),
-  ..content
-)
+#let revenue(..content) = text(size: 8pt)[
+  #table(
+    columns: (1fr, 1fr),
+    stroke: none,
+    align: left,
+    ..content
+  )
+]
+
+#let expenses(..content) = text(size: 8pt)[
+  #table(
+    columns: (1fr, 1fr),
+    stroke: none,
+    align: left,
+    ..content
+  )
+]
 
 #let balance-sheet(
   assets: (),
   liabilities: (),
+  expenses,
+  revenue,
 ) = table(
   columns: (1fr, 1fr),
   inset: 1em,
@@ -147,54 +173,112 @@
     columns: 2,
     stroke: none,
     ..liabilities.map(l => table.cell(l))
-  )
+  ), 
+  table.cell(
+    colspan: 2,
+    stroke: none,
+    []
+  ),
+  table.cell(
+    fill: black.transparentize(75%), 
+    [Expenses]
+  ),
+  table.cell(
+    fill: black.transparentize(75%), 
+    [Revenue]
+  ),
+  // text(size: 8pt)[
+  //   #table(
+  //     columns: (1fr, 1fr,),
+  //     stroke: none,
+  //     ..expenses.map(v => ..v)
+  //   ),
+  // ],
+  expenses,
+  revenue,
+  // text(size: 8pt)[
+  //   #table(
+  //     columns: (1fr, 1fr,),
+  //     stroke: none,
+  //     ..revenue
+  //   )
+  // ]
+
+  // table.cell(
+  //   stroke: none,
+  //   inset: 0em,
+  //   table( 
+  //     columns: (1fr,),
+  //     table.cell(
+  //       inset: 1em,
+  //       [Expenses],
+  //       fill: black.transparentize(75%),
+  //     ),
+  //     ..expenses
+  //   ),
+  // ),
+  // table.cell(
+  //   stroke: none,
+  //   inset: 0em,
+  //   table( 
+  //     columns: (1fr,),
+  //     table.cell(
+  //       inset: 1em,
+  //       [Revenue],
+  //       fill: black.transparentize(75%),
+  //     ),
+  //     ..expenses
+  //   ),
+  // )
 )
 
 #let vlabel(body) = rotate(-90deg, reflow: true, body)
 
 #let statement-cash-flow(
   
-) = table(
-  columns: 3,
-  inset: (x: 1em, y: 0.5em),
-  align: left,
-  table.cell(
-    colspan: 3,
-    fill: black.transparentize(75%),
-    [Statement of Cash FLow]
-  ),
-  table.cell(
-    rowspan: 6, 
-    fill: black.transparentize(75%), 
-    align: center + horizon, 
-    vlabel[Operating]
-  ),
-  [Net Profit], [],
-  [D&A], [],
-  [A/R], [],
-  [Inventory], [],
-  [A/P], [],
-  [Cash generated by Operations], [],
-  table.cell(
-    rowspan: 2, 
-    fill: black.transparentize(75%), 
-    align: center + horizon, 
-    vlabel[Investing]
-  ),
-  [New Investment], [],
-  [Cash used in Investement], [],
-  table.cell(
-    rowspan: 3, 
-    fill: black.transparentize(75%),
-    align: center + horizon, 
-    vlabel[Financing]
-  ),
-  [Cash raised from Equity], [],
-  [Chnages in Debt], [],
-  [Cash used in financing], [],
-  table.cell(stroke: none, []),
-  table.cell(
-    fill: black.transparentize(75%), 
-    [Net cash]
-  ),
-)
+) = text(size: 8pt)[
+  #table(
+    columns: 3,
+    inset: (x: 1em, y: 0.5em),
+    align: left,
+    table.cell(
+      colspan: 3,
+      fill: black.transparentize(75%),
+      [Statement of Cash FLow]
+    ),
+    table.cell(
+      rowspan: 6, 
+      fill: black.transparentize(75%), 
+      align: center + horizon, 
+      vlabel[Operating]
+    ),
+    [Net Profit], [],
+    [D&A], [],
+    [A/R], [],
+    [Inventory], [],
+    [A/P], [],
+    [Cash generated by Operations], [],
+    table.cell(
+      rowspan: 2, 
+      fill: black.transparentize(75%), 
+      align: center + horizon, 
+      vlabel[Investing]
+    ),
+    [New Investment], [],
+    [Cash used in Investement], [],
+    table.cell(
+      rowspan: 3, 
+      fill: black.transparentize(75%),
+      align: center + horizon, 
+      vlabel[Financing]
+    ),
+    [Cash raised from Equity], [],
+    [Chnages in Debt], [],
+    [Cash used in financing], [],
+    table.cell(stroke: none, []),
+    table.cell(
+      fill: black.transparentize(75%), 
+      [Net cash]
+    ),
+  )
+]

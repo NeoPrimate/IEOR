@@ -211,6 +211,16 @@ $
 
 #line(length: 100%)
 
+== Cycle Inventory
+
+Cycle inventory is the average amount of stock you're carrying purely because you order in batches instead of receiving supply continuously, one unit at a time, exactly as it's consumed.
+
+$
+  Q^* / 2
+$
+
+#line(length: 100%)
+
 == Sensitivity
 
 $
