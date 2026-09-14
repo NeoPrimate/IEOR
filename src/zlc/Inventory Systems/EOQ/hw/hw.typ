@@ -846,6 +846,7 @@ $
   2^0 dot T_B = 1 "week" \
   2^1 dot T_B = 2 "week" \
   2^2 dot T_B = 4 "week" \
+  2^3 dot T_B = 8 "week" \
   dots.v \
 $
 
@@ -997,15 +998,15 @@ To compare the optimal with our new constrained schedule:
 #let Tc = 16
 #let Tf = 8
 
-#let tvc-c = TVC-t(Tc, Sc, Hc)
-#let tvc-f = TVC-t(Tf, Sf, Hf)
+#let tvc-c = TVC-t-weeks(Tc, Sc, Hc)
+#let tvc-f = TVC-t-weeks(Tf, Sf, Hf)
 
 
 #let delta-t-c = tvc-c / tvc-opt-c - 1
-#let delta-t-c = calc.round(delta-t-c, digits: 2)
+#let delta-t-c = calc.round(delta-t-c, digits: 3)
 
 #let delta-t-f = tvc-f / tvc-opt-f - 1
-#let delta-t-f = calc.round(delta-t-f, digits: 2)
+#let delta-t-f = calc.round(delta-t-f, digits: 3)
 $
   "TVC"(T^*_c) = #tvc-opt-c \
   "TVC"(T_c) = #tvc-c \
