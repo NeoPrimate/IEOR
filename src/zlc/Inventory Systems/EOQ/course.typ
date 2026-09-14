@@ -368,7 +368,7 @@ $
 $
 
 $
-  1 - D / P = T_d D / Q quad ("cycles / year")
+  1 - D / P = T_d D / Q quad (D H_i("cycles / year")
 $
 
 $

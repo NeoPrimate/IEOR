@@ -2,7 +2,11 @@
 #import "@preview/tiptoe:0.4.0"
 
 #set heading(numbering: "1.a.")
-#set text(font: "Helvetica")
+#set text(font: "Helvetica", size: 8pt)
+
+#let result(content) = box(stroke: red, inset: 0.5em, radius: 0.25em)[
+  #content
+]
 
 #align(center)[
   #text(
@@ -11,14 +15,12 @@
   )
 ]
 
-1 year = 12 months = 52 weeks = 365 days
-
 = Finite Production
  
 _Hyundai's SUV division is selling only one product and is running an independent, fully
 automated facility with a production rate of 150 cars per month. The company needs 3 days
 of setup period to warm up the facility, and €1,000 is incurred daily for this task. It is facing a stable customer demand of 1,200 cars per year. The unit production cost is €15,000 and the selling price is €25,000. The company is applying an annual unit holding cost of 15% of product cost._
- 
+
 #v(2em)
  
 #let D = 1200
@@ -76,7 +78,7 @@ of setup period to warm up the facility, and €1,000 is incurred daily for this
 - Demand ($D$) = $#D$ units / year
 - Sell Price (p) = $#p$ \$ / unit
 - Cost (c) = $#c$ \$ / unit
-- Setup Cost (S) = $#S$ \$ / setup
+- Setup Cost (S) = $#S$ \$ / batch
 - Production rate ($P_"month"$) = $#P_month$ units / month
 - Production rate ($P_"year"$) = $#P$ units / year
 - Holding cost rate (h) = $#(h * 100)$ % / unit / year
@@ -140,7 +142,7 @@ $
   Q^*
   &= sqrt((2 D S) / (H (1 - D / P))) \
   &= sqrt((2 (#D) (#S)) / (#H * (1 - #D / #P))) \
-  &= #q-star
+  &= #result([#q-star])
 $
  
 Therefore, the total profit:
@@ -232,7 +234,7 @@ $
   Q^*
   &= sqrt((2 D S) / (H (1 - D/P))) \
   &= sqrt((2 (#D) (#S)) / (#H * (1 - #D/#P))) \
-  &= #q-star
+  &= #result([#q-star])
 $
  
 Therefore, the total cost:
@@ -336,7 +338,7 @@ $
 #let idle = Td * n-cycles
 
 $
-  #idle
+  #result([#idle])
 $
 
 $
@@ -351,7 +353,7 @@ $
 $
   "Idle days/year" 
   &= (1 - D/P) #days-per-year \
-  &= #calc.round(idle-days, digits: 2) " days"
+  &= #result([#calc.round(idle-days, digits: 2) days])
 $
  
 At the optimal batch size $Q^* = #q-star$, this corresponds to $D \/ Q^* approx #calc.round(D / q-star, digits: 2)$ production runs per year:
@@ -373,7 +375,10 @@ $
 $
 
 $
-  macron(I) &= I_max / 2 = #Imax / 2 = #Ibar
+  macron(I) 
+  &= I_max / 2 \
+  &= #Imax / 2 \
+  &= #result([#Ibar])
 $
 
 #let epq(D, S, H, P) = calc.sqrt((2 * D * S) / (H * (1 - D / P)))
@@ -424,7 +429,7 @@ $
   &= "TR" - "TC"(Q^*) \
   &= underbrace(p D, "Total\nRevenue") - underbrace(c D, "Purchasing\nCost") quad - quad underbrace(S D / Q^*, "Ordering\nCost") quad - quad underbrace(H/2 (1 - D/P) Q^*, "Holding\nCost") \
   &= (#p)(#D) - (#c)(#D) - #S (#D) / (#q-star) - (#H)/2 (1 - #D/#P) (#q-star) \
-  &= #calc.round(TP(q-star), digits: 2)
+  &= #result([#calc.round(TP(q-star), digits: 2)])
 $
  
 *(f)* _Now the company has a new constraint on the production batch size and the production quantity should be a multiple of 40, i.e., 40 - 80 - 120 - 160 - ..., whenever it runs the facility. How much is the optimal production quantity to minimize the long-run cost? (5 points)_
@@ -444,7 +449,15 @@ Since $Q1 dot Q2 = #(Q1 * Q2) = (Q^*)^2$, both quantities give exactly the same 
 general property of the EOQ/EPQ cost function: whenever two candidates' product equals $(Q^*)^2$,
 their ordering-cost and holding-cost terms simply swap values, so the sum is identical.
  
-*Therefore both $Q = 80$ and $Q = 120$ are optimal*, tied at
+Both 
+
+#result([$Q = 80$]) 
+
+and 
+
+#result([$Q = 120$]) 
+
+are optimal, tied at:
  
 $
   "TC"_min = #calc.round(TC(Q1), digits: 2)
@@ -573,19 +586,19 @@ $
   ]
 ]
 
-The $Q$ that minimizes the $"TVC"$ is therefore 18000.
+The $Q$ that minimizes the $"TVC"$ accounting for constraints is therefore #result([18000]).
 
 *(b)* _What is the annual cost of such a policy? (5 points)_
 
 $
-  "TVC"(18000) = #tvc-2
+  "TVC"(18000) = #result([#tvc-2])
 $
 
 
 *(c)* _What is the cycle inventory of memory chips at Ericson? (5 points)_
 
 $
-  Q^* / 2 = #q-star-2 / 2 = #calc.round(q-star-2 / 2, digits: 2)
+  Q^* / 2 = #q-star-2 / 2 = #result([#calc.round(q-star-2 / 2, digits: 2)])
 $
 
 *[(d)-(e)]* _The manufacturer now offers a “marginal” unit quantity discount for the chips. The
@@ -609,18 +622,175 @@ separately to each customer. Truck capacity is 12 tons and each delivery costs �
 per stop (thus, delivering to each customer separately costs €850 per truck). LG is considering
 aggregating deliveries to Zaragoza on a single truck._
 
+#v(2em)
+
+#let Dl = 48
+#let Dm = 24
+#let Ds = 12
+#let C = 80000
+#let h = 0.15
+#let capacity = 12
+#let S = 700
+#let stop-cost = 150
+#let H = C * h
+#let n-cust = 3
+
+#let Sl = S + stop-cost
+#let Sm = S + stop-cost
+#let Ss = S + stop-cost
+
+- Demand
+  - Large ($D_l$) = #Dl tons / year
+  - Medium ($D_m$) = #Dm tons / year
+  - Small ($D_s$) = #Ds tons / year
+- Unit cost ($C$) = #C \$ / ton
+- Holding cost rate ($h$) = #(h * 100) %
+- Holding cost ($H = C h$) = #H \$ / ton / year
+- Truck capacity ($M$) = #capacity tons / truck
+- Major delivery cost ($S$) = #S \$ / delivery
+- Minor stop cost ($s_i$) = #stop-cost \$ / stop
+- Cost of a solo delivery ($S_i = S + s_i$) = #Sl \$ / truck
+
+#v(2em)
+
 *(a)* _What is the annual transportation and holding cost if LG ships a full truckload each time
-a customer is running out of stock? How many days of inventory1 are carried at each customer
+a customer is running out of stock? How many days of inventory are carried at each customer
 under this policy? (5 points)_
+
+#let Qa = capacity
+
+#let n-a-l = Dl / Qa
+#let n-a-m = Dm / Qa
+#let n-a-s = Ds / Qa
+
+#let tr-a-l = n-a-l * Sl
+#let tr-a-m = n-a-m * Sm
+#let tr-a-s = n-a-s * Ss
+
+#let h-a-l = (Qa / 2) * H
+#let h-a-m = (Qa / 2) * H
+#let h-a-s = (Qa / 2) * H
+
+#let tc-a-l = tr-a-l + h-a-l
+#let tc-a-m = tr-a-m + h-a-m
+#let tc-a-s = tr-a-s + h-a-s
+#let tc-a-total = tc-a-l + tc-a-m + tc-a-s
+
+#let days-a-l = 365 * Qa / (2 * Dl)
+#let days-a-m = 365 * Qa / (2 * Dm)
+#let days-a-s = 365 * Qa / (2 * Ds)
+
+Since every truck is full (#Qa tons), the number of deliveries per year is fixed by demand alone:
+#calc.round(n-a-l, digits: 2) trips/year to the large customer, #calc.round(n-a-m, digits: 2) to
+the medium customer, and #calc.round(n-a-s, digits: 2) to the small customer.
+
+#table(
+  columns: 5,
+  [*Customer*], [*Deliveries/yr*], [*Transport cost*], [*Holding cost*], [*Total cost*],
+  [Large], [#calc.round(n-a-l, digits: 2)], [€#calc.round(tr-a-l, digits: 0)], [€#calc.round(h-a-l, digits: 0)], [€#calc.round(tc-a-l, digits: 0)],
+  [Medium], [#calc.round(n-a-m, digits: 2)], [€#calc.round(tr-a-m, digits: 0)], [€#calc.round(h-a-m, digits: 0)], [€#calc.round(tc-a-m, digits: 0)],
+  [Small], [#calc.round(n-a-s, digits: 2)], [€#calc.round(tr-a-s, digits: 0)], [€#calc.round(h-a-s, digits: 0)], [€#calc.round(tc-a-s, digits: 0)],
+)
+
+*Total annual cost = €#calc.round(tc-a-total, digits: 0)* (transportation €#calc.round(tr-a-l+tr-a-m+tr-a-s, digits: 0) + holding €#calc.round(h-a-l+h-a-m+h-a-s, digits: 0)).
+
+Days of inventory carried (average inventory ÷ average daily demand, $= 365 Q\/(2D)$):
+large = #calc.round(days-a-l, digits: 1) days, medium = #calc.round(days-a-m, digits: 1) days,
+small = #calc.round(days-a-s, digits: 1) days. Because every customer receives the *same* 12-ton
+lot regardless of how fast it sells, the small customer (who only needs 12 tons a year) ends up
+sitting on about half a year of stock.
+
+#v(2em)
 
 *(b)* _What is the optimal delivery policy to each customer if LG ships separately (not
 necessarily full truckloads) to each of them? What is the annual transportation and holding
 cost? How many days of inventory are carried at each customer under this policy? (5 points)_
 
+#let Ql = calc.sqrt(2 * Dl * Sl / H)
+#let Qm = calc.sqrt(2 * Dm * Sm / H)
+#let Qs = calc.sqrt(2 * Ds * Ss / H)
+
+#let TCl = calc.sqrt(2 * Dl * Sl * H)
+#let TCm = calc.sqrt(2 * Dm * Sm * H)
+#let TCs = calc.sqrt(2 * Ds * Ss * H)
+#let TC_nonagg = TCl + TCm + TCs
+
+#let n-b-l = Dl / Ql
+#let n-b-m = Dm / Qm
+#let n-b-s = Ds / Qs
+
+#let days-b-l = 365 * Ql / (2 * Dl)
+#let days-b-m = 365 * Qm / (2 * Dm)
+#let days-b-s = 365 * Qs / (2 * Ds)
+
+Dropping the full-truckload requirement lets each customer order its own economic lot size
+$Q_i^* = sqrt(2 D_i S_i \/ H)$. These are all well under the #(capacity)-ton truck capacity, so a single
+(partly empty) truck per delivery is still enough.
+
+#table(
+  columns: 5,
+  [*Customer*], [*$Q^*$ (tons)*], [*Orders/yr*], [*Days of inventory*], [*Annual cost*],
+  [Large], [#calc.round(Ql, digits: 2)], [#calc.round(n-b-l, digits: 2)], [#calc.round(days-b-l, digits: 1)], [€#calc.round(TCl, digits: 0)],
+  [Medium], [#calc.round(Qm, digits: 2)], [#calc.round(n-b-m, digits: 2)], [#calc.round(days-b-m, digits: 1)], [€#calc.round(TCm, digits: 0)],
+  [Small], [#calc.round(Qs, digits: 2)], [#calc.round(n-b-s, digits: 2)], [#calc.round(days-b-s, digits: 1)], [€#calc.round(TCs, digits: 0)],
+)
+
+*Total annual (transportation + holding) cost = €#calc.round(TC_nonagg, digits: 0)*, versus
+€#calc.round(tc-a-total, digits: 0) under policy (a). A saving of roughly
+€#calc.round(tc-a-total - TC_nonagg, digits: 0) simply from right-sizing each shipment instead of
+always sending a full truck. Note transportation cost equals holding cost for each customer here
+(a property of the EOQ optimum), and days of inventory now scale with demand instead of all being
+identical.
+
+#v(2em)
+
 *(c)* _What is the optimal delivery policy to each customer if LG aggregates shipments to each
 of the three customers on every truck that goes to Zaragoza? What is the annual
 transportation and holding cost? How many days of inventory are carried at each customer
 under this policy? (10 points)_
+
+#let S-agg = S + n-cust * stop-cost
+#let D-agg = Dl + Dm + Ds
+
+#let Q-agg = calc.sqrt(2 * D-agg * S-agg / H)
+#let TC-agg = calc.sqrt(2 * D-agg * S-agg * H)
+#let n-agg = D-agg / Q-agg
+
+#let t-agg = Q-agg / D-agg
+#let t-agg-days = t-agg * 365
+#let days-agg = 365 * t-agg / 2
+
+#let q-c-l = t-agg * Dl
+#let q-c-m = t-agg * Dm
+#let q-c-s = t-agg * Ds
+
+With aggregation, the truck makes one route to all #n-cust customers per trip, so the fixed cost
+becomes $S_"agg" = S + n s_i = $ €#S-agg, shared over the combined demand
+$D_"agg" = $ #D-agg tons/year. Treating the pooled demand as a single EOQ problem:
+
+$ Q_"agg"^* = sqrt(2 D_"agg" S_"agg" \/ H) = #calc.round(Q-agg, digits: 2) "tons per trip" $
+
+which is comfortably under the #(capacity)-ton truck capacity, so one truck per cycle still
+suffices. This implies #calc.round(n-agg, digits: 2) joint deliveries per year, i.e. a truck
+every #calc.round(t-agg-days, digits: 1) days, split across customers in proportion to their
+demand:
+
+#table(
+  columns: 3,
+  [*Customer*], [*Shipment size per trip (tons)*], [*Days of inventory*],
+  [Large], [#calc.round(q-c-l, digits: 2)], [#calc.round(days-agg, digits: 1)],
+  [Medium], [#calc.round(q-c-m, digits: 2)], [#calc.round(days-agg, digits: 1)],
+  [Small], [#calc.round(q-c-s, digits: 2)], [#calc.round(days-agg, digits: 1)],
+)
+
+Because all three customers are now replenished on the *same* synchronized cycle, they all carry
+the *same* number of days of inventory (#calc.round(days-agg, digits: 1) days) even though their
+lot sizes differ.
+
+*Total annual (transportation + holding) cost = €#calc.round(TC-agg, digits: 0)*, versus
+€#calc.round(TC_nonagg, digits: 0) under separate optimal delivery in (b). Representing a saving of €#calc.round(TC_nonagg - TC-agg, digits: 0) (≈ #calc.round((TC_nonagg - TC-agg) / TC_nonagg * 100, digits: 1)%), and €#calc.round(tc-a-total - TC-agg, digits: 0) versus the original full-truckload policy in (a).
+
+*LG should aggregate deliveries to Zaragoza.*
 
 = Power of two policies (Max Points 20)
 
@@ -640,6 +810,216 @@ subassemblies, considering that the firm's planning team uses one week as the ba
 period (TB)? For each subassembly separately, please evaluate your policy's performance
 (cost-wise) compared to the optimal one._
 
+#let weeks-in-year = 52
+
+#let TB = 1
+
+#let D = 1200
+
+#let Sc = 2500
+#let Sf = 600
+
+#let Hc = 75
+#let Hf = 50
+
+#let Qc = calc.sqrt((2 * D * Sc) / Hc)
+#let Qf = calc.sqrt((2 * D * Sf) / Hf)
+
+#let TCc = calc.sqrt(2 * D * Sc * Hc)
+#let TCf = calc.sqrt(2 * D * Sf * Hf)
+
+#let Tc = calc.sqrt((2 * Sc) / (D * Hc))
+#let Tc = calc.round(Tc, digits: 2)
+
+#let Tf = calc.sqrt((2 * Sf) / (D * Hf))
+#let Tf = calc.round(Tf, digits: 2)
+
+#let TVC-t(T, S, H) = S / T + (H * D) / 2 * T
+#let TVC-t-weeks(T, S, H) = TVC-t(T / weeks-in-year, S, H)
+
+#let x = lq.linspace(4, 16, num: 200)
+#let y-c = x.map(x => TVC-t-weeks(x, Sc, Hc))
+#let y-f = x.map(x => TVC-t-weeks(x, Sf, Hf))
+
+Base period ($T_B$) = 1 week
+$
+  2^0 dot T_B = 1 "week" \
+  2^1 dot T_B = 2 "week" \
+  2^2 dot T_B = 4 "week" \
+  dots.v \
+$
+
+Since:
+
+$
+  Q = D T
+$
+
+Substitute $Q = D T$ into $"TVC"(Q)$:
+
+$
+  "TVC"(Q) = (S D) / Q + (H Q) / 2
+$
+
+Ordering term becomes:
+
+$
+  (S D) / Q = (S D) / (D T) = S / T
+$
+
+Holding term becomes:
+
+$
+  (H Q) / 2 = (H (D T)) / 2 = (H D) / 2 T
+$
+
+Therefore:
+
+$
+  "TVC"(T) = S / T + (H D) / 2 T
+$
+
+Taking the derivative:
+
+$
+  (dif "TVC"(T)) / (dif T) = -S / T^2 + (H D) / 2 = 0 quad arrow.double quad T^* = sqrt((2 S) / (H D))
+$
+
+#let t-opt-c = calc.sqrt((2 * Sc) / (Hc * D))
+#let t-opt-c = calc.round(t-opt-c, digits: 2)
+#let t-opt-c-week = t-opt-c * weeks-in-year
+#let t-opt-c-week = calc.round(t-opt-c-week, digits: 2)
+
+#let t-opt-f = calc.sqrt((2 * Sf) / (Hf * D))
+#let t-opt-f = calc.round(t-opt-f, digits: 2)
+#let t-opt-f-week = t-opt-f * weeks-in-year
+#let t-opt-f-week = calc.round(t-opt-f-week, digits: 2)
+
+#let tvc-opt-f = TVC-t-weeks(t-opt-f-week, Sf, Hf)
+#let tvc-opt-f = calc.round(tvc-opt-f, digits: 2)
+#let tvc-opt-c = TVC-t-weeks(t-opt-c-week, Sc, Hc)
+#let tvc-opt-c = calc.round(tvc-opt-c, digits: 2)
+
+Our optimal cycle time ($T^*$) for _cylinders_ is:
+
+$
+  T^*_c 
+  &= sqrt((2 (#Sc)) / ((#Hc) #D)) \
+  &= #t-opt-c
+$
+
+Convert from years to weeks: 
+
+$
+  T^*_c times #weeks-in-year
+  &= #t-opt-c times #weeks-in-year \
+  &= #t-opt-c-week \
+$
+
+Similarly for _frames_:
+
+$
+  T^*_f 
+  &= sqrt((2 (#Sf)) / ((#Hf) #D)) \
+  &= #t-opt-f
+$
+
+From years to weeks:
+
+$ 
+  T^*_f times #weeks-in-year
+  &= #t-opt-f times #weeks-in-year \
+  &= #t-opt-f-week \
+$
+
+#let x-ticks = (t-opt-c-week, t-opt-f-week, 4, 8, 16)
+#let x-ticks = x-ticks.sorted()
+#let x-ticks = x-ticks.map(t => (t, text(size: 8pt)[$#t$]))
+
+#let y-ticks = (tvc-opt-f, tvc-opt-c)
+#let y-ticks = y-ticks.sorted()
+#let y-ticks = y-ticks.map(t => (t, text(size: 8pt)[$#t$]))
+
+#align(center)[
+  #lq.diagram(
+    width: 25em,
+    height: 16em,
+    xlabel: [$T$],
+    ylabel: [$"TVC"(T)$],
+    xaxis: (
+      ticks: x-ticks,
+      subticks: none,
+    ),
+    yaxis: (
+      ticks: y-ticks,
+      subticks: none,
+    ),
+    lq.plot(x, y-c, mark: none, stroke: blue + 1.5pt, label: [Cylinder]),
+    lq.plot(x, y-f, mark: none, stroke: orange + 1.5pt, label: [Frame]),
+    lq.vlines(t-opt-c-week, max: TVC-t-weeks(t-opt-c-week, Sc, Hc), stroke: (paint: blue, thickness: 1pt, dash: "dashed")),
+    lq.vlines(t-opt-f-week, max: TVC-t-weeks(t-opt-f-week, Sf, Hf), stroke: (paint: orange, thickness: 1pt, dash: "dashed")),
+    lq.hlines(tvc-opt-f, max: t-opt-f-week, stroke: (paint: orange, thickness: 1pt, dash: "dashed")),
+    lq.hlines(tvc-opt-c, max: t-opt-c-week, stroke: (paint: blue, thickness: 1pt, dash: "dashed")),
+  )
+]
+
+We now want to find the power of 2 that braket $T^*$:
+
+$
+  2^k T_B lt.eq T^* lt.eq 2^(k+1) T_B
+$
+
+For _cylinder_:
+
+$ 
+  2^3 T_B lt.eq T^*_c lt.eq 2^4 T_B 
+$
+
+Since $T^*_c$ is closer to 16, we order every 16 weeks.
+
+For _frame_:
+
+$ 
+  2^2 T_B lt.eq T^*_f lt.eq 2^3 T_B 
+$
+
+Since $T^*_f$ is closer to 8, we order every 8 weeks.
+
+Thus,
+
+$
+  T_c = 16 "weeks" \
+  T_f = 8 "weeks" \
+$
+
+To compare the optimal with our new constrained schedule:
+
+#let Tc = 16
+#let Tf = 8
+
+#let tvc-c = TVC-t(Tc, Sc, Hc)
+#let tvc-f = TVC-t(Tf, Sf, Hf)
+
+
+#let delta-t-c = tvc-c / tvc-opt-c - 1
+#let delta-t-c = calc.round(delta-t-c, digits: 2)
+
+#let delta-t-f = tvc-f / tvc-opt-f - 1
+#let delta-t-f = calc.round(delta-t-f, digits: 2)
+$
+  "TVC"(T^*_c) = #tvc-opt-c \
+  "TVC"(T_c) = #tvc-c \
+  Delta = #delta-t-c lt 0.06
+$
+
+And
+
+$
+  "TVC"(T^*_f) = #tvc-opt-f \
+  "TVC"(T_f) = #tvc-f \
+  Delta = #delta-t-f lt 0.06
+$
+
 #align(center)[
   #text(size: 20pt, weight: "semibold")[Quiz Problems]
 ]
@@ -657,11 +1037,54 @@ production rate $(P gt D)$, $S$ = setup cost, $H$ = unit holding cost, and $Q$ =
 are respectively equal to:_
 
 $
-  macron(I) == 1/2 (1 + D / P), quad Q^* = sqrt((2 D S) / (H (1 + D / P))), quad "TCV"(Q^*) = sqrt(2 D S H (1 + D / P))
+  macron(I) = 1/2 (1 + D / P), quad Q^* = sqrt((2 D S) / (H (1 + D / P))), quad "TCV"(Q^*) = sqrt(2 D S H (1 + D / P))
 $
 
 _(Hint: consider, to avoid running out of stock, what are the maximum and minimum inventory
 values for this system). (7 points)_
+
+*Optimal Production Quantity*
+
+$
+  "TVC"(Q)
+  &= underbrace(S D / Q, "Ordering\nCost") quad + quad underbrace(Q / 2 (1 - D / P) H, "Holding\nCost")
+$
+ 
+Minimize the total cost w.r. to $Q$:
+ 
+$
+  Q^* = op(arg min, limits: #true)_Q "TVC"(Q)
+$
+ 
+Find the first derivative of the total variable cost function:
+ 
+$
+  (dif "TVC") / (dif Q)
+    &= (dif) / (dif Q) [ S D/Q + H/2 (1 - D/P) Q ] \ \
+    &= (dif) / (dif Q) (D S Q^(-1)) + H/2 (1 - D/P) dot (dif) / (dif Q) (Q) \ \
+    &= D S dot (dif) / (dif Q) (Q^(-1)) + H/2 (1 - D/P) dot 1 \ \
+    &= D S dot (-1) Q^(-2) + H/2 (1 - D/P) \ \
+    &= -(D S) / Q^2 + H/2 (1 - D/P)
+$
+ 
+Setting the derivative equal to zero to find the critical point:
+ 
+$
+  -(D S) / Q^2 + H/2 (1 - D/P) &= 0 \ \
+  H/2 (1 - D/P) &= (D S) / Q^2 \ \
+  Q^2 &= (2 D S) / (H (1 - D/P)) \ \
+  Q^* &= sqrt((2 D S) / (H (1 - D/P)))
+$
+
+*Total variable Cost*
+
+$
+  "TVC"(Q^*) 
+  &= underbrace(S D / Q^*, "Ordering\nCost") quad + quad underbrace(Q^* / 2 (1 - D / P) H, "Holding\nCost") \
+  &= S D / Q^* + Q^* / 2 (1 - D / P) H \
+  &= S D / sqrt((2 D S) / (H (1 - D/P))) + sqrt((2 D S) / (H (1 - D/P))) / 2 (1 - D / P) H \
+  &= 
+$
 
 *(b)* _Notice that when output is immediate available, the total variable cost is increasing in
 the production rate, while in this case (i.e., when the finished product cannot be used until an
