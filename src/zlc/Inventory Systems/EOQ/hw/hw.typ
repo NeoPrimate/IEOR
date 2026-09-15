@@ -4,7 +4,7 @@
 #set heading(numbering: "1.a.")
 #set text(font: "Helvetica", size: 8pt)
 
-#let result(content) = box(stroke: red, inset: 0.5em, radius: 0.25em)[
+#let result(content) = box(stroke: blue, fill: blue.transparentize(75%), inset: 0.5em, radius: 0.25em)[
   #content
 ]
 
@@ -19,7 +19,7 @@
  
 _Hyundai's SUV division is selling only one product and is running an independent, fully
 automated facility with a production rate of 150 cars per month. The company needs 3 days
-of setup period to warm up the facility, and €1,000 is incurred daily for this task. It is facing a stable customer demand of 1,200 cars per year. The unit production cost is €15,000 and the selling price is €25,000. The company is applying an annual unit holding cost of 15% of product cost._
+of setup period to warm up the facility, and \$1,000 is incurred daily for this task. It is facing a stable customer demand of 1,200 cars per year. The unit production cost is \$15,000 and the selling price is \$25,000. The company is applying an annual unit holding cost of 15% of product cost._
 
 #v(2em)
  
@@ -134,7 +134,7 @@ $
   &= -(2 D S) / Q^3
 $
  
-Since $D, S, Q > 0$, $(dif^2 "TP")/(dif Q^2) < 0$ for all $Q > 0$, confirming $"TP"(Q)$ is concave and the critical point $Q^* = sqrt((2 D S) / (H (1 - D/P)))$ is indeed a maximum.
+Since $D, S, Q > 0$, $(dif^2 "TP")/(dif Q^2) < 0$ for all $Q > 0$, confirming $"TP"(Q)$ is concave and the critical point $Q^* = sqrt((2 D S) / (H (1 - D/P)))$ is a maximum.
  
 Using the formula we derived:
  
@@ -162,8 +162,8 @@ $
   // #let y-holding-cost = x.map(cum-holding-cost)
  
   #lq.diagram(
-    width: 25em,
-    height: 20em,
+    width: 10cm,
+    height: 8cm,
     xlabel: [$Q$],
     ylabel: [$"TP"(Q)$],
     lq.plot(x, y-tp, mark: none, stroke: 1.5pt, label: [TP]),
@@ -226,7 +226,7 @@ $
     &= (2 D S) / Q^3
 $
  
-Since $D, S, Q > 0$, $(dif^2 "TVC")/(dif Q^2) > 0$ for all $Q > 0$, confirming $"TVC"(Q)$ is convex and the critical point $Q^* = sqrt((2 D S) / (H (1 - D/P)))$ is indeed a minimum.
+Since $D, S, Q > 0$, $(dif^2 "TVC")/(dif Q^2) > 0$ for all $Q > 0$, confirming $"TVC"(Q)$ is convex and the critical point $Q^* = sqrt((2 D S) / (H (1 - D/P)))$ is a minimum.
  
 Using the formula we derived:
  
@@ -253,8 +253,8 @@ $
   #let y-cum-holding-cost = x.map(cum-holding-cost)
  
   #lq.diagram(
-    width: 25em,
-    height: 20em,
+    width: 10cm,
+    height: 8cm,
     xlabel: [$Q$],
     ylabel: [$"TC"(Q)$],
     lq.plot(x, y-tc, mark: none, stroke: 1.5pt, label: [TC]),
@@ -281,8 +281,8 @@ $
   #let y-ordering-cost = x.map(ordering-cost)
  
   #lq.diagram(
-    width: 25em,
-    height: 20em,
+    width: 10cm,
+    height: 8cm,
     xlabel: [$Q$],
     ylabel: [$"TVC"(Q)$],
     // xaxis: (ticks: (q-star,)),
@@ -362,19 +362,14 @@ At the optimal batch size $Q^* = #q-star$, this corresponds to $D \/ Q^* approx 
  
 *(d)* _What is the average inventory level for (b) above in the long run? (5 points)_
  
-Because the facility produces at a finite rate, inventory never reaches the full batch size $Q^*$ —
-it only ever builds up to $I_"max" = Q^*(1 - D/P)$ before the facility idles and inventory is drawn
-down again. Average inventory over the cycle is half of that peak:
+Average inventory over the cycle is half of the peak:
  
 $
   I_"max" 
   &= Q^* (1 - D/P) \
   &= (#q-star)(1 - (#D)/(#P)) \
   &= Imax \
-  \
-$
-
-$
+  \ \ \
   macron(I) 
   &= I_max / 2 \
   &= #Imax / 2 \
@@ -392,8 +387,8 @@ $
 #align(center)[
 
   #lq.diagram(
-    width: 25em,
-    height: 14em,
+    width: 10cm,
+    height: 8cm,
     xlim: (0, T),
     ylim: (0, Imax * 1.1),
     xaxis: (ticks: ((Tp, []),), subticks: none),
@@ -434,8 +429,7 @@ $
  
 *(f)* _Now the company has a new constraint on the production batch size and the production quantity should be a multiple of 40, i.e., 40 - 80 - 120 - 160 - ..., whenever it runs the facility. How much is the optimal production quantity to minimize the long-run cost? (5 points)_
  
-Since $"TC"(Q)$ is convex and $Q^* = #q-star$ is not a multiple of $40$, the constrained optimum must be
-one of the two feasible batch sizes bracketing $Q^*$: $Q = 80$ or $Q = 120$.
+The constrained optimum must be one of the two feasible batch sizes bracketing $Q^*$: $Q = 80$ or $Q = 120$:
  
 #let Q1 = 80
 #let Q2 = 120
@@ -445,17 +439,13 @@ $
   "TC"(#Q2) &= c D + S D / #Q2 + H/2 (1 - D/P) #Q2 = #calc.round(TC(Q2), digits: 2)
 $
  
-Since $Q1 dot Q2 = #(Q1 * Q2) = (Q^*)^2$, both quantities give exactly the same total cost — a
-general property of the EOQ/EPQ cost function: whenever two candidates' product equals $(Q^*)^2$,
-their ordering-cost and holding-cost terms simply swap values, so the sum is identical.
- 
 Both 
 
-#result([$Q = 80$]) 
+$Q = #result([80])$ 
 
 and 
 
-#result([$Q = 120$]) 
+$Q = #result([120])$ 
 
 are optimal, tied at:
  
@@ -464,15 +454,15 @@ $
 $
  
 which is $#calc.round(TC(Q1) - TC(q-star), digits: 2)$ \$ higher per year than the unconstrained
-minimum of $#calc.round(TC(q-star), digits: 2)$ \$ found in (b).
+minimum of $#calc.round(TC(q-star), digits: 2)$ \$.
  
 #align(center)[
   #let x = lq.linspace(10, 200, num: 200)
   #let y-tc = x.map(TC)
  
   #lq.diagram(
-    width: 25em,
-    height: 20em,
+    width: 10cm,
+    height: 8cm,
     xlabel: [$Q$],
     ylabel: [$"TC"(Q)$],
     lq.plot(x, y-tc, mark: none, stroke: 1.5pt, label: [TC]),
@@ -485,141 +475,228 @@ minimum of $#calc.round(TC(q-star), digits: 2)$ \$ found in (b).
 = All unit and marginal unit discounts (Max Points 30)
 
 _Ericson's mobile communications division, a smartphone manufacturer, uses 20,000 memory
-chips per month. Their transportation service provider charges Ericson €300 per shipment,
+chips per month. Their transportation service provider charges Ericson \$300 per shipment,
 independently of the quantity purchased. The manufacturer offers an all unit quantity
-discount with a price of €1 per memory chip for orders up to 18,000 units, €0.96 per chip for
-orders between 18,000 and 36,000 units, and €0.92 per chip for orders larger than 36,000
+discount with a price of \$1 per memory chip for orders up to 18,000 units, \$0.96 per chip for
+orders between 18,000 and 36,000 units, and \$0.92 per chip for orders larger than 36,000
 units. Ericson incurs an annual unit holding cost of 15% of product cost._
 
-#v(2em)
+#v(1em)
 
-#let D = 20000
+#let months-per-year = 12
+#let D-monthly = 20000
+#let D = D-monthly * months-per-year
 #let S = 300
 #let q = (18000, 36000)
-#let c = (1, 0.96, 0.92)
+#let p = (1, 0.96, 0.92)
 #let h = 0.15
 
-#let TVC(Q, c) = D * c + D / Q * S + Q / 2 * h * c
-#let q-star(ci) = calc.sqrt((2 * D * S) / (h * ci))
+- Demand $D$ = $#D$ units/year
+- Setup cost $S$ = \$$#S$/order
+- Holding cost rate $h$ = $#(h*100)%$ of unit cost
+- Break points: $q_1 = 18000$, $q_2 = 36000$
+- Price $c_i$ (\$/unit): $c_1 = 1$, $c_2 = 0.96$, $c_3 = 0.92$
 
-#let q-stars = c.map(q-star)
-#let q-stars = q-stars.map(q => calc.round(q, digits: 2))
-
-#let q-star-1 = q-stars.at(0)
-#let q-star-2 = q-stars.at(1)
-#let q-star-3 = q-stars.at(2)
-
-- Demand $D$ = $#D$ unit / year
-- Setup cost $S$ = $#S$ \$ / order
-- Break points: $(18000, 36000)$
-- Cost $c$ (\$ / unit)
-  - $c_1 = 1$
-  - $c_2 = 0.96$
-  - $c_3 = 0.92$
-
-
-#v(2em)
+#v(1em)
 
 *(a)* _What is the optimal lot size for Ericson? (5 points)_
 
-$
-  "TVC"_i (Q) = D c_i + D / Q S + Q / 2 h c_i, quad "for" q_i lt.eq Q lt.eq q_(i+1)
-$
+The total annual cost for bracket $i$ is:
 
 $
-  (dif "TVC") / (dif Q) = - (S D) / Q^2 + (h c_i) / 2
+  "TVC"_i (Q) = D c_i + D / Q S + Q / 2 h c_i
 $
 
+which is minimized at
+
 $
-  Q^*_i = sqrt((2 D S) / (h c_i))
+  (dif "TVC"_i (Q)) / (dif Q) = - (D S) / Q^2 + (h c_i) / 2 = 0 quad arrow.double quad Q^*_i = sqrt((2 D S) / (h c_i))
 $
+
+#let Qstar(c) = calc.sqrt((2 * D * S) / (h * c))
+#let TVC(Q, c) = D * c + D / Q * S + Q / 2 * h * c
+
+#let Qstar-1 = calc.round(Qstar(p.at(0)), digits: 2)
+#let Qstar-2 = calc.round(Qstar(p.at(1)), digits: 2)
+#let Qstar-3 = calc.round(Qstar(p.at(2)), digits: 2)
+
+#let tvc-1 = calc.round(TVC(18000, p.at(0)), digits: 2)
+#let tvc-2 = calc.round(TVC(Qstar(p.at(1)), p.at(1)), digits: 2)
+#let tvc-3 = calc.round(TVC(36000, p.at(2)), digits: 2)
 
 #align(center)[
+  #table(
+    columns: 7,
+    inset: 0.8em,
+    align: center + horizon,
+    [*Bracket*], [*Range*], [*Price*], [*Unconstrained $Q^*_i$*], [*Feasible?*], [*Best $Q$ in bracket*], [*$"TVC"_i$*],
+    [1], [$0 lt.eq Q lt.eq 18000$], [1], [#Qstar-1], [No (too large)], [18,000], [#tvc-1],
+    [2], [$18000 lt.eq Q lt.eq 36000$], [0.96], [#Qstar-2], [Yes], [#Qstar-2], [#tvc-2],
+    [3], [$Q gt.eq 36000$], [0.92], [#Qstar-3], [No (too small)], [36,000], [#tvc-3],
+  )
+]
 
-  #let breaks = (200,) + q + (50000,)
+#align(center)[
+  #let breaks = (200,) + q + (70000,)
 
   #lq.diagram(
-    width: 25em,
-    height: 20em,
-    ylim: (19000, 25000),
+    width: 10cm,
+    height: 8cm,
+    ylim: (220000, 260000),
     xaxis: (
-      ticks: (
-        ..q.enumerate().map(v => (v.at(1), $q_#(v.at(0) + 1)$)),
-        // ..c.enumerate().map(v => (Qstar(v.at(1)), $Q^*_#(v.at(0) + 1)$)),
-      ),
-      subticks: none
+      ticks: q.enumerate().map(v => (v.at(1), $q_#(v.at(0) + 1)$)),
+      subticks: none,
     ),
-    // yaxis: (ticks: none, subticks: none),
     xlabel: [$Q$],
     ylabel: [$"TVC"(Q)$],
 
-    ..c.enumerate().map(v => {
+    ..p.enumerate().map(v => {
       let i = v.at(0)
       let ci = v.at(1)
       let xs = lq.linspace(breaks.at(i), breaks.at(i + 1), num: 100)
       lq.plot(xs, xs.map(Q => TVC(Q, ci)), mark: none,
         stroke: (thickness: 2pt), label: [$c = #ci$])
     }),
-    
-    ..c.enumerate().map(v => {
+
+    ..p.enumerate().map(v => {
       let x = lq.linspace(200, breaks.last(), num: 200)
       lq.plot(x, x.map(Q => TVC(Q, v.at(1))), mark: none,
         stroke: (dash: "dashed", thickness: 1pt, paint: gray))
     }),
+
+    lq.scatter((36000,), (tvc-3,), size: 10pt, color: black),
   )
 ]
 
-#let tvc-1 = calc.round(TVC(q-star-1, c.at(0)), digits: 2)
-#let tvc-2 = calc.round(TVC(18000, c.at(1)), digits: 2)
-#let tvc-3 = calc.round(TVC(36000, c.at(2)), digits: 2)
-
-#align(center)[
-  #text(size: 8pt)[
-    #table(
-      columns: 7,
-      inset: 1em,
-      [Category], [Range], [Price], [Unconstrained $Q^*_i$], [Feasible], [Min Feasible $Q^*$], [$"TVC"(Q)$],
-      [$c_1$], [$0 lt.eq Q lt.eq 17999$], [$1$], [#q-star-1], [Yes],  [#q-star-1], [#tvc-1],
-      [$c_2$], [$1800 lt.eq Q lt.eq 35999$], [$0.96$], [#q-star-2], [No], [18000], [#tvc-2],
-      [$c_3$], [$Q gt.eq 36000$], [$0.92$], [#q-star-3], [No], [36000], [#tvc-3],
-    )
-  ]
-]
-
-The $Q$ that minimizes the $"TVC"$ accounting for constraints is therefore #result([18000]).
+$
+  Q^* = #result([36,000])
+$
 
 *(b)* _What is the annual cost of such a policy? (5 points)_
 
 $
-  "TVC"(18000) = #result([#tvc-2])
+  "TVC"(Q^*) = "TVC"(36000) = D(0.92) + D/36000 (300) + 36000/2 (0.15)(0.92) = #result([#tvc-3])
 $
-
 
 *(c)* _What is the cycle inventory of memory chips at Ericson? (5 points)_
 
 $
-  Q^* / 2 = #q-star-2 / 2 = #result([#calc.round(q-star-2 / 2, digits: 2)])
+  Q^* / 2 = 36000 / 2 = #result([18,000])
 $
 
-*[(d)-(e)]* _The manufacturer now offers a “marginal” unit quantity discount for the chips. The
-first 18,000 chips of any order are sold at €1 per unit, the next 18,000 units are sold at €0.96
-and any quantity over 36,000 chips is sold for €0.92 per unit._
+#v(1em)
 
+*[(d)-(e)]* _The manufacturer now offers a "marginal" unit quantity discount for the chips. The
+first 18,000 chips of any order are sold at \$1 per unit, the next 18,000 units are sold at \$0.96
+and any quantity over 36,000 chips is sold for \$0.92 per unit._
 
-*(d)* What is the optimal lot size for Ericson given this pricing structure, what is the resulting cost, and how does it compare with that in (a) and (b)? (10 points)
+*(d)* _What is the optimal lot size for Ericson given this pricing structure, what is the
+resulting cost, and how does it compare with that in (a) and (b)? (10 points)_
+ 
+$
+  C_1 (Q) &= Q &&"for " 0 lt.eq Q lt.eq 18000 \
+  C_2 (Q) &= 18000 + 0.96 (Q - 18000) quad quad &&"for " 18000 lt.eq Q lt.eq 36000 \
+  C_3 (Q) &= 35280 + 0.92 (Q - 36000) &&"for " Q gt.eq 36000
+$
+ 
+$
+  "TVC"_i (Q) = D / Q (S + C_i (Q)) + h / 2 C_i (Q)
+$
+ 
+$
+  (dif "TVC"_i) / (dif Q) = - (D (S + R_i)) / Q^2 + (h p_i) / 2 = 0
+  quad arrow.double quad
+  Q^*_i = sqrt((2 D (S + R_i)) / (h p_i))
+$
+ 
+#let R = (0, 720.0, 2160.0)
+#let Qstar-marg(i) = calc.round(calc.sqrt((2 * D * (S + R.at(i))) / (h * p.at(i))), digits: 2)
+#let TVC-marg(Q, i) = {
+  let C = R.at(i) + p.at(i) * Q
+  D / Q * (S + C) + h / 2 * C
+}
+ 
+#let qm-1 = Qstar-marg(0)
+#let qm-2 = Qstar-marg(1)
+#let qm-3 = Qstar-marg(2)
+ 
+#let tvcm-1 = calc.round(TVC-marg(18000, 0), digits: 2)
+#let tvcm-2 = calc.round(TVC-marg(36000, 1), digits: 2)
+#let tvcm-3 = calc.round(TVC-marg(qm-3, 2), digits: 2)
+ 
+#align(center)[
+  #table(
+    columns: 7,
+    inset: 0.8em,
+    align: center + horizon,
+    [*Bracket*], [*Range*], [*Price $p_i$*], [*$R_i$*], [*Unconstrained $Q^*_i$*], [*Feasible?*], [*$"TVC"_i$*],
+    [1], [$0 lt.eq Q lt.eq 18000$], [1], [0], [#qm-1], [No (too large)], [#tvcm-1],
+    [2], [$18000 lt.eq Q lt.eq 36000$], [0.96], [720], [#qm-2], [No (too large)], [#tvcm-2],
+    [3], [$Q gt.eq 36000$], [0.92], [2160], [#qm-3], [*Yes*], [#tvcm-3],
+  )
+]
+  
+#align(center)[
+  #let plot-domain = (500,) + q + (130000,)
+ 
+  #lq.diagram(
+    width: 13cm,
+    height: 10cm,
+    ylim: (225000, 260000),
+    xaxis: (
+      ticks: q.enumerate().map(v => (v.at(1), $q_#(v.at(0) + 1)$)),
+      subticks: none,
+    ),
+    xlabel: [$Q$],
+    ylabel: [$"TVC"(Q)$],
+ 
+    ..p.enumerate().map(v => {
+      let i = v.at(0)
+      let xs = lq.linspace(plot-domain.at(i), plot-domain.at(i + 1), num: 100)
+      lq.plot(xs, xs.map(Q => TVC-marg(Q, i)), mark: none,
+        stroke: (thickness: 2pt), label: [$p_#(i + 1) = #v.at(1)$])
+    }),
+ 
+    ..p.enumerate().map(v => {
+      let i = v.at(0)
+      let xs = lq.linspace(plot-domain.first(), plot-domain.last(), num: 200)
+      lq.plot(xs, xs.map(Q => TVC-marg(Q, i)), mark: none,
+        stroke: (dash: "dashed", thickness: 1pt, paint: gray))
+    }),
+ 
+    lq.scatter((qm-3,), (tvcm-3,), size: 6pt, color: black),
+  )
+]
+ 
+$
+  Q^*_"marginal" = #result([#qm-3])
+$
+ 
+(compare to the bracket boundaries $18000$ and $36000$)
+ 
+$
+  "TVC"(Q^*_"marginal") = #result([#tvcm-3])
+$
 
+Comparison: the marginal-discount optimum requires ordering more than twice
+as much per shipment (#qm-3 vs. 36,000) to reach a comparable cost level, and even so the
+resulting annual cost, \$#tvcm-3, is higher than the all-units discount's \$#tvc-3.
+ 
 *(e)* _What is the cycle inventory of memory chips at Ericson given the ordering policy? (5 points)_
-
+ 
+$
+  Q^*_"marginal" / 2 = #qm-3 / 2 = #result([#calc.round(qm-3 / 2, digits: 2)])
+$
 
 = Shipment aggregation (Max Points 20)
 
 _LG, a refiner in Barcelona, serves three customers near Zaragoza, and maintains consignment
 inventory (owned by LG) at each location. Demand at the large customer is 48 tons a year,
 demand at the medium customer is 24 tons per year, and demand at the small customer is 12
-tons per year. Product cost for LG is €80,000 per ton and the annual unit holding cost has been
+tons per year. Product cost for LG is \$80,000 per ton and the annual unit holding cost has been
 estimated to 15% of product cost. Currently, LG uses full-truckload transportation to deliver
-separately to each customer. Truck capacity is 12 tons and each delivery costs €700 plus €150
-per stop (thus, delivering to each customer separately costs €850 per truck). LG is considering
+separately to each customer. Truck capacity is 12 tons and each delivery costs \$700 plus \$150
+per stop (thus, delivering to each customer separately costs \$850 per truck). LG is considering
 aggregating deliveries to Zaragoza on a single truck._
 
 #v(2em)
@@ -687,12 +764,12 @@ the medium customer, and #calc.round(n-a-s, digits: 2) to the small customer.
 #table(
   columns: 5,
   [*Customer*], [*Deliveries/yr*], [*Transport cost*], [*Holding cost*], [*Total cost*],
-  [Large], [#calc.round(n-a-l, digits: 2)], [€#calc.round(tr-a-l, digits: 0)], [€#calc.round(h-a-l, digits: 0)], [€#calc.round(tc-a-l, digits: 0)],
-  [Medium], [#calc.round(n-a-m, digits: 2)], [€#calc.round(tr-a-m, digits: 0)], [€#calc.round(h-a-m, digits: 0)], [€#calc.round(tc-a-m, digits: 0)],
-  [Small], [#calc.round(n-a-s, digits: 2)], [€#calc.round(tr-a-s, digits: 0)], [€#calc.round(h-a-s, digits: 0)], [€#calc.round(tc-a-s, digits: 0)],
+  [Large], [#calc.round(n-a-l, digits: 2)], [\$#calc.round(tr-a-l, digits: 0)], [\$#calc.round(h-a-l, digits: 0)], [\$#calc.round(tc-a-l, digits: 0)],
+  [Medium], [#calc.round(n-a-m, digits: 2)], [\$#calc.round(tr-a-m, digits: 0)], [\$#calc.round(h-a-m, digits: 0)], [\$#calc.round(tc-a-m, digits: 0)],
+  [Small], [#calc.round(n-a-s, digits: 2)], [\$#calc.round(tr-a-s, digits: 0)], [\$#calc.round(h-a-s, digits: 0)], [\$#calc.round(tc-a-s, digits: 0)],
 )
 
-*Total annual cost = €#calc.round(tc-a-total, digits: 0)* (transportation €#calc.round(tr-a-l+tr-a-m+tr-a-s, digits: 0) + holding €#calc.round(h-a-l+h-a-m+h-a-s, digits: 0)).
+*Total annual cost = \$#calc.round(tc-a-total, digits: 0)* (transportation \$#calc.round(tr-a-l+tr-a-m+tr-a-s, digits: 0) + holding \$#calc.round(h-a-l+h-a-m+h-a-s, digits: 0)).
 
 Days of inventory carried (average inventory ÷ average daily demand, $= 365 Q\/(2D)$):
 large = #calc.round(days-a-l, digits: 1) days, medium = #calc.round(days-a-m, digits: 1) days,
@@ -730,14 +807,14 @@ $Q_i^* = sqrt(2 D_i S_i \/ H)$. These are all well under the #(capacity)-ton tru
 #table(
   columns: 5,
   [*Customer*], [*$Q^*$ (tons)*], [*Orders/yr*], [*Days of inventory*], [*Annual cost*],
-  [Large], [#calc.round(Ql, digits: 2)], [#calc.round(n-b-l, digits: 2)], [#calc.round(days-b-l, digits: 1)], [€#calc.round(TCl, digits: 0)],
-  [Medium], [#calc.round(Qm, digits: 2)], [#calc.round(n-b-m, digits: 2)], [#calc.round(days-b-m, digits: 1)], [€#calc.round(TCm, digits: 0)],
-  [Small], [#calc.round(Qs, digits: 2)], [#calc.round(n-b-s, digits: 2)], [#calc.round(days-b-s, digits: 1)], [€#calc.round(TCs, digits: 0)],
+  [Large], [#calc.round(Ql, digits: 2)], [#calc.round(n-b-l, digits: 2)], [#calc.round(days-b-l, digits: 1)], [\$#calc.round(TCl, digits: 0)],
+  [Medium], [#calc.round(Qm, digits: 2)], [#calc.round(n-b-m, digits: 2)], [#calc.round(days-b-m, digits: 1)], [\$#calc.round(TCm, digits: 0)],
+  [Small], [#calc.round(Qs, digits: 2)], [#calc.round(n-b-s, digits: 2)], [#calc.round(days-b-s, digits: 1)], [\$#calc.round(TCs, digits: 0)],
 )
 
-*Total annual (transportation + holding) cost = €#calc.round(TC_nonagg, digits: 0)*, versus
-€#calc.round(tc-a-total, digits: 0) under policy (a). A saving of roughly
-€#calc.round(tc-a-total - TC_nonagg, digits: 0) simply from right-sizing each shipment instead of
+*Total annual (transportation + holding) cost = \$#calc.round(TC_nonagg, digits: 0)*, versus
+\$#calc.round(tc-a-total, digits: 0) under policy (a). A saving of roughly
+\$#calc.round(tc-a-total - TC_nonagg, digits: 0) simply from right-sizing each shipment instead of
 always sending a full truck. Note transportation cost equals holding cost for each customer here
 (a property of the EOQ optimum), and days of inventory now scale with demand instead of all being
 identical.
@@ -765,7 +842,7 @@ under this policy? (10 points)_
 #let q-c-s = t-agg * Ds
 
 With aggregation, the truck makes one route to all #n-cust customers per trip, so the fixed cost
-becomes $S_"agg" = S + n s_i = $ €#S-agg, shared over the combined demand
+becomes $S_"agg" = S + n s_i = $ \$#S-agg, shared over the combined demand
 $D_"agg" = $ #D-agg tons/year. Treating the pooled demand as a single EOQ problem:
 
 $ Q_"agg"^* = sqrt(2 D_"agg" S_"agg" \/ H) = #calc.round(Q-agg, digits: 2) "tons per trip" $
@@ -787,8 +864,8 @@ Because all three customers are now replenished on the *same* synchronized cycle
 the *same* number of days of inventory (#calc.round(days-agg, digits: 1) days) even though their
 lot sizes differ.
 
-*Total annual (transportation + holding) cost = €#calc.round(TC-agg, digits: 0)*, versus
-€#calc.round(TC_nonagg, digits: 0) under separate optimal delivery in (b). Representing a saving of €#calc.round(TC_nonagg - TC-agg, digits: 0) (≈ #calc.round((TC_nonagg - TC-agg) / TC_nonagg * 100, digits: 1)%), and €#calc.round(tc-a-total - TC-agg, digits: 0) versus the original full-truckload policy in (a).
+*Total annual (transportation + holding) cost = \$#calc.round(TC-agg, digits: 0)*, versus
+\$#calc.round(TC_nonagg, digits: 0) under separate optimal delivery in (b). Representing a saving of \$#calc.round(TC_nonagg - TC-agg, digits: 0) (≈ #calc.round((TC_nonagg - TC-agg) / TC_nonagg * 100, digits: 1)%), and \$#calc.round(tc-a-total - TC-agg, digits: 0) versus the original full-truckload policy in (a).
 
 *LG should aggregate deliveries to Zaragoza.*
 
@@ -798,8 +875,8 @@ _EasyWash is a washing machine manufacturer operating in Europe. One of its best
 models is produced in the firm's manufacturing site in Zaragoza and consists of three core
 subassemblies: rotor, cylinder, and frame. While the rotor is manufactured in-house, the other
 two subassemblies (cylinder and frame) are sourced from Asia. The cost for placing an order
-with the cylinder supplier is 2,500€, while the same cost for the frame is 600€. Also, the annual
-cost of holding one unit of inventory is equal to 75€ for the cylinder and 50€ for the frame.
+with the cylinder supplier is 2,500\$, while the same cost for the frame is 600\$. Also, the annual
+cost of holding one unit of inventory is equal to 75\$ for the cylinder and 50\$ for the frame.
 The annual demand for the particular model is equal to 1,200 units (each machine consists of
 one rotor, one cylinder, and one frame)._
 
@@ -943,8 +1020,8 @@ $
 
 #align(center)[
   #lq.diagram(
-    width: 25em,
-    height: 16em,
+    width: 10cm,
+    height: 8cm,
     xlabel: [$T$],
     ylabel: [$"TVC"(T)$],
     xaxis: (
@@ -1046,9 +1123,15 @@ values for this system). (7 points)_
 
 *Optimal Production Quantity*
 
+The total cost is given by the function:
+ 
+$
+  "TC"(Q)
+  &= underbrace(c D, "Purchasing\nCost") quad + quad underbrace(S D / Q, "Ordering\nCost") quad + quad underbrace(H / 2 (1 - D / P) Q, "Holding\nCost")
+$
 $
   "TVC"(Q)
-  &= underbrace(S D / Q, "Ordering\nCost") quad + quad underbrace(Q / 2 (1 - D / P) H, "Holding\nCost")
+  &= underbrace(S D / Q, "Ordering\nCost") quad + quad underbrace(H / 2 (1 - D / P) Q, "Holding\nCost")
 $
  
 Minimize the total cost w.r. to $Q$:
@@ -1076,15 +1159,42 @@ $
   Q^2 &= (2 D S) / (H (1 - D/P)) \ \
   Q^* &= sqrt((2 D S) / (H (1 - D/P)))
 $
+ 
+To confirm this critical point is a minimum rather than a maximum, check the second derivative:
+ 
+$
+  (dif^2 "TVC") / (dif Q^2)
+    &= (dif) / (dif Q) [-(D S) / Q^2 + H/2 (1 - D/P)] \ \
+    &= (dif) / (dif Q) [-D S Q^(-2)] + 0 \ \
+    &= -D S dot (dif) / (dif Q) [Q^(-2)] \ \
+    &= -D S dot (-2) Q^(-3) \ \
+    &= (2 D S) / Q^3
+$
+ 
+Since $D, S, Q > 0$, $(dif^2 "TVC")/(dif Q^2) > 0$ for all $Q > 0$, confirming $"TVC"(Q)$ is convex and the critical point $Q^* = sqrt((2 D S) / (H (1 - D/P)))$ is a minimum.
+
+$
+  "TVC"(Q) = S D / Q + H (1 - D / P) Q / 2
+$
+
+#align(center)[
+  #result[
+    $
+      (dif "TCV"(Q)) / (dif Q) = = 0 quad arrow.double quad Q^* = sqrt((2 D S) / (H (1 + D / P)))
+    $
+  ]
+]
 
 *Total variable Cost*
 
 $
-  "TVC"(Q^*) 
-  &= underbrace(S D / Q^*, "Ordering\nCost") quad + quad underbrace(Q^* / 2 (1 - D / P) H, "Holding\nCost") \
-  &= S D / Q^* + Q^* / 2 (1 - D / P) H \
-  &= S D / sqrt((2 D S) / (H (1 - D/P))) + sqrt((2 D S) / (H (1 - D/P))) / 2 (1 - D / P) H \
-  &= 
+  "TVC"(Q) = S D / Q^* + H (1 - D / P) Q^* / 2 
+  quad quad quad 
+  Q^* = sqrt((2 D S) / (H (1 + D / P)))
+$
+
+$
+  "TVC"(Q^*) = S D / (sqrt((2 D S) / (H (1 + D / P)))) + H (1 - D / P) (sqrt((2 D S) / (H (1 + D / P)))) / 2 
 $
 
 *(b)* _Notice that when output is immediate available, the total variable cost is increasing in
