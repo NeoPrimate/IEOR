@@ -1207,113 +1207,55 @@ $
 _(Hint: consider, to avoid running out of stock, what are the maximum and minimum inventory
 values for this system). (7 points)_
 
-#line(length: 100%)
+#v(2em)
 
-Average Inventory
+A production run makes $Q$ units at rate $P$, so it takes $t_1 = Q / P$ time to finish one run. Once it's finished, the whole batch $Q$ drops into usable inventory at once. Demand keeps draining stock at rate $D$ the whole time, in both phases. Since exactly $Q$ units are consumed per cycle at rate $D$, a full cycle takes $T = Q / D$
 
-$
-  macron(I) = (I_max - I_min) / 2 = 1 / 2 (Q + (D Q) / P) = Q / 2 (1 + D / P)
-$
+1. Finished-goods stock behaves like ordinary EOQ
 
-Optimal Order Quantity
+Usable (finished) inventory jumps up by $Q$ the instant a batch finishes, then drains at rate $D$ until the next batch finishes, $T = Q / D$ later. That's just a plain sawtooth from $Q$ down to 0 (production rate $P$ doesn't distort its shape, because nothing is added gradually). So:
 
 $
-  "TVC"(Q) = (S D) / Q + H macron(I) (Q) = (S D) / Q + H / 2 (1 + D / P) Q
+  "average finished-goods stock" = Q / 2
 $
 
-$
-  (dif "TCV") / (dif Q) = - (S D) / Q^2 + H / 2 (1 + D / P) = 0 quad arrow.double quad Q^* = sqrt((2 D S) / (H (1 + D / P)))
-$
+2. But the batch being made also sits around and ties up cost
 
-Total Variable Cost
+While a run is in progress ($t_1 = Q / P$ out of every cycle $T$), there's a pile of work-in-process building up in the factory. It starts at 0, grows linearly to $Q$ by the end of the run, then disappears (converts to finished goods) for the rest of the cycle. That's a triangle of height $Q$ over a width $t_1$, sitting inside a cycle of length $T$. Its time-average over the whole cycle is:
 
 $
-  "TVC"(Q^*) = 2 sqrt(S D H / 2 (1 + D / P)) = sqrt(2 D S H (1 + D / P))
+  (1/2 dot Q dot t_1) / T = Q / 2 dot t_1 / T = Q / 2 dot (Q \/ P) / (Q \/ D) = Q / 2 dot D / P
 $
 
+This work-in-process still costs money to hold even though it can't be sold yet. That's what delayed-availability costs.
 
-#line(length: 100%)
-
-
-
-*Average Inventory*
+3. Add them up
 
 
-
-*Optimal Production Quantity*
-
-The total cost is given by the function:
- 
 $
-  "TC"(Q)
-  &= underbrace(c D, "Purchasing\nCost") quad + quad underbrace(S D / Q, "Ordering\nCost") quad + quad underbrace(H / 2 (1 - D / P) Q, "Holding\nCost")
-$
-$
-  "TVC"(Q)
-  &= underbrace(S D / Q, "Ordering\nCost") quad + quad underbrace(H / 2 (1 - D / P) Q, "Holding\nCost")
-$
- 
-Minimize the total cost w.r. to $Q$:
- 
-$
-  Q^* = op(arg min, limits: #true)_Q "TVC"(Q)
-$
- 
-Find the first derivative of the total variable cost function:
- 
-$
-  (dif "TVC") / (dif Q)
-    &= (dif) / (dif Q) [ S D/Q + H/2 (1 - D/P) Q ] \ \
-    &= (dif) / (dif Q) (D S Q^(-1)) + H/2 (1 - D/P) dot (dif) / (dif Q) (Q) \ \
-    &= D S dot (dif) / (dif Q) (Q^(-1)) + H/2 (1 - D/P) dot 1 \ \
-    &= D S dot (-1) Q^(-2) + H/2 (1 - D/P) \ \
-    &= -(D S) / Q^2 + H/2 (1 - D/P)
-$
- 
-Setting the derivative equal to zero to find the critical point:
- 
-$
-  -(D S) / Q^2 + H/2 (1 - D/P) &= 0 \ \
-  H/2 (1 - D/P) &= (D S) / Q^2 \ \
-  Q^2 &= (2 D S) / (H (1 - D/P)) \ \
-  Q^* &= sqrt((2 D S) / (H (1 - D/P)))
-$
- 
-To confirm this critical point is a minimum rather than a maximum, check the second derivative:
- 
-$
-  (dif^2 "TVC") / (dif Q^2)
-    &= (dif) / (dif Q) [-(D S) / Q^2 + H/2 (1 - D/P)] \ \
-    &= (dif) / (dif Q) [-D S Q^(-2)] + 0 \ \
-    &= -D S dot (dif) / (dif Q) [Q^(-2)] \ \
-    &= -D S dot (-2) Q^(-3) \ \
-    &= (2 D S) / Q^3
-$
- 
-Since $D, S, Q > 0$, $(dif^2 "TVC")/(dif Q^2) > 0$ for all $Q > 0$, confirming $"TVC"(Q)$ is convex and the critical point $Q^* = sqrt((2 D S) / (H (1 - D/P)))$ is a minimum.
-
-$
-  "TVC"(Q) = S D / Q + H (1 - D / P) Q / 2
+  macron(I) = Q / 2  + Q / 2 dot D / P = #result[$Q / 2 (1 + D / P)$]
 $
 
-#align(center)[
-  #result[
-    $
-      (dif "TCV"(Q)) / (dif Q) = = 0 quad arrow.double quad Q^* = sqrt((2 D S) / (H (1 + D / P)))
-    $
-  ]
-]
+4. Optimal $Q$
 
-*Total variable Cost*
+Total variable cost per unit time is holding cost plus setup cost:
 
 $
-  "TVC"(Q) = S D / Q^* + H (1 - D / P) Q^* / 2 
-  quad quad quad 
-  Q^* = sqrt((2 D S) / (H (1 + D / P)))
+  "TVC"(Q) = H macron(I) + S D / Q = H / 2 (1 + D / P) Q + (S D) / Q
 $
 
+Take the derivative and set it to zero:
+
 $
-  "TVC"(Q^*) = S D / (sqrt((2 D S) / (H (1 + D / P)))) + H (1 - D / P) (sqrt((2 D S) / (H (1 + D / P)))) / 2 
+  (dif "TVC"(Q)) / (dif Q) = H / 2 (1 + D / P) - (S D) / Q^2 = 0 quad arrow.double quad #result[$Q^* = sqrt((2 D S) / (H (1 + D / P)))$]
+$
+
+5. Optimal cost
+
+This is the standard $"TVC"(Q) = a Q + b / Q$ shape, whose minimum value is $2 sqrt(a b)$. Here $a = H / 2 (1 + D / P)$ and $b = S D$, so:
+
+$
+  "TVC"(Q^*) = 2 sqrt(a b) = #result[$sqrt(2 D S H (1 + D / P))$]
 $
 
 *(b)* _Notice that when output is immediate available, the total variable cost is increasing in
@@ -1321,12 +1263,23 @@ the production rate, while in this case (i.e., when the finished product cannot 
 entire batch is complete), the total variable cost is decreasing in the production rate. Explain
 the possible reason. (3 points)_
 
-The sign of the $D / P$ effect flips because the "overlap" between producing and consuming plays opposite roles in the two models:
+#v(2em)
 
-- Classic EPQ: ew output is consumed as it's made, which decreases how high inventory can climb ($I_max$)
-- 
+- *Immediate-use model* (cost rises with $P$)
 
-#line(length: 100%)
+while a batch is being made, units are sold off as fast as they're produced, so the pile never grows to the full size $Q$ — it only reaches $Q (1 - D / P)$, because selling at rate $D$ "thins it out" the whole time it's being built. A slow production rate gives demand more time to eat into the pile during the run, keeping average inventory low. As $P$ increases, the run gets shorter and there's less time for that thinning effect, so the peak — and the cost — creeps up toward the plain-EOQ value.
+
+- *Delayed-availability model* (cost falls with $P$)
+
+here nothing gets sold off while it's being made, so demand during the run has to be covered by stock (or WIP) held in reserve for exactly that window, of length $t_1 = Q / P$. A slow production rate means a long blackout window, which means a bigger reserve has to sit around the whole time — extra cost. As $P$ increases, the run gets shorter, the blackout shrinks, and less reserve is needed, so cost falls toward the plain-EOQ value.
+
+*Conclusion*
+
+A finite production rate helps you when output is usable immediately (you get to sell while you build), but hurts you when output is stuck in limbo until the batch is done (you have to cover demand out of reserves for the whole build time) — which is exactly the sign flip between $(1 - D / P)$ and $(1 + D / P)$.
+
+= Quiz Problem 2.  EOQ with Backorders (Max Points 10) 
+
+#v(2em)
 
 *The Atlantic Coast Tire Corporation Problem*
 
@@ -1382,7 +1335,7 @@ Inventory Cost Components for R13:
 - Cost ($c$): #c \$ / unit
 - Setup Cost ($S$): #S \$ / order
 - Holding Cost ($H$): #H \$ / unit / year
-- Stockout (Penalty) Cost ($p$): #p \$ / unit
+- Stockout (Penalty) Cost ($P$): #P \$ / unit
 
 #v(2em)
 
@@ -1429,32 +1382,32 @@ $
 
 #let qs = range(100, 2001, step: 10)
 
-#lq.diagram(
-  width: 11cm,
-  height: 7cm,
+#align(center)[
+  #lq.diagram(
+    width: 11cm,
+    height: 7cm,
 
-  xlabel: [$Q$],
-  ylabel: [Cost (\$)],
-  legend: (position: top + right),
+    xlabel: [$Q$],
+    ylabel: [Cost (\$)],
+    legend: (position: top + right),
 
-  xaxis: (
-    ticks: (
-      (Qstar, $Q^* = Qstar$),
-      (Q0, $Q_0 = Q0$),
+    xaxis: (
+      ticks: (
+        (Qstar, $Q^* = Qstar$),
+        (Q0, $Q_0 = Q0$),
+      ),
+      subticks: none,
     ),
-    subticks: none,
-  ),
-  yaxis: (
-    ticks: none,
-    subticks: none,
-  ),
+    yaxis: (
+      ticks: none,
+      subticks: none,
+    ),
 
-  lq.plot(qs, q => S * D / q, mark: none, label: [Ordering cost]),
-  lq.plot(qs, q => H * q / 2, mark: none, label: [Holding cost]),
-  lq.plot(qs, q => TVC(q), mark: none, label: [Total variable cost]),
-
-  
-)
+    lq.plot(qs, q => S * D / q, mark: none, label: [Ordering cost]),
+    lq.plot(qs, q => H * q / 2, mark: none, label: [Holding cost]),
+    lq.plot(qs, q => TVC(q), mark: none, label: [Total variable cost]), 
+  )
+]
 
 #let d-month = 500
 #let L-months = 9 / 20
@@ -1492,34 +1445,34 @@ $
 #let (ts0, inv0) = sawtooth(Q0, T0, horizon)
 #let (tsstar, invstar) = sawtooth(Qstar, Tstar, horizon)
 
-#lq.diagram(
-  width: 11cm, height: 6cm,
-  xlabel: [Time],
-  ylabel: [Inventory],
-  xlim: (0, horizon),
-  ylim: (0, Qstar * 1.1),
-  xaxis: (
-    ticks: (
-      ..reorder-times(Tstar, horizon)
+#align(center)[
+  #lq.diagram(
+    width: 11cm, height: 6cm,
+    xlabel: [Time],
+    ylabel: [Inventory],
+    xlim: (0, horizon),
+    ylim: (0, Qstar * 1.1),
+    xaxis: (
+      ticks: (
+        ..reorder-times(Tstar, horizon)
+      ),
+      subticks: none,
     ),
-    subticks: none,
-  ),
-  yaxis: (
-    ticks: (
-      (Qstar, $Q^* = #Qstar$),
-      (R, $R = #R$),
-      (0, $0$),
+    yaxis: (
+      ticks: (
+        (Qstar, $Q^* = #Qstar$),
+        (R, $R = #R$),
+        (0, $0$),
+      ),
+      subticks: none,
     ),
-    subticks: none,
-  ),
-  legend: (position: top + right),
+    legend: (position: top + right),
 
-  lq.plot(tsstar, invstar, stroke: 1pt, mark: none),
-)
+    lq.plot(tsstar, invstar, stroke: 1pt, mark: none),
+  )
+]
 
-#line(length: 100%)
-
-= Quiz Problem 2.  EOQ with Backorders (Max Points 10) 
+#v(2em)
 
 _In the Atlantic Coast Tire Corporation (ACT) problem that we discussed during our first lecture 
 on EOQ, we ignored the cost of being out of stock (\$7.50 per tire short). Consider the penalty 
@@ -1659,14 +1612,13 @@ order derivative calculations). Then, take the partial derivatives of the cost f
 and B. This will result to a system of two equations with two unknowns. By solving this system, 
 you can obtain the optimal Q and B._ 
 
-- Optimal order quantity: $Q^* = #Qbo$ tires
-- Optimal backorder level: $b^* = #bbo$ tires
-- Peak on-hand inventory: $I_m^* = Q^* - b^* = #Imbo$ tires
-- Minimum annual variable cost: $"TVC"(Q^*, b^*) = \$#tvcbo-star$
+- Optimal order quantity: $Q^* = #result[#Qbo]$ 
 
-Stationarity check: $(partial "TVC")\/(partial b)|_(Q^*,b^*) = #check-db approx 0$ and
-$(partial "TVC")\/(partial Q)|_(Q^*,b^*) = #check-dQ approx 0$, confirming $(Q^*,b^*)$ solves
-the system derived above.
+- Optimal backorder level: $b^* = #result[#bbo]$ 
+
+- Peak on-hand inventory: $I_m^* = Q^* - b^* = #result[#Imbo]$ 
+
+- Minimum annual variable cost: $"TVC"(Q^*, b^*) = #result[\$#tvcbo-star]$
 
 *(b)* _Do you expect the new EOQ to be different (smaller or larger) from the classical EOQ 
 derived in class? Please explain why. (3 points)_  
@@ -1675,8 +1627,8 @@ derived in class? Please explain why. (3 points)_
   columns: 3,
   align: center,
   [*Policy*], [*Q*], [*Annual variable cost*],
-  [Classical EOQ (no backorders)], $#Qstar$, [\$#tvcstar],
-  [EOQ with backorders], $#Qbo$, [\$#tvcbo-star],
+  [Classical EOQ (no backorders)], result[$#Qstar$], [#result[\$#tvcstar]],
+  [EOQ with backorders], result[$#Qbo$], [#result[\$#tvcbo-star]],
 )
 
 
