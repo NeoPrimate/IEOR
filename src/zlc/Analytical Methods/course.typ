@@ -36,15 +36,138 @@
   edge(<c>, <3>, "-|>"),
 )
 
-Profit margin
+
+
+Exercise 1.
 
 $
-  max quad &80 a + 100 b - 20 a - 25 b \
+  max quad &z = (80 - 20) a + (100 - 25) b \
   s.t. quad 
-  &0.1 a + 0.5 b lt.eq 60 \
-  &0 lt.eq a \
-  &0 lt.eq b \
+  &0.2 a + 0.5 b lt.eq 60 \
   &a lt.eq 200 \
   &b lt.eq 110 \
+  &a gt.eq 0  \
+  &b gt.eq 0  \
+$
 
+Constraints
+
+$
+  0.2 a + 0.5 b lt.eq 60
+  \ \
+  a = 0 arrow.double 0.5 b = 60 arrow.double b = 120
+  \ \
+  b = 0 arrow.double 0.2 a = 60 arrow.double a = 300
+$
+
+Objective function
+
+$
+  60 a + 75 b
+  \ \
+  a = 0 arrow.double
+  \ \
+  b = 0 arrow.double
+$
+
+1. Define decision variables
+2. Define objective function
+3. Define constraints
+
+Assumptions:
+- Linearity
+- Divisibility (fractional $eq.not$ whole number)
+- Certainty (parameters non stochastic)
+- Non-negativity
+
+== Diet Problem
+
+Value ($a_i$)
+#table(
+  columns: 5,
+  [], [Vitamine], [Protein], [Calcium], [Fat], 
+  [Corn], [8], [5], [6], [8], 
+  [Beef], [2], [5], [10], [8], 
+  [Soy], [6], [12], [6], [4], 
+  [Fish], [8], [18], [6], [5], 
+)
+
+Bounds ($L_j, U_j$)
+- Vitamine:
+  - Min: 60
+  - Max: N.A
+- Protein:
+  - Min: 300
+  - Max: N.A
+- Calcium:
+  - Min: 70
+  - Max: N.A
+- Fat:
+  - Min: 40
+  - Max: 200
+
+Availability ($s_i$):
+- Corn: 10
+- Beef: 6
+- Soy: 4
+- Fish: 5
+
+Cost ($c_i$)
+- Corn: 60 c
+- Beef: 400c
+- Soy 75 c
+- Fish: 350 c
+
+Notation
+
+- Ingredients: $i in I$
+- Nutrients: $j in J$
+
+Decision variables
+
+- $x_i$: kgs of ingredient $i$ in the meal
+
+
+$
+  min quad & sum_(i in I) c_i x_i  \
+  s.t. quad
+  & x_i lt.eq s_i &quad quad forall i in I\
+  & sum_(i in I) a_(i j) x_i gt.eq L_j &quad quad forall j in J \
+  & sum_(i in I) a_(i j) x_i lt.eq U_j &quad quad forall j in J \
+  & x_i gt.eq 0 &quad quad forall i in I \
+$
+
+== Scheduling Problem
+
+Requirements 
+
+- 12-4: 5
+- 4-8: 7
+- 8-12: 15
+- 12-4: 8
+- 4-8: 12
+- 8-12: 8
+
+8 Consecutive hours
+
+Minimum number of officers to cover all shifts
+
+Shifts:
+
+- 1: 12-8
+- 2: 4-12
+- 3: 8-4
+- 4: 12-8
+- 5: 4-12
+- 6: 8-4
+
+$x_i$: number of employees assigned to shift $i$
+
+
+
+$
+  min quad &sum_(i in I) x_i \
+  s.t. quad
+  & x_i gt.eq s_i \
+  &  \
 $

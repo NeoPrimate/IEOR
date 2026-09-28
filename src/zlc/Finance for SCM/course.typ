@@ -659,6 +659,79 @@ $
 ]
 
 
+Inventory valuation 
+1. Product costing
+
+- Direct v. Indicrect Costs
+  - Direct: Expenses that directly go into producing goods specific to the operation (direct labor, direct materials, mfg supplies)
+  - Indirect: General business expenses for operations shared between operations (indirect labor, rent, utilities)
+
+- Fixed v. Variable Costs
+  - Fixed: Does not depend on the volume of activity
+  - Variable: Varies in relation to volume
+
+2. Flow assumption
+
+
+
+
+- Absorbtion costing
+  - Direct cost 
+  - Fixed & variable overhead (indirect costs)
+- Direct (variable) costing
+
+== Activity based costing 
+
+(Cost to serve) (activity based costing / pricing)
+
+Depend on complexity of activity, shipments, service
+
+A pricing strategy that sets prices based on the actual overhead and indirect resources a product, service, or customer consumes
+
+Determine how much each customer costs
+
+Normal costing can hide profitable and unprofitable customers
+
+- Amount of money being spent on a customer (focus on large sums)
+- Variability of customer behavior (cost to serve variation) (focus on high variability activities). Different use / consumption between customers.
+
+=== Dakota Case Study
+
+Operating expenses: \$5.85M
+
+Cost Pools -> Activities -> Cost Drivers (transactional, time, intensity)
+
+Cost Pools:
++ *Freight* (\$450k)
++ *Warehouse Expenses* (\$2M)
++ *Personnel* (\$2.4M)
++ *Delivery Truck* (\$200k)
++ *Order Entry* (\$800k)
+
+Activities:
+- Ship Cartons
+- Process Cartons
+- Deliver Destops
+- Process Manual Orders
+- Enter Items Ordered (Manual)
+- Process EDI Orders (e.g. validate)
+
+Cost Drivers
+
+Link drivers to customer behavior
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // #let q1(value) = [#value#metadata(value)<q1>]
