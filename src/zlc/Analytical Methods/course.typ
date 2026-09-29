@@ -163,11 +163,81 @@ Shifts:
 
 $x_i$: number of employees assigned to shift $i$
 
-
-
 $
-  min quad &sum_(i in I) x_i \
+  min quad &z = sum_(i = 1)^6 x_i \
   s.t. quad
   & x_i gt.eq s_i \
-  &  \
+  & x_1 + x_6 gt.eq 5 \
+  & x_1 + x_2 gt.eq 7 \
+  & x_2 + x_3 gt.eq 15 \
+  & x_3 + x_4 gt.eq 8 \
+  & x_4 + x_5 gt.eq 12 \
+  & x_5 + x_6 gt.eq 9 \
+  &x_i gt.eq 0, quad forall i in {1, 2, dots, 6} \
 $
+
+=== Compact Form
+
+- $L_j$: \# of peple needed during time period $j$ ($j = 1, dots, 6$)
+
+$
+  L = vec(5, 7, 18, 8, 12, 9)
+$
+
+- $T_(i j) = cases(
+  1 quad "if work shift" i "covers period" j,
+  0 quad "otherwise"
+)$
+
+$
+  T = mat(
+    0, 1, 0, 0, 0, 1;
+    1, 1, 0, 0, 0, 0;
+    0, 1, 1, 0, 0, 0;
+    0, 0, 1, 1, 0, 0;
+    0, 0, 0, 1, 1, 0;
+    0, 0, 0, 0, 1, 1;
+  )
+$
+
+$
+  min quad 
+  &z = sum_(i=1)^6 x_i \
+  s.t. quad
+  &sum_(i=1)^6 T_(i j) dot x_i gt.eq L_j quad forall j in {1, dots, 6} \
+  &x_i gt.eq 0, quad forall i in {1, dots, 6}
+$
+
+== Dynamic Pricing
+
+#table(
+  columns: 6,
+  [Price Levels ($p$)], [60], [54], [48], [36], [25], 
+  [Demand Multiplier], [1], [1.5], [1.75], [2], [inf],
+  [Weekly Demand ($d$)], [100], [150], [175], [200], [inf], 
+)
+
+- $x_i$: \# of weeks during which I charge a price level $i$
+  - $x_60$: \# of weeks during which I charge a price level \$$60$
+  - $x_54$: \# of weeks during which I charge a price level \$$54$
+  - $x_48$: \# of weeks during which I charge a price level \$$48$
+  - $x_36$: \# of weeks during which I charge a price level \$$36$
+  - $x_s$: \# of units salvaged
+- $p_i$: Price
+- $d_i$: Demand associated with price $i$
+- $D$: Total demand (2500)
+- $W$: \# of weeks (15)
+
+$
+  max quad 
+  &z = sum_(i=1)^4 underbrace(p_i, "price") dot underbrace(x_i dot d_i, "sales") + underbrace(x_s dot s, "salvage") \
+  s.t. quad
+  &sum_(i=1)^5 x_i lt.eq W \
+  &sum_(i=1)^5 d_i x_i lt.eq D \
+  &x_i gt.eq 0 quad forall i in {1, dots, 5} \
+$
+
+== Network Flow Problems
+
+
+

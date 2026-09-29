@@ -5,6 +5,8 @@
 
 #import "@preview/lilaq:0.6.0" as lq
 #import "@preview/tiptoe:0.4.0"
+#import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
+
 #import "../../../../lib/imports.typ": example
 
 #let gap = 8pt
@@ -660,6 +662,227 @@ $
   #e_lost
 ]
 
+== Double Marginalization: Buyback Contract
+
+#table(
+  columns: (auto, auto, 1fr),
+  inset: 1em,
+  align: left + horizon,
+  table.header([*What's given*], [*What you do*], [*Formula*]),
+
+  [$w$], [Solve for $b$],
+  [$b = p + r - (p - w) dot (p - s)/(p - c)$],
+
+  [$b$], [Solve for $w$],
+  [$w = p - (p - b + r) dot (p - c)/(p - s)$],
+
+  [Neither: "for which $w$ does it work?"], [Give the feasible range],
+  [$c < w < p - r (p - c)/(c - s)$],
+
+  [Neither: "which $w$ would both accept?"], [Give the win-win range],
+  [$w_0 + (Pi_S^0 - Pi_S (w_0))/m <= w <= w_0 + (Pi_R (w_0) - Pi_R^0)/m$ \
+   with $m = Q^* - L (p - s)/(p - c)$],
+)
+
+#table(
+  columns: (auto, auto),
+  inset: 1em,
+  align: left + horizon,
+  [E[Shortage]], [$phi(z) - z dot (1 i Phi(z))$],
+  [E[Leftovers]], [$z dot Phi(z) + phi(z)$],
+)
+
+#let c = 100
+#let w = 175
+#let p = 250
+#let s = 75
+#let r = 5
+
+#let mean_D = 1000
+#let sd_D = 300
+
+// Superscripts: BB = buyback contract, W = wholesale-only contract (no buyback)
+
+*Step 1.* Find the best order quantity for the whole chain
+
+#let cu = p - c
+#let co = c - s
+#let cr = cu / (cu + co)
+#let z = norm.ppf(cr)
+#let Q = mean_D + z * sd_D
+
+- $c_u = p - c = #cu, quad c_o = c - s = #co$
+- $"CR" = c_u / (c_u + c_o) = #calc.round(cr, digits: 3)$
+- $z = Phi^(-1)("CR") = #calc.round(z, digits: 3)$
+- $Q^* = mu + z sigma = #calc.round(Q)$
+
+*Step 2.* Find the buyback price $b$ for the given $w$
+
+Choose $b$ so that SkiPro's critical ratio equals the chain's:
+
+#let b = p + r - (p - w) * (p - s) / (p - c)
+
+$
+  (p - w) / (p - b + r) = (p - c) / (p - s)
+  quad arrow.double quad
+  b = p + r - (p - w) (p - s) / (p - c) = #calc.round(b, digits: 2)
+$
+
+With this $b$, SkiPro's own critical ratio is #calc.round(cr, digits: 3), so it orders $Q^* approx #calc.round(Q)$.
+
+*Step 3.* Check the conditions
+
+#let w_max = p - r * (p - c) / (c - s)
+
+- $s + r < b < w$: $#(s + r) < #calc.round(b, digits: 2) < #w$ #if s + r < b and b < w [✓] else [✗]
+- Holds for any $w$ with $c < w < p - r (p - c) / (c - s)$, i.e. $#c < w < #calc.round(w_max, digits: 1)$
+
+*Step 4.* Calculate each firm's expected profit with the buyback
+
+#let leftovers_buyback = sd_D * (z * norm.cdf(z) + norm.pdf(z))
+#let sales_buyback = Q - leftovers_buyback
+
+- $I = E["leftovers"] = sigma [z Phi(z) + phi(z)] = #calc.round(leftovers_buyback)$
+- $S = E["sales"] = Q^* - I = #calc.round(sales_buyback)$
+
+#let profit_r_buyback = p * sales_buyback + (b - r) * leftovers_buyback - w * Q
+#let profit_s_buyback = (w - c) * Q - (b - s) * leftovers_buyback
+#let profit_total_buyback = profit_r_buyback + profit_s_buyback
+
+#table(
+  columns: 3,
+  inset: 1em,
+  align: left + horizon,
+  table.header([], [*Formula*], [*Value*]),
+  [SkiPro], [$Pi_R^"BB" = p S + (b - r) I - w Q^*$], [#calc.round(profit_r_buyback)],
+  [Obermeyer], [$Pi_S^"BB" = (w - c) Q^* - (b - s) I$], [#calc.round(profit_s_buyback)],
+  [Total], [$Pi_R^"BB" + Pi_S^"BB"$], [#calc.round(profit_total_buyback)],
+)
+
+*Step 5.* Calculate each firm's profit without the buyback
+
+Wholesale-only contract: SkiPro salvages its own leftovers.
+
+#let cu_wholesale = p - w
+#let co_wholesale = w - s
+#let cr_wholesale = cu_wholesale / (cu_wholesale + co_wholesale)
+#let z_wholesale = norm.ppf(cr_wholesale)
+#let Q_wholesale = mean_D + z_wholesale * sd_D
+#let leftovers_wholesale = sd_D * (z_wholesale * norm.cdf(z_wholesale) + norm.pdf(z_wholesale))
+#let sales_wholesale = Q_wholesale - leftovers_wholesale
+
+- $c_u = p - w = #cu_wholesale, quad c_o = w - s = #co_wholesale$
+- $"CR"^W = c_u / (c_u + c_o) = #calc.round(cr_wholesale, digits: 3)$
+- $z^W = Phi^(-1)("CR"^W) = #calc.round(z_wholesale, digits: 3)$
+- $Q^W = mu + z^W sigma = #calc.round(Q_wholesale)$
+- $I^W = sigma [z^W Phi(z^W) + phi(z^W)] = #calc.round(leftovers_wholesale)$
+- $S^W = Q^W - I^W = #calc.round(sales_wholesale)$
+
+#let profit_r_wholesale = p * sales_wholesale + s * leftovers_wholesale - w * Q_wholesale
+#let profit_s_wholesale = (w - c) * Q_wholesale
+#let profit_total_wholesale = profit_r_wholesale + profit_s_wholesale
+
+#table(
+  columns: 3,
+  inset: 1em,
+  align: left + horizon,
+  table.header([], [*Formula*], [*Value*]),
+  [SkiPro], [$Pi_R^W = p S^W + s I^W - w Q^W$], [#calc.round(profit_r_wholesale)],
+  [Obermeyer], [$Pi_S^W = (w - c) Q^W$], [#calc.round(profit_s_wholesale)],
+  [Total], [$Pi_R^W + Pi_S^W$], [#calc.round(profit_total_wholesale)],
+)
+
+*Step 6.* Compare the two contracts
+
+#table(
+  columns: 4,
+  inset: 1em,
+  align: (left, right, right, right),
+  table.header([], [*Wholesale*], [*Buyback*], [*Change*]),
+  [SkiPro], [#calc.round(profit_r_wholesale)], [#calc.round(profit_r_buyback)], [#calc.round(profit_r_buyback - profit_r_wholesale)],
+  [Obermeyer], [#calc.round(profit_s_wholesale)], [#calc.round(profit_s_buyback)], [#calc.round(profit_s_buyback - profit_s_wholesale)],
+  [Total], [#calc.round(profit_total_wholesale)], [#calc.round(profit_total_buyback)], [#calc.round(profit_total_buyback - profit_total_wholesale)],
+)
+
+#if profit_s_buyback < profit_s_wholesale [
+  The total goes up, but at $w = #w$ Obermeyer is worse off than without the buyback, so it wouldn't offer this deal.
+] else if profit_r_buyback < profit_r_wholesale [
+  The total goes up, but at $w = #w$ SkiPro is worse off than without the buyback, so it wouldn't accept this deal.
+] else [
+  Both firms gain at $w = #w$.
+]
+
+*Step 7.* Find the win-win range for $w$
+
+Raising $w$ by 1 (with $b$ from Step 2) moves $m$ from SkiPro to Obermeyer:
+
+#let m = Q - leftovers_buyback * (p - s) / (p - c)
+#let w_lo = w + (profit_s_wholesale - profit_s_buyback) / m
+#let w_hi = w + (profit_r_buyback - profit_r_wholesale) / m
+#let w_mid = (w_lo + w_hi) / 2
+#let b_lo = p + r - (p - w_lo) * (p - s) / (p - c)
+#let b_hi = p + r - (p - w_hi) * (p - s) / (p - c)
+#let b_mid = p + r - (p - w_mid) * (p - s) / (p - c)
+
+$
+  m = Q^* - I (p - s) / (p - c) = #calc.round(m)
+$
+
+$
+  w_"lo" = w + (Pi_S^W - Pi_S^"BB") / m = #calc.round(w_lo, digits: 1)
+  quad quad
+  w_"hi" = w + (Pi_R^"BB" - Pi_R^W) / m = #calc.round(w_hi, digits: 1)
+$
+
+#table(
+  columns: 3,
+  inset: 1em,
+  align: (left, right, right),
+  table.header([], [$w$], [$b$]),
+  [Win-win range], [#calc.round(w_lo, digits: 1) – #calc.round(w_hi, digits: 1)], [#calc.round(b_lo, digits: 1) – #calc.round(b_hi, digits: 1)],
+  [Fair split (midpoint)], [#calc.round(w_mid, digits: 1)], [#calc.round(b_mid, digits: 1)],
+)
+
+At the midpoint each firm gains #calc.round((profit_total_buyback - profit_total_wholesale) / 2) over the wholesale contract.
+
+// Profits are straight lines in w, so two points (the feasible range ends) are enough
+#let ws = (c, w_max)
+
+#lq.diagram(
+  width: 14cm, height: 7cm,
+  xlabel: [Wholesale price $w$ (with matching $b$)],
+  ylabel: [Expected profit],
+  legend: (position: left + bottom),
+  lq.fill-between(
+    (w_lo, w_hi), (0, 0), y2: (profit_total_buyback, profit_total_buyback),
+    fill: gray.transparentize(80%), stroke: none, label: [Win-win range],
+  ),
+  lq.plot(ws, ws.map(x => profit_r_buyback - m * (x - w)), mark: none, color: blue, label: [SkiPro]),
+  lq.plot(ws, ws.map(x => profit_s_buyback + m * (x - w)), mark: none, color: red, label: [Obermeyer]),
+  lq.plot(ws, ws.map(_ => profit_total_buyback), mark: none, color: green.darken(20%), label: [Total]),
+  lq.hlines(profit_r_wholesale, stroke: (paint: blue, dash: "dashed")),
+  lq.hlines(profit_s_wholesale, stroke: (paint: red, dash: "dashed")),
+)
+
+#line(length: 100%)
+
+== Revenue Management with Capacity Controls
+
+Fixed Supply, Adjust Demand
+
+Capacity:
+- Perishable (cannot be stored) 
+- Limited (all customers cannot be served)
+
+Parameters:
+- $D$: random demand high fare rooms
+- Maximize expected revenues by controlling the number of low fare rooms you sell
+
+
+
+
+#line(length: 100%)
+
 == SC Contracting
 
 Double Marginalization Problem: Each firm makes decisions based on their own margin, not the supply chain's margin
@@ -766,12 +989,246 @@ Double Marginalization Problem: Each firm makes decisions based on their own mar
   $
 ]
 
-Solution to Double Marginalization
+*Solution to Double Marginalization*
 
-Share Risk
+#let mu_D = 1000
+#let sigma_D = 300
 
+#let p = 250
+#let w = 175
+#let s = 75
+#let r = 5
+#let c = 100
 
+- $p$: sell price
+- $w$: wholesale price
+- $b$: buyback price
+- $s$: salvage value
+- $r$: return cost
 
+Share Risk / Buyback Contract
+
+Obermeyer buys back unslod at $\$b$ / unit
+
+SkiPro incurs cost $r$ to ship jackets back
+
+Conditions:
+- $b lt w$ so that returning doesn't make a profit
+- $b gt s + r$ so that return is preferable to salvage
+
+Assume Obermeyer sets $w = 175$, what is $b$?
+
+#diagram(
+  node(
+    (0,0), 
+    [Manufacturer], 
+    width: 25mm,
+    height: 10mm,
+    fill: gray.lighten(60%),
+    stroke: 1pt + gray.darken(20%),
+    corner-radius: 5pt,
+    radius: 2em,
+    name: <M>,
+  ),
+  node(
+    (2,0), 
+    [Manufacturer\ DC], 
+    width: 25mm,
+    height: 10mm,
+    fill: gray.lighten(60%),
+    stroke: 1pt + gray.darken(20%),
+    corner-radius: 5pt,
+    radius: 2em,
+    name: <MDC>,
+  ),
+  node(
+    (4,-.75), 
+    [$w$], 
+    radius: 2em,
+    name: <Inv2>,
+  ),
+  node(
+    (4,0), 
+    [Retail\ DC], 
+    width: 25mm,
+    height: 10mm,
+    fill: gray.lighten(60%),
+    stroke: 1pt + gray.darken(20%),
+    corner-radius: 5pt,
+    radius: 2em,
+    name: <RDC>,
+  ),
+  node(
+    (4,0.75), 
+    [$b$], 
+    radius: 2em,
+    name: <Inv2>,
+  ),
+  node(
+    (6,0), 
+    [Retail\ Store], 
+    width: 25mm,
+    height: 10mm,
+    fill: gray.lighten(60%),
+    stroke: 1pt + gray.darken(20%),
+    corner-radius: 5pt,
+    radius: 2em,
+    name: <RS>,
+  ),
+  node(
+    (6.75,0), 
+    [
+      - $p$
+      - $s$
+      - $r$
+    ], 
+    corner-radius: 5pt,
+    radius: 2em,
+    name: <Inv>,
+  ),
+
+  edge(<M>, <MDC>, "-|>"),
+  edge(<MDC>, <RDC>, "-|>", [], bend: 20deg),
+  edge(<MDC>, <RDC>, "<|-", [], bend: -20deg),
+  
+  edge(<RDC>, <RS>, "-|>", [], bend: 20deg),
+  edge(<RDC>, <RS>, "<|-", [], bend: -20deg),
+)
+
+#let cu = p - w
+#let co(b) = w - b + r
+
+Obermeyer chooses $b$ to make SkiPro's critical ratio equal to the integrated supply chain's critical ratio
+
+#let b = p + r - (p - w) * (p - s) / (p - c)
+
+$
+  (p - w) / (p - b + r) = (p - c) / (p - s) quad arrow.double quad b = p + r - (p - w) (p - s) / (p - c) = #calc.round(b, digits: 2)
+$
+
+#let z = norm.ppf((p - c) / (p - s))
+#let Q = mu_D + z * sigma_D
+#let L = sigma_D * (z * norm.cdf(z) + norm.pdf(z))
+#let S = Q - L
+
+#let buyback(w) = p + r - (p - w) * (p - s) / (p - c)
+#let sc-profit = (p - c) * Q - (p - s) * L
+#let retailer(w) = p * S - w * Q + (buyback(w) - r) * L
+#let supplier(w) = sc-profit - retailer(w)
+
+#let k = (p - s) / (p - c)
+#let w-lo-feasible = c
+#let w-hi-feasible = p - r / (k - 1)
+
+#let w0 = 175
+#let z0 = norm.ppf((p - w0) / (p - s))
+#let Q0 = mu_D + z0 * sigma_D
+#let L0 = sigma_D * (z0 * norm.cdf(z0) + norm.pdf(z0))
+#let R0 = p * (Q0 - L0) - w0 * Q0 + s * L0
+#let U0 = (w0 - c) * Q0
+
+#let w-lo = p - (p - c) * (sc-profit - U0) / sc-profit
+#let w-hi = p - (p - c) * R0 / sc-profit
+
+#let w-mid = (w-lo + w-hi) / 2
+#let gain = sc-profit - R0 - U0
+#let fmt(x) = str(calc.round(x, digits: 1))
+
+#let ws = range(100, 221, step: 15)
+
+// #lq.diagram(
+//   width: 14cm, height: 8cm,
+//   xlabel: [Wholesale price $w$],
+//   ylabel: [Expected profit],
+//   ylim: (0, 160000),
+//   xaxis: (ticks: ws),
+//   legend: (position: left + bottom),
+
+//   lq.fill-between(
+//     (w-lo, w-hi), (0, 0), y2: (160000, 160000),
+//     fill: gray.transparentize(80%)
+    
+// #let w-mid = (w-lo + w-hi) / 2
+// #let gain = sc-profit - R0 - U0
+// #let fmt(x) = str(calc.round(x, digits: 1))
+
+// #let ws = range(100, 221, step: 15)
+
+// #lq.diagram(
+//   width: 14cm, height: 8cm,
+//   title: [Buyback contract: coordination and win-win range],
+//   xlabel: [Wholesale price $w$],
+//   ylabel: [Expected profit],
+//   ylim: (0, 160000),
+//   xaxis: (ticks: ws),
+//   legend: (position: left + bottom),
+
+//   // Win-win range (drawn first, so it sits behind the lines)
+//   lq.fill-between(
+//     (w-lo, w-hi), (0, 0), y2: (160000, 160000),
+//     fill: gray.transparentize(80%), stroke: none,
+//     label: [Win-win range],
+//   ),
+
+//   // Coordinated contract
+//   lq.plot(ws, ws.map(retailer), mark: none, color: blue, stroke: 1.5pt, label: [Retailer]),
+//   lq.plot(ws, ws.map(supplier), mark: none, color: red, stroke: 1.5pt, label: [Supplier]),
+//   lq.plot(ws, ws.map(_ => sc-profit), mark: none, color: green.darken(20%), stroke: 1.5pt, label: [Supply chain]),
+
+//   // Baseline profits without buyback (at w0)
+//   lq.hlines(R0, stroke: (paint: blue, dash: "dashed"), label: [Retailer, no buyback]),
+//   lq.hlines(U0, stroke: (paint: red, dash: "dashed"), label: [Supplier, no buyback]),
+
+//   // Fair split point
+//   lq.scatter((w-mid, w-mid), (retailer(w-mid), supplier(w-mid)), mark: "o", color: black),
+
+//   // Secondary x-axis showing the matching buyback price b
+//   lq.xaxis(
+//     position: top,
+//     label: [Matching buyback price $b$],
+//     functions: (buyback, b => p - (p - b + r) * (p - c) / (p - s)),
+//   ),
+// )
+
+// #table(
+//   columns: 3,
+//   align: (left, right, right),
+//   table.header([], [$w$], [$b$]),
+//   [Feasible range], [#fmt(w-lo-feasible) – #fmt(w-hi-feasible)], [#fmt(buyback(w-lo-feasible)) – #fmt(buyback(w-hi-feasible))],
+//   [Win-win range], [#fmt(w-lo) – #fmt(w-hi)], [#fmt(buyback(w-lo)) – #fmt(buyback(w-hi))],
+//   [Fair split (midpoint)], [#fmt(w-mid)], [#fmt(buyback(w-mid))],
+// )
+
+// Total gain from coordination: #calc.round(gain) (#calc.round(gain / 2) each at the midpoint).%), stroke: none,
+//     label: [Win-win range],
+//   ),
+
+//   lq.plot(ws, ws.map(retailer), mark: none, color: blue, stroke: 1.5pt, label: [Retailer]),
+//   lq.plot(ws, ws.map(supplier), mark: none, color: red, stroke: 1.5pt, label: [Supplier]),
+//   lq.plot(ws, ws.map(_ => sc-profit), mark: none, color: green.darken(20%), stroke: 1.5pt, label: [Supply chain]),
+
+//   lq.hlines(R0, stroke: (paint: blue, dash: "dashed"), label: [Retailer, no buyback]),
+//   lq.hlines(U0, stroke: (paint: red, dash: "dashed"), label: [Supplier, no buyback]),
+
+//   lq.scatter((w-mid, w-mid), (retailer(w-mid), supplier(w-mid)), mark: "o", color: black),
+
+//   lq.xaxis(
+//     position: top,
+//     label: [Matching buyback price $b$],
+//     functions: (buyback, b => p - (p - b + r) * (p - c) / (p - s)),
+//   ),
+// )
+
+#table(
+  columns: 3,
+  align: (left, right, right),
+  table.header([], [$w$], [$b$]),
+  [Feasible range], [#fmt(w-lo-feasible) - #fmt(w-hi-feasible)], [#fmt(buyback(w-lo-feasible)) - #fmt(buyback(w-hi-feasible))],
+  [Win-win range], [#fmt(w-lo) - #fmt(w-hi)], [#fmt(buyback(w-lo)) - #fmt(buyback(w-hi))],
+  [Fair split (midpoint)], [#fmt(w-mid)], [#fmt(buyback(w-mid))],
+)
+
+Total gain from coordination: #calc.round(gain) (#calc.round(gain / 2) each at the midpoint).
 
 
 

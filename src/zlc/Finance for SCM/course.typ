@@ -721,6 +721,181 @@ Cost Drivers
 Link drivers to customer behavior
 
 
+== Finance Performance Ratios
+
+Return on equity
+
+$
+  "ROE" = "Net Profit" / "Equity"
+$
+
+$
+  "Shareholder Return" = (Delta "Spot"_(n-1, n) + "DPS") / "Spot"_(n-1) = (Delta "Market Value"_(n-1, n) + "Dividend") / "Market Value"_(n-1)
+$
+
+$
+  "ROE" = underbrace("Net Profit" / "Sales", "Profit\nMargin") times underbrace("Sales" / "Total Assets", "Asset\nTurnover") times underbrace("Total Assets" / "Equity", "Financial\nLeverage")
+$
+
+$
+  "ROA" = "EBIT" / "Total Assets" = "EBIT" / "Sales" times "Sales" / "Total Assets"
+$
+
+Tradeoff: Profitability v. Asset turnover
+
+Inovative (R&D) v. Asset utilization 
+
+Use machines efficiently v. invoatively 
+
+ROE
+
+#table(
+  columns: 3,
+  table.header([*Profit Margin*], [*Asset Turnover*], [*Financial Leverage*]),
+  [Gross Margin], [Days Inventory], [Payable Period], 
+  [Tax Rate], [Collection Period], [Debt / Equit], 
+  [% Income Statement], [Inventory Turnover], [Current Ratio], 
+  [], [Asset Turnover], [???], 
+  [], [% Balance Sheet], [], 
+  [], [], [], 
+)
+
+Profit Margin
+
+$
+  "Net Margin" = "NP" / "Sales"
+$
+
+Gross Margin
+
+$
+  "Gross Margin" = "GP" / "Sales"  
+$
+
+Net Profit: Alot of random costs go into it (Aquisition, Building burned)
+
+Gross Profit: Focus on this, less random stuff goes into it
+
+$
+  "Asset Turnover" = "Sales" / "Totoal Assets"
+$
+
+We are operations people: remove cash / and intangibles (fixed assets) to get a clearer picture
+
+Days of Inventory 
+
+$
+  "DIO" = ("Inventory" times 365) / "COGS"
+$
+
+On average how many days inventory lasts in the firm
+
+Inventory Turns
+
+$
+  "IT" = "COGS" / "Inventory"
+$
+
+On average how many times per year inventory enters and leaves the firm
+
+Use Average (always, for everything) coming from balance sheet
+
+Gross Margin Return on Inventory
+
+$
+  "GMROI" = "Gross Profit" / "Inventory" = "GP" / "Sales" times "Sales" / "Inventory"
+$
+
+How much gross profit per dollar of inventory
+
+Days of Sales Outstanding 
+
+$
+  "DSO" = ("Account Receivable" times 365) / "Sales"
+$
+
+On average what is the credit you offer your customer
+
+Days Payable Outstanding 
+
+$
+  "DPO" = ("Account Payable" times 365) / ("Purchases" ("CoGS"))
+$
+
+On average how long does it take you to pay suppliers?
+
+No purchases: Use CoGS
+
+Cash-to-Cash Cycle (CCC)
+
+$
+  "CCC" = "DIO" + "DSO" - "DPO"
+$
+
+Time elapsed, on average, between payement to supplier and collection from customers
+
+Cash flow (Diagram)
+
+Current Ratio
+
+$
+  "Current Ratio" = "Current Assets" / "Current Liability"
+$
+
+Times Interest Earned
+
+$
+  "Times Interest Earned" = "EBIT" / "Interest Expense"
+$
+
+
+Financial Leverage
+
+$
+  "Financial Leverage" = "Debt" / "Equity" \
+  "Financial Leverage" = "Total Assets" / "Equity"
+$
+
+FL = 1 if interest is 0
+
+$
+  "Financial Leverage" = (% Delta "EBT") / (% Delta "EBIT")
+$
+
+Operational Leverage
+
+OL = 1 if no fixed costs
+
+$
+  "Operational Leverage" = (% Delta "EBIT") / (% Delta "Sales")
+$
+
+Return on Net Asset (ROIC or RONA)
+
+$
+  "ROIC" = "NOPAT" / (D + E) \
+  "NOPAT" = "EBIT" times (1 - "tax rate")
+$
+
+Net operating profit after tax
+
+ROE v. ROIC -> Strip out the Debt (Interest / Leverage)?
+
+Assets generate value, Liabilities finance assets
+
+Leverage boosts ROE, more attractive but riskier
+
+$
+  "ROE" = "RONA" + D / E \["RONA" - underbrace(i(1 - t), "Efftective tax rate")]
+$
+
+$
+  i(1 - t) = ("interest rate" (1 - "tax rate"))
+$
+
+
+
+
 
 
 

@@ -2,6 +2,8 @@
 #set text(font: "Helvetica", size: 8pt)
 #show table: it => align(center, it)
 
+#h(1fr) Vladimir Borel
+
 = Problem 1. Inditex's financial report (Max Points 30) 
 
 1. _Look at the balance sheet. Calculate the Net Operating Assets (NOA) for the last fiscal year (NOA = Accounts Receivable + Inventory - Accounts Payable). Consider as receivables (payables) only the “Trade and other Receivables (Payables)” in the firm's Balance Sheet._
@@ -47,28 +49,30 @@ Suppliers are paying for all of the inventory and customer credit (trade and oth
   ),
   table.hline(stroke: 0.5pt),
   [Net sales],                          [100.0%],  [100.0%],  [—],
-  [Cost of sales],                      [(41.7%)], [(42.2%)], [+0.4],
+  [Cost of sales],                      [(41.7%)], [(42.2%)], [+#calc.round((-41.7) - (-42.2), digits: 4)],
   table.hline(stroke: 0.5pt),
-  [*Gross profit*],                     [*58.3%*], [*57.8%*], [*+0.4*],
-  [Operating expenses],                 [(29.8%)], [(29.9%)], [+0.1],
-  [Other losses and income, net],       [(0.2%)],  [(0.2%)],  [0.0],
+  [*Gross profit*],                     [*58.3%*], [*57.8%*], [*+#calc.round(58.3 - 57.8, digits: 4)*],
+  [Operating expenses],                 [(29.8%)], [(29.9%)], [+#calc.round((-29.8) - (-29.9), digits: 4)],
+  [Other losses and income, net],       [(0.2%)],  [(0.2%)],  [#calc.round((-0.2) - (-0.2), digits: 4)],
   table.hline(stroke: 0.5pt),
-  [*EBITDA*],                           [*28.3%*], [*27.8%*], [*+0.5*],
-  [Amortisation and depreciation],      [(8.2%)],  [(8.2%)],  [0.0],
+  [*EBITDA*],                           [*28.3%*], [*27.8%*], [*+#calc.round(28.3 - 27.8, digits: 4)*],
+  [Amortisation and depreciation],      [(8.2%)],  [(8.2%)],  [#calc.round((-8.2) - (-8.2), digits: 4)],
   table.hline(stroke: 0.5pt),
-  [*EBIT*],                             [*20.1%*], [*19.6%*], [*+0.5*],
-  [Financial results],                  [(0.2%)],  [(0.2%)],  [0.0],
-  [Results of equity-method companies], [0.3%],    [0.3%],    [0.0],
+  [*EBIT*],                             [*20.1%*], [*19.6%*], [*+#calc.round(20.1 - 19.6, digits: 4)*],
+  [Financial results],                  [(0.2%)],  [(0.2%)],  [#calc.round((-0.2) - (-0.2), digits: 4)],
+  [Results of equity-method companies], [0.3%],    [0.3%],    [#calc.round(0.3 - 0.3, digits: 4)],
   table.hline(stroke: 0.5pt),
-  [*Profit before taxes*],              [*20.1%*], [*19.6%*], [*+0.5*],
-  [Income tax],                         [(4.5%)],  [(4.4%)],  [-0.1],
+  [*Profit before taxes*],              [*20.1%*], [*19.6%*], [*+#calc.round(20.1 - 19.6, digits: 4)*],
+  [Income tax],                         [(4.5%)],  [(4.4%)],  [#calc.round((-4.5) - (-4.4), digits: 4)],
   table.hline(stroke: 0.5pt),
-  [*Net profit*],                       [*15.6%*], [*15.2%*], [*+0.4*],
-  [Attributable to non-controlling interests], [0.0%], [0.0%], [0.0],
+  [*Net profit*],                       [*15.6%*], [*15.2%*], [*+#calc.round(15.6 - 15.2, digits: 4)*],
+  [Attributable to non-controlling interests], [0.0%], [0.0%], [#calc.round(0.0 - 0.0, digits: 4)],
   table.hline(stroke: 0.5pt),
-  [*Attributable to the parent*],       [*15.6%*], [*15.2%*], [*+0.4*],
+  [*Attributable to the parent*],       [*15.6%*], [*15.2%*], [*+#calc.round(15.6 - 15.2, digits: 4)*],
   table.hline(),
 )
+
+Everything to be steadily increasing. Gross margin is very high ($tilde 58%$); operating expenses are the largest cost ($tilde 30%$); financial results are tiny, which shows there's almost no debt; and the +0.4pp improvement in net margin comes entirely from gross margin.
 
 #h(2.5em) a. _What is the amount of assets depreciated?_
 
@@ -80,21 +84,25 @@ Suppliers are paying for all of the inventory and customer credit (trade and oth
   [Amortisation and depreciation (€M)], [3270], [3174],
   [% of net sales], [8.2%], [8.2%],
 )
-
-		
-		
-
   
 #h(2.5em) b. _How large is the net margin? How large is it compared to H&M's?_
 
 $
-  "Net margin" = "Net profit" / "Net sales" = 6220 / 39864 = #calc.round(6220 / 39864, digits: 4)
+  "Net margin" = "Net profit" / "Net sales"   
 $
 
-The company's net margin is 15.6% (€6220M net profit on €39864M sales)
+$
+  "Net margin"_"Inditex" = 6220 / 39864 approx #calc.round(6220 / 39864, digits: 4)
+$
+
+$ 
+  "Net margin"_"H&M" = 12085 / 228285 approx #calc.round(12085 / 228285, digits: 4)
+$
+
+Inditex's net margin (15.6%) is about 3 times H&M's (5.3%, Dec 2024 to Nov 2025).
 
 4. _Look at the statement of cash flows. What can you infer about the sources and usages of cash in Inditex?_
- 
+
 #table(
   columns: 3,
   inset: 0.5em,
@@ -114,10 +122,10 @@ The company's net margin is 15.6% (€6220M net profit on €39864M sales)
 1. Operations are the only real source of cash
 2. Working capital used cash this year
 3. The uses of cash, as a share of CFO
-  - Dividends
-  - Capex
-  - Lease payments
-  - Current financial investments
+  - Dividends: 56.7%
+  - Capex: 29.4%
+  - Leases: 19.9%
+  - Financial investments: 5.9%
  
 = Problem 2. Financial accounting rules (Max Points 10) 
 
@@ -132,6 +140,7 @@ The auditor's reputation matters a lot, because an outsider can't check the numb
 
 #h(2.5em) b. _Why would it make sense to value inventory at the lower of cost or market? What is the underlying accounting principle that motivates this decision?_
 
+Conservatism (prudence): expect no gains, but recognise probable losses. 
 Inventory is recorded at cost when it's bought.
 
 Valuing inventory at the lower of cost or market stops the balance sheet from showing inventory at more than the company can actually get for it. If goods lose value before they're sold, the loss is recognised straight away instead of being hidden until the sale.
@@ -185,8 +194,8 @@ Only 60 units were sold, and each method stops taking cost layers once it reache
 
 3. *Weighted average*
 
-- $"Average cost" = 7760 div 140 = 55.43$
-- $"COGS" = 60 times 55.43 = 3325.71$
+- $"Average cost" = 7760 div 140 = #calc.round(7760 / 140, digits: 2)$
+- $"COGS" = 60 times 55.43 = #calc.round(60 * 55.43, digits: 2)$
  
 = Problem 4.  Inventory cost flow assumption II (Max Points 20)  
 
@@ -305,15 +314,75 @@ Net profit is easier to manipulate with *LIFO*. Under LIFO, COGS is based on the
 
 _Problem 14 (only part a) in Chapter 8_
 
-Under FIFO
+*1. Raw materials*
 
-RM Inventory
+#table(
+  columns: 4,
+  stroke: none,
+  inset: 0.5em,
+  align: (left, right, right, right),
+  table.hline(),
+  table.header([], [*Units*], [*Unit cost*], [*Total*]),
+  table.hline(),
+  [Beginning], [30], [20], [600],
+  [Purchase 1], [50], [22], [1100],
+  [Purchase 2], [40], [25], [1000],
+  table.hline(stroke: 0.5pt),
+  [*Available*], [*120*], [], [*2700*],
+  [Used (30 × 20 + 50 × 22)], [(80)], [], [(1700)],
+  table.hline(stroke: 0.5pt),
+  [*Ending RM*], [*40*], [25], [*1000*],
+  table.hline(),
+)
 
-WIP Inventory
+*2. Assembly and finishing*
 
-FG Inventory
+80 units of RM → 40 assembled items (2 RM each). By FIFO the first 15 items
+use the \$20 RM (RM cost \$40 per item), and the next 25 use the \$22 RM
+(RM cost \$44 per item).
 
-GOGS
+- Assembly labour: $40 times 10 = 400$
+- Finishing labour: $30 times 5 = 150$
+- Overhead: $(30 + 10 times 0.5) times 2 = 70$, i.e. \$2 per FG and \$1 per WIP item
 
-Gross Profit
+#table(
+  columns: 7,
+  stroke: none,
+  inset: 0.5em,
+  align: (left, right, right, right, right, right, right),
+  table.hline(),
+  table.header([*Batch*], [*Units*], [*RM*], [*Assembly*], [*Finishing*], [*OH*], [*Total*]),
+  table.hline(),
+  [FG batch A], [15], [40], [10], [5], [2], [57 × 15 = 855],
+  [FG batch B], [15], [44], [10], [5], [2], [61 × 15 = 915],
+  [WIP], [10], [44], [10], [—], [1], [55 × 10 = 550],
+  table.hline(),
+)
 
+- Cost of goods manufactured (transferred to FG): $855 + 915 = 1770$
+- *Ending WIP* $= 550$
+
+*3. Finished goods, COGS and gross profit*
+
+$ "COGS" = 15 times 57 + 10 times 61 = 855 + 610 = 1465 $
+$ "Ending FG" = 5 times 61 = 305 $
+$ "Sales" = 25 times 120 = 3000 $
+$ "Gross profit" = 3000 - 1465 = 1535 $
+
+#table(
+  columns: 2,
+  stroke: none,
+  inset: 0.5em,
+  align: (left, right),
+  table.hline(),
+  table.header([*FIFO*], [*\$*]),
+  table.hline(),
+  [RM inventory], [1000],
+  [WIP inventory], [550],
+  [FG inventory], [305],
+  [COGS], [1465],
+  [*Gross profit*], [*1535*],
+  table.hline(),
+)
+
+*Check:* $600 + 2100 + 550 + 70 = 3320 = 1000 + 550 + 305 + 1465$
