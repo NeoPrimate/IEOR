@@ -1,3 +1,4 @@
+#import "/lib/imports.typ": *
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
 
 #set text(font: "Helvetica", size: 8pt)
@@ -239,5 +240,302 @@ $
 
 == Network Flow Problems
 
+=== Transportation
+
+Data:
+- Price
+- Shipping cost
+- Demand
+- Route capacity
+
+Decision Variables: units sent from node $i$ to node $j$
+
+Objective: Max profit / Min Cost
+
+Constraint: Supply, demand, route capacity
+
+#table(
+  columns: 4,
+  inset: 1em,
+  [], [*DC1*], [*DC2*], [*DC3*],
+  [*Factory A*], [4], [6], [4],
+  [*Factory B*], [6], [5], [2],
+)
+
+D.V.: $x_(i j)$: number of units shipped from plant $i$ to DC $j$
+
+Params: $c_(i j)$: unit cost of shipment from $i$ to $j$
+
+Constraints:
+- Supply ($S$): 70
+- Demand ($D$): 40
+- Route capacity ($U_(i j)$): route capacity on link $i$ to $j$
+
+$
+  min quad 
+  &z = sum_(i=1)^(m) sum_(j=1)^(n) c_(i j) x_(i j) \
+  s.t. quad
+  &sum_(j=1)^(n) x_(i j) lt.eq s_i quad forall i in {1, dots, m} \
+  &sum_(i=1)^(m) x_(i j) gt.eq d_i quad forall j in {1, dots, n } \
+  &x_(i j) lt.eq U_(i j) \
+  &x_(i j) gt.eq 0, quad forall i in {1, 2} and j in {1, 2, 3}
+  & 
+$
+
+Feasibility check
+
+$S_"total" > D_"total"$
+
+Balanced transportation problem:
+
+$
+  sum_(i=1)^m s_i = sum_(j=1)^n d_j
+$
+
+Therefore:
+
+$
+  min quad 
+  &z = sum_(i=1)^(m) sum_(j=1)^(n) c_(i j) x_(i j) \
+  s.t. quad
+  &sum_(j=1)^(n) x_(i j) = s_i quad forall i in {1, dots, m} \
+  &sum_(i=1)^(m) x_(i j) = d_i quad forall j in {1, dots, n } \
+  &x_(i j) lt.eq U_(i j) \
+  &x_(i j) gt.eq 0, quad forall i in {1, 2} and j in {1, 2, 3}
+$
+
+Transforming Unbalanced to Balanced: Dummy node
+
+=== Assignment
+
+Special Case of Transportation Problem
+
+Supply and Demand = 1
+
+Time requirement to setup each machine for completing each job:
+
+#table(
+  columns: 5,
+  [], [Job 1], [Job 2], [Job 3], [Job 4], 
+  [Machine 1], [14], [5], [8], [7], 
+  [Machine 2], [2], [12], [6], [5], 
+  [Machine 3], [7], [8], [3], [9], 
+  [Machine 4], [2], [4], [6], [10], 
+)
+
+Decision variable: 
+$
+  x_(i j) = cases(
+    1 quad "if machine" i "does job" j,
+    0 quad "otherwise"
+  )
+$
+
+- $m$: number of jobs
+- $n$: number of machines
+
+$
+  min quad 
+  &z = sum_(i=1)^n sum_(j=1)^m t_(i j) x_(i j) \
+  s.t. quad
+  &sum_(j=1)^m x_(i j) = 1 quad forall i in {1, dots, n} \
+  &sum_(i=1)^n x_(i j) = 1 quad forall j in {1, dots, m} \
+  &x_(i j) gt.eq 0 quad forall i in {1, dots, n} and j in {1, dots, m} \
+$
+
+#example[
+
+  #let swimmers = ("ca", "ch", "da", "ke") // Carl, Chris, David, Ken
+  #let strokes  = ("ba", "br", "bu", "fr") // back, breast, butterfly, free
+
+  #let times = (
+    (37.7, 43.3, 33.3, 29.2),
+    (32.9, 33.1, 28.5, 26.4),
+    (33.8, 42.2, 38.9, 29.6),
+    (34.4, 41.8, 33.6, 31.1),
+  )
+
+  = Swimmer assignment problem
+
+  Each swimmer swims exactly one stroke, and each stroke is swum by exactly one
+  swimmer. We want to minimise the total relay time.
+
+  == Data
+
+  $
+    t = mat(..#times.map(row => row.map(t => [#t]))) \
+    "rows: " "ca", "ch", "da", "ke" \
+    "cols: " "ba", "br", "bu", "fr" \
+  $
+
+  == Decision variables
+
+  $
+    x_(i j) = cases(
+      1 quad "if swimmer" i "does stroke" j,
+      0 quad "otherwise"
+    )
+  $
+
+  - $i = 1, dots, n$: swimmers ($n = 4$)
+  - $j = 1, dots, m$: strokes ($m = 4$)
+
+  == General model
+
+  $
+    min quad
+    &z = sum_(i=1)^n sum_(j=1)^m t_(i j) x_(i j) \
+    s.t. quad
+    &sum_(j=1)^m x_(i j) = 1 quad forall i in {1, dots, n}
+      && "(each swimmer does one stroke)" \
+    &sum_(i=1)^n x_(i j) = 1 quad forall j in {1, dots, m}
+      && "(each stroke gets one swimmer)" \
+    &x_(i j) gt.eq 0 quad forall i in {1, dots, n}, j in {1, dots, m}
+  $
+
+  *Note:* $x_(i j) in {0, 1}$ can be relaxed to $x_(i j) >= 0$. The constraint
+  matrix is the incidence matrix of a bipartite graph, so it is *totally
+  unimodular*. Every vertex of the feasible region is therefore integral, and the
+  simplex method returns a 0/1 solution. The constraints $x_(i j) <= 1$ are also
+  implied by the equalities.
+
+  #v(5em)
+
+  == Expanded model
+
+  $
+    min quad
+    z = &37.7 x_("ca","ba") + 43.3 x_("ca","br") + 33.3 x_("ca","bu") + 29.2 x_("ca","fr") \
+      + &32.9 x_("ch","ba") + 33.1 x_("ch","br") + 28.5 x_("ch","bu") + 26.4 x_("ch","fr") \
+      + &33.8 x_("da","ba") + 42.2 x_("da","br") + 38.9 x_("da","bu") + 29.6 x_("da","fr") \
+      + &34.4 x_("ke","ba") + 41.8 x_("ke","br") + 33.6 x_("ke","bu") + 31.1 x_("ke","fr")
+  $
+
+  $
+    s.t. quad
+    // one stroke per swimmer (rows)
+    &x_("ca","ba") + x_("ca","br") + x_("ca","bu") + x_("ca","fr") = 1 \
+    &x_("ch","ba") + x_("ch","br") + x_("ch","bu") + x_("ch","fr") = 1 \
+    &x_("da","ba") + x_("da","br") + x_("da","bu") + x_("da","fr") = 1 \
+    &x_("ke","ba") + x_("ke","br") + x_("ke","bu") + x_("ke","fr") = 1 \
+    \
+    // one swimmer per stroke (columns)
+    &x_("ca","ba") + x_("ch","ba") + x_("da","ba") + x_("ke","ba") = 1 \
+    &x_("ca","br") + x_("ch","br") + x_("da","br") + x_("ke","br") = 1 \
+    &x_("ca","bu") + x_("ch","bu") + x_("da","bu") + x_("ke","bu") = 1 \
+    &x_("ca","fr") + x_("ch","fr") + x_("da","fr") + x_("ke","fr") = 1 \
+    \
+    &x_(i j) gt.eq 0 quad forall i in {"ca","ch","da","ke"}, j in {"ba","br","bu","fr"}
+  $
+
+  - $n dot m = 16$ variables
+  - $n + m = 8$ equality constraints, of which only $n + m - 1 = 7$ are
+    independent (the row sums and the column sums both add up to $n$)
+
+  == Optimal solution
+
+  $
+    x^* = mat(
+      0, 0, 0, 1;
+      0, 1, 0, 0;
+      1, 0, 0, 0;
+      0, 0, 1, 0;
+    )
+    quad
+    cases(
+      "Carl" &-> "freestyle" &(29.2),
+      "Chris" &-> "breaststroke" &(33.1),
+      "David" &-> "backstroke" &(33.8),
+      "Ken" &-> "butterfly" &(33.6),
+    )
+  $
+
+  $
+    z^* = 29.2 + 33.1 + 33.8 + 33.6 = 129.7 "s"
+  $
+
+  *Intuition:* breaststroke carries the biggest penalty. Chris is about 9 s faster
+  than everyone else at it (33.1 vs ≥ 41.8), so he is placed there, even though
+  freestyle and butterfly are his fastest strokes in absolute terms.
+]
+
+#example([Separable Programming])[
+
+  $
+    D = vec(4, 7, 6)
+  $
+
+  #table(
+    columns: 3,
+    inset: 1em,
+    [Plant 1], [[0, 6] Tons\ \$10], [[6, 10] Tons\ \$25], 
+    [Plant 2], [[0, 5] Tons\ \$8], [[5, 11] Tons\ \$28], 
+  )
 
 
+  - $x_(1 1)$: production quantity at plant 1 at operation level 1 (0 - 6 tons)
+  - $x_(1 2)$: production quantity at plant 1 at operation level 2 (6 - 10 tons)
+  - $x_(2 1)$: production quantity at plant 2 at operation level 1 (0 - 5 tons)
+  - $x_(2 2)$: production quantity at plant 2 at operation level 2 (5 - 11 tons)
+
+  - $y_(1 1)$: plant 1 $arrow$ DC 1
+  - $y_(1 2)$: plant 1 $arrow$ DC 2
+  ...
+
+  - $c_(i j)$ cost of shipping from $i$ to $j$
+  - $x_(i j)$ production quantity in plant $i$ at level $j$
+  - $y_(i j)$ quantity shipped from $i$ to $j$
+
+  $
+    min quad 
+    &10x_(1 1) + 25 x_(1 2) + 8 x_(2 1) + 28 x_(2 2) + sum_(i=1) sum_(j=1) c_(i j) y_(i j) \
+    s.t. quad
+    &x_(1 1) + x_(1 2) + x_(2 1) + x_(2 2) = 17 \
+    &x_(1 1) lt.eq 6 \
+    &x_(1 2) lt.eq 4 \
+    &x_(2 1) lt.eq 5 \
+    &x_(2 2) lt.eq 6 \
+
+    &y_(1 1) + y_(2 1) = 4 \
+    &y_(1 2) + y_(2 2) = 7 \
+    &y_(1 3) + y_(2 3) = 6 \
+
+    &x_(1 1) + x_(1 2) = y_(1 1) + y_(1 2) + y_(1 3) \
+    &x_(2 1) + x_(2 2) = y_(2 1) + y_(2 2) + y_(2 3) \
+
+    &x_1, dots, x_4 gt.eq 0 \
+  $
+]
+
+=== Transhipment
+
+Same as *Transportation* problem but with *Transhipment* nodes
+
+- $i$: supplier node
+- $j$: transhipment node
+- $k$: demand node
+
+D.V.
+
+- $x_(i j)$: inbound (supplier node $arrow$ transhipment node)
+- $y_(i j)$: outbound (transhipment node $arrow$ demand node)
+
+Constraints
+
+- Demand constraints
+
+$
+  sum_j y_(j k) = d_k quad forall k in K
+$
+
+- Supply constraints
+
+$
+  sum_i x_(j k) = s_i quad forall k in K
+$
+
+- Flow conservation constraints
+
+$
+  sum_i x_(i j) = sum_k y_(j k)
+$

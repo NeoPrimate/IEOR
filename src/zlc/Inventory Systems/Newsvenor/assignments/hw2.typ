@@ -344,9 +344,65 @@ Check: at $theta = 1$ (perfect forecast), $V = #r(forecast_value, digits: 2)$ �
 
 Sam Holding (SH) sells a tent to Intersport (IP). SH's variable cost per tent is €100 while its wholesale price is €185 per tent (the wholesale price includes the cost of shipping the tent to IP). IP sells the tent for €250. Suppose IP's forecast for season sales can be described with a Poisson distribution with rate (mean) 8.75. Furthermore, IP plans to only buy once from SH and any eventual leftovers are sold at a discount of 75% (i.e., at €62.5 per tent).
 
+#let c = 100
+#let w = 185
+#let p = 250
+#let s = 62.5
+#let lam = 8.75
+
 (a) How many tents should IP order? (5 points) 
 
+#let cu_ip = p - c
+#let co_ip = c - s
+
+#let cr_ip = cu_ip / ( cu_ip + co_ip)
+
+#let Q_ip = poisson.ppf(cr_ip, lam)
+
+$
+  c_u = p - c = #cu_ip \
+  c_o = c - s = #co_ip \
+$
+
+$
+  "cr" 
+  &= c_u / (c_u + c_o) \
+  &= #cr_ip
+$
+
+$
+  Q^* = F^(-1) ("cr") = #Q_ip
+$
+
 (b) What is IP's expected profit given his optimal order quantity in (a)? (5 points) 
+
+#let e_short_ip = lam * (1 - poisson.cdf(Q_ip - 1, lam)) - Q_ip * (1 - poisson.cdf(Q_ip, lam))
+
+#let e_sales_ip = lam - e_short_ip
+#let e_leftover_ip = Q_ip - e_sales_ip
+
+#let e_profit_ip = p * e_sales_ip + s * e_leftover_ip - c * Q_ip
+
+$
+  E["Short"] = sigma L 
+  &= lambda (1 - F(Q-1)) - Q(1 - F(Q)) \
+  &= #calc.round(e_short_ip, digits: 2)
+$
+
+$
+  E["Sales"] = mu - E["Short"] = #calc.round(e_sales_ip, digits: 2)
+$
+
+$
+  E["Leftover"] = Q - E["Sales"] = #calc.round(e_leftover_ip, digits: 2)
+$
+
+$
+  E["Profit"] 
+  &= p E["Sales"] + s E["Leftover"] - g E["Short"] - c Q \
+  &= #calc.round(e_profit_ip, digits: 2)
+$
+
 
 (c) What is SH's expected profit given IP's order in part (a)? (5 points) 
 
@@ -392,3 +448,44 @@ offers to make. Since some of the admitted students may decide to pursue other o
 
 (c) A waiting list mitigates the problem of having too few students since at the very last 
 moment there is an opportunity to admit some students from the waiting list. Hence, the admissions committee revises its estimate: It claims that it is five times more expensive to have a student in excess of 720 than to have fewer students accept among the initial group of admitted students. What is your revised suggestion? (5 points)
+
+= Problem 4 (Max Points 10)
+
+In the formal presentation of the Newsvendor problem, we have shown that the profit
+maximization problem is equivalent to the minimizing of the following cost function:
+
+$
+  C(Q) = E[C_u dot (D - Q)^+ + C_o dot (Q - D)^+]
+  
+$
+
+or,
+
+$
+  C(Q) = C_u E["short"] + C_o E["left"]
+$
+
+
+Assume that the demand is normally distributed with mean μ and standard deviation $sigma$. By using the characterization (i.e., expression) for the optimal order quantity, $Q^*$, show that the
+optimal cost can be expressed as $C(Q^*) = A(C_u, C_o) times sigma$ , where $A(C_u, C_o)$ is a constant which is a function of the cost parameters Cu and Co but not of the parameters ($mu$, $sigma$) of the demand distribution $D$. What can you infer for the maximum profit that the newsvendor can gain by ordering the optimal quantity?
+
+= Quiz Problem (Max Points 20)
+
+On a given Boston-Barcelona flight, there are 200 seats. Suppose the ticket price is \$475 on average and the number of passengers who reserve a seat but do not show up for departure is normally distributed with mean 30 and standard deviation 15. You decide to overbook the flight and estimate that the average loss from a passenger who will have to be bumped (if the number of passengers exceeds the number of seats) is \$800.
+
+(a) What is the maximum number of reservations that should be accepted? (2 point)
+
+(b) Suppose you allow 220 reservations. How much money do you expect to pay out in
+compensation to bumped passengers? (2 point)
+
+(c) Suppose you allow 220 reservations. What is the probability that you will have to deal with bumped passengers? (2 points)
+
+[(d)~(g)] Now assume there is no overbooking, and the high fare is \$675 and the low fare is \$375. Demand for the low fare is abundant while demand for the high fare is normally distributed with a mean of 80 and standard deviation 35.
+
+(d) What is the probability of selling 200 reservations if you set an optimal protection level (i.e., number of seats reserved) for the full fare? (8 points)
+
+(e) Suppose a protection level of 85 is established. What is the average number of lost high-fare passengers? (2 points)
+
+(f) Continue to assume a protection level of 85 is established. What is the expected number of unoccupied seats? (2 points)
+
+(g) Again, assume a protection level of 85 is established. What is the expected revenue from the flight? (2 points)

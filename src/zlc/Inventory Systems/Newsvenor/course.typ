@@ -664,6 +664,8 @@ $
 
 == Double Marginalization: Buyback Contract
 
+
+
 #table(
   columns: (auto, auto, 1fr),
   inset: 1em,
@@ -684,6 +686,119 @@ $
    with $m = Q^* - L (p - s)/(p - c)$],
 )
 
+#let box-node(pos, label, name) = node(
+  pos, label,
+  width: 25mm, height: 10mm,
+  fill: gray.lighten(60%),
+  stroke: 1pt + gray.darken(20%),
+  corner-radius: 5pt,
+  name: name,
+)
+
+#let step(n) = box(
+  inset: 0.25em, stroke: black, radius: 100%,
+  fill: white, text(size: 8pt, weight: "bold")[#n],
+)
+
+#let uses(..n) = text(size: 8pt, fill: gray.darken(30%))[
+  uses #n.pos().map(str).join(", ")
+]
+
+1, 3 and 4 need only the given data
+
+2 needs 1
+5 needs 4
+6 needs 3
+
+#table(
+  columns: (1fr, 1fr),
+  inset: 0.8em,
+  align: center + top,
+  table.cell(
+    colspan: 2,
+    [
+      #diagram(
+        spacing: (8mm, 5mm),
+        node((-1, 0), [$c$], name: <Cost>),
+        box-node((0, 0), [Supplier], <S>),
+        box-node((6, 0), [Retail], <R>),
+        node((7, 0), [$p$ \ $s$], name: <Mkt>),
+
+        edge(<S>, <R>, "-|>", [$w$], bend: 15deg),
+        edge(<S>, <R>, "<|-", [$b$ (retailer pays $h$)], bend: -15deg, label-side: right),
+      )
+    ]
+  ),
+  table.cell(
+    colspan: 2,
+    align: left,
+    text(size: 8pt)[
+      - $c$ production cost
+      - $w$ wholesale price
+      - $p$ retail price
+      - $s$ retailer salvage
+      - $b$ buyback price
+      - $h$ return cost per unit
+      - $v$ supplier salvage on returns
+      - $b - h$: what the retailer nets for each return
+    ],
+  ),
+  table.cell(fill: gray.lighten(80%))[*Supplier*],
+  table.cell(fill: gray.lighten(80%))[*Retail*],
+  [
+    #text(size: 9pt)[Wholesale #step(1)]
+    $ E[pi_S] = (w - c) Q $
+  ],
+  [
+    #text(size: 9pt)[Wholesale #step(1)]
+    $
+        c_u &= p - w \
+        c_o &= w - s \
+        "cr" &= c_u / (c_u + c_o) \
+        Q^* &= F^(-1)("cr") \
+        z &= (Q^* - mu) / sigma \
+        L(z) &= phi(z) - z (1 - Phi(z)) \
+        E["Short"] &= sigma L(z) \
+        E["Sales"] &= mu - E["Short"] \
+        E["Leftover"] &= Q^* - S \
+        E[pi_R] &= p E["Sales"] + s E["Leftover"] - w Q^*
+    $
+  ],
+  [
+    #text(size: 9pt)[Buyback]
+    $ E[pi_S] = (w - c) Q - (b - v) E["Leftover"] $
+  ],
+  [
+    #text(size: 9pt)[Buyback (1)]
+    $
+      c_u = p - w \
+      c_o = w - (b - h) \
+      E[pi_R] = p E["Sales"] + (b - h) E["Leftover"] - w Q
+    $
+  ],
+
+  // Supply chain
+  table.cell(
+    colspan: 2,
+    [
+      #text(size: 9pt)[*Supply Chain* #step(1)]
+      $
+        c_u = p - c \
+        c_o = c - s \
+        E[pi_"SC"] = p E["Sales"] + s E["Leftover"] - c Q
+      $
+
+      #text(size: 9pt)[Coordinating buyback: set $"cr"_R = "cr"_"SC"$]
+      
+      $
+        (p - w) / (p - (b - h)) = (p - c) / (p - s)
+        quad quad => quad quad
+        b^* = p + h - ((p - w)(p - s)) / (p - c)
+      $
+    ]
+  ),
+)
+
 #table(
   columns: (auto, auto),
   inset: 1em,
@@ -691,6 +806,8 @@ $
   [E[Shortage]], [$phi(z) - z dot (1 i Phi(z))$],
   [E[Leftovers]], [$z dot Phi(z) + phi(z)$],
 )
+
+#line(length: 100%)
 
 #let c = 100
 #let w = 175
@@ -1688,3 +1805,16 @@ Matching supply to demand when supply is fixed
 - $D lt Q$: protect too many rooms (over protect) Rooms are empty which could have been sold to low fare travellers.
 - $D gt Q$: protect too few rooms (under protect). Some rooms could have been sold at the high fare instead of low fare.
 
+== Safety Factor
+
+The safety factor $k$ (often written $z$) is how many standard deviations of lead-time demand your reorder point sits above the expected lead-time demand.
+
+$
+  k = (s - mu_L) / sigma_L
+$
+
+Rearrange:
+
+$
+  s = mu_L + underbrace(k sigma_L, "safety stock")
+$
