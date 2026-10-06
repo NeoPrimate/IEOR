@@ -539,3 +539,169 @@ $
 $
   sum_i x_(i j) = sum_k y_(j k)
 $
+
+#example([Montperlier Ski Company])[
+  
+  - Initial inventory: 200
+  - Ending inventory: 1200
+  - Regular time (50%) 
+  - Overtime (50%)
+  - Holding cost: 3%
+
+  #table(
+    columns: 5,
+    inset: 1em,
+    [Month], [Demand],  [Capacity],  [Regular Time\ Production Cost],  [Overtime\ Production Cost],
+    [July], [400],  [1000],  [25],  [30],
+    [August], [600],  [800],  [26],  [32],
+    [September], [1000],  [400],  [29],  [37],
+  )
+
+  - $i in I$: Month (July, August, September)
+  - $j in J$: Production modes (Regular, Overtime)
+  - $x_(i j)$: Production on month $i$ at cost $j$ (regular or overtime)
+
+  Customers:
+  - $J$: 
+    - Demand: 400
+    - Net Demand: 400 - 200 = 200
+  - $A$: 
+    - Demand: 600
+    - Net Demand: 600
+  - $S$: 
+    - Demand: 1000
+    - Net Demand: 1000 + 1200 = 2200
+  - $"Dummy"$:
+    - Demand: Total Supply - Total Demand = 300
+
+  Total Demand: 3000
+
+  Suppliers:
+  - $"JR"$: 1000
+  - $"JO"$: 500
+  - $"AR"$: 800
+  - $"AO"$: 400
+  - $"SR"$: 400
+  - $"SO"$: 200
+
+  Total Supply: 3300
+
+  $
+    min quad &sum_(i in I) sum_(j in J) x_(i j) c_(i j) \
+    s.t. quad 
+    &sum_(i) x_(i j) = (or lt.eq) d_j, quad forall j in J \
+    &sum_(j) x_(i j) = (or lt.eq) s_j, quad forall i in I \
+    &x_(i j) gt.eq 0, quad forall i in I and j in J
+  $
+
+  $
+    c_(1 3) = 25 + (3% times 24) times 2
+  $
+
+  Cost + 3% Cost for 2 months (produce in July sold in September)
+
+  Making Produced in september sold in july impossible (use $M$)
+
+
+  #let nodes = ("A", "B", "C", "D", "E", "F", "G")
+  #let edges = (
+    (3, 2),
+    (4, 1),
+    (1, 4),
+    (0, 4),
+    (3, 0),
+    (5, 6),
+    (6, 5),
+  )
+
+  #diagram({
+    node((0, 1), [JR], stroke: 0.5pt, name: <JR>)
+    node((0, 2), [JO], stroke: 0.5pt, name: <JO>)
+    node((0, 3), [AR], stroke: 0.5pt, name: <AR>)
+    node((0, 4), [AO], stroke: 0.5pt, name: <AO>)
+    node((0, 5), [SR], stroke: 0.5pt, name: <SR>)
+    node((0, 6), [SO], stroke: 0.5pt, name: <SO>)
+
+    node((-1, 1), [1000], stroke: none, name: <JRp>)
+    node((-1, 2), [500], stroke: none, name: <JOp>)
+    node((-1, 3), [800], stroke: none, name: <ARp>)
+    node((-1, 4), [400], stroke: none, name: <AOp>)
+    node((-1, 5), [400], stroke: none, name: <SRp>)
+    node((-1, 6), [200], stroke: none, name: <SOp>)
+    
+    node((3, 1), [J], stroke: 0.5pt, name: <J>)
+    node((3, 2), [A], stroke: 0.5pt, name: <A>)
+    node((3, 3), [S], stroke: 0.5pt, name: <S>)
+    node((3, 4), [Dummy], stroke: 0.5pt, name: <D>)
+
+    node((4, 1), [400 - 200 = 200], stroke: none, name: <Jp>)
+    node((4, 2), [600], stroke: none, name: <Ap>)
+    node((4, 3), [1000 + 1200 = 2200], stroke: none, name: <Sp>)
+    node((4, 4), [TS - TD = 300], stroke: none, name: <Dp>)
+
+
+    edge(<JR>, <A>, "-|>", [])
+    
+    edge(<JR>, <D>, "-|>", [])
+    
+    edge(<SR>, <J>, "-|>", [])
+  })
+]
+
+#example([Sailco Inventory])[
+
+  - Regular capacity: 40
+  - Regular cost: 400
+  - Overtime capacity: infinity
+  - Overtime cost: 450 
+  - $h$: 20
+  - Beginning inventory: 10
+
+  #diagram({
+    node((0, 1), [Q1], stroke: 0.5pt, name: <Q1S>)
+    node((0, 2), [Q2], stroke: 0.5pt, name: <Q2S>)
+    node((0, 3), [Q3], stroke: 0.5pt, name: <Q3S>)
+    node((0, 4), [Q4], stroke: 0.5pt, name: <Q4S>)
+
+    node((-1, 1), [500], stroke: none, name: <Q1Sp>)
+    node((-1, 2), [800], stroke: none, name: <Q2Sp>)
+    node((-1, 3), [400], stroke: none, name: <Q3Sp>)
+    node((-1, 4), [400], stroke: none, name: <Q4Sp>)
+    
+    node((3, 1), [Q1], stroke: 0.5pt, name: <Q1D>)
+    node((3, 2), [Q2], stroke: 0.5pt, name: <Q2D>)
+    node((3, 3), [Q3], stroke: 0.5pt, name: <Q3D>)
+    node((3, 4), [Q4], stroke: 0.5pt, name: <Q4D>)
+
+    node((4, 1), [40 - 10 = 30], stroke: none, name: <Q1Dp>)
+    node((4, 2), [60], stroke: none, name: <Q2Dp>)
+    node((4, 3), [75], stroke: none, name: <Q3Dp>)
+    node((4, 4), [25], stroke: none, name: <Q4Dp>)
+
+    edge(<Q1S>, <Q2D>, "-|>", [])
+
+    edge(<Q1S>, <Q4D>, "-|>", [])
+    
+    edge(<Q4S>, <Q1D>, "-|>", [])
+  })
+
+  Since holding cost is constant (unlike Montperlier Ski Company example), we don't need transportation formulation.
+
+  - $x_t$: number of boars producted in quarter $t$ using regular time
+  - $y_t$: number of boars producted in quarter $t$ using overtime
+  - $i_t$: ending inventory for quarter $t$
+
+  $
+    min quad &sum_(t=1)^4 (400 x_t + 450 y_t) + sum_(t=1)^4 20 dot i_t quad "production cost" + "holding cost" \
+    s.t. quad
+    &x_t lt.eq 40 quad forall t = 1, dots, 4 \
+    &i_t = i_(t-1) + x_t + y_t - d_t quad forall t = 1, dots, 4 \
+    &x_t, y_t gt.eq 0 quad forall t = 1, dots, 4 \
+    &i_t gt.eq 0 quad forall i = 1, dots, 4 quad "no backorders"\ 
+  $
+
+  Backorder penalty:
+  $b = 100$
+]
+
+

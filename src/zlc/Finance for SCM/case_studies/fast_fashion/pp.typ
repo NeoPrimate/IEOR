@@ -135,7 +135,7 @@
 ]
 
 #slide[
-  = Margin and speed: the operating model shows in the ratios
+  = Margin and speed: the operating model shows up in the ratios
 
   #grid(
     columns: 2,
@@ -166,7 +166,7 @@
     [
       - *Inditex* earns about 7$times$ its inventory in gross profit, roughly double the others, and it widened that gap after 2019.
 
-      - *H&M* and *Uniqlo* both fell from 2011 to 2018-19. Uniqlo has since recovered.
+      - *H&M* and *Uniqlo* both fell from 2011 to 2018-19.
 
       *Conclusion*: 
 
