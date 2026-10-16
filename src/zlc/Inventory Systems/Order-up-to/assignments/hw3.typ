@@ -190,8 +190,8 @@ $
 #let fill_rate = 0.9925
 #let loss = ((1 - fill_rate) * mu_D) / sigma_DL1
 #let z = (1 - fill_rate) * mu_D
+#let z = 2.43
 #let S = mu_DL1 + z * sigma_DL1
-
 
 $
   1 - E["backorder"] / mu = #fill_rate \
@@ -270,30 +270,22 @@ In the order up-to model, assume that the mean of demand in a period remains the
 Please explain why. Please generalize your answer to any demand distribution (although you can assume normal distribution for gaining some insight).
 
 $
-  E["BackOrders"] &= sigma_(L+1) L(z) \
-  E["OnHand"] &= S - E[D_(L+1)] + sigma_(L+1) L(z) \
+  E["OnHand"] 
+  &= S - E[D_(L+T)] + sigma_(L+T) L(z) \
+  &= S - mu_(L+T) + sigma_(L+T) L(z) \
 $
 
-- Only the last term depends on $sigma$.
-- Comparative statics
+- Only the last term depends on $sigma$:
+  - $sigma_(L+T)$
+  - $z = (S - mu)/sigma$
 
-The expected inventory at the end of each period would increase.
+- When $S > mu$ $z$ falls, which pushes $L(z)$ up
+- When $S < mu$, $z$ rises, which pushes $L(z)$ down
 
-$I_p$ stays the same because the 2 terms with sigma cancel out:
+So when $S < mu$ the two effects pull in opposite directions.
+But the $sigma$ effect always dominates.
 
-$
-  I_p 
-  &= "OnHand" + "OnOrder" - "BackOrder" \
-  &= underbrace(S - E[D_(L+1)] + overbrace(sigma_(L+1) L(z), E["BackOrder"]), E["OnHand"]) + underbrace(L dot E[D], E["OnOrder"]) - underbrace(sigma_(L+1) L(z), E["BackOrder"]) \
-  &= S - E[D_(L+1)] cancel(+ sigma_(L+1) L(z)) + L dot E[D] cancel(- (sigma_(L+1) L(z))) \
-  &= S - E[D_(L+1)] + L dot E[D] \
-$
-
-The expected inventory at the end of each period would remain unchanged.
-
-$
-  S - E[D_(L+1)] + sigma_(L+1) L(z)
-$
+So, the expected inventory at the end of each period would increase.
 
 
 = Problem 4 (Max Points 20)
@@ -401,20 +393,170 @@ $
 
 (c) Under a periodic review policy, do you recommend sea or air transportation? Does your answer change if Motorola has ownership of the inventory while it is in transit? (10 points)
 
+#let days_year = 365
+#let D_annual = mu_D * days_year
+#let H = h * c // holding cost per phone per year
+
+// Average inventory at the warehouse = cycle inventory + safety stock
+#let I_sea = Q_sea / 2 + SS_sea
+#let I_air = Q_air / 2 + SS_air
+
+#let hold_sea = H * I_sea
+#let hold_air = H * I_air
+
+#let trans_sea = f_sea * D_annual
+#let trans_air = f_air * D_annual
+
+#let TC_sea = hold_sea + trans_sea
+#let TC_air = hold_air + trans_air
+
+*Case 1: ownership upon delivery*
+
+$
+  D_"annual" = mu_D dot #days_year = #D_annual, quad H = h c = #H \
+$
+
+$
+  macron(I)_"sea" &= Q_"sea" / 2 + "SS"_"sea" = #calc.round(I_sea, digits: 2) \
+  macron(I)_"air" &= Q_"air" / 2 + "SS"_"air" = #calc.round(I_air, digits: 2) \
+$
+
+$
+  "TC"_"sea" &= H macron(I)_"sea" + f_"sea" D_"annual"
+    = #calc.round(hold_sea, digits: 0) + #calc.round(trans_sea, digits: 0)
+    = #result[#calc.round(TC_sea, digits: 0)] \
+  "TC"_"air" &= H macron(I)_"air" + f_"air" D_"annual"
+    = #calc.round(hold_air, digits: 0) + #calc.round(trans_air, digits: 0)
+    = #result[#calc.round(TC_air, digits: 0)] \
+$
+
+Sea is cheaper by #calc.round(TC_air - TC_sea, digits: 0) per year → *sea*. The extra \$1/phone for air (#calc.round(trans_air - trans_sea, digits: 0)/yr) outweighs the holding-cost savings (#calc.round(hold_sea - hold_air, digits: 0)/yr).
+
+*Case 2: ownership while in transit*
+
+Pipeline inventory $mu_D L$:
+
+#let P_sea = mu_D * L_sea
+#let P_air = mu_D * L_air
+
+#let TC_sea_t = TC_sea + H * P_sea
+#let TC_air_t = TC_air + H * P_air
+
+$
+  "Pipeline"_"sea" &= mu_D L_"sea" = #P_sea, quad H dot "Pipeline"_"sea" = #calc.round(H * P_sea, digits: 0) \
+  "Pipeline"_"air" &= mu_D L_"air" = #P_air, quad H dot "Pipeline"_"air" = #calc.round(H * P_air, digits: 0) \
+$
+
+$
+  "TC"'_"sea" &= #result[#calc.round(TC_sea_t, digits: 0)] \
+  "TC"'_"air" &= #result[#calc.round(TC_air_t, digits: 0)] \
+$
+
+Air is cheaper by #calc.round(TC_sea_t - TC_air_t, digits: 0) per year → *air*. The 32-day longer sea lead time is 160,000 extra phones in transit, which costs more in holding costs than air's higher freight.
+
 = Quiz Problem (Max Points 20)
 
 ACold Inc. is a frozen food distributor with 10 warehouses across the country. Iven Tory, one of the warehouse managers, wants to make sure that the inventory policies used by the warehouse are minimizing inventory while still maintaining quick delivery to ACold's customers. Since the warehouse carries hundreds of different products, Iven decided to study one. He picked the “peperoni special” from Caruso's Frozen Pizza (CFP). Demand for peperoni special averages 400 per day with a standard deviation of 150. Iven places his orders daily and orders from CFP arrive four days later. Further, it costs ACold \$0.01 per day to keep a unit of pizza in inventory, while a back order is estimated to cost ACold \$0.45 per unit.
 
-#let mu_D = 400
-#let sigma_D = 150
-#let L = 4
-#let H = 0.01
-#let b = 0.45
+#let mu_D = 400 // day
+#let sigma_D = 150 // day
+
+#let L = 4 // days
+#let T = 1 // day
+#let H = 0.01 // day
+#let b = 0.45 // unit
+
+#let mu_DLT = mu_D * (L + T)
+#let sigma_DLT = sigma_D * calc.sqrt(L + T)
+
+#let cu = b
+#let co = H * T
+
+#let cr = cu / (cu + co)
+
+#let z = norm.ppf(cr)
+
+#let S = mu_DLT + z * sigma_DLT
 
 (a) What base-stock level (i.e., order-up-to level) should Iven choose for CFPs if his goal is to minimize holding and backorder costs? (2 points)
 
+$
+  c_u = b = #r(cu) \
+  c_o = H dot T = #r(co) \
+  "cr" = c_u / (c_u + c_o) = #r(cr) \
+  z = Phi^(-1) ("cr") = #r(z) \
+  S = mu_(L + T) + z sigma_(L + T) = #result[#r(S)] \
+$
+
 (b) What base-stock level minimizes inventory while maintaining a 95% in-stock probability? (2 points)
+
+#let service = 0.95
+#let z = norm.ppf(service)
+#let S = mu_DLT + z * sigma_DLT
+
+$
+  z = Phi^(-1)(#service) = #r(z) \
+  S = mu_(L + T) + z sigma_(L + T) = #result[#r(S)] \
+$
 
 (c) Suppose the base-stock level 2,800 is chosen. What is the annual holding cost assuming 260 days per year? Here, use the exact formula for safety stock. (6 points)
 
+#let days_per_year = 260
+#let S = 2800
+
+#let z = (S - mu_DLT) / sigma_DLT
+
+#let loss = norm.pdf(z) - z * (1 - norm.cdf(z))
+#let e_backorder = sigma_DLT * loss
+#let ss = S - mu_DLT + e_backorder
+#let avg_cycle_inv =  mu_D / 2
+#let H_annual = H * days_per_year * (ss + avg_cycle_inv)
+
+$
+  S = #r(S) \
+  E["Backorder"] = sigma_(L+T) L(z) = #r(e_backorder) \
+  "SafetyStock" = S - mu_(L+T) + E["Backorder"] = #r(ss) \
+  "Annual holding cost" = H dot #days_per_year dot "SS" = #result[#r(H_annual)]
+$
+
 (d) After implementing a new managerial accounting system, Iven has realized that there is a fixed cost of \$20 every time an order is placed with CFP. He wonders whether he can improve his overall costs by changing the frequency of placing orders with CFP (i.e., by changing the review period of CFP inventory), while targeting for an in-stock probability of 97%. He considers review periods of one, two, three, and four days as candidates. What would you recommend? How does your recommendation relate to the EOQ model's recommendation? (10 points)
+
+#let fixed_cost = 20 // order
+#let service = 0.97
+#let z = norm.ppf(service)
+
+#let Ts = (1, 2, 3, 4)
+
+#let TC(T) = {
+  let sigma_p = sigma_D * calc.sqrt(L + T)
+  let ss      = z * sigma_p
+  let cycle   = (mu_D * T) / 2
+  let order   =  fixed_cost / T
+  H * (ss + cycle) + order
+}
+
+#table(columns: 2, [T], [Daily cost],
+  ..Ts.map(T => ([#T], [#r(TC(T))])).flatten())
+
+$T = 3$ minimizes daily cost.
+The two forces are: 
+- Setup cost per day (decreases as $T$ increases)
+- Holding cost (increases as $T$ increases)
+  - Cycle stock $mu_D T \/ 2$
+  - Safety stock $z sigma_D sqrt(L + T)$ (unaccounted for in EOQ, it only balances setup cost and cycle stock)
+
+One cost falls with $T$ and the other two rise, so their sum has a minimum
+
+#let Q = calc.sqrt((2 * fixed_cost * mu_D) / H)
+#let T_eoq = Q / mu_D
+
+$
+  Q^* = sqrt((2 K mu_D) / H) = #r(Q) \
+  T = Q / mu_D = #result[#r(T_eoq)]
+$
+
+$T_"eoq"$ is well above 3
+
+Ignoring safety stock (a cost that grows with $T$) make EOQ recommend too long of a review period.
+
+

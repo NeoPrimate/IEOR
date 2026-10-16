@@ -3,6 +3,8 @@
 
 #set text(font: "Helvetica", size: 8pt)
 
+#let mc(x) = text(fill: red, x)
+
 = Analytical Methods
 
 - Demand
@@ -700,8 +702,107 @@ $
     &i_t gt.eq 0 quad forall i = 1, dots, 4 quad "no backorders"\ 
   $
 
-  Backorder penalty:
+  Adding backorder penalty:
+
   $b = 100$
+
+  2 new variables:
+
+  $
+    i_t^+ &= "# onhand" \
+    i_t^- &= "# backorders" \
+    i_t &= i_t^+ - i_t^-
+  $
+  
+  $
+    min quad &sum_(t=1)^4 (400 x_t + 450 y_t) + sum_(t=1)^4 20 dot i_t quad "production cost" + "holding cost" \
+    s.t. quad
+    &x_t lt.eq 40 quad forall t = 1, dots, 4 \
+    &mc(i_t^+ - i_t^-) = mc(i_(t-1)^+ - i_(t-1)^-) + x_t + y_t - d_t quad forall t = 1, dots, 4 \
+    &x_t, y_t gt.eq 0 quad forall t = 1, dots, 4 \
+    &mc(i_t^+) gt.eq 0 quad forall i = 1, dots, 4 \ 
+    &mc(i_t^-) gt.eq 0 quad forall i = 1, dots, 4 \ 
+  $
+
 ]
 
+#example([Product Mix])[
+  
+  $
+    "bom" = mat(
+      2, 1;
+      2, 2
+    )
+    \
+    "capacity" = vec(
+      6, 
+      8,
+    )
+    \
+    "price" = vec(
+      20.00,
+      15.00,
+    )
+  $
+
+  ```py
+  import gurobipy as gp
+  from gurobipy import GRB
+  import numpy as np
+
+  products = ["table", "chair"]
+  bom = np.array([[2, 1],
+                  [2, 2]])
+  capacity = np.array([6, 8])
+  price = np.array([20.00, 15.00])
+
+  m = gp.Model("product_mix")
+  x = m.addMVar(shape=price.size, lb=0.0, name=products)
+
+  m.setObjective(price @ x, GRB.MAXIMIZE)
+  cap = m.addConstr(bom @ x <= capacity, name="capacity")
+
+  m.optimize()
+
+  if m.Status == GRB.OPTIMAL:
+      obj = x.Obj
+      inc = x.SAObjUp - obj
+      dec = obj - x.SAObjLow
+
+      print(f"Objective = {m.ObjVal:.2f}\n")
+
+      print(f"{'Var':6} {'Value':>7} {'Obj':>7} {'Inc':>7} {'Dec':>7} {'RC':>7}")
+      for row in zip(x.VarName, x.X, obj, inc, dec, x.RC):
+          print(f"{row[0]:6} " + " ".join(f"{v:7.2f}" for v in row[1:]))
+
+      print(f"\n{'Constr':12} {'Slack':>7} {'Dual':>7} {'RHS lo':>7} {'RHS hi':>7}")
+      for row in zip(cap.ConstrName, cap.Slack, cap.Pi, cap.SARHSLow, cap.SARHSUp):
+          print(f"{row[0]:12} " + " ".join(f"{v:7.2f}" for v in row[1:]))
+  ```
+]
+
+== Sensitivity Analysis
+
+- How does the solution change
+  - If the RHS of constraint change?
+  - If an objective coefficient changes?
+- What is the range of optimality and feasibility?
+  - Allowable change in the objective function coefficient
+  - Allowable change in the RHS
+
+#example([Ice Cream])[
+
+]
+
+- Check allowable Increase / Decrease
+- If in range:
+  - New Obj Value = New Obj Value + (Decrease) $times$ Shadow Price
+
+100% rule
+- Simultaneous change in objective function
+- Simultaneous change in coefficients
+
+abs(New value - Old value) / allowable value + abs(New value - Old value) / allowable value <= 1 (100%)
+
+if >= 100% cannot use shadow price to calculate new profit
 

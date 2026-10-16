@@ -9,8 +9,6 @@
 
 = Finance of Supply Chain Management
 
-
-
 Everything is *stocks* and *flows*
 
 == Accounting Rules
@@ -975,17 +973,166 @@ Mkt Cap / EBITDA = Market Cap / EBITDA
 
 ROS = Net Income / Net Sales
 
-Turnover = Net Sales / Total Assets #text(fill: rgb("#8E44AD"))[(Total Assets imported from the Balance Sheet — shown here as a placeholder, not expanded)]
+Turnover = Net Sales / Total Assets 
 
-Leverage = Total Assets / Equity #text(fill: rgb("#8E44AD"))[(both imported from the Balance Sheet)]
+Leverage = Total Assets / Equity 
 
-RONA = EBIT / Net Assets #text(fill: rgb("#8E44AD"))[(Net Assets imported from the Balance Sheet)]
+RONA = EBIT / Net Assets 
 
-ROA = Net Income / Total Assets #text(fill: rgb("#8E44AD"))[(Total Assets imported from the Balance Sheet)]
+ROA = Net Income / Total Assets 
 
-ROE = ROS × Turnover × Leverage #text(size: 7.5pt, fill: rgb("#777777"))[(DuPont identity)]
+ROE = ROS × Turnover × Leverage
 
 == Cash Flow (CF)
+
+
+#example([Financial Planning (Wilson Lumber)])[
+  Industry
+  - Lumber (Wholesale)
+  - Low / Moderate growth
+  - Seasonality / Cyclicality
+  - Order winner: Price & availability 
+
+  Market strategy
+  - Competes with price
+    - OPEX under tight control
+    - Fixed Assets under tight control
+    - Quantity (large) discounts
+      - High availability
+  
+  Company health
+  - Growth ($arrow.t$) 🙂
+  - Profitability
+    - ROE: 12.7% < 14% Interest 😐
+    - Leverage ($arrow.t$) - Current ratio ($arrow.b$) 🙁
+  
+  Problem
+  - Current credit line is tight (\$175k)
+    - Foregoes supplier discounts (can no longer compete on price)
+      - $"DPO"_1983 = 37.8 quad arrow quad "DPO"_1985 = 47$
+      - Discount $arrow$ 2% 10 / net 30
+        - 1000
+          - Pay on day 10: \$980
+          - Pay on day 46: \$1000
+        - Use \$980 for 36 days paying \$20
+          $
+            20 / 980 times 365 / 36 = 20.6%
+          $
+    - Talking to new bank (\$325k)
+  
+  Would you lend?
+  - Covenants
+    - DSO $arrow.b$
+    - DPO $arrow.t$
+    - DIO $arrow.b$
+    - WC
+    - OWC
+    - Guarantee of personal property
+    - Growth?
+  
+  $
+    g = (delta S) / S \
+    g dot ("OWC" + "FA") = delta D + delta E \
+    g dot (D + E) = delta D + delta E \
+  $
+
+  2 cases:
+  - $delta D = 0$
+    
+    $g (D + E) = "NP"$
+
+    $g = "NP" / (D + E)$
+
+  - $D / E$: constant
+
+    $g(D + E) = D "NP" / E + "NP"$
+
+    $g = "NP" / E$ (ROE)
+  
+]
+
+= Investment Evaluation 
+
+Financial evaluation:
++ Estimate relevant *chash flows*
++ Calculate *figures of merit*
++ Compare figures of merit to *acceptance criteria*
+
+- ARR
+
+Acceptance criteria: > 1
+
+- NPV
+
+- Compounding
+
+$
+  overbrace(1, "principle")\(1 + underbrace(0.10, "interest\nrate")\)^2
+$
+
+- Discounting
+
+$
+  overbrace(1, "principle") / (1 + underbrace(0.10, "interest\nrate")^2)
+$
+
+- IRR
+
+Acceptance criteria: 
+
+- BCR
+
+For fractional investment 
+
+Acceptance criteria: 
+
+
+If conflict between NPV, IRR and BCR, go for NPV.
+
+== Estimation of relevant cash flow
+
+- Cash flow principal
+- With-without principle
+
+
+#example([NPV: Should the new machine be acquired?])[
+  Consulting cost: 20000 (5 years)
+  Machine cost: 40000 
+    - 50% upfront
+    - 50% in one year
+    - Depreciation 8 years
+    - Market value after 5 years: 40% of acquisition cost
+    - Recquires increase in OWC of 10000
+    - Labor savings: 35000 / year
+      - Firing cost / worker: 10000
+      - Departement overhead reduced by 5000
+  
+  - Corporate tax rate: 30%
+  - Discount rate: 15%
+
+  #[
+    #set text(size: 8pt)
+
+    #let r = 0.15
+    #let discount(v, t) = v * calc.pow(1 + r, t)
+
+    #table(
+      columns: 7,
+      inset: 1em,
+      [Relevant Cash Flow], [0], [1], [2], [3], [4], [5], 
+      [Machine Cost], [(200)], [(200)], [], [], [], [], 
+      [Tax shield from\ depreciation], [], [50 $times$ 0.3 = 15], [15], [15], [15], [15], 
+      [Scrap Value (net)], [], [], [], [], [], [0.4 $times$ 400 = 157],
+      [Working Capital], [(10)], [], [], [], [], [10], 
+      [Salaries], [], [98], [98], [98], [98], [98], 
+      [Firing cost], [(28)], [], [], [], [], [], 
+      [], [], [], [], [], [], [], 
+      [], [], [], [], [], [], [], 
+      [], [], [], [], [], [], [], 
+      
+    )
+  ]
+]
 
 
 
@@ -1261,3 +1408,4 @@ ROE = ROS × Turnover × Leverage #text(size: 7.5pt, fill: rgb("#777777"))[(DuPo
 
   ]
 )
+
