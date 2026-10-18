@@ -37,10 +37,6 @@
   above: 3pt, below: 3pt, b)
 #let hd(..xs) = xs.pos().map(x => text(weight: "bold", x))
 
-#place(top, scope: "parent", float: true, block(width: 100%, below: 1pt)[
-  #align(center)[#text(size: 11pt, weight: "bold", fill: navy)[MZ505 Inventory Systems — Formula Sheet]]
-])
-
 #let sec(t) = table.cell(colspan: 3, fill: luma(232), align: left, strong(t))
 #let both(body) = table.cell(colspan: 2, body)
 
@@ -166,35 +162,49 @@ $ z^* = Phi^(-1)(alpha), quad Q^* = mu + z^* sigma $
 #set text(size: FS - 0.3pt)
 #table(
   columns: (auto, 1fr),
-  [In-stock (Type I SL)], $P(D <= Q) = Phi(z)$,
+  [], [$z = (Q - mu)\/sigma$ #h(4pt) (use the *rounded* $Q$) → look up $Phi(z)$, $L(z)$, $phi(z)$],
+  [In-stock (Type I SL)], [$P(D <= Q) = Phi(z)$ #h(4pt) (= $alpha$ at $Q^*$) · counts *seasons*],
   [Stockout prob.], $P(D > Q) = 1 - Phi(z)$,
   [$E["short"]$ (lost sales)], $E(D - Q)^+ = sigma L(z), quad L(z) = phi(z) - z(1 - Phi(z))$,
-  [$E["sales"]$], $mu - E["short"]$,
-  [$E["left"]$], $Q - E["sales"] = Q - mu + E["short"] = sigma (z + L(z))$,
-  [Fill rate (Type II)], [$E["sales"]\/mu = 1 - E["short"]\/mu$ (usually > in-stock)],
-  [Expected profit], [
+  [$E["sales"]$], [$E[min(D, Q)] = mu - E["short"]$ #h(4pt) (always $< mu$)],
+  [$E["left"]$], $E(Q - D)^+ = Q - E["sales"] = Q - mu + E["short"] = sigma (z + L(z))$,
+  [Identities], [$E["sales"] + E["short"] = mu$ #h(4pt) · #h(4pt) $E["sales"] + E["left"] = Q$],
+  [Fill rate (Type II)], [$E["sales"]\/mu = 1 - E["short"]\/mu$ · counts *units* → usually $>$ in-stock],
+  [Target fill rate FR], [$L(z) = (1 - "FR") mu \/ sigma$ → $z$ from loss table (take larger $z$) → $Q = mu + z sigma$],
+  [Expected profit \ (any $Q$)], [
     $
-      pi 
+      pi
       &= p E["sales"] + s E["left"] - g E["short"] - c Q \
       &= (p - c) mu - C_u E["short"] - C_o E["left"]
     $
   ],
-  [Max profit], $pi(Q^*) = (p - c) mu - (C_u + C_o) phi(z^*) sigma$,
+  [Mismatch cost], $C(Q) = C_u E["short"] + C_o E["left"] quad -> quad pi = (p - c) mu - C(Q)$,
+  [Max profit \ (only at $Q^*$)], $pi(Q^*) = (p - c) mu - (C_u + C_o) phi(z^*) sigma$,
+  [Cut $sigma$ by $theta$], [
+    $theta = (sigma_"old" - sigma_"new")/sigma_"old" = 1 - sigma_"new"/sigma_"old"$ \
+    $Delta pi = theta (C_u + C_o) phi(z^*) sigma_"old" = (C_u + C_o) phi(z^*) (sigma_"old" - sigma_"new")$ \
+    ($z^*$ unchanged; profit linear in $sigma$; $phi$ = pdf, not $Phi$)
+  ],
 )
 ]
-#sub[Mismatch cost and the value of cutting $sigma$]
-#key[
-$ C(Q) = C_u E["short"] + C_o E["left"] quad quad C(Q^*) = (C_u + C_o) phi(z^*) thin sigma $
-$ sigma -> (1 - theta) sigma: quad Delta pi^* = theta (C_u + C_o) phi(z^*) thin sigma $
-]
-- Why: $E["left"] = sigma(z^* + L(z^*))$ and $1 - Phi(z^*) = C_o\/(C_u + C_o)$ → $C(Q^*) = sigma[(C_u + C_o) L(z^*) + C_o z^*] = (C_u + C_o) phi(z^*) sigma$.
-- $alpha$, $z^*$ do not depend on $sigma$ → $pi^*$ is *linear decreasing* in $sigma$. $theta (C_u + C_o) phi(z^*) sigma$ = max to pay for a forecast tool / quick-response that cuts $sigma$ by $theta$ (recompute $phi(z^*)$ if $C_u$, $C_o$ change, e.g. 2nd supplier).
-- *Target in-stock* $alpha$: $Q = mu + Phi^(-1)(alpha) sigma$. *Target fill rate* FR: $E["short"] = (1 - "FR") mu$ → $L(z) = E["short"]\/sigma$ → $z$ (larger one; $L$ falls with $z$) → $Q$.
-- *Discrete demand table:* $Q^* =$ smallest $Q$ with $F(Q) >= alpha$ (cumulate probabilities). $E["short"] = sum_(d > Q) (d - Q) P(d)$; then the same chain.
+#sub[Mismatch cost]
+- $(p - c) mu$: crystal-ball profit — knowing $D$, you order exactly $D$ and earn $p - c$ on every unit.
+- *Too few* (lost sale): each costs $C_u = p - c + g$, expect $E["short"]$ → $C_u E["short"]$.
+- *Too many* (leftover): each costs $C_o = c - s$, expect $E["left"]$ → $C_o E["left"]$.
+- $C(Q) = C_u E["short"] + C_o E["left"]$ = expected cost of guessing wrong → $pi = (p - c) mu - C(Q)$: maximizing profit $<=>$ minimizing mismatch cost.
+- *At $Q^*$* (proof): $E["left"] = sigma(z^* + L(z^*))$ and $1 - Phi(z^*) = C_o\/(C_u + C_o)$ → $C(Q^*) = sigma[(C_u + C_o) L(z^*) + C_o z^*] = (C_u + C_o) phi(z^*) sigma$ = constant $times sigma$.
+
+#sub[Value of cutting $sigma$]
+- $alpha$ and $z^*$ do not depend on $sigma$ → $C(Q^*)$ and $pi^*$ are *linear* in $sigma$; with $sigma = 0$ you earn the crystal-ball profit.
+- $theta = 1 - sigma_"new"\/sigma_"old"$ → $Delta pi = theta (C_u + C_o) phi(z^*) sigma_"old" = (C_u + C_o) phi(z^*)(sigma_"old" - sigma_"new")$ = max to pay for a forecast tool / quick response.
+- Use the $C_u$, $C_o$ of *the setting* (e.g. 2nd supplier: $C_u = c_P - c_C$) → different $z^*$, $phi(z^*)$, so a fast supplier makes better forecasts worth less. $phi$ = pdf, not $Phi$.
+
 #sub[Variants]
+- *Discrete demand table:* $Q^* =$ smallest $Q$ with $F(Q) >= alpha$ (cumulate probabilities). $E["short"] = sum_(d > Q) (d - Q) P(d)$; then the same chain.
 - *Goodwill:* $C_u = p - c + g$ and $- g E["short"]$ in $pi$. Compare scenarios with the same $g$.
-- *Fixed order cost* $K$: $Q^*$ unchanged; profit $pi(Q^*) - K$; order only if $> 0$ (max $K = pi(Q^*)$).
+- *Fixed order cost* $K$: $Q^*$ unchanged; profit $pi(Q^*) - K$; order only if $> pi(0) = -g mu$ (with $g = 0$: if $> 0$).
 - *Sensitivity:* $s arrow.t => C_o arrow.b => Q^* arrow.t$ · $g arrow.t$ or $p arrow.t => Q^* arrow.t$ · $c arrow.t => Q^* arrow.b$ · $sigma arrow.t$: $Q^* arrow.t$ if $z^* > 0$, $arrow.b$ if $z^* < 0$; $pi^* arrow.b$ always.
+
 #sub[Backup supplier (China $c_C$ before season · Portugal $c_P$ after $D$ known)]
 #teo[A unit short can be lost (costs $p + g$) or bought from Portugal (costs $c_P$) → take the cheaper. Portugal has no demand risk; China is cheap but must be ordered blind.]
 #key[
@@ -231,45 +241,56 @@ $ pi = p mu - c_C Q_C - c_P E["short"] + s E["left"] $
 #table(
   columns: (auto, 1fr),
   fill: (x, y) => if y == 0 { luma(232) },
-  ..hd[Contract], [Critical ratio and profits],
-  [Wholesale], [$C_u = p - w + g$, $C_o = w - s$ → $Q_R$ \
-    $pi_R = p E["sales"] + s E["left"] - g E["short"] - w Q$ \ 
+  ..hd[Benchmark], [Critical ratio and profits],
+  [Wholesale], [$C_u = p - w + g$, #h(2pt) $C_o = w - s_R$ → $Q_R$ \
+    $pi_R = p E["sales"] + s_R E["left"] - g E["short"] - w Q$ \
     $pi_S = (w - c) Q$],
-  [Integrated SC], [$C_u = p - c + g$, $C_o = c - s$ ($w$ cancels) → larger $Q$ \
-    $pi_"SC" = p E["sales"] + s E["left"] - g E["short"] - c Q$],
-  [Buy-back], [$C_u = p - w$, $C_o = w - b + r$, #h(3pt) $alpha_R = (p - w)\/(p - b + r)$ \
-    $pi_R = p E["sales"] + (b - r) E["left"] - w Q$ \
-    $pi_S = (w - c) Q - (b - v) E["left"]$],
+  [Integrated SC], [$C_u = p - c + g$, #h(2pt) $C_o = c - s_"SC"$ ($w$ cancels) → larger $Q$ \
+    $pi_"SC" = p E["sales"] + s_"SC" E["left"] - g E["short"] - c Q$],
 )
 ]
-- Loss from double marginalization $= pi_"SC"^"int" - (pi_R + pi_S)_"wholesale"$.
-- *Coordinate:* set the retailer's ratio equal to the SC ratio:
-#key[
-$ (p - w)/(p - b + r) = (p - c)/(p - s) $
-$ "given " w: quad b^* = p + r - ((p - w)(p - s))/(p - c) $
-$ "given " b: quad w^* = p - ((p - c)(p - b + r))/(p - s) $
-]
-- Buy-back % $= b \/ w$. Feasible: $b < w$ (no profit from ordering to return) and $b - r > s$ (returning beats salvaging), i.e. $s + r < b < w$.
-#sub[Buy-back: who salvages, who ships?]
-Rule: retailer's $C_o = w - R$, $R$ = what the retailer recovers per leftover. Coordinating recovery $R^* = p - (p - w)(p - s)\/(p - c)$, then solve $b$ from $R^*$.
+- Double-marginalization loss $= pi_"SC" - (pi_R + pi_S)_"wholesale"$. #h(4pt) Buy-back % $= b\/w$.
+- *Given $b$, find $w^*$* (column (a), $g = 0$): $w^* = p - (p - c)(p - b + r)\/(p - s)$.
 #[
-#set text(size: FS - 0.9pt)
+#set text(size: FS - 3pt)
 #table(
   columns: (auto, 1fr, 1fr, 1fr),
   fill: (x, y) => if y == 0 { luma(232) },
-  ..hd[], [(a) Returned · supplier salvages $v$ · retailer ships], [(b) Returned · supplier salvages $v$ · supplier ships], [(c) No return · retailer salvages $s$ · supplier credits $b$],
-  [Retailer recovers], $b - r$, $b$, $b + s$,
-  [$C_o^R$], $w - b + r$, $w - b$, $w - b - s$,
-  [$b^*$], $R^* + r$, $R^*$, $R^* - s$,
-  [$pi_R$ leftover], $+(b - r) E["left"]$, $+b E["left"]$, $+(b + s) E["left"]$,
-  [$pi_S$], $(w - c) Q - (b - v) E["left"]$, $(w - c) Q - (b + r - v) E["left"]$, $(w - c) Q - b E["left"]$,
-  [SC per leftover], $v - r$, $v - r$, $s$,
-  [Feasible], $s + r < b < w$, $s < b < w$, $0 < b < w - s$,
+  ..hd[],
+    [(a) Returned · *retailer* pays return freight $r$ · supplier salvages $s_S$],
+    [(b) Returned · *supplier* pays return freight $r$ · supplier salvages $s_S$],
+    [(c) No return · retailer salvages $s_R$ · supplier pays credit $b$],
+
+  [$R^*$ ], table.cell(colspan: 3,
+    [$R^* = p + g - ((p - w + g)(p - s_"SC" + g))/(p - c + g)$, #h(4pt) $s_"SC" = max(s_R, #h(1pt) s_S - r)$]),
+  [Retailer recovers $R$], $b - r$, $b$, $b + s_R$,
+  [$b^*$ (given $w$: set $R = R^*$)], $R^* + r$, $R^*$, $R^* - s_R$,
+  [$w^*$ (given $b$)],
+    $p + g - ((p - c + g)(p - b + r + g))/(p - s_"SC" + g)$,
+    $p + g - ((p - c + g)(p - b + g))/(p - s_"SC" + g)$,
+    $p + g - ((p - c + g)(p - b - s_R + g))/(p - s_"SC" + g)$,
+  [$C_u^R$], table.cell(colspan: 3, [$p - w + g$ #h(4pt)]),
+  [$C_o^R = w - R$], $w - b + r$, $w - b$, $w - b - s_R$,
+  [$alpha_R$], table.cell(colspan: 3, [$C_u^R \/ (C_u^R + C_o^R) = (p - w + g)\/(p - R + g)$]),
+  [$pi_R$], $p E["sales"] + (b - r) E["left"] - g E["short"] - w Q$, $p E["sales"] + b E["left"] - g E["short"] - w Q$, $p E["sales"] + (b + s_R) E["left"] - g E["short"] - w Q$,
+  [$pi_S$], $(w - c) Q - (b - s_S) E["left"]$, $(w - c) Q - (b + r - s_S) E["left"]$, $(w - c) Q - b E["left"]$,
+  [Chain per leftover], $s_S - r$, $s_S - r$, $s_R$,
+  [Feasible $b$], $s_R + r < b < w$, $s_R < b < w$, $0 < b < w - s_R$,
 )
 ]
 - $pi_R + pi_S = p E["sales"] + ("SC per leftover") E["left"] - c Q$. Equals integrated $pi_"SC"$ (with $s$) only if that value $= s$: in (a)/(b) need $v - r = s$, so with $v = s$ the SC is slightly below integrated (shipping $r$ is wasted). (c) coordinates *exactly* (no shipping). Exact coordination for (a)/(b): use $s_"SC" = v - r$ in $(p - c)\/(p - s_"SC")$.
 - Who pays $r$ does not change $pi_"SC"$, only how it is split ($b$ shifts by $r$).
 - Accepted only if *both* $pi_R$ and $pi_S$ beat their wholesale-contract values.
+
+#table(
+  columns: 5,
+  inset: 0.45em,
+  align: (left, center, center, center, center, left),
+  fill: (x, y) => if y == 0 { luma(232) },
+  [*Firm*], [*Better off*], [*No change*], [*Worse off*], [*Unsure*],
+  [Retailer], [$b - r > s_R$], [$b - r <= s_R$], [never], [—],
+  [Supplier], [$s_S >= b$ #h(2pt) (and $b - r > s_R$)], [$b - r <= s_R$], [—], [$s_S < b$],
+)
 
 #sub[Demand as a function of price: $D(p) = A - B p$ (deterministic)]
 #vars[$A$ demand at $p = 0$ · $B$ units lost per €1 of price · $P_0 = A\/B$ price at which demand hits 0 · $c$ production cost · $w$ wholesale · $m = p - w$ retailer margin · $pi^0$ wholesale-contract profits · $F$ franchise fee.]
@@ -296,8 +317,37 @@ Rule: retailer's $C_o = w - R$, $R$ = what the retailer recovers per leftover. C
 
 // =====================================================================
 #mod[8 · Order-up-to (periodic review, backorders)]
-#vars[$L$ lead time (periods) · $T$ review period ($T = 1$ default) · $mu$, $sigma$ demand per period · $D_(L+1)$ demand over $L + 1$ periods · $S$ order-up-to (base-stock) level · $alpha$ target in-stock · $h$ holding/unit/period · $b$ backorder penalty/unit · $N$ periods · $K$ cost per order.]
+#vars[$L$ lead time (periods) · $T$ review period ($T = 1$ default) · $mu$, $sigma$ demand per period · $D_(L+1)$ demand over $L + 1$ periods · $S$ order-up-to (base-stock) level · $alpha$ target in-stock · $h$ holding/unit/period · $b$ backorder penalty/unit · $N$ periods · $K$ cost per order · $f$ freight cost per unit]
 #teo[Long-life product, stationary random demand, unlimited replenishments, backorders. Each period: order → the order from $L$ periods ago arrives → demand. Order $= S -$ IP $=$ last period's demand (one-for-one, pull). Level at end of period $= S - D_(L+1)$.]
+
+// ---- OUT timeline (S11 slide 4 / S12 slide 2) ----
+#let step(n, t, sub) = box(stroke: 0.6pt + rgb("#1e3a6b"), inset: 4pt, radius: 2pt, width: 100%)[
+  #align(center)[*#n. #t* \ #text(size: 0.85em, fill: luma(90), sub)]
+]
+#let arr = align(center + horizon, text(size: 1.3em)[→])
+
+*Each period (day, week, …):*
+#grid(
+  columns: (1fr, auto, 1fr, auto, 1fr),
+  column-gutter: 3pt,
+  step(1, [Order], [$"order" = S - "IP"$ \ (= last period's demand)]),
+  arr,
+  step(2, [Receive], [order placed $L$ periods ago arrives]),
+  arr,
+  step(3, [Demand], [random $D$; unmet → backorder]),
+)
+#v(3pt)
+*Example, $L = 1$:*
+#table(
+  columns: (auto, 1fr, 1fr, 1fr),
+  align: center, inset: 3pt, stroke: 0.4pt + luma(170),
+  [], [*Period 1*], [*Period 2*], [*Period 3*],
+  [Order], [$q_1$ placed], [$q_2$ placed], [$q_3$ placed],
+  [Receive], [(from period 0)], [$q_1$ arrives], [$q_2$ arrives],
+  [Demand], [$D_1$], [$D_2$], [$D_3$],
+)
+#text(size: 0.85em)[An order placed in period $t$ must cover demand in periods $t, dots, t + L$ → $S$ protects $L + 1$ periods.]
+
 #sub[Inventory level vs. inventory position]
 #key[
 $ "IL" = "OnHand" - "BO" quad quad "IP" = "OnHand" + "OnOrder" - "BO" = "IL" + "OnOrder" $
@@ -315,8 +365,13 @@ $ "IL" = "OnHand" - "BO" quad quad "IP" = "OnHand" + "OnOrder" - "BO" = "IL" + "
   [Demand $d$ (stock / backorder)], [$-$], [—], [$+$], [$arrow.b d$],
 )
 ]
-- *Never both positive* (arriving stock fills backorders first): $"BO" > 0 => "OnHand" = 0$ · $"OnHand" > 0 => "BO" = 0$. \
-  So $"IL" >= 0$: OnHand $=$ IL, BO $= 0$ · $"IL" < 0$: BO $= -$IL, OnHand $= 0$. IL and IP *can be negative*.
+- *Never both positive* (arriving stock fills backorders first): 
+  - $"BO" > 0 => "OnHand" = 0$
+  - $"OnHand" > 0 => "BO" = 0$. \
+So: 
+- $"IL" >= 0$: OnHand $=$ IL, BO $= 0$
+- $"IL" < 0$: BO $= -$IL, OnHand $= 0$
+- IL and IP *can be negative*.
 - *Only demand lowers IP; only ordering raises IP.* Arrivals and filling backorders just move units between terms.
 - IP right after ordering $= S$ → IP before ordering $= S - $ last period's demand. E.g. $S = 10$, IP $= -4$ → last demand $= 14$, order $14$ (says nothing alone about BO or OnOrder split).
 
@@ -376,16 +431,3 @@ $ "IL" = "OnHand" - "BO" quad quad "IP" = "OnHand" + "OnOrder" - "BO" = "IL" + "
 - Target fill rate: $L(z)$ from the table → look up $z$ (larger) → $S$.
 - *Choosing $T$:* minimise ordering + holding. $T arrow.t$ → fewer orders ($n K arrow.b$) but more SS and cycle stock (EOQ-like trade-off).
 
-#pagebreak()
-
-#table(
-  columns: 5,
-  inset: 0.45em,
-  align: (left, center, center, center, center, left),
-  fill: (x, y) => if y == 0 { rgb("#eaf0f8") },
-  [*Firm*], [*Better off*], [*No change*], [*Worse off*], [*Unsure*],
-  [Retailer],
-    [$b - r > s_R$], [$b - r <= s_R$], [never], [—],
-  [Supplier],
-    [$s_S >= b$ #h(2pt) (and $b - r > s_R$)], [$b - r <= s_R$], [—], [$s_S < b$],
-)
