@@ -230,8 +230,11 @@ $ Q^* = a + alpha (b - a) quad quad P("short") = 1 - alpha = (b - Q)/(b - a) $
 )
 ]
 - Valid for $a <= Q <= b$. If $Q <= a$: nothing left over, $E["short"] = mu - Q$. If $Q >= b$: nothing short.
-- Narrower range ($b - a$ smaller, e.g. a second bake) → $sigma$ smaller → mismatch cost $prop (b - a)$.
-- *Ex. Swanson:* $U[300, 600]$, $p = 3$, $c = 2$, $s = 1.5$ → $alpha = 1\/1.5 = 2\/3$, $Q^* = 500$, $P("short") = 1\/3$. With $g = 1.5$: $alpha = 2.5\/3$, $Q^* = 550$, $P("short") = 1\/6$.
+- *Second run on residual demand* 
+  - $U[a, b]$: $Q^*_2 = a + alpha (b - a)$ 
+  - max short $= (1 - alpha)(b - a)$
+  - max left $= alpha (b - a)$
+  - $P(R > Q_2^*) = (b - Q_2^*)/(b - a) = 1 - alpha$
 
 #sub[Backup supplier (China $c_C$ before season · Portugal $c_P$ after $D$ known)]
 #teo[A unit short can be lost (costs $p + g$) or bought from Portugal (costs $c_P$) → take the cheaper. Portugal has no demand risk; China is cheap but must be ordered blind.]
