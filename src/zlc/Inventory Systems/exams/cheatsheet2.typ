@@ -1,3 +1,6 @@
+#import "@local/tystats:0.1.0": norm, expon, poisson, uniform
+#import "@preview/lilaq:0.5.0" as lq
+
 // =====================================================================
 //  MZ505 Inventory Systems — Ultimate Formula Sheet
 //  Scope: EOQ · EPQ · sensitivity · power of two · all-unit discounts ·
@@ -8,7 +11,7 @@
 // =====================================================================
 
 #let FS = 7.5pt
-#set page(paper: "a4", margin: (x: 0.55cm, y: 0.55cm), columns: 2)
+#set page(paper: "a4", margin: (x: 0.1cm, y: 0.1cm), columns: 2)
 #set columns(gutter: 0.35cm)
 #set text(font: "Libertinus Serif", size: FS, lang: "en")
 #set par(leading: 0.42em, spacing: 0.45em, justify: false)
@@ -179,7 +182,12 @@ $ z^* = Phi^(-1)(alpha), quad Q^* = mu + z^* sigma $
     $
   ],
   [Mismatch cost], $C(Q) = C_u E["short"] + C_o E["left"] quad -> quad pi = (p - c) mu - C(Q)$,
-  [Max profit \ (only at $Q^*$)], $pi(Q^*) = (p - c) mu - (C_u + C_o) phi(z^*) sigma$,
+  [Max profit \ (only at $Q^*$)], [
+    $pi(Q^*) = (p - c) mu - (C_u + C_o) phi(z^*) sigma$
+    $
+      phi(z) = 1/sqrt(2 pi) e^(-z^2\/2)
+    $
+  ],
   [Cut $sigma$ by $theta$], [
     $theta = (sigma_"old" - sigma_"new")/sigma_"old" = 1 - sigma_"new"/sigma_"old"$ \
     $Delta pi = theta (C_u + C_o) phi(z^*) sigma_"old" = (C_u + C_o) phi(z^*) (sigma_"old" - sigma_"new")$ \
@@ -204,6 +212,26 @@ $ z^* = Phi^(-1)(alpha), quad Q^* = mu + z^* sigma $
 - *Goodwill:* $C_u = p - c + g$ and $- g E["short"]$ in $pi$. Compare scenarios with the same $g$.
 - *Fixed order cost* $K$: $Q^*$ unchanged; profit $pi(Q^*) - K$; order only if $> pi(0) = -g mu$ (with $g = 0$: if $> 0$).
 - *Sensitivity:* $s arrow.t => C_o arrow.b => Q^* arrow.t$ · $g arrow.t$ or $p arrow.t => Q^* arrow.t$ · $c arrow.t => Q^* arrow.b$ · $sigma arrow.t$: $Q^* arrow.t$ if $z^* > 0$, $arrow.b$ if $z^* < 0$; $pi^* arrow.b$ always.
+
+#sub[Uniform demand $D tilde U[a, b]$ (exact, no tables)]
+#key[
+$ mu = (a + b)/2 quad sigma = (b - a)/sqrt(12) quad F(Q) = (Q - a)/(b - a) $
+$ Q^* = a + alpha (b - a) quad quad P("short") = 1 - alpha = (b - Q)/(b - a) $
+]
+#[
+#set text(size: FS - 0.3pt)
+#table(
+  columns: (auto, 1fr),
+  [$E["short"]$], $(b - Q)^2 \/ (2(b - a))$,
+  [$E["left"]$], $(Q - a)^2 \/ (2(b - a))$,
+  [$E["sales"]$], [$mu - E["short"] = Q - E["left"]$],
+  [Fill rate], $1 - E["short"]\/mu$,
+  [Profit], [same chain: $pi = (p - c) mu - C_u E["short"] - C_o E["left"]$],
+)
+]
+- Valid for $a <= Q <= b$. If $Q <= a$: nothing left over, $E["short"] = mu - Q$. If $Q >= b$: nothing short.
+- Narrower range ($b - a$ smaller, e.g. a second bake) → $sigma$ smaller → mismatch cost $prop (b - a)$.
+- *Ex. Swanson:* $U[300, 600]$, $p = 3$, $c = 2$, $s = 1.5$ → $alpha = 1\/1.5 = 2\/3$, $Q^* = 500$, $P("short") = 1\/3$. With $g = 1.5$: $alpha = 2.5\/3$, $Q^* = 550$, $P("short") = 1\/6$.
 
 #sub[Backup supplier (China $c_C$ before season · Portugal $c_P$ after $D$ known)]
 #teo[A unit short can be lost (costs $p + g$) or bought from Portugal (costs $c_P$) → take the cheaper. Portugal has no demand risk; China is cheap but must be ordered blind.]
@@ -372,8 +400,10 @@ So:
 - $"IL" >= 0$: OnHand $=$ IL, BO $= 0$
 - $"IL" < 0$: BO $= -$IL, OnHand $= 0$
 - IL and IP *can be negative*.
+- $D_(t-1) = S - "IP"_t$
+- $Q = S - "IP"$
 - *Only demand lowers IP; only ordering raises IP.* Arrivals and filling backorders just move units between terms.
-- IP right after ordering $= S$ → IP before ordering $= S - $ last period's demand. E.g. $S = 10$, IP $= -4$ → last demand $= 14$, order $14$ (says nothing alone about BO or OnOrder split).
+- IP right after ordering $= S$ → IP before ordering $= S - $ last period's demand.
 
 #[
 #set text(size: FS - 1pt)
@@ -429,5 +459,118 @@ So:
 - Optimal in-stock is usually high because $b >> h$. Annual $h$ → $h\/52$ for weekly periods.
 - Safety-stock drivers: lead time, variability $sigma\/mu$, service level. $L arrow.b => mu_(L+T), sigma_(L+T), S$, on-order and SS all $arrow.b$ (strongest at high $alpha$).
 - Target fill rate: $L(z)$ from the table → look up $z$ (larger) → $S$.
-- *Choosing $T$:* minimise ordering + holding. $T arrow.t$ → fewer orders ($n K arrow.b$) but more SS and cycle stock (EOQ-like trade-off).
+- *Choosing $T$* (min ordering + holding per yr):
+  + For each $T = 1, 2, 3, dots$: $mu_(L+T)$, $sigma_(L+T)$ → $S$ → $E["BO"] = sigma_(L+T) L(z)$ → $"SS" = S - mu_(L+T) + E["BO"]$.
+  + $"Cost"(T) = H_"yr" ("SS" + mu T\/2) + K n$, #h(2pt) $n approx 1\/T_"yr"$ (+ $L mu H$ if pipeline owned; transport $f mu_"yr"$ is the same for every $T$).
+  + Pick the min. Start near $T_"EOQ" = sqrt(2K\/(H mu))$ (in periods); the optimum is close but not equal (EOQ ignores SS).
+  - $T arrow.t$: fewer orders, but SS $prop sqrt(L+T)$ and cycle stock $prop T$ $arrow.t$. If $alpha = b\/(b+h)$ with $h$ per review period, a longer $T$ gives a lower $alpha$.
 
+#pagebreak()
+
+#let CR = 0.8
+#let MU = none
+#let SD = none
+
+#let loss(x) = (norm.pdf)(x) - x * (1 - (norm.cdf)(x))
+#let z = norm.ppf(CR)
+#let e-short = loss(z)
+#let e-left  = z + loss(z)
+
+#let c-sold  = rgb("#6c8ee0")
+#let c-left  = rgb("#5a9e6a")
+#let c-short = rgb("#d4726a")
+#let soft(c) = c.transparentize(55%)
+#let r3(x) = str(calc.round(x, digits: 3))
+
+#let xs = lq.linspace(-3.5, 3.5, num: 281)
+#let xl = xs.filter(x => x <= z) + (z,)
+#let xr = (z,) + xs.filter(x => x >= z)
+#let surv(x) = 1 - (norm.cdf)(x)
+
+= Newsvendor on a standard normal
+
+#text(9pt)[CR = #CR #h(0.6em) $z = Phi^(-1)("CR") = #r3(z)$]
+
+#lq.diagram(
+  width: 15cm, height: 5.2cm,
+  title: [PDF: $Q$ splits demand outcomes into "leftover" and "short"],
+  xlabel: [$x$ (demand in $sigma$ units from the mean)], ylabel: [$phi(x)$],
+  xlim: (-3.5, 3.5), ylim: (0, 0.45),
+  legend: (position: top + left),
+  lq.fill-between(xl, xl.map(norm.pdf), fill: soft(c-left), stroke: none,
+    label: [$D <= Q$: leftover, prob $Phi(z) = "CR"$]),
+  lq.fill-between(xr, xr.map(norm.pdf), fill: soft(c-short), stroke: none,
+    label: [$D > Q$: short, prob $1 - "CR"$]),
+  lq.plot(xs, xs.map(norm.pdf), mark: none, stroke: 1.4pt + black),
+  lq.vlines(0, stroke: (paint: gray, dash: "dashed")),
+  lq.vlines(z, stroke: 1pt + black),
+  lq.place(0.05, 0.43, align: left)[$mu$],
+  lq.place(z + 0.05, 0.43, align: left)[$Q = mu + z sigma$],
+)
+
+#v(4pt)
+
+#lq.diagram(
+  width: 15cm, height: 5.2cm,
+  title: [Per outcome: sold $= min(D, Q)$, leftover $= (Q-D)^+$, short $= (D-Q)^+$],
+  xlabel: [$x$ (realised demand, $sigma$ units)], ylabel: [units ($sigma$)],
+  xlim: (-3.5, 3.5), ylim: (-3.5, 3.5),
+  legend: (position: top + left),
+  lq.fill-between(xs, xs.map(x => calc.min(x, z)), y2: xs.map(_ => -3.5),
+    fill: soft(c-sold), stroke: none, label: [sold]),
+  lq.fill-between(xl, xl, y2: xl.map(_ => z), fill: soft(c-left), stroke: none, label: [leftover]),
+  lq.fill-between(xr, xr, y2: xr.map(_ => z), fill: soft(c-short), stroke: none, label: [short]),
+  lq.plot(xs, xs, mark: none, stroke: (paint: gray, dash: "dashed")),
+  lq.plot(xs, xs.map(x => calc.min(x, z)), mark: none, stroke: 1.6pt + c-sold.darken(20%)),
+  lq.vlines(z, stroke: (paint: black, dash: "dotted")),
+  lq.place(2.6, 3.0)[$y = D$],
+  lq.place(2.9, z + 0.3)[$y = Q$],
+)
+
+#v(4pt)
+
+#lq.diagram(
+  width: 15cm, height: 5.2cm,
+  title: [In expectation: areas around $1 - Phi(x)$ (units of $sigma$)],
+  xlabel: [$x$], ylabel: [$P(Z > x)$],
+  xlim: (-3.5, 3.5), ylim: (0, 1.05),
+  legend: (position: top + right),
+  lq.fill-between(xl, xl.map(surv), fill: soft(c-sold), stroke: none,
+    label: [sold (relative to the left edge)]),
+  lq.fill-between(xl, xl.map(_ => 1), y2: xl.map(surv), fill: soft(c-left), stroke: none,
+    label: [$E["leftover"] = sigma (z + L(z))$ = #r3(e-left) $sigma$]),
+  lq.fill-between(xr, xr.map(surv), fill: soft(c-short), stroke: none,
+    label: [$E["short"] = sigma L(z)$ = #r3(e-short) $sigma$]),
+  lq.plot(xs, xs.map(surv), mark: none, stroke: 1.4pt + black),
+  lq.vlines(0, stroke: (paint: gray, dash: "dashed")),
+  lq.vlines(z, stroke: 1pt + black),
+  lq.place(0.05, 0.05, align: left)[$mu$],
+  lq.place(z + 0.05, 0.05, align: left)[$Q$],
+)
+
+#v(6pt)
+#block(width: 100%, inset: 6pt, radius: 3pt, stroke: 0.6pt + luma(160))[
+  *Every newsvendor quantity is one of these areas* (colours as above):
+  #grid(columns: (1fr, 1fr), gutter: 6pt,
+    [
+      - $z = Phi^(-1)("CR")$, #h(0.3em) $Q = mu + z sigma$
+      - In-stock prob $= Phi(z)$ (green in ①)
+      - Stockout prob $= 1 - Phi(z)$ (red in ①)
+      - #text(fill: c-short.darken(20%))[$E["short"] = sigma L(z)$]
+    ],
+    [
+      - #text(fill: c-sold.darken(20%))[$E["sales"] = mu - E["short"]$]
+      - #text(fill: c-left.darken(20%))[$E["leftover"] = Q - E["sales"]$]
+      - Fill rate $= E["sales"] / mu$
+      - $E[pi] = p E["sales"] + s E["leftover"] - c Q$
+    ],
+  )
+  *Check:* green − red ③ $= z$, i.e. $E["leftover"] - E["short"] = Q - mu$.
+  #if MU != none and SD != none [
+    #linebreak()
+    With $mu = #MU$, $sigma = #SD$: $Q = #calc.round(MU + z * SD, digits: 1)$,
+    $E["short"] = #calc.round(SD * e-short, digits: 1)$,
+    $E["sales"] = #calc.round(MU - SD * e-short, digits: 1)$,
+    $E["leftover"] = #calc.round(SD * e-left, digits: 1)$.
+  ]
+]
