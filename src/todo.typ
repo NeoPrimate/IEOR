@@ -1,6 +1,11 @@
 #import "/lib/imports.typ": *
 #show: formatting
+#import "@local/tystats:0.1.0": norm, poisson
 
-= Todo
+#let t = range(0, 12)
 
-- Visualize gradient as vector
+#for e in t [
+  #let d = norm.rvs(mean: 20, std_dev: 8, seed: e)
+  #let order = 84
+  #(d.at(0) - order)
+]
